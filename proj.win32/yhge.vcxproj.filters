@@ -37,6 +37,15 @@
     <Filter Include="Components">
       <UniqueIdentifier>{c74f7d50-78f6-43e5-a81e-f16f38b5f513}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Isometric">
+      <UniqueIdentifier>{1a0c2be3-7ce0-4ae6-96bb-b041e5c33484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Isometric\interface">
+      <UniqueIdentifier>{a52b6874-3ae4-49d3-b680-35e38fe54bfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Isometric\parser">
+      <UniqueIdentifier>{884ed4cf-61f6-4a9b-b276-0cf411f8ae26}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\message.h">
@@ -159,6 +168,99 @@
     <ClInclude Include="..\Components\SimpleMoveComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\Isometric\Coordinate.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOBatchDynamicComponent.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOBatchDynamicTileLayer.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOBatchTileLayer.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOComponentNode.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOCoordinate.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISODynamicComponent.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISODynamicTileLayer.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOGroundTileLayer.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOInfos.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOObject.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOObjectGroup.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOOptimizedTileLayer.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOTile.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOTileLayer.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOTileLayerDynamicComponent.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOTileMap.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOTileMapBuilder.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOTileset.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOTilesetGroup.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ISOXMLReader.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ZIndex.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\ZIndexNode.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\interface\ISOReaderInterface.h">
+      <Filter>Isometric\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\parser\ISOLayerInfo.h">
+      <Filter>Isometric\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\parser\ISOMapInfo.h">
+      <Filter>Isometric\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\parser\ISOObjectGroupInfo.h">
+      <Filter>Isometric\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\parser\ISOObjectInfo.h">
+      <Filter>Isometric\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\parser\ISOTileInfo.h">
+      <Filter>Isometric\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\parser\ISOTilesetInfo.h">
+      <Filter>Isometric\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Isometric\parser\ISOXMLParser.h">
+      <Filter>Isometric\parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Message\Message.cpp">
@@ -248,5 +350,94 @@
     <ClCompile Include="..\Components\SimpleMoveComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\Isometric\Coordinate.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOBatchDynamicComponent.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOBatchDynamicTileLayer.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOBatchTileLayer.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOComponentNode.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISODynamicComponent.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISODynamicTileLayer.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOGroundTileLayer.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOObject.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOObjectGroup.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOOptimizedTileLayer.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOTile.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOTileLayer.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOTileLayerDynamicComponent.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOTileMap.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOTileMapBuilder.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOTileset.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOTilesetGroup.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ISOXMLReader.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ZIndex.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\ZIndexNode.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\parser\ISOLayerInfo.cpp">
+      <Filter>Isometric\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\parser\ISOMapInfo.cpp">
+      <Filter>Isometric\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\parser\ISOObjectGroupInfo.cpp">
+      <Filter>Isometric\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\parser\ISOObjectInfo.cpp">
+      <Filter>Isometric\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\parser\ISOTileInfo.cpp">
+      <Filter>Isometric\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\parser\ISOTilesetInfo.cpp">
+      <Filter>Isometric\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Isometric\parser\ISOXMLParser.cpp">
+      <Filter>Isometric\parser</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Isometric\README.md">
+      <Filter>Isometric</Filter>
+    </None>
   </ItemGroup>
 </Project>
