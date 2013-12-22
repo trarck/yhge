@@ -20,6 +20,14 @@
     <ClInclude Include="..\CocosExt\CCGeometryValue.h" />
     <ClInclude Include="..\CocosExt\CCScopePtr.h" />
     <ClInclude Include="..\CocosExt\CCSelectorWrap.h" />
+    <ClInclude Include="..\Components\AnimationComponent.h" />
+    <ClInclude Include="..\Components\AttackComponent.h" />
+    <ClInclude Include="..\Components\AutoAttackComponent.h" />
+    <ClInclude Include="..\Components\Component.h" />
+    <ClInclude Include="..\Components\ComponentEntityInterface.h" />
+    <ClInclude Include="..\Components\ComponentInterface.h" />
+    <ClInclude Include="..\Components\ManualAttackComponent.h" />
+    <ClInclude Include="..\Components\SimpleMoveComponent.h" />
     <ClInclude Include="..\Event\Event.h" />
     <ClInclude Include="..\Event\EventHandle.h" />
     <ClInclude Include="..\Event\EventHandleD.h" />
@@ -54,6 +62,12 @@
     <ClCompile Include="..\CocosExt\CCGeometryValue.cpp" />
     <ClCompile Include="..\CocosExt\CCScopePtr.cpp" />
     <ClCompile Include="..\CocosExt\CCSelectorWrap.cpp" />
+    <ClCompile Include="..\Components\AnimationComponent.cpp" />
+    <ClCompile Include="..\Components\AttackComponent.cpp" />
+    <ClCompile Include="..\Components\AutoAttackComponent.cpp" />
+    <ClCompile Include="..\Components\Component.cpp" />
+    <ClCompile Include="..\Components\ManualAttackComponent.cpp" />
+    <ClCompile Include="..\Components\SimpleMoveComponent.cpp" />
     <ClCompile Include="..\Event\Event.cpp" />
     <ClCompile Include="..\Event\EventHandle.cpp" />
     <ClCompile Include="..\Event\EventHandleD.cpp" />

@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "YHGEMacros.h"
-#include "Message/Message.h"
+#include "../../Message/Message.h"
 #include "FSMState.h"
 
 NS_CC_YHGE_BEGIN

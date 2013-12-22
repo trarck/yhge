@@ -34,6 +34,9 @@
     <Filter Include="FSM\Common">
       <UniqueIdentifier>{b2325d51-b5d8-4027-9caf-67cc35ca95a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{c74f7d50-78f6-43e5-a81e-f16f38b5f513}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\message.h">
@@ -132,6 +135,30 @@
     <ClInclude Include="..\FSM\Common\FSMStateInterface.h">
       <Filter>FSM\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\Components\AnimationComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Components\AttackComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Components\AutoAttackComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Components\Component.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Components\ComponentEntityInterface.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Components\ComponentInterface.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Components\ManualAttackComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Components\SimpleMoveComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Message\Message.cpp">
@@ -202,6 +229,24 @@
     </ClCompile>
     <ClCompile Include="..\FSM\Common\FSMState.cpp">
       <Filter>FSM\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Components\AnimationComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Components\AttackComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Components\AutoAttackComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Components\Component.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Components\ManualAttackComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Components\SimpleMoveComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
