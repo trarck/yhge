@@ -13,6 +13,12 @@
     <Filter Include="Event">
       <UniqueIdentifier>{616172d2-0e69-4552-abed-265d22a5d178}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CocosExt">
+      <UniqueIdentifier>{dd21489e-cb47-4d7d-900c-ab9d6d292361}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CocosExt\Actions">
+      <UniqueIdentifier>{0e03474f-1f7a-47d3-8392-6a2f5897d961}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\message.h">
@@ -66,6 +72,21 @@
     <ClInclude Include="..\Event\UIEvent.h">
       <Filter>Event</Filter>
     </ClInclude>
+    <ClInclude Include="..\CocosExt\CCCallFuncNO.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocosExt\CCGeometryValue.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocosExt\CCScopePtr.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocosExt\CCSelectorWrap.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocosExt\Actions\CCParabolaMove.h">
+      <Filter>CocosExt\Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Message\Message.cpp">
@@ -103,6 +124,21 @@
     </ClCompile>
     <ClCompile Include="..\Event\UIEvent.cpp">
       <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocosExt\CCCallFuncNO.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocosExt\CCGeometryValue.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocosExt\CCScopePtr.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocosExt\CCSelectorWrap.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocosExt\Actions\CCParabolaMove.cpp">
+      <Filter>CocosExt\Actions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

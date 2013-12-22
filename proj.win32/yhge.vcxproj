@@ -11,6 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\CocosExt\Actions\CCParabolaMove.h" />
+    <ClInclude Include="..\CocosExt\CCCallFuncNO.h" />
+    <ClInclude Include="..\CocosExt\CCGeometryValue.h" />
+    <ClInclude Include="..\CocosExt\CCScopePtr.h" />
+    <ClInclude Include="..\CocosExt\CCSelectorWrap.h" />
     <ClInclude Include="..\Event\Event.h" />
     <ClInclude Include="..\Event\EventHandle.h" />
     <ClInclude Include="..\Event\EventHandleD.h" />
@@ -30,6 +35,11 @@
     <ClInclude Include="..\Message\MessageTarget.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\CocosExt\Actions\CCParabolaMove.cpp" />
+    <ClCompile Include="..\CocosExt\CCCallFuncNO.cpp" />
+    <ClCompile Include="..\CocosExt\CCGeometryValue.cpp" />
+    <ClCompile Include="..\CocosExt\CCScopePtr.cpp" />
+    <ClCompile Include="..\CocosExt\CCSelectorWrap.cpp" />
     <ClCompile Include="..\Event\Event.cpp" />
     <ClCompile Include="..\Event\EventHandle.cpp" />
     <ClCompile Include="..\Event\EventHandleD.cpp" />
