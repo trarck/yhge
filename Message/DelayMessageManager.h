@@ -1,6 +1,6 @@
 //
 //  DelayMessageManager.h
-//
+//	延迟消息
 //
 
 #ifndef YHGE_MESSAGE_DelayMessageManager_H_

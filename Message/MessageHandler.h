@@ -1,5 +1,5 @@
 //
-// Ö´ĞĞÏûÏ¢µÄº¯Êı¾ä±ú
+// æ‰§è¡Œæ¶ˆæ¯çš„å‡½æ•°å¥æŸ„
 //
 
 #ifndef YHGE_MESSAGE_MESSAGEHANDLER_H_
@@ -12,7 +12,7 @@ NS_CC_YHGE_BEGIN
 
 class Message;
 
-//¶¨Òå´¦Àíº¯ÊıÀàĞÍ
+//å®šä¹‰å¤„ç†å‡½æ•°ç±»å‹
 typedef void (CCObject::*SEL_MessageHandler)(Message*);
 #define message_selector(_SELECTOR) (SEL_MessageHandler)(&_SELECTOR)
 
