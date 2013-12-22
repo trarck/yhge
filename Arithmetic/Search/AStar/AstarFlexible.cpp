@@ -7,7 +7,7 @@ static const int DEFAULT_NEARS_LENGTH=8;
 static const int ASTAR_G_LINE=10;
 static const int ASTAR_G_CROSS=14;
 
-int defaultNears[][2]={
+static int defaultNears[][2]={
 	{-1 ,-1},{0 ,-1},{1,-1},
 	{-1 , 0},        {1, 0},
 	{-1 , 1},{0 , 1},{1, 1}

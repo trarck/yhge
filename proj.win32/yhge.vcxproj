@@ -28,6 +28,12 @@
     <ClInclude Include="..\Event\EventTarget.h" />
     <ClInclude Include="..\Event\IEventTarget.h" />
     <ClInclude Include="..\Event\UIEvent.h" />
+    <ClInclude Include="..\FSM\Common\FSMDelegateState.h" />
+    <ClInclude Include="..\FSM\Common\FSMMachine.h" />
+    <ClInclude Include="..\FSM\Common\FSMMachineInterface.h" />
+    <ClInclude Include="..\FSM\Common\FSMParameterState.h" />
+    <ClInclude Include="..\FSM\Common\FSMState.h" />
+    <ClInclude Include="..\FSM\Common\FSMStateInterface.h" />
     <ClInclude Include="..\include\message.h" />
     <ClInclude Include="..\include\yhge.h" />
     <ClInclude Include="..\include\YHGEMacros.h" />
@@ -54,6 +60,8 @@
     <ClCompile Include="..\Event\EventHandleWrap.cpp" />
     <ClCompile Include="..\Event\EventListenerManager.cpp" />
     <ClCompile Include="..\Event\UIEvent.cpp" />
+    <ClCompile Include="..\FSM\Common\FSMMachine.cpp" />
+    <ClCompile Include="..\FSM\Common\FSMState.cpp" />
     <ClCompile Include="..\Math\MersenneTwister.cpp" />
     <ClCompile Include="..\Math\RandomMT.cpp" />
     <ClCompile Include="..\Message\Message.cpp" />

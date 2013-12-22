@@ -28,6 +28,12 @@
     <Filter Include="Arithmetic\Search\AStar">
       <UniqueIdentifier>{8ebdba80-4355-45f9-9de7-561f47f55f0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FSM">
+      <UniqueIdentifier>{d5d60265-136d-4ff1-996e-2b12528862a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FSM\Common">
+      <UniqueIdentifier>{b2325d51-b5d8-4027-9caf-67cc35ca95a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\message.h">
@@ -108,6 +114,24 @@
     <ClInclude Include="..\Arithmetic\Search\AStar\CallbackAstar.h">
       <Filter>Arithmetic\Search\AStar</Filter>
     </ClInclude>
+    <ClInclude Include="..\FSM\Common\FSMDelegateState.h">
+      <Filter>FSM\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FSM\Common\FSMMachine.h">
+      <Filter>FSM\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FSM\Common\FSMMachineInterface.h">
+      <Filter>FSM\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FSM\Common\FSMParameterState.h">
+      <Filter>FSM\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FSM\Common\FSMState.h">
+      <Filter>FSM\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FSM\Common\FSMStateInterface.h">
+      <Filter>FSM\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Message\Message.cpp">
@@ -172,6 +196,12 @@
     </ClCompile>
     <ClCompile Include="..\Arithmetic\Search\AStar\CallbackAstar.cpp">
       <Filter>Arithmetic\Search\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FSM\Common\FSMMachine.cpp">
+      <Filter>FSM\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FSM\Common\FSMState.cpp">
+      <Filter>FSM\Common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
