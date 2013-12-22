@@ -19,6 +19,15 @@
     <Filter Include="CocosExt\Actions">
       <UniqueIdentifier>{0e03474f-1f7a-47d3-8392-6a2f5897d961}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Arithmetic">
+      <UniqueIdentifier>{c77f48b7-b063-471b-bc5c-5a05da3858e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arithmetic\Search">
+      <UniqueIdentifier>{3558fe33-b5bf-4da2-88a4-8553cda8c889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arithmetic\Search\AStar">
+      <UniqueIdentifier>{8ebdba80-4355-45f9-9de7-561f47f55f0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\message.h">
@@ -87,6 +96,18 @@
     <ClInclude Include="..\CocosExt\Actions\CCParabolaMove.h">
       <Filter>CocosExt\Actions</Filter>
     </ClInclude>
+    <ClInclude Include="..\Arithmetic\Search\AStar\Astar.h">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Arithmetic\Search\AStar\AstarFlexible.h">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Arithmetic\Search\AStar\AstarNode.h">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Arithmetic\Search\AStar\CallbackAstar.h">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Message\Message.cpp">
@@ -139,6 +160,18 @@
     </ClCompile>
     <ClCompile Include="..\CocosExt\Actions\CCParabolaMove.cpp">
       <Filter>CocosExt\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Arithmetic\Search\AStar\Astar.cpp">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Arithmetic\Search\AStar\AstarFlexible.cpp">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Arithmetic\Search\AStar\AstarNode.cpp">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Arithmetic\Search\AStar\CallbackAstar.cpp">
+      <Filter>Arithmetic\Search\AStar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

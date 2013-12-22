@@ -11,6 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Arithmetic\Search\AStar\Astar.h" />
+    <ClInclude Include="..\Arithmetic\Search\AStar\AstarFlexible.h" />
+    <ClInclude Include="..\Arithmetic\Search\AStar\AstarNode.h" />
+    <ClInclude Include="..\Arithmetic\Search\AStar\CallbackAstar.h" />
     <ClInclude Include="..\CocosExt\Actions\CCParabolaMove.h" />
     <ClInclude Include="..\CocosExt\CCCallFuncNO.h" />
     <ClInclude Include="..\CocosExt\CCGeometryValue.h" />
@@ -35,6 +39,10 @@
     <ClInclude Include="..\Message\MessageTarget.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Arithmetic\Search\AStar\Astar.cpp" />
+    <ClCompile Include="..\Arithmetic\Search\AStar\AstarFlexible.cpp" />
+    <ClCompile Include="..\Arithmetic\Search\AStar\AstarNode.cpp" />
+    <ClCompile Include="..\Arithmetic\Search\AStar\CallbackAstar.cpp" />
     <ClCompile Include="..\CocosExt\Actions\CCParabolaMove.cpp" />
     <ClCompile Include="..\CocosExt\CCCallFuncNO.cpp" />
     <ClCompile Include="..\CocosExt\CCGeometryValue.cpp" />
