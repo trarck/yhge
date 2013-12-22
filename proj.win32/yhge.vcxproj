@@ -11,6 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Event\Event.h" />
+    <ClInclude Include="..\Event\EventHandle.h" />
+    <ClInclude Include="..\Event\EventHandleD.h" />
+    <ClInclude Include="..\Event\EventHandleWrap.h" />
+    <ClInclude Include="..\Event\EventListenerManager.h" />
+    <ClInclude Include="..\Event\EventTarget.h" />
+    <ClInclude Include="..\Event\IEventTarget.h" />
+    <ClInclude Include="..\Event\UIEvent.h" />
     <ClInclude Include="..\include\message.h" />
     <ClInclude Include="..\include\yhge.h" />
     <ClInclude Include="..\include\YHGEMacros.h" />
@@ -22,6 +30,12 @@
     <ClInclude Include="..\Message\MessageTarget.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Event\Event.cpp" />
+    <ClCompile Include="..\Event\EventHandle.cpp" />
+    <ClCompile Include="..\Event\EventHandleD.cpp" />
+    <ClCompile Include="..\Event\EventHandleWrap.cpp" />
+    <ClCompile Include="..\Event\EventListenerManager.cpp" />
+    <ClCompile Include="..\Event\UIEvent.cpp" />
     <ClCompile Include="..\Math\MersenneTwister.cpp" />
     <ClCompile Include="..\Math\RandomMT.cpp" />
     <ClCompile Include="..\Message\Message.cpp" />
