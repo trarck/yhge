@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{41d8efaf-7295-4e2f-8051-50f5b1eeeac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Message">
+      <UniqueIdentifier>{39d622d9-b433-4fa5-996d-7adf928f5eec}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\message.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\yhge.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\YHGEMacros.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Message\Message.h">
+      <Filter>Message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Message\MessageHandler.h">
+      <Filter>Message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Message\MessageManager.h">
+      <Filter>Message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Message\MessageTarget.h">
+      <Filter>Message</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Message\Message.cpp">
+      <Filter>Message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Message\MessageHandler.cpp">
+      <Filter>Message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Message\MessageManager.cpp">
+      <Filter>Message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Message\MessageTarget.cpp">
+      <Filter>Message</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
