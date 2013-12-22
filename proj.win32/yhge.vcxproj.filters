@@ -7,6 +7,9 @@
     <Filter Include="Message">
       <UniqueIdentifier>{39d622d9-b433-4fa5-996d-7adf928f5eec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{00c9821a-9ecb-42a2-ae78-3361ff29f418}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\message.h">
@@ -30,6 +33,12 @@
     <ClInclude Include="..\Message\MessageTarget.h">
       <Filter>Message</Filter>
     </ClInclude>
+    <ClInclude Include="..\Math\MersenneTwister.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Math\RandomMT.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Message\Message.cpp">
@@ -43,6 +52,12 @@
     </ClCompile>
     <ClCompile Include="..\Message\MessageTarget.cpp">
       <Filter>Message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Math\MersenneTwister.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Math\RandomMT.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

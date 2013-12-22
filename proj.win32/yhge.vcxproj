@@ -14,12 +14,16 @@
     <ClInclude Include="..\include\message.h" />
     <ClInclude Include="..\include\yhge.h" />
     <ClInclude Include="..\include\YHGEMacros.h" />
+    <ClInclude Include="..\Math\MersenneTwister.h" />
+    <ClInclude Include="..\Math\RandomMT.h" />
     <ClInclude Include="..\Message\Message.h" />
     <ClInclude Include="..\Message\MessageHandler.h" />
     <ClInclude Include="..\Message\MessageManager.h" />
     <ClInclude Include="..\Message\MessageTarget.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Math\MersenneTwister.cpp" />
+    <ClCompile Include="..\Math\RandomMT.cpp" />
     <ClCompile Include="..\Message\Message.cpp" />
     <ClCompile Include="..\Message\MessageHandler.cpp" />
     <ClCompile Include="..\Message\MessageManager.cpp" />
