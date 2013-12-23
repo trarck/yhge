@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="include">
-      <UniqueIdentifier>{41d8efaf-7295-4e2f-8051-50f5b1eeeac3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Message">
       <UniqueIdentifier>{39d622d9-b433-4fa5-996d-7adf928f5eec}</UniqueIdentifier>
     </Filter>
@@ -46,17 +43,11 @@
     <Filter Include="Isometric\parser">
       <UniqueIdentifier>{884ed4cf-61f6-4a9b-b276-0cf411f8ae26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{7d002152-c88b-4bb7-ae3b-0c4319dc439c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\message.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\yhge.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\YHGEMacros.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Message\Message.h">
       <Filter>Message</Filter>
     </ClInclude>
@@ -260,6 +251,18 @@
     </ClInclude>
     <ClInclude Include="..\Isometric\parser\ISOXMLParser.h">
       <Filter>Isometric\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\isometric.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\message.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\YHGEMacros.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

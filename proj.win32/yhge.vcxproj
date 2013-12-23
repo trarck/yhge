@@ -42,9 +42,7 @@
     <ClInclude Include="..\FSM\Common\FSMParameterState.h" />
     <ClInclude Include="..\FSM\Common\FSMState.h" />
     <ClInclude Include="..\FSM\Common\FSMStateInterface.h" />
-    <ClInclude Include="..\include\message.h" />
-    <ClInclude Include="..\include\yhge.h" />
-    <ClInclude Include="..\include\YHGEMacros.h" />
+    <ClInclude Include="..\isometric.h" />
     <ClInclude Include="..\Isometric\Coordinate.h" />
     <ClInclude Include="..\Isometric\interface\ISOReaderInterface.h" />
     <ClInclude Include="..\Isometric\ISOBatchDynamicComponent.h" />
@@ -78,10 +76,13 @@
     <ClInclude Include="..\Isometric\ZIndexNode.h" />
     <ClInclude Include="..\Math\MersenneTwister.h" />
     <ClInclude Include="..\Math\RandomMT.h" />
+    <ClInclude Include="..\message.h" />
     <ClInclude Include="..\Message\Message.h" />
     <ClInclude Include="..\Message\MessageHandler.h" />
     <ClInclude Include="..\Message\MessageManager.h" />
     <ClInclude Include="..\Message\MessageTarget.h" />
+    <ClInclude Include="..\yhge.h" />
+    <ClInclude Include="..\YHGEMacros.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Arithmetic\Search\AStar\Astar.cpp" />
