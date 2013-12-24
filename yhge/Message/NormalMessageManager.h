@@ -9,8 +9,6 @@
 #ifndef YHGE_MESSAGE_NORMALMESSAGEMANAGER_H_
 #define YHGE_MESSAGE_NORMALMESSAGEMANAGER_H_
 
-#include "cocos2d.h"
-#include "YHGEMacros.h"
 #include "MessageManager.h"
 
 NS_CC_YHGE_BEGIN

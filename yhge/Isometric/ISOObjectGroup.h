@@ -2,7 +2,7 @@
 #define YHGE_ISOMETRIC_ISOOBJECTGROUP_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 #include "cocoa/CCGeometry.h"
 #include "cocoa/CCString.h"
 #include "cocoa/CCArray.h"

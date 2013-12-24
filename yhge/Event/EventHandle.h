@@ -6,7 +6,7 @@
 #define YHGE_EVENT_EVENTHANDLE_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 #include "Event.h"
 
 NS_CC_YHGE_BEGIN

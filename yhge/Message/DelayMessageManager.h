@@ -6,10 +6,8 @@
 #ifndef YHGE_MESSAGE_DelayMessageManager_H_
 #define YHGE_MESSAGE_DelayMessageManager_H_
 
-#include "cocos2d.h"
-#include "YHGEMacros.h"
-#include "Message/Message.h"
-#include "Message/MessageManager.h"
+#include "Message.h"
+#include "MessageManager.h"
 
 NS_CC_YHGE_BEGIN
 

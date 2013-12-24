@@ -4,8 +4,6 @@
 #ifndef YHGE_MESSAGE_MESSAGETARGET_H_
 #define YHGE_MESSAGE_MESSAGETARGET_H_
 
-#include "cocos2d.h"
-#include "YHGEMacros.h"
 #include "Message.h"
 #include "MessageHandler.h"
 

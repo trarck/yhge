@@ -1,5 +1,5 @@
 #include "AstarFlexible.h"
-#include "../../../CocosExt/CCGeometryValue.h"
+#include <yhge/CocosExt/CCGeometryValue.h>
 
 NS_CC_YHGE_BEGIN
 

@@ -10,7 +10,7 @@
 #define YHGE_MATH_RANDOMMT_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 
 #define MT_MAX_UINT 0xffffffff
 #define MT_MAX_INT 0x7fffffff

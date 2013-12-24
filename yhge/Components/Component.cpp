@@ -1,5 +1,5 @@
 #include "Component.h"
-#include "../Message/MessageManager.h"
+#include <yhge/Message/MessageManager.h>
 
 NS_CC_YHGE_BEGIN
 

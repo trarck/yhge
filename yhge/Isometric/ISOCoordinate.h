@@ -12,7 +12,7 @@
 #define YHGE_ISOMETRIC_ISOCOORDINATE_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 
 //tile width 
 #ifndef TileWidth

@@ -2,7 +2,7 @@
 #define YHGE_ISOMETRIC_ISODYNAMICCOMPONENT_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 #include "ISOComponentNode.h"
 
 #define ComponentExtendCount 2

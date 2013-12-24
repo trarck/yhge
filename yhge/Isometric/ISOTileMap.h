@@ -6,7 +6,7 @@
 #define YHGE_ISOMETRIC_ISOTILEMAP_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 #include "ISOTileLayer.h"
 #include "ISOObjectGroup.h"
 //#include "ISOXMLParser.h"

@@ -44,7 +44,7 @@
 #ifndef YHGE_MATH_MERSENNETWISTER_H_
 #define YHGE_MATH_MERSENNETWISTER_H_
 
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 
 #define Mersenne_Twister_N 624
 #define Mersenne_Twister_M 397

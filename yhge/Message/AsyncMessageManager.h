@@ -5,8 +5,6 @@
 #ifndef YHGE_MESSAGE_ASYNCMESSAGEMANAGER_H_
 #define YHGE_MESSAGE_ASYNCMESSAGEMANAGER_H_
 
-#include "cocos2d.h"
-#include "YHGEMacros.h"
 #include "Message.h"
 #include "MessageHandler.h"
 

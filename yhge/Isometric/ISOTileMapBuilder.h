@@ -2,7 +2,7 @@
 #define YHGE_ISOMETRIC_ISOTILEMAPBUILDER_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 #include "ISOInfos.h"
 
 #include "ISOTileLayer.h"

@@ -2,7 +2,7 @@
 #define YHGE_ISOMETRIC_ISOGROUNDTILELAYER_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 #include "ISOTileLayer.h"
 #include "ISOInfos.h"
 #include "cocoa/CCArray.h"

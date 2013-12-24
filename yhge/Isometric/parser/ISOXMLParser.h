@@ -2,7 +2,6 @@
 #define YHGE_ISOMETRIC_ISOXMLPARSER_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
 #include "ISOMapInfo.h"
 #include "ISOLayerInfo.h"
 

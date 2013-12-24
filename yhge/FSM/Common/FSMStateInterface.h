@@ -27,8 +27,8 @@
 #define YHGE_FSM_COMMON_CCFSMSTATE_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
-#include "Message/Message.h"
+#include <yhge/YHGEMacros.h>
+#include <yhge/Message/Message.h>
 
 NS_CC_YHGE_BEGIN
 

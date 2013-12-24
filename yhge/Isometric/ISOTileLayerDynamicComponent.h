@@ -2,7 +2,7 @@
 #define YHGE_ISOMETRIC_ISOTileLayerDynamicComponent_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 #include "ISOOptimizedTileLayer.h"
 #include "ISOComponentNode.h"
 

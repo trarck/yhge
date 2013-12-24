@@ -7,8 +7,6 @@
 #ifndef YHGE_MESSAGE_SIMPLEMESSAGEMANAGER_H_
 #define YHGE_MESSAGE_SIMPLEMESSAGEMANAGER_H_
 
-#include "cocos2d.h"
-#include "YHGEMacros.h"
 #include "MessageManager.h"
 #include "MessageHandler.h"
 

@@ -5,7 +5,7 @@
 #define YHGE_ISOMETRIC_ZINDEXNODE_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 
 NS_CC_YHGE_BEGIN
 

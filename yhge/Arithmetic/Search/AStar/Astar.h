@@ -5,8 +5,6 @@
 #ifndef YHGE_ARITHMETIC_SEARCH_ASTAR_ASTAR_H_
 #define YHGE_ARITHMETIC_SEARCH_ASTAR_ASTAR_H_
 
-#include "cocos2d.h"
-#include "YHGEMacros.h"
 #include "AstarNode.h"
 
 NS_CC_YHGE_BEGIN

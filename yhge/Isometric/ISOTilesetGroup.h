@@ -2,7 +2,7 @@
 #define YHGE_ISOMETRIC_ISOTILESETGROUP_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 #include "ISOTileset.h"
 
 NS_CC_YHGE_BEGIN

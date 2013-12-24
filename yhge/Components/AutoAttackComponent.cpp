@@ -1,5 +1,5 @@
 #include "AutoAttackComponent.h"
-#include "../Message/MessageManager.h"
+#include <yhge/Message/MessageManager.h>
 
 USING_NS_CC;
 

@@ -2,7 +2,7 @@
 #define YHGE_ISOMETRIC_ISOOptimizedTileLayer_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 #include "ISOTileLayer.h"
 
 NS_CC_YHGE_BEGIN

@@ -3,7 +3,7 @@
 #define YHGE_EVENT_CCEVENTLISTENERMANAGER_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 #include "Event.h"
 #include "EventHandle.h"
 
