@@ -21,6 +21,16 @@ bool Component::init(void)
     return true;
 }
 
+void Component::setup(void)
+{
+
+}
+
+void Component::cleanup(void)
+{
+
+}
+
 bool Component::registerMessages()
 {
     CCLOG("Component::registerMessages");
