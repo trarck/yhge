@@ -2,7 +2,7 @@
 #define YHGE_COCOSEXT_ACTIONS_CCPARABOLAMOVE_H_
 
 #include "cocos2d.h"
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 
 #define PARABOLA_GRAVITY_DEFAULT -1000.0f
 
