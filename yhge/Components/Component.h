@@ -17,8 +17,8 @@ public:
     
     virtual bool init(void);  
     
-	virtual bool setup(void);
-	virtual bool cleanup(void);
+	virtual void setup(void);
+	virtual void cleanup(void);
 
     virtual bool registerMessages();
 	virtual void cleanupMessages();

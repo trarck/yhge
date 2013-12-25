@@ -31,7 +31,7 @@ ISOBatchTileLayer::~ISOBatchTileLayer()
     CC_SAFE_RELEASE(m_pSpriteBatchNode);
     if (m_pAtlasIndexArray)
     {
-        ccCArrayFree(m_pAtlasIndexArray);
+        yhge::ccCArrayFree(m_pAtlasIndexArray);
         m_pAtlasIndexArray = NULL;
     }
     
@@ -69,7 +69,7 @@ void ISOBatchTileLayer::setupTiles()
     
     if (m_pSpriteBatchNode->initWithTexture(texture, (unsigned int)capacity))
     {               
-        m_pAtlasIndexArray = ccCArrayNew((unsigned int)totalNumberOfTiles);
+        m_pAtlasIndexArray = yhge::ccCArrayNew((unsigned int)totalNumberOfTiles);
         
         this->setContentSize(CCSizeMake(m_tLayerSize.width * m_tMapTileSize.width, m_tLayerSize.height * m_tMapTileSize.height));
     }
@@ -244,7 +244,7 @@ CCSprite * ISOBatchTileLayer::insertTileForGID(unsigned int gid, const CCPoint& 
     this->addQuadFromSprite(tile, indexForZ);
     
     // insert it into the local atlasindex array
-    ccCArrayInsertValueAtIndex(m_pAtlasIndexArray, (void*)z, indexForZ);
+    yhge::ccCArrayInsertValueAtIndex(m_pAtlasIndexArray, (void*)z, indexForZ);
     
     // update possible children
     CCArray* pChildren=m_pSpriteBatchNode->getChildren();
@@ -313,7 +313,7 @@ CCSprite * ISOBatchTileLayer::appendTileForGID(unsigned int gid, const CCPoint& 
     addQuadFromSprite(tile, indexForZ);
     
     // append should be after addQuadFromSprite since it modifies the quantity values
-    ccCArrayInsertValueAtIndex(m_pAtlasIndexArray, (void*)z, indexForZ);
+    yhge::ccCArrayInsertValueAtIndex(m_pAtlasIndexArray, (void*)z, indexForZ);
     
     return tile;
 }
@@ -406,7 +406,7 @@ void ISOBatchTileLayer::removeChild(CCNode* node, bool cleanup)
     int z = (size_t)m_pAtlasIndexArray->arr[atlasIndex];
 	unsigned int tileIndex=zOrderToIndex(z);
     m_pTiles[tileIndex] = 0;
-    ccCArrayRemoveValueAtIndex(m_pAtlasIndexArray, atlasIndex);
+    yhge::ccCArrayRemoveValueAtIndex(m_pAtlasIndexArray, atlasIndex);
     m_pSpriteBatchNode->removeChild(sprite, cleanup);
 }
 
@@ -427,7 +427,7 @@ void ISOBatchTileLayer::removeTileSpriteAt(const CCPoint& pos)
         m_pTiles[tileIndex] = 0;
         
         // remove tile from atlas position array
-        ccCArrayRemoveValueAtIndex(m_pAtlasIndexArray, atlasIndex);
+        yhge::ccCArrayRemoveValueAtIndex(m_pAtlasIndexArray, atlasIndex);
         
         // remove it from sprites and/or texture atlas
         CCSprite *sprite = (CCSprite*)getChildByTag(z);

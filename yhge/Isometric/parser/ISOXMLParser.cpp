@@ -1,7 +1,7 @@
 #include "ISOXMLParser.h"
 #include "support/zip_support/ZipUtils.h"
 #include "support/CCPointExtension.h"
-#include "support/base64.h"
+#include <yhge/CocosExt/Support/base64.h>
 #include "ISOObjectGroupInfo.h"
 #include "ISOObjectInfo.h"
 #include "ISOLayerInfo.h"
@@ -490,7 +490,7 @@ void ISOXMLParser::endElement(void *ctx, const char *name)
         
         std::string currentString = this->getCurrentString();
         unsigned char *buffer;
-        len = base64Decode((unsigned char*)currentString.c_str(), (unsigned int)currentString.length(), &buffer);
+        len = yhge::base64Decode((unsigned char*)currentString.c_str(), (unsigned int)currentString.length(), &buffer);
         if( ! buffer )
         {
             CCLOG("cocos2d: TiledMap: decode data error");
