@@ -9,8 +9,6 @@
 
 NS_CC_YHGE_BEGIN
 
-struct _ccCArray;
-
 class ISOGroundTileLayer : public ISOTileLayer {
 
 public:

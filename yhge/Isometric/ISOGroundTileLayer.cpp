@@ -1,14 +1,5 @@
 #include "ISOGroundTileLayer.h"
 #include "ISOCoordinate.h"
-#include "sprite_nodes/CCSprite.h"
-#include "textures/CCTextureCache.h"
-#include "shaders/CCShaderCache.h"
-#include "shaders/CCGLProgram.h"
-#include "support/CCPointExtension.h"
-#include "support/data_support/ccCArray.h"
-#include "support/CCNotificationCenter.h"
-#include "CCEventType.h"
-#include "CCDirector.h"
 #include "ISOTileMap.h"
 
 NS_CC_YHGE_BEGIN

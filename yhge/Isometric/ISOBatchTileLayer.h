@@ -3,14 +3,12 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
+#include <yhge/CocosExt/Support/ccCArray.h>
 #include "ISOInfos.h"
 #include "ISOTileLayer.h"
-#include "cocoa/CCArray.h"
 
 
 NS_CC_YHGE_BEGIN
-
-struct _ccCArray;
 
 /**
  * 使用batch node来渲染layer.(TMX的渲染方式)
@@ -126,7 +124,7 @@ protected:
        
     //! used for optimization
     CCSprite*           m_pReusedTile;
-    ccCArray*           m_pAtlasIndexArray;
+    yhge::ccCArray*           m_pAtlasIndexArray;
     
     // used for retina display
     float               m_fContentScaleFactor;
