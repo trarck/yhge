@@ -4,7 +4,6 @@
 //
 
 #include "DelayMessageManager.h"
-#include "Message/MessageManager.h"
 
 USING_NS_CC;
 

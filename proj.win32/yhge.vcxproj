@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h" />
+    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\AstarFlexible.h" />
+    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\AstarNode.h" />
+    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.h" />
+    <ClInclude Include="..\yhge\CocosExt\Actions\CCParabolaMove.h" />
+    <ClInclude Include="..\yhge\CocosExt\CCCallFuncNO.h" />
+    <ClInclude Include="..\yhge\CocosExt\CCGeometryValue.h" />
+    <ClInclude Include="..\yhge\CocosExt\CCScopePtr.h" />
+    <ClInclude Include="..\yhge\CocosExt\CCSelectorWrap.h" />
+    <ClInclude Include="..\yhge\Components\AnimationComponent.h" />
+    <ClInclude Include="..\yhge\Components\AttackComponent.h" />
+    <ClInclude Include="..\yhge\Components\AutoAttackComponent.h" />
+    <ClInclude Include="..\yhge\Components\Component.h" />
+    <ClInclude Include="..\yhge\Components\ComponentEntityInterface.h" />
+    <ClInclude Include="..\yhge\Components\ComponentInterface.h" />
+    <ClInclude Include="..\yhge\Components\ManualAttackComponent.h" />
+    <ClInclude Include="..\yhge\Components\SimpleMoveComponent.h" />
+    <ClInclude Include="..\yhge\Event\Event.h" />
+    <ClInclude Include="..\yhge\Event\EventHandle.h" />
+    <ClInclude Include="..\yhge\Event\EventHandleD.h" />
+    <ClInclude Include="..\yhge\Event\EventHandleWrap.h" />
+    <ClInclude Include="..\yhge\Event\EventListenerManager.h" />
+    <ClInclude Include="..\yhge\Event\EventTarget.h" />
+    <ClInclude Include="..\yhge\Event\IEventTarget.h" />
+    <ClInclude Include="..\yhge\Event\UIEvent.h" />
+    <ClInclude Include="..\yhge\FSM\Common\FSMDelegateState.h" />
+    <ClInclude Include="..\yhge\FSM\Common\FSMMachine.h" />
+    <ClInclude Include="..\yhge\FSM\Common\FSMMachineInterface.h" />
+    <ClInclude Include="..\yhge\FSM\Common\FSMParameterState.h" />
+    <ClInclude Include="..\yhge\FSM\Common\FSMState.h" />
+    <ClInclude Include="..\yhge\FSM\Common\FSMStateInterface.h" />
+    <ClInclude Include="..\yhge\isometric.h" />
+    <ClInclude Include="..\yhge\Isometric\Coordinate.h" />
+    <ClInclude Include="..\yhge\Isometric\interface\ISOReaderInterface.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOBatchDynamicComponent.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOBatchDynamicTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOBatchTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOComponentNode.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOCoordinate.h" />
+    <ClInclude Include="..\yhge\Isometric\ISODynamicComponent.h" />
+    <ClInclude Include="..\yhge\Isometric\ISODynamicTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOGroundTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOInfos.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOObject.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOObjectGroup.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOOptimizedTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOTile.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOTileLayerDynamicComponent.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOTileMap.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOTileMapBuilder.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOTileset.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOTilesetGroup.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOXMLReader.h" />
+    <ClInclude Include="..\yhge\Isometric\parser\ISOLayerInfo.h" />
+    <ClInclude Include="..\yhge\Isometric\parser\ISOMapInfo.h" />
+    <ClInclude Include="..\yhge\Isometric\parser\ISOObjectGroupInfo.h" />
+    <ClInclude Include="..\yhge\Isometric\parser\ISOObjectInfo.h" />
+    <ClInclude Include="..\yhge\Isometric\parser\ISOTileInfo.h" />
+    <ClInclude Include="..\yhge\Isometric\parser\ISOTilesetInfo.h" />
+    <ClInclude Include="..\yhge\Isometric\parser\ISOXMLParser.h" />
+    <ClInclude Include="..\yhge\Isometric\ZIndex.h" />
+    <ClInclude Include="..\yhge\Isometric\ZIndexNode.h" />
+    <ClInclude Include="..\yhge\Math\MersenneTwister.h" />
+    <ClInclude Include="..\yhge\Math\RandomMT.h" />
+    <ClInclude Include="..\yhge\message.h" />
+    <ClInclude Include="..\yhge\Message\Message.h" />
+    <ClInclude Include="..\yhge\Message\MessageHandler.h" />
+    <ClInclude Include="..\yhge\Message\MessageManager.h" />
+    <ClInclude Include="..\yhge\Message\MessageTarget.h" />
+    <ClInclude Include="..\yhge\yhge.h" />
+    <ClInclude Include="..\yhge\YHGEMacros.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp" />
+    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarFlexible.cpp" />
+    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarNode.cpp" />
+    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\Actions\CCParabolaMove.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\CCCallFuncNO.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\CCGeometryValue.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\CCScopePtr.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\CCSelectorWrap.cpp" />
+    <ClCompile Include="..\yhge\Components\AnimationComponent.cpp" />
+    <ClCompile Include="..\yhge\Components\AttackComponent.cpp" />
+    <ClCompile Include="..\yhge\Components\AutoAttackComponent.cpp" />
+    <ClCompile Include="..\yhge\Components\Component.cpp" />
+    <ClCompile Include="..\yhge\Components\ManualAttackComponent.cpp" />
+    <ClCompile Include="..\yhge\Components\SimpleMoveComponent.cpp" />
+    <ClCompile Include="..\yhge\Event\Event.cpp" />
+    <ClCompile Include="..\yhge\Event\EventHandle.cpp" />
+    <ClCompile Include="..\yhge\Event\EventHandleD.cpp" />
+    <ClCompile Include="..\yhge\Event\EventHandleWrap.cpp" />
+    <ClCompile Include="..\yhge\Event\EventListenerManager.cpp" />
+    <ClCompile Include="..\yhge\Event\UIEvent.cpp" />
+    <ClCompile Include="..\yhge\FSM\Common\FSMMachine.cpp" />
+    <ClCompile Include="..\yhge\FSM\Common\FSMState.cpp" />
+    <ClCompile Include="..\yhge\Isometric\Coordinate.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOBatchDynamicComponent.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOBatchDynamicTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOBatchTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOComponentNode.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISODynamicComponent.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISODynamicTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOGroundTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOObject.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOObjectGroup.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOOptimizedTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOTile.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOTileLayerDynamicComponent.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOTileMap.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOTileMapBuilder.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOTileset.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOTilesetGroup.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOXMLReader.cpp" />
+    <ClCompile Include="..\yhge\Isometric\parser\ISOLayerInfo.cpp" />
+    <ClCompile Include="..\yhge\Isometric\parser\ISOMapInfo.cpp" />
+    <ClCompile Include="..\yhge\Isometric\parser\ISOObjectGroupInfo.cpp" />
+    <ClCompile Include="..\yhge\Isometric\parser\ISOObjectInfo.cpp" />
+    <ClCompile Include="..\yhge\Isometric\parser\ISOTileInfo.cpp" />
+    <ClCompile Include="..\yhge\Isometric\parser\ISOTilesetInfo.cpp" />
+    <ClCompile Include="..\yhge\Isometric\parser\ISOXMLParser.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ZIndex.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ZIndexNode.cpp" />
+    <ClCompile Include="..\yhge\Math\MersenneTwister.cpp" />
+    <ClCompile Include="..\yhge\Math\RandomMT.cpp" />
+    <ClCompile Include="..\yhge\Message\Message.cpp" />
+    <ClCompile Include="..\yhge\Message\MessageHandler.cpp" />
+    <ClCompile Include="..\yhge\Message\MessageManager.cpp" />
+    <ClCompile Include="..\yhge\Message\MessageTarget.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{51EC1159-5E48-4D92-95D9-00295679FE9A}</ProjectGuid>
+    <RootNamespace>test_win32</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>libyhge</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0'">v110</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v110_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0'">v110</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v110_xp</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration).win32\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration).win32\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration).win32\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration).win32\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\cocos2dx;$(ProjectDir)..\..\..\cocos2dx\include;$(ProjectDir)..\..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\OGLES;..\yhge;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libExtensions.lib;libcocos2d.lib;libCocosDenshion.lib;opengl32.lib;glew32.lib;libBox2d.lib;libchipmunk.lib;libcurl_imp.lib;pthreadVCE2.lib;websockets.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutDir)"</Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\cocos2dx;$(ProjectDir)..\..\..\cocos2dx\include;$(ProjectDir)..\..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\..\external;$(ProjectDir)..\..\..\external\chipmunk\include\chipmunk;$(ProjectDir)..\..\..\CocosDenshion\include;$(ProjectDir)..\..\..\extensions;..\Classes;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libExtensions.lib;libcocos2d.lib;libCocosDenshion.lib;opengl32.lib;glew32.lib;libBox2d.lib;libchipmunk.lib;libcurl_imp.lib;pthreadVCE2.lib;websockets.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutDir)"</Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

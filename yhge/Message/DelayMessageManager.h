@@ -22,7 +22,7 @@ public:
         
     }
     
-    DelayMessage(float delay,cocos2d::Message* message)
+    DelayMessage(float delay,Message* message)
     :m_pMessage(message)
     ,m_fDelay(delay)
     {
@@ -34,14 +34,14 @@ public:
         CC_SAFE_RELEASE(m_pMessage);
     }
     
-    inline void setMessage(cocos2d::Message* pMessage)
+    inline void setMessage(Message* pMessage)
     {
         CC_SAFE_RETAIN(pMessage);
         CC_SAFE_RELEASE(m_pMessage);
         m_pMessage = pMessage;
     }
     
-    inline cocos2d::Message* getMessage()
+    inline Message* getMessage()
     {
         return m_pMessage;
     }
@@ -50,7 +50,7 @@ public:
 
 private:
     
-    cocos2d::Message* m_pMessage;
+    Message* m_pMessage;
 
     
 };
@@ -73,16 +73,16 @@ public:
     
     void update(float delta);
     
-    void dispatchMessage(cocos2d::Message* message,float fDelay);
+    void dispatchMessage(Message* message,float fDelay);
     
-    inline void setMessageManager(cocos2d::MessageManager* pMessageManager)
+    inline void setMessageManager(MessageManager* pMessageManager)
     {
         CC_SAFE_RETAIN(pMessageManager);
         CC_SAFE_RELEASE(m_pMessageManager);
         m_pMessageManager = pMessageManager;
     }
     
-    inline cocos2d::MessageManager* getMessageManager()
+    inline MessageManager* getMessageManager()
     {
         return m_pMessageManager;
     }
@@ -91,7 +91,7 @@ private:
     
     cocos2d::CCArray* m_pMessages;
     
-    cocos2d::MessageManager* m_pMessageManager;
+    MessageManager* m_pMessageManager;
 };
 
 NS_CC_YHGE_END
