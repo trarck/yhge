@@ -144,7 +144,7 @@
     <ClCompile Include="..\yhge\Message\MessageTarget.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{51EC1159-5E48-4D92-95D9-00295679FE9A}</ProjectGuid>
+    <ProjectGuid>{76A39BB2-9B84-4C65-98A5-654D86B86F2A}</ProjectGuid>
     <RootNamespace>test_win32</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>libyhge</ProjectName>
