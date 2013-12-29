@@ -22,7 +22,6 @@
 #include "Event/UIEvent.h"
 #include "Event/EventHandle.h"
 #include "Event/EventHandleWrap.h"
-#include "Event/EventTarget.h"
 #include "Event/EventListenerManager.h"
 
 //math

@@ -20,28 +20,64 @@ public:
 
     static EventListenerManager* sharedEventListenerManager();
 
-    void addEventListener(CCNode* target,const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle);
+	/**
+	 * 添加一个事件监听
+	 * 由于只需要目标的id,只要是Object对像就行
+	 */
+    void addEventListener(CCObject* target,const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle);
     
-    void removeEventListener(CCNode* target,const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle);
+	/**
+	 * 移除一个事件监听
+	 * 由于只需要目标的id,只要是Object对像就行
+	 */
+    void removeEventListener(CCObject* target,const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle);
     
-    void removeEventListener(CCNode* target,const char* type,CCObject* handleObject);
+    void removeEventListener(CCObject* target,const char* type,CCObject* handleObject);
     
-    void removeEventListener(CCNode* target,const char* type);
+    void removeEventListener(CCObject* target,const char* type);
     
-    void removeEventListener(CCNode* target);
+    void removeEventListener(CCObject* target);
 
-	void removeEventListenerForHandle(CCNode* target,const char* type,yhge::SEL_EventHandle handle);
-        
+	void removeEventListenerForHandle(CCObject* target,const char* type,yhge::SEL_EventHandle handle);
+    
+	/**
+	 * 处理事件
+	 * 由于只需要目标的id,只要是Object对像就行
+	 */
+    void handleEvent(CCObject* target,yhge::Event* evt);
+
+	/**
+	 * 触发事件
+	 * 由于事件需要传递，必需是CCNode
+	 */
     void dispatchEvent(CCNode* target,yhge::Event* evt);
 
-    void handleEvent(CCNode* target,yhge::Event* evt);
+	/**
+	 * 触发事件
+	 * 把new EventObject和dispatchEvent和起来，提供简便方法
+	 * 由于事件需要传递，必需是CCNode
+	 */
+    void trigger(CCNode* target,const char* type,CCObject* data,bool bubbles);
+
+	
+	/**
+	 * 触发事件
+	 * 普通版，不需要事件传递
+	 */
+    void dispatchEventWithObject(CCObject* target,yhge::Event* evt);
+
+	/**
+	 * 触发事件
+	 * 把new EventObject和dispatchEvent和起来，提供简便方法
+	 * 普通版，不需要事件传递
+	 */
+    void triggerWithObject(CCObject* target,const char* type,CCObject* data,bool bubbles);
 
     bool isListened(CCArray* listeners,yhge::SEL_EventHandle handle,CCObject* handleObject) ;
 
-    CCArray* getEventListeners(CCNode* target,const char* type);
+    CCArray* getEventListeners(CCObject* target,const char* type);
     
-    //把new EventObject和dispatchEvent和起来，提供简便方法
-    void trigger(CCNode* target,const char* type,CCObject* data,bool bubbles);
+
   
 protected:
 

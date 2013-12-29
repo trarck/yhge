@@ -30,7 +30,7 @@ EventListenerManager* EventListenerManager::sharedEventListenerManager()
     return s_sharedEventListenerManager;
 }
 
-void EventListenerManager::addEventListener(CCNode* target,const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle)
+void EventListenerManager::addEventListener(CCObject* target,const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle)
 {
 
     unsigned int targetId=target->m_uID;
@@ -64,7 +64,7 @@ void EventListenerManager::addEventListener(CCNode* target,const char* type,CCOb
 
 }
 
-void EventListenerManager::removeEventListener(CCNode* target,const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle)
+void EventListenerManager::removeEventListener(CCObject* target,const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle)
 {
     CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
     CCAssert(handleObject!=NULL,"EventListenerManager::removeEventListener handleObject is null.");
@@ -95,12 +95,12 @@ void EventListenerManager::removeEventListener(CCNode* target,const char* type,C
     }
 }
 
-void EventListenerManager::removeEventListener(CCNode* target,const char* type,CCObject* handleObject)
+void EventListenerManager::removeEventListener(CCObject* target,const char* type,CCObject* handleObject)
 {
 	removeEventListener(target,type,handleObject,NULL);
 }
 
-void EventListenerManager::removeEventListener(CCNode* target,const char* type)
+void EventListenerManager::removeEventListener(CCObject* target,const char* type)
 {
     CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
     CCAssert(type!=NULL,"EventListenerManager::removeEventListener type is null.");
@@ -108,13 +108,13 @@ void EventListenerManager::removeEventListener(CCNode* target,const char* type)
     targetListeners->removeObjectForKey(type);
 }
 
-void EventListenerManager::removeEventListener(CCNode* target)
+void EventListenerManager::removeEventListener(CCObject* target)
 {
     CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
     m_pListeners->removeObjectForKey(target->m_uID);
 }
 
-void EventListenerManager::removeEventListenerForHandle(CCNode* target,const char* type,yhge::SEL_EventHandle handle)
+void EventListenerManager::removeEventListenerForHandle(CCObject* target,const char* type,yhge::SEL_EventHandle handle)
 {
 	CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
     CCAssert(handle!=NULL,"EventListenerManager::removeEventListener handle is null.");
@@ -232,25 +232,9 @@ void EventListenerManager::removeListenerMapForHandle(CCDictionary* listenerMap,
     }
 }
 
-void EventListenerManager::dispatchEvent(CCNode* target,yhge::Event* evt)
-{
-    // Capture no
-    
-    // Target
-    //event.currentTarget=obj;
-    handleEvent(target,evt);
-    // Bubble
-	CCNode* parent=target->getParent();
-    while(parent && !evt->isDispatchStopped()){
-        //event.currentTarget=parent;
-        handleEvent(parent,evt);
-        parent=parent->getParent();
-    }
-}
 
-void EventListenerManager::handleEvent(CCNode* target,Event* evt)
+void EventListenerManager::handleEvent(CCObject* target,Event* evt)
 {
-
 	CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
     if(targetListeners) {
 		std::string type=evt->getType();
@@ -269,28 +253,20 @@ void EventListenerManager::handleEvent(CCNode* target,Event* evt)
 	}
 }
 
-bool EventListenerManager::isListened(CCArray* listeners,yhge::SEL_EventHandle handle,CCObject* handleObject)
+void EventListenerManager::dispatchEvent(CCNode* target,yhge::Event* evt)
 {
-    CCObject* pObj=NULL;
-    EventHandle* eventHandle=NULL;
-
-    CCARRAY_FOREACH(listeners,pObj){
-        eventHandle=(EventHandle*) pObj;
-        if (eventHandle->getHandle()==handle && eventHandle->getTarget()==handleObject) {
-			return true;
-		}
+    // Capture no
+    
+    // Target
+    //event.currentTarget=obj;
+    handleEvent(target,evt);
+    // Bubble
+	CCNode* parent=target->getParent();
+    while(parent && !evt->isDispatchStopped()){
+        //event.currentTarget=parent;
+        handleEvent(parent,evt);
+        parent=parent->getParent();
     }
-    return false;
-}
-
-CCArray* EventListenerManager::getEventListeners(CCNode* target,const char* type)
-{
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
-    if(targetListeners && type) {
-		//对应的type事件
-        return static_cast<CCArray*>(targetListeners->objectForKey(type));
-	}
-	return NULL;
 }
 
 //把new EventObject和dispatchEvent和起来，提供简便方法
@@ -305,6 +281,57 @@ void EventListenerManager::trigger(CCNode* target,const char* type,CCObject* dat
     dispatchEvent(target,e);
 	e->release();
 }
+
+/**
+	* 触发事件
+	* 普通版，不需要事件传递
+	*/
+void EventListenerManager::dispatchEventWithObject(CCObject* target,yhge::Event* evt)
+{
+	handleEvent(target,evt);
+}
+
+/**
+	* 触发事件
+	* 把new EventObject和dispatchEvent和起来，提供简便方法
+	* 普通版，不需要事件传递
+	*/
+void EventListenerManager::triggerWithObject(CCObject* target,const char* type,CCObject* data,bool bubbles)
+{
+	yhge::Event* e=new yhge::Event();
+	e->initEvent(type,bubbles,true);
+    if (data) {
+        e->setData(data);
+    }
+	
+    dispatchEventWithObject(target,e);
+	e->release();
+}
+
+bool EventListenerManager::isListened(CCArray* listeners,yhge::SEL_EventHandle handle,CCObject* handleObject)
+{
+    CCObject* pObj=NULL;
+    EventHandle* eventHandle=NULL;
+
+    CCARRAY_FOREACH(listeners,pObj){
+        eventHandle=(EventHandle*) pObj;
+        if (eventHandle->getHandle()==handle && eventHandle->getTarget()==handleObject) {
+			return true;
+		}
+    }
+    return false;
+}
+
+CCArray* EventListenerManager::getEventListeners(CCObject* target,const char* type)
+{
+    CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
+    if(targetListeners && type) {
+		//对应的type事件
+        return static_cast<CCArray*>(targetListeners->objectForKey(type));
+	}
+	return NULL;
+}
+
 
 
 NS_CC_YHGE_END
