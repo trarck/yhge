@@ -4,11 +4,8 @@
 #include <yhge/CocosExt/Support/base64.h>
 #include <yhge/Isometric/ISOCoordinate.h>
 
-#include "../base/ISOTileSet.h"
-#include "../base/ISOTileMapObject.h"
+#include "../ISOBase.h"
 #include "../layers/ISOTileLayer.h"
-#include "../layers/ISOObjectGroup.h"
-
 #include "../ISOTileMap.h"
 
 using namespace std;

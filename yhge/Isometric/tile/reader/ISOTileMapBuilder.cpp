@@ -1,13 +1,6 @@
 #include "ISOTileMapBuilder.h"
-#include "../base/ISOTileMapObject.h"
-#include "../base/ISOTile.h"
-#include "../base/ISOTileset.h"
-#include "../base/ISOTilesetGroup.h"
-#include "../layers/ISOObjectGroup.h"
-#include "../layers/ISOGroundTileLayer.h"
-#include "../layers/ISODynamicTileLayer.h"
-#include "../layers/ISOBatchTileLayer.h"
-#include "../layers/ISOBatchDynamicTileLayer.h"
+#include "../ISOBases.h"
+#include "../ISOLayers.h"
 #include "../ISOTileMap.h"
 
 NS_CC_YHGE_BEGIN

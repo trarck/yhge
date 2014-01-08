@@ -6,9 +6,10 @@
 #include "../ISOInfos.h"
 
 #include "../base/ISOTilesetGroup.h"
+#include "../base/ISOObjectGroup.h"
 #include "../layers/ISOTileLayer.h"
 #include "../layers/ISODynamicComponent.h"
-#include "../layers/ISOObjectGroup.h"
+
 
 
 NS_CC_YHGE_BEGIN

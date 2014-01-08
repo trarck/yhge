@@ -9,8 +9,8 @@
 #include <yhge/YHGEMacros.h>
 
 #include "base/ISOTilesetGroup.h"
+#include "base/ISOObjectGroup.h"
 #include "layers/ISOTileLayer.h"
-#include "layers/ISOObjectGroup.h"
 //#include "ISOXMLParser.h"
 #include "layers/ISODynamicComponent.h"
 
