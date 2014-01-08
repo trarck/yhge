@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
 #include <yhge/CocosExt/Support/ccCArray.h>
-#include "ISOInfos.h"
+#include "../ISOInfos.h"
 #include "ISOTileLayer.h"
 
 

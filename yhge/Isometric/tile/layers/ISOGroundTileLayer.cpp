@@ -1,6 +1,6 @@
 #include "ISOGroundTileLayer.h"
-#include "ISOCoordinate.h"
-#include "ISOTileMap.h"
+#include <yhge/Isometric/ISOCoordinate.h>
+#include "../ISOTileMap.h"
 
 NS_CC_YHGE_BEGIN
 

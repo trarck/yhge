@@ -2,12 +2,14 @@
 #include "support/zip_support/ZipUtils.h"
 #include "support/CCPointExtension.h"
 #include <yhge/CocosExt/Support/base64.h>
-#include "ISOCoordinate.h"
-#include "ISOTileMap.h"
-#include "ISOTileSet.h"
-#include "ISOTileLayer.h"
-#include "ISOObjectGroup.h"
-#include "ISOObject.h"
+#include <yhge/Isometric/ISOCoordinate.h>
+
+#include "../base/ISOTileSet.h"
+#include "../base/ISOObject.h"
+#include "../layers/ISOTileLayer.h"
+#include "../layers/ISOObjectGroup.h"
+
+#include "../ISOTileMap.h"
 
 using namespace std;
 

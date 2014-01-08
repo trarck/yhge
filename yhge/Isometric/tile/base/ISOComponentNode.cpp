@@ -1,5 +1,5 @@
 #include "ISOComponentNode.h"
-#include "ISOCoordinate.h"
+#include <yhge/Isometric/ISOCoordinate.h>
 
 
 

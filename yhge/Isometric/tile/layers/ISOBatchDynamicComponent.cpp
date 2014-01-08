@@ -1,7 +1,7 @@
 #include "ISOBatchDynamicComponent.h"
-#include "ISOCoordinate.h"
+#include <yhge/Isometric/ISOCoordinate.h>
+#include <yhge/Isometric/tile/base/ISOTile.h>
 #include "ISOTileLayer.h"
-#include "ISOTile.h"
 #include "ISOBatchDynamicTileLayer.h"
 
 

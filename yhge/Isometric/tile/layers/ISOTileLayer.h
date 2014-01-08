@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
-#include "ISOTile.h"
+#include "../base/ISOTile.h"
 
 NS_CC_YHGE_BEGIN
 

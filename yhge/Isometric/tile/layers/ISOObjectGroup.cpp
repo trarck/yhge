@@ -1,5 +1,4 @@
 #include "ISOObjectGroup.h"
-#include "ccMacros.h"
 
 NS_CC_YHGE_BEGIN
 

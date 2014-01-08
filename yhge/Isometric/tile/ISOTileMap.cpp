@@ -1,5 +1,5 @@
 #include "ISOTileMap.h"
-#include "ISOTileset.h"
+#include "base/ISOTileset.h"
 
 NS_CC_YHGE_BEGIN
 

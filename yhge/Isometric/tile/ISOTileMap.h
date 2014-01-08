@@ -7,12 +7,12 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
-#include "ISOTileLayer.h"
-#include "ISOObjectGroup.h"
-//#include "ISOXMLParser.h"
-#include "ISODynamicComponent.h"
-#include "ISOTilesetGroup.h"
 
+#include "base/ISOTilesetGroup.h"
+#include "layers/ISOTileLayer.h"
+#include "layers/ISOObjectGroup.h"
+//#include "ISOXMLParser.h"
+#include "layers/ISODynamicComponent.h"
 
 NS_CC_YHGE_BEGIN
 

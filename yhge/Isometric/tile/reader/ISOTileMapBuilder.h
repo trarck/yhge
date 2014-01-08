@@ -3,14 +3,12 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
-#include "ISOInfos.h"
+#include "../ISOInfos.h"
 
-#include "ISOTileLayer.h"
-#include "ISODynamicComponent.h"
-
-#include "ISOObjectGroup.h"
-#include "ISOTilesetGroup.h"
-
+#include "../base/ISOTilesetGroup.h"
+#include "../layers/ISOTileLayer.h"
+#include "../layers/ISODynamicComponent.h"
+#include "../layers/ISOObjectGroup.h"
 
 
 NS_CC_YHGE_BEGIN

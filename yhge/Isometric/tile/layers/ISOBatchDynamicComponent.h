@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
-#include "ISOComponentNode.h"
+#include <yhge/Isometric/tile/base/ISOTile.h>
 #include "ISODynamicComponent.h"
 
 NS_CC_YHGE_BEGIN

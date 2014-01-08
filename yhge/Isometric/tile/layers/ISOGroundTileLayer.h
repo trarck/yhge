@@ -3,9 +3,9 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
+#include "../ISOInfos.h"
 #include "ISOTileLayer.h"
-#include "ISOInfos.h"
-#include "cocoa/CCArray.h"
+
 
 NS_CC_YHGE_BEGIN
 

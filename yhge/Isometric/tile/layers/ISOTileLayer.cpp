@@ -1,7 +1,8 @@
 #include "ISOTileLayer.h"
-#include "ISOTileMap.h"
-#include "ISOCoordinate.h"
-#include "ISOTileset.h"
+#include <yhge/Isometric/ISOCoordinate.h>
+#include "../base/ISOTileset.h"
+#include "../ISOTileMap.h"
+
 
 NS_CC_YHGE_BEGIN
 

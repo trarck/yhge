@@ -3,10 +3,6 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
-#include "cocoa/CCGeometry.h"
-#include "cocoa/CCString.h"
-#include "cocoa/CCArray.h"
-#include "cocoa/CCDictionary.h"
 
 NS_CC_YHGE_BEGIN
 

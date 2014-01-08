@@ -3,8 +3,9 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/tile/base/ISOTileset.h>
 #include "ISODynamicTileLayer.h"
-#include "ISOTileset.h"
+
 
 NS_CC_YHGE_BEGIN
 

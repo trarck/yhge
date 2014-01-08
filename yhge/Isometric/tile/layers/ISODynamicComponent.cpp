@@ -1,7 +1,8 @@
 #include "ISODynamicComponent.h"
-#include "ISOCoordinate.h"
+#include <yhge/Isometric/ISOCoordinate.h>
+#include "../base/ISOTile.h"
 #include "ISOTileLayer.h"
-#include "ISOTile.h"
+
 
 
 NS_CC_YHGE_BEGIN

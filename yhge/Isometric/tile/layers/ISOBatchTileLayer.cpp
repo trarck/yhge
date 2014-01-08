@@ -1,6 +1,6 @@
 #include "ISOBatchTileLayer.h"
-#include "ISOCoordinate.h"
-#include "ISOTileset.h"
+#include <yhge/Isometric/ISOCoordinate.h>
+#include <yhge/Isometric/tile/base/ISOTileset.h>
 
 
 
