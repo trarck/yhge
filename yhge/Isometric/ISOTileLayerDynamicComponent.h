@@ -8,6 +8,11 @@
 
 NS_CC_YHGE_BEGIN
 
+/**
+ * 更加优化的动态显示layer.
+ * 使用固定的组件来做显示的容器，避免频繁的创建和删除显示的tile
+ * 目录已经废弃不用，直接DynamicComponent+DynamicLayer
+ */
 class ISOTileLayerDynamicComponent : public ISOOptimizedTileLayer {
 
 public:

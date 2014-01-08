@@ -24,14 +24,14 @@ ISOMapInfo::~ISOMapInfo()
 
 bool ISOMapInfo::init()
 {
-    m_pTilesets = CCArray::create();
-    m_pTilesets->retain();
+    m_pTilesets = new CCArray();
+    m_pTilesets->init();
     
-    m_pLayers = CCArray::create();
-    m_pLayers->retain();
+    m_pLayers = new CCArray();
+    m_pLayers->init();
 
-    m_pObjectGroups = CCArray::createWithCapacity(4);
-    m_pObjectGroups->retain();
+    m_pObjectGroups = new CCArray();
+    m_pObjectGroups->initWithCapacity(4);
     
     m_pProperties = new CCDictionary();
 

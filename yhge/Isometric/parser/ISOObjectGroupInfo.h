@@ -6,6 +6,9 @@
 
 NS_CC_YHGE_BEGIN
 
+/**
+ * 地图中对象组信息，和layer是同一级别
+ */
 class ISOObjectGroupInfo : public CCObject{
 
 public:
@@ -89,16 +92,45 @@ public:
     }
 
 protected:
-    
+    /**
+     * 组的名称。
+     * 用于标识此组
+     */
     std::string m_sName;
+    
+    /**
+     * 组的颜色。平常不会不用到
+     * 组内的所有元素受到影响
+     */
     ccColor3B m_tColor;
+    
     //cocos2dx use 0-255
+    /**
+     * 组的透明度。平常不会用到。
+     * 组内的所有元素受到影响
+     */
     unsigned char m_cOpacity;
+    
+    /**
+     * 组是否可见
+     */
     bool m_bVisible;
+    
+    /**
+     * 组的位置偏移
+     */
+    CCPoint m_tPositionOffset;
+    
+    /**
+     * 组所包含的对象
+     */
     CCArray* m_pObjects;
+    
+    /**
+     * 组是扩展属性
+     */
     CCDictionary* m_pProperties;
 
-    CCPoint m_tPositionOffset;
 };
 
 

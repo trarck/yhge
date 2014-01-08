@@ -9,6 +9,9 @@
 
 NS_CC_YHGE_BEGIN
 
+/**
+ * 直接把tile当做子元素进行渲染，没有进行任何优化。
+ */
 class ISOGroundTileLayer : public ISOTileLayer {
 
 public:

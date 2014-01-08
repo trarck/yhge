@@ -9,6 +9,7 @@ ISOObjectGroupInfo::ISOObjectGroupInfo()
 {
     m_pProperties=new CCDictionary();
     m_pObjects=new CCArray();
+    m_pObjects->init();
 }
 
 ISOObjectGroupInfo::~ISOObjectGroupInfo()

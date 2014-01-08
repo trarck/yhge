@@ -6,6 +6,9 @@
 
 NS_CC_YHGE_BEGIN
 
+/**
+ * 格子信息
+ */
 class ISOTileInfo : public CCObject{
 
 public:
@@ -60,13 +63,23 @@ public:
     }
     
 protected:
+    /**
+     * 格子id
+     */
     unsigned int m_uId;
+    
+    /**
+     * 图像路径
+     */
     std::string m_sImageSource;
-    //! size in pixels of the image
+    
+    /**
+     * 图像大小。像素大小
+     */
     CCSize m_tImageSize;
     
     /**
-     * 属性
+     * 格子扩展属性
      */
     CCDictionary* m_pProperties;
     

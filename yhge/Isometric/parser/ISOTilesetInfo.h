@@ -6,6 +6,9 @@
 
 NS_CC_YHGE_BEGIN
 
+/**
+ * 块集合
+ */
 class ISOTilesetInfo : public CCObject{
 
 public:
@@ -124,33 +127,54 @@ public:
     {
         return m_pProperties;
     }
-    
-    inline void setTileProperties(CCDictionary* pTileProperties)
-    {
-        CC_SAFE_RETAIN(pTileProperties);
-        CC_SAFE_RELEASE(m_pTileProperties);
-        m_pTileProperties = pTileProperties;
-    }
-    
-    inline CCDictionary* getTileProperties()
-    {
-        return m_pTileProperties;
-    }
 
 protected:
+    /**
+     * 集合名称
+     */
     std::string     m_sName;
+    
+    /**
+     * 定义文件
+     * 把tileset的定义放在单独的文件里
+     */
     std::string     m_sSourceFile;
+    
+    /**
+     * 集合开始块的全局id
+     */
     unsigned int    m_uFirstGid;
+    
+    /**
+     * 集合中每块的大小
+     */
     CCSize          m_tTileSize;
+    
+    /**
+     * 块的内间距
+     */
     unsigned int    m_uSpacing;
+    
+    /**
+     * 块的外间距
+     */
     unsigned int    m_uMargin;
+    
     /**
      * 整个tile图片的偏移
      */
     CCPoint m_tTileOffset;
-    //! filename containing the tiles (should be spritesheet / texture atlas)
+    
+    /**
+     * 集合用到的图片
+     * filename containing the tiles (should be spritesheet / texture atlas)
+     */
     std::string        m_sImageSource;
-    //! size in pixels of the image
+    
+    /**
+     * 集合用到的图片的大小
+     * size in pixels of the image
+     */
     CCSize            m_tImageSize;
     
     /**
@@ -162,11 +186,6 @@ protected:
      * 属性
      */
     CCDictionary* m_pProperties;
-    
-    /**
-     * tile的属性
-     */
-    CCDictionary* m_pTileProperties;
 };
 
 

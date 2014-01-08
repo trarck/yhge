@@ -6,6 +6,9 @@
 
 NS_CC_YHGE_BEGIN
 
+/**
+ * 层的信息
+ */
 class ISOLayerInfo : public CCObject{
 
 public:
@@ -118,16 +121,43 @@ public:
 
 
 protected:
+    /**
+     * layer的名称
+     */
     std::string         m_sName;
+    
+    /**
+     * layer的大小。格子数，不是像素大小
+     */
     CCSize              m_tLayerSize;
+    
+    /**
+     * layer是否可见
+     */
     bool                m_bVisible;
+    
+    /**
+     * layer的透明度
+     */
     unsigned char m_cOpacity;
+    
 //    bool                m_bOwnTiles;
 //    unsigned int        m_uMinGID;
 //    unsigned int        m_uMaxGID;
+    
+    /**
+     * layer的偏移量
+     */
     CCPoint             m_tOffset;
 
+    /**
+     * layer的每个格子的信息。主要是tile id
+     */
     unsigned int*       m_pTiles;
+    
+    /**
+     * layer的扩展属性
+     */
     CCDictionary* m_pProperties;
 };
 

@@ -8,7 +8,8 @@
 NS_CC_YHGE_BEGIN
 
 /**
- 动态更新可显示区域,只渲染显示区域的tile.
+ * 动态更新可显示区域,只渲染显示区域的tile.
+ * 
  */
 class ISOOptimizedTileLayer : public ISOTileLayer {
 

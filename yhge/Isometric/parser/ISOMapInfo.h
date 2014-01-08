@@ -6,25 +6,10 @@
 
 NS_CC_YHGE_BEGIN
 
-enum {
-    ISOParseLayerAttribNone = 1 << 0,
-    ISOParseLayerAttribBase64 = 1 << 1,
-    ISOParseLayerAttribGzip = 1 << 2,
-    ISOParseLayerAttribZlib = 1 << 3,
-};
-
-enum {
-    ISOParsePropertyNone,
-    ISOParsePropertyMap,
-    ISOParsePropertyTileset,
-    ISOParsePropertyLayer,
-    ISOParsePropertyObjectGroup,
-    ISOParsePropertyObject,
-    ISOParsePropertyTile,
-    ISOParsePropertyImage
-};
-
-
+/**
+ * 地图的信息
+ * 主要是layers和objectGroups。
+ */
 class ISOMapInfo : public CCObject{
 
 public:
@@ -67,15 +52,46 @@ public:
     }
     
 protected:
-    int m_nOrientation;  
+    
+    /**
+     * 表示map的方向。是斜45还是直角还是六边形。
+     * 目录只支持斜45
+     */
+    int m_nOrientation;
+    
+    /**
+     * 表示map的格子数。不是像素大小
+     */
     CCSize m_tMapSize;
+    
+    /**
+     * 表示map的每个格子的像素大小
+     */
     CCSize m_tTileSize;
+   
+    /**
+     * 表示map的的背景色
+     */
     ccColor3B m_tBackgroundColor;
     
+    /**
+     * map的layer信息
+     */
     CCArray* m_pLayers;
+    
+    /**
+     * map的tile set信息
+     */
     CCArray* m_pTilesets;
+    
+    /**
+     * map的object group信息
+     */
     CCArray* m_pObjectGroups;
 
+    /**
+     * map的扩展属性
+     */
     CCDictionary* m_pProperties;
    
 };

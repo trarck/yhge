@@ -2,52 +2,43 @@
 #define YHGE_ISOMETRIC_ISOXMLPARSER_H_
 
 #include "cocos2d.h"
-#include "ISOMapInfo.h"
-#include "ISOLayerInfo.h"
+#include <yhge/YHGEMacros.h>
 
 NS_CC_YHGE_BEGIN
 
-/**
- * map标签
- */
+class ISOTileMap;
+
 enum {
-    ISOParsePropertyNone,
-    ISOParsePropertyMap,
-    ISOParsePropertyTileset,
-    ISOParsePropertyLayer,
-    ISOParsePropertyObjectGroup,
-    ISOParsePropertyObject,
-    ISOParsePropertyTile,
-    ISOParsePropertyImage
+    ISOLayerAttribNone = 1 << 0,
+    ISOLayerAttribBase64 = 1 << 1,
+    ISOLayerAttribGzip = 1 << 2,
+    ISOLayerAttribZlib = 1 << 3,
 };
 
-/**
- * layer内容保存格式
- */
 enum {
-    ISOParseLayerAttribNone = 1 << 0,
-    ISOParseLayerAttribBase64 = 1 << 1,
-    ISOParseLayerAttribGzip = 1 << 2,
-    ISOParseLayerAttribZlib = 1 << 3,
+    ISOPropertyNone,
+    ISOPropertyMap,
+    ISOPropertyTileset,
+    ISOPropertyLayer,
+    ISOPropertyObjectGroup,
+    ISOPropertyObject,
+    ISOPropertyTile,
+    ISOPropertyImage
 };
 
-
-/**
- * 使用xml解析tmx
- */
-class ISOXMLParser : public CCObject, public CCSAXDelegator
+class ISOXMLReader : public CCObject, public CCSAXDelegator
 {
 
 public:
     
-    ISOXMLParser();
+    ISOXMLReader();
     
-    ~ISOXMLParser();
+    ~ISOXMLReader();
     
 
-    static ISOXMLParser * formatWithXMLFile(const char *tmxFile);
+    static ISOXMLReader * formatWithXMLFile(ISOTileMap* pMap,const char *tmxFile);
     /** creates a TMX Format with an XML string and a TMX resource path */
-    static ISOXMLParser * formatWithXML(const char* tmxString, const char* resourcePath);
+    static ISOXMLReader * formatWithXML(ISOTileMap* pMap,const char* tmxString, const char* resourcePath);
     /** initializes a TMX format with a  tmx file */
     bool initWithTMXFile(const char *tmxFile);
     /** initializes a TMX format with an XML string and a TMX resource path */
@@ -69,27 +60,12 @@ public:
     inline const char* getTMXFileName(){ return m_sTMXFileName.c_str(); }
     inline void setTMXFileName(const char *fileName){ m_sTMXFileName = fileName; }
     
-    virtual ISOMapInfo* getMapInfo();
-    
-    inline void setTranslateLayerData(bool bTranslateLayerData)
-    {
-        m_bTranslateLayerData = bTranslateLayerData;
-    }
-    
-    inline bool getTranslateLayerData()
-    {
-        return m_bTranslateLayerData;
-    }
-
+    virtual ISOTileMap* getMap();
+    virtual void setMap(ISOTileMap* pMap);
     
 private:
-    
     void internalInit(const char* tmxFileName, const char* resourcePath);
     
-    //把地图坐标左上角为原点的转为左下角。
-    void translateMapTiles(unsigned int * pTiles,ISOLayerInfo* layerInfo,unsigned int **out);
-
-    //xml file related
     int m_nCurrentElement;
     
     unsigned int m_uCurrentGid;
@@ -97,7 +73,7 @@ private:
     int m_nLayerAttribs;
     
     bool m_bStoringCharacters;
-
+    
 protected:
     //! tmx filename
     std::string m_sTMXFileName;
@@ -108,9 +84,7 @@ protected:
     //! tile properties
 //    CCDictionary* m_pTileProperties;
 
-    ISOMapInfo* m_pMapInfo;	
-    
-    bool m_bTranslateLayerData;
+    ISOTileMap* m_pMap;	
 };
 
 

@@ -7,7 +7,9 @@
 
 NS_CC_YHGE_BEGIN
 
-
+/**
+ * 组织管理tileset
+ */
 class ISOTilesetGroup : public CCObject{
 
 public:
