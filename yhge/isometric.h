@@ -16,7 +16,7 @@
 #include "Isometric/tile/parser/ISOMapInfo.h"
 #include "Isometric/tile/parser/ISOXMLParser.h"
 
-//Isometric map element
+//Isometric map elementgit
 #include "Isometric/tile/base/ISOTile.h"
 #include "Isometric/tile/base/ISOTileset.h"
 #include "Isometric/tile/base/ISOTilesetGroup.h"
