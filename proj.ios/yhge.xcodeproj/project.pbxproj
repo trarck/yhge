@@ -29,10 +29,9 @@
 		576E3FCB187D4BFB00745A0A /* ISOTilesetInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FA8187D4BFB00745A0A /* ISOTilesetInfo.cpp */; };
 		576E3FCC187D4BFB00745A0A /* ISOXMLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FAA187D4BFB00745A0A /* ISOXMLParser.cpp */; };
 		576E3FCD187D4BFB00745A0A /* ISOTileMapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FAD187D4BFB00745A0A /* ISOTileMapBuilder.cpp */; };
-		576E3FCE187D4BFB00745A0A /* ISOXMLReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FAF187D4BFB00745A0A /* ISOXMLReader.cpp */; };
 		576E3FCF187D4BFB00745A0A /* ZIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FB1187D4BFB00745A0A /* ZIndex.cpp */; };
 		576E3FD0187D4BFB00745A0A /* ZIndexNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FB3187D4BFB00745A0A /* ZIndexNode.cpp */; };
-		576E3FD2187D4C4A00745A0A /* ISOObjectGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FD1187D4C4A00745A0A /* ISOObjectGroup.cpp */; };
+		576E3FD5187D5D5500745A0A /* ISOObjectGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FD3187D5D5500745A0A /* ISOObjectGroup.cpp */; };
 		577A78F4186BF56500F1B5D5 /* Astar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A783B186BF56500F1B5D5 /* Astar.cpp */; };
 		577A78F5186BF56500F1B5D5 /* AstarFlexible.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A783D186BF56500F1B5D5 /* AstarFlexible.cpp */; };
 		577A78F6186BF56500F1B5D5 /* AstarNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A783F186BF56500F1B5D5 /* AstarNode.cpp */; };
@@ -118,7 +117,6 @@
 		576E3F91187D4BFB00745A0A /* ISODynamicTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISODynamicTileLayer.h; sourceTree = "<group>"; };
 		576E3F92187D4BFB00745A0A /* ISOGroundTileLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOGroundTileLayer.cpp; sourceTree = "<group>"; };
 		576E3F93187D4BFB00745A0A /* ISOGroundTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOGroundTileLayer.h; sourceTree = "<group>"; };
-		576E3F94187D4BFB00745A0A /* ISOObjectGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOObjectGroup.h; sourceTree = "<group>"; };
 		576E3F97187D4BFB00745A0A /* ISOTileLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileLayer.cpp; sourceTree = "<group>"; };
 		576E3F98187D4BFB00745A0A /* ISOTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileLayer.h; sourceTree = "<group>"; };
 		576E3F9E187D4BFB00745A0A /* ISOLayerInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOLayerInfo.cpp; sourceTree = "<group>"; };
@@ -137,13 +135,14 @@
 		576E3FAB187D4BFB00745A0A /* ISOXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOXMLParser.h; sourceTree = "<group>"; };
 		576E3FAD187D4BFB00745A0A /* ISOTileMapBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileMapBuilder.cpp; sourceTree = "<group>"; };
 		576E3FAE187D4BFB00745A0A /* ISOTileMapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileMapBuilder.h; sourceTree = "<group>"; };
-		576E3FAF187D4BFB00745A0A /* ISOXMLReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOXMLReader.cpp; sourceTree = "<group>"; };
-		576E3FB0187D4BFB00745A0A /* ISOXMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOXMLReader.h; sourceTree = "<group>"; };
 		576E3FB1187D4BFB00745A0A /* ZIndex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZIndex.cpp; sourceTree = "<group>"; };
 		576E3FB2187D4BFB00745A0A /* ZIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIndex.h; sourceTree = "<group>"; };
 		576E3FB3187D4BFB00745A0A /* ZIndexNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZIndexNode.cpp; sourceTree = "<group>"; };
 		576E3FB4187D4BFB00745A0A /* ZIndexNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIndexNode.h; sourceTree = "<group>"; };
-		576E3FD1187D4C4A00745A0A /* ISOObjectGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOObjectGroup.cpp; sourceTree = "<group>"; };
+		576E3FD3187D5D5500745A0A /* ISOObjectGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOObjectGroup.cpp; sourceTree = "<group>"; };
+		576E3FD4187D5D5500745A0A /* ISOObjectGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOObjectGroup.h; sourceTree = "<group>"; };
+		576E3FD6187D5EE600745A0A /* ISOBases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOBases.h; sourceTree = "<group>"; };
+		576E3FD7187D5EE600745A0A /* ISOLayers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOLayers.h; sourceTree = "<group>"; };
 		577A783B186BF56500F1B5D5 /* Astar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Astar.cpp; sourceTree = "<group>"; };
 		577A783C186BF56500F1B5D5 /* Astar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Astar.h; sourceTree = "<group>"; };
 		577A783D186BF56500F1B5D5 /* AstarFlexible.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AstarFlexible.cpp; sourceTree = "<group>"; };
@@ -311,7 +310,9 @@
 				576E3F9B187D4BFB00745A0A /* occlusion */,
 				576E3F9D187D4BFB00745A0A /* parser */,
 				576E3FAC187D4BFB00745A0A /* reader */,
+				576E3FD6187D5EE600745A0A /* ISOBases.h */,
 				576E3F82187D4BFB00745A0A /* ISOInfos.h */,
+				576E3FD7187D5EE600745A0A /* ISOLayers.h */,
 				576E3F84187D4BFB00745A0A /* ISOTileMap.cpp */,
 				576E3F85187D4BFB00745A0A /* ISOTileMap.h */,
 			);
@@ -323,10 +324,12 @@
 			children = (
 				576E3F78187D4BFB00745A0A /* ISOComponentNode.cpp */,
 				576E3F79187D4BFB00745A0A /* ISOComponentNode.h */,
-				576E3F7A187D4BFB00745A0A /* ISOTileMapObject.cpp */,
-				576E3F7B187D4BFB00745A0A /* ISOTileMapObject.h */,
+				576E3FD3187D5D5500745A0A /* ISOObjectGroup.cpp */,
+				576E3FD4187D5D5500745A0A /* ISOObjectGroup.h */,
 				576E3F7C187D4BFB00745A0A /* ISOTile.cpp */,
 				576E3F7D187D4BFB00745A0A /* ISOTile.h */,
+				576E3F7A187D4BFB00745A0A /* ISOTileMapObject.cpp */,
+				576E3F7B187D4BFB00745A0A /* ISOTileMapObject.h */,
 				576E3F7E187D4BFB00745A0A /* ISOTileset.cpp */,
 				576E3F7F187D4BFB00745A0A /* ISOTileset.h */,
 				576E3F80187D4BFB00745A0A /* ISOTilesetGroup.cpp */,
@@ -350,8 +353,6 @@
 				576E3F91187D4BFB00745A0A /* ISODynamicTileLayer.h */,
 				576E3F92187D4BFB00745A0A /* ISOGroundTileLayer.cpp */,
 				576E3F93187D4BFB00745A0A /* ISOGroundTileLayer.h */,
-				576E3FD1187D4C4A00745A0A /* ISOObjectGroup.cpp */,
-				576E3F94187D4BFB00745A0A /* ISOObjectGroup.h */,
 				576E3F97187D4BFB00745A0A /* ISOTileLayer.cpp */,
 				576E3F98187D4BFB00745A0A /* ISOTileLayer.h */,
 			);
@@ -391,8 +392,6 @@
 			children = (
 				576E3FAD187D4BFB00745A0A /* ISOTileMapBuilder.cpp */,
 				576E3FAE187D4BFB00745A0A /* ISOTileMapBuilder.h */,
-				576E3FAF187D4BFB00745A0A /* ISOXMLReader.cpp */,
-				576E3FB0187D4BFB00745A0A /* ISOXMLReader.h */,
 			);
 			path = reader;
 			sourceTree = "<group>";
@@ -648,6 +647,7 @@
 				577A78F8186BF56500F1B5D5 /* CCParabolaMove.cpp in Sources */,
 				577A792C186BF56500F1B5D5 /* MersenneTwister.cpp in Sources */,
 				577A7930186BF56500F1B5D5 /* Message.cpp in Sources */,
+				576E3FD5187D5D5500745A0A /* ISOObjectGroup.cpp in Sources */,
 				577A7935186BF56500F1B5D5 /* NormalMessageManager.cpp in Sources */,
 				577A7907186BF56500F1B5D5 /* EventHandle.cpp in Sources */,
 				576E3FC0187D4BFB00745A0A /* ISODynamicComponent.cpp in Sources */,
@@ -656,8 +656,6 @@
 				576E3FB5187D4BFB00745A0A /* Coordinate.cpp in Sources */,
 				577A78FD186BF56500F1B5D5 /* base64.cpp in Sources */,
 				577A7934186BF56500F1B5D5 /* MessageTarget.cpp in Sources */,
-				576E3FCE187D4BFB00745A0A /* ISOXMLReader.cpp in Sources */,
-				576E3FD2187D4C4A00745A0A /* ISOObjectGroup.cpp in Sources */,
 				577A7932186BF56500F1B5D5 /* MessageManager.cpp in Sources */,
 				576E3FB7187D4BFB00745A0A /* ISOTileMapObject.cpp in Sources */,
 				577A792F186BF56500F1B5D5 /* DelayMessageManager.cpp in Sources */,
