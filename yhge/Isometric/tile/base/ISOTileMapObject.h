@@ -1,5 +1,5 @@
-#ifndef YHGE_ISOMETRIC_ISOOBJECT_H_
-#define YHGE_ISOMETRIC_ISOOBJECT_H_
+#ifndef YHGE_ISOMETRIC_ISOTILEMAPOBJECT_H_
+#define YHGE_ISOMETRIC_ISOTILEMAPOBJECT_H_
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
@@ -9,13 +9,13 @@ NS_CC_YHGE_BEGIN
 /**
  * 地图上要显示的对象
  */
-class ISOObject : public CCObject{
+class ISOTileMapObject : public CCObject{
 
 public:
     
-    ISOObject();   
+    ISOTileMapObject();   
   
-    ~ISOObject();
+    ~ISOTileMapObject();
    
     bool init();
     
@@ -84,4 +84,4 @@ protected:
 
 NS_CC_YHGE_END
 
-#endif //YHGE_ISOMETRIC_ISOOBJECT_H_
+#endif //YHGE_ISOMETRIC_ISOTILEMAPOBJECT_H_

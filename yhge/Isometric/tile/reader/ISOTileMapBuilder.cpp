@@ -1,5 +1,5 @@
 #include "ISOTileMapBuilder.h"
-#include "../base/ISOObject.h"
+#include "../base/ISOTileMapObject.h"
 #include "../base/ISOTile.h"
 #include "../base/ISOTileset.h"
 #include "../base/ISOTilesetGroup.h"
@@ -194,7 +194,7 @@ void ISOTileMapBuilder::buildMapObjects(CCArray* objects,ISOObjectGroup* objectG
 
 void ISOTileMapBuilder::buildMapObject(ISOObjectInfo* objectInfo,ISOObjectGroup* objectGroup)
 {
-    ISOObject* obj=new ISOObject();
+    ISOTileMapObject* obj=new ISOTileMapObject();
     obj->init();
     obj->setName(objectInfo->getName());
     obj->setGid(objectInfo->getGid());

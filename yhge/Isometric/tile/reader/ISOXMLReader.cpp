@@ -5,7 +5,7 @@
 #include <yhge/Isometric/ISOCoordinate.h>
 
 #include "../base/ISOTileSet.h"
-#include "../base/ISOObject.h"
+#include "../base/ISOTileMapObject.h"
 #include "../layers/ISOTileLayer.h"
 #include "../layers/ISOObjectGroup.h"
 
@@ -156,7 +156,7 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         std::string version = valueForKey("version", attributeDict);
         if ( version != "1.0")
         {
-            CCLOG("cocos2d: TMXFormat: Unsupported TMX version: %@", version.c_str());
+            CCLOG("cocos2d: TMXFormat: Unsupported TMX version: %s", version.c_str());
         }
 //        std::string orientationStr = valueForKey("orientation", attributeDict);
 //        if ( orientationStr  == "isometric")
@@ -377,7 +377,7 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         
         // The value for "type" was blank or not a valid class name
         // Create an instance of TMXObjectInfo to store the object and its properties
-        ISOObject *obj = new ISOObject();
+        ISOTileMapObject *obj = new ISOTileMapObject();
         
         obj->setName(valueForKey("name", attributeDict));
         
@@ -457,7 +457,7 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         {
             // The parent element is the last object
             ISOObjectGroup* objectGroup = (ISOObjectGroup*)m_pMap->getObjectGroups()->lastObject();
-            ISOObject* obj = (ISOObject*)objectGroup->getObjects()->lastObject();
+            ISOTileMapObject* obj = (ISOTileMapObject*)objectGroup->getObjects()->lastObject();
             
             CCString *value = new CCString(valueForKey("value", attributeDict));
             std::string key = valueForKey("name", attributeDict);
