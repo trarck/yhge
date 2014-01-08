@@ -9,8 +9,8 @@ NS_CC_YHGE_BEGIN
 class ISOTileset;
 
 /**
+ * 地图的显示单元
  * 直接使用texure。如果使用sprite，则无法共用。
- *
  */
 class ISOTile : public CCObject{
 
@@ -69,14 +69,16 @@ public:
     
 protected:
     
+    //id
     int m_nId;
     
     //支持tile大小不同
     CCTexture2D* m_pTexture;
     
+    //tile在texture的位置
     CCRect m_tTextureRect;
     
-    //weak reference
+    //所属的tileset.weak reference
     ISOTileset* m_pTileset;
     
     /**

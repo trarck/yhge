@@ -6,6 +6,9 @@
 
 NS_CC_YHGE_BEGIN
 
+/**
+ * 地图上要显示的对象
+ */
 class ISOObject : public CCObject{
 
 public:
@@ -23,12 +26,16 @@ public:
     
     virtual void setType(const char *pType);
     virtual std::string& getType();
+    
     virtual void setPosition(CCPoint tPosition);
     virtual CCPoint getPosition();
+    
     virtual void setSize(CCSize tSize);
     virtual CCSize getSize();
+    
     virtual void setGid(unsigned int uGid);
     virtual unsigned int getGid();
+    
     virtual void setVisible(bool bVisible);
     virtual bool getVisible();
     
@@ -37,11 +44,35 @@ public:
     
 protected:
     
+    /**
+     * 对象的名称
+     */
     std::string m_sName;
+    
+    /**
+     * 对象的类型
+     */
     std::string m_sType;
+    
+    /**
+     * 对象的位置
+     * 是像素坐标
+     */
     CCPoint m_tPosition;
+    
+    /**
+     * 对象的大小
+     */
     CCSize m_tSize;
+    
+    /**
+     * 对象的gid
+     */
     unsigned int m_uGid;
+    
+    /**
+     * 对象是否可见
+     */
     bool m_bVisible;
 
     /**
