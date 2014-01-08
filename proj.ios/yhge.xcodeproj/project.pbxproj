@@ -7,6 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		576E3FB5187D4BFB00745A0A /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F71187D4BFB00745A0A /* Coordinate.cpp */; };
+		576E3FB6187D4BFB00745A0A /* ISOComponentNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F78187D4BFB00745A0A /* ISOComponentNode.cpp */; };
+		576E3FB7187D4BFB00745A0A /* ISOTileMapObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F7A187D4BFB00745A0A /* ISOTileMapObject.cpp */; };
+		576E3FB8187D4BFB00745A0A /* ISOTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F7C187D4BFB00745A0A /* ISOTile.cpp */; };
+		576E3FB9187D4BFB00745A0A /* ISOTileset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F7E187D4BFB00745A0A /* ISOTileset.cpp */; };
+		576E3FBA187D4BFB00745A0A /* ISOTilesetGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F80187D4BFB00745A0A /* ISOTilesetGroup.cpp */; };
+		576E3FBC187D4BFB00745A0A /* ISOTileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F84187D4BFB00745A0A /* ISOTileMap.cpp */; };
+		576E3FBD187D4BFB00745A0A /* ISOBatchDynamicComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F88187D4BFB00745A0A /* ISOBatchDynamicComponent.cpp */; };
+		576E3FBE187D4BFB00745A0A /* ISOBatchDynamicTileLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F8A187D4BFB00745A0A /* ISOBatchDynamicTileLayer.cpp */; };
+		576E3FBF187D4BFB00745A0A /* ISOBatchTileLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F8C187D4BFB00745A0A /* ISOBatchTileLayer.cpp */; };
+		576E3FC0187D4BFB00745A0A /* ISODynamicComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F8E187D4BFB00745A0A /* ISODynamicComponent.cpp */; };
+		576E3FC1187D4BFB00745A0A /* ISODynamicTileLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F90187D4BFB00745A0A /* ISODynamicTileLayer.cpp */; };
+		576E3FC2187D4BFB00745A0A /* ISOGroundTileLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F92187D4BFB00745A0A /* ISOGroundTileLayer.cpp */; };
+		576E3FC4187D4BFB00745A0A /* ISOTileLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F97187D4BFB00745A0A /* ISOTileLayer.cpp */; };
+		576E3FC6187D4BFB00745A0A /* ISOLayerInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F9E187D4BFB00745A0A /* ISOLayerInfo.cpp */; };
+		576E3FC7187D4BFB00745A0A /* ISOMapInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FA0187D4BFB00745A0A /* ISOMapInfo.cpp */; };
+		576E3FC8187D4BFB00745A0A /* ISOObjectGroupInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FA2187D4BFB00745A0A /* ISOObjectGroupInfo.cpp */; };
+		576E3FC9187D4BFB00745A0A /* ISOObjectInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FA4187D4BFB00745A0A /* ISOObjectInfo.cpp */; };
+		576E3FCA187D4BFB00745A0A /* ISOTileInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FA6187D4BFB00745A0A /* ISOTileInfo.cpp */; };
+		576E3FCB187D4BFB00745A0A /* ISOTilesetInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FA8187D4BFB00745A0A /* ISOTilesetInfo.cpp */; };
+		576E3FCC187D4BFB00745A0A /* ISOXMLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FAA187D4BFB00745A0A /* ISOXMLParser.cpp */; };
+		576E3FCD187D4BFB00745A0A /* ISOTileMapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FAD187D4BFB00745A0A /* ISOTileMapBuilder.cpp */; };
+		576E3FCE187D4BFB00745A0A /* ISOXMLReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FAF187D4BFB00745A0A /* ISOXMLReader.cpp */; };
+		576E3FCF187D4BFB00745A0A /* ZIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FB1187D4BFB00745A0A /* ZIndex.cpp */; };
+		576E3FD0187D4BFB00745A0A /* ZIndexNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FB3187D4BFB00745A0A /* ZIndexNode.cpp */; };
+		576E3FD2187D4C4A00745A0A /* ISOObjectGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FD1187D4C4A00745A0A /* ISOObjectGroup.cpp */; };
 		577A78F4186BF56500F1B5D5 /* Astar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A783B186BF56500F1B5D5 /* Astar.cpp */; };
 		577A78F5186BF56500F1B5D5 /* AstarFlexible.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A783D186BF56500F1B5D5 /* AstarFlexible.cpp */; };
 		577A78F6186BF56500F1B5D5 /* AstarNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A783F186BF56500F1B5D5 /* AstarNode.cpp */; };
@@ -32,34 +58,6 @@
 		577A790B186BF56500F1B5D5 /* UIEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A7872186BF56500F1B5D5 /* UIEvent.cpp */; };
 		577A790C186BF56500F1B5D5 /* FSMMachine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A7877186BF56500F1B5D5 /* FSMMachine.cpp */; };
 		577A790D186BF56500F1B5D5 /* FSMState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A787B186BF56500F1B5D5 /* FSMState.cpp */; };
-		577A7910186BF56500F1B5D5 /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A788C186BF56500F1B5D5 /* Coordinate.cpp */; };
-		577A7911186BF56500F1B5D5 /* ISOBatchDynamicComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A7890186BF56500F1B5D5 /* ISOBatchDynamicComponent.cpp */; };
-		577A7912186BF56500F1B5D5 /* ISOBatchDynamicTileLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A7892186BF56500F1B5D5 /* ISOBatchDynamicTileLayer.cpp */; };
-		577A7913186BF56500F1B5D5 /* ISOBatchTileLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A7894186BF56500F1B5D5 /* ISOBatchTileLayer.cpp */; };
-		577A7914186BF56500F1B5D5 /* ISOComponentNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A7896186BF56500F1B5D5 /* ISOComponentNode.cpp */; };
-		577A7915186BF56500F1B5D5 /* ISODynamicComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A7899186BF56500F1B5D5 /* ISODynamicComponent.cpp */; };
-		577A7916186BF56500F1B5D5 /* ISODynamicTileLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A789B186BF56500F1B5D5 /* ISODynamicTileLayer.cpp */; };
-		577A7917186BF56500F1B5D5 /* ISOGroundTileLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A789D186BF56500F1B5D5 /* ISOGroundTileLayer.cpp */; };
-		577A7918186BF56500F1B5D5 /* ISOObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78A0186BF56500F1B5D5 /* ISOObject.cpp */; };
-		577A7919186BF56500F1B5D5 /* ISOObjectGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78A2186BF56500F1B5D5 /* ISOObjectGroup.cpp */; };
-		577A791A186BF56500F1B5D5 /* ISOOptimizedTileLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78A4186BF56500F1B5D5 /* ISOOptimizedTileLayer.cpp */; };
-		577A791B186BF56500F1B5D5 /* ISOTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78A6186BF56500F1B5D5 /* ISOTile.cpp */; };
-		577A791C186BF56500F1B5D5 /* ISOTileLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78A8186BF56500F1B5D5 /* ISOTileLayer.cpp */; };
-		577A791D186BF56500F1B5D5 /* ISOTileLayerDynamicComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78AA186BF56500F1B5D5 /* ISOTileLayerDynamicComponent.cpp */; };
-		577A791E186BF56500F1B5D5 /* ISOTileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78AC186BF56500F1B5D5 /* ISOTileMap.cpp */; };
-		577A791F186BF56500F1B5D5 /* ISOTileMapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78AE186BF56500F1B5D5 /* ISOTileMapBuilder.cpp */; };
-		577A7920186BF56500F1B5D5 /* ISOTileset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78B0186BF56500F1B5D5 /* ISOTileset.cpp */; };
-		577A7921186BF56500F1B5D5 /* ISOTilesetGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78B2186BF56500F1B5D5 /* ISOTilesetGroup.cpp */; };
-		577A7922186BF56500F1B5D5 /* ISOXMLReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78B4186BF56500F1B5D5 /* ISOXMLReader.cpp */; };
-		577A7923186BF56500F1B5D5 /* ISOLayerInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78B7186BF56500F1B5D5 /* ISOLayerInfo.cpp */; };
-		577A7924186BF56500F1B5D5 /* ISOMapInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78B9186BF56500F1B5D5 /* ISOMapInfo.cpp */; };
-		577A7925186BF56500F1B5D5 /* ISOObjectGroupInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78BB186BF56500F1B5D5 /* ISOObjectGroupInfo.cpp */; };
-		577A7926186BF56500F1B5D5 /* ISOObjectInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78BD186BF56500F1B5D5 /* ISOObjectInfo.cpp */; };
-		577A7927186BF56500F1B5D5 /* ISOTileInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78BF186BF56500F1B5D5 /* ISOTileInfo.cpp */; };
-		577A7928186BF56500F1B5D5 /* ISOTilesetInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78C1186BF56500F1B5D5 /* ISOTilesetInfo.cpp */; };
-		577A7929186BF56500F1B5D5 /* ISOXMLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78C3186BF56500F1B5D5 /* ISOXMLParser.cpp */; };
-		577A792A186BF56500F1B5D5 /* ZIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78C6186BF56500F1B5D5 /* ZIndex.cpp */; };
-		577A792B186BF56500F1B5D5 /* ZIndexNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78C8186BF56500F1B5D5 /* ZIndexNode.cpp */; };
 		577A792C186BF56500F1B5D5 /* MersenneTwister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78CC186BF56500F1B5D5 /* MersenneTwister.cpp */; };
 		577A792D186BF56500F1B5D5 /* RandomMT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78CE186BF56500F1B5D5 /* RandomMT.cpp */; };
 		577A792E186BF56500F1B5D5 /* AsyncMessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78D1186BF56500F1B5D5 /* AsyncMessageManager.cpp */; };
@@ -92,6 +90,60 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		576E3F71187D4BFB00745A0A /* Coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinate.cpp; sourceTree = "<group>"; };
+		576E3F72187D4BFB00745A0A /* Coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinate.h; sourceTree = "<group>"; };
+		576E3F73187D4BFB00745A0A /* ISOCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOCoordinate.h; sourceTree = "<group>"; };
+		576E3F78187D4BFB00745A0A /* ISOComponentNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOComponentNode.cpp; sourceTree = "<group>"; };
+		576E3F79187D4BFB00745A0A /* ISOComponentNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOComponentNode.h; sourceTree = "<group>"; };
+		576E3F7A187D4BFB00745A0A /* ISOTileMapObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileMapObject.cpp; sourceTree = "<group>"; };
+		576E3F7B187D4BFB00745A0A /* ISOTileMapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileMapObject.h; sourceTree = "<group>"; };
+		576E3F7C187D4BFB00745A0A /* ISOTile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTile.cpp; sourceTree = "<group>"; };
+		576E3F7D187D4BFB00745A0A /* ISOTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTile.h; sourceTree = "<group>"; };
+		576E3F7E187D4BFB00745A0A /* ISOTileset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileset.cpp; sourceTree = "<group>"; };
+		576E3F7F187D4BFB00745A0A /* ISOTileset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileset.h; sourceTree = "<group>"; };
+		576E3F80187D4BFB00745A0A /* ISOTilesetGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTilesetGroup.cpp; sourceTree = "<group>"; };
+		576E3F81187D4BFB00745A0A /* ISOTilesetGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTilesetGroup.h; sourceTree = "<group>"; };
+		576E3F82187D4BFB00745A0A /* ISOInfos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOInfos.h; sourceTree = "<group>"; };
+		576E3F84187D4BFB00745A0A /* ISOTileMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileMap.cpp; sourceTree = "<group>"; };
+		576E3F85187D4BFB00745A0A /* ISOTileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileMap.h; sourceTree = "<group>"; };
+		576E3F88187D4BFB00745A0A /* ISOBatchDynamicComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOBatchDynamicComponent.cpp; sourceTree = "<group>"; };
+		576E3F89187D4BFB00745A0A /* ISOBatchDynamicComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOBatchDynamicComponent.h; sourceTree = "<group>"; };
+		576E3F8A187D4BFB00745A0A /* ISOBatchDynamicTileLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOBatchDynamicTileLayer.cpp; sourceTree = "<group>"; };
+		576E3F8B187D4BFB00745A0A /* ISOBatchDynamicTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOBatchDynamicTileLayer.h; sourceTree = "<group>"; };
+		576E3F8C187D4BFB00745A0A /* ISOBatchTileLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOBatchTileLayer.cpp; sourceTree = "<group>"; };
+		576E3F8D187D4BFB00745A0A /* ISOBatchTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOBatchTileLayer.h; sourceTree = "<group>"; };
+		576E3F8E187D4BFB00745A0A /* ISODynamicComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISODynamicComponent.cpp; sourceTree = "<group>"; };
+		576E3F8F187D4BFB00745A0A /* ISODynamicComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISODynamicComponent.h; sourceTree = "<group>"; };
+		576E3F90187D4BFB00745A0A /* ISODynamicTileLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISODynamicTileLayer.cpp; sourceTree = "<group>"; };
+		576E3F91187D4BFB00745A0A /* ISODynamicTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISODynamicTileLayer.h; sourceTree = "<group>"; };
+		576E3F92187D4BFB00745A0A /* ISOGroundTileLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOGroundTileLayer.cpp; sourceTree = "<group>"; };
+		576E3F93187D4BFB00745A0A /* ISOGroundTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOGroundTileLayer.h; sourceTree = "<group>"; };
+		576E3F94187D4BFB00745A0A /* ISOObjectGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOObjectGroup.h; sourceTree = "<group>"; };
+		576E3F97187D4BFB00745A0A /* ISOTileLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileLayer.cpp; sourceTree = "<group>"; };
+		576E3F98187D4BFB00745A0A /* ISOTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileLayer.h; sourceTree = "<group>"; };
+		576E3F9E187D4BFB00745A0A /* ISOLayerInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOLayerInfo.cpp; sourceTree = "<group>"; };
+		576E3F9F187D4BFB00745A0A /* ISOLayerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOLayerInfo.h; sourceTree = "<group>"; };
+		576E3FA0187D4BFB00745A0A /* ISOMapInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOMapInfo.cpp; sourceTree = "<group>"; };
+		576E3FA1187D4BFB00745A0A /* ISOMapInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOMapInfo.h; sourceTree = "<group>"; };
+		576E3FA2187D4BFB00745A0A /* ISOObjectGroupInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOObjectGroupInfo.cpp; sourceTree = "<group>"; };
+		576E3FA3187D4BFB00745A0A /* ISOObjectGroupInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOObjectGroupInfo.h; sourceTree = "<group>"; };
+		576E3FA4187D4BFB00745A0A /* ISOObjectInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOObjectInfo.cpp; sourceTree = "<group>"; };
+		576E3FA5187D4BFB00745A0A /* ISOObjectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOObjectInfo.h; sourceTree = "<group>"; };
+		576E3FA6187D4BFB00745A0A /* ISOTileInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileInfo.cpp; sourceTree = "<group>"; };
+		576E3FA7187D4BFB00745A0A /* ISOTileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileInfo.h; sourceTree = "<group>"; };
+		576E3FA8187D4BFB00745A0A /* ISOTilesetInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTilesetInfo.cpp; sourceTree = "<group>"; };
+		576E3FA9187D4BFB00745A0A /* ISOTilesetInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTilesetInfo.h; sourceTree = "<group>"; };
+		576E3FAA187D4BFB00745A0A /* ISOXMLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOXMLParser.cpp; sourceTree = "<group>"; };
+		576E3FAB187D4BFB00745A0A /* ISOXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOXMLParser.h; sourceTree = "<group>"; };
+		576E3FAD187D4BFB00745A0A /* ISOTileMapBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileMapBuilder.cpp; sourceTree = "<group>"; };
+		576E3FAE187D4BFB00745A0A /* ISOTileMapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileMapBuilder.h; sourceTree = "<group>"; };
+		576E3FAF187D4BFB00745A0A /* ISOXMLReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOXMLReader.cpp; sourceTree = "<group>"; };
+		576E3FB0187D4BFB00745A0A /* ISOXMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOXMLReader.h; sourceTree = "<group>"; };
+		576E3FB1187D4BFB00745A0A /* ZIndex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZIndex.cpp; sourceTree = "<group>"; };
+		576E3FB2187D4BFB00745A0A /* ZIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIndex.h; sourceTree = "<group>"; };
+		576E3FB3187D4BFB00745A0A /* ZIndexNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZIndexNode.cpp; sourceTree = "<group>"; };
+		576E3FB4187D4BFB00745A0A /* ZIndexNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIndexNode.h; sourceTree = "<group>"; };
+		576E3FD1187D4C4A00745A0A /* ISOObjectGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOObjectGroup.cpp; sourceTree = "<group>"; };
 		577A783B186BF56500F1B5D5 /* Astar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Astar.cpp; sourceTree = "<group>"; };
 		577A783C186BF56500F1B5D5 /* Astar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Astar.h; sourceTree = "<group>"; };
 		577A783D186BF56500F1B5D5 /* AstarFlexible.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AstarFlexible.cpp; sourceTree = "<group>"; };
@@ -150,66 +202,6 @@
 		577A787B186BF56500F1B5D5 /* FSMState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FSMState.cpp; sourceTree = "<group>"; };
 		577A787C186BF56500F1B5D5 /* FSMState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMState.h; sourceTree = "<group>"; };
 		577A787D186BF56500F1B5D5 /* FSMStateInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMStateInterface.h; sourceTree = "<group>"; };
-		577A788C186BF56500F1B5D5 /* Coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinate.cpp; sourceTree = "<group>"; };
-		577A788D186BF56500F1B5D5 /* Coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinate.h; sourceTree = "<group>"; };
-		577A788F186BF56500F1B5D5 /* ISOReaderInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOReaderInterface.h; sourceTree = "<group>"; };
-		577A7890186BF56500F1B5D5 /* ISOBatchDynamicComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOBatchDynamicComponent.cpp; sourceTree = "<group>"; };
-		577A7891186BF56500F1B5D5 /* ISOBatchDynamicComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOBatchDynamicComponent.h; sourceTree = "<group>"; };
-		577A7892186BF56500F1B5D5 /* ISOBatchDynamicTileLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOBatchDynamicTileLayer.cpp; sourceTree = "<group>"; };
-		577A7893186BF56500F1B5D5 /* ISOBatchDynamicTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOBatchDynamicTileLayer.h; sourceTree = "<group>"; };
-		577A7894186BF56500F1B5D5 /* ISOBatchTileLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOBatchTileLayer.cpp; sourceTree = "<group>"; };
-		577A7895186BF56500F1B5D5 /* ISOBatchTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOBatchTileLayer.h; sourceTree = "<group>"; };
-		577A7896186BF56500F1B5D5 /* ISOComponentNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOComponentNode.cpp; sourceTree = "<group>"; };
-		577A7897186BF56500F1B5D5 /* ISOComponentNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOComponentNode.h; sourceTree = "<group>"; };
-		577A7898186BF56500F1B5D5 /* ISOCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOCoordinate.h; sourceTree = "<group>"; };
-		577A7899186BF56500F1B5D5 /* ISODynamicComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISODynamicComponent.cpp; sourceTree = "<group>"; };
-		577A789A186BF56500F1B5D5 /* ISODynamicComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISODynamicComponent.h; sourceTree = "<group>"; };
-		577A789B186BF56500F1B5D5 /* ISODynamicTileLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISODynamicTileLayer.cpp; sourceTree = "<group>"; };
-		577A789C186BF56500F1B5D5 /* ISODynamicTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISODynamicTileLayer.h; sourceTree = "<group>"; };
-		577A789D186BF56500F1B5D5 /* ISOGroundTileLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOGroundTileLayer.cpp; sourceTree = "<group>"; };
-		577A789E186BF56500F1B5D5 /* ISOGroundTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOGroundTileLayer.h; sourceTree = "<group>"; };
-		577A789F186BF56500F1B5D5 /* ISOInfos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOInfos.h; sourceTree = "<group>"; };
-		577A78A0186BF56500F1B5D5 /* ISOObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOObject.cpp; sourceTree = "<group>"; };
-		577A78A1186BF56500F1B5D5 /* ISOObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOObject.h; sourceTree = "<group>"; };
-		577A78A2186BF56500F1B5D5 /* ISOObjectGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOObjectGroup.cpp; sourceTree = "<group>"; };
-		577A78A3186BF56500F1B5D5 /* ISOObjectGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOObjectGroup.h; sourceTree = "<group>"; };
-		577A78A4186BF56500F1B5D5 /* ISOOptimizedTileLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOOptimizedTileLayer.cpp; sourceTree = "<group>"; };
-		577A78A5186BF56500F1B5D5 /* ISOOptimizedTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOOptimizedTileLayer.h; sourceTree = "<group>"; };
-		577A78A6186BF56500F1B5D5 /* ISOTile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTile.cpp; sourceTree = "<group>"; };
-		577A78A7186BF56500F1B5D5 /* ISOTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTile.h; sourceTree = "<group>"; };
-		577A78A8186BF56500F1B5D5 /* ISOTileLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileLayer.cpp; sourceTree = "<group>"; };
-		577A78A9186BF56500F1B5D5 /* ISOTileLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileLayer.h; sourceTree = "<group>"; };
-		577A78AA186BF56500F1B5D5 /* ISOTileLayerDynamicComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileLayerDynamicComponent.cpp; sourceTree = "<group>"; };
-		577A78AB186BF56500F1B5D5 /* ISOTileLayerDynamicComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileLayerDynamicComponent.h; sourceTree = "<group>"; };
-		577A78AC186BF56500F1B5D5 /* ISOTileMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileMap.cpp; sourceTree = "<group>"; };
-		577A78AD186BF56500F1B5D5 /* ISOTileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileMap.h; sourceTree = "<group>"; };
-		577A78AE186BF56500F1B5D5 /* ISOTileMapBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileMapBuilder.cpp; sourceTree = "<group>"; };
-		577A78AF186BF56500F1B5D5 /* ISOTileMapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileMapBuilder.h; sourceTree = "<group>"; };
-		577A78B0186BF56500F1B5D5 /* ISOTileset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileset.cpp; sourceTree = "<group>"; };
-		577A78B1186BF56500F1B5D5 /* ISOTileset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileset.h; sourceTree = "<group>"; };
-		577A78B2186BF56500F1B5D5 /* ISOTilesetGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTilesetGroup.cpp; sourceTree = "<group>"; };
-		577A78B3186BF56500F1B5D5 /* ISOTilesetGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTilesetGroup.h; sourceTree = "<group>"; };
-		577A78B4186BF56500F1B5D5 /* ISOXMLReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOXMLReader.cpp; sourceTree = "<group>"; };
-		577A78B5186BF56500F1B5D5 /* ISOXMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOXMLReader.h; sourceTree = "<group>"; };
-		577A78B7186BF56500F1B5D5 /* ISOLayerInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOLayerInfo.cpp; sourceTree = "<group>"; };
-		577A78B8186BF56500F1B5D5 /* ISOLayerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOLayerInfo.h; sourceTree = "<group>"; };
-		577A78B9186BF56500F1B5D5 /* ISOMapInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOMapInfo.cpp; sourceTree = "<group>"; };
-		577A78BA186BF56500F1B5D5 /* ISOMapInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOMapInfo.h; sourceTree = "<group>"; };
-		577A78BB186BF56500F1B5D5 /* ISOObjectGroupInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOObjectGroupInfo.cpp; sourceTree = "<group>"; };
-		577A78BC186BF56500F1B5D5 /* ISOObjectGroupInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOObjectGroupInfo.h; sourceTree = "<group>"; };
-		577A78BD186BF56500F1B5D5 /* ISOObjectInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOObjectInfo.cpp; sourceTree = "<group>"; };
-		577A78BE186BF56500F1B5D5 /* ISOObjectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOObjectInfo.h; sourceTree = "<group>"; };
-		577A78BF186BF56500F1B5D5 /* ISOTileInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTileInfo.cpp; sourceTree = "<group>"; };
-		577A78C0186BF56500F1B5D5 /* ISOTileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTileInfo.h; sourceTree = "<group>"; };
-		577A78C1186BF56500F1B5D5 /* ISOTilesetInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOTilesetInfo.cpp; sourceTree = "<group>"; };
-		577A78C2186BF56500F1B5D5 /* ISOTilesetInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOTilesetInfo.h; sourceTree = "<group>"; };
-		577A78C3186BF56500F1B5D5 /* ISOXMLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOXMLParser.cpp; sourceTree = "<group>"; };
-		577A78C4186BF56500F1B5D5 /* ISOXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOXMLParser.h; sourceTree = "<group>"; };
-		577A78C5186BF56500F1B5D5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		577A78C6186BF56500F1B5D5 /* ZIndex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZIndex.cpp; sourceTree = "<group>"; };
-		577A78C7186BF56500F1B5D5 /* ZIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIndex.h; sourceTree = "<group>"; };
-		577A78C8186BF56500F1B5D5 /* ZIndexNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZIndexNode.cpp; sourceTree = "<group>"; };
-		577A78C9186BF56500F1B5D5 /* ZIndexNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIndexNode.h; sourceTree = "<group>"; };
 		577A78CA186BF56500F1B5D5 /* isometric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = isometric.h; sourceTree = "<group>"; };
 		577A78CC186BF56500F1B5D5 /* MersenneTwister.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MersenneTwister.cpp; sourceTree = "<group>"; };
 		577A78CD186BF56500F1B5D5 /* MersenneTwister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MersenneTwister.h; sourceTree = "<group>"; };
@@ -296,6 +288,115 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		576E3F70187D4BFB00745A0A /* Isometric */ = {
+			isa = PBXGroup;
+			children = (
+				576E3F71187D4BFB00745A0A /* Coordinate.cpp */,
+				576E3F72187D4BFB00745A0A /* Coordinate.h */,
+				576E3F73187D4BFB00745A0A /* ISOCoordinate.h */,
+				576E3F75187D4BFB00745A0A /* tile */,
+				576E3FB1187D4BFB00745A0A /* ZIndex.cpp */,
+				576E3FB2187D4BFB00745A0A /* ZIndex.h */,
+				576E3FB3187D4BFB00745A0A /* ZIndexNode.cpp */,
+				576E3FB4187D4BFB00745A0A /* ZIndexNode.h */,
+			);
+			path = Isometric;
+			sourceTree = "<group>";
+		};
+		576E3F75187D4BFB00745A0A /* tile */ = {
+			isa = PBXGroup;
+			children = (
+				576E3F76187D4BFB00745A0A /* base */,
+				576E3F86187D4BFB00745A0A /* layers */,
+				576E3F9B187D4BFB00745A0A /* occlusion */,
+				576E3F9D187D4BFB00745A0A /* parser */,
+				576E3FAC187D4BFB00745A0A /* reader */,
+				576E3F82187D4BFB00745A0A /* ISOInfos.h */,
+				576E3F84187D4BFB00745A0A /* ISOTileMap.cpp */,
+				576E3F85187D4BFB00745A0A /* ISOTileMap.h */,
+			);
+			path = tile;
+			sourceTree = "<group>";
+		};
+		576E3F76187D4BFB00745A0A /* base */ = {
+			isa = PBXGroup;
+			children = (
+				576E3F78187D4BFB00745A0A /* ISOComponentNode.cpp */,
+				576E3F79187D4BFB00745A0A /* ISOComponentNode.h */,
+				576E3F7A187D4BFB00745A0A /* ISOTileMapObject.cpp */,
+				576E3F7B187D4BFB00745A0A /* ISOTileMapObject.h */,
+				576E3F7C187D4BFB00745A0A /* ISOTile.cpp */,
+				576E3F7D187D4BFB00745A0A /* ISOTile.h */,
+				576E3F7E187D4BFB00745A0A /* ISOTileset.cpp */,
+				576E3F7F187D4BFB00745A0A /* ISOTileset.h */,
+				576E3F80187D4BFB00745A0A /* ISOTilesetGroup.cpp */,
+				576E3F81187D4BFB00745A0A /* ISOTilesetGroup.h */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		576E3F86187D4BFB00745A0A /* layers */ = {
+			isa = PBXGroup;
+			children = (
+				576E3F88187D4BFB00745A0A /* ISOBatchDynamicComponent.cpp */,
+				576E3F89187D4BFB00745A0A /* ISOBatchDynamicComponent.h */,
+				576E3F8A187D4BFB00745A0A /* ISOBatchDynamicTileLayer.cpp */,
+				576E3F8B187D4BFB00745A0A /* ISOBatchDynamicTileLayer.h */,
+				576E3F8C187D4BFB00745A0A /* ISOBatchTileLayer.cpp */,
+				576E3F8D187D4BFB00745A0A /* ISOBatchTileLayer.h */,
+				576E3F8E187D4BFB00745A0A /* ISODynamicComponent.cpp */,
+				576E3F8F187D4BFB00745A0A /* ISODynamicComponent.h */,
+				576E3F90187D4BFB00745A0A /* ISODynamicTileLayer.cpp */,
+				576E3F91187D4BFB00745A0A /* ISODynamicTileLayer.h */,
+				576E3F92187D4BFB00745A0A /* ISOGroundTileLayer.cpp */,
+				576E3F93187D4BFB00745A0A /* ISOGroundTileLayer.h */,
+				576E3FD1187D4C4A00745A0A /* ISOObjectGroup.cpp */,
+				576E3F94187D4BFB00745A0A /* ISOObjectGroup.h */,
+				576E3F97187D4BFB00745A0A /* ISOTileLayer.cpp */,
+				576E3F98187D4BFB00745A0A /* ISOTileLayer.h */,
+			);
+			path = layers;
+			sourceTree = "<group>";
+		};
+		576E3F9B187D4BFB00745A0A /* occlusion */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = occlusion;
+			sourceTree = "<group>";
+		};
+		576E3F9D187D4BFB00745A0A /* parser */ = {
+			isa = PBXGroup;
+			children = (
+				576E3F9E187D4BFB00745A0A /* ISOLayerInfo.cpp */,
+				576E3F9F187D4BFB00745A0A /* ISOLayerInfo.h */,
+				576E3FA0187D4BFB00745A0A /* ISOMapInfo.cpp */,
+				576E3FA1187D4BFB00745A0A /* ISOMapInfo.h */,
+				576E3FA2187D4BFB00745A0A /* ISOObjectGroupInfo.cpp */,
+				576E3FA3187D4BFB00745A0A /* ISOObjectGroupInfo.h */,
+				576E3FA4187D4BFB00745A0A /* ISOObjectInfo.cpp */,
+				576E3FA5187D4BFB00745A0A /* ISOObjectInfo.h */,
+				576E3FA6187D4BFB00745A0A /* ISOTileInfo.cpp */,
+				576E3FA7187D4BFB00745A0A /* ISOTileInfo.h */,
+				576E3FA8187D4BFB00745A0A /* ISOTilesetInfo.cpp */,
+				576E3FA9187D4BFB00745A0A /* ISOTilesetInfo.h */,
+				576E3FAA187D4BFB00745A0A /* ISOXMLParser.cpp */,
+				576E3FAB187D4BFB00745A0A /* ISOXMLParser.h */,
+			);
+			path = parser;
+			sourceTree = "<group>";
+		};
+		576E3FAC187D4BFB00745A0A /* reader */ = {
+			isa = PBXGroup;
+			children = (
+				576E3FAD187D4BFB00745A0A /* ISOTileMapBuilder.cpp */,
+				576E3FAE187D4BFB00745A0A /* ISOTileMapBuilder.h */,
+				576E3FAF187D4BFB00745A0A /* ISOXMLReader.cpp */,
+				576E3FB0187D4BFB00745A0A /* ISOXMLReader.h */,
+			);
+			path = reader;
+			sourceTree = "<group>";
+		};
 		577A781F186BF56500F1B5D5 /* yhge */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,10 +405,10 @@
 				577A7854186BF56500F1B5D5 /* Components */,
 				577A7865186BF56500F1B5D5 /* Event */,
 				577A7874186BF56500F1B5D5 /* FSM */,
-				577A788B186BF56500F1B5D5 /* Isometric */,
-				577A78CA186BF56500F1B5D5 /* isometric.h */,
+				576E3F70187D4BFB00745A0A /* Isometric */,
 				577A78CB186BF56500F1B5D5 /* Math */,
 				577A78D0186BF56500F1B5D5 /* Message */,
+				577A78CA186BF56500F1B5D5 /* isometric.h */,
 				577A78E4186BF56500F1B5D5 /* message.h */,
 				577A78E7186BF56500F1B5D5 /* yhge.h */,
 				577A78E8186BF56500F1B5D5 /* YHGEMacros.h */,
@@ -449,89 +550,6 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		577A788B186BF56500F1B5D5 /* Isometric */ = {
-			isa = PBXGroup;
-			children = (
-				577A788C186BF56500F1B5D5 /* Coordinate.cpp */,
-				577A788D186BF56500F1B5D5 /* Coordinate.h */,
-				577A788E186BF56500F1B5D5 /* interface */,
-				577A7890186BF56500F1B5D5 /* ISOBatchDynamicComponent.cpp */,
-				577A7891186BF56500F1B5D5 /* ISOBatchDynamicComponent.h */,
-				577A7892186BF56500F1B5D5 /* ISOBatchDynamicTileLayer.cpp */,
-				577A7893186BF56500F1B5D5 /* ISOBatchDynamicTileLayer.h */,
-				577A7894186BF56500F1B5D5 /* ISOBatchTileLayer.cpp */,
-				577A7895186BF56500F1B5D5 /* ISOBatchTileLayer.h */,
-				577A7896186BF56500F1B5D5 /* ISOComponentNode.cpp */,
-				577A7897186BF56500F1B5D5 /* ISOComponentNode.h */,
-				577A7898186BF56500F1B5D5 /* ISOCoordinate.h */,
-				577A7899186BF56500F1B5D5 /* ISODynamicComponent.cpp */,
-				577A789A186BF56500F1B5D5 /* ISODynamicComponent.h */,
-				577A789B186BF56500F1B5D5 /* ISODynamicTileLayer.cpp */,
-				577A789C186BF56500F1B5D5 /* ISODynamicTileLayer.h */,
-				577A789D186BF56500F1B5D5 /* ISOGroundTileLayer.cpp */,
-				577A789E186BF56500F1B5D5 /* ISOGroundTileLayer.h */,
-				577A789F186BF56500F1B5D5 /* ISOInfos.h */,
-				577A78A0186BF56500F1B5D5 /* ISOObject.cpp */,
-				577A78A1186BF56500F1B5D5 /* ISOObject.h */,
-				577A78A2186BF56500F1B5D5 /* ISOObjectGroup.cpp */,
-				577A78A3186BF56500F1B5D5 /* ISOObjectGroup.h */,
-				577A78A4186BF56500F1B5D5 /* ISOOptimizedTileLayer.cpp */,
-				577A78A5186BF56500F1B5D5 /* ISOOptimizedTileLayer.h */,
-				577A78A6186BF56500F1B5D5 /* ISOTile.cpp */,
-				577A78A7186BF56500F1B5D5 /* ISOTile.h */,
-				577A78A8186BF56500F1B5D5 /* ISOTileLayer.cpp */,
-				577A78A9186BF56500F1B5D5 /* ISOTileLayer.h */,
-				577A78AA186BF56500F1B5D5 /* ISOTileLayerDynamicComponent.cpp */,
-				577A78AB186BF56500F1B5D5 /* ISOTileLayerDynamicComponent.h */,
-				577A78AC186BF56500F1B5D5 /* ISOTileMap.cpp */,
-				577A78AD186BF56500F1B5D5 /* ISOTileMap.h */,
-				577A78AE186BF56500F1B5D5 /* ISOTileMapBuilder.cpp */,
-				577A78AF186BF56500F1B5D5 /* ISOTileMapBuilder.h */,
-				577A78B0186BF56500F1B5D5 /* ISOTileset.cpp */,
-				577A78B1186BF56500F1B5D5 /* ISOTileset.h */,
-				577A78B2186BF56500F1B5D5 /* ISOTilesetGroup.cpp */,
-				577A78B3186BF56500F1B5D5 /* ISOTilesetGroup.h */,
-				577A78B4186BF56500F1B5D5 /* ISOXMLReader.cpp */,
-				577A78B5186BF56500F1B5D5 /* ISOXMLReader.h */,
-				577A78B6186BF56500F1B5D5 /* parser */,
-				577A78C5186BF56500F1B5D5 /* README.md */,
-				577A78C6186BF56500F1B5D5 /* ZIndex.cpp */,
-				577A78C7186BF56500F1B5D5 /* ZIndex.h */,
-				577A78C8186BF56500F1B5D5 /* ZIndexNode.cpp */,
-				577A78C9186BF56500F1B5D5 /* ZIndexNode.h */,
-			);
-			path = Isometric;
-			sourceTree = "<group>";
-		};
-		577A788E186BF56500F1B5D5 /* interface */ = {
-			isa = PBXGroup;
-			children = (
-				577A788F186BF56500F1B5D5 /* ISOReaderInterface.h */,
-			);
-			path = interface;
-			sourceTree = "<group>";
-		};
-		577A78B6186BF56500F1B5D5 /* parser */ = {
-			isa = PBXGroup;
-			children = (
-				577A78B7186BF56500F1B5D5 /* ISOLayerInfo.cpp */,
-				577A78B8186BF56500F1B5D5 /* ISOLayerInfo.h */,
-				577A78B9186BF56500F1B5D5 /* ISOMapInfo.cpp */,
-				577A78BA186BF56500F1B5D5 /* ISOMapInfo.h */,
-				577A78BB186BF56500F1B5D5 /* ISOObjectGroupInfo.cpp */,
-				577A78BC186BF56500F1B5D5 /* ISOObjectGroupInfo.h */,
-				577A78BD186BF56500F1B5D5 /* ISOObjectInfo.cpp */,
-				577A78BE186BF56500F1B5D5 /* ISOObjectInfo.h */,
-				577A78BF186BF56500F1B5D5 /* ISOTileInfo.cpp */,
-				577A78C0186BF56500F1B5D5 /* ISOTileInfo.h */,
-				577A78C1186BF56500F1B5D5 /* ISOTilesetInfo.cpp */,
-				577A78C2186BF56500F1B5D5 /* ISOTilesetInfo.h */,
-				577A78C3186BF56500F1B5D5 /* ISOXMLParser.cpp */,
-				577A78C4186BF56500F1B5D5 /* ISOXMLParser.h */,
-			);
-			path = parser;
-			sourceTree = "<group>";
-		};
 		577A78CB186BF56500F1B5D5 /* Math */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,70 +640,68 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				577A792B186BF56500F1B5D5 /* ZIndexNode.cpp in Sources */,
-				577A7918186BF56500F1B5D5 /* ISOObject.cpp in Sources */,
-				577A791B186BF56500F1B5D5 /* ISOTile.cpp in Sources */,
-				577A792A186BF56500F1B5D5 /* ZIndex.cpp in Sources */,
 				577A78FB186BF56500F1B5D5 /* CCScopePtr.cpp in Sources */,
 				577A78F9186BF56500F1B5D5 /* CCCallFuncNO.cpp in Sources */,
+				576E3FB9187D4BFB00745A0A /* ISOTileset.cpp in Sources */,
 				577A792E186BF56500F1B5D5 /* AsyncMessageManager.cpp in Sources */,
 				577A7909186BF56500F1B5D5 /* EventHandleWrap.cpp in Sources */,
 				577A78F8186BF56500F1B5D5 /* CCParabolaMove.cpp in Sources */,
 				577A792C186BF56500F1B5D5 /* MersenneTwister.cpp in Sources */,
-				577A7910186BF56500F1B5D5 /* Coordinate.cpp in Sources */,
-				577A7917186BF56500F1B5D5 /* ISOGroundTileLayer.cpp in Sources */,
-				577A7922186BF56500F1B5D5 /* ISOXMLReader.cpp in Sources */,
 				577A7930186BF56500F1B5D5 /* Message.cpp in Sources */,
 				577A7935186BF56500F1B5D5 /* NormalMessageManager.cpp in Sources */,
-				577A791E186BF56500F1B5D5 /* ISOTileMap.cpp in Sources */,
-				577A7921186BF56500F1B5D5 /* ISOTilesetGroup.cpp in Sources */,
 				577A7907186BF56500F1B5D5 /* EventHandle.cpp in Sources */,
+				576E3FC0187D4BFB00745A0A /* ISODynamicComponent.cpp in Sources */,
 				577A78F6186BF56500F1B5D5 /* AstarNode.cpp in Sources */,
 				577A7931186BF56500F1B5D5 /* MessageHandler.cpp in Sources */,
-				577A791D186BF56500F1B5D5 /* ISOTileLayerDynamicComponent.cpp in Sources */,
+				576E3FB5187D4BFB00745A0A /* Coordinate.cpp in Sources */,
 				577A78FD186BF56500F1B5D5 /* base64.cpp in Sources */,
 				577A7934186BF56500F1B5D5 /* MessageTarget.cpp in Sources */,
-				577A7928186BF56500F1B5D5 /* ISOTilesetInfo.cpp in Sources */,
+				576E3FCE187D4BFB00745A0A /* ISOXMLReader.cpp in Sources */,
+				576E3FD2187D4C4A00745A0A /* ISOObjectGroup.cpp in Sources */,
 				577A7932186BF56500F1B5D5 /* MessageManager.cpp in Sources */,
-				577A7927186BF56500F1B5D5 /* ISOTileInfo.cpp in Sources */,
+				576E3FB7187D4BFB00745A0A /* ISOTileMapObject.cpp in Sources */,
 				577A792F186BF56500F1B5D5 /* DelayMessageManager.cpp in Sources */,
 				577A7905186BF56500F1B5D5 /* SimpleMoveComponent.cpp in Sources */,
+				576E3FD0187D4BFB00745A0A /* ZIndexNode.cpp in Sources */,
+				576E3FCC187D4BFB00745A0A /* ISOXMLParser.cpp in Sources */,
+				576E3FBD187D4BFB00745A0A /* ISOBatchDynamicComponent.cpp in Sources */,
 				577A78FA186BF56500F1B5D5 /* CCGeometryValue.cpp in Sources */,
-				577A7920186BF56500F1B5D5 /* ISOTileset.cpp in Sources */,
+				576E3FC7187D4BFB00745A0A /* ISOMapInfo.cpp in Sources */,
 				577A790C186BF56500F1B5D5 /* FSMMachine.cpp in Sources */,
-				577A7923186BF56500F1B5D5 /* ISOLayerInfo.cpp in Sources */,
-				577A791F186BF56500F1B5D5 /* ISOTileMapBuilder.cpp in Sources */,
+				576E3FC2187D4BFB00745A0A /* ISOGroundTileLayer.cpp in Sources */,
 				577A7906186BF56500F1B5D5 /* Event.cpp in Sources */,
-				577A7913186BF56500F1B5D5 /* ISOBatchTileLayer.cpp in Sources */,
-				577A7929186BF56500F1B5D5 /* ISOXMLParser.cpp in Sources */,
+				576E3FCF187D4BFB00745A0A /* ZIndex.cpp in Sources */,
+				576E3FBA187D4BFB00745A0A /* ISOTilesetGroup.cpp in Sources */,
 				577A78F4186BF56500F1B5D5 /* Astar.cpp in Sources */,
+				576E3FB6187D4BFB00745A0A /* ISOComponentNode.cpp in Sources */,
+				576E3FBC187D4BFB00745A0A /* ISOTileMap.cpp in Sources */,
+				576E3FC6187D4BFB00745A0A /* ISOLayerInfo.cpp in Sources */,
 				577A7901186BF56500F1B5D5 /* AutoAttackComponent.cpp in Sources */,
+				576E3FC8187D4BFB00745A0A /* ISOObjectGroupInfo.cpp in Sources */,
 				577A7933186BF56500F1B5D5 /* MessageManagerSenderPredominate.cpp in Sources */,
+				576E3FBF187D4BFB00745A0A /* ISOBatchTileLayer.cpp in Sources */,
 				577A78F5186BF56500F1B5D5 /* AstarFlexible.cpp in Sources */,
 				577A7908186BF56500F1B5D5 /* EventHandleD.cpp in Sources */,
+				576E3FC9187D4BFB00745A0A /* ISOObjectInfo.cpp in Sources */,
 				577A78F7186BF56500F1B5D5 /* CallbackAstar.cpp in Sources */,
+				576E3FCA187D4BFB00745A0A /* ISOTileInfo.cpp in Sources */,
 				577A7900186BF56500F1B5D5 /* AttackComponent.cpp in Sources */,
-				577A7911186BF56500F1B5D5 /* ISOBatchDynamicComponent.cpp in Sources */,
-				577A7914186BF56500F1B5D5 /* ISOComponentNode.cpp in Sources */,
+				576E3FB8187D4BFB00745A0A /* ISOTile.cpp in Sources */,
 				577A78FF186BF56500F1B5D5 /* AnimationComponent.cpp in Sources */,
+				576E3FCB187D4BFB00745A0A /* ISOTilesetInfo.cpp in Sources */,
+				576E3FBE187D4BFB00745A0A /* ISOBatchDynamicTileLayer.cpp in Sources */,
 				577A7936186BF56500F1B5D5 /* SimpleMessageManager.cpp in Sources */,
 				577A790D186BF56500F1B5D5 /* FSMState.cpp in Sources */,
-				577A7915186BF56500F1B5D5 /* ISODynamicComponent.cpp in Sources */,
-				577A7926186BF56500F1B5D5 /* ISOObjectInfo.cpp in Sources */,
-				577A7924186BF56500F1B5D5 /* ISOMapInfo.cpp in Sources */,
 				577A7902186BF56500F1B5D5 /* Component.cpp in Sources */,
-				577A7925186BF56500F1B5D5 /* ISOObjectGroupInfo.cpp in Sources */,
+				576E3FC4187D4BFB00745A0A /* ISOTileLayer.cpp in Sources */,
+				576E3FCD187D4BFB00745A0A /* ISOTileMapBuilder.cpp in Sources */,
 				577A790A186BF56500F1B5D5 /* EventListenerManager.cpp in Sources */,
-				577A7916186BF56500F1B5D5 /* ISODynamicTileLayer.cpp in Sources */,
 				577A792D186BF56500F1B5D5 /* RandomMT.cpp in Sources */,
 				577A78FC186BF56500F1B5D5 /* CCSelectorWrap.cpp in Sources */,
 				577A7903186BF56500F1B5D5 /* ManualAttackComponent.cpp in Sources */,
-				577A791C186BF56500F1B5D5 /* ISOTileLayer.cpp in Sources */,
-				577A7919186BF56500F1B5D5 /* ISOObjectGroup.cpp in Sources */,
+				576E3FC1187D4BFB00745A0A /* ISODynamicTileLayer.cpp in Sources */,
 				577A78FE186BF56500F1B5D5 /* ccCArray.cpp in Sources */,
 				577A790B186BF56500F1B5D5 /* UIEvent.cpp in Sources */,
-				577A7912186BF56500F1B5D5 /* ISOBatchDynamicTileLayer.cpp in Sources */,
-				577A791A186BF56500F1B5D5 /* ISOOptimizedTileLayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
