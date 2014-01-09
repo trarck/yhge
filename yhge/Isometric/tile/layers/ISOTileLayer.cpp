@@ -353,4 +353,16 @@ CCSprite* ISOTileLayer::tileSpriteAt(const CCPoint& pos)
     return sprite;
 }
 
+/**
+ * 删除tile
+ */
+void ISOTileLayer::removeTileSpriteAt(float x,float y)
+{
+    removeTileSpriteAt(ccp(x,y));
+}
+
+void ISOTileLayer::removeTileSpriteAt(const CCPoint& pos)
+{
+    CCAssert(false, "you must impl ISOTileLayer::removeSpriteTileAt");
+}
 NS_CC_YHGE_END
