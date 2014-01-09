@@ -57,6 +57,21 @@ public:
      * 设置tile属性
      */
     virtual void setMapTilesProperties(CCArray* tileInfos,ISOTileset* tileset);
+    
+    /**
+     * 构建tile layer
+     */
+    virtual void buildMapLayers(ISOMapInfo* mapInfo);
+    
+    virtual void buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo);
+    
+    virtual void setLayerAttribute(ISOTileLayer* tileLayer,ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo);
+    
+    virtual ISOTileset * tilesetForLayer(ISOLayerInfo *layerInfo);
+    
+    virtual ISOTilesetInfo * tilesetInfoForLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo);
+    
+    
     /**
      * 构建object groups
      */
@@ -71,17 +86,11 @@ public:
     virtual void buildMapObject(ISOObjectInfo* objectInfo,ISOObjectGroup* objectGroup);
     
     /**
-     * 构建tile layer
+     * 构建map object layer
+     * 只显示图块的object group
      */
-    virtual void buildMapLayers(ISOMapInfo* mapInfo);
+    virtual void buildMapObjectLayer(ISOObjectGroup* objectGroup);
     
-    virtual void buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo);
-
-    virtual void setLayerAttribute(ISOTileLayer* tileLayer,ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo);
-    
-    virtual ISOTileset * tilesetForLayer(ISOLayerInfo *layerInfo);
-    
-    virtual ISOTilesetInfo * tilesetInfoForLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo);
     
 public:
     

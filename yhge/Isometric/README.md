@@ -6,7 +6,7 @@ map由layer和object group组成。这二个层的元素都由tile显示(object 
 
 关于cocos2d支持的tmx:为了使渲染的高效，一个layer只使用一个tileset。只读取object group信息，并未显示。没有处理跨层的遮挡问题。
 
-TODO:
+改进:
 	1.使tileset支持不等大的tile,比如texture packer生成的图片。
 	2.扩展tile的定义，使其对应游戏里的任意对象(包括动画)。
 	3.渲染object group。

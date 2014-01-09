@@ -123,6 +123,7 @@ public:
     /**
      * 删除tile sprite
      * 从地图数据中删除gid，并从渲染树中删除
+     * 一般不会使用
      */
 	virtual void removeTileSpriteAt(float x,float y);
     
@@ -209,7 +210,6 @@ protected:
     
     unsigned int* m_pTiles;
     
-    CCArray* m_pTilesetInfos;
     /**
      * 地图的偏移量。屏幕坐标
      * 可能层的原点和地图的原点不在一起。

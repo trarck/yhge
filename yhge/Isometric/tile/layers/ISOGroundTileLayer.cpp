@@ -68,10 +68,9 @@ void ISOGroundTileLayer::setupTileSprite(CCSprite* sprite, CCPoint mapCoord, uns
     sprite->setVertexZ((float)this->vertexZForPos(mapCoord));
     sprite->setAnchorPoint(CCPointZero);
     sprite->setOpacity(m_cOpacity);
-    sprite->setFlipX(false);
-    sprite->setFlipX(false);
-    sprite->setRotation(0.0f);
-    sprite->setAnchorPoint(ccp(0,0));
+//    sprite->setFlipX(false);
+//    sprite->setFlipX(false);
+//    sprite->setRotation(0.0f);
     
     // Rotation in tiled is achieved using 3 flipped states, flipping across the horizontal, vertical, and diagonal axes of the tiles.
     if (gid & kCCTMXTileDiagonalFlag)

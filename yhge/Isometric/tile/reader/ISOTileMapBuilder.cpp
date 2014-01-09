@@ -141,85 +141,6 @@ void ISOTileMapBuilder::setMapTilesProperties(CCArray* tileInfos,ISOTileset* til
     }
 }
 
-void ISOTileMapBuilder::buildMapObjectGroups(ISOMapInfo* mapInfo)
-{
-    
-    CCArray* objectGroups = mapInfo->getObjectGroups();
-    if (objectGroups && objectGroups->count()>0)
-    {
-        ISOObjectGroupInfo* objectGroupInfo = NULL;
-        CCObject* pObj = NULL;
-        CCARRAY_FOREACH(objectGroups, pObj)
-        {
-            objectGroupInfo = (ISOObjectGroupInfo*)pObj;
-            if (objectGroupInfo && objectGroupInfo->getVisible())
-            {
-                ISOObjectGroup* objGroup=new ISOObjectGroup();
-                objGroup->init();
-                objGroup->setName(objectGroupInfo->getName());
-                objGroup->setOffset(objectGroupInfo->getPositionOffset());
-                objGroup->setProperties(objectGroupInfo->getProperties());
-                buildMapObjects(objectGroupInfo->getObjects(), objGroup);
-                
-                m_pMap->getObjectGroups()->addObject(objGroup);
-                objGroup->release();
-            }
-        }
-    }
-}
-
-void ISOTileMapBuilder::buildMapObjects(CCArray* objects,ISOObjectGroup* objectGroup)
-{
-    CCAssert(objects!=NULL, "buildMapObjects objects must non't be null");
-    CCAssert(objectGroup!=NULL, "buildMapObjects objectGroup must non't be null");
-    
-    ISOObjectInfo* objectInfo = NULL;
-    CCObject* pObj = NULL;
-    CCARRAY_FOREACH(objects, pObj)
-    {
-        objectInfo = (ISOObjectInfo*)pObj;
-        if (objectInfo && objectInfo->getVisible())
-        {
-            buildMapObject(objectInfo,objectGroup);
-        }
-    }
-}
-
-void ISOTileMapBuilder::buildMapObject(ISOObjectInfo* objectInfo,ISOObjectGroup* objectGroup)
-{
-    ISOMapObject* obj=new ISOMapObject();
-    obj->init();
-    obj->setName(objectInfo->getName());
-    obj->setGid(objectInfo->getGid());
-    obj->setPosition(objectInfo->getPosition());
-    obj->setSize(objectInfo->getSize());
-    obj->setType(objectInfo->getType());
-    obj->setVisible(objectInfo->getVisible());
-    obj->setProperties(objectInfo->getProperties());
-    objectGroup->getObjects()->addObject(obj);
-    obj->release();
-}
-
-void ISOTileMapBuilder::buildMapLayers(ISOMapInfo* mapInfo)
-{
-    int idx=0;
-    
-    CCArray* layerInfos = mapInfo->getLayers();
-    if (layerInfos && layerInfos->count()>0)
-    {
-        ISOLayerInfo* layerInfo = NULL;
-        CCObject* pObj = NULL;
-        CCARRAY_FOREACH(layerInfos, pObj)
-        {
-            layerInfo = (ISOLayerInfo*)pObj;
-            if (layerInfo && layerInfo->getVisible())
-            {
-                buildMapLayer(layerInfo,mapInfo);
-                idx++;
-            }
-        }
-    }
-}
 
 void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo)
 {
@@ -239,7 +160,7 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
         {
             ISOBatchTileLayer* batchLayer=new ISOBatchTileLayer();
             batchLayer->init();
-
+            
             ISOTileset* tileset=tilesetForLayer(layerInfo);
             
             if(tileset){
@@ -252,7 +173,7 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
         {
             ISOBatchDynamicTileLayer* batchLayer=new ISOBatchDynamicTileLayer();
             batchLayer->init();
-
+            
             ISOTileset* tileset=tilesetForLayer(layerInfo);
             
             if(tileset){
@@ -277,16 +198,16 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
     }
     
     // update content size with the max size
-//                const CCSize& childSize = layer->getContentSize();
-//                CCSize currentSize = m_pMap->getContentSize();
-//                currentSize.width = MAX( currentSize.width, childSize.width );
-//                currentSize.height = MAX( currentSize.height, childSize.height );
-//                m_pMap->setContentSize(currentSize);
+    //                const CCSize& childSize = layer->getContentSize();
+    //                CCSize currentSize = m_pMap->getContentSize();
+    //                currentSize.width = MAX( currentSize.width, childSize.width );
+    //                currentSize.height = MAX( currentSize.height, childSize.height );
+    //                m_pMap->setContentSize(currentSize);
 }
 
 void ISOTileMapBuilder::setLayerAttribute(ISOTileLayer* tileLayer,ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo)
 {
-
+    
     tileLayer->setMap(m_pMap);
     tileLayer->setMapTileSize(m_pMap->getTileSize());
     tileLayer->setLayerName(layerInfo->getName());
@@ -295,7 +216,7 @@ void ISOTileMapBuilder::setLayerAttribute(ISOTileLayer* tileLayer,ISOLayerInfo *
     tileLayer->setOpacity(layerInfo->getOpacity());
     tileLayer->setTiles(layerInfo->getTiles());
     tileLayer->setProperties(layerInfo->getProperties());
-
+    
     tileLayer->setupTiles();
 }
 
@@ -397,5 +318,93 @@ ISOTilesetInfo * ISOTileMapBuilder::tilesetInfoForLayer(ISOLayerInfo *layerInfo,
 
 
 
+void ISOTileMapBuilder::buildMapObjectGroups(ISOMapInfo* mapInfo)
+{
+    
+    CCArray* objectGroups = mapInfo->getObjectGroups();
+    if (objectGroups && objectGroups->count()>0)
+    {
+        ISOObjectGroupInfo* objectGroupInfo = NULL;
+        CCObject* pObj = NULL;
+        CCARRAY_FOREACH(objectGroups, pObj)
+        {
+            objectGroupInfo = (ISOObjectGroupInfo*)pObj;
+            if (objectGroupInfo && objectGroupInfo->getVisible())
+            {
+                ISOObjectGroup* objGroup=new ISOObjectGroup();
+                objGroup->init();
+                objGroup->setName(objectGroupInfo->getName());
+                objGroup->setOffset(objectGroupInfo->getPositionOffset());
+                objGroup->setProperties(objectGroupInfo->getProperties());
+                buildMapObjects(objectGroupInfo->getObjects(), objGroup);
+                
+                m_pMap->getObjectGroups()->addObject(objGroup);
+                objGroup->release();
+            }
+        }
+    }
+}
+
+void ISOTileMapBuilder::buildMapObjects(CCArray* objects,ISOObjectGroup* objectGroup)
+{
+    CCAssert(objects!=NULL, "buildMapObjects objects must non't be null");
+    CCAssert(objectGroup!=NULL, "buildMapObjects objectGroup must non't be null");
+    
+    ISOObjectInfo* objectInfo = NULL;
+    CCObject* pObj = NULL;
+    CCARRAY_FOREACH(objects, pObj)
+    {
+        objectInfo = (ISOObjectInfo*)pObj;
+        if (objectInfo && objectInfo->getVisible())
+        {
+            buildMapObject(objectInfo,objectGroup);
+        }
+    }
+}
+
+void ISOTileMapBuilder::buildMapObject(ISOObjectInfo* objectInfo,ISOObjectGroup* objectGroup)
+{
+    ISOMapObject* obj=new ISOMapObject();
+    obj->init();
+    obj->setName(objectInfo->getName());
+    obj->setGid(objectInfo->getGid());
+    obj->setPosition(objectInfo->getPosition());
+    obj->setSize(objectInfo->getSize());
+    obj->setType(objectInfo->getType());
+    obj->setVisible(objectInfo->getVisible());
+    obj->setProperties(objectInfo->getProperties());
+    objectGroup->getObjects()->addObject(obj);
+    obj->release();
+}
+
+void ISOTileMapBuilder::buildMapLayers(ISOMapInfo* mapInfo)
+{
+    int idx=0;
+    
+    CCArray* layerInfos = mapInfo->getLayers();
+    if (layerInfos && layerInfos->count()>0)
+    {
+        ISOLayerInfo* layerInfo = NULL;
+        CCObject* pObj = NULL;
+        CCARRAY_FOREACH(layerInfos, pObj)
+        {
+            layerInfo = (ISOLayerInfo*)pObj;
+            if (layerInfo && layerInfo->getVisible())
+            {
+                buildMapLayer(layerInfo,mapInfo);
+                idx++;
+            }
+        }
+    }
+}
+
+/**
+ * 构建map object layer
+ * 只显示图块的object group
+ */
+void ISOTileMapBuilder::buildMapObjectLayer(ISOObjectGroup* objectGroup)
+{
+    
+}
 
 NS_CC_YHGE_END
