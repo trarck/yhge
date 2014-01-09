@@ -37,14 +37,29 @@
     <Filter Include="Isometric">
       <UniqueIdentifier>{1a0c2be3-7ce0-4ae6-96bb-b041e5c33484}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Isometric\interface">
-      <UniqueIdentifier>{a52b6874-3ae4-49d3-b680-35e38fe54bfe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Isometric\parser">
-      <UniqueIdentifier>{884ed4cf-61f6-4a9b-b276-0cf411f8ae26}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include">
       <UniqueIdentifier>{7d002152-c88b-4bb7-ae3b-0c4319dc439c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Isometric\tile">
+      <UniqueIdentifier>{724dec8b-8356-4a03-b234-70daf5e4a2af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Isometric\tile\base">
+      <UniqueIdentifier>{624401a6-ba86-49fe-8775-0dd43482e91c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Isometric\tile\layers">
+      <UniqueIdentifier>{b1d92a1f-44f0-4d76-a3e2-62200732ebdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Isometric\tile\occlusion">
+      <UniqueIdentifier>{7cd999ea-0787-4063-8ea5-595f53f911ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Isometric\tile\parser">
+      <UniqueIdentifier>{71960103-50fe-49c9-8482-0020d208bbe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Isometric\tile\reader">
+      <UniqueIdentifier>{141fb1c4-fa9a-4095-aaec-3fc25eba4d93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Isometric\tile\renderer">
+      <UniqueIdentifier>{e3431a2d-dc4d-4af4-8da5-ac01d38f9c27}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -153,91 +168,7 @@
     <ClInclude Include="..\yhge\YHGEMacros.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\interface\ISOReaderInterface.h">
-      <Filter>Isometric\interface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\parser\ISOLayerInfo.h">
-      <Filter>Isometric\parser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\parser\ISOMapInfo.h">
-      <Filter>Isometric\parser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\parser\ISOObjectGroupInfo.h">
-      <Filter>Isometric\parser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\parser\ISOObjectInfo.h">
-      <Filter>Isometric\parser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\parser\ISOTileInfo.h">
-      <Filter>Isometric\parser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\parser\ISOTilesetInfo.h">
-      <Filter>Isometric\parser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\parser\ISOXMLParser.h">
-      <Filter>Isometric\parser</Filter>
-    </ClInclude>
     <ClInclude Include="..\yhge\Isometric\Coordinate.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOBatchDynamicComponent.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOBatchDynamicTileLayer.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOBatchTileLayer.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOComponentNode.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOCoordinate.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISODynamicComponent.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISODynamicTileLayer.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOGroundTileLayer.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOInfos.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOObject.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOObjectGroup.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOOptimizedTileLayer.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOTile.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOTileLayer.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOTileLayerDynamicComponent.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOTileMap.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOTileMapBuilder.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOTileset.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOTilesetGroup.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOXMLReader.h">
       <Filter>Isometric</Filter>
     </ClInclude>
     <ClInclude Include="..\yhge\Isometric\ZIndex.h">
@@ -263,6 +194,93 @@
     </ClInclude>
     <ClInclude Include="..\yhge\Message\MessageTarget.h">
       <Filter>Message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\ISOCoordinate.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOMapObject.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOObjectGroup.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTile.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTileObject.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTileObjectPart.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTileset.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTilesetGroup.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicComponent.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicTileLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOObjectLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOTileLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\renderer\ISOComponentNode.h">
+      <Filter>Isometric\tile\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\reader\ISOTileMapBuilder.h">
+      <Filter>Isometric\tile\reader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOLayerInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOMapInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOObjectGroupInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOObjectInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOTileInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOTilesetInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOXMLParser.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\ISOBases.h">
+      <Filter>Isometric\tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\ISOInfos.h">
+      <Filter>Isometric\tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\ISOLayers.h">
+      <Filter>Isometric\tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\ISOTileMap.h">
+      <Filter>Isometric\tile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -335,82 +353,7 @@
     <ClCompile Include="..\yhge\FSM\Common\FSMState.cpp">
       <Filter>FSM\Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\parser\ISOLayerInfo.cpp">
-      <Filter>Isometric\parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\parser\ISOMapInfo.cpp">
-      <Filter>Isometric\parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\parser\ISOObjectGroupInfo.cpp">
-      <Filter>Isometric\parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\parser\ISOObjectInfo.cpp">
-      <Filter>Isometric\parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\parser\ISOTileInfo.cpp">
-      <Filter>Isometric\parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\parser\ISOTilesetInfo.cpp">
-      <Filter>Isometric\parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\parser\ISOXMLParser.cpp">
-      <Filter>Isometric\parser</Filter>
-    </ClCompile>
     <ClCompile Include="..\yhge\Isometric\Coordinate.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOBatchDynamicComponent.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOBatchDynamicTileLayer.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOBatchTileLayer.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOComponentNode.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISODynamicComponent.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISODynamicTileLayer.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOGroundTileLayer.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOObject.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOObjectGroup.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOOptimizedTileLayer.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOTile.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOTileLayer.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOTileLayerDynamicComponent.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOTileMap.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOTileMapBuilder.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOTileset.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOTilesetGroup.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOXMLReader.cpp">
       <Filter>Isometric</Filter>
     </ClCompile>
     <ClCompile Include="..\yhge\Isometric\ZIndex.cpp">
@@ -436,6 +379,81 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Message\MessageTarget.cpp">
       <Filter>Message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOMapObject.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOObjectGroup.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTile.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTileObject.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTileObjectPart.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTileset.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTilesetGroup.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicComponent.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicTileLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOObjectLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOTileLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\renderer\ISOComponentNode.cpp">
+      <Filter>Isometric\tile\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\reader\ISOTileMapBuilder.cpp">
+      <Filter>Isometric\tile\reader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOLayerInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOMapInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOObjectGroupInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOObjectInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOTileInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOTilesetInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOXMLParser.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\ISOTileMap.cpp">
+      <Filter>Isometric\tile</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
