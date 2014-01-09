@@ -142,6 +142,27 @@ void ISOTileMapBuilder::setMapTilesProperties(CCArray* tileInfos,ISOTileset* til
 }
 
 
+void ISOTileMapBuilder::buildMapLayers(ISOMapInfo* mapInfo)
+{
+    int idx=0;
+    
+    CCArray* layerInfos = mapInfo->getLayers();
+    if (layerInfos && layerInfos->count()>0)
+    {
+        ISOLayerInfo* layerInfo = NULL;
+        CCObject* pObj = NULL;
+        CCARRAY_FOREACH(layerInfos, pObj)
+        {
+            layerInfo = (ISOLayerInfo*)pObj;
+            if (layerInfo && layerInfo->getVisible())
+            {
+                buildMapLayer(layerInfo,mapInfo);
+                idx++;
+            }
+        }
+    }
+}
+
 void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo)
 {
     CCLOG("ISOTileMapBuilder::buildMapLayer:%s",layerInfo->getName());
@@ -340,6 +361,8 @@ void ISOTileMapBuilder::buildMapObjectGroups(ISOMapInfo* mapInfo)
                 
                 m_pMap->getObjectGroups()->addObject(objGroup);
                 objGroup->release();
+
+				buildMapObjectLayer(objGroup);
             }
         }
     }
@@ -377,34 +400,25 @@ void ISOTileMapBuilder::buildMapObject(ISOObjectInfo* objectInfo,ISOObjectGroup*
     obj->release();
 }
 
-void ISOTileMapBuilder::buildMapLayers(ISOMapInfo* mapInfo)
-{
-    int idx=0;
-    
-    CCArray* layerInfos = mapInfo->getLayers();
-    if (layerInfos && layerInfos->count()>0)
-    {
-        ISOLayerInfo* layerInfo = NULL;
-        CCObject* pObj = NULL;
-        CCARRAY_FOREACH(layerInfos, pObj)
-        {
-            layerInfo = (ISOLayerInfo*)pObj;
-            if (layerInfo && layerInfo->getVisible())
-            {
-                buildMapLayer(layerInfo,mapInfo);
-                idx++;
-            }
-        }
-    }
-}
-
 /**
  * 构建map object layer
  * 只显示图块的object group
  */
 void ISOTileMapBuilder::buildMapObjectLayer(ISOObjectGroup* objectGroup)
 {
-    
+	ISOObjectLayer* objectLayer=new ISOObjectLayer();
+	objectLayer->init();
+
+	objectLayer->setMap(m_pMap);
+	objectLayer->setLayerName(objectGroup->getName());
+	objectLayer->setLayerOrientation(m_pMap->getMapOrientation());
+	objectLayer->setProperties(objectGroup->getProperties());
+	objectLayer->setObjectGroup(objectGroup);
+	objectLayer->setupObjects();
+
+	m_pMap->addChild(objectLayer);
+
+	objectLayer->release();
 }
 
 NS_CC_YHGE_END

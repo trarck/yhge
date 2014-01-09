@@ -8,5 +8,6 @@
 #include "layers/ISOBatchDynamicComponent.h"
 #include "layers/ISODynamicTileLayer.h"
 #include "layers/ISOBatchDynamicTileLayer.h"
+#include "layers/ISOObjectLayer.h"
 
 #endif // YHGE_ISOMETRIC_ISOLAYERS_H_
