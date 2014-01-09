@@ -61,6 +61,12 @@
     <Filter Include="Isometric\tile\renderer">
       <UniqueIdentifier>{e3431a2d-dc4d-4af4-8da5-ac01d38f9c27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CocosExt\Support">
+      <UniqueIdentifier>{6c197f4a-be9c-4f3c-b340-370ed644e278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CocosExt\Renderer">
+      <UniqueIdentifier>{8624b06b-3750-47ac-b83f-23f63bc44a2c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h">
@@ -282,6 +288,12 @@
     <ClInclude Include="..\yhge\Isometric\tile\ISOTileMap.h">
       <Filter>Isometric\tile</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\Support\base64.h">
+      <Filter>CocosExt\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\Support\ccCArray.h">
+      <Filter>CocosExt\Support</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -454,6 +466,12 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Isometric\tile\ISOTileMap.cpp">
       <Filter>Isometric\tile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\Support\base64.cpp">
+      <Filter>CocosExt\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\Support\ccCArray.cpp">
+      <Filter>CocosExt\Support</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
