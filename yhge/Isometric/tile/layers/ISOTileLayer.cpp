@@ -173,43 +173,6 @@ void ISOTileLayer::setTileGID(unsigned int gid, float x,float y)
     setTileGID(gid,ccp(x,y));
 }
 
-
-//===============tile sprite===============
-
-/**
- * 获取tile
- */
-CCSprite* ISOTileLayer::tileSpriteAt(float x,float y)
-{
-    return tileSpriteAt(ccp(x,y));
-}
-
-CCSprite* ISOTileLayer::tileSpriteAt(const CCPoint& pos)
-{
-    CCSprite* sprite=NULL;
-    
-    ISOTile* tile=tileAt(pos);
-    if(tile){
-        sprite=CCSprite::createWithTexture(tile->getTexture(), tile->getTextureRect());
-    }
-    
-    return sprite;
-}
-
-/**
- * 删除tile
- */
-void ISOTileLayer::removeTileSpriteAt(float x,float y)
-{
-    removeTileSpriteAt(ccp(x,y));
-}
-
-void ISOTileLayer::removeTileSpriteAt(const CCPoint& pos)
-{
-    CCAssert(false, "you must impl ISOTileLayer::removeSpriteTileAt");
-}
-
-
 void ISOTileLayer::scroll(const CCPoint& tOffset)
 {
     CCLOG("ISOTileLayer::scroll");
@@ -368,5 +331,26 @@ unsigned int* ISOTileLayer::getTiles()
     return m_pTiles;
 }
 
+//===============tile sprite===============
+
+/**
+ * 获取tile
+ */
+CCSprite* ISOTileLayer::tileSpriteAt(float x,float y)
+{
+    return tileSpriteAt(ccp(x,y));
+}
+
+CCSprite* ISOTileLayer::tileSpriteAt(const CCPoint& pos)
+{
+    CCSprite* sprite=NULL;
+    
+    ISOTile* tile=tileAt(pos);
+    if(tile){
+        sprite=CCSprite::createWithTexture(tile->getTexture(), tile->getTextureRect());
+    }
+    
+    return sprite;
+}
 
 NS_CC_YHGE_END

@@ -1,5 +1,5 @@
-#ifndef YHGE_ISOMETRIC_ISOTILEMAPOBJECT_H_
-#define YHGE_ISOMETRIC_ISOTILEMAPOBJECT_H_
+#ifndef YHGE_ISOMETRIC_ISOTileObject_H_
+#define YHGE_ISOMETRIC_ISOTileObject_H_
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
@@ -8,14 +8,15 @@ NS_CC_YHGE_BEGIN
 
 /**
  * 地图上要显示的对象
+ * 如果对象大于一个格子，则要拆分成几个部分
  */
-class ISOTileMapObject : public CCObject{
+class ISOTileObject : public CCObject{
 
 public:
     
-    ISOTileMapObject();   
+    ISOTileObject();   
   
-    ~ISOTileMapObject();
+    ~ISOTileObject();
    
     bool init();
     
@@ -39,6 +40,18 @@ public:
     virtual void setVisible(bool bVisible);
     virtual bool getVisible();
     
+    inline void setParts(CCArray* pParts)
+    {
+        CC_SAFE_RETAIN(pParts);
+        CC_SAFE_RELEASE(m_pParts);
+        m_pParts = pParts;
+    }
+    
+    inline CCArray* getParts()
+    {
+        return m_pParts;
+    }
+    
     virtual void setProperties(CCDictionary* pProperties);
     virtual CCDictionary* getProperties();
     
@@ -56,7 +69,7 @@ protected:
     
     /**
      * 对象的位置
-     * 是像素坐标
+     * 格子坐标
      */
     CCPoint m_tPosition;
     
@@ -74,6 +87,11 @@ protected:
      * 对象是否可见
      */
     bool m_bVisible;
+    
+    /**
+     * 组成部分
+     */
+    CCArray* m_pParts;
 
     /**
      * 属性
@@ -84,4 +102,4 @@ protected:
 
 NS_CC_YHGE_END
 
-#endif //YHGE_ISOMETRIC_ISOTILEMAPOBJECT_H_
+#endif //YHGE_ISOMETRIC_ISOTileObject_H_

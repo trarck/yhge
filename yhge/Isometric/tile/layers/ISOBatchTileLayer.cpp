@@ -318,6 +318,56 @@ CCSprite * ISOBatchTileLayer::appendTileForGID(unsigned int gid, const CCPoint& 
     return tile;
 }
 
+void ISOBatchTileLayer::removeTileSpriteAt(const CCPoint& pos)
+{
+    CCAssert(pos.x < m_tLayerSize.width && pos.y < m_tLayerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
+    CCAssert(m_pTiles && m_pAtlasIndexArray, "TMXLayer: the tiles map has been released");
+    
+    unsigned int gid = tileGIDAt(pos);
+    
+    if (gid)
+    {
+        int z = zOrderForPos(pos);
+        unsigned int atlasIndex = atlasIndexForExistantZ(z);
+        
+		unsigned int tileIndex=indexForPos(pos);
+        // remove tile from GID map
+        m_pTiles[tileIndex] = 0;
+        
+        // remove tile from atlas position array
+        yhge::ccCArrayRemoveValueAtIndex(m_pAtlasIndexArray, atlasIndex);
+        
+        // remove it from sprites and/or texture atlas
+        CCSprite *sprite = (CCSprite*)getChildByTag(z);
+        if (sprite)
+        {
+            m_pSpriteBatchNode->removeChild(sprite, true);
+        }
+        else
+        {
+            m_pSpriteBatchNode->getTextureAtlas()->removeQuadAtIndex(atlasIndex);
+            
+            // update possible children
+            CCArray* pChildren=m_pSpriteBatchNode->getChildren();
+            if (pChildren && pChildren->count()>0)
+            {
+                CCObject* pObject = NULL;
+                CCARRAY_FOREACH(pChildren, pObject)
+                {
+                    CCSprite* pChild = (CCSprite*) pObject;
+                    if (pChild)
+                    {
+                        unsigned int ai = pChild->getAtlasIndex();
+                        if ( ai >= atlasIndex )
+                        {
+                            pChild->setAtlasIndex(ai-1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 unsigned int ISOBatchTileLayer::atlasIndexForExistantZ(unsigned int z)
 {
@@ -409,60 +459,6 @@ void ISOBatchTileLayer::removeChild(CCNode* node, bool cleanup)
     yhge::ccCArrayRemoveValueAtIndex(m_pAtlasIndexArray, atlasIndex);
     m_pSpriteBatchNode->removeChild(sprite, cleanup);
 }
-
-void ISOBatchTileLayer::removeTileSpriteAt(const CCPoint& pos)
-{
-    CCAssert(pos.x < m_tLayerSize.width && pos.y < m_tLayerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
-    CCAssert(m_pTiles && m_pAtlasIndexArray, "TMXLayer: the tiles map has been released");
-    
-    unsigned int gid = tileGIDAt(pos);
-    
-    if (gid)
-    {
-        int z = zOrderForPos(pos);
-        unsigned int atlasIndex = atlasIndexForExistantZ(z);
-        
-		unsigned int tileIndex=indexForPos(pos);
-        // remove tile from GID map
-        m_pTiles[tileIndex] = 0;
-        
-        // remove tile from atlas position array
-        yhge::ccCArrayRemoveValueAtIndex(m_pAtlasIndexArray, atlasIndex);
-        
-        // remove it from sprites and/or texture atlas
-        CCSprite *sprite = (CCSprite*)getChildByTag(z);
-        if (sprite)
-        {
-            m_pSpriteBatchNode->removeChild(sprite, true);
-        }
-        else
-        {
-            m_pSpriteBatchNode->getTextureAtlas()->removeQuadAtIndex(atlasIndex);
-            
-            // update possible children
-            CCArray* pChildren=m_pSpriteBatchNode->getChildren();
-            if (pChildren && pChildren->count()>0)
-            {
-                CCObject* pObject = NULL;
-                CCARRAY_FOREACH(pChildren, pObject)
-                {
-                    CCSprite* pChild = (CCSprite*) pObject;
-                    if (pChild)
-                    {
-                        unsigned int ai = pChild->getAtlasIndex();
-                        if ( ai >= atlasIndex )
-                        {
-                            pChild->setAtlasIndex(ai-1);
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-
 
 void ISOBatchTileLayer::addQuadFromSprite(CCSprite *sprite, unsigned int index)
 {

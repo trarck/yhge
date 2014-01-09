@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
-#include "../base/ISOComponentNode.h"
+#include "../renderer/ISOComponentNode.h"
 
 #define ComponentExtendCount 2
 

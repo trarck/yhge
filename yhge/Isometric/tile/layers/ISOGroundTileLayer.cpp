@@ -149,7 +149,7 @@ CCSprite * ISOGroundTileLayer::tileSpriteAt(const CCPoint& pos)
     return tile;
 }
 
-void ISOGroundTileLayer::removeSpriteTileAt(const CCPoint& pos)
+void ISOGroundTileLayer::removeTileSpriteAt(const CCPoint& pos)
 {
     CCAssert(pos.x < m_tLayerSize.width && pos.y < m_tLayerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
     

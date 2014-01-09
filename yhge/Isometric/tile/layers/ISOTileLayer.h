@@ -83,34 +83,6 @@ public:
      */
     virtual void setTileGID(unsigned int gid, float x,float y);
     virtual void setTileGID(unsigned int gid, const CCPoint& pos);
-
-    
-    
-    //===============tile sprite===============
-    
-    /**
-     * 添加tile
-     */
-//    virtual void addTileSprite(CCSprite* tileSprite);
-//    
-//    virtual void addTileSpriteAt(CCSprite* tileSprite,float x,float y);
-//    
-//	virtual void addTileSpriteAt(CCSprite* tileSprite,const CCPoint& pos);
-    
-    
-    /**
-     * 获取tile sprite
-     */
-	virtual CCSprite* tileSpriteAt(float x,float y);
-    
-	virtual CCSprite* tileSpriteAt(const CCPoint& pos);
-    
-    /**
-     * 删除tile sprite
-     */   
-	virtual void removeTileSpriteAt(float x,float y);
-    
-    virtual void removeTileSpriteAt(const CCPoint& pos);
     
  
     //移动
@@ -137,6 +109,25 @@ public:
      * 获取属性名称
      */
     CCString *propertyNamed(const char *propertyName);
+    
+    
+    
+    //===============tile sprite tools function===============
+    /**
+     * 获取tile sprite
+     */
+	virtual CCSprite* tileSpriteAt(float x,float y);
+    
+	virtual CCSprite* tileSpriteAt(const CCPoint& pos);
+    
+    /**
+     * 删除tile sprite
+     * 从地图数据中删除gid，并从渲染树中删除
+     */
+	virtual void removeTileSpriteAt(float x,float y);
+    
+    virtual void removeTileSpriteAt(const CCPoint& pos);
+    
 
 public:
     //===================get set 属性====================//

@@ -67,6 +67,18 @@ public:
         return m_tTextureRect;
     }
     
+    inline void setAnimation(CCAnimation* pAnimation)
+    {
+        CC_SAFE_RETAIN(pAnimation);
+        CC_SAFE_RELEASE(m_pAnimation);
+        m_pAnimation = pAnimation;
+    }
+    
+    inline CCAnimation* getAnimation()
+    {
+        return m_pAnimation;
+    }
+    
 protected:
     
     //id
@@ -77,6 +89,11 @@ protected:
     
     //tile在texture的位置
     CCRect m_tTextureRect;
+    
+    /**
+     * 动画
+     */
+    CCAnimation* m_pAnimation;
     
     //所属的tileset.weak reference
     ISOTileset* m_pTileset;

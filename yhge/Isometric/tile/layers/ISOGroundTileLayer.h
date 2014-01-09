@@ -34,7 +34,7 @@ public:
     /**
      * 删除tile
      */
-    virtual void removeSpriteTileAt(const CCPoint& pos);
+    virtual void removeTileSpriteAt(const CCPoint& pos);
 
 public:
         

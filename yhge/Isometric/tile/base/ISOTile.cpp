@@ -7,9 +7,10 @@ NS_CC_YHGE_BEGIN
 ISOTile::ISOTile()
 :m_nId(0)
 ,m_pTexture(NULL)
+,m_pAnimation(NULL)
 ,m_tTextureRect(CCRectZero)
 {
-
+    
 }
 
 ISOTile::~ISOTile()

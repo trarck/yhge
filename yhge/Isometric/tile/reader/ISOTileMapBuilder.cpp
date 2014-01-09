@@ -187,7 +187,7 @@ void ISOTileMapBuilder::buildMapObjects(CCArray* objects,ISOObjectGroup* objectG
 
 void ISOTileMapBuilder::buildMapObject(ISOObjectInfo* objectInfo,ISOObjectGroup* objectGroup)
 {
-    ISOTileMapObject* obj=new ISOTileMapObject();
+    ISOMapObject* obj=new ISOMapObject();
     obj->init();
     obj->setName(objectInfo->getName());
     obj->setGid(objectInfo->getGid());

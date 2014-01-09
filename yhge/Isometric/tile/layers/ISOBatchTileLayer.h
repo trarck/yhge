@@ -29,6 +29,10 @@ public:
      */
     virtual void setupTiles();
     
+    void setTileGID(unsigned int gid, const CCPoint& pos);
+    
+    void removeChild(CCNode* node, bool cleanup);
+    
     /**
      * 获取tile
      */
@@ -38,11 +42,7 @@ public:
     /**
      * 删除tile
      */
-    virtual void removeTileSpriteAt(const CCPoint& pos);
-    
-    void setTileGID(unsigned int gid, const CCPoint& pos);
-    
-    void removeChild(CCNode* node, bool cleanup);
+    void removeTileSpriteAt(const CCPoint& pos);
     
 public:
     
@@ -73,25 +73,6 @@ public:
     }
 
 protected:
-    
-    /**
-     * 添加tile
-     */
-	CCSprite* appendTile(unsigned int gid, const CCPoint& pos);
-    CCSprite* appendTile(unsigned int gid, float x,float y);
-    
-    /**
-     * 插入tile
-     */
-    CCSprite* insertTile(unsigned int gid, const CCPoint& pos);
-    CCSprite* insertTile(unsigned int gid, float x,float y);
-    
-    /**
-     * 更新tile
-     */
-    CCSprite* updateTile(unsigned int gid, const CCPoint& pos);
-    CCSprite* updateTile(unsigned int gid, float x,float y);
-    
    
     /**
      * 设置tile

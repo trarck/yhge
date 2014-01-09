@@ -20,9 +20,11 @@
 #include "Isometric/tile/base/ISOTile.h"
 #include "Isometric/tile/base/ISOTileset.h"
 #include "Isometric/tile/base/ISOTilesetGroup.h"
-#include "Isometric/tile/base/ISOTileMapObject.h"
-#include "Isometric/tile/base/ISOComponentNode.h"
+#include "Isometric/tile/base/ISOMapObject.h"
 #include "Isometric/tile/base/ISOObjectGroup.h"
+
+#include "Isometric/tile/renderer/ISOComponentNode.h"
+
 #include "Isometric/tile/layers/ISODynamicComponent.h"
 #include "Isometric/tile/layers/ISOTileLayer.h"
 #include "Isometric/tile/layers/ISOGroundTileLayer.h"
