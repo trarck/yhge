@@ -394,6 +394,7 @@ void ISOTileMapBuilder::buildMapObject(ISOObjectInfo* objectInfo,ISOObjectGroup*
     obj->setPosition(objectInfo->getPosition());
     obj->setSize(objectInfo->getSize());
     obj->setType(objectInfo->getType());
+    obj->setRotation(objectInfo->getRotation());
     obj->setVisible(objectInfo->getVisible());
     obj->setProperties(objectInfo->getProperties());
     objectGroup->getObjects()->addObject(obj);
@@ -415,7 +416,11 @@ void ISOTileMapBuilder::buildMapObjectLayer(ISOObjectGroup* objectGroup)
 	objectLayer->setProperties(objectGroup->getProperties());
 	objectLayer->setObjectGroup(objectGroup);
 	objectLayer->setupObjects();
-
+    
+    //fix object layer position
+    //x方向向左移动半个地图大小
+//    objectLayer->setPosition(ccp(-m_pMap->getMapSize().width*m_pMap->getTileSize().width*0.5f,0));
+    
 	m_pMap->addChild(objectLayer);
 
 	objectLayer->release();

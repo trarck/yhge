@@ -6,6 +6,11 @@ NS_CC_YHGE_BEGIN
 ISOObjectGroupInfo::ISOObjectGroupInfo()
 :m_sName("")
 ,m_tColor(ccWHITE)
+,m_cOpacity(255)
+,m_bVisible(true)
+,m_tPositionOffset(CCPointZero)
+,m_pObjects(NULL)
+,m_pProperties(NULL)
 {
     m_pProperties=new CCDictionary();
     m_pObjects=new CCArray();

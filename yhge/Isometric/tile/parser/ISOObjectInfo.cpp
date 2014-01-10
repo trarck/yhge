@@ -9,6 +9,7 @@ ISOObjectInfo::ISOObjectInfo()
 ,m_uGid(0)
 ,m_tPosition(CCPointZero)
 ,m_tSize(CCSizeZero)
+,m_fRotation(0.0f)
 ,m_bVisible(true)
 {
     m_pProperties=new CCDictionary();

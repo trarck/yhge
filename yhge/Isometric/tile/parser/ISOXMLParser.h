@@ -81,13 +81,27 @@ public:
         return m_bTranslateLayerData;
     }
 
+    inline void setTranslateObjectCoord(bool translateObjectCoord)
+    {
+        m_translateObjectCoord = translateObjectCoord;
+    }
     
-private:
+    inline bool isTranslateObjectCoord()
+    {
+        return m_translateObjectCoord;
+    }
+    
+protected:
     
     void internalInit(const char* tmxFileName, const char* resourcePath);
     
     //把地图坐标左上角为原点的转为左下角。
     void translateMapTiles(unsigned int * pTiles,ISOLayerInfo* layerInfo,unsigned int **out);
+    
+    //把tiled里的object坐标转成地图格子坐标
+    CCPoint translateObjectCoord(const CCPoint& pos);
+    
+protected:
 
     //xml file related
     int m_nCurrentElement;
@@ -98,7 +112,7 @@ private:
     
     bool m_bStoringCharacters;
 
-protected:
+
     //! tmx filename
     std::string m_sTMXFileName;
     // tmx resource path
@@ -111,6 +125,8 @@ protected:
     ISOMapInfo* m_pMapInfo;	
     
     bool m_bTranslateLayerData;
+    
+    bool m_translateObjectCoord;
 };
 
 

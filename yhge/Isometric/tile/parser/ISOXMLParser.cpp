@@ -32,6 +32,7 @@ static const char* valueForKey(const char *key, std::map<std::string, std::strin
 ISOXMLParser::ISOXMLParser()
 :m_pMapInfo(NULL)
 ,m_bTranslateLayerData(false)
+,m_translateObjectCoord(false)
 {
 
 }
@@ -364,26 +365,43 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         s.width = (float)atof(valueForKey("width", attributeDict));
         s.height = (float)atof(valueForKey("height", attributeDict));
         objInfo->setSize(s);
-        // But X and Y since they need special treatment
-        // X
         
         CCPoint pos;
-        const char* value = valueForKey("x", attributeDict);
-        if( value )
+        std::string value = valueForKey("x", attributeDict);
+        if( value!="" )
         {
-            pos.x = (float)atof(value) + objectGroupInfo->getPositionOffset().x;
+            pos.x = (float)atof(value.c_str());
         }
         
         // Y
         value = valueForKey("y", attributeDict);
-        if( value )  {
-            float y = (float)atof(value) + objectGroupInfo->getPositionOffset().y;
-            
-            // Correct y position. (Tiled uses Flipped, cocos2d uses Standard)
-            pos.y = (m_pMapInfo->getMapSize().height * m_pMapInfo->getTileSize().height) - y - s.height;
+        if( value!="" )  {
+            pos.y = (float)atof(value.c_str());
+        }
+        
+        if (m_translateObjectCoord) {
+            pos=this->translateObjectCoord(pos);
         }
         
         objInfo->setPosition(pos);
+        
+        //rotation
+        value = valueForKey("opacity", attributeDict);
+        if (value!="") {
+            objInfo->setRotation((float)atof(value.c_str()));
+        }
+        
+        //gid
+        value = valueForKey("gid", attributeDict);
+        if (value!="") {
+            objInfo->setGid(atoi(value.c_str()));
+        }
+        
+        //visible
+        value = valueForKey("visible", attributeDict);
+        if (value!="") {
+            objInfo->setVisible(atoi(value.c_str()));
+        }
         
         // Add the object to the objectGroup
         objectGroupInfo->getObjects()->addObject(objInfo);
@@ -629,6 +647,22 @@ void ISOXMLParser::translateMapTiles(unsigned int * pTiles,ISOLayerInfo* layerIn
         //转换高宽
         layerInfo->setLayerSize(translatedSize);
     }
+}
+
+//把tiled里的object坐标转成地图格子坐标
+CCPoint ISOXMLParser::translateObjectCoord(const CCPoint& pos)
+{
+    CCPoint coord;
+    
+    CCSize tileSize=m_pMapInfo->getTileSize();
+    
+    CCAssert(tileSize.width!=0 && tileSize.height!=0, "tilesize must big then zero");
+    
+    coord.x=pos.x/tileSize.width;
+    coord.y=pos.y/tileSize.height;
+    
+    
+    return coord;
 }
 
 ISOMapInfo* ISOXMLParser::getMapInfo()

@@ -17,7 +17,7 @@ ISOComponentNode::ISOComponentNode()
 
 ISOComponentNode::~ISOComponentNode()
 {
-    CCLOG("ISOComponentNode destroy");
+//    CCLOG("ISOComponentNode destroy");
 //    CC_SAFE_RELEASE(m_pTile);
 }
 
