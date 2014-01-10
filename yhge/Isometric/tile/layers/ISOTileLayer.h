@@ -85,7 +85,12 @@ public:
     virtual void setTileGID(unsigned int gid, const CCPoint& pos);
     
  
-    //移动
+    /**
+     * 移动到某个偏移量
+     * 注意不是scroll by
+     * layer的scroll不要设置layer的position，如果layer的position改变，地图会乱掉。
+     * layer的scroll主要提供地图位置改变的通知。
+     */
     virtual void scroll(const CCPoint& tOffset);
     virtual void scroll(float x,float y);
     

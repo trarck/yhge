@@ -81,6 +81,10 @@ public:
     
     virtual ISOTileLayer* createLayer();
     
+    /**
+     * 通知layer，地图的显示位置改变。
+     * 有可能是map的位置改变，有可能是game world改变引起
+     */
     void scrollLayer(const CCPoint& pos);
     
     

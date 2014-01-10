@@ -175,7 +175,7 @@ void ISOTileLayer::setTileGID(unsigned int gid, float x,float y)
 
 void ISOTileLayer::scroll(const CCPoint& tOffset)
 {
-    CCLOG("ISOTileLayer::scroll");
+//    CCLOG("ISOTileLayer::scroll");
 }
 
 void ISOTileLayer::scroll(float x,float y)
