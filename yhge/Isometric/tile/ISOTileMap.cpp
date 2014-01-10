@@ -344,9 +344,11 @@ void ISOTileMap::scrollLayer(const CCPoint& pos)
     CCObject* pObj=NULL;
     ISOTileLayer* tileLayer;
     
+    CCPoint localPos=ccpMult(pos, 1/this->getScale());
+    
     CCARRAY_FOREACH(m_pTileLayers, pObj){
         tileLayer=(ISOTileLayer*) pObj;
-        tileLayer->scroll(pos);
+        tileLayer->scroll(localPos);
     }
 }
 
