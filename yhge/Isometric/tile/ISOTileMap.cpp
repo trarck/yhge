@@ -11,6 +11,7 @@ ISOTileMap::ISOTileMap()
 ,m_pTileProperties(NULL)
 ,m_pDynamicComponent(NULL)
 ,m_pTilesetGroup(NULL)
+,m_visibleSize(CCSizeZero)
 {
 	
 }
@@ -82,6 +83,8 @@ bool ISOTileMap::init()
     m_pObjectGroups->init();
     
     m_pProperties=new CCDictionary();
+    
+    m_visibleSize=CCDirector::sharedDirector()->getWinSize();//CCSizeMake(480,320);
 
 //    CCLayerColor* lc=CCLayerColor::create(ccc4(0,0,255,255), 600, 400);
 //    addChild(lc);
@@ -469,4 +472,12 @@ ISOTilesetGroup* ISOTileMap::getTilesetGroup()
 {
     return m_pTilesetGroup;
 }
+
+CCSize ISOTileMap::getVisibleSize()
+{
+    if(m_fScaleX==0 || m_fScaleY==0) return m_visibleSize;
+    
+    return CCSizeMake(m_visibleSize.width/m_fScaleX, m_visibleSize.height/m_fScaleY);
+}
+
 NS_CC_YHGE_END

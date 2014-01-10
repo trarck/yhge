@@ -1,5 +1,6 @@
 #include "ISODynamicTileLayer.h"
 #include <yhge/Isometric/ISOCoordinate.h>
+#include "../ISOTileMap.h"
 
 NS_CC_YHGE_BEGIN
 
@@ -21,9 +22,9 @@ ISODynamicTileLayer::~ISODynamicTileLayer()
 bool ISODynamicTileLayer::init()
 {
     if(ISOTileLayer::init()){
-        m_tScreenSize=CCDirector::sharedDirector()->getWinSize();//CCSizeMake(480,320);
         
         m_pDynamicComponent=new ISODynamicComponent();
+        m_pDynamicComponent->init();
         m_pDynamicComponent->setCreateDelegator(this);
         m_pDynamicComponent->setTileLayer(this);
         
@@ -54,8 +55,11 @@ void ISODynamicTileLayer::setComponentColumnAndRow()
 {
 
     if(m_pDynamicComponent && m_tMapTileSize.height!=0 && m_tMapTileSize.width!=0){
-        int componentTileColumn=floor(m_tScreenSize.width/m_tMapTileSize.width)+2;
-        int componentTileRow=floor(m_tScreenSize.height/m_tMapTileSize.height)+2;
+        
+        CCSize visibleSize=m_pMap->getVisibleSize();
+        
+        int componentTileColumn=floor(visibleSize.width/m_tMapTileSize.width)+2;
+        int componentTileRow=floor(visibleSize.height/m_tMapTileSize.height)+2;
         
         m_pDynamicComponent->setComponentTileColumn(componentTileColumn);
         m_pDynamicComponent->setComponentTileRow(componentTileRow);
@@ -67,9 +71,11 @@ void ISODynamicTileLayer::draw()
 {
 	
 	ccDrawColor4B(255,0,0,255);
-    ccDrawRect(m_tOffset,ccp(m_tOffset.x+m_tScreenSize.width,m_tOffset.y+m_tScreenSize.height));
+    
+    CCSize visibleSize=m_pMap->getVisibleSize();
+    
+    ccDrawRect(m_tOffset,ccp(m_tOffset.x+visibleSize.width,m_tOffset.y+visibleSize.height));
 }
-
 
 
 void ISODynamicTileLayer::scroll(const CCPoint& tOffset)
@@ -77,12 +83,6 @@ void ISODynamicTileLayer::scroll(const CCPoint& tOffset)
     this->setOffset(tOffset);
 	m_pDynamicComponent->scroll(tOffset);
 }
-
-void ISODynamicTileLayer::setScreenSize(const CCSize& screenSize)
-{
-    m_tScreenSize=screenSize;
-}
-
 
 void ISODynamicTileLayer::setDynamicComponent(ISODynamicComponent* pDynamicComponent)
 {

@@ -134,6 +134,13 @@ public://==============属性===============//
     
     virtual ISOTilesetGroup* getTilesetGroup();
     
+    inline void setVisibleSize(const CCSize& visibleSize)
+    {
+        m_visibleSize = visibleSize;
+    }
+    
+    CCSize getVisibleSize();
+    
 protected:
     
 //    virtual ISOTileLayer * parseLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo);
@@ -198,7 +205,14 @@ protected:
      */
     CCDictionary* m_pTileProperties;
     
+    /**
+     * 地图的可视区域
+     */
+    CCSize m_visibleSize;
+    
+    
     ISODynamicComponent* m_pDynamicComponent;
+
     
 };
 

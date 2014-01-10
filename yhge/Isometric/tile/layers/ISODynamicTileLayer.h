@@ -52,9 +52,7 @@ public:
      * test bounding
      */
     virtual void draw();
-    
-    void setScreenSize(const CCSize& screenSize);
-    
+        
     CCSprite* createTile();
 
 public:
@@ -76,7 +74,6 @@ protected:
     
 //	CCPoint m_tLastStartPoint;
     
-    CCSize m_tScreenSize;
 //	int m_iStartX;
 //	int m_iStartY;
 };

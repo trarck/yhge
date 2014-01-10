@@ -20,7 +20,6 @@ ISOBatchDynamicTileLayer::~ISOBatchDynamicTileLayer()
 bool ISOBatchDynamicTileLayer::init()
 {
     if(ISOTileLayer::init()){
-        m_tScreenSize=CCDirector::sharedDirector()->getWinSize();//CCSizeMake(480,320);
         
         m_pDynamicComponent=new ISOBatchDynamicComponent();
         m_pDynamicComponent->setTileLayer(this);
