@@ -23,6 +23,12 @@
 #define TileHeight 32 
 #endif
 
+//MapUnit，一个地图坐标单元的地图坐标像素值
+#ifndef MapUnit
+#define MapUnit TileHeight 
+#endif
+
+//XUnit,YUnit,ZUnit都是屏幕坐标值
 #ifndef XUnit
 #define XUnit TileWidth/2 
 #endif
