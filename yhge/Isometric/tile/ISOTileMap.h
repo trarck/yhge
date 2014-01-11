@@ -86,7 +86,11 @@ public:
      * 有可能是map的位置改变，有可能是game world改变引起
      */
     void scrollLayer(const CCPoint& pos);
-    
+
+	/**
+	 * 显示地图的坐标线
+	 */
+	void showCoordLine();
     
 public://==============属性===============//
     

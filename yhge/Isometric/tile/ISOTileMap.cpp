@@ -1,7 +1,10 @@
 #include "ISOTileMap.h"
 #include "base/ISOTileset.h"
+#include "layers/ISOCoordinateLayer.h"
 
 NS_CC_YHGE_BEGIN
+
+static const int kCoordLineZOrder=10000;
 
 ISOTileMap::ISOTileMap()
 :m_tMapSize(CCSizeZero)
@@ -480,6 +483,17 @@ CCSize ISOTileMap::getVisibleSize()
     if(m_fScaleX==0 || m_fScaleY==0) return m_visibleSize;
     
     return CCSizeMake(m_visibleSize.width/m_fScaleX, m_visibleSize.height/m_fScaleY);
+}
+
+/**
+ * 显示地图的坐标线
+ */
+void ISOTileMap::showCoordLine()
+{
+	ISOCoordinateLayer* coordLayer=ISOCoordinateLayer::create();
+	coordLayer->setMapWidth((int)m_tMapSize.width);
+	coordLayer->setMapHeight((int)m_tMapSize.height);
+	this->addChild(coordLayer,kCoordLineZOrder);
 }
 
 NS_CC_YHGE_END
