@@ -294,6 +294,9 @@
     <ClInclude Include="..\yhge\CocosExt\Support\ccCArray.h">
       <Filter>CocosExt\Support</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -472,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="..\yhge\CocosExt\Support\ccCArray.cpp">
       <Filter>CocosExt\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

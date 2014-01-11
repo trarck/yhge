@@ -61,6 +61,7 @@
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicComponent.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicTileLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.h" />
@@ -125,6 +126,7 @@
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicComponent.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicTileLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.cpp" />
