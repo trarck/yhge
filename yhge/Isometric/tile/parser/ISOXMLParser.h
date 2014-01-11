@@ -101,6 +101,9 @@ protected:
     //把tiled里的object坐标转成地图格子坐标
     CCPoint translateObjectCoord(const CCPoint& pos);
     
+	//把tiled里的object格式像素大小转成坐标大小
+	CCSize translateObjectSize(const CCSize& size);
+
 protected:
 
     //xml file related

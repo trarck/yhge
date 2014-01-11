@@ -76,7 +76,7 @@ CCSprite* ISOObjectLayer::createObject(int gid,const CCPoint& position)
     
     CCSprite* tileSprite=CCSprite::createWithTexture(tile->getTexture(), tile->getTextureRect());
     //object 的对齐方式为底部居中
-    tileSprite->setAnchorPoint(ccp(0,0.5f));
+    tileSprite->setAnchorPoint(ccp(0.5f,0));
     tileSprite->setPosition(isoGameToViewPoint(position));
     tileSprite->setOpacity(m_opacity);
     

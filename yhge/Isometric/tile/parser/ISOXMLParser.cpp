@@ -353,14 +353,16 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
     else if(elementName == "object")
     {
         ISOObjectGroupInfo* objectGroupInfo = (ISOObjectGroupInfo*)m_pMapInfo->getObjectGroups()->lastObject();
-        
 
-        ISOObjectInfo *objInfo = new ISOObjectInfo();
+		ISOObjectInfo *objInfo = new ISOObjectInfo();
         
         objInfo->setName(valueForKey("name", attributeDict));
         
         objInfo->setType(valueForKey("type", attributeDict));
         
+		//object的size和position是地图的像素值，不是屏幕的像素值。
+		//一个地图的单位坐标像素值和yUnit相等。
+
         CCSize s;
         s.width = (float)atof(valueForKey("width", attributeDict));
         s.height = (float)atof(valueForKey("height", attributeDict));
@@ -612,9 +614,11 @@ void ISOXMLParser::textHandler(void *ctx, const char *ch, int len)
 }
 
 /**
+ * tmx中使用的坐标系是。x正方朝右下，y正方向朝左下。
+ * 而在游戏中由于和opengl的坐标系统相统一。x正方向朝右上，y正方向朝左上。
+ * tmx到游戏转换要交换x,y坐标系统。
  * x'=layerHeight-y;
  * y'=layerWidth-x;
- *
  */
 void ISOXMLParser::translateMapTiles(unsigned int * pTiles,ISOLayerInfo* layerInfo,unsigned int **out)
 {
@@ -649,20 +653,38 @@ void ISOXMLParser::translateMapTiles(unsigned int * pTiles,ISOLayerInfo* layerIn
     }
 }
 
-//把tiled里的object坐标转成地图格子坐标
+/**
+ * 把tiled里的object坐标转成地图格子坐标
+ * 注意坐标系的交换
+ */
 CCPoint ISOXMLParser::translateObjectCoord(const CCPoint& pos)
 {
     CCPoint coord;
     
     CCSize tileSize=m_pMapInfo->getTileSize();
+	CCSize mapSize=m_pMapInfo->getMapSize();
     
-    CCAssert(tileSize.width!=0 && tileSize.height!=0, "tilesize must big then zero");
+    CCAssert(tileSize.height!=0, "tilesize must big then zero");
     
-    coord.x=pos.x/tileSize.width;
-    coord.y=pos.y/tileSize.height;
-    
-    
+    coord.x=mapSize.height-pos.y/tileSize.height;
+    coord.y=mapSize.width-pos.x/tileSize.height;
+
     return coord;
+}
+
+//把tiled里的object格式像素大小转成坐标大小
+CCSize ISOXMLParser::translateObjectSize(const CCSize& size)
+{
+    CCSize gridSize;
+    
+    CCSize tileSize=m_pMapInfo->getTileSize();
+    
+    CCAssert(tileSize.height!=0, "tilesize must big then zero");
+    
+    gridSize.width=size.width/tileSize.height;
+    gridSize.height=size.height/tileSize.height;
+
+    return gridSize;
 }
 
 ISOMapInfo* ISOXMLParser::getMapInfo()
