@@ -47,6 +47,7 @@ void ISODynamicComponent::createComponents()
             node->init();
 			node->setColumn(i*2+(j&1));
 			node->setRow(j);
+			node->setAnchorPoint(ccp(0.5f,0.0f));
 			m_pComponents->addObject(node);
             m_pTileLayer->addChild(node);
 			node->release();

@@ -42,4 +42,11 @@ void ISOComponentNode::updateMapCoordinate(float mapX,float mapY)
 //        m_pTile->setPosition(isoGameToView2F(mapX, mapY));
 }
 
+//void ISOComponentNode::draw()
+//{
+//	CCSprite::draw();
+//	ccDrawColor4B(0,0,255,255);
+//	ccDrawRect(ccp(0,0),ccp(m_obContentSize.width,m_obContentSize.height));
+//}
+
 NS_CC_YHGE_END

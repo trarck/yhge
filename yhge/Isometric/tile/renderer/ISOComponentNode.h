@@ -18,6 +18,8 @@ public:
     
     void updateMapCoordinate(float mapX,float mapY);
     
+	//void draw();
+
     void changeZOrder(int z){
         m_nZOrder=z;
     }

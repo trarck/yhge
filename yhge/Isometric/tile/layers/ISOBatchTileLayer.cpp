@@ -113,13 +113,12 @@ void ISOBatchTileLayer::setupTileSprite(CCSprite* sprite, CCPoint mapCoord, unsi
 {
     sprite->setPosition(isoGameToViewPoint(mapCoord));
     sprite->setVertexZ((float)this->vertexZForPos(mapCoord));
-    sprite->setAnchorPoint(CCPointZero);
+    sprite->setAnchorPoint(ccp(0.5f,0.0f));
     sprite->setOpacity(m_cOpacity);
     
     sprite->setFlipX(false);
     sprite->setFlipX(false);
     sprite->setRotation(0.0f);
-    sprite->setAnchorPoint(ccp(0,0));
     
     // Rotation in tiled is achieved using 3 flipped states, flipping across the horizontal, vertical, and diagonal axes of the tiles.
     if (gid & kCCTMXTileDiagonalFlag)

@@ -66,7 +66,7 @@ void ISOGroundTileLayer::setupTileSprite(CCSprite* sprite, CCPoint mapCoord, uns
 {
     sprite->setPosition(isoGameToViewPoint(mapCoord));
     sprite->setVertexZ((float)this->vertexZForPos(mapCoord));
-    sprite->setAnchorPoint(CCPointZero);
+    sprite->setAnchorPoint(ccp(0.5f,0.0f));
     sprite->setOpacity(m_cOpacity);
 //    sprite->setFlipX(false);
 //    sprite->setFlipX(false);

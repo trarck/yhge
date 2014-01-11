@@ -54,6 +54,7 @@ void ISOBatchDynamicComponent::createComponents()
 			node->setColumn(i*2+(j&1));
 			node->setRow(j);
 			node->setTexture(texture);
+			node->setAnchorPoint(ccp(0.5f,0.0f));
 			m_pComponents->addObject(node);
             m_pBatchNode->addChild(node);
 			node->setBatchNode(m_pBatchNode);
