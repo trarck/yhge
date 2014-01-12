@@ -357,19 +357,19 @@ void ISOTileMap::showCoordLine()
 }
 
 
-/**
- * for update component coordinate
- */
-void ISOTileMap::onUpdateComponentMapCoordinate(unsigned int index,float deltaMapX,float deltaMapY)
-{
-    CCLOG("ISOTileMap::updateComponentMapCoordinate");
-    
-    
-    //TODO other thing.
-    //1.标记地图哪些区域可以显示。
-    //2.通知子层更改组件的位置。
-
-}
+///**
+// * for update component coordinate
+// */
+//void ISOTileMap::onUpdateComponentMapCoordinate(unsigned int index,float deltaMapX,float deltaMapY)
+//{
+//    CCLOG("ISOTileMap::updateComponentMapCoordinate");
+//    
+//    
+//    //TODO other thing.
+//    //1.标记地图哪些区域可以显示。
+//    //2.通知子层更改组件的位置。
+//
+//}
 
 CCSize ISOTileMap::getVisibleSize()
 {

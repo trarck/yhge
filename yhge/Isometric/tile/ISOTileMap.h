@@ -30,7 +30,7 @@ NS_CC_YHGE_BEGIN
  * 关于layer层的优化。
  * 上层的layer会挡住下层的layer所以只需要显示上层的layer块。如果上层是透明的，那么可以只渲染上层的元素。但是透明的就不可以使用，如果不显示下层，会出现空洞。
  */
-class ISOTileMap : public CCNode,public ISODynamicComponentUpdateDelegator{
+class ISOTileMap : public CCNode{
 
 public:
 	
@@ -86,11 +86,6 @@ public:
 	 * 显示地图的坐标线
 	 */
 	void showCoordLine();
-	
-	/**
-	 * 显示地图的坐标线
-	 */
-    void onUpdateComponentMapCoordinate(unsigned int index,float deltaMapX,float deltaMapY);
     
 public://==============属性===============//
 	
