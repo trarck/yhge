@@ -17,6 +17,7 @@
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.h" />
     <ClInclude Include="..\yhge\CocosExt\Actions\CCParabolaMove.h" />
     <ClInclude Include="..\yhge\CocosExt\CCCallFuncNO.h" />
+    <ClInclude Include="..\yhge\CocosExt\CCDefaultTexture.h" />
     <ClInclude Include="..\yhge\CocosExt\CCGeometryValue.h" />
     <ClInclude Include="..\yhge\CocosExt\CCScopePtr.h" />
     <ClInclude Include="..\yhge\CocosExt\CCSelectorWrap.h" />
@@ -57,12 +58,15 @@
     <ClInclude Include="..\yhge\Isometric\tile\ISOBases.h" />
     <ClInclude Include="..\yhge\Isometric\tile\ISOInfos.h" />
     <ClInclude Include="..\yhge\Isometric\tile\ISOLayers.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\ISOTileInterfaces.h" />
     <ClInclude Include="..\yhge\Isometric\tile\ISOTileMap.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\IsoTileUtils.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicComponent.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicGroup.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicTileLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOObjectLayer.h" />
@@ -95,6 +99,7 @@
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.cpp" />
     <ClCompile Include="..\yhge\CocosExt\Actions\CCParabolaMove.cpp" />
     <ClCompile Include="..\yhge\CocosExt\CCCallFuncNO.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\CCDefaultTexture.cpp" />
     <ClCompile Include="..\yhge\CocosExt\CCGeometryValue.cpp" />
     <ClCompile Include="..\yhge\CocosExt\CCScopePtr.cpp" />
     <ClCompile Include="..\yhge\CocosExt\CCSelectorWrap.cpp" />
@@ -123,11 +128,13 @@
     <ClCompile Include="..\yhge\Isometric\tile\base\ISOTileset.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\base\ISOTilesetGroup.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\ISOTileMap.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\IsoTileUtils.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicComponent.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicGroup.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicTileLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOObjectLayer.cpp" />
@@ -158,7 +165,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
@@ -238,7 +245,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\cocos2dx;$(ProjectDir)..\..\..\cocos2dx\include;$(ProjectDir)..\..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\..\external;$(ProjectDir)..\..\..\external\chipmunk\include\chipmunk;$(ProjectDir)..\..\..\CocosDenshion\include;$(ProjectDir)..\..\..\extensions;..\Classes;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\cocos2dx;$(ProjectDir)..\..\..\cocos2dx\include;$(ProjectDir)..\..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\..\external;..\yhge;..\Classes;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

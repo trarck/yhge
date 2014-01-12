@@ -297,6 +297,18 @@
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.h">
       <Filter>Isometric\tile\layers</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicGroup.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\ISOTileInterfaces.h">
+      <Filter>Isometric\tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\IsoTileUtils.h">
+      <Filter>Isometric\tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CCDefaultTexture.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -478,6 +490,15 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.cpp">
       <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicGroup.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\IsoTileUtils.cpp">
+      <Filter>Isometric\tile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CCDefaultTexture.cpp">
+      <Filter>CocosExt</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
