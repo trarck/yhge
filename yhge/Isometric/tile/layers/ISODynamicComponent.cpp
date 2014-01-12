@@ -1,9 +1,8 @@
 #include "ISODynamicComponent.h"
+#include <yhge/CocosExt/CCDefaultTexture.h>
 #include <yhge/Isometric/ISOCoordinate.h>
 #include "../base/ISOTile.h"
 #include "ISOTileLayer.h"
-
-
 
 NS_CC_YHGE_BEGIN
 
@@ -41,18 +40,23 @@ void ISODynamicComponent::createComponents()
 	int totalColumn=2*m_iComponentTileColumn;
 	int totalRow=2*m_iComponentTileRow;
 	m_pComponents=new CCArray(totalColumn*totalRow);
-
-	//TODO:使用数组在win32下第二次加载地图过程会变更很慢
+    
+	//使用数组在win32下第二次加载地图过程会变更很慢.
+    //由于在sprite初始化的时候会设置默认texture.而这个texture的获取要调用CCFileUtils里的fullPathForFilename，
+    //而fullPathForFilename最终会调用CCFileUtilsWin32的isFileExist，进而又会调用windows的api的GetFileAttributesA。
+    //如果同时大量调用GetFileAttributesA，性能会下将。
+    //因此最好不要同时大量初始化默认sprite
+    CCTexture2D* defaultTexture=CCDefaultTexture::getInstance()->getTexture();
 	ISOComponentNode* node=NULL;
     for(int j=0;j<totalRow;j++){
 		for(int i=0;i<m_iComponentTileColumn;i++){
+            //CCLOG("cc:%d,%d",i,j);
 			node=new ISOComponentNode();
-            node->init();
+            node->initWithTexture(defaultTexture);
 			node->setColumn(i*2+(j&1));
 			node->setRow(j);
 			node->setAnchorPoint(ccp(0.5f,0.0f));
-			m_pComponents->addObject(node);
-			//ttt.push_back(node);
+            m_pComponents->addObject(node);
             m_pTileLayer->addChild(node);
 			node->release();
 		}

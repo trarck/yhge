@@ -50,10 +50,9 @@ void ISOBatchDynamicComponent::createComponents()
     for(int j=0;j<totalRow;j++){
 		for(int i=0;i<m_iComponentTileColumn;i++){
 			node=new ISOComponentNode();
-            node->init();
+            node->initWithTexture(texture);
 			node->setColumn(i*2+(j&1));
 			node->setRow(j);
-			node->setTexture(texture);
 			node->setAnchorPoint(ccp(0.5f,0.0f));
 			m_pComponents->addObject(node);
             m_pBatchNode->addChild(node);
