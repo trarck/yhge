@@ -42,7 +42,7 @@ void ISODynamicComponent::createComponents()
 	int totalRow=2*m_iComponentTileRow;
 	m_pComponents=new CCArray(totalColumn*totalRow);
 
-    CCLOG("totoal:%d,%d",totalColumn,totalRow);
+	//TODO:使用数组在win32下第二次加载地图过程会变更很慢
 	ISOComponentNode* node=NULL;
     for(int j=0;j<totalRow;j++){
 		for(int i=0;i<m_iComponentTileColumn;i++){
