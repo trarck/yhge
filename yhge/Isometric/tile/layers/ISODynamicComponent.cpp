@@ -7,6 +7,8 @@
 
 NS_CC_YHGE_BEGIN
 
+static const int kComponentExtendCount=2;
+
 //const CCSize testSize=CCSizeMake(256,160);
 
 ISODynamicComponent::ISODynamicComponent()
@@ -17,7 +19,7 @@ ISODynamicComponent::ISODynamicComponent()
 ,m_iLastStartY(-999999)
 ,m_iComponentIndexX(0)
 ,m_iComponentIndexY(0)
-,m_iComponentNodeExtendCount(ComponentExtendCount)
+,m_iComponentNodeExtendCount(kComponentExtendCount)
 ,m_pUpdateDelegator(NULL)
 ,m_pCreateDelegator(NULL)
 {
@@ -26,7 +28,7 @@ ISODynamicComponent::ISODynamicComponent()
 
 ISODynamicComponent::~ISODynamicComponent()
 {
-	CC_SAFE_RELEASE(m_pComponents);
+	CC_SAFE_RELEASE_NULL(m_pComponents);
 }
 
 bool ISODynamicComponent::init()
@@ -39,8 +41,9 @@ void ISODynamicComponent::createComponents()
 	int totalColumn=2*m_iComponentTileColumn;
 	int totalRow=2*m_iComponentTileRow;
 	m_pComponents=new CCArray(totalColumn*totalRow);
-    
-	ISOComponentNode* node;
+
+    CCLOG("totoal:%d,%d",totalColumn,totalRow);
+	ISOComponentNode* node=NULL;
     for(int j=0;j<totalRow;j++){
 		for(int i=0;i<m_iComponentTileColumn;i++){
 			node=new ISOComponentNode();
@@ -49,6 +52,7 @@ void ISODynamicComponent::createComponents()
 			node->setRow(j);
 			node->setAnchorPoint(ccp(0.5f,0.0f));
 			m_pComponents->addObject(node);
+			//ttt.push_back(node);
             m_pTileLayer->addChild(node);
 			node->release();
 		}
@@ -241,13 +245,24 @@ void ISODynamicComponent::doUpdateComponents()
     }
 }
 
-void ISODynamicComponent::calcComponentsCount()
-{    
-    m_iComponentTileColumn+=m_iComponentNodeExtendCount;
-    m_iComponentTileRow+=m_iComponentNodeExtendCount;
-    m_iComponentTileTotalColumn=2*m_iComponentTileColumn;
-    m_iComponentTileTotalRow=2*m_iComponentTileRow;
-	CCLOG("calcComponentsCount:%d,%d",m_iComponentTileColumn,m_iComponentTileRow);
+void ISODynamicComponent::updateMapCoordinate(unsigned int nodeIndex,float deltaMapX,float deltaMapY)
+{
+    //if(m_pUpdateDelegator) m_pUpdateDelegator->onUpdateComponentMapCoordinate(nodeIndex, deltaMapX, deltaMapY);
+    
+    updateNodeBy(nodeIndex,deltaMapX,deltaMapY);
+}
+
+void ISODynamicComponent::updateNodeBy(unsigned int nodeIndex,float deltaMapX,float deltaMapY)
+{
+	ISOComponentNode* node=(ISOComponentNode*) m_pComponents->objectAtIndex(nodeIndex);
+    float mx=node->getMapX();
+    float my=node->getMapY();
+    float newMx=mx+deltaMapX;
+    float newMy=my+deltaMapY;
+    
+//    CCLOG("ISODynamicComponent::updateMapCoordinate from:%f,%f to:%f,%f",mx,my,newMx,newMy);
+    
+    updateNode(node,newMx,newMy);
 }
 
 void ISODynamicComponent::updateNode(ISOComponentNode* node,float mx,float my)
@@ -275,30 +290,45 @@ void ISODynamicComponent::updateNode(ISOComponentNode* node,float mx,float my)
     }else{
         node->setVisible(false);
     }
-    
 }
 
-void ISODynamicComponent::updateMapCoordinate(unsigned int index,float deltaMapX,float deltaMapY)
-{
-    if(m_pUpdateDelegator) m_pUpdateDelegator->updateComponentMapCoordinate(index, deltaMapX, deltaMapY);
-    
-    ISOComponentNode* node=(ISOComponentNode*) m_pComponents->objectAtIndex(index);
-    float mx=node->getMapX();
-    float my=node->getMapY();
-    float newMx=mx+deltaMapX;
-    float newMy=my+deltaMapY;
-    
-//    CCLOG("ISODynamicComponent::updateMapCoordinate from:%f,%f to:%f,%f",mx,my,newMx,newMy);
-    
-    updateNode(node,newMx,newMy);
-    
+void ISODynamicComponent::calcComponentsCount()
+{    
+    m_iComponentTileColumn+=m_iComponentNodeExtendCount;
+    m_iComponentTileRow+=m_iComponentNodeExtendCount;
+    m_iComponentTileTotalColumn=2*m_iComponentTileColumn;
+    m_iComponentTileTotalRow=2*m_iComponentTileRow;
+	CCLOG("calcComponentsCount:%d,%d",m_iComponentTileColumn,m_iComponentTileRow);
 }
 
 void ISODynamicComponent::setupComponents()
 {
+	struct timeval start;
+	struct timeval end;
+
+	gettimeofday(&start,0);
+
     this->calcComponentsCount();
+
+	gettimeofday(&end,NULL);
+
+	CCLOG("setupComponents1:%d",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
+
+	gettimeofday(&start,0);
+
     this->createComponents();
+	
+	gettimeofday(&end,NULL);
+
+	CCLOG("setupComponents2:%d",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
+
+	gettimeofday(&start,0);
+
     this->initComponents();
+
+	gettimeofday(&end,NULL);
+
+	CCLOG("setupComponents3:%d",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
 }
 
 

@@ -20,78 +20,78 @@ public:
     
 	//void draw();
 
-    void changeZOrder(int z){
+    inline void changeZOrder(int z){
         m_nZOrder=z;
     }
     
-	void setColumn(int iColumn)
+	inline void setColumn(int iColumn)
 	{
 		m_iColumn = iColumn;
 	};
 
-	int getColumn()
+	inline int getColumn()
 	{
 		return m_iColumn;
 	};
 
-	void setRow(int iRow)
+	inline void setRow(int iRow)
 	{
 		m_iRow = iRow;
 	};
 
-	int getRow()
+	inline int getRow()
 	{
 		return m_iRow;
 	};
     
-    void setMapX(float fMapX)
+    inline void setMapX(float fMapX)
     {
         m_fMapX = fMapX;
     };
     
-    float getMapX()
+    inline float getMapX()
     {
         return m_fMapX;
     };
     
-    void setMapY(float fMapY)
+    inline void setMapY(float fMapY)
     {
         m_fMapY = fMapY;
     };
     
-    float getMapY()
+    inline float getMapY()
     {
         return m_fMapY;
     };
         
-    void setMapCellX(int iMapCellX)
+    inline void setMapCellX(int iMapCellX)
     {
         m_iMapCellX = iMapCellX;
     };
     
-    int getMapCellX()
+    inline int getMapCellX()
     {
         return m_iMapCellX;
     };
     
-    void setMapCellY(int iMapCellY)
+    inline void setMapCellY(int iMapCellY)
     {
         m_iMapCellY = iMapCellY;
     };
     
-    int getMapCellY()
+    inline int getMapCellY()
     {
         return m_iMapCellY;
     };
     
-    void setTile( CCSprite* pTile)
+    inline void setTile( CCSprite* pTile)
     {
         CC_SAFE_RETAIN(pTile);
         CC_SAFE_RELEASE(m_pTile);
         m_pTile = pTile;
     };
     
-    CCSprite* getTile()
+    inline CCSprite* getTile()
     {
         return m_pTile;
     };

@@ -12,21 +12,24 @@ ISOTileMap::ISOTileMap()
 ,m_pObjectGroups(NULL)
 ,m_pProperties(NULL)
 ,m_pTileProperties(NULL)
-,m_pDynamicComponent(NULL)
+,m_pDynamicGroup(NULL)
 ,m_pTilesetGroup(NULL)
 ,m_visibleSize(CCSizeZero)
+,m_useDynamicGroup(false)
+,m_pTileDynamicLayers(NULL)
 {
 	
 }
 
 ISOTileMap::~ISOTileMap()
 {
-    CC_SAFE_RELEASE(m_pTileLayers);
-    CC_SAFE_RELEASE(m_pTilesetGroup);
-    CC_SAFE_RELEASE(m_pProperties);
-    CC_SAFE_RELEASE(m_pObjectGroups);
-    CC_SAFE_RELEASE(m_pTileProperties);
-    CC_SAFE_RELEASE(m_pDynamicComponent);
+    CC_SAFE_RELEASE_NULL(m_pTileLayers);
+    CC_SAFE_RELEASE_NULL(m_pTilesetGroup);
+    CC_SAFE_RELEASE_NULL(m_pProperties);
+    CC_SAFE_RELEASE_NULL(m_pObjectGroups);
+    CC_SAFE_RELEASE_NULL(m_pTileProperties);
+    CC_SAFE_RELEASE_NULL(m_pDynamicGroup);
+	CC_SAFE_RELEASE_NULL(m_pTileDynamicLayers);
 }
 
 ISOTileMap * ISOTileMap::createWithXMLFile(const char *xmlFile)
@@ -139,11 +142,6 @@ bool ISOTileMap::initWithJSON(const char* jsonString, const char* resourcePath)
     CCAssert( false, "ISOTileMap::initWithJSON not support.");
     
     return true;
-}
-
-ISOTileLayer* ISOTileMap::createLayer()
-{
-    return ISOTileLayer::create();
 }
 
 //=================build from info======================//
@@ -327,162 +325,24 @@ CCString* ISOTileMap::propertyNamed(const char *propertyName)
     return (CCString*)m_pProperties->objectForKey(propertyName);
 }
 
-/**
- * for update component coordinate
- */
-void ISOTileMap::updateComponentMapCoordinate(unsigned int index,float deltaMapX,float deltaMapY)
-{
-    CCLOG("ISOTileMap::updateComponentMapCoordinate");
-    
-    
-    //TODO other thing.
-    //1.标记地图哪些区域可以显示。
-    //2.通知子层更改组件的位置。
-
-}
-
-
 void ISOTileMap::scrollLayer(const CCPoint& pos)
 {
-    CCObject* pObj=NULL;
-    ISOTileLayer* tileLayer;
-    
-    CCPoint localPos=ccpMult(pos, 1/this->getScale());
-    
-    CCARRAY_FOREACH(m_pTileLayers, pObj){
-        tileLayer=(ISOTileLayer*) pObj;
-        tileLayer->scroll(localPos);
-    }
-}
+	CCPoint localPos=ccpMult(pos, 1/this->getScale());
 
+	if (m_useDynamicGroup){
+		//如果使用动态组，则只更新动态组	
+		m_pDynamicGroup->scroll(localPos);
 
-void ISOTileMap::setMapSize(CCSize tMapSize)
-{
-    m_tMapSize = tMapSize;
-}
+	}else{
 
-CCSize ISOTileMap::getMapSize()
-{
-    return m_tMapSize;
-}
+		CCObject* pObj=NULL;
+		ISOTileLayer* tileLayer;
 
-void ISOTileMap::setTileSize(const CCSize& tTileSize)
-{
-    m_tTileSize = tTileSize;
-}
-
-const CCSize& ISOTileMap::getTileSize()
-{
-    return m_tTileSize;
-}
-
-void ISOTileMap::setName(const char* pName)
-{
-    m_pName = pName;
-}
-
-const char* ISOTileMap::getName()
-{
-    return m_pName.c_str();
-}
-
-void ISOTileMap::setMapOrientation(int nMapOrientation)
-{
-    m_nMapOrientation = nMapOrientation;
-}
-
-int ISOTileMap::getMapOrientation()
-{
-    return m_nMapOrientation;
-}
-
-void ISOTileMap::setTileLayers(CCArray* pTileLayers)
-{
-	CC_SAFE_RETAIN(pTileLayers);
-    CC_SAFE_RELEASE(m_pTileLayers);
-    m_pTileLayers = pTileLayers;
-}
-
-CCArray* ISOTileMap::getTileLayers()
-{
-	return m_pTileLayers;
-}
-
-void ISOTileMap::setObjectGroups(CCArray* pObjectGroups)
-{
-    CC_SAFE_RETAIN(pObjectGroups);
-    CC_SAFE_RELEASE(m_pObjectGroups);
-    m_pObjectGroups = pObjectGroups;
-}
-
-CCArray* ISOTileMap::getObjectGroups()
-{
-    return m_pObjectGroups;
-}
-
-void ISOTileMap::setProperties(CCDictionary* pProperties)
-{
-    CC_SAFE_RETAIN(pProperties);
-    CC_SAFE_RELEASE(m_pProperties);
-    m_pProperties = pProperties;
-}
-
-CCDictionary* ISOTileMap::getProperties()
-{
-    return m_pProperties;
-}
-
-void ISOTileMap::setIdentifier(int nIdentifier)
-{
-	m_nIdentifier=nIdentifier;
-}
-
-int ISOTileMap::getIdentifier()
-{
-	return m_nIdentifier;
-}
-
-void ISOTileMap::setTileProperties(CCDictionary* pTileProperties)
-{
-    CC_SAFE_RETAIN(pTileProperties);
-    CC_SAFE_RELEASE(m_pTileProperties);
-    m_pTileProperties = pTileProperties;
-}
-
-CCDictionary* ISOTileMap::getTileProperties()
-{
-    return m_pTileProperties;
-}
-
-void ISOTileMap::setDynamicComponent(ISODynamicComponent* pDynamicComponent)
-{
-    CC_SAFE_RETAIN(pDynamicComponent);
-    CC_SAFE_RELEASE(m_pDynamicComponent);
-    m_pDynamicComponent = pDynamicComponent;
-}
-
-ISODynamicComponent* ISOTileMap::getDynamicComponent()
-{
-    return m_pDynamicComponent;
-}
-
-void ISOTileMap::setTilesetGroup(ISOTilesetGroup* pTilesetGroup)
-{
-    CC_SAFE_RETAIN(pTilesetGroup);
-    CC_SAFE_RELEASE(m_pTilesetGroup);
-    m_pTilesetGroup = pTilesetGroup;
-}
-
-ISOTilesetGroup* ISOTileMap::getTilesetGroup()
-{
-    return m_pTilesetGroup;
-}
-
-CCSize ISOTileMap::getVisibleSize()
-{
-    if(m_fScaleX==0 || m_fScaleY==0) return m_visibleSize;
-    
-    return CCSizeMake(m_visibleSize.width/m_fScaleX, m_visibleSize.height/m_fScaleY);
+		CCARRAY_FOREACH(m_pTileLayers, pObj){
+			tileLayer=(ISOTileLayer*) pObj;
+			tileLayer->scroll(localPos);
+		}
+	}
 }
 
 /**
@@ -494,6 +354,47 @@ void ISOTileMap::showCoordLine()
 	coordLayer->setMapWidth((int)m_tMapSize.width);
 	coordLayer->setMapHeight((int)m_tMapSize.height);
 	this->addChild(coordLayer,kCoordLineZOrder);
+}
+
+
+/**
+ * for update component coordinate
+ */
+void ISOTileMap::onUpdateComponentMapCoordinate(unsigned int index,float deltaMapX,float deltaMapY)
+{
+    CCLOG("ISOTileMap::updateComponentMapCoordinate");
+    
+    
+    //TODO other thing.
+    //1.标记地图哪些区域可以显示。
+    //2.通知子层更改组件的位置。
+
+}
+
+CCSize ISOTileMap::getVisibleSize()
+{
+    if(m_fScaleX==0 || m_fScaleY==0) return m_visibleSize;
+    
+    return CCSizeMake(m_visibleSize.width/m_fScaleX, m_visibleSize.height/m_fScaleY);
+}
+
+void ISOTileMap::setUseDynamicGroup(bool useDynamicGroup)
+{
+	if (m_useDynamicGroup!=useDynamicGroup)
+	{
+		m_useDynamicGroup = useDynamicGroup;
+
+		if (m_useDynamicGroup)
+		{
+			if (m_pDynamicGroup==NULL)
+			{
+				m_pDynamicGroup=new ISODynamicGroup();
+				m_pDynamicGroup->init();
+			}
+		}else{
+			setDynamicGroup(NULL);
+		}
+	}
 }
 
 NS_CC_YHGE_END

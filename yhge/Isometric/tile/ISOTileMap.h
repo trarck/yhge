@@ -8,11 +8,12 @@
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
 
+#include "ISOTileInterfaces.h"
 #include "base/ISOTilesetGroup.h"
 #include "base/ISOObjectGroup.h"
 #include "layers/ISOTileLayer.h"
 //#include "ISOXMLParser.h"
-#include "layers/ISODynamicComponent.h"
+#include "layers/ISODynamicGroup.h"
 
 NS_CC_YHGE_BEGIN
 
@@ -70,16 +71,10 @@ public:
      */
     ISOObjectGroup* objectGroupNamed(const char *objectGroupName);
     
-    
     /**
      * 取得属性
      */
 	CCString *propertyNamed(const char *propertyName);
-
-   
-    void updateComponentMapCoordinate(unsigned int index,float deltaMapX,float deltaMapY);
-    
-    virtual ISOTileLayer* createLayer();
     
     /**
      * 通知layer，地图的显示位置改变。
@@ -91,52 +86,123 @@ public:
 	 * 显示地图的坐标线
 	 */
 	void showCoordLine();
+	
+	/**
+	 * 显示地图的坐标线
+	 */
+    void onUpdateComponentMapCoordinate(unsigned int index,float deltaMapX,float deltaMapY);
     
 public://==============属性===============//
-    
-	virtual void setMapSize(CCSize tMapSize);
-    
-	virtual CCSize getMapSize();
-    
-    virtual void setTileSize(const CCSize& tTileSize);
-    
-    virtual const CCSize& getTileSize();
+	
+	inline void setMapSize(CCSize tMapSize)
+	{
+		m_tMapSize = tMapSize;
+	}
 
-	virtual void setName(const char* pName);
-    
-	virtual const char* getName();
-    
-    virtual void setMapOrientation(int nMapOrientation);
-    
-    virtual int getMapOrientation();
-    
-    virtual void setTileLayers(CCArray* pTileLayers);
-    
-    virtual CCArray* getTileLayers();
-    
-    virtual void setObjectGroups(CCArray* pObjectGroups);
-    
-    virtual CCArray* getObjectGroups();
-    
-    virtual void setProperties(CCDictionary* pProperties);
-    
-    virtual CCDictionary* getProperties();
-    
-    virtual void setIdentifier(int nIdentifier);
-    
-    virtual int getIdentifier();
-    
-    virtual void setTileProperties(CCDictionary* pTileProperties);
-    
-    virtual CCDictionary* getTileProperties();
-    
-    virtual void setDynamicComponent(ISODynamicComponent* pDynamicComponent);
-    
-    virtual ISODynamicComponent* getDynamicComponent();
-    
-    virtual void setTilesetGroup(ISOTilesetGroup* pTilesetGroup);
-    
-    virtual ISOTilesetGroup* getTilesetGroup();
+	inline CCSize getMapSize()
+	{
+		return m_tMapSize;
+	}
+
+	inline void setTileSize(const CCSize& tTileSize)
+	{
+		m_tTileSize = tTileSize;
+	}
+
+	inline const CCSize& getTileSize()
+	{
+		return m_tTileSize;
+	}
+
+	inline void setName(const char* pName)
+	{
+		m_pName = pName;
+	}
+
+	inline const char* getName()
+	{
+		return m_pName.c_str();
+	}
+
+	inline void setMapOrientation(int nMapOrientation)
+	{
+		m_nMapOrientation = nMapOrientation;
+	}
+
+	inline int getMapOrientation()
+	{
+		return m_nMapOrientation;
+	}
+
+	inline void setTileLayers(CCArray* pTileLayers)
+	{
+		CC_SAFE_RETAIN(pTileLayers);
+		CC_SAFE_RELEASE(m_pTileLayers);
+		m_pTileLayers = pTileLayers;
+	}
+
+	inline CCArray* getTileLayers()
+	{
+		return m_pTileLayers;
+	}
+
+	inline void setObjectGroups(CCArray* pObjectGroups)
+	{
+		CC_SAFE_RETAIN(pObjectGroups);
+		CC_SAFE_RELEASE(m_pObjectGroups);
+		m_pObjectGroups = pObjectGroups;
+	}
+
+	inline CCArray* getObjectGroups()
+	{
+		return m_pObjectGroups;
+	}
+
+	inline void setProperties(CCDictionary* pProperties)
+	{
+		CC_SAFE_RETAIN(pProperties);
+		CC_SAFE_RELEASE(m_pProperties);
+		m_pProperties = pProperties;
+	}
+
+	inline CCDictionary* getProperties()
+	{
+		return m_pProperties;
+	}
+
+	inline void setIdentifier(int nIdentifier)
+	{
+		m_nIdentifier=nIdentifier;
+	}
+
+	inline int getIdentifier()
+	{
+		return m_nIdentifier;
+	}
+
+	inline void setTileProperties(CCDictionary* pTileProperties)
+	{
+		CC_SAFE_RETAIN(pTileProperties);
+		CC_SAFE_RELEASE(m_pTileProperties);
+		m_pTileProperties = pTileProperties;
+	}
+
+	inline CCDictionary* getTileProperties()
+	{
+		return m_pTileProperties;
+	}
+
+	inline void setTilesetGroup(ISOTilesetGroup* pTilesetGroup)
+	{
+		CC_SAFE_RETAIN(pTilesetGroup);
+		CC_SAFE_RELEASE(m_pTilesetGroup);
+		m_pTilesetGroup = pTilesetGroup;
+	}
+
+	inline ISOTilesetGroup* getTilesetGroup()
+	{
+		return m_pTilesetGroup;
+	}
     
     inline void setVisibleSize(const CCSize& visibleSize)
     {
@@ -144,6 +210,37 @@ public://==============属性===============//
     }
     
     CCSize getVisibleSize();
+
+	void setDynamicGroup(ISODynamicGroup* dynamicGroup)
+	{
+		CC_SAFE_RETAIN(dynamicGroup);
+		CC_SAFE_RELEASE(m_pDynamicGroup);
+		m_pDynamicGroup = dynamicGroup;
+	}
+
+	ISODynamicGroup* getDynamicGroup()
+	{
+		return m_pDynamicGroup;
+	}
+
+	void setUseDynamicGroup(bool useDynamicGroup);
+
+	bool isUseDynamicGroup()
+	{
+		return m_useDynamicGroup;
+	}
+
+	void setTileDynamicLayers(CCArray* tileDynamicLayers)
+	{
+		CC_SAFE_RETAIN(tileDynamicLayers);
+		CC_SAFE_RELEASE(m_pTileDynamicLayers);
+		m_pTileDynamicLayers = tileDynamicLayers;
+	}
+
+	CCArray* getTileDynamicLayers()
+	{
+		return m_pTileDynamicLayers;
+	}
     
 protected:
     
@@ -214,10 +311,18 @@ protected:
      */
     CCSize m_visibleSize;
     
-    
-    ISODynamicComponent* m_pDynamicComponent;
+    /**
+     * 管理动态层的组件
+	 * 如果有多个动态层，统一管理会减少计算量。
+     */
+    ISODynamicGroup* m_pDynamicGroup;
+   
+	bool m_useDynamicGroup;
 
-    
+	/**
+     * 动态layers
+     */
+    CCArray* m_pTileDynamicLayers;
 };
 
 

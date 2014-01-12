@@ -173,20 +173,29 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
             layer=new ISOGroundTileLayer();
             layer->init();
             break;
-        case DynamicLayerType:
-            layer=new ISODynamicTileLayer();
-            layer->init();
-            break;
+        case DynamicLayerType:{
+            ISODynamicTileLayer* dynamicLayer=new ISODynamicTileLayer();
+            dynamicLayer->init();
+
+			//设置是否使用统一动态组件
+			//if (m_pMap->isUseDynamicGroup())
+			//{
+			//	m_pMap->getDynamicGroup()->addDynamicComponent(dynamicLayer->getDynamicComponent());
+			//}
+			layer=dynamicLayer;
+			break;
+		}
         case BatchLayerType:
         {
             ISOBatchTileLayer* batchLayer=new ISOBatchTileLayer();
             batchLayer->init();
             
+			//设置tileset
             ISOTileset* tileset=tilesetForLayer(layerInfo);
-            
             if(tileset){
                 batchLayer->setTileset(tileset);
             }
+
             layer=batchLayer;
             break;
         }
@@ -195,11 +204,18 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
             ISOBatchDynamicTileLayer* batchLayer=new ISOBatchDynamicTileLayer();
             batchLayer->init();
             
+			//设置tileset
             ISOTileset* tileset=tilesetForLayer(layerInfo);
-            
             if(tileset){
                 batchLayer->setTileset(tileset);
             }
+
+			//设置是否使用统一动态组件
+			//if (m_pMap->isUseDynamicGroup())
+			//{
+			//	m_pMap->getDynamicGroup()->addDynamicComponent(batchLayer->getDynamicComponent());
+			//}
+
             layer=batchLayer;
             break;
         }
@@ -210,9 +226,7 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
     if(layer){
         
         setLayerAttribute(layer, layerInfo, mapInfo);
-        
-        
-        
+
         m_pMap->addChild(layer);
         m_pMap->getTileLayers()->addObject(layer);
         layer->release();

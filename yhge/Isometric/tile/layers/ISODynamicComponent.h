@@ -3,28 +3,17 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
+#include "../ISOTileInterfaces.h"
 #include "../renderer/ISOComponentNode.h"
-
-#define ComponentExtendCount 2
 
 NS_CC_YHGE_BEGIN
 
 class ISOTileLayer;
 
-class ISODynamicComponentUpdateDelegator
-{
-public:
-    virtual void updateComponentMapCoordinate(unsigned int index,float deltaMapX,float deltaMapY)=0;
-};
-
-class ISODynamicComponentCreateDelegator
-{
-public:
-    virtual CCSprite* createTile()=0;
-};
-
-
-
+/**
+ * 动态更新组件
+ * 根据Isometric.Game.Programming.with.DirectX.7描述的渲染地图扩展而成
+ */
 class ISODynamicComponent : public CCNode {
 
 public:
@@ -40,6 +29,23 @@ public:
 	void doUpdateContent();
     
     void doUpdateComponents();
+
+	/**
+	 * 更新索引为nodeIndex的元素的坐标和显示内容
+	 * 并且通知delegate这个改变
+	 */
+	virtual void updateMapCoordinate(unsigned int nodeIndex,float deltaMapX,float deltaMapY);
+	
+	/**
+	 * 更新索引为nodeIndex的元素的坐标和显示内容
+	 * 
+	 */
+	virtual void updateNodeBy(unsigned int nodeIndex,float deltaMapX,float deltaMapY);
+
+	/**
+	 * 更新索引为nodeIndex的元素的坐标和显示内容
+	 */
+	virtual void updateNode(ISOComponentNode* node,float mx,float my);
 
 	void calcComponentsCount();
     
@@ -87,13 +93,7 @@ public:
     virtual void setTileLayer(ISOTileLayer* pTileLayer);
     
     virtual ISOTileLayer* getTileLayer();
-    
-protected:
-    
-    virtual void updateNode(ISOComponentNode* node,float mx,float my);
-    
-    virtual void updateMapCoordinate(unsigned int nodeIndex,float deltaMapX,float deltaMapY);
-    
+       
 protected:
     
     int m_iComponentTileColumn;
