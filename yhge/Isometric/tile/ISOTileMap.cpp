@@ -1,6 +1,7 @@
 #include "ISOTileMap.h"
 #include "base/ISOTileset.h"
 #include "layers/ISOCoordinateLayer.h"
+#include "IsoTileUtils.h"
 
 NS_CC_YHGE_BEGIN
 
@@ -16,7 +17,7 @@ ISOTileMap::ISOTileMap()
 ,m_pTilesetGroup(NULL)
 ,m_visibleSize(CCSizeZero)
 ,m_useDynamicGroup(false)
-,m_pTileDynamicLayers(NULL)
+,m_dynamicComponents(NULL)
 {
 	
 }
@@ -29,7 +30,7 @@ ISOTileMap::~ISOTileMap()
     CC_SAFE_RELEASE_NULL(m_pObjectGroups);
     CC_SAFE_RELEASE_NULL(m_pTileProperties);
     CC_SAFE_RELEASE_NULL(m_pDynamicGroup);
-	CC_SAFE_RELEASE_NULL(m_pTileDynamicLayers);
+	CC_SAFE_RELEASE_NULL(m_dynamicComponents);
 }
 
 ISOTileMap * ISOTileMap::createWithXMLFile(const char *xmlFile)
@@ -91,6 +92,8 @@ bool ISOTileMap::init()
     m_pProperties=new CCDictionary();
     
     m_visibleSize=CCDirector::sharedDirector()->getWinSize();//CCSizeMake(480,320);
+
+	m_dynamicComponents=new CCArray();
 
 //    CCLayerColor* lc=CCLayerColor::create(ccc4(0,0,255,255), 600, 400);
 //    addChild(lc);
@@ -356,6 +359,66 @@ void ISOTileMap::showCoordLine()
 	this->addChild(coordLayer,kCoordLineZOrder);
 }
 
+//==============dynamic group===============//
+	
+/**
+* 添加动态组件
+* 如果动态组件不一样，可能会有多个组。目前只支持一个组
+*/
+void ISOTileMap::addDynamicComponent(ISODynamicComponent* dynamicComponent)
+{
+	m_dynamicComponents->addObject(dynamicComponent);
+}
+
+/**
+ * 设置动态组
+ */
+void ISOTileMap::setupDynamicGroup()
+{
+    ISODynamicGroup* dynamicGroup=new ISODynamicGroup();
+	dynamicGroup->init();
+
+    //设置需呀的行列值
+    CCSize visibleSize=this->getVisibleSize();
+
+    int componentTileColumn=0;
+    int componentTileRow=0;
+
+    ISOTileUtils::calcDynamicComponetSize(visibleSize,m_tTileSize,&componentTileColumn,&componentTileRow);
+        
+    dynamicGroup->setComponentTileColumn(componentTileColumn);
+    dynamicGroup->setComponentTileRow(componentTileRow);
+
+    setupDynamicGroup(dynamicGroup);
+
+    dynamicGroup->release();
+}
+
+/**
+ * 设置动态组
+ */
+void ISOTileMap::setupDynamicGroup(ISODynamicGroup* dynamicGroup)
+{
+    //TODO 检查每个组件是不是一样的设置，主要是它们的组件的行列值
+    setDynamicGroup(dynamicGroup);
+
+    dynamicGroup->calcComponentsCount();
+    CCObject* pObj=NULL;
+    ISODynamicComponent* dynamicComponent=NULL;
+
+    CCARRAY_FOREACH(m_dynamicComponents,pObj){
+        dynamicComponent=static_cast<ISODynamicComponent*>(pObj);
+        dynamicGroup->addDynamicComponent(dynamicComponent);
+    }
+}
+
+/**
+ * 设置一些动态组
+ */
+void ISOTileMap::setupDynamicGroups()
+{
+
+}
 
 ///**
 // * for update component coordinate
@@ -380,21 +443,23 @@ CCSize ISOTileMap::getVisibleSize()
 
 void ISOTileMap::setUseDynamicGroup(bool useDynamicGroup)
 {
-	if (m_useDynamicGroup!=useDynamicGroup)
-	{
-		m_useDynamicGroup = useDynamicGroup;
+    m_useDynamicGroup = useDynamicGroup;
 
-		if (m_useDynamicGroup)
-		{
-			if (m_pDynamicGroup==NULL)
-			{
-				m_pDynamicGroup=new ISODynamicGroup();
-				m_pDynamicGroup->init();
-			}
-		}else{
-			setDynamicGroup(NULL);
-		}
-	}
+	//if (m_useDynamicGroup!=useDynamicGroup)
+	//{
+	//	m_useDynamicGroup = useDynamicGroup;
+
+	//	if (m_useDynamicGroup)
+	//	{
+	//		if (m_pDynamicGroup==NULL)
+	//		{
+	//			m_pDynamicGroup=new ISODynamicGroup();
+	//			m_pDynamicGroup->init();
+	//		}
+	//	}else{
+	//		setDynamicGroup(NULL);
+	//	}
+	//}
 }
 
 NS_CC_YHGE_END

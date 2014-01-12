@@ -1,6 +1,7 @@
 #include "ISODynamicTileLayer.h"
 #include <yhge/Isometric/ISOCoordinate.h>
 #include "../ISOTileMap.h"
+#include "../IsoTileUtils.h"
 
 NS_CC_YHGE_BEGIN
 
@@ -57,9 +58,14 @@ void ISODynamicTileLayer::setComponentColumnAndRow()
     if(m_pDynamicComponent && m_tMapTileSize.height!=0 && m_tMapTileSize.width!=0){
         
         CCSize visibleSize=m_pMap->getVisibleSize();
-        
-        int componentTileColumn=floor(visibleSize.width/m_tMapTileSize.width)+2;
-        int componentTileRow=floor(visibleSize.height/m_tMapTileSize.height)+2;
+        int componentTileColumn=0;
+        int componentTileRow=0;
+
+        ISOTileUtils::calcDynamicComponetSize(visibleSize,m_tMapTileSize,&componentTileColumn,&componentTileRow);
+        ////参考Isometric.Game.Programming.with.DirectX.7的第421页。
+        ////如果要显示全visibleSize的大小内的元素，则在除以块大小后，四个角要向外移动一格。所以最后大小要加2.
+        //int componentTileColumn=floor(visibleSize.width/m_tMapTileSize.width)+2;
+        //int componentTileRow=floor(visibleSize.height/m_tMapTileSize.height)+2;
         
         m_pDynamicComponent->setComponentTileColumn(componentTileColumn);
         m_pDynamicComponent->setComponentTileRow(componentTileRow);

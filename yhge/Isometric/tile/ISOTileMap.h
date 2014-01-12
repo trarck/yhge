@@ -86,7 +86,30 @@ public:
 	 * 显示地图的坐标线
 	 */
 	void showCoordLine();
-    
+
+	//==============dynamic group===============//
+	
+	/**
+	 * 添加动态组件
+	 * 如果动态组件不一样，可能会有多个组。目前只支持一个组
+	 */
+	void addDynamicComponent(ISODynamicComponent* dynamicComponent);
+
+	/**
+	 * 设置动态组
+	 */
+	void setupDynamicGroup();
+
+	/**
+	 * 设置动态组
+	 */
+	void setupDynamicGroup(ISODynamicGroup* dynamicGroup);
+
+    /**
+	 * 设置一些动态组
+	 */
+	void setupDynamicGroups();
+
 public://==============属性===============//
 	
 	inline void setMapSize(CCSize tMapSize)
@@ -225,17 +248,18 @@ public://==============属性===============//
 		return m_useDynamicGroup;
 	}
 
-	void setTileDynamicLayers(CCArray* tileDynamicLayers)
+	void setDynamicComponents(CCArray* dynamicComponents)
 	{
-		CC_SAFE_RETAIN(tileDynamicLayers);
-		CC_SAFE_RELEASE(m_pTileDynamicLayers);
-		m_pTileDynamicLayers = tileDynamicLayers;
+		CC_SAFE_RETAIN(dynamicComponents);
+		CC_SAFE_RELEASE(m_dynamicComponents);
+		m_dynamicComponents = dynamicComponents;
 	}
 
-	CCArray* getTileDynamicLayers()
+	CCArray* getDynamicComponents()
 	{
-		return m_pTileDynamicLayers;
+		return m_dynamicComponents;
 	}
+
     
 protected:
     
@@ -315,9 +339,9 @@ protected:
 	bool m_useDynamicGroup;
 
 	/**
-     * 动态layers
+     * 需要集中管理的DynamicComponent
      */
-    CCArray* m_pTileDynamicLayers;
+    CCArray* m_dynamicComponents;
 };
 
 

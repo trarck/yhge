@@ -178,11 +178,13 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
             dynamicLayer->init();
 
 			//设置是否使用统一动态组件
-			//if (m_pMap->isUseDynamicGroup())
-			//{
-			//	m_pMap->getDynamicGroup()->addDynamicComponent(dynamicLayer->getDynamicComponent());
-			//}
+			if (m_pMap->isUseDynamicGroup())
+			{
+				m_pMap->addDynamicComponent(dynamicLayer->getDynamicComponent());
+			}
 			layer=dynamicLayer;
+            //layer->setPosition(ccp(100,50));
+            //layer->setOffset(ccp(100,50));
 			break;
 		}
         case BatchLayerType:
@@ -211,10 +213,10 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
             }
 
 			//设置是否使用统一动态组件
-			//if (m_pMap->isUseDynamicGroup())
-			//{
-			//	m_pMap->getDynamicGroup()->addDynamicComponent(batchLayer->getDynamicComponent());
-			//}
+			if (m_pMap->isUseDynamicGroup())
+			{
+				m_pMap->addDynamicComponent(batchLayer->getDynamicComponent());
+			}
 
             layer=batchLayer;
             break;
