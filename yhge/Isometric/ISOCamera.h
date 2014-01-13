@@ -79,6 +79,16 @@ public:
         return m_moveDelegate;
     }
 
+    void setScale(float scale)
+    {
+        m_scale = scale;
+    }
+
+    float getScale()
+    {
+        return m_scale;
+    }
+
 protected:
     /**
      * 平滑移动
@@ -95,6 +105,11 @@ protected:
      * weak reference
      */
     ISOCameraMoveDelegate* m_moveDelegate;
+
+    /**
+     * 相机的缩放
+     */
+    float m_scale;
 };
 
 NS_CC_YHGE_END

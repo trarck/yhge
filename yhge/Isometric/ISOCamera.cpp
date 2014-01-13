@@ -1,6 +1,4 @@
 #include "ISOCamera.h"
-#include "ISOCoordinateLayer.h"
-
 
 USING_NS_CC;
 
@@ -8,6 +6,7 @@ NS_CC_YHGE_BEGIN
 
 ISOCamera::ISOCamera()
 :m_tWorldPosition(CCPointZero)
+,m_scale(1.0f)
 {
     
 }
@@ -77,7 +76,13 @@ void ISOCamera::updatePosition()
  */
 CCPoint  ISOCamera::getLocationInWorld(const CCPoint& position)
 {
-    return ccp(position.x-m_tWorldPosition.x,position.y-m_tWorldPosition.y);
+    float x=position.x-m_tWorldPosition.x;
+    float y=position.y-m_tWorldPosition.y;
+
+    x/=m_scale;
+    y/=m_scale;
+
+    return ccp(x,y);
 }
 
 

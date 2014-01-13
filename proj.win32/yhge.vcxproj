@@ -47,6 +47,7 @@
     <ClInclude Include="..\yhge\FSM\Common\FSMStateInterface.h" />
     <ClInclude Include="..\yhge\isometric.h" />
     <ClInclude Include="..\yhge\Isometric\Coordinate.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOCamera.h" />
     <ClInclude Include="..\yhge\Isometric\ISOCoordinate.h" />
     <ClInclude Include="..\yhge\Isometric\tile\base\ISOMapObject.h" />
     <ClInclude Include="..\yhge\Isometric\tile\base\ISOObjectGroup.h" />
@@ -120,6 +121,7 @@
     <ClCompile Include="..\yhge\FSM\Common\FSMMachine.cpp" />
     <ClCompile Include="..\yhge\FSM\Common\FSMState.cpp" />
     <ClCompile Include="..\yhge\Isometric\Coordinate.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOCamera.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\base\ISOMapObject.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\base\ISOObjectGroup.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\base\ISOTile.cpp" />

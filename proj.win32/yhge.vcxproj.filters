@@ -309,6 +309,9 @@
     <ClInclude Include="..\yhge\CocosExt\CCDefaultTexture.h">
       <Filter>CocosExt</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\ISOCamera.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -499,6 +502,9 @@
     </ClCompile>
     <ClCompile Include="..\yhge\CocosExt\CCDefaultTexture.cpp">
       <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\ISOCamera.cpp">
+      <Filter>Isometric</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
