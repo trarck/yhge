@@ -21,6 +21,12 @@ ISODynamicComponent::ISODynamicComponent()
 ,m_iComponentNodeExtendCount(kComponentExtendCount)
 ,m_pUpdateDelegator(NULL)
 ,m_pCreateDelegator(NULL)
+,m_tOffset(CCPointZero)
+,m_iComponentTileTotalRow(0)
+,m_iComponentTileTotalColumn(0)
+,m_iComponentTileColumn(0)
+,m_iComponentTileRow(0)
+,m_pTileLayer(NULL)
 {
 	
 }

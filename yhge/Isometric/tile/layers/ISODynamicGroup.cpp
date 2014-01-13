@@ -7,6 +7,7 @@
 NS_CC_YHGE_BEGIN
 
 //const CCSize testSize=CCSizeMake(256,160);
+static const int kComponentExtendCount=2;
 
 ISODynamicGroup::ISODynamicGroup()
 :m_pDynamiceComponentList(NULL)
@@ -18,6 +19,13 @@ ISODynamicGroup::ISODynamicGroup()
 ,m_iComponentIndexY(0)
 ,m_pUpdateDelegator(NULL)
 ,m_pCreateDelegator(NULL)
+,m_iComponentNodeExtendCount(kComponentExtendCount)
+,m_iComponentTileColumn(0)
+,m_iComponentTileRow(0)
+,m_iComponentTileTotalColumn(0)
+,m_iComponentTileTotalRow(0)
+,m_tileMap(NULL)
+,m_tOffset(CCPointZero)
 {
 	
 }
@@ -146,6 +154,7 @@ void ISODynamicGroup::doUpdateComponents()
                 this->updateMapCoordinate(index, -dirY*m_iComponentTileColumn, dirY*m_iComponentTileColumn);
             }
             
+            //纵向移动
             if(dirY>0){
                 moveComponentIndexY=m_iComponentIndexY;
                 m_iComponentIndexY=(m_iComponentIndexY+1)%totalRow;
@@ -153,7 +162,6 @@ void ISODynamicGroup::doUpdateComponents()
                 m_iComponentIndexY=(m_iComponentIndexY-1+totalRow)%totalRow;
                 moveComponentIndexY=m_iComponentIndexY;
             }
-            //纵向移动
             
             for(int i=0;i<m_iComponentTileColumn;i++){
                 col=(i*2+m_iComponentIndexX+((m_iComponentIndexX & 1)^(moveComponentIndexY & 1)))%totalColumn;
