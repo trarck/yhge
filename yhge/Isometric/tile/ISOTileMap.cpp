@@ -359,6 +359,16 @@ void ISOTileMap::showCoordLine()
 	this->addChild(coordLayer,kCoordLineZOrder);
 }
 
+/**
+ *检查某个单元是否可以通过
+ */
+bool ISOTileMap::isWorkable(int x,int y)
+{
+    //根据具体地图类型来实现。比如用某个层来标识路径情况。
+    //如果地图上可移动物体是不能穿透，则也要算在路径里。
+    return true;
+}
+
 //==============dynamic group===============//
 	
 /**

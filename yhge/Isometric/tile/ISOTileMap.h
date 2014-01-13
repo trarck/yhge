@@ -86,6 +86,11 @@ public:
 	 * 显示地图的坐标线
 	 */
 	void showCoordLine();
+    
+    /**
+	 *检查某个单元是否可以通过
+	 */
+	virtual bool isWorkable(int x,int y);
 
 	//==============dynamic group===============//
 	
