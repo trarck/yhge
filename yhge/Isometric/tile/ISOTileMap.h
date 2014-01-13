@@ -103,7 +103,7 @@ public:
 	/**
 	 * 设置动态组
 	 */
-	void setupDynamicGroup(ISODynamicGroup* dynamicGroup);
+	void setupDynamicGroup(ISODynamicGroup* dynamicGroup,const CCPoint& offset);
 
     /**
 	 * 设置一些动态组
@@ -332,7 +332,7 @@ protected:
     
     /**
      * 管理动态层的组件
-	 * 如果有多个动态层，统一管理会减少计算量。
+	 * 如果有多个动态层，统一管理会减少计算量。如果层数少，则性能发变不是很明显
      */
     ISODynamicGroup* m_pDynamicGroup;
    

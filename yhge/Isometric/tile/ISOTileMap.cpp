@@ -375,40 +375,47 @@ void ISOTileMap::addDynamicComponent(ISODynamicComponent* dynamicComponent)
  */
 void ISOTileMap::setupDynamicGroup()
 {
-    ISODynamicGroup* dynamicGroup=new ISODynamicGroup();
-	dynamicGroup->init();
-
-    //设置需呀的行列值
-    CCSize visibleSize=this->getVisibleSize();
-
-    int componentTileColumn=0;
-    int componentTileRow=0;
-
-    ISOTileUtils::calcDynamicComponetSize(visibleSize,m_tTileSize,&componentTileColumn,&componentTileRow);
+    if (m_useDynamicGroup) {
+        ISODynamicGroup* dynamicGroup=new ISODynamicGroup();
+        dynamicGroup->init();
         
-    dynamicGroup->setComponentTileColumn(componentTileColumn);
-    dynamicGroup->setComponentTileRow(componentTileRow);
-
-    setupDynamicGroup(dynamicGroup);
-
-    dynamicGroup->release();
+        //设置需呀的行列值
+        CCSize visibleSize=this->getVisibleSize();
+        
+        int componentTileColumn=0;
+        int componentTileRow=0;
+        
+        ISOTileUtils::calcDynamicComponetSize(visibleSize,m_tTileSize,&componentTileColumn,&componentTileRow);
+        
+        dynamicGroup->setComponentTileColumn(componentTileColumn);
+        dynamicGroup->setComponentTileRow(componentTileRow);
+        
+        setupDynamicGroup(dynamicGroup,CCPointZero);
+        
+        dynamicGroup->release();
+    }
 }
 
 /**
  * 设置动态组
  */
-void ISOTileMap::setupDynamicGroup(ISODynamicGroup* dynamicGroup)
+void ISOTileMap::setupDynamicGroup(ISODynamicGroup* dynamicGroup,const CCPoint& offset)
 {
-    //TODO 检查每个组件是不是一样的设置，主要是它们的组件的行列值
-    setDynamicGroup(dynamicGroup);
+    if (m_useDynamicGroup) {
+        //TODO 检查每个组件是不是一样的设置，主要是它们的组件的行列值
+        setDynamicGroup(dynamicGroup);
 
-    dynamicGroup->calcComponentsCount();
-    CCObject* pObj=NULL;
-    ISODynamicComponent* dynamicComponent=NULL;
+        dynamicGroup->initOffset(offset);
+        
+        dynamicGroup->calcComponentsCount();
+        
+        CCObject* pObj=NULL;
+        ISODynamicComponent* dynamicComponent=NULL;
 
-    CCARRAY_FOREACH(m_dynamicComponents,pObj){
-        dynamicComponent=static_cast<ISODynamicComponent*>(pObj);
-        dynamicGroup->addDynamicComponent(dynamicComponent);
+        CCARRAY_FOREACH(m_dynamicComponents,pObj){
+            dynamicComponent=static_cast<ISODynamicComponent*>(pObj);
+            dynamicGroup->addDynamicComponent(dynamicComponent);
+        }
     }
 }
 
@@ -417,7 +424,9 @@ void ISOTileMap::setupDynamicGroup(ISODynamicGroup* dynamicGroup)
  */
 void ISOTileMap::setupDynamicGroups()
 {
-
+    if (m_useDynamicGroup) {
+        
+    }
 }
 
 ///**
