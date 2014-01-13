@@ -11,7 +11,7 @@ class ISOTileUtils : public CCObject {
 public:
 	
 	/**
-	 * 计算显示区域内，组件数量的行列数
+	 * 璁＄畻鏄剧ず鍖哄煙鍐咃紝缁勪欢鏁伴噺鐨勮鍒楁暟
 	 */
 	static void calcDynamicComponetSize(const CCSize& visibleSize,const CCSize& tileSize,int* column,int* row);
 };
