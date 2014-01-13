@@ -28,4 +28,7 @@
 #include "Math/MersenneTwister.h"
 #include "Math/RandomMT.h"
 
+//isometric
+#include "isometric.h"
+
 #endif //COCOS_YHGE_H_

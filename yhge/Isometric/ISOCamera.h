@@ -18,7 +18,7 @@ public:
     /**
      * 相机移动结束调用
      */
-    virtual void onCameraMoveEnd(const CCPoint& worldPosition)=0;
+    virtual void onCameraMoveEnd(const CCPoint& worldPosition){};
     
 };
 
