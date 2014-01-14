@@ -7,7 +7,8 @@
 NS_CC_YHGE_BEGIN
 
 typedef enum  {
-	MoveStop=0,
+    MoveIdle=0,
+	MoveStop,
 	MoveStart,
 	MoveWillStop,
 	MoveContinue,
@@ -20,6 +21,7 @@ public:
     MoveComponent();
     ~MoveComponent();
     
+    bool init();
 	bool init(float speed);
 
 	CCPoint movingCoordinate();
@@ -36,7 +38,7 @@ public:
 	bool beforeMove();
 	bool beforeMovePath();
 	void startMove();
-	void continueMoveWithPaths(bool *paths);
+	void continueMoveWithPaths(CCArray *paths);
 	void continueMoveWithDirection(CCPoint dir);
 	void stopMove();
 	void updateDirection(float delta);

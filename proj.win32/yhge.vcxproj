@@ -30,6 +30,7 @@
     <ClInclude Include="..\yhge\Components\ComponentEntityInterface.h" />
     <ClInclude Include="..\yhge\Components\ComponentInterface.h" />
     <ClInclude Include="..\yhge\Components\ManualAttackComponent.h" />
+    <ClInclude Include="..\yhge\Components\MoveComponent.h" />
     <ClInclude Include="..\yhge\Components\SimpleMoveComponent.h" />
     <ClInclude Include="..\yhge\Event\Event.h" />
     <ClInclude Include="..\yhge\Event\EventHandle.h" />
@@ -111,6 +112,7 @@
     <ClCompile Include="..\yhge\Components\AutoAttackComponent.cpp" />
     <ClCompile Include="..\yhge\Components\Component.cpp" />
     <ClCompile Include="..\yhge\Components\ManualAttackComponent.cpp" />
+    <ClCompile Include="..\yhge\Components\MoveComponent.cpp" />
     <ClCompile Include="..\yhge\Components\SimpleMoveComponent.cpp" />
     <ClCompile Include="..\yhge\Event\Event.cpp" />
     <ClCompile Include="..\yhge\Event\EventHandle.cpp" />

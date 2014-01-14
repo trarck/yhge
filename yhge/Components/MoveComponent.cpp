@@ -1,48 +1,56 @@
 #include "MoveComponent.h"
 
+USING_NS_CC;
 NS_CC_YHGE_BEGIN
 
-MoveComponent();
-
-~MoveComponent();
-
-void dealloc
+MoveComponent::MoveComponent()
+:m_pathIndex(0)
+,m_speed(0.25f)
+,m_direction(CCPointZero)
+,m_to(CCPointZero)
+,m_nextDirection(CCPointZero)
+,m_lastDirection(CCPointZero)
+,m_fromIndex(0)
+,m_currentPaths(NULL)
+,m_nextPaths(NULL)
+,m_moving(false)
+,m_inStep(false)
+,m_moveState(MoveIdle)
 {
-	self.currentPaths=NULL;
-	self.nextPaths=NULL;
-	[super dealloc];
+	
 }
 
-bool init
+MoveComponent::~MoveComponent()
 {
-	if((self=[super init])){
-		m_direction.x=0;
-		m_direction.y=0;
-		m_currentPaths=NULL;
-		m_nextPaths=NULL;
-		moving_=NO;
-		m_moveState=MoveStop;
-		m_speed=0.25;
+	CC_SAFE_RELEASE_NULL(m_currentPaths);
+	CC_SAFE_RELEASE_NULL(m_nextPaths);
+}
+
+bool MoveComponent::init()
+{
+	if(Component::init()){
+        return true;
 	}
-	return self;
+	return false;
 }
 
-bool initWithSpeed:(float) speed
+bool MoveComponent::init(float speed)
 {
-	if ((self=[self init])) {
-		m_speed=speed;
+    if(Component::init()){
+        m_speed=speed;
+        return true;
 	}
-	return self;
+	return false;
 }
 
-CCPoint movingCoordinate
+CCPoint MoveComponent::movingCoordinate()
 {
-	CGPoint coord;
+	CCPoint coord;
 	if (m_moveState==MoveStart) {
 		coord=m_to;
 	}else {
-		coord.x=owner_.mx;
-		coord.y=owner_.my;
+		//coord.x=owner_.mx;
+		//coord.y=owner_.my;
 	}
 	return coord;
 }
@@ -53,39 +61,40 @@ CCPoint movingCoordinate
 /**
  * 按指定路径移动
  */
-void moveWithPaths:(NSArray *) paths
+void MoveComponent::moveWithPaths(CCArray* paths)
 {
-	[self moveWithPaths:paths fromIndex:0];
+	this->moveWithPaths(paths,0);
 }
 
-void moveWithPaths:(NSArray *)paths fromIndex:(int) fromIndex
+void MoveComponent::moveWithPaths(CCArray* paths, int fromIndex)
 {
-	updateStep_=@selector(updatePath:);
+	//updateStep_=@selector(updatePath:);
 	if (m_moveState==MoveStart) {
-		fromIndex_=fromIndex;
-		[self continueMoveWithPaths:paths];
+		m_fromIndex=fromIndex;
+		continueMoveWithPaths(paths);
 	}else if(m_moveState==MoveStop){
-		fromIndex_=fromIndex;
-		self.currentPaths=paths;
-		[self preparePath];
-		if ([self beforeMovePath]) {
-			[self startMove];
+		m_fromIndex=fromIndex;
+		setCurrentPaths(paths);
+		preparePath();
+		if (beforeMovePath()) {
+			startMove();
 		}
 	}
 }
+
 /**
  * 继续指定路径移动
  */
-void continueMoveWithPaths:(NSArray *) paths
+void MoveComponent::continueMoveWithPaths(CCArray *paths)
 {
-	self.nextPaths=paths;	
+    setNextPaths(paths);
 	m_moveState=MoveContinue;
 }
 
 /**
  * 按指定方向类型移动
  */
-void moveWithDirectionType:(int) dirType
+void MoveComponent::moveWithDirection(int dirType)
 {
 	//	switch (dir) {
 	//		case ISO_NORTH:
@@ -99,29 +108,27 @@ void moveWithDirectionType:(int) dirType
 /**
  * 按指定方向移动
  */
-void moveWithDirection:(float) dirX dirY:(float)dirY
+void MoveComponent::moveWithDirection(float dirX ,float dirY)
 {
-	CGPoint dir={dirX,dirY};
-	[self moveWithDirection:dir];
-	
+	moveWithDirection(ccp(dirX,dirY));
 }
 
 /**
  * 按指定方向移动
  */
-void moveWithDirection:(CGPoint) dir
+void MoveComponent::moveWithDirection(CCPoint dir)
 {
-	updateStep_=@selector(updateDirection:);
+	//updateStep_=@selector(updateDirection:);
 	
 	if (m_moveState==MoveStart) {
-		[self continueMoveWithDirection:dir];
+		continueMoveWithDirection(dir);
 	}else {
-		[self setDirection:dir];	
+		setDirection(dir);	
 		
-		if([self beforeMove]){
+		if(beforeMove()){
 			//update move action
-			[self updateMoveAnimation];
-			[self startMove];
+			updateMoveAnimation();
+			startMove();
 		}
 	}
 }
@@ -129,9 +136,10 @@ void moveWithDirection:(CGPoint) dir
 /**
  * 断续指定方向移动
  */
-void continueMoveWithDirection:(CGPoint) dir
+void MoveComponent::continueMoveWithDirection(CCPoint dir)
 {
-	nextDirection_=dir;	
+	m_nextDirection=dir;
+   
 	m_moveState=MoveContinue;
 }
 
@@ -139,7 +147,7 @@ void continueMoveWithDirection:(CGPoint) dir
  * 移动之前进行检查
  */
 
-bool beforeMove
+bool MoveComponent::beforeMove()
 {
 	//NSLog(@"beforMove:%f,%f %f,%f:%@",mx,my,m_to.x,m_to.y,[MapData sharedMapData]);
 //	MapData *mapData=[MapData sharedMapData];//[map_ getMapData];
@@ -153,7 +161,7 @@ bool beforeMove
 //		}
 //		//被阻断(发生碰撞)
 //		[self didHit:m_to];
-//		return NO;
+//		return false;
 //	}
 //	//clear current grid 
 //	[mapData removeMapDataWithEntity:self];
@@ -166,34 +174,35 @@ bool beforeMove
 //			[mapData setMapInfoWithX:x+j y:y+i entity:self];
 //		}
 //	}
-	return YES;
+	return true;
 }
 
 /**
  * 路径移动之前进行检查
  */
-bool beforeMovePath
+bool MoveComponent::beforeMovePath()
 {
-	if([self beforeMove]){
-		[self calcDirection];
+	if(beforeMove()){
+		calcDirection();
 		//update move action
-		[self updateMoveAnimation];
-		return YES;
+		updateMoveAnimation();
+		return true;
 	}
-	return NO;
+	return false;
 }
 
 /**
  * 开始移动
  * 设置移动动画的定时器
  */
-void startMove
+void MoveComponent::startMove()
 {
 	m_moveState=MoveStart;
 	//[self scheduleUpdate];
 	//[self schedule:@selector(updatePath:)];
 	//[self schedule:updateStep_];
-	[[CCScheduler sharedScheduler] scheduleUpdateForTarget:self priority:0 paused:NO];
+
+	//[[CCScheduler sharedScheduler] scheduleUpdateForTarget:self priority:0 paused:false];
 	
 	//NSLog(@"start entity move schedule:update");
 }
@@ -202,7 +211,7 @@ void startMove
  * 停止移动
  * 取消移动动画的定时器
  */
-void stopMove
+void MoveComponent::stopMove()
 {
 	if(m_moveState==MoveStart){
 		m_moveState=MoveWillStop;
@@ -210,10 +219,10 @@ void stopMove
 		//[self unscheduleUpdate];
 		//[self unschedule:@selector(updatePath:)];
 		//[self unschedule:updateStep_];
-		[[CCScheduler sharedScheduler] unscheduleUpdateForTarget:self];
+		//[[CCScheduler sharedScheduler] unscheduleUpdateForTarget:self];
 		m_moveState=MoveStop;
 		//NSLog(@"stop entity move schedule:update");
-		[self didMoveStop];
+		didMoveStop();
 	}
 }
 
@@ -228,7 +237,7 @@ void stopMove
  * 移动动画步骤
  * 通过方向移动的动画步骤
  */
-void updateDirection:(ccTime) delta
+void MoveComponent::updateDirection(float delta)
 {
 	float mx=owner_.mx,my=owner_.my;
 	//根据速度计算移动距离
@@ -241,9 +250,9 @@ void updateDirection:(ccTime) delta
 		my=m_to.y;
 		
 		if (m_moveState==MoveContinue) {
-			if (nextDirection_.x!=0 && nextDirection_.y!=0) {
+			if (m_nextDirection.x!=0 && m_nextDirection.y!=0) {
 				m_moveState=MoveStart;
-				[self setDirection:nextDirection_];
+				[self setDirection:m_nextDirection];
 				if([self beforeMove]){
 					//update move action
 					[self updateMoveAnimation];
@@ -261,7 +270,7 @@ void updateDirection:(ccTime) delta
  * 移动动画步骤
  * 通过路径移动的动画步骤
  */
-void updatePath:(ccTime) delta
+void MoveComponent::updatePath(float delta)
 {
 	float mx=owner_.mx,my=owner_.my;
 	//根据速度计算移动距离
@@ -298,9 +307,9 @@ void updatePath:(ccTime) delta
 /**
  * 准备移动路径
  */
-void  preparePath
+void  MoveComponent::preparePath()
 {
-	m_spathIndex=[m_currentPaths	count]-2-fromIndex_;
+	m_spathIndex=[m_currentPaths	count]-2-m_fromIndex;
 	if (m_spathIndex<0) {
 		NSAssert(m_spathIndex<0,@"paths length less 2");
 	}
@@ -312,7 +321,7 @@ void  preparePath
  * 计算方向
  * 主要用于按路径移动时
  */
-void calcDirection
+void MoveComponent::calcDirection()
 {
 	lastDirection_=m_direction;
 	float mx=owner_.mx,my=owner_.my;
@@ -324,7 +333,7 @@ void calcDirection
  * 设置方向
  * 用于按方向移动
  */
-void setDirection:(float) dirX dirY:(float)dirY
+void MoveComponent::setDirection(float dirX,float dirY)
 {
 	lastDirection_=m_direction;
 	
@@ -339,7 +348,7 @@ void setDirection:(float) dirX dirY:(float)dirY
  * 设置方向
  * 用于按方向移动
  */
-void setDirection:(CGPoint) dir
+void MoveComponent::setDirection(CCPoint dir)
 {
 	lastDirection_=m_direction;
 	
@@ -371,7 +380,7 @@ void setDirection:(CGPoint) dir
  * 方向改变
  * 人物在移动时要面向不同的方向
  */
-void updateMoveAnimation
+void MoveComponent::updateMoveAnimation()
 {
 	
 }
@@ -379,13 +388,13 @@ void updateMoveAnimation
  * 移动结束
  * 由移动状态转向空闲状态
  */
-void didMoveStop
+void MoveComponent::didMoveStop()
 {
 	
 }
 //处理碰撞,由子类实现。
 //TODO:触发事件。由事件接收者执行处理逻辑，比如重新寻路。、
-void didHit:(CGPoint) location
+void MoveComponent::didHit(CCPoint location)
 {
 	
 }
