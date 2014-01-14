@@ -66,16 +66,16 @@ public:
         return m_cOpacity;
     }
     
-//    inline void setOwnTiles(bool bOwnTiles)
-//    {
-//        m_bOwnTiles = bOwnTiles;
-//    }
-//    
-//    inline bool getOwnTiles()
-//    {
-//        return m_bOwnTiles;
-//    }
-//    
+    inline void setOwnTiles(bool bOwnTiles)
+    {
+        m_bOwnTiles = bOwnTiles;
+    }
+    
+    inline bool getOwnTiles()
+    {
+        return m_bOwnTiles;
+    }
+//
 //    inline void setMinGID( unsigned int  MinGID)
 //    {
 //        m_ MinGID =  MinGID;
@@ -141,7 +141,8 @@ protected:
      */
     unsigned char m_cOpacity;
     
-//    bool                m_bOwnTiles;
+    bool                m_bOwnTiles;
+    
 //    unsigned int        m_uMinGID;
 //    unsigned int        m_uMaxGID;
     

@@ -253,7 +253,7 @@ void ISOTileMapBuilder::setLayerAttribute(ISOTileLayer* tileLayer,ISOLayerInfo *
     tileLayer->setOpacity(layerInfo->getOpacity());
     tileLayer->setTiles(layerInfo->getTiles());
     tileLayer->setProperties(layerInfo->getProperties());
-    
+    layerInfo->setOwnTiles(false);
     tileLayer->setupTiles();
 }
 
