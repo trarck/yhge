@@ -9,7 +9,7 @@ NS_CC_YHGE_BEGIN
 class ComponentInterface : public CCObject
 {
 public:
-	~ComponentInterface(){};
+	virtual ~ComponentInterface(){};
 	virtual bool setup(void)=0;
 	virtual bool cleanup(void)=0;
 };

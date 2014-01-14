@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5755C7371885442900213F7C /* MoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5755C7351885442900213F7C /* MoveComponent.cpp */; };
 		576E3FB5187D4BFB00745A0A /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F71187D4BFB00745A0A /* Coordinate.cpp */; };
 		576E3FB7187D4BFB00745A0A /* ISOTileObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F7A187D4BFB00745A0A /* ISOTileObject.cpp */; };
 		576E3FB8187D4BFB00745A0A /* ISOTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F7C187D4BFB00745A0A /* ISOTile.cpp */; };
@@ -97,6 +98,8 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5755C7351885442900213F7C /* MoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveComponent.cpp; sourceTree = "<group>"; };
+		5755C7361885442900213F7C /* MoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveComponent.h; sourceTree = "<group>"; };
 		576E3F71187D4BFB00745A0A /* Coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinate.cpp; sourceTree = "<group>"; };
 		576E3F72187D4BFB00745A0A /* Coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinate.h; sourceTree = "<group>"; };
 		576E3F73187D4BFB00745A0A /* ISOCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOCoordinate.h; sourceTree = "<group>"; };
@@ -198,8 +201,6 @@
 		577A785A186BF56500F1B5D5 /* AutoAttackComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoAttackComponent.h; sourceTree = "<group>"; };
 		577A785B186BF56500F1B5D5 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cpp; sourceTree = "<group>"; };
 		577A785C186BF56500F1B5D5 /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
-		577A785D186BF56500F1B5D5 /* ComponentEntityInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentEntityInterface.h; sourceTree = "<group>"; };
-		577A785E186BF56500F1B5D5 /* ComponentInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentInterface.h; sourceTree = "<group>"; };
 		577A785F186BF56500F1B5D5 /* ManualAttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ManualAttackComponent.cpp; sourceTree = "<group>"; };
 		577A7860186BF56500F1B5D5 /* ManualAttackComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManualAttackComponent.h; sourceTree = "<group>"; };
 		577A7863186BF56500F1B5D5 /* SimpleMoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleMoveComponent.cpp; sourceTree = "<group>"; };
@@ -545,10 +546,10 @@
 				577A785A186BF56500F1B5D5 /* AutoAttackComponent.h */,
 				577A785B186BF56500F1B5D5 /* Component.cpp */,
 				577A785C186BF56500F1B5D5 /* Component.h */,
-				577A785D186BF56500F1B5D5 /* ComponentEntityInterface.h */,
-				577A785E186BF56500F1B5D5 /* ComponentInterface.h */,
 				577A785F186BF56500F1B5D5 /* ManualAttackComponent.cpp */,
 				577A7860186BF56500F1B5D5 /* ManualAttackComponent.h */,
+				5755C7351885442900213F7C /* MoveComponent.cpp */,
+				5755C7361885442900213F7C /* MoveComponent.h */,
 				577A7863186BF56500F1B5D5 /* SimpleMoveComponent.cpp */,
 				577A7864186BF56500F1B5D5 /* SimpleMoveComponent.h */,
 			);
@@ -707,6 +708,7 @@
 				576E3FB5187D4BFB00745A0A /* Coordinate.cpp in Sources */,
 				577A78FD186BF56500F1B5D5 /* base64.cpp in Sources */,
 				577A7934186BF56500F1B5D5 /* MessageTarget.cpp in Sources */,
+				5755C7371885442900213F7C /* MoveComponent.cpp in Sources */,
 				577A7932186BF56500F1B5D5 /* MessageManager.cpp in Sources */,
 				576E3FB7187D4BFB00745A0A /* ISOTileObject.cpp in Sources */,
 				577A792F186BF56500F1B5D5 /* DelayMessageManager.cpp in Sources */,

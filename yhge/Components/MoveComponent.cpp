@@ -2,6 +2,10 @@
 
 NS_CC_YHGE_BEGIN
 
+MoveComponent();
+
+~MoveComponent();
+
 void dealloc
 {
 	self.currentPaths=NULL;

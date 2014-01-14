@@ -31,4 +31,7 @@
 //isometric
 #include "isometric.h"
 
+//components
+#include "Components/Component.h"
+
 #endif //COCOS_YHGE_H_
