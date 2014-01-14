@@ -12,7 +12,6 @@ ISOTileObject::ISOTileObject()
 ,m_bVisible(true)
 ,m_pParts(NULL)
 ,m_pProperties(NULL)
-
 {
 
 }

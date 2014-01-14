@@ -11,16 +11,16 @@ ISOTilesetGroup::ISOTilesetGroup()
 
 }
 
-bool ISOTilesetGroup::init()
-{
-    m_pTilesets=new CCArray();
-    return true;
-}
-
 ISOTilesetGroup::~ISOTilesetGroup()
 {
     CCLOG("ISOTilesetGroup destroy");
     CC_SAFE_RELEASE(m_pTilesets);
+}
+
+bool ISOTilesetGroup::init()
+{
+    m_pTilesets=new CCArray();
+    return true;
 }
 
 void ISOTilesetGroup::addTileset(ISOTileset* tileset)

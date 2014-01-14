@@ -18,6 +18,10 @@ ISOTileMap::ISOTileMap()
 ,m_visibleSize(CCSizeZero)
 ,m_useDynamicGroup(false)
 ,m_dynamicComponents(NULL)
+,m_nIdentifier(0)
+,m_nMapOrientation(0)
+,m_pName("")
+,m_tTileSize(CCSizeZero)
 {
 	
 }
@@ -94,6 +98,8 @@ bool ISOTileMap::init()
     m_visibleSize=CCDirector::sharedDirector()->getWinSize();//CCSizeMake(480,320);
 
 	m_dynamicComponents=new CCArray();
+    
+    m_pTileProperties=new CCDictionary();
 
 //    CCLayerColor* lc=CCLayerColor::create(ccc4(0,0,255,255), 600, 400);
 //    addChild(lc);

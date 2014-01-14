@@ -24,6 +24,7 @@ ISOTileset::ISOTileset()
 ,m_pProperties(NULL)
 ,m_pTileProperties(NULL)
 ,m_pTexture(NULL)
+,m_uComposeType(0)
 {
     
 }

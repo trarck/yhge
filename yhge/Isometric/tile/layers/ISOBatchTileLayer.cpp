@@ -18,7 +18,9 @@ ISOBatchTileLayer::ISOBatchTileLayer()
 ,m_pReusedTile(NULL)
 ,m_pSpriteBatchNode(NULL)
 ,m_pAtlasIndexArray(NULL)
-,m_pTileSets(NULL)
+,m_fContentScaleFactor(1.0f)
+,m_uMaxGID(0)
+,m_uMinGID(0)
 {
 	
 }
@@ -27,15 +29,12 @@ ISOBatchTileLayer::~ISOBatchTileLayer()
 {
     CC_SAFE_RELEASE(m_pTileset);
     CC_SAFE_RELEASE(m_pReusedTile);
-    CC_SAFE_RELEASE(m_pProperties);
     CC_SAFE_RELEASE(m_pSpriteBatchNode);
     if (m_pAtlasIndexArray)
     {
         yhge::ccCArrayFree(m_pAtlasIndexArray);
         m_pAtlasIndexArray = NULL;
     }
-    
-    CC_SAFE_DELETE_ARRAY(m_pTileSets);
 }
 
 bool ISOBatchTileLayer::init()
@@ -528,18 +527,6 @@ void ISOBatchTileLayer::setTileset(ISOTileset* pTileset)
 ISOTileset* ISOBatchTileLayer::getTileset()
 {
     return m_pTileset;
-}
-
-void ISOBatchTileLayer::setTileSets(CCArray* pTileSets)
-{
-    CC_SAFE_RETAIN(pTileSets);
-    CC_SAFE_RELEASE(m_pTileSets);
-    m_pTileSets = pTileSets;
-}
-
-CCArray* ISOBatchTileLayer::getTileSets()
-{
-    return m_pTileSets;
 }
 
 NS_CC_YHGE_END

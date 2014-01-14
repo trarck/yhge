@@ -49,9 +49,6 @@ public:
     void setTileset(ISOTileset* pTileset);
     ISOTileset* getTileset();
     
-    void setTileSets(CCArray* pTileSets);
-    CCArray* getTileSets();
-    
     inline void setMinGID(unsigned int uMinGID)
     {
         m_uMinGID = uMinGID;
@@ -92,13 +89,10 @@ protected:
     
 protected:
 
-    ISOTileset* m_pTileset;
     //对于多个tileSet的支持。这样就不能使用batch node。所以最好一个layer使用一个tileSet
-    CCArray* m_pTileSets;
+    ISOTileset* m_pTileset;
     
     CCSpriteBatchNode* m_pSpriteBatchNode;
-    
-    
     
     unsigned int        m_uMinGID;
     unsigned int        m_uMaxGID;

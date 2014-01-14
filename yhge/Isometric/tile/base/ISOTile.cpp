@@ -9,6 +9,8 @@ ISOTile::ISOTile()
 ,m_pTexture(NULL)
 ,m_pAnimation(NULL)
 ,m_tTextureRect(CCRectZero)
+,m_pProperties(NULL)
+,m_pTileset(NULL)
 {
     
 }
@@ -18,6 +20,7 @@ ISOTile::~ISOTile()
     CCLOG("ISOTile destroy");
     CC_SAFE_RELEASE(m_pProperties);
     CC_SAFE_RELEASE(m_pTexture);
+    CC_SAFE_RELEASE_NULL(m_pAnimation);
 }
 
 bool ISOTile::init()
