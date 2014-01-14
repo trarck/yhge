@@ -1,4 +1,4 @@
-#include "Astar.h"
+#include "CallbackAstar.h"
 #include <yhge/CocosExt/CCGeometryValue.h>
 
 NS_CC_YHGE_BEGIN
@@ -13,7 +13,7 @@ static int defaultNears[][2]={
 	{-1 , 1},{0 , 1},{1, 1}
 };
 
-Astar::Astar(void)
+CallbackAstar::CallbackAstar(void)
 :m_minX(0)
 ,m_minY(0)
 ,m_maxX(0)
@@ -21,22 +21,25 @@ Astar::Astar(void)
 ,m_start(NULL)
 ,m_end(NULL)
 ,m_current(NULL)
+,m_checkWorkableHandle(NULL)
+,m_checkWorkableTarget(NULL)
 {
 	
 }
 
-Astar::~Astar(void)
+CallbackAstar::~CallbackAstar(void)
 {
-	CC_SAFE_RELEASE_NULL(m_opens);
-	CC_SAFE_RELEASE_NULL(m_closes);
-	CC_SAFE_RELEASE_NULL(m_openSeq);
-	CC_SAFE_RELEASE_NULL(m_start);
-	CC_SAFE_RELEASE_NULL(m_end);
+	CC_SAFE_RELEASE(m_opens);
+	CC_SAFE_RELEASE(m_closes);
+	CC_SAFE_RELEASE(m_openSeq);
+	CC_SAFE_RELEASE(m_start);
+	CC_SAFE_RELEASE(m_end);
 	
 }
 
-bool Astar::init()
+bool CallbackAstar::init()
 {
+
 	m_openSeq=new CCArray(10);
 	m_opens=new CCDictionary();
 	m_closes=new CCDictionary();
@@ -44,11 +47,62 @@ bool Astar::init()
 	return true;
 }
 
-/**
- * 重置
- * 消除搜索数据
- */
-void Astar::reset()
+
+
+void CallbackAstar::setMinX(int minX)
+{
+    m_minX = minX;
+}
+
+int CallbackAstar::getMinX()
+{
+    return m_minX;
+}
+
+void CallbackAstar::setMinY(int minY)
+{
+    m_minY = minY;
+}
+
+int CallbackAstar::getMinY()
+{
+    return m_minY;
+}
+
+void CallbackAstar::setMaxX(int maxX)
+{
+    m_maxX = maxX;
+}
+
+int CallbackAstar::getMaxX()
+{
+    return m_maxX;
+}
+
+void CallbackAstar::setMaxY(int maxY)
+{
+    m_maxY = maxY;
+}
+
+int CallbackAstar::getMaxY()
+{
+    return m_maxY;
+}
+
+
+static CallbackAstar * astarInstance=NULL;
+
+CallbackAstar* CallbackAstar::sharedAstar()
+{
+	if(astarInstance==NULL){
+		astarInstance=new CallbackAstar();
+		astarInstance->init();
+	}
+	return astarInstance;
+}
+
+
+void CallbackAstar::reset()
 {
     CC_SAFE_RELEASE(m_opens);
 	CC_SAFE_RELEASE(m_closes);
@@ -59,11 +113,10 @@ void Astar::reset()
 	m_opens=new CCDictionary();
 	m_closes=new CCDictionary();
 }
-
-/**
- * 设置搜索范围
+/*
+ * 搜索范围
  */
-void Astar::setBounding(int minX ,int minY,int maxX,int maxY)
+void CallbackAstar::setBounding(int minX ,int minY,int maxX,int maxY)
 {
 	m_minX=minX;
 	m_minY=minY;
@@ -72,9 +125,9 @@ void Astar::setBounding(int minX ,int minY,int maxX,int maxY)
 }
 
 /**
- * 设置开始位置
+ * 开始点
  */
-void Astar::setStart(int x ,int y)
+void CallbackAstar::setStart(int x ,int y)
 {
 	CC_SAFE_RELEASE(m_start);
 	m_start=new AstarNode();
@@ -83,19 +136,16 @@ void Astar::setStart(int x ,int y)
 }
 
 /**
- * 设置结束位置
+ * 结束点
  */
-void Astar::setEnd(int x ,int y)
+void CallbackAstar::setEnd(int x ,int y)
 {
 	CC_SAFE_RELEASE(m_end);
 	m_end=new AstarNode();
 	m_end->init(x,y);	
 }
 
-/**
- * 开始搜索
- */
-bool Astar::search()
+bool CallbackAstar::search()
 {
 	
 	//如果开始和结束点是同一点、终点超出范围,不必寻路。
@@ -118,11 +168,7 @@ bool Astar::search()
 	return false;
 }
 
-/**
- * 检查附近格子
- * 默认搜索8方向，可以设置只搜索4方向，不搜索斜方向
- */
-bool Astar::checkNearby()
+bool CallbackAstar::checkNearby()
 {
 	int i=0,j=0,x=0,y=0,k=0,g=0,h=0;
 	
@@ -166,26 +212,20 @@ bool Astar::checkNearby()
 	return false;
 }
 
-/**
- * 从开启队列取得下个结点
- */
-void Astar::getNext()
+void CallbackAstar::getNext()
 {
 	CC_SAFE_RELEASE(m_current);
 	m_current=(AstarNode*)m_openSeq->objectAtIndex(0);
 	m_current->retain();
 }
 
-/**
- * 重新设置node的搜索值,并在开启队列重新排序
- */
-void Astar::setOpenSeqNode(AstarNode* node ,int g)
+void CallbackAstar::setOpenSeqNode(AstarNode* node ,int g)
 {
 	node->retain();
 	m_openSeq->removeObject(node);
 	node->setG(g);
 	node->setF(node->getG()+node->getH());
-    
+
 	int i=0;
 	CCObject* pObject = NULL;
 	CCARRAY_FOREACH(m_openSeq,pObject){
@@ -193,15 +233,12 @@ void Astar::setOpenSeqNode(AstarNode* node ,int g)
 		if(node->getF()<it->getF()) break;
 		i++;
 	}
-    
+
 	m_openSeq->insertObject(node,i);
 	CC_SAFE_RELEASE(node);
 }
 
-/**
- * 添加结点到开启队表和开启映射表
- */
-void Astar::addToOpen(AstarNode* node)
+void CallbackAstar::addToOpen(AstarNode* node)
 {
 	//CCLOG("addToOpen %d,%d",node->getX(),node->getY());
 	int i=0;
@@ -223,10 +260,7 @@ void Astar::addToOpen(AstarNode* node)
 	ymd->setObject(node,node->getX());
 }
 
-/**
- * 把结点从开启队表和开启映射表中删除
- */
-void Astar::removeFromOpen(AstarNode* node)
+void CallbackAstar::removeFromOpen(AstarNode* node)
 {
 	m_openSeq->removeObject(node);
 
@@ -236,10 +270,7 @@ void Astar::removeFromOpen(AstarNode* node)
 	}
 }
 
-/**
- * 某个位置是否已经开启，也就是搜索过
- */
-bool Astar::isInOpen(int x ,int y)
+bool CallbackAstar::isInOpen(int x ,int y)
 {
 	CCDictionary* ymd=(CCDictionary*)m_opens->objectForKey(y);
 
@@ -250,10 +281,7 @@ bool Astar::isInOpen(int x ,int y)
 	return node!=NULL;
 }
 
-/**
- * 从开启映射表取得结点
- */
-AstarNode* Astar::getFromOpen(int x ,int y)
+AstarNode* CallbackAstar::getFromOpen(int x ,int y)
 {
 	//CCLOG("addToOpen %d,%d",x,y);
 	CCDictionary* ymd=(CCDictionary*)m_opens->objectForKey(y);
@@ -264,10 +292,7 @@ AstarNode* Astar::getFromOpen(int x ,int y)
 	return node;
 }
 
-/**
- * 添加结点到关闭映射表
- */
-void Astar::addToClose(int x,int y)
+void CallbackAstar::addToClose(int x,int y)
 {
 
 	CCDictionary* ymd=(CCDictionary*)m_closes->objectForKey(y);
@@ -281,10 +306,7 @@ void Astar::addToClose(int x,int y)
 	ymd->setObject(data,x);
 }
 
-/**
- * 某个位置是否在关闭映射表
- */
-bool Astar::isInClose(int x ,int y)
+bool CallbackAstar::isInClose(int x ,int y)
 {
 	CCDictionary* ymd=(CCDictionary*)m_closes->objectForKey(y);
 	if(ymd==NULL) return false;
@@ -293,38 +315,19 @@ bool Astar::isInClose(int x ,int y)
 	return data!=NULL;
 }
 
-/**
- * 获取位置的搜索权值
- */
-int Astar::getH(int x ,int y)
+int CallbackAstar::getH(int x ,int y)
 {
 	return abs(m_end->getX()-x)*ASTAR_G_LINE+abs(m_end->getY()-y)*ASTAR_G_LINE;
 }
 
-/**
- * 检查是否超出边界
- */
-bool Astar::isOut(int x ,int y)
+bool CallbackAstar::isOut(int x ,int y)
 {
 	//return y<m_minX||y>=m_maxY ||x<m_minX || x>=m_maxX;
 	return y<m_minY||y>m_maxY ||x<m_minX || x>m_maxX;
 }
 
-/**
- * 检查是否可能通过
- */
-bool Astar::isWorkable(int x,int y)
-{
-	return true;
-}
-
-/**
- * 目标点是否可以通过
- * 首选检查目标点是不是障碍点，如果是则不可通过。
- * 再检查是不是从斜对角过来的，如果是从斜对角过来要检查两旁是否可以通过
- * 如果搜索4方向不用考虑斜通过
- */
-bool Astar::isWorkableWithCrossSide(int x ,int y ,int stepX ,int stepY)
+//本身和到达时斜对角是否可以通过
+bool CallbackAstar::isWorkableWithCrossSide(int x ,int y ,int stepX ,int stepY)
 {
 	bool ret=isWorkable(x,y);
 	if (stepX!=0 && stepY !=0) {
@@ -332,36 +335,37 @@ bool Astar::isWorkableWithCrossSide(int x ,int y ,int stepX ,int stepY)
 	}
 	return ret;
 }
-
-/**
- * 目标点的两旁是否可以通过
- * 不检查目录点本身，只检查从斜对角过来时，两旁是否可以通过
- */
-bool Astar::isCrossSideWorkable(int x ,int y ,int stepX ,int stepY)
+//到达x,y时，斜对角是否可以通过
+//x,y搜索点，当前点为x-stepX,y-stepY
+bool CallbackAstar::isCrossSideWorkable(int x ,int y ,int stepX ,int stepY)
 {
-    //到达x,y时，斜对角是否可以通过
-    //x,y搜索点，当前点为x-stepX,y-stepY
 	return stepX==0 || stepY ==0 || (isWorkable(x,y-stepY) && isWorkable(x-stepX,y));
 }
 
-/**
- * 检查是不是结束点
- */
-bool Astar::isEnd(int x ,int y)
+bool CallbackAstar::isEnd(int x ,int y)
 {
 	return m_end->getX()==x && m_end->getY()==y;
 }
 
-/**
- * 检查是不是结束点，并检查两旁是否可以通过
- */
-bool Astar::isEnd(int x ,int y ,int stepX ,int stepY)
+bool CallbackAstar::isEnd(int x ,int y ,int stepX ,int stepY)
 {
 	return m_end->getX()==x && m_end->getY()==y && isCrossSideWorkable(x,y ,stepX ,stepY);
 }
 
+//本身是否可以通过
+bool CallbackAstar::isWorkable(int x,int y) 
+{
+	return (m_checkWorkableTarget->*m_checkWorkableHandle)(x,y);
+}
+
+void  CallbackAstar::setCheckBarrierHandle(SEL_CheckWorkableHandler checkWorkableHandle,CCObject* target)
+{
+	m_checkWorkableHandle=checkWorkableHandle;
+	m_checkWorkableTarget=target;
+}
+
 //取得路径  路径是反向的，从终点指向起点，不包含终点和起点。
-CCArray* Astar::getPath()
+CCArray* CallbackAstar::getPath()
 {
 	CCArray* paths=CCArray::create();
 	AstarNode* node=m_current;
@@ -376,7 +380,7 @@ CCArray* Astar::getPath()
 }
 
 //取得路径  路径是反向的，从终点指向起点，包含起点，不包含终点。
-CCArray* Astar::getPathWithStart()
+CCArray* CallbackAstar::getPathWithStart()
 {
 	CCArray* paths=CCArray::create();
 	AstarNode* node=m_current;
@@ -391,7 +395,7 @@ CCArray* Astar::getPathWithStart()
 }
 
 //取得路径  路径是反向的，从终点指向起点，包含终点，不包含起点。
-CCArray* Astar::getPathWithEnd()
+CCArray* CallbackAstar::getPathWithEnd()
 {
 	CCArray* paths=getPath();
 	CCPointValue* p=new CCPointValue(m_end->getX(),m_end->getY());
@@ -401,7 +405,7 @@ CCArray* Astar::getPathWithEnd()
 }
 
 //取得路径  路径是反向的，从终点指向起点，包含终点和起点。
-CCArray* Astar::getPathWithStartEnd()
+CCArray* CallbackAstar::getPathWithStartEnd()
 {
 	CCArray* paths=getPathWithStart();
 	CCPointValue* p=new CCPointValue(m_end->getX(),m_end->getY());
