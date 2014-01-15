@@ -1,5 +1,5 @@
-#ifndef COMPONENTS_MOVECOMPONENT_H_
-#define COMPONENTS_MOVECOMPONENT_H_
+#ifndef YHGE_COMPONENTS_MOVECOMPONENT_H_
+#define YHGE_COMPONENTS_MOVECOMPONENT_H_
 
 #include "cocos2d.h"
 #include "Component.h"
@@ -73,7 +73,7 @@ public:
     virtual void onMoveDirection(Message* message);
     virtual void onMoveDirectionStop(Message* message);
     virtual void onMoveTo(Message* message);
-
+    
 public:
     
     float getSpeed()
@@ -176,4 +176,4 @@ protected:
 
 NS_CC_YHGE_END
 
-#endif //COMPONENTS_MOVECOMPONENT_H_
+#endif //YHGE_COMPONENTS_MOVECOMPONENT_H_
