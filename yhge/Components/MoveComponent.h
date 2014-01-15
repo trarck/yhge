@@ -4,8 +4,6 @@
 #include "cocos2d.h"
 #include "Component.h"
 
-USING_NS_CC;
-
 NS_CC_YHGE_BEGIN
 
 typedef enum  {

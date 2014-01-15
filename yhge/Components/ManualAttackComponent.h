@@ -4,8 +4,6 @@
 #include "cocos2d.h"
 #include "AttackComponent.h"
 
-USING_NS_CC;
-
 NS_CC_YHGE_BEGIN
 
 class ManualAttackComponent : public AttackComponent 
