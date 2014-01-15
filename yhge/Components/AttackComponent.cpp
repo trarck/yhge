@@ -29,6 +29,8 @@ bool AttackComponent::registerMessages()
 {
     CCLOG("AttackComponent::registerMessages");
     
+    Component::registerMessages();
+    
     yhge::MessageManager::defaultManager()->registerReceiver(m_owner, MSG_SET_ATTACK_TARGET, NULL, message_selector(AttackComponent::onSetAttackTarget));
     
     yhge::MessageManager::defaultManager()->registerReceiver(m_owner, MSG_ATTACK, NULL, message_selector(AttackComponent::onAttack));
@@ -42,6 +44,8 @@ void AttackComponent::cleanupMessages()
     yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_SET_ATTACK_TARGET);
     yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_ATTACK);
     yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_TARGET_DIE);
+    
+    Component::cleanupMessages();
 }
 
 
@@ -49,9 +53,9 @@ void AttackComponent::attack()
 {
     if(m_target){
         CCLOG("AttackComponent::startAttack");
-        int targetHp=m_target->getHealth();
+        int targetHp=10;//m_target->getHealth();
         CCLOG("current target hp %d after attack %d",targetHp,targetHp-1);
-        m_target->setHealth(targetHp-1);
+//        m_target->setHealth(targetHp-1);
     }else {
         CCLOG("AttackComponent::startAttack no target");
     }

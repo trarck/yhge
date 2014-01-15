@@ -16,7 +16,6 @@ public:
     virtual bool init();
     
     virtual bool registerMessages();
-    virtual void handleMessage(Message* message);
     virtual void cleanupMessages();
     
     /**
@@ -32,17 +31,18 @@ public:
     /**
      * 处理攻击消息
      */
-    void onAttack(Message *message);
+    virtual void onAttack(Message *message);
     
     /**
      * 处理设置目标消息
      */
-    void onSetAttackTarget(Message *message);
+    virtual void onSetAttackTarget(Message *message);
     
     /**
      * 处理目标死亡消息
      */
-    void onTargetDie(Message *message);
+    virtual void onTargetDie(Message *message);
+    
 public:
     
     inline void setTarget(CCObject* target)
