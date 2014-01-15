@@ -1,17 +1,18 @@
-#ifndef YHGE_COMPONENTS_MOVECOMPONENT_H_
-#define YHGE_COMPONENTS_MOVECOMPONENT_H_
+#ifndef COMPONENTS_MOVECOMPONENT_H_
+#define COMPONENTS_MOVECOMPONENT_H_
 
 #include "cocos2d.h"
 #include "Component.h"
 
+USING_NS_CC;
+
 NS_CC_YHGE_BEGIN
 
 typedef enum  {
-    MoveIdle=0,
-	MoveStop,
+	MoveStop=0,
 	MoveStart,
 	MoveWillStop,
-	MoveContinue,
+	MoveContinue
 } MoveState;
 
 class MoveComponent : public Component{
@@ -21,32 +22,116 @@ public:
     MoveComponent();
     ~MoveComponent();
     
-    bool init();
+    virtual bool init();
 	bool init(float speed);
+    
+    virtual bool registerMessages();
+    virtual void cleanupMessages();
+    
+    bool isMoving();
+    MoveState getMoveState();
+    CCPoint movingCoordinate();
+    
+    inline void calcSpeedVector(float directionVectorX,float directionVectorY){
+        m_speedX=m_speed*directionVectorX;
+        m_speedY=m_speed*directionVectorY;
+    };
 
-	CCPoint movingCoordinate();
-
-	void preparePath();
-
-	void calcDirection();
-
-	void moveWithDirection(float dirX ,float dirY);
-	void moveWithDirection(CCPoint dir);
-	void moveWithPaths(CCArray* paths);
-	void moveWithPaths(CCArray* paths, int fromIndex);
-
-	bool beforeMove();
-	bool beforeMovePath();
+    bool beforeMove();
 	void startMove();
-	void continueMoveWithPaths(CCArray *paths);
-	void continueMoveWithDirection(CCPoint dir);
-	void stopMove();
-	void updateDirection(float delta);
-	void updatePath(float delta);
+    void stopMove();
+    bool checkMoveable();
+	//move to end point
+	void moveTo(CCPoint to);
 
-	void updateMoveAnimation();
-	void didMoveStop();
-	void didHit(CCPoint location);
+    //move with direction
+    void moveWithDirection(float direction);
+    void moveWithDirection(float direction,bool hasTo);
+    void moveWithDirection(float directionX,float directionY);
+    void moveWithDirection(float directionX,float directionY,bool hasTo);
+    
+    void continueMoveWithDirection(float direction);
+    void continueMoveWithDirection(float direction,bool hasTo);
+    void continueMoveWithDirection(float directionX,float directionY);
+    void continueMoveWithDirection(float directionX,float directionY,bool hasTo);
+		
+    //move with path
+    void moveWithPaths(CCArray* paths);
+	void moveWithPaths(CCArray* paths, int fromIndex);
+    void continueMoveWithPaths(CCArray* paths);
+    void continueMoveWithPaths(CCArray* paths, int fromIndex);
+	bool beforeMovePath();
+	void restartMove();
+	void preparePath();
+	void calcDirection();
+  
+    void updateDirection(float delta);
+	void updatePath(float delta);
+    void updateMoveAnimation();
+    void doMoveStart();
+    void doMoveStop();
+	void doHit(CCPoint location);
+    
+    virtual void onMoveDirection(Message* message);
+    virtual void onMoveDirectionStop(Message* message);
+    virtual void onMoveTo(Message* message);
+
+public:
+    
+    float getSpeed()
+    {
+        return m_speed;
+    }
+    
+    void setSpeed(float speed)
+    {
+        m_speed=speed;
+    }
+    
+    void setDirection(float direction)
+    {
+        m_direction=direction;
+        m_isDirectionDirty=false;
+    }
+    
+    float getDirection()
+    {
+        return m_direction;
+    }
+    
+    CCPoint getTo()
+    {
+        return m_to;
+    }
+    
+    void setTo(CCPoint to)
+    {
+        m_to=to;
+    }
+    
+    void setCurrentPaths(CCArray* pCurrentPaths)
+    {
+        CC_SAFE_RETAIN(pCurrentPaths);
+        CC_SAFE_RELEASE(m_pCurrentPaths);
+        m_pCurrentPaths = pCurrentPaths;
+    }
+    
+    CCArray* getCurrentPaths()
+    {
+        return m_pCurrentPaths;
+    }
+    
+    void setNextPaths(CCArray* pNextPaths)
+    {
+        CC_SAFE_RETAIN(pNextPaths);
+        CC_SAFE_RELEASE(m_pNextPaths);
+        m_pNextPaths = pNextPaths;
+    }
+    
+    CCArray* getNextPaths()
+    {
+        return m_pNextPaths;
+    }
 
 	inline void setPathIndex(int pathIndex)
     {
@@ -57,139 +142,40 @@ public:
     {
         return m_pathIndex;
     }
-    
-    inline void setSpeed(float speed)
-    {
-        m_speed = speed;
-    }
-    
-    inline float getSpeed()
-    {
-        return m_speed;
-    }
-    
-    inline void setDirection(CCPoint direction)
-    {
-        m_direction = direction;
-    }
-    
-    inline CCPoint getDirection()
-    {
-        return m_direction;
-    }
-    
-    inline void setTo(CCPoint to)
-    {
-        m_to = to;
-    }
-    
-    inline CCPoint getTo()
-    {
-        return m_to;
-    }
-    
-    inline void setNextDirection(CCPoint nextDirection)
-    {
-        m_nextDirection = nextDirection;
-    }
-    
-    inline CCPoint getNextDirection()
-    {
-        return m_nextDirection;
-    }
-    
-    inline void setLastDirection(CCPoint lastDirection)
-    {
-        m_lastDirection = lastDirection;
-    }
-    
-    inline CCPoint getLastDirection()
-    {
-        return m_lastDirection;
-    }
-    
-    inline void setFromIndex(int fromIndex)
-    {
-        m_fromIndex = fromIndex;
-    }
-    
-    inline int getFromIndex()
-    {
-        return m_fromIndex;
-    }
-    
-    inline void setCurrentPaths(CCArray* currentPaths)
-    {
-        CC_SAFE_RETAIN(currentPaths);
-        CC_SAFE_RELEASE(m_currentPaths);
-        m_currentPaths = currentPaths;
-    }
-    
-    inline CCArray* getCurrentPaths()
-    {
-        return m_currentPaths;
-    }
-    
-    inline void setNextPaths(CCArray* nextPaths)
-    {
-        CC_SAFE_RETAIN(nextPaths);
-        CC_SAFE_RELEASE(m_nextPaths);
-        m_nextPaths = nextPaths;
-    }
-    
-    inline CCArray* getNextPaths()
-    {
-        return m_nextPaths;
-    }
-    
-    inline void setMoving(bool moving)
-    {
-        m_moving = moving;
-    }
-    
-    inline bool isMoving()
-    {
-        return m_moving;
-    }
-    
-    inline void setInStep(bool inStep)
-    {
-        m_inStep = inStep;
-    }
-    
-    inline bool isInStep()
-    {
-        return m_inStep;
-    }
-    
-    inline void setMoveState(MoveState moveState)
-    {
-        m_moveState = moveState;
-    }
-    
-    inline MoveState getMoveState()
-    {
-        return m_moveState;
-    }
+
 
 protected:
 	//移动相关
-    int m_pathIndex;
-    float m_speed;
-    CCPoint m_direction;
+	float m_speed;
+    float m_speedX;
+    float m_speedY;
+    
+	float m_direction;//float 角度
+    float m_directionX;//vector
+    float m_directionY;
+    
+    bool m_isDirectionDirty;
+    
+	bool m_moving;
+    
+    float m_nextDirection;
+    //float m_lastDirection;
+
     CCPoint m_to;
-    CCPoint m_nextDirection;
-    CCPoint m_lastDirection;
-    int m_fromIndex;
-    CCArray* m_currentPaths;
-    CCArray* m_nextPaths;
-    bool m_moving;
-    bool m_inStep;
-    MoveState m_moveState;
-	
-	void* updateStep_;
+    int m_directionFlagX;
+    int m_directionFlagY;
+
+	MoveState m_moveState;
+    
+    SEL_SCHEDULE m_update;
+    
+    bool m_hasEndPosition;
+	int m_fromIndex;
+	CCArray* m_pCurrentPaths;
+	CCArray* m_pNextPaths;
+	int m_pathIndex;
 };
 
 NS_CC_YHGE_END
 
-#endif //YHGE_COMPONENTS_MOVECOMPONENT_H_
+#endif //COMPONENTS_MOVECOMPONENT_H_
