@@ -1,4 +1,6 @@
 #include "ManualAttackComponent.h"
+#include "CCMessageManager.h"
+#include "GameMessages.h"
 
 USING_NS_CC;
 
@@ -7,6 +9,7 @@ NS_CC_YHGE_BEGIN
 ManualAttackComponent::ManualAttackComponent()
 {
     CCLOG("ManualAttackComponent create");
+    m_name="ManualAttackComponent";
 }
 
 ManualAttackComponent::~ManualAttackComponent()
@@ -18,7 +21,6 @@ ManualAttackComponent::~ManualAttackComponent()
 bool ManualAttackComponent::init()
 {
     CCLOG("ManualAttackComponent init");
-	m_sName="ManualAttackComponent";
     return true;
 }
 
