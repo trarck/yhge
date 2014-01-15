@@ -47,6 +47,8 @@ bool AnimationComponent::registerMessages()
 {
     CCLOG("AnimationComponent::registerMessages");
     
+    Component::registerMessages();
+    
     MessageManager::defaultManager()->registerReceiver(m_owner,MSG_CHANGE_ANIMATION, NULL ,message_selector(AnimationComponent::onChangeAnimation));
     
     return true;
@@ -57,6 +59,7 @@ void AnimationComponent::cleanupMessages()
 {
 	CCLOG("AnimationComponent::cleanupMessages");
     MessageManager::defaultManager()->removeReceiver(m_owner,MSG_CHANGE_ANIMATION);
+    Component::cleanupMessages();
 }
 
 
