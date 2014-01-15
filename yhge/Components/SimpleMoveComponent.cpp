@@ -1,9 +1,21 @@
+/**
+ * 现在是按照位置来判断结束于否。
+ * 可以考虑按时间来判断。
+ */
 #include "SimpleMoveComponent.h"
-#include <yhge/Message/MessageManager.h>
+#include <yhge/message.h>
+#include <yhge/CocosExt/CCGeometryValue.h>
+#include "ComponentMessageDefine.h"
 
 USING_NS_CC;
 
 NS_CC_YHGE_BEGIN
+
+static int directionMapping[3][3]={
+	{4,1,5},
+	{0,-1,2},
+	{7,3,6}
+};
 
 SimpleMoveComponent::SimpleMoveComponent()
 :m_speed(0.0f)
@@ -16,6 +28,7 @@ SimpleMoveComponent::SimpleMoveComponent()
 ,m_isDirectionDirty(true)
 {
     CCLOG("SimpleMoveComponent create");
+	m_name="SimpleMoveComponent";
 }
 
 SimpleMoveComponent::~SimpleMoveComponent()
@@ -32,12 +45,39 @@ bool SimpleMoveComponent::init()
 	
 }
 
-bool SimpleMoveComponent::init(float speed)
+bool SimpleMoveComponent::initWithSpeed(float speed)
 {
 	if (init()) {
 		m_speed=speed;
 	}
 	return true;
+}
+
+bool SimpleMoveComponent::registerMessages()
+{
+    CCLOG("SimpleMoveComponent::registerMessages");
+    
+    if(Component::registerMessages()){
+        MessageManager* messageManager=MessageManager::defaultManager();
+        
+        messageManager->registerReceiver(m_owner, MSG_MOVE_DIRECTION, NULL, message_selector(SimpleMoveComponent::onMoveDirection),this);
+        messageManager->registerReceiver(m_owner, MSG_MOVE_DIRECTION_STOP, NULL, message_selector(SimpleMoveComponent::onMoveDirectionStop),this);
+        messageManager->registerReceiver(m_owner, MSG_MOVE_TO, NULL, message_selector(SimpleMoveComponent::onMoveTo),this);
+        
+        return true;
+    }
+    
+    return false;
+}
+
+void SimpleMoveComponent::cleanupMessages()
+{
+    CCLOG("SimpleMoveComponent::cleanupMessages");
+    yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_MOVE_DIRECTION);
+    yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_MOVE_DIRECTION_STOP);
+    yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_MOVE_TO);
+    
+    Component::cleanupMessages();
 }
 
 float SimpleMoveComponent::getSpeed()
@@ -136,6 +176,9 @@ void SimpleMoveComponent::stopMove()
 //	}
 }
 
+#pragma mark -
+#pragma mark 按方向移动
+
 void SimpleMoveComponent::moveWithDirection(float direction)
 {
     moveWithDirection(direction,false);
@@ -210,14 +253,14 @@ void SimpleMoveComponent::continueMoveWithDirection(float directionX ,float dire
 void SimpleMoveComponent::moveTo(CCPoint to)
 {
     
-    CCPoint pos=((CCNode*)m_pOwner)->getPosition();
+    CCPoint pos=((CCNode*)m_owner)->getPosition();
     
     float dx=to.x-pos.x;
     float dy=to.y-pos.y;
     
     CCLOG("moveTo:%f,%f, diff:%f,%f",to.x,to.y,dx,dy);
     
-    if(dx>0 || dy>0){
+    if(dx!=0 || dy!=0){
         float s=sqrtf(dx*dx+dy*dy);
         
         float directionX=dx/s;
@@ -299,7 +342,7 @@ void SimpleMoveComponent::moveTo(CCPoint to)
  */
 void SimpleMoveComponent::updateDirection( float delta)
 {
-    CCNode* owner=(CCNode*)m_pOwner;
+    CCNode* owner=(CCNode*)m_owner;
     
     CCPoint pos=owner->getPosition();
 	//根据速度计算移动距离
@@ -444,14 +487,25 @@ void SimpleMoveComponent::updateDirection( float delta)
 //		}
 //	}
 //}
-///**
-// * 方向改变
-// * 人物在移动时要面向不同的方向
-// */
-//void updateMoveAnimation
-//{
-//	
-//}
+/**
+ * 方向改变
+ * 人物在移动时要面向不同的方向
+ */
+void SimpleMoveComponent::updateMoveAnimation()
+{
+	//+0.5四舍五入
+	int i=floor(m_directionX+0.5)+1;
+	int j=floor(m_directionY+0.5)+1;
+	int index=directionMapping[i][j];
+	CCLOG("index:%d,%d,%d,%f,%f",index,i,j,m_directionX,m_directionY);
+	if (index>-1) {
+		CCDictionary* data=new CCDictionary();
+		data->setObject(CCString::create("move"), "name");
+		data->setObject(CCInteger::create(index), "direction");
+    
+		MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
+	}
+}
 
 /**
  * 移动结束
@@ -460,13 +514,8 @@ void SimpleMoveComponent::updateDirection( float delta)
 void SimpleMoveComponent::didMoveStart()
 {
     //todo parse direction
-    
-	CCDictionary* data=new CCDictionary();
-    data->setObject(CCString::create("move"), "name");
-    data->setObject(CCInteger::create(3), "direction");
-    
-    //MessageManager::defaultManager()->dispatchMessageWithType(CHANGE_ANIMATION, NULL, m_owner,data);
-    
+    updateMoveAnimation();
+   
 }
 
 /**
@@ -479,7 +528,7 @@ void SimpleMoveComponent::didMoveStop()
     data->setObject(CCString::create("idle"), "name");
     data->setObject(CCInteger::create(0), "direction");
     
-    //MessageManager::defaultManager()->dispatchMessageWithType(CHANGE_ANIMATION, NULL, m_owner,data);
+    MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
 
 }
 //处理碰撞,由子类实现。
@@ -487,6 +536,24 @@ void SimpleMoveComponent::didMoveStop()
 void SimpleMoveComponent::didHit(CCPoint location)
 {
 	
+}
+
+
+void SimpleMoveComponent::onMoveDirection(Message *message)
+{
+    CCInteger* integer=(CCInteger*)message->getData();
+    moveWithDirection(kmDegreesToRadians(integer->getValue()));
+}
+
+void SimpleMoveComponent::onMoveDirectionStop(Message *message)
+{
+    stopMove();
+}
+
+void SimpleMoveComponent::onMoveTo(Message *message)
+{
+    CCPoint to=static_cast<CCPointValue*>(message->getData())->getPoint();
+    moveTo(to);
 }
 
 NS_CC_YHGE_END

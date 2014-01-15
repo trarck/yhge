@@ -1,10 +1,8 @@
-#ifndef YHGE_COMPONENTS_SIMPLEMOVECOMPONENT_H_
-#define YHGE_COMPONENTS_SIMPLEMOVECOMPONENT_H_
+#ifndef YHGE_COMPONENTS_MOVECOMPONENT_H_
+#define YHGE_COMPONENTS_MOVECOMPONENT_H_
 
 #include "cocos2d.h"
 #include "Component.h"
-
-USING_NS_CC;
 
 NS_CC_YHGE_BEGIN
 
@@ -23,7 +21,10 @@ public:
     ~SimpleMoveComponent();
     
     virtual bool init();
-    bool init(float speed);
+    bool initWithSpeed(float speed);
+    
+    virtual bool registerMessages();
+    virtual void cleanupMessages();
 
 	void preparePath();
 
@@ -65,30 +66,18 @@ public:
     void continueMoveWithDirection(float direction,bool hasTo);
     void continueMoveWithDirection(float directionX,float directionY);
     void continueMoveWithDirection(float directionX,float directionY,bool hasTo);
-		
-    //move with path
-    void moveWithPaths(CCArray* paths);
-	void moveWithPaths(CCArray* paths, int fromIndex);
-    void continueMoveWithPaths(CCArray* paths);
-    void continueMoveWithPaths(CCArray* paths, int fromIndex);
-
-	int getPathIndex();
-	void setPathIndex(int pathIndex);
-
-	CCArray* getCurrentPaths();
-	void setCurrentPaths(CCArray* currentPaths);
-
-	CCArray* getNextPaths();
-	void setNextPaths(CCArray* nextPaths);
 
 
     
     void updateDirection(float delta);
-	void updatePath(float delta);
-    
+    void updateMoveAnimation();
     void didMoveStart();
     void didMoveStop();
 	void didHit(CCPoint location);
+    
+    virtual void onMoveDirection(Message* message);
+    virtual void onMoveDirectionStop(Message* message);
+    virtual void onMoveTo(Message* message);
 
 protected:
 	//移动相关
@@ -100,9 +89,6 @@ protected:
     float m_directionX;//vector
     float m_directionY;
     bool m_isDirectionDirty;
-    
-
-
     
 	bool m_moving;
     
@@ -122,4 +108,4 @@ protected:
 
 NS_CC_YHGE_END
 
-#endif //YHGE_COMPONENTS_SIMPLEMOVECOMPONENT_H_
+#endif //YHGE_COMPONENTS_MOVECOMPONENT_H_
