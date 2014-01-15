@@ -78,6 +78,7 @@
 		577A7935186BF56500F1B5D5 /* NormalMessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78E0186BF56500F1B5D5 /* NormalMessageManager.cpp */; };
 		577A7936186BF56500F1B5D5 /* SimpleMessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78E2186BF56500F1B5D5 /* SimpleMessageManager.cpp */; };
 		578E5F5418680D830042319C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		57C33727188651FC008B5618 /* GridMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C33725188651FC008B5618 /* GridMoveComponent.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -255,6 +256,9 @@
 		577A78E7186BF56500F1B5D5 /* yhge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yhge.h; sourceTree = "<group>"; };
 		577A78E8186BF56500F1B5D5 /* YHGEMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHGEMacros.h; sourceTree = "<group>"; };
 		578E5F5318680D830042319C /* libyhge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libyhge.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		57C337241886500D008B5618 /* ComponentMessageDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentMessageDefine.h; sourceTree = "<group>"; };
+		57C33725188651FC008B5618 /* GridMoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GridMoveComponent.cpp; sourceTree = "<group>"; };
+		57C33726188651FC008B5618 /* GridMoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridMoveComponent.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -546,6 +550,9 @@
 				577A785A186BF56500F1B5D5 /* AutoAttackComponent.h */,
 				577A785B186BF56500F1B5D5 /* Component.cpp */,
 				577A785C186BF56500F1B5D5 /* Component.h */,
+				57C337241886500D008B5618 /* ComponentMessageDefine.h */,
+				57C33725188651FC008B5618 /* GridMoveComponent.cpp */,
+				57C33726188651FC008B5618 /* GridMoveComponent.h */,
 				577A785F186BF56500F1B5D5 /* ManualAttackComponent.cpp */,
 				577A7860186BF56500F1B5D5 /* ManualAttackComponent.h */,
 				5755C7351885442900213F7C /* MoveComponent.cpp */,
@@ -757,6 +764,7 @@
 				577A78FC186BF56500F1B5D5 /* CCSelectorWrap.cpp in Sources */,
 				5771056918837C3E00FA1446 /* IsoTileUtils.cpp in Sources */,
 				577A7903186BF56500F1B5D5 /* ManualAttackComponent.cpp in Sources */,
+				57C33727188651FC008B5618 /* GridMoveComponent.cpp in Sources */,
 				576E3FC1187D4BFB00745A0A /* ISODynamicTileLayer.cpp in Sources */,
 				577A78FE186BF56500F1B5D5 /* ccCArray.cpp in Sources */,
 				577A790B186BF56500F1B5D5 /* UIEvent.cpp in Sources */,
