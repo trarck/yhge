@@ -1,5 +1,6 @@
 #include "AutoAttackComponent.h"
-#include <yhge/Message/MessageManager.h>
+#include <yhge/message.h>
+#include "ComponentMessageDefine.h"
 
 USING_NS_CC;
 
@@ -9,6 +10,7 @@ AutoAttackComponent::AutoAttackComponent()
 :m_attackSpeed(2)
 {
     CCLOG("AutoAttackComponent create");
+    m_name="AutoAttackComponent";
 }
 
 AutoAttackComponent::~AutoAttackComponent()
@@ -20,16 +22,34 @@ AutoAttackComponent::~AutoAttackComponent()
 bool AutoAttackComponent::init()
 {
     CCLOG("AutoAttackComponent init");
-	m_sName="AutoAttackComponent";
     return true;
 }
 
-void AutoAttackComponent::attack()
+bool AutoAttackComponent::registerMessages()
+{
+
+    if(AttackComponent::registerMessages()){
+        MessageManager::defaultManager()->registerReceiver(m_owner, MSG_AUTO_ATTACK, NULL, message_selector(AutoAttackComponent::onAutoAttack));
+        return true;
+    }
+    
+    return false;
+}
+
+void AutoAttackComponent::cleanupMessages()
+{
+	CCLOG("AttackComponent::cleanupMessages");
+    yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_AUTO_ATTACK);
+    
+    AttackComponent::cleanupMessages();
+}
+
+
+void AutoAttackComponent::startAttack()
 {
     CCLOG("AutoAttackComponent::startAttack");
 	if (m_target) {
-        CCDirector* director = CCDirector::sharedDirector();
-        CCScheduler* pScheduler = director->getScheduler();
+        CCScheduler* pScheduler = CCDirector::sharedDirector()->getScheduler();
         pScheduler->scheduleSelector(schedule_selector(AutoAttackComponent::updateAttack),this, m_attackSpeed, false);
 	}
 }
@@ -37,8 +57,7 @@ void AutoAttackComponent::attack()
 void AutoAttackComponent::stopAttack()
 {
     CCLOG("AutoAttackComponent::stopAttack");
-    CCDirector* director = CCDirector::sharedDirector();
-    CCScheduler* pScheduler = director->getScheduler();
+    CCScheduler* pScheduler = CCDirector::sharedDirector()->getScheduler();
     pScheduler->unscheduleSelector(schedule_selector(AutoAttackComponent::updateAttack),this);
 }
 
@@ -49,11 +68,13 @@ void AutoAttackComponent::updateAttack(float delta)
 	/*
 	 1.target die
 	 2.if use skill, mp less then the skill requirement
-
 	 */
-	//int targetHp=m_target->getHealth();
- //   CCLOG("current target hp %d after attack %d",targetHp,targetHp-1);
- //   m_target->setHealth(targetHp-1);
+    //TODO get target hp
+	int targetHp=10;//m_target->getHealth();
+    CCLOG("current target hp %d after attack %d",targetHp,targetHp-1);
+    
+    //TODO set target hp
+//    m_target->setHealth(targetHp-1);
 }
 
 void AutoAttackComponent::didTargetDie()
@@ -61,14 +82,25 @@ void AutoAttackComponent::didTargetDie()
     stopAttack();
 }
 
-float AutoAttackComponent::getAttackSpeed()
+/**
+ * 开始自动攻击
+ */
+void AutoAttackComponent::onAutoAttack(Message* message)
 {
-	return m_attackSpeed;
+    CCObject* target=message->getData();
+    if(target){
+        setTarget(target);
+    }
+    startAttack();
 }
 
-void AutoAttackComponent::setAttackSpeed(float attackSpeed)
+/**
+ * 处理目标死亡消息
+ */
+void AutoAttackComponent::onTargetDie(Message *message)
 {
-	m_attackSpeed=attackSpeed;
+    stopAttack();
+    AttackComponent::onTargetDie(message);
 }
 
 NS_CC_YHGE_END

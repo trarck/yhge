@@ -2,7 +2,6 @@
 #define YHGE_COMPONENTS_AUTOATTACKCOMPONENT_H_
 
 #include "cocos2d.h"
-
 #include "AttackComponent.h"
 
 NS_CC_YHGE_BEGIN
@@ -13,16 +12,41 @@ class AutoAttackComponent : public AttackComponent
 public:
     AutoAttackComponent();
     ~AutoAttackComponent();
+    
     virtual bool init();
-	
-    virtual void attack();
+    
+    virtual bool registerMessages();
+    virtual void cleanupMessages();
+    
+    void startAttack();
+    
     virtual void didTargetDie();
     
     void stopAttack();
-    void updateAttack(float delta);
     
-    float getAttackSpeed();
-    void setAttackSpeed(float attackSpeed);
+    void updateAttack(float delta);
+
+    /**
+     * 开始自动攻击
+     */
+    virtual void onAutoAttack(Message* message);
+    
+    /**
+     * 处理目标死亡消息
+     */
+    virtual void onTargetDie(Message *message);
+    
+public:
+    
+    float getAttackSpeed()
+    {
+        return m_attackSpeed;
+    }
+    
+    void setAttackSpeed(float attackSpeed)
+    {
+        m_attackSpeed=attackSpeed;
+    }
 protected:
     float m_attackSpeed;
 };
