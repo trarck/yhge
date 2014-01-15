@@ -29,13 +29,15 @@ bool AttackComponent::registerMessages()
 {
     CCLOG("AttackComponent::registerMessages");
     
-    Component::registerMessages();
+    if(Component::registerMessages()){
     
-    yhge::MessageManager::defaultManager()->registerReceiver(m_owner, MSG_SET_ATTACK_TARGET, NULL, message_selector(AttackComponent::onSetAttackTarget));
-    
-    yhge::MessageManager::defaultManager()->registerReceiver(m_owner, MSG_ATTACK, NULL, message_selector(AttackComponent::onAttack));
-    
-    return true;
+        yhge::MessageManager::defaultManager()->registerReceiver(m_owner, MSG_SET_ATTACK_TARGET, NULL, message_selector(AttackComponent::onSetAttackTarget));
+        
+        yhge::MessageManager::defaultManager()->registerReceiver(m_owner, MSG_ATTACK, NULL, message_selector(AttackComponent::onAttack));
+        
+        return true;
+    }
+    return false;
 }
 
 void AttackComponent::cleanupMessages()
