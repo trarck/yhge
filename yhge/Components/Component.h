@@ -12,42 +12,62 @@ NS_CC_YHGE_BEGIN
 class Component : public CCObject
 {
 public:
+    
     Component();
     ~Component();
     
     virtual bool init(void);  
     
+    /**
+     * 设置
+     */
 	virtual void setup(void);
+    
+    /**
+     * 清理
+     */
 	virtual void cleanup(void);
 
+    /**
+     * 注册消息
+     */
     virtual bool registerMessages();
+    
+    /**
+     * 清理消息
+     */
 	virtual void cleanupMessages();
+    
     //使用GameEntity也没有意义，具体还要使用强制类型转换
     //弱连接
-	inline void setOwner(CCObject* pOwner)
+	inline void setOwner(CCObject* owner)
 	{
-		CC_SAFE_RETAIN(pOwner);
-		CC_SAFE_RELEASE(m_pOwner);
-		m_pOwner = pOwner;
+		m_owner = owner;
 	}
 
 	inline CCObject* getOwner()
 	{
-		return m_pOwner;
+		return m_owner;
 	}
 
-	inline void setName(const std::string& sName)
+	inline void setName(const std::string& name)
 	{
-		m_sName = sName;
+		m_name = name;
 	}
 
 	inline const std::string& getName()
 	{
-		return m_sName;
+		return m_name;
 	}
 protected:
-    CCObject* m_pOwner;
-	std::string m_sName;
+    
+    //名称
+    std::string m_name;
+    
+    //弱引用
+    CCObject* m_owner;
+    
+	
 };
 
 NS_CC_YHGE_END

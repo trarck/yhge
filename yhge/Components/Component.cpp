@@ -4,8 +4,8 @@
 NS_CC_YHGE_BEGIN
 
 Component::Component()
-:m_pOwner(NULL)
-,m_sName("")
+:m_name("")
+,m_owner(NULL)
 {
     CCLOG("Component create");
 }
