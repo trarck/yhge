@@ -270,13 +270,14 @@ void GridMoveComponent::calcMoveDuration(float directionX,float directionY)
 }
 
 /**
- * directionX -1,0,1
+ * direction -1,0,1
  */
 void GridMoveComponent::calcSpeedVector(float directionX,float directionY)
 {
 	int i=floor(directionX+FLOAT_ZERO_FLAG);
 	int j=floor(directionY+FLOAT_ZERO_FLAG);
 
+    //注意m_speed是地图坐标系的速度，即做iso投影前的速度
 	if(i==0||j==0){
 		//m_speedX,m_speedY其中一个为0或都为0
 		m_speedX=i*m_speed*AXIS_VECTOR;
@@ -288,7 +289,7 @@ void GridMoveComponent::calcSpeedVector(float directionX,float directionY)
 		m_speedY=j*m_speed*BEVEL_VECTOR_HALF;
 	}
     //TODO
-	CCPoint viewSpeed=ccp(2,1);//isoGameToView2F(m_speedX,m_speedY);
+	CCPoint viewSpeed=isoGameToView2F(m_speedX,m_speedY);
 	m_fViewSpeedX=viewSpeed.x;
 	m_fViewSpeedY=viewSpeed.y;
 	CCLOG("m_speedX:%f,m_speedY:%f,viewSpeed:%f,%f",m_speedX,m_speedY,m_fViewSpeedX,m_fViewSpeedY);

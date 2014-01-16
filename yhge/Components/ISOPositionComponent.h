@@ -20,44 +20,42 @@ public:
     virtual bool registerMessages();
     
     virtual void cleanupMessages();
-    
-    virtual CCNode* getRenderer();
-    
-    virtual void setRenderer(CCNode* renderer);
-    
-    /**
-     * 执行action
-     */
-    virtual void runAction(CCAction* action);
-    
-    /**
-     * 停止action
-     */
-    virtual void stopAction(CCAction* action);
-    
-    /**
-     * 停止action by tag
-     */
-    virtual void stopActionByTag(int tag);
+        
+    void setMx(float mx)
+    {
+        m_mx = mx;
+    }
 
-    /**
-     * 响应执行action
-     */
-    virtual void onRunAction(Message* message);
-    
-    /**
-     * 响应停止action
-     */
-    virtual void onStopAction(Message* message);
-    
-    /**
-     * 响应停止action by tag
-     */
-    virtual void onStopActionByTag(Message* message);
-    
+    float getMx()
+    {
+        return m_mx;
+    }
+
+    void setMy(float my)
+    {
+        m_my = my;
+    }
+
+    float getMy()
+    {
+        return m_my;
+    }
+
+    void setMz(float mz)
+    {
+        m_mz = mz;
+    }
+
+    float getMz()
+    {
+        return m_mz;
+    }
+
 protected:
     
-    CCNode* m_renderer;
+    float m_mx;
+    float m_my;
+    float m_mz;
     
 };
 
