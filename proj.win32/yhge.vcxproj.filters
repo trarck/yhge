@@ -108,12 +108,6 @@
     <ClInclude Include="..\yhge\Components\Component.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\Components\ComponentEntityInterface.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Components\ComponentInterface.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="..\yhge\Components\ManualAttackComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -315,6 +309,24 @@
     <ClInclude Include="..\yhge\Components\MoveComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Components\ComponentMessageDefine.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Components\Entity.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Components\GridMoveComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Components\ISOPositionComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Components\RendererComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Components\SpriteRendererComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -510,6 +522,21 @@
       <Filter>Isometric</Filter>
     </ClCompile>
     <ClCompile Include="..\yhge\Components\MoveComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Components\Entity.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Components\GridMoveComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Components\ISOPositionComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Components\RendererComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Components\SpriteRendererComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
