@@ -23,12 +23,12 @@ bool Component::init(void)
 
 void Component::setup(void)
 {
-
+    this->registerMessages();
 }
 
 void Component::cleanup(void)
 {
-
+    this->cleanupMessages();
 }
 
 bool Component::registerMessages()
@@ -42,5 +42,22 @@ void Component::cleanupMessages()
 {
     CCLOG("Component::cleanupMessages");
 }
+
+/**
+ * 组件被添加到entity
+ */
+void Component::onAddedToEntity()
+{
+    
+}
+
+/**
+ * 组件从entity移除
+ */
+void Component::onRemovedFromEntity()
+{
+    
+}
+
 
 NS_CC_YHGE_END

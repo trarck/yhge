@@ -7,6 +7,7 @@
 #include <yhge/CocosExt/CCGeometryValue.h>
 #include <yhge/isometric.h>
 #include "ComponentMessageDefine.h"
+#include "Entity.h"
 
 #define AXIS_VECTOR 1
 //sqrt(2)

@@ -3,28 +3,36 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
-#include <yhge/Message/Message.h>
+#include <yhge/message.h>
+
 
 NS_CC_YHGE_BEGIN
 
-//typedef CCObject GameEntity;
+class Entity;
 
+/**
+ * 组件系统基类
+ */
 class Component : public CCObject
 {
 public:
     
     Component();
-    ~Component();
+    
+    virtual ~Component();
     
     virtual bool init(void);  
     
     /**
      * 设置
+     * 在把组件添加到entity之前调用
+     * 由于组件不能被重用，所以在整个生命期只调用一次。
      */
 	virtual void setup(void);
     
     /**
      * 清理
+     * 在组件被从entity移除前调用
      */
 	virtual void cleanup(void);
 
@@ -38,14 +46,92 @@ public:
      */
 	virtual void cleanupMessages();
     
-    //使用GameEntity也没有意义，具体还要使用强制类型转换
+    /**
+     * 组件被添加到entity
+     */
+    virtual void onAddedToEntity();
+    
+    /**
+     * 组件从entity移除
+     */
+    virtual void onRemovedFromEntity();
+    
+    //====================消息操作================//
+    static inline MessageManager* getMessageManager()
+    {
+        return MessageManager::defaultManager();
+    }
+//    
+//    static inline bool registerReceiver(CCObject* receiver ,unsigned int type ,CCObject* sender,SEL_MessageHandler handle)
+//    {
+//        return MessageManager::defaultManager()->registerReceiver(receiver, type, sender, handle,receiver);
+//    }
+//    
+//    static inline bool registerReceiver(CCObject* receiver ,unsigned int type ,CCObject* sender,SEL_MessageHandler handle ,CCObject*  handleObject)
+//    {
+//        return MessageManager::defaultManager()->registerReceiver(receiver, type, sender, handle,handleObject);
+//    }
+//    
+//    /**
+//	 * 取消注册到接收者的处理对象的处理方法，该方法注册到发送者的某个消息。
+//	 */
+//    static inline void removeReceiver(CCObject* receiver,unsigned int type ,CCObject* sender,SEL_MessageHandler handle,CCObject*  handleObject)
+//    {
+//        MessageManager::defaultManager()->removeReceiver(receiver, type, sender, handle,handleObject);
+//    }
+//
+//	static inline void removeReceiver(CCObject* receiver,unsigned int type ,CCObject* sender,SEL_MessageHandler handle)
+//    {
+//        MessageManager::defaultManager()->removeReceiver(receiver, type, sender, handle);
+//    }
+//    
+//    static inline void removeReceiver(CCObject* receiver,unsigned int type ,CCObject* sender)
+//    {
+//        MessageManager::defaultManager()->removeReceiver(receiver, type, sender);
+//    }
+//    
+//    static inline void removeReceiver(CCObject* receiver,unsigned int type)
+//    {
+//        MessageManager::defaultManager()->removeReceiver(receiver, type);
+//    }
+//    
+//    static inline void removeReceiver(CCObject* receiver)
+//    {
+//        MessageManager::defaultManager()->removeReceiver(receiver);
+//    }
+//    
+//    /**
+//	 * 发送消息。
+//	 */
+//	static inline void dispatchMessage(Message* message)
+//    {
+//        MessageManager::defaultManager()->dispatchMessage(message);
+//    }
+//    
+//    
+//	/**
+//	 * 发送消息的工具方法。
+//	 */
+//    static inline void dispatchMessage(unsigned int type ,CCObject* sender ,CCObject* receiver,CCObject* data)
+//    {
+//        MessageManager::defaultManager()->dispatchMessage(type, sender, receiver, data);
+//    }
+//    
+//    /**
+//	 * 发送消息的工具方法。
+//	 */
+//    static inline void dispatchMessage(unsigned int type ,CCObject* sender ,CCObject* receiver)
+//    {
+//        MessageManager::defaultManager()->dispatchMessage(type, sender, receiver);
+//    }
+    
     //弱连接
-	inline void setOwner(CCObject* owner)
+	inline void setOwner(Entity* owner)
 	{
 		m_owner = owner;
 	}
 
-	inline CCObject* getOwner()
+	inline Entity* getOwner()
 	{
 		return m_owner;
 	}
@@ -59,13 +145,14 @@ public:
 	{
 		return m_name;
 	}
+    
 protected:
     
     //名称
     std::string m_name;
     
     //弱引用
-    CCObject* m_owner;
+    Entity* m_owner;
     
 	
 };

@@ -1,6 +1,7 @@
 #include "AnimationComponent.h"
 #include <yhge/message.h>
 #include "ComponentMessageDefine.h"
+#include "Entity.h"
 
 USING_NS_CC;
 
@@ -49,7 +50,7 @@ bool AnimationComponent::registerMessages()
     
     Component::registerMessages();
     
-    MessageManager::defaultManager()->registerReceiver(m_owner,MSG_CHANGE_ANIMATION, NULL ,message_selector(AnimationComponent::onChangeAnimation));
+    this->getMessageManager()->registerReceiver(m_owner,MSG_CHANGE_ANIMATION, NULL ,message_selector(AnimationComponent::onChangeAnimation),this);
     
     return true;
 }
@@ -58,7 +59,7 @@ bool AnimationComponent::registerMessages()
 void AnimationComponent::cleanupMessages()
 {
 	CCLOG("AnimationComponent::cleanupMessages");
-    MessageManager::defaultManager()->removeReceiver(m_owner,MSG_CHANGE_ANIMATION);
+    this->getMessageManager()->removeReceiver(m_owner,MSG_CHANGE_ANIMATION);
     Component::cleanupMessages();
 }
 
@@ -131,39 +132,28 @@ void AnimationComponent::removeAnimationNamed(const std::string& name)
 
 void AnimationComponent::onChangeAnimation(Message *message)
 {
-    CCLOG("AnimationComponent::handleMessage::get message %d",message->getType());
+    CCDictionary* data=message->getDictionary();
     
-	switch(message->getType()){
-            
-		case MSG_CHANGE_ANIMATION:
-        {
-            CCDictionary* data=message->getDictionary();
-            
-            CCString* animationName=(CCString*)data->objectForKey("name");
-            int direction=((CCInteger*) data->objectForKey("direction"))->getValue();
-            CCLOG("direction:%d name:%s",direction,animationName->getCString());
-            
-            CCAnimation* animation= animationForName(animationName->getCString(),direction);
-            
-            if(animation && m_lastAnimation!=animation){
-                CCAction* action=createActionFromAnimation(animation);
-                CCNode* owner=(CCNode*) m_owner;
-                if (m_lastAction) {
-                    owner->stopAction(m_lastAction);
-                }
-                
-                owner->runAction(action);
-                setLastAction(action);
-                setLastAnimation(animation);
-            }else {
-                CCLOG("unknow animation name %s action is null",animationName->getCString());
-            }
-            break;
-        }
-	}
+    CCString* animationName=(CCString*)data->objectForKey("name");
+    int direction=((CCInteger*) data->objectForKey("direction"))->getValue();
+    CCLOG("direction:%d name:%s",direction,animationName->getCString());
+    
+    CCAnimation* animation= animationForName(animationName->getCString(),direction);
+    
+    if(animation && m_lastAnimation!=animation){
+        CCAction* action=createActionFromAnimation(animation);
+        action->setTag(kEightDirectionAction);
+        
+        //TODO 如果性能比较低，可以直接调用renderer component的相关函数
+        //通知render run action
+        this->getMessageManager()->dispatchMessage(MSG_RUN_ACTION, this, m_owner, action);
+        
+        setLastAction(action);
+        setLastAnimation(animation);
+    }else {
+        CCLOG("unknow animation name %s action is null",animationName->getCString());
+    }
 }
-
-
 
 /**
  * 从动画里创建action

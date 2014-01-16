@@ -1,6 +1,7 @@
 #include "AttackComponent.h"
 #include <yhge/message.h>
 #include "ComponentMessageDefine.h"
+#include "Entity.h"
 
 USING_NS_CC;
 
@@ -31,9 +32,11 @@ bool AttackComponent::registerMessages()
     
     if(Component::registerMessages()){
     
-        yhge::MessageManager::defaultManager()->registerReceiver(m_owner, MSG_SET_ATTACK_TARGET, NULL, message_selector(AttackComponent::onSetAttackTarget));
+        yhge::MessageManager* messageManager=this->getMessageManager();
         
-        yhge::MessageManager::defaultManager()->registerReceiver(m_owner, MSG_ATTACK, NULL, message_selector(AttackComponent::onAttack));
+        messageManager->registerReceiver(m_owner, MSG_SET_ATTACK_TARGET, NULL, message_selector(AttackComponent::onSetAttackTarget),this);
+        
+        messageManager->registerReceiver(m_owner, MSG_ATTACK, NULL, message_selector(AttackComponent::onAttack),this);
         
         return true;
     }
@@ -43,9 +46,12 @@ bool AttackComponent::registerMessages()
 void AttackComponent::cleanupMessages()
 {
 	CCLOG("AttackComponent::cleanupMessages");
-    yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_SET_ATTACK_TARGET);
-    yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_ATTACK);
-    yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_TARGET_DIE);
+    
+    yhge::MessageManager* messageManager=this->getMessageManager();
+    
+    messageManager->removeReceiver(m_owner, MSG_SET_ATTACK_TARGET);
+    messageManager->removeReceiver(m_owner, MSG_ATTACK);
+    messageManager->removeReceiver(m_owner, MSG_TARGET_DIE);
     
     Component::cleanupMessages();
 }
@@ -62,8 +68,6 @@ void AttackComponent::attack()
         CCLOG("AttackComponent::startAttack no target");
     }
 }
-
-
 
 void AttackComponent::attackWithSkillId(int skillId)
 {
@@ -92,9 +96,9 @@ void AttackComponent::onSetAttackTarget(Message *message)
 {
     CCObject* target=message->getData();
     
-    MessageManager::defaultManager()->removeReceiver(this, MSG_TARGET_DIE, m_target, message_selector(AttackComponent::onTargetDie));
-    setTarget(message->getData());
-    MessageManager::defaultManager()->registerReceiver(this, MSG_TARGET_DIE, m_target, message_selector(AttackComponent::onTargetDie));
+    this->getMessageManager()->removeReceiver(this, MSG_TARGET_DIE, m_target, message_selector(AttackComponent::onTargetDie));
+    setTarget(target);
+    this->getMessageManager()->registerReceiver(this, MSG_TARGET_DIE, m_target, message_selector(AttackComponent::onTargetDie));
 }
 
 /**
@@ -103,7 +107,7 @@ void AttackComponent::onSetAttackTarget(Message *message)
 void AttackComponent::onTargetDie(Message *message)
 {
     CCLOG("target is die");
-    MessageManager::defaultManager()->removeReceiver(this, MSG_TARGET_DIE, m_target, message_selector(AttackComponent::onTargetDie));
+    this->getMessageManager()->removeReceiver(this, MSG_TARGET_DIE, m_target, message_selector(AttackComponent::onTargetDie));
     CC_SAFE_RELEASE(m_target);
     m_target=NULL;
 }

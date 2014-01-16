@@ -6,6 +6,7 @@
 #include <yhge/message.h>
 #include <yhge/CocosExt/CCGeometryValue.h>
 #include "ComponentMessageDefine.h"
+#include "Entity.h"
 
 USING_NS_CC;
 
@@ -73,9 +74,9 @@ bool SimpleMoveComponent::registerMessages()
 void SimpleMoveComponent::cleanupMessages()
 {
     CCLOG("SimpleMoveComponent::cleanupMessages");
-    yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_MOVE_DIRECTION);
-    yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_MOVE_DIRECTION_STOP);
-    yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_MOVE_TO);
+    this->getMessageManager()->removeReceiver(m_owner, MSG_MOVE_DIRECTION);
+    this->getMessageManager()->removeReceiver(m_owner, MSG_MOVE_DIRECTION_STOP);
+    this->getMessageManager()->removeReceiver(m_owner, MSG_MOVE_TO);
     
     Component::cleanupMessages();
 }
@@ -503,7 +504,7 @@ void SimpleMoveComponent::updateMoveAnimation()
 		data->setObject(CCString::create("move"), "name");
 		data->setObject(CCInteger::create(index), "direction");
     
-		MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
+		this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
 	}
 }
 
@@ -528,7 +529,7 @@ void SimpleMoveComponent::didMoveStop()
     data->setObject(CCString::create("idle"), "name");
     data->setObject(CCInteger::create(0), "direction");
     
-    MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
+    this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
 
 }
 //处理碰撞,由子类实现。

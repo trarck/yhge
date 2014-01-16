@@ -1,6 +1,7 @@
 #include "AutoAttackComponent.h"
 #include <yhge/message.h>
 #include "ComponentMessageDefine.h"
+#include "Entity.h"
 
 USING_NS_CC;
 
@@ -29,7 +30,7 @@ bool AutoAttackComponent::registerMessages()
 {
 
     if(AttackComponent::registerMessages()){
-        MessageManager::defaultManager()->registerReceiver(m_owner, MSG_AUTO_ATTACK, NULL, message_selector(AutoAttackComponent::onAutoAttack));
+        this->getMessageManager()->registerReceiver(m_owner, MSG_AUTO_ATTACK, NULL, message_selector(AutoAttackComponent::onAutoAttack));
         return true;
     }
     
@@ -39,7 +40,7 @@ bool AutoAttackComponent::registerMessages()
 void AutoAttackComponent::cleanupMessages()
 {
 	CCLOG("AttackComponent::cleanupMessages");
-    yhge::MessageManager::defaultManager()->removeReceiver(m_owner, MSG_AUTO_ATTACK);
+    this->getMessageManager()->removeReceiver(m_owner, MSG_AUTO_ATTACK);
     
     AttackComponent::cleanupMessages();
 }

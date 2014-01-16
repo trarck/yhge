@@ -1,18 +1,14 @@
-//
-//  GameMessage.h
-//  GameComponents
-//
-//  Created by duanhouhai on 12-9-19.
-//
+#ifndef YHGE_COMPONENTS_MESSAGES_H_
+#define YHGE_COMPONENTS_MESSAGES_H_
 
-#ifndef GAME_MESSAGES_H_
-#define GAME_MESSAGES_H_
+#include <yhge/YHGEMacros.h>
 
-#include "CCMessage.h"
+NS_CC_YHGE_BEGIN
 
 //message id从10000开始
 enum
 {
+    //attack
     MSG_ANIMATION=10000,
     MSG_CHANGE_ANIMATION,
     //attack
@@ -25,9 +21,13 @@ enum
     MSG_MOVE_DIRECTION,
     MSG_MOVE_DIRECTION_TO,
     MSG_MOVE_DIRECTION_STOP,
-	MSG_MOVE_PATH
+	MSG_MOVE_PATH,
+    //sprite renderer
+    MSG_RUN_ACTION,
+    MSG_STOP_ACTION,
+    MSG_STOP_ACTION_BY_TAG
 };
 
+NS_CC_YHGE_END
 
-
-#endif //GAME_MESSAGES_H_
+#endif //YHGE_COMPONENTS_MESSAGES_H_

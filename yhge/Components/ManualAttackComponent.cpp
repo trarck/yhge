@@ -1,6 +1,7 @@
 #include "ManualAttackComponent.h"
 #include "CCMessageManager.h"
 #include "GameMessages.h"
+#include "Entity.h"
 
 USING_NS_CC;
 
