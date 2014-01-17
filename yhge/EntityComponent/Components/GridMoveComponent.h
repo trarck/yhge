@@ -51,9 +51,15 @@ public:
     
     /**
      * 停止移动
-     * 不会马上停止，要等一个格子移动完成。
+     * 马上停止，不需要格子移动结束。
      */
 	void stop();
+    
+    /**
+     * 停止移动
+     * 不会马上停止，要等一个格子移动完成。
+     */
+    void stopMove();
     
     /**
      * 检查是不是可以移动
@@ -101,7 +107,6 @@ public:
      */
     void updateDirection(float delta);
     
-    
     /**
      * 按路径移动
      */
@@ -125,7 +130,7 @@ public:
     /**
      * 重新开始路径移动
      */
-	void restartPathMove();
+	void restartMoveWithPaths();
     
     /**
      * 准备移动路径
@@ -307,7 +312,6 @@ public:
 protected:
     
 	void startMove();
-    void stopMove();
 	void prepareMove();
 	void continueUpdate();
 	void resetState();

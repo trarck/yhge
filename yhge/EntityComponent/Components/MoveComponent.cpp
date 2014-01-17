@@ -12,10 +12,10 @@ USING_NS_CC;
 
 NS_CC_YHGE_BEGIN
 
-static int directionMapping[3][3]={
-	{4,1,5},
-	{0,-1,2},
-	{7,3,6}
+static int kDirectionMapping[8]={
+    4,1,5,
+    0,  2,
+    7,3,6
 };
 
 MoveComponent::MoveComponent()
@@ -26,7 +26,6 @@ MoveComponent::MoveComponent()
 ,m_moving(false)
 ,m_to(ccp(0.0f, 0.0f))
 ,m_hasEndPosition(false)
-,m_isDirectionDirty(true)
 ,m_pCurrentPaths(NULL)
 ,m_pNextPaths(NULL)
 {
@@ -47,7 +46,6 @@ bool MoveComponent::init()
 		m_moveState=MoveStop;      
 	}
     return true;
-	
 }
 
 bool MoveComponent::init(float speed)
@@ -58,6 +56,20 @@ bool MoveComponent::init(float speed)
 	return true;
 }
 
+void MoveComponent::setup()
+{
+    Component::setup();
+    m_isoPositionComponent=static_cast<ISOPositionComponent*>(m_owner->getComponent("ISOPositionComponent"));
+    m_rendererComponent=static_cast<RendererComponent*>(m_owner->getComponent("RendererComponent"));
+}
+
+void MoveComponent::cleanup()
+{
+    m_isoPositionComponent=NULL;
+    m_rendererComponent=NULL;
+    Component::cleanup();
+}
+
 bool MoveComponent::registerMessages()
 {
     CCLOG("MoveComponent::registerMessages");
@@ -65,7 +77,7 @@ bool MoveComponent::registerMessages()
         MessageManager* messageManager=MessageManager::defaultManager();
         
         messageManager->registerReceiver(m_owner, MSG_MOVE_DIRECTION, NULL, message_selector(MoveComponent::onMoveDirection),this);
-        messageManager->registerReceiver(m_owner, MSG_MOVE_DIRECTION_STOP, NULL, message_selector(MoveComponent::onMoveDirectionStop),this);
+        messageManager->registerReceiver(m_owner, MSG_MOVE_STOP, NULL, message_selector(MoveComponent::onMoveStop),this);
         messageManager->registerReceiver(m_owner, MSG_MOVE_TO, NULL, message_selector(MoveComponent::onMoveTo),this);
         
         return true;
@@ -85,35 +97,11 @@ void MoveComponent::cleanupMessages()
     Component::cleanupMessages();
 }
 
-bool MoveComponent::isMoving()
-{
-    return m_moving;
-}
-
-MoveState MoveComponent::getMoveState()
-{
-    return m_moveState;
-}
-
-CCPoint MoveComponent::movingCoordinate()
-{
-	CCPoint coord;
-//	if (m_moveState==MoveStart) {
-//		coord=m_to;
-//	}else {
-//		coord.x=m_owner.mx;
-//		coord.y=m_owner.my;
-//	}
-	return coord;
-}
-
-
-
 /**
  * 移动之前进行检查
  */
 
-bool MoveComponent::beforeMove()
+bool MoveComponent::checkMoveable()
 {
 	return true;
 }
@@ -133,20 +121,14 @@ void MoveComponent::startMove()
 
 /**
  * 停止移动
- * 取消移动动画的定时器
+ * 由于不是按格子移动，可以立即停止移动
  */
 void MoveComponent::stopMove()
 {
-//	if(m_moveState==MoveStart){
-//		m_moveState=MoveWillStop;
-//	}else {
-		CCDirector* director = CCDirector::sharedDirector();
-        CCScheduler* pScheduler = director->getScheduler();
-        pScheduler->unscheduleSelector(m_update, this);
-		m_moveState=MoveStop;
-		//NSLog(@"stop entity move schedule:update");
-		doMoveStop();
-//	}
+    CCScheduler* pScheduler = CCDirector::sharedDirector()->getScheduler();
+    pScheduler->unscheduleSelector(m_update, this);
+    m_moveState=MoveStop;
+    doMoveStop();
 }
 
 void MoveComponent::moveTo(CCPoint to)
@@ -171,7 +153,6 @@ void MoveComponent::moveTo(CCPoint to)
         setTo(to);
         moveWithDirection(directionX, directionY,true);
     }
-    
 }
 
 #pragma mark -
@@ -195,7 +176,7 @@ void MoveComponent::moveWithDirection(float direction,bool hasTo)
         setDirection(direction);
         calcSpeedVector(cosf(direction), sinf(direction));
         
-        if(beforeMove()){
+        if(checkMoveable()){
             startMove();
         }
 	}
@@ -217,14 +198,14 @@ void MoveComponent::moveWithDirection(float directionX ,float directionY,bool ha
     m_update=schedule_selector(MoveComponent::updateDirection);
     m_hasEndPosition=hasTo;
     
-    m_isDirectionDirty=true;
-    
     m_directionX=directionX;
     m_directionY=directionY;
     
+    m_direction=atan2f(directionY, directionX);
+    
 	calcSpeedVector(directionX, directionY);
     
-    if(beforeMove()){
+    if(checkMoveable()){
         startMove();
     }
 }
@@ -288,14 +269,14 @@ void MoveComponent::continueMoveWithPaths(CCArray* paths)
  */
 bool MoveComponent::beforeMovePath()
 {
-	if(beforeMove()){
+	if(checkMoveable()){
 		calcDirection();
 		return true;
 	}
 	return false;
 }
 
-void MoveComponent::restartMove()
+void MoveComponent::restartMoveWithPaths()
 {
 	m_moveState=MoveStart;
 	preparePath();
@@ -305,15 +286,26 @@ void MoveComponent::restartMove()
 /**
  * 准备移动路径
  */
-void  MoveComponent::preparePath()
+void MoveComponent::preparePath()
 {
-	m_pathIndex=m_pCurrentPaths->count()-2-m_fromIndex;
-	if (m_pathIndex<0) {
-		CCAssert(m_pathIndex<0,"paths length less 2");
-	}
-	
-	m_to=*(CCPoint*)m_pCurrentPaths->objectAtIndex(m_pathIndex);
+	m_pathIndex=getCurrentPathIndex();
+	preparePath(m_pathIndex);
+}
 
+void MoveComponent::preparePath(int pathIndex)
+{
+    
+    CCAssert(m_pathIndex>=0,"paths length less 2");
+	CCLOG("preparePath.PathIndex:%d",pathIndex);
+	m_to=*(CCPoint*)m_pCurrentPaths->objectAtIndex(m_pathIndex);
+    calcDirection();
+}
+
+/**
+ * 取得当前路径结点索引
+ */
+int MoveComponent::getCurrentPathIndex(){
+	return m_pCurrentPaths->count()-2-m_fromIndex;
 }
 
 /**
@@ -327,6 +319,14 @@ void MoveComponent::calcDirection()
 	m_directionX=m_to.x>pos.x?1:m_to.x<pos.y?-1:0;
 	m_directionY=m_to.y>pos.y?1:m_to.y<pos.y?-1:0;
 }
+
+/**
+ * 计算速度分量
+ */
+void MoveComponent::calcSpeedVector(float directionVectorX,float directionVectorY){
+    m_speedX=m_speed*directionVectorX;
+    m_speedY=m_speed*directionVectorY;
+};
 
 /**
  * 移动动画步骤
@@ -348,7 +348,6 @@ void MoveComponent::updateDirection( float delta)
 		pos.x=m_to.x;
 		pos.y=m_to.y;
 		stopMove();
-
 	}
 	owner->setPosition(pos);
 }
@@ -394,66 +393,17 @@ void MoveComponent::updatePath(float delta)
 	owner->setPosition(pos);
 }
 
-
-
-///**
-// * 设置方向
-// * 用于按方向移动
-// */
-//void setDirection:(float) dirX dirY:(float)dirY
-//{
-//	m_lastDirection=m_direction;
-//	
-//	m_direction.x=dirX;
-//	m_direction.y=dirY;
-//	
-//	m_to.x=m_owner.mx+dirX;
-//	m_to.y=m_owner.my+dirY;
-//}
-//
-///**
-// * 设置方向
-// * 用于按方向移动
-// */
-//void setDirection:(CGPoint) dir
-//{
-//	m_lastDirection=m_direction;
-//	
-//	m_direction=dir;
-//	
-//	m_to.x=m_owner.mx+dir.x;
-//	m_to.y=m_owner.my+dir.y;
-//}
-//
-//void clearMapData
-//{
-//	MapData *mapData=[MapData sharedMapData];
-//	int x,y;
-//	if (m_moveState!=MoveStop) {
-//		x=(int)m_to.x;
-//		y=(int)m_to.y;
-//	}else {
-//		x=(int)mx;
-//		y=(int)my;
-//	}
-//	
-//	for ( int i=0; i<l_; i++) {
-//		for (int j=0; j<b_; j++) {
-//			[mapData removeMapInfoWithX:x+j y:y+i entity:self];
-//		}
-//	}
-//}
 /**
  * 方向改变
  * 人物在移动时要面向不同的方向
  */
-void MoveComponent::updateMoveAnimation()
+void MoveComponent::doDirectionChange()
 {
-	//+0.5四舍五入
-	int i=floor(m_directionX+0.5)+1;
-	int j=floor(m_directionY+0.5)+1;
-	int index=directionMapping[i][j];
-	CCLOG("index:%d,%d,%d,%f,%f",index,i,j,m_directionX,m_directionY);
+	//根据方向来确定8方向。
+    //一种方法是根据角度值来确定8方向
+    //一种是直接根据公式来映射
+	int index=kDirectionMapping[this->hadap(m_direction)];
+
 	if (index>-1) {
 		CCDictionary* data=new CCDictionary();
 		data->setObject(CCString::create("move"), "name");
@@ -469,9 +419,7 @@ void MoveComponent::updateMoveAnimation()
  */
 void MoveComponent::doMoveStart()
 {
-    //todo parse direction
-    updateMoveAnimation();
-   
+    doDirectionChange();
 }
 
 /**
@@ -487,8 +435,9 @@ void MoveComponent::doMoveStop()
     this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
 
 }
+
 //处理碰撞,由子类实现。
-//TODO:触发事件。由事件接收者执行处理逻辑，比如重新寻路。、
+//TODO:触发事件。由事件接收者执行处理逻辑，比如重新寻路。
 void MoveComponent::doHit(CCPoint location)
 {
 	
@@ -500,9 +449,13 @@ void MoveComponent::onMoveDirection(Message *message)
     moveWithDirection(kmDegreesToRadians(integer->getValue()));
 }
 
-void MoveComponent::onMoveDirectionStop(Message *message)
+void MoveComponent::onMoveWithPath(Message *message)
 {
-    stopMove();
+    CCDictionary* data=message->getDictionary();
+    
+    CCArray* paths=(CCArray*)data->objectForKey("paths");
+    CCInteger* fromIndex=static_cast<CCInteger*>(data->objectForKey("fromIndex"));
+    moveWithPaths(paths,fromIndex->getValue());
 }
 
 void MoveComponent::onMoveTo(Message *message)
@@ -510,5 +463,11 @@ void MoveComponent::onMoveTo(Message *message)
     CCPoint to=static_cast<CCPointValue*>(message->getData())->getPoint();
     moveTo(to);
 }
+
+void MoveComponent::onMoveStop(Message *message)
+{
+    stopMove();
+}
+
 
 NS_CC_YHGE_END

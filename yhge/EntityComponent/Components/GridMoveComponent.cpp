@@ -135,9 +135,9 @@ void GridMoveComponent::cleanupMessages()
 }
 
 /**
- * 移动结束
+ * 停止移动
+ * 立即停止移动
  */
-
 void GridMoveComponent::stop()
 {
 	m_moveState=MoveWillStop;
@@ -354,7 +354,7 @@ void GridMoveComponent::continueMoveWithPaths(CCArray* paths)
 	m_moveState=MoveContinue;
 }
 
-void GridMoveComponent::restartPathMove()
+void GridMoveComponent::restartMoveWithPaths()
 {
 	m_moveState=MoveStart;
 	preparePath();
@@ -504,7 +504,7 @@ void GridMoveComponent::onMoveWithPath(Message *message)
 
 void GridMoveComponent::onMoveStop(Message *message)
 {
-    stop();
+    stopMove();
 }
 
 /**
@@ -535,7 +535,7 @@ void GridMoveComponent::startMove()
 
 /**
  * 停止移动
- * 取消移动动画的定时器
+ * 等待一个格子移动结束
  */
 void GridMoveComponent::stopMove()
 {
