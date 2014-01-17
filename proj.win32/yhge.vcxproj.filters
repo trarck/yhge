@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Message">
-      <UniqueIdentifier>{39d622d9-b433-4fa5-996d-7adf928f5eec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Math">
-      <UniqueIdentifier>{00c9821a-9ecb-42a2-ae78-3361ff29f418}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Event">
       <UniqueIdentifier>{616172d2-0e69-4552-abed-265d22a5d178}</UniqueIdentifier>
     </Filter>
@@ -31,14 +25,26 @@
     <Filter Include="FSM\Common">
       <UniqueIdentifier>{b2325d51-b5d8-4027-9caf-67cc35ca95a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components">
-      <UniqueIdentifier>{c74f7d50-78f6-43e5-a81e-f16f38b5f513}</UniqueIdentifier>
+    <Filter Include="include">
+      <UniqueIdentifier>{7d002152-c88b-4bb7-ae3b-0c4319dc439c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CocosExt\Support">
+      <UniqueIdentifier>{6c197f4a-be9c-4f3c-b340-370ed644e278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CocosExt\Renderer">
+      <UniqueIdentifier>{8624b06b-3750-47ac-b83f-23f63bc44a2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EntityComponent">
+      <UniqueIdentifier>{5025a73a-7b49-4b5b-810f-ae459a5fbb8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Message">
+      <UniqueIdentifier>{39d622d9-b433-4fa5-996d-7adf928f5eec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{00c9821a-9ecb-42a2-ae78-3361ff29f418}</UniqueIdentifier>
     </Filter>
     <Filter Include="Isometric">
       <UniqueIdentifier>{1a0c2be3-7ce0-4ae6-96bb-b041e5c33484}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include">
-      <UniqueIdentifier>{7d002152-c88b-4bb7-ae3b-0c4319dc439c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Isometric\tile">
       <UniqueIdentifier>{724dec8b-8356-4a03-b234-70daf5e4a2af}</UniqueIdentifier>
@@ -61,11 +67,11 @@
     <Filter Include="Isometric\tile\renderer">
       <UniqueIdentifier>{e3431a2d-dc4d-4af4-8da5-ac01d38f9c27}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CocosExt\Support">
-      <UniqueIdentifier>{6c197f4a-be9c-4f3c-b340-370ed644e278}</UniqueIdentifier>
+    <Filter Include="EntityComponent\Components">
+      <UniqueIdentifier>{b7d420c2-1f12-48c1-b7d2-0173ad13b83b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CocosExt\Renderer">
-      <UniqueIdentifier>{8624b06b-3750-47ac-b83f-23f63bc44a2c}</UniqueIdentifier>
+    <Filter Include="EntityComponent\Properties">
+      <UniqueIdentifier>{c6104d7f-8019-4a9e-b36f-c2a0fa17ec16}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -95,24 +101,6 @@
     </ClInclude>
     <ClInclude Include="..\yhge\CocosExt\Actions\CCParabolaMove.h">
       <Filter>CocosExt\Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Components\AnimationComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Components\AttackComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Components\AutoAttackComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Components\Component.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Components\ManualAttackComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Components\SimpleMoveComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\yhge\Event\Event.h">
       <Filter>Event</Filter>
@@ -306,26 +294,47 @@
     <ClInclude Include="..\yhge\Isometric\ISOCamera.h">
       <Filter>Isometric</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\Components\MoveComponent.h">
-      <Filter>Components</Filter>
+    <ClInclude Include="..\yhge\EntityComponent\Entity.h">
+      <Filter>EntityComponent</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\Components\ComponentMessageDefine.h">
-      <Filter>Components</Filter>
+    <ClInclude Include="..\yhge\EntityComponent\Components\AnimationComponent.h">
+      <Filter>EntityComponent\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\Components\Entity.h">
-      <Filter>Components</Filter>
+    <ClInclude Include="..\yhge\EntityComponent\Components\AttackComponent.h">
+      <Filter>EntityComponent\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\Components\GridMoveComponent.h">
-      <Filter>Components</Filter>
+    <ClInclude Include="..\yhge\EntityComponent\Components\AutoAttackComponent.h">
+      <Filter>EntityComponent\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\Components\ISOPositionComponent.h">
-      <Filter>Components</Filter>
+    <ClInclude Include="..\yhge\EntityComponent\Components\Component.h">
+      <Filter>EntityComponent\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\Components\RendererComponent.h">
-      <Filter>Components</Filter>
+    <ClInclude Include="..\yhge\EntityComponent\Components\ComponentMessageDefine.h">
+      <Filter>EntityComponent\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\Components\SpriteRendererComponent.h">
-      <Filter>Components</Filter>
+    <ClInclude Include="..\yhge\EntityComponent\Components\GridMoveComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\ISOPositionComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\ManualAttackComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\MoveComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\RendererComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\SpriteRendererComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Properties\IsometricProperty.h">
+      <Filter>EntityComponent\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\entity_component.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -355,24 +364,6 @@
     </ClCompile>
     <ClCompile Include="..\yhge\CocosExt\Actions\CCParabolaMove.cpp">
       <Filter>CocosExt\Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Components\AnimationComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Components\AttackComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Components\AutoAttackComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Components\Component.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Components\ManualAttackComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Components\SimpleMoveComponent.cpp">
-      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="..\yhge\Event\Event.cpp">
       <Filter>Event</Filter>
@@ -521,23 +512,41 @@
     <ClCompile Include="..\yhge\Isometric\ISOCamera.cpp">
       <Filter>Isometric</Filter>
     </ClCompile>
-    <ClCompile Include="..\yhge\Components\MoveComponent.cpp">
-      <Filter>Components</Filter>
+    <ClCompile Include="..\yhge\EntityComponent\Entity.cpp">
+      <Filter>EntityComponent</Filter>
     </ClCompile>
-    <ClCompile Include="..\yhge\Components\Entity.cpp">
-      <Filter>Components</Filter>
+    <ClCompile Include="..\yhge\EntityComponent\Components\AnimationComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\yhge\Components\GridMoveComponent.cpp">
-      <Filter>Components</Filter>
+    <ClCompile Include="..\yhge\EntityComponent\Components\AttackComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\yhge\Components\ISOPositionComponent.cpp">
-      <Filter>Components</Filter>
+    <ClCompile Include="..\yhge\EntityComponent\Components\AutoAttackComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\yhge\Components\RendererComponent.cpp">
-      <Filter>Components</Filter>
+    <ClCompile Include="..\yhge\EntityComponent\Components\Component.cpp">
+      <Filter>EntityComponent\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\yhge\Components\SpriteRendererComponent.cpp">
-      <Filter>Components</Filter>
+    <ClCompile Include="..\yhge\EntityComponent\Components\GridMoveComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\ISOPositionComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\ManualAttackComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\MoveComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\RendererComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\SpriteRendererComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Properties\IsometricProperty.cpp">
+      <Filter>EntityComponent\Properties</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

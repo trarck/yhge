@@ -23,19 +23,20 @@
     <ClInclude Include="..\yhge\CocosExt\CCSelectorWrap.h" />
     <ClInclude Include="..\yhge\CocosExt\Support\base64.h" />
     <ClInclude Include="..\yhge\CocosExt\Support\ccCArray.h" />
-    <ClInclude Include="..\yhge\Components\AnimationComponent.h" />
-    <ClInclude Include="..\yhge\Components\AttackComponent.h" />
-    <ClInclude Include="..\yhge\Components\AutoAttackComponent.h" />
-    <ClInclude Include="..\yhge\Components\Component.h" />
-    <ClInclude Include="..\yhge\Components\ComponentMessageDefine.h" />
-    <ClInclude Include="..\yhge\Components\Entity.h" />
-    <ClInclude Include="..\yhge\Components\GridMoveComponent.h" />
-    <ClInclude Include="..\yhge\Components\ISOPositionComponent.h" />
-    <ClInclude Include="..\yhge\Components\ManualAttackComponent.h" />
-    <ClInclude Include="..\yhge\Components\MoveComponent.h" />
-    <ClInclude Include="..\yhge\Components\RendererComponent.h" />
-    <ClInclude Include="..\yhge\Components\SimpleMoveComponent.h" />
-    <ClInclude Include="..\yhge\Components\SpriteRendererComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\AnimationComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\AttackComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\AutoAttackComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\Component.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\ComponentMessageDefine.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\GridMoveComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\ISOPositionComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\ManualAttackComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\MoveComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\RendererComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\SpriteRendererComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Entity.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Properties\IsometricProperty.h" />
+    <ClInclude Include="..\yhge\entity_component.h" />
     <ClInclude Include="..\yhge\Event\Event.h" />
     <ClInclude Include="..\yhge\Event\EventHandle.h" />
     <ClInclude Include="..\yhge\Event\EventHandleD.h" />
@@ -111,18 +112,18 @@
     <ClCompile Include="..\yhge\CocosExt\CCSelectorWrap.cpp" />
     <ClCompile Include="..\yhge\CocosExt\Support\base64.cpp" />
     <ClCompile Include="..\yhge\CocosExt\Support\ccCArray.cpp" />
-    <ClCompile Include="..\yhge\Components\AnimationComponent.cpp" />
-    <ClCompile Include="..\yhge\Components\AttackComponent.cpp" />
-    <ClCompile Include="..\yhge\Components\AutoAttackComponent.cpp" />
-    <ClCompile Include="..\yhge\Components\Component.cpp" />
-    <ClCompile Include="..\yhge\Components\Entity.cpp" />
-    <ClCompile Include="..\yhge\Components\GridMoveComponent.cpp" />
-    <ClCompile Include="..\yhge\Components\ISOPositionComponent.cpp" />
-    <ClCompile Include="..\yhge\Components\ManualAttackComponent.cpp" />
-    <ClCompile Include="..\yhge\Components\MoveComponent.cpp" />
-    <ClCompile Include="..\yhge\Components\RendererComponent.cpp" />
-    <ClCompile Include="..\yhge\Components\SimpleMoveComponent.cpp" />
-    <ClCompile Include="..\yhge\Components\SpriteRendererComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\AnimationComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\AttackComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\AutoAttackComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\Component.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\GridMoveComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\ISOPositionComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\ManualAttackComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\MoveComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\RendererComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\SpriteRendererComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Entity.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Properties\IsometricProperty.cpp" />
     <ClCompile Include="..\yhge\Event\Event.cpp" />
     <ClCompile Include="..\yhge\Event\EventHandle.cpp" />
     <ClCompile Include="..\yhge\Event\EventHandleD.cpp" />
@@ -171,7 +172,7 @@
     <ClCompile Include="..\yhge\Message\MessageTarget.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FC5564E4-EE35-49E8-90C1-4DE887E0D8E0}</ProjectGuid>
+    <ProjectGuid>{76A39BB2-9B84-4C65-98A5-654D86B86F2A}</ProjectGuid>
     <RootNamespace>test_win32</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>libyhge</ProjectName>
