@@ -20,10 +20,6 @@ public:
     virtual bool registerMessages();
     
     virtual void cleanupMessages();
-    
-    void onRunAction(Message* message);
-    
-    void onStopAction(Message* message);
 
 public:
 
