@@ -1,5 +1,7 @@
 #include "Entity.h"
 
+#include "Components/Component.h"
+
 NS_CC_YHGE_BEGIN
 
 Entity::Entity()

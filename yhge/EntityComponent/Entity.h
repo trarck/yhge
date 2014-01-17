@@ -3,9 +3,10 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
-#include "Component.h"
 
 NS_CC_YHGE_BEGIN
+
+class Component;
 
 /**
  * 组件系统基类

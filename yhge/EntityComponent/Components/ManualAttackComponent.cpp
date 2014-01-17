@@ -1,7 +1,7 @@
 #include "ManualAttackComponent.h"
-#include "CCMessageManager.h"
-#include "GameMessages.h"
+#include <yhge/message.h>
 #include <yhge/EntityComponent/Entity.h>
+#include "ComponentMessageDefine.h"
 
 USING_NS_CC;
 

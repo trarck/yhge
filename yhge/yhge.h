@@ -33,6 +33,6 @@
 #include "isometric.h"
 
 //components
-#include "Components/Component.h"
+#include "entity_component.h"
 
 #endif //COCOS_YHGE_H_

@@ -20,14 +20,22 @@ static int kDirectionMapping[8]={
 
 MoveComponent::MoveComponent()
 :m_speed(0.0f)
+,m_speedX(0.0f)
+,m_speedY(0.0f)
 ,m_direction(0.0f)
 ,m_directionX(0)
 ,m_directionY(0)
+,m_directionFlagX(0)
+,m_directionFlagY(0)
+,m_to(CCPointZero)
 ,m_moving(false)
-,m_to(ccp(0.0f, 0.0f))
+,m_moveState(MoveIdle)
+,m_fromIndex(0)
 ,m_hasEndPosition(false)
 ,m_pCurrentPaths(NULL)
 ,m_pNextPaths(NULL)
+,m_pathIndex(0)
+,m_update(NULL)
 {
     CCLOG("MoveComponent create");
 	m_name="MoveComponent";

@@ -8,14 +8,6 @@
 
 NS_CC_YHGE_BEGIN
 
-typedef enum  {
-    MoveIdle=0,
-	MoveStop,
-	MoveStart,
-	MoveWillStop,
-	MoveContinue
-} MoveState;
-
 /**
  * 按地图的格子移动
  */
@@ -189,6 +181,14 @@ public:
      * 设置方向。
      */
     virtual void setDirection(int directionX ,int directionY);
+    
+    typedef enum  {
+        MoveIdle=0,
+        MoveStop,
+        MoveStart,
+        MoveWillStop,
+        MoveContinue
+    } MoveState;
     
     /**
      * 是否在移动

@@ -8,17 +8,11 @@
 
 NS_CC_YHGE_BEGIN
 
-typedef enum  {
-	MoveStop=0,
-	MoveStart,
-	MoveWillStop,
-	MoveContinue
-} MoveState;
-
 /**
  * 移动组件
  * 直接移动屏幕坐标。
- * 万向移动
+ * 万向移动.
+ * 不是按格子，如果改变方向立即生效。
  */
 class MoveComponent : public Component{
 
@@ -231,6 +225,15 @@ public:
     
 public:
     
+    typedef enum  {
+        MoveIdle=0,
+        MoveStop,
+        MoveStart,
+        MoveWillStop,
+        MoveContinue
+    } MoveState;
+    
+    
     inline bool isMoving()
     {
         return m_moving;
@@ -320,8 +323,8 @@ protected:
     float m_directionX;//vector
     float m_directionY;
     
-    //下个移动方向
-    float m_nextDirection;
+//    //下个移动方向
+//    float m_nextDirection;
 
     //移动方向标记
     int m_directionFlagX;
