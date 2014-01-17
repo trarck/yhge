@@ -80,7 +80,6 @@
 		57C337621888C3A1008B5618 /* ManualAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C3374F1888C3A1008B5618 /* ManualAttackComponent.cpp */; };
 		57C337631888C3A1008B5618 /* MoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337511888C3A1008B5618 /* MoveComponent.cpp */; };
 		57C337641888C3A1008B5618 /* RendererComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337531888C3A1008B5618 /* RendererComponent.cpp */; };
-		57C337651888C3A1008B5618 /* SimpleMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337551888C3A1008B5618 /* SimpleMoveComponent.cpp */; };
 		57C337661888C3A1008B5618 /* SpriteRendererComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337571888C3A1008B5618 /* SpriteRendererComponent.cpp */; };
 		57C337671888C3A1008B5618 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337591888C3A1008B5618 /* Entity.cpp */; };
 		57C3376B1888CC67008B5618 /* IsometricProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337691888CC67008B5618 /* IsometricProperty.cpp */; };
@@ -268,8 +267,6 @@
 		57C337521888C3A1008B5618 /* MoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveComponent.h; sourceTree = "<group>"; };
 		57C337531888C3A1008B5618 /* RendererComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererComponent.cpp; sourceTree = "<group>"; };
 		57C337541888C3A1008B5618 /* RendererComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RendererComponent.h; sourceTree = "<group>"; };
-		57C337551888C3A1008B5618 /* SimpleMoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleMoveComponent.cpp; sourceTree = "<group>"; };
-		57C337561888C3A1008B5618 /* SimpleMoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleMoveComponent.h; sourceTree = "<group>"; };
 		57C337571888C3A1008B5618 /* SpriteRendererComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteRendererComponent.cpp; sourceTree = "<group>"; };
 		57C337581888C3A1008B5618 /* SpriteRendererComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteRendererComponent.h; sourceTree = "<group>"; };
 		57C337591888C3A1008B5618 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
@@ -674,8 +671,6 @@
 				57C337521888C3A1008B5618 /* MoveComponent.h */,
 				57C337531888C3A1008B5618 /* RendererComponent.cpp */,
 				57C337541888C3A1008B5618 /* RendererComponent.h */,
-				57C337551888C3A1008B5618 /* SimpleMoveComponent.cpp */,
-				57C337561888C3A1008B5618 /* SimpleMoveComponent.h */,
 				57C337571888C3A1008B5618 /* SpriteRendererComponent.cpp */,
 				57C337581888C3A1008B5618 /* SpriteRendererComponent.h */,
 			);
@@ -766,7 +761,6 @@
 				577A7932186BF56500F1B5D5 /* MessageManager.cpp in Sources */,
 				576E3FB7187D4BFB00745A0A /* ISOTileObject.cpp in Sources */,
 				577A792F186BF56500F1B5D5 /* DelayMessageManager.cpp in Sources */,
-				57C337651888C3A1008B5618 /* SimpleMoveComponent.cpp in Sources */,
 				576E3FE7187E47F300745A0A /* ISOComponentNode.cpp in Sources */,
 				576E3FD0187D4BFB00745A0A /* ZIndexNode.cpp in Sources */,
 				576E3FCC187D4BFB00745A0A /* ISOXMLParser.cpp in Sources */,
