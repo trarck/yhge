@@ -1,0 +1,6 @@
+#ifndef COCOS_YHGE_ENTITY_COMPONENT_H_
+#define COCOS_YHGE_ENTITY_COMPONENT_H_
+
+#include "EntityComponent/Entity.h"
+
+#endif //COCOS_YHGE_ENTITY_COMPONENT_H_

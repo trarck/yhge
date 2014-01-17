@@ -6,7 +6,7 @@
 #include <yhge/message.h>
 #include <yhge/CocosExt/CCGeometryValue.h>
 #include "ComponentMessageDefine.h"
-#include "Entity.h"
+#include <yhge/EntityComponent/Entity.h>
 
 USING_NS_CC;
 

@@ -2,7 +2,7 @@
 #include <yhge/message.h>
 #include <yhge/CocosExt/CCDefaultTexture.h>
 #include "ComponentMessageDefine.h"
-#include "Entity.h"
+#include <yhge/EntityComponent/Entity.h>
 
 USING_NS_CC;
 
@@ -14,7 +14,6 @@ SpriteRendererComponent::SpriteRendererComponent()
 :m_spriteRenderer(NULL)
 {
     CCLOG("SpriteRendererComponent create");
-    m_name="SpriteRendererComponent";
 }
 
 SpriteRendererComponent::~SpriteRendererComponent()

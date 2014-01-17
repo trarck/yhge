@@ -1,5 +1,5 @@
-#ifndef YHGE_COMPONENTS_SpriteRendererComponent_H_
-#define YHGE_COMPONENTS_SpriteRendererComponent_H_
+#ifndef YHGE_ENTITYCOMPONENT_COMPONENTS_SpriteRendererComponent_H_
+#define YHGE_ENTITYCOMPONENT_COMPONENTS_SpriteRendererComponent_H_
 
 #include "cocos2d.h"
 #include "RendererComponent.h"
@@ -46,4 +46,4 @@ protected:
 
 NS_CC_YHGE_END
 
-#endif //YHGE_COMPONENTS_SpriteRendererComponent_H_
+#endif //YHGE_ENTITYCOMPONENT_COMPONENTS_SpriteRendererComponent_H_
