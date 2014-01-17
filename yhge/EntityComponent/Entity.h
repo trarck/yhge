@@ -21,6 +21,8 @@ public:
     
     virtual bool init(void);
     
+    CREATE_FUNC(Entity);
+    
     //==========================组件操作====================//
     /**
      * 取得第一个名子为name的组件

@@ -6,6 +6,7 @@
 
 NS_CC_YHGE_BEGIN
 
+class RendererComponent;
 
 class ISOPositionComponent : public Component 
 {
@@ -15,11 +16,24 @@ public:
     
     ~ISOPositionComponent();
     
-    virtual bool init();
+    /**
+     * 设置
+     */
+    virtual void setup();
+    
+    /**
+     * 消除
+     */
+    virtual void cleanup();
     
     virtual bool registerMessages();
     
     virtual void cleanupMessages();
+    
+    /**
+     * 更新渲染坐标
+     */
+    void updateRendererPosition();
     
     /**
      * 设置坐标
@@ -28,13 +42,26 @@ public:
     {
         m_x=x;
         m_y=y;
+        updateRendererPosition();
     }
+    
+    /**
+     * 设置坐标
+     */
+    inline void setCoordinate(const CCPoint& coord)
+    {
+        m_x=coord.x;
+        m_y=coord.y;
+        updateRendererPosition();
+    }
+    
     
     inline void setCoordinate(float x,float y,float z)
     {
         m_x=x;
         m_y=y;
         m_z=z;
+        updateRendererPosition();
     }
     
     inline void setX(float x)
@@ -72,6 +99,10 @@ protected:
     float m_x;
     float m_y;
     float m_z;
+    
+    RendererComponent* m_rendererComponent;
+    
+    bool m_dirty;
     
 };
 
