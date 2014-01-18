@@ -44,38 +44,6 @@
 
 NS_CC_YHGE_BEGIN
 
-typedef struct T_CCPointF{
-	float x;
-    float y;
-} ISOPointF;
-
-typedef struct T_CCPointI{
-	int x;
-    int y;
-} ISOPointI;
-
-static int sTileWidth=0,sTileHeight=0,sXUnit=0,sYUnit=0,sZUnit=0;
-
-static inline void initTileSize(int tileWidth,int tileHeight)
-{
-	sTileWidth=tileWidth;
-	sTileHeight=tileHeight;
-
-	sXUnit=tileWidth/2;
-	sYUnit=tileHeight/2;
-	sZUnit=tileHeight;
-}
-
-static inline void initCoordinateUnit(int xUnit,int yUnit,int zUnit)
-{
-	sXUnit=xUnit;
-	sYUnit=yUnit;
-	sZUnit=zUnit;
-
-	sTileWidth=xUnit*2;
-	sTileHeight=yUnit*2;
-}
-
 //==============使用传值的方式==========================//
 static inline CCPoint isoViewToGame2F(float x,float y)
 {
