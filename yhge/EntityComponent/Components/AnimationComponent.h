@@ -6,6 +6,8 @@
 
 NS_CC_YHGE_BEGIN
 
+class RendererComponent;
+
 class AnimationComponent : public Component
 {
 public:
@@ -19,6 +21,16 @@ public:
 	virtual bool init(const std::string&  file);
     virtual bool init(CCDictionary* data);
     
+    /**
+     * 设置
+     */
+    virtual void setup();
+    
+    /**
+     * 消除
+     */
+    virtual void cleanup();
+
     virtual bool registerMessages();
     virtual void cleanupMessages();
 
@@ -58,8 +70,39 @@ public:
      * 移除一个动画
      */
 	void removeAnimationNamed(const std::string& name);
-    
-    
+
+    /**
+     * 播放一个动画
+     */
+    void runAnimation(CCAnimation* animation);
+
+    /**
+     * 播放一个动画
+     */
+    inline void runAnimation(const std::string& name)
+    {
+        runAnimation(animationForName(name));
+    }
+
+    /**
+     * 播放一个动画
+     */
+    inline void runAnimation(const std::string& name,int index)
+    {
+        runAnimation(animationForName(name,index));
+    }
+
+    /**
+     * 播放一个动画
+     */
+    inline void runAnimation(const std::string& name,const std::string& key)
+    {
+        runAnimation(animationForName(name,key));
+    }
+
+    /**
+     * 处理动画改变事件
+     */
     void onChangeAnimation(Message* message);
     
     /**
@@ -124,6 +167,8 @@ protected:
     CCAnimation* m_lastAnimation;
     
     CCAction* m_lastAction;
+
+    RendererComponent* m_rendererComponent;
 };
 
 NS_CC_YHGE_END

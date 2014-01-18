@@ -3,6 +3,7 @@
 
 #include "EntityComponent/Entity.h"
 
+#include "EntityComponent/Components/ComponentMessageDefine.h"
 #include "EntityComponent/Components/Component.h"
 #include "EntityComponent/Components/RendererComponent.h"
 #include "EntityComponent/Components/SpriteRendererComponent.h"

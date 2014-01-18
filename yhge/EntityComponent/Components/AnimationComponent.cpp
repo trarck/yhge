@@ -2,6 +2,7 @@
 #include <yhge/message.h>
 #include "ComponentMessageDefine.h"
 #include <yhge/EntityComponent/Entity.h>
+#include "RendererComponent.h"
 
 USING_NS_CC;
 
@@ -13,6 +14,7 @@ AnimationComponent::AnimationComponent()
 :m_animations(NULL)
 ,m_lastAnimation(NULL)
 ,m_lastAction(NULL)
+,m_rendererComponent(NULL)
 {
 	CCLOG("AnimationComponent create");
 	m_name="AnimationComponent";
@@ -42,6 +44,18 @@ bool AnimationComponent::init(CCDictionary* data)
 {
 	init();
 	return true;
+}
+
+void AnimationComponent::setup()
+{
+    Component::setup();
+    m_rendererComponent=static_cast<RendererComponent*>(m_owner->getComponent("RendererComponent"));
+}
+
+void AnimationComponent::cleanup()
+{
+    m_rendererComponent=NULL;
+    Component::cleanup();
 }
 
 bool AnimationComponent::registerMessages()
@@ -130,6 +144,28 @@ void AnimationComponent::removeAnimationNamed(const std::string& name)
 	m_animations->removeObjectForKey(name);
 }
 
+/**
+ * 播放一个动画
+ */
+void AnimationComponent::runAnimation(CCAnimation* animation)
+{
+    if(animation && m_lastAnimation!=animation){
+        CCAction* action=createActionFromAnimation(animation);
+
+        if (m_lastAction)
+        {
+            m_rendererComponent->runAction(m_lastAction);
+        }
+        
+        //TODO 如果性能比较低，可以直接调用renderer component的相关函数
+        //通知render run action
+        m_rendererComponent->runAction(action);
+        
+        setLastAction(action);
+        setLastAnimation(animation);
+    }
+}
+
 void AnimationComponent::onChangeAnimation(Message *message)
 {
     CCDictionary* data=message->getDictionary();
@@ -140,16 +176,8 @@ void AnimationComponent::onChangeAnimation(Message *message)
     
     CCAnimation* animation= animationForName(animationName->getCString(),direction);
     
-    if(animation && m_lastAnimation!=animation){
-        CCAction* action=createActionFromAnimation(animation);
-        action->setTag(kEightDirectionAction);
-        
-        //TODO 如果性能比较低，可以直接调用renderer component的相关函数
-        //通知render run action
-        this->getMessageManager()->dispatchMessage(MSG_RUN_ACTION, this, m_owner, action);
-        
-        setLastAction(action);
-        setLastAnimation(animation);
+    if(animation){
+        runAnimation(animation);
     }else {
         CCLOG("unknow animation name %s action is null",animationName->getCString());
     }
