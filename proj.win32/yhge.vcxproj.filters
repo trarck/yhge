@@ -336,6 +336,9 @@
     <ClInclude Include="..\yhge\entity_component.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\ISOStaticCoordinate.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -547,6 +550,9 @@
     </ClCompile>
     <ClCompile Include="..\yhge\EntityComponent\Properties\IsometricProperty.cpp">
       <Filter>EntityComponent\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinate.cpp">
+      <Filter>Isometric</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

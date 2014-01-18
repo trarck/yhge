@@ -55,6 +55,7 @@
     <ClInclude Include="..\yhge\Isometric\Coordinate.h" />
     <ClInclude Include="..\yhge\Isometric\ISOCamera.h" />
     <ClInclude Include="..\yhge\Isometric\ISOCoordinate.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOStaticCoordinate.h" />
     <ClInclude Include="..\yhge\Isometric\tile\base\ISOMapObject.h" />
     <ClInclude Include="..\yhge\Isometric\tile\base\ISOObjectGroup.h" />
     <ClInclude Include="..\yhge\Isometric\tile\base\ISOTile.h" />
@@ -134,6 +135,7 @@
     <ClCompile Include="..\yhge\FSM\Common\FSMState.cpp" />
     <ClCompile Include="..\yhge\Isometric\Coordinate.cpp" />
     <ClCompile Include="..\yhge\Isometric\ISOCamera.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinate.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\base\ISOMapObject.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\base\ISOObjectGroup.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\base\ISOTile.cpp" />
@@ -172,7 +174,7 @@
     <ClCompile Include="..\yhge\Message\MessageTarget.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{76A39BB2-9B84-4C65-98A5-654D86B86F2A}</ProjectGuid>
+    <ProjectGuid>{FC5564E4-EE35-49E8-90C1-4DE887E0D8E0}</ProjectGuid>
     <RootNamespace>test_win32</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>libyhge</ProjectName>
