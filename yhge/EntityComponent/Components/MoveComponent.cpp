@@ -305,7 +305,7 @@ void MoveComponent::preparePath(int pathIndex)
     
     CCAssert(m_pathIndex>=0,"paths length less 2");
 	CCLOG("preparePath.PathIndex:%d",pathIndex);
-	m_to=*(CCPoint*)m_pCurrentPaths->objectAtIndex(m_pathIndex);
+    m_to= static_cast<CCPointValue*>(m_pCurrentPaths->objectAtIndex(m_pathIndex))->getPoint();
     calcDirection();
 }
 
@@ -389,7 +389,7 @@ void MoveComponent::updatePath(float delta)
 			}
 		}else if (--m_pathIndex>=0 && m_moveState==MoveStart) {
 			//进行下一个格子
-			m_to=*(CCPoint*)m_pCurrentPaths->objectAtIndex(m_pathIndex);
+            m_to= static_cast<CCPointValue*>(m_pCurrentPaths->objectAtIndex(m_pathIndex))->getPoint();
 			beforeMovePath();
 		}else {
 			//stop move

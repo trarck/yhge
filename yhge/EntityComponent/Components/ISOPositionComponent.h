@@ -42,7 +42,6 @@ public:
     {
         m_x=x;
         m_y=y;
-        updateRendererPosition();
     }
     
     /**
@@ -52,7 +51,6 @@ public:
     {
         m_x=coord.x;
         m_y=coord.y;
-        updateRendererPosition();
     }
     
     
@@ -61,9 +59,37 @@ public:
         m_x=x;
         m_y=y;
         m_z=z;
+    }
+    
+    /**
+     * 设置坐标
+     */
+    inline void setCoordinateAndUpdate(float x,float y)
+    {
+        m_x=x;
+        m_y=y;
         updateRendererPosition();
     }
     
+    /**
+     * 设置坐标
+     */
+    inline void setCoordinateAndUpdate(const CCPoint& coord)
+    {
+        m_x=coord.x;
+        m_y=coord.y;
+        updateRendererPosition();
+    }
+    
+    
+    inline void setCoordinateAndUpdate(float x,float y,float z)
+    {
+        m_x=x;
+        m_y=y;
+        m_z=z;
+        updateRendererPosition();
+    }
+
     inline void setX(float x)
     {
         m_x = x;

@@ -171,6 +171,11 @@ public:
      * 处理按路径移动消息。
      */
     virtual void onMoveWithPath(Message* message);
+
+    /**
+     * 处理按路径移动消息。
+     */
+    virtual void onMoveWithPathFrom(Message* message);
     
     /**
      * 处理移动结束消息。

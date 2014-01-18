@@ -22,6 +22,7 @@ enum
     MSG_MOVE_DIRECTION_TO,
     MSG_MOVE_DIRECTION_STOP,
 	MSG_MOVE_PATH,
+    MSG_MOVE_PATH_FROM,
     MSG_MOVE_STOP,
     //sprite renderer
     MSG_RUN_ACTION,

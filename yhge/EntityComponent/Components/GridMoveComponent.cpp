@@ -113,6 +113,7 @@ bool GridMoveComponent::registerMessages()
         
         messageManager->registerReceiver(m_owner, MSG_MOVE_DIRECTION, NULL, message_selector(GridMoveComponent::onMoveWithDirection),this);
         messageManager->registerReceiver(m_owner, MSG_MOVE_PATH, NULL, message_selector(GridMoveComponent::onMoveWithPath),this);
+        messageManager->registerReceiver(m_owner, MSG_MOVE_PATH_FROM, NULL, message_selector(GridMoveComponent::onMoveWithPathFrom),this);
         messageManager->registerReceiver(m_owner, MSG_MOVE_STOP, NULL, message_selector(GridMoveComponent::onMoveStop),this);
         
         return true;
@@ -129,6 +130,7 @@ void GridMoveComponent::cleanupMessages()
     
     messageManager->removeReceiver(m_owner, MSG_MOVE_DIRECTION);
     messageManager->removeReceiver(m_owner, MSG_MOVE_PATH);
+    messageManager->removeReceiver(m_owner, MSG_MOVE_PATH_FROM);
     messageManager->removeReceiver(m_owner, MSG_MOVE_STOP);
     
     Component::cleanupMessages();
@@ -256,9 +258,8 @@ void GridMoveComponent::calcSpeedVector(int directionX,int directionY)
 void GridMoveComponent::calcTo()
 {
     if (m_isoPositionComponent) {
-        float mx=m_isoPositionComponent->getX();
-        float my=m_isoPositionComponent->getY();
-        m_isoPositionComponent->setCoordinate(mx+m_directionX,my+m_directionY);
+        m_to.x=m_isoPositionComponent->getX()+m_directionX;
+        m_to.y=m_isoPositionComponent->getY()+m_directionY;
     }
 }
 
@@ -322,12 +323,6 @@ void GridMoveComponent::moveWithPaths(CCArray* paths)
 
 void GridMoveComponent::moveWithPaths(CCArray* paths,int fromIndex)
 {
-	CCObject* pObj=NULL;
-	CCARRAY_FOREACH(paths,pObj){
-		CCPoint* pos=(CCPoint*)pObj;
-		CCLOG("x=%f,y=%f",pos->x,pos->y);
-	}
-
 	m_update=schedule_selector(GridMoveComponent::updatePath);
 
 	if(m_moveState==MoveStop){
@@ -377,7 +372,7 @@ void  GridMoveComponent::preparePath(int pathIndex)
 {
 	CCAssert(m_pathIndex>=0,"paths length less 2");
 	CCLOG("preparePath.iPathIndex:%d",pathIndex);
-	m_to=*(CCPoint*)m_pCurrentPaths->objectAtIndex(pathIndex);
+    m_to=  static_cast<CCPointValue*>(m_pCurrentPaths->objectAtIndex(pathIndex))->getPoint();
 	calcDirection();
 }
 
@@ -412,6 +407,7 @@ void GridMoveComponent::updatePath(float delta)
 	}else{
 		//一个路径结点移动完成
 		renderer->setPosition(isoGameToView2F(m_to.x,m_to.y));
+        //设置地图坐标
 		if (m_moveState==MoveContinue) {
 			if (m_pNextPaths!=NULL) {
 				m_moveState=MoveStart;
@@ -495,6 +491,12 @@ void GridMoveComponent::onMoveWithDirection(Message *message)
 
 void GridMoveComponent::onMoveWithPath(Message *message)
 {
+    CCArray* paths=(CCArray*)message->getData();
+    moveWithPaths(paths);
+}
+
+void GridMoveComponent::onMoveWithPathFrom(Message *message)
+{   
     CCDictionary* data=message->getDictionary();
     
     CCArray* paths=(CCArray*)data->objectForKey("paths");
@@ -553,7 +555,7 @@ void GridMoveComponent::prepareMove()
 {
 	calcMoveDuration(m_directionX,m_directionY);
 	calcSpeedVector(m_directionX,m_directionY);
-    //	((WorldEntity*) m_owner)->setCoordinate(m_to);
+    m_isoPositionComponent->setCoordinate(m_to);
 }
 
 void GridMoveComponent::continueUpdate()
