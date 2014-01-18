@@ -61,7 +61,7 @@ public:
     /**
      * 按方向移动
      */
-    void moveWithDirection(int directionX,int directionY);
+    virtual void moveWithDirection(int directionX,int directionY);
     
     /**
      * 继续方向移动
@@ -96,18 +96,19 @@ public:
     
     /**
      * 按方向移动时的定时更新器
+     * 由于每帧都执行，这里尽量不使用虚函数。所以把起动函数设置为虚函数
      */
     void updateDirection(float delta);
     
     /**
      * 按路径移动
      */
-    void moveWithPaths(CCArray* paths);
+    virtual void moveWithPaths(CCArray* paths);
     
     /**
      * 按路径移动
      */
-	void moveWithPaths(CCArray* paths, int fromIndex);
+	virtual void moveWithPaths(CCArray* paths, int fromIndex);
     
     /**
      * 继续按路径移动
@@ -138,6 +139,7 @@ public:
 
     /**
      * 按路径移动时的定时更新器
+     * 由于每帧都执行，这里尽量不使用虚函数。所以把起动函数设置为虚函数
      */
     void updatePath(float delta);
     
@@ -194,6 +196,12 @@ public:
         MoveWillStop,
         MoveContinue
     } MoveState;
+
+    typedef enum  {
+        kMoveNone=0,
+        kMoveDirection,
+        kMovePath
+    } MoveType;
     
     /**
      * 是否在移动
@@ -210,8 +218,17 @@ public:
     {
         return m_moveState;
     }
-
 	
+    void setMoveType(MoveType moveType)
+    {
+        m_moveType = moveType;
+    }
+
+    MoveType getMoveType()
+    {
+        return m_moveType;
+    }
+
     inline float getSpeed()
     {
         return m_speed;
@@ -316,13 +333,25 @@ public:
     
 protected:
     
-	void startMove();
+	virtual void startMove();
 	void prepareMove();
 	void continueUpdate();
 	void resetState();
+    
+    //开启更新定时器。为了使update不是虚函数，这里使用虚函数
+    virtual void startMoveUpdateSchedule();
+    virtual void stopMoveUpdateSchedule();
+
+    virtual SEL_SCHEDULE getUpdateDirectionHandle();
+    virtual SEL_SCHEDULE getUpdatePathHandle();
 
 protected:
-    
+    //移动状态
+	MoveState m_moveState;
+
+    //移动类型
+    MoveType m_moveType;
+
 	//地图坐标系的速度
 	float m_speed;
     
@@ -358,9 +387,6 @@ protected:
 
     //移动到地图的哪个格子。地图坐标
     CCPoint m_to;
-    
-    //移动状态
-	MoveState m_moveState;
     
     //是不是正在移动
 	bool m_moving;

@@ -38,7 +38,9 @@ static float MoveDurationMap[3][3]={
  * 原始数据使用地图坐标，移动过程(动画)使用屏幕坐标
  */
 GridMoveComponent::GridMoveComponent()
-:m_speed(0.0f)
+:m_moveState(MoveIdle)
+,m_moveType(kMoveNone)
+,m_speed(0.0f)
 ,m_speedX(0.0f)
 ,m_speedY(0.0f)
 ,m_fViewSpeedX(0.0f)
@@ -54,7 +56,6 @@ GridMoveComponent::GridMoveComponent()
 ,m_movingDeltaTime(0.0f)
 ,m_to(ccp(0.0f, 0.0f))
 ,m_moving(false)
-,m_moveState(MoveIdle)
 ,m_fromIndex(0)
 ,m_pCurrentPaths(NULL)
 ,m_pNextPaths(NULL)
@@ -160,7 +161,9 @@ bool GridMoveComponent::checkMoveable()
  */
 void GridMoveComponent::moveWithDirection(int directionX ,int directionY)
 {
-    m_update=schedule_selector(GridMoveComponent::updateDirection);
+    m_moveType=kMoveDirection;
+
+    //m_update=this->getUpdateDirectionHandle();
 
 	if (m_moveState==MoveStop) {
 		resetState();
@@ -323,7 +326,9 @@ void GridMoveComponent::moveWithPaths(CCArray* paths)
 
 void GridMoveComponent::moveWithPaths(CCArray* paths,int fromIndex)
 {
-	m_update=schedule_selector(GridMoveComponent::updatePath);
+    m_moveType=kMovePath;
+
+	//m_update=this->getUpdatePathHandle();//schedule_selector(GridMoveComponent::updatePath);
 
 	if(m_moveState==MoveStop){
 		resetState();
@@ -438,11 +443,10 @@ void GridMoveComponent::doDirectionChange()
 	if (m_moveState!=MoveStop && m_lastDirectionX==m_directionX && m_lastDirectionY==m_directionY) {
 		return;
 	}
-	//+0.5四舍五入
-	int i=floor(m_directionX+0.5)+1;
-	int j=floor(m_directionY+0.5)+1;
+	int i=floor(m_directionX)+1;
+	int j=floor(m_directionY)+1;
 	int index=directionMapping[i][j];
-	CCLOG("index:%d,%d,%d,%f,%f",index,i,j,m_directionX,m_directionY);
+	//CCLOG("index:%d,%d,%d,%f,%f",index,i,j,m_directionX,m_directionY);
 	if (index>-1) {
 		CCDictionary* data=new CCDictionary();
 		data->setObject(CCString::create("move"), "name");
@@ -529,9 +533,12 @@ void GridMoveComponent::startMove()
 	m_movingDeltaTime=0;
     CCLOG("startMove");
 	m_moveState=MoveStart;
-    CCDirector* director = CCDirector::sharedDirector();
-    CCScheduler* pScheduler = director->getScheduler();
-    pScheduler->scheduleSelector(m_update,this, 0, false);
+
+    startMoveUpdateSchedule();
+    //CCDirector* director = CCDirector::sharedDirector();
+    //CCScheduler* pScheduler = director->getScheduler();
+    //pScheduler->scheduleSelector(m_update,this, 0, false);
+
     doMoveStart();
 }
 
@@ -544,8 +551,9 @@ void GridMoveComponent::stopMove()
 	if(m_moveState==MoveStart){
 		m_moveState=MoveWillStop;
 	}else {
-        CCScheduler* pScheduler = CCDirector::sharedDirector()->getScheduler();
-        pScheduler->unscheduleSelector(m_update, this);
+        //CCScheduler* pScheduler = CCDirector::sharedDirector()->getScheduler();
+        //pScheduler->unscheduleSelector(m_update, this);
+        stopMoveUpdateSchedule();
 		m_moveState=MoveStop;
 		//NSLog(@"stop entity move schedule:update");
 		doMoveStop();
@@ -578,6 +586,39 @@ void GridMoveComponent::resetState()
 	m_lastDirectionY=0;
 	m_nextDirectionX=0;
     m_nextDirectionY=0;
+}
+
+//开启更新定时器。为了使update不是虚函数，这里使用虚函数
+void GridMoveComponent::startMoveUpdateSchedule()
+{
+    switch (m_moveType)
+    {
+    case kMoveDirection:
+        m_update=schedule_selector(GridMoveComponent::updateDirection);
+        break;
+    case kMovePath:
+        m_update=schedule_selector(GridMoveComponent::updatePath);
+        break;
+    default:
+        break;
+    }
+    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(m_update,this, 0, false);
+}
+
+void GridMoveComponent::stopMoveUpdateSchedule()
+{
+    CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(m_update,this);
+    m_update=NULL;
+}
+
+SEL_SCHEDULE GridMoveComponent::getUpdateDirectionHandle()
+{
+    return schedule_selector(GridMoveComponent::updateDirection);
+}
+
+SEL_SCHEDULE GridMoveComponent::getUpdatePathHandle()
+{
+    return schedule_selector(GridMoveComponent::updatePath);
 }
 
 NS_CC_YHGE_END
