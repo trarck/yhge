@@ -105,6 +105,43 @@ public:
      */
     CCPoint getLocationInWorld(const CCPoint& position);
 
+    /**
+     * 设置可显示范围
+     * 这里的单位是屏幕坐标系。和相机是否缩放没有关系。
+     * 如果要把地图坐标转成屏幕坐标，则需要处理相机的缩放。
+     */
+    void setVisibleRange(const CCRect& rect);
+
+    inline void setVisibleRange(float minX,float minY,float maxX,float maxY)
+    {
+        m_minX=minX;
+        m_minY=minY;
+        m_maxX=maxX;
+        m_maxY=maxY;
+    }
+
+    /**
+     * 修正移动范围是否超过显示范围
+     */
+    CCPoint modifyPositionInRange(const CCPoint& position);
+
+    /**
+     * 修正移动范围是否超过显示范围
+     * 直接修改成员变量，减少参数传递
+     */
+    inline void modifyWorldPositionInRange()
+    {
+        m_tWorldPosition.x=m_tWorldPosition.x<m_minX
+            ?m_minX:(m_tWorldPosition.x>m_maxX?m_maxX:m_tWorldPosition.x);
+        m_tWorldPosition.y=m_tWorldPosition.x<m_minY
+            ?m_minY:(m_tWorldPosition.y>m_maxY?m_maxY:m_tWorldPosition.y);
+    }
+
+    inline const CCPoint& getWorldPosition()
+    {
+        return m_tWorldPosition;
+    }
+
     inline void setSmoothMove(bool bSmoothMove)
     {
         m_bSmoothMove = bSmoothMove;
@@ -171,6 +208,55 @@ public:
         return m_lastScaleY;
     }
 
+    void setNeedCheckPositionRane(bool needCheckPositionRane)
+    {
+        m_needCheckPositionRane = needCheckPositionRane;
+    }
+
+    bool isNeedCheckPositionRane()
+    {
+        return m_needCheckPositionRane;
+    }
+
+    void setMinX(float minX)
+    {
+        m_minX = minX;
+    }
+
+    float getMinX()
+    {
+        return m_minX;
+    }
+
+    void setMaxX(float maxX)
+    {
+        m_maxX = maxX;
+    }
+
+    float getMaxX()
+    {
+        return m_maxX;
+    }
+
+    void setMinY(float minY)
+    {
+        m_minY = minY;
+    }
+
+    float getMinY()
+    {
+        return m_minY;
+    }
+
+    void setMaxY(float maxY)
+    {
+        m_maxY = maxY;
+    }
+
+    float getMaxY()
+    {
+        return m_maxY;
+    }
 protected:
     /**
      * 平滑移动
@@ -201,6 +287,14 @@ protected:
     //旧的缩放
     float m_lastScaleX;
     float m_lastScaleY;
+
+    //是否需要对位置做范围检查
+    bool m_needCheckPositionRane;
+    //相机的可视范围
+    float m_minX;
+    float m_maxX;
+    float m_minY;
+    float m_maxY;
 };
 
 NS_CC_YHGE_END
