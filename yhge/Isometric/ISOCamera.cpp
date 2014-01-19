@@ -5,8 +5,8 @@ USING_NS_CC;
 
 NS_CC_YHGE_BEGIN
 
-static const float kVisibleMin=-3.402823466e+38F;
-static const float kVisibleMax=3.402823466e+38F;
+static const float kVisibleMax=3.402823466e+28F;
+static const float kVisibleMin=-kVisibleMax;
 
 ISOCamera::ISOCamera()
 :m_tWorldPosition(CCPointZero)
@@ -145,8 +145,19 @@ void ISOCamera::updateScale()
     //update position.新的缩放模式下的位置
     CCAssert(m_lastScaleX!=0 && m_lastScaleY!=0, "ISOCamera::updateScale neg is zero");
     
-    m_tWorldPosition.x=m_tWorldPosition.x*m_scaleX/m_lastScaleY;
-    m_tWorldPosition.y=m_tWorldPosition.y*m_scaleY/m_lastScaleY;
+    float rate=m_scaleX/m_lastScaleY;
+
+    m_tWorldPosition.x*=rate;
+    m_tWorldPosition.y*=rate;
+
+    //重新设置移动范围的大小
+    if (m_needCheckPositionRane)
+    {
+        m_minX*=rate;
+        m_minY*=rate;
+        m_maxX*=rate;
+        m_maxY*=rate;
+    }
     
     if (m_needCheckPositionRane)
     {
@@ -174,12 +185,27 @@ CCPoint ISOCamera::getLocationInWorld(const CCPoint& position)
 
     return ccp(x,y);
 }
+
 /**
- * 设置可显示范围
+ * 取得game的位置在屏幕坐标所
+ */
+CCPoint ISOCamera::getLocationInScene(const CCPoint& position)
+{
+    float x=position.x*m_scaleX-m_tWorldPosition.x;
+    float y=position.y*m_scaleY-m_tWorldPosition.y;
+
+    //x*=m_scaleX;
+    //y*=m_scaleY;
+
+    return ccp(x,y);
+}
+
+/**
+ * 设置可移动范围
  * 这里的单位是屏幕坐标系。和相机是否缩放没有关系。
  * 如果要把地图坐标转成屏幕坐标，则需要处理相机的缩放。
  */
-void ISOCamera::setVisibleRange(const CCRect& rect)
+void ISOCamera::setMoveRange(const CCRect& rect)
 {
     m_minX=rect.getMinX();
     m_minY=rect.getMinY();
@@ -188,13 +214,13 @@ void ISOCamera::setVisibleRange(const CCRect& rect)
 }
 
 /**
- * 修正移动范围是否超过显示范围
+ * 修正移动范围是否超过移动范围
  */
 CCPoint ISOCamera::modifyPositionInRange(const CCPoint& position)
 {
     CCPoint newPos=position;
     newPos.x=newPos.x<m_minX?m_minX:(newPos.x>m_maxX?m_maxX:newPos.x);
-    newPos.y=newPos.x<m_minY?m_minY:(newPos.y>m_maxY?m_maxY:newPos.y);
+    newPos.y=newPos.y<m_minY?m_minY:(newPos.y>m_maxY?m_maxY:newPos.y);
     return newPos;
 }
 

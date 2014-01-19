@@ -334,7 +334,7 @@ public:
 protected:
     
 	virtual void startMove();
-	void prepareMove();
+	virtual void prepareMove();
 	void continueUpdate();
 	void resetState();
     

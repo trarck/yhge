@@ -104,15 +104,21 @@ public:
      * 取得屏幕坐标所在game的位置
      */
     CCPoint getLocationInWorld(const CCPoint& position);
+    
+    /**
+     * 取得game的位置在屏幕坐标所
+     */
+    CCPoint getLocationInScene(const CCPoint& position);
+
 
     /**
      * 设置可显示范围
      * 这里的单位是屏幕坐标系。和相机是否缩放没有关系。
      * 如果要把地图坐标转成屏幕坐标，则需要处理相机的缩放。
      */
-    void setVisibleRange(const CCRect& rect);
+    void setMoveRange(const CCRect& rect);
 
-    inline void setVisibleRange(float minX,float minY,float maxX,float maxY)
+    inline void setMoveRange(float minX,float minY,float maxX,float maxY)
     {
         m_minX=minX;
         m_minY=minY;
@@ -121,19 +127,19 @@ public:
     }
 
     /**
-     * 修正移动范围是否超过显示范围
+     * 修正移动范围是否超过移动范围
      */
     CCPoint modifyPositionInRange(const CCPoint& position);
 
     /**
-     * 修正移动范围是否超过显示范围
+     * 修正移动范围是否超过移动范围
      * 直接修改成员变量，减少参数传递
      */
     inline void modifyWorldPositionInRange()
     {
         m_tWorldPosition.x=m_tWorldPosition.x<m_minX
             ?m_minX:(m_tWorldPosition.x>m_maxX?m_maxX:m_tWorldPosition.x);
-        m_tWorldPosition.y=m_tWorldPosition.x<m_minY
+        m_tWorldPosition.y=m_tWorldPosition.y<m_minY
             ?m_minY:(m_tWorldPosition.y>m_maxY?m_maxY:m_tWorldPosition.y);
     }
 
