@@ -71,6 +71,7 @@
 		577A7935186BF56500F1B5D5 /* NormalMessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78E0186BF56500F1B5D5 /* NormalMessageManager.cpp */; };
 		577A7936186BF56500F1B5D5 /* SimpleMessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A78E2186BF56500F1B5D5 /* SimpleMessageManager.cpp */; };
 		578E5F5418680D830042319C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		5792840F188CD37000B46136 /* CameraFlowGridMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5792840D188CD37000B46136 /* CameraFlowGridMoveComponent.cpp */; };
 		57C3375C1888C3A1008B5618 /* AnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337401888C3A1008B5618 /* AnimationComponent.cpp */; };
 		57C3375D1888C3A1008B5618 /* AttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337421888C3A1008B5618 /* AttackComponent.cpp */; };
 		57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337441888C3A1008B5618 /* AutoAttackComponent.cpp */; };
@@ -246,6 +247,8 @@
 		577A78E7186BF56500F1B5D5 /* yhge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yhge.h; sourceTree = "<group>"; };
 		577A78E8186BF56500F1B5D5 /* YHGEMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHGEMacros.h; sourceTree = "<group>"; };
 		578E5F5318680D830042319C /* libyhge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libyhge.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5792840D188CD37000B46136 /* CameraFlowGridMoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraFlowGridMoveComponent.cpp; sourceTree = "<group>"; };
+		5792840E188CD37000B46136 /* CameraFlowGridMoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFlowGridMoveComponent.h; sourceTree = "<group>"; };
 		57C337401888C3A1008B5618 /* AnimationComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationComponent.cpp; sourceTree = "<group>"; };
 		57C337411888C3A1008B5618 /* AnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationComponent.h; sourceTree = "<group>"; };
 		57C337421888C3A1008B5618 /* AttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackComponent.cpp; sourceTree = "<group>"; };
@@ -656,6 +659,8 @@
 				57C337431888C3A1008B5618 /* AttackComponent.h */,
 				57C337441888C3A1008B5618 /* AutoAttackComponent.cpp */,
 				57C337451888C3A1008B5618 /* AutoAttackComponent.h */,
+				5792840D188CD37000B46136 /* CameraFlowGridMoveComponent.cpp */,
+				5792840E188CD37000B46136 /* CameraFlowGridMoveComponent.h */,
 				57C337461888C3A1008B5618 /* Component.cpp */,
 				57C337471888C3A1008B5618 /* Component.h */,
 				57C337481888C3A1008B5618 /* ComponentEntityInterface.h */,
@@ -788,6 +793,7 @@
 				576E3FC9187D4BFB00745A0A /* ISOObjectInfo.cpp in Sources */,
 				577A78F7186BF56500F1B5D5 /* CallbackAstar.cpp in Sources */,
 				576E3FCA187D4BFB00745A0A /* ISOTileInfo.cpp in Sources */,
+				5792840F188CD37000B46136 /* CameraFlowGridMoveComponent.cpp in Sources */,
 				576E3FE2187E431500745A0A /* ISOTileObjectPart.cpp in Sources */,
 				576E3FB8187D4BFB00745A0A /* ISOTile.cpp in Sources */,
 				57C337631888C3A1008B5618 /* MoveComponent.cpp in Sources */,
