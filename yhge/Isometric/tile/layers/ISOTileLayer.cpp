@@ -183,6 +183,14 @@ void ISOTileLayer::scroll(float x,float y)
     scroll(ccp(x,y));
 }
 
+/**
+ * 地图的缩放值
+ */
+void ISOTileLayer::onMapScaleChange(float orignalScale,float newScale)
+{
+    
+}
+
 void ISOTileLayer::parseInternalProperties()
 {
     CCLOG("ISOTileLayer::parseInternalProperties");

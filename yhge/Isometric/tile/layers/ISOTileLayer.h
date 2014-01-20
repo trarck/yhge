@@ -94,6 +94,11 @@ public:
     virtual void scroll(const CCPoint& tOffset);
     virtual void scroll(float x,float y);
     
+    /**
+     * 地图的缩放值
+     */
+    virtual void onMapScaleChange(float orignalScale,float newScale);
+    
 	/**
      * 地图格子对应到数组
      */

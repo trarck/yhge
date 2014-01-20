@@ -232,6 +232,11 @@ public://==============属性===============//
         m_visibleSize = visibleSize;
     }
     
+    inline CCSize getOrignalVisibleSize()
+    {
+        return m_visibleSize;
+    }
+    
     CCSize getVisibleSize();
 
 	void setDynamicGroup(ISODynamicGroup* dynamicGroup)
