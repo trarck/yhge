@@ -83,6 +83,7 @@ protected:
     CCPoint m_innerOrigin;
     
     //当人物的距m_innerOrigin的距离，达到m_innerOffsetSize时，相机开始移动
+    //注意是距离值，不是范围大小。
     CCSize m_innerOffsetSize;
     
     //标记相机是否需要移动

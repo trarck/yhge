@@ -9,7 +9,7 @@ USING_NS_CC;
 
 NS_CC_YHGE_BEGIN
 
-static const CCSize kDefaultInnerOffsetSize=CCSizeMake(118.0f, 54.0f);
+static const CCSize kDefaultInnerOffsetSize=CCSizeMake(64.0f, 32.0f);
 
 /**
  * 按地图的格子移动
