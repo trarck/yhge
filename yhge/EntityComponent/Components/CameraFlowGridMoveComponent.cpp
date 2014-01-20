@@ -9,7 +9,7 @@ USING_NS_CC;
 
 NS_CC_YHGE_BEGIN
 
-static const CCSize kDefaultInnerOffsetSize=CCSizeMake(64.0f, 32.0f);
+static const CCSize kDefaultInnerOffset=CCSizeMake(64.0f, 32.0f);
 
 /**
  * 按地图的格子移动
@@ -20,7 +20,7 @@ CameraFlowGridMoveComponent::CameraFlowGridMoveComponent()
 :m_camera(NULL)
 ,m_lastCameraPosition(CCPointZero)
 ,m_innerOrigin(CCPointZero)
-,m_innerOffsetSize(kDefaultInnerOffsetSize)
+,m_innerOffset(kDefaultInnerOffset)
 ,m_needMoveCamera(false)
 {
     CCLOG("CameraFlowGridMoveComponent create");
@@ -120,9 +120,9 @@ bool CameraFlowGridMoveComponent::checkNeedMoveCamera()
     float offsetX=scenePos.x-m_innerOrigin.x;
     
     if (m_fViewSpeedX>0){
-        needMoveCamera=offsetX>=m_innerOffsetSize.width;
+        needMoveCamera=offsetX>=m_innerOffset.width;
     }else if (m_fViewSpeedX<0){
-        needMoveCamera=offsetX<=-m_innerOffsetSize.width;
+        needMoveCamera=offsetX<=-m_innerOffset.width;
     }
     
     if (!needMoveCamera)
@@ -130,9 +130,9 @@ bool CameraFlowGridMoveComponent::checkNeedMoveCamera()
         float offsetY=scenePos.y-m_innerOrigin.y;
         
         if (m_fViewSpeedY>0){
-            needMoveCamera=offsetY>=m_innerOffsetSize.height;
+            needMoveCamera=offsetY>=m_innerOffset.height;
         }else if (m_fViewSpeedY<0){
-            needMoveCamera=offsetY<=-m_innerOffsetSize.height;
+            needMoveCamera=offsetY<=-m_innerOffset.height;
         }
     }
     

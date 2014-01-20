@@ -50,14 +50,14 @@ public:
         return m_innerOrigin;
     }
     
-    inline void setInnerOffsetSize(CCSize innerOffsetSize)
+    inline void setInnerOffset(CCSize innerOffset)
     {
-        m_innerOffsetSize = innerOffsetSize;
+        m_innerOffset = innerOffset;
     }
     
-    inline CCSize getInnerOffsetSize()
+    inline CCSize getInnerOffset()
     {
-        return m_innerOffsetSize;
+        return m_innerOffset;
     }
 
 protected:
@@ -82,9 +82,9 @@ protected:
     //相机移动时的偏移参数点。通常是屏幕的中心点。
     CCPoint m_innerOrigin;
     
-    //当人物的距m_innerOrigin的距离，达到m_innerOffsetSize时，相机开始移动
+    //当人物的距m_innerOrigin的距离，达到m_innerOffset时，相机开始移动
     //注意是距离值，不是范围大小。
-    CCSize m_innerOffsetSize;
+    CCSize m_innerOffset;
     
     //标记相机是否需要移动
     bool m_needMoveCamera;
