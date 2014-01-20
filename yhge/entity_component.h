@@ -11,6 +11,7 @@
 #include "EntityComponent/Components/AnimationComponent.h"
 #include "EntityComponent/Components/MoveComponent.h"
 #include "EntityComponent/Components/GridMoveComponent.h"
+#include "EntityComponent/Components/CameraFlowGridMoveComponent.h"
 #include "EntityComponent/Components/AttackComponent.h"
 #include "EntityComponent/Components/AutoAttackComponent.h"
 #include "EntityComponent/Components/ManualAttackComponent.h"
