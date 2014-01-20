@@ -333,9 +333,24 @@ public:
     
 protected:
     
+    /**
+     * 开始移动
+     */
 	virtual void startMove();
+    
+    /**
+     * 移动之前的准备
+     */
 	virtual void prepareMove();
+    
+    /**
+     * 继续更新
+     */
 	void continueUpdate();
+    
+    /**
+     * 重置状态
+     */
 	void resetState();
     
     //开启更新定时器。为了使update不是虚函数，这里使用虚函数

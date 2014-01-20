@@ -56,30 +56,33 @@ public:
     /**
      * 移动到目标点
      */
-	void moveTo(CCPoint to);
+	virtual void moveTo(const CCPoint& to);
+    
+    void continueMoveTo(const CCPoint& to);
+
 
     /**
      * 按方向移动
      */
-    void moveWithDirection(float direction);
+    virtual void moveWithDirection(float direction);
     
     /**
      * 按方向移动
      * 是否要结束
      */
-    void moveWithDirection(float direction,bool hasTo);
+    virtual void moveWithDirection(float direction,bool hasTo);
     
     /**
      * 按方向移动
      * 不是方向，而是直接使用偏移量。不常用
      */
-    void moveWithDirection(float directionX,float directionY);
+    virtual void moveWithDirection(float directionX,float directionY);
     
     /**
      * 按方向移动
      * 不是方向，而是直接使用偏移量。不常用
      */
-    void moveWithDirection(float directionX,float directionY,bool hasTo);
+    virtual void moveWithDirection(float directionX,float directionY,bool hasTo);
     
     /**
      * 继续按方向移动
@@ -102,17 +105,17 @@ public:
      * 不是方向，而是直接使用偏移量。不常用
      */
     void continueMoveWithDirection(float directionX,float directionY,bool hasTo);
-		
+    
     /**
      * 按路径移动
      * 注意路径是屏幕坐标
      */
-    void moveWithPaths(CCArray* paths);
+    virtual void moveWithPaths(CCArray* paths);
     
     /**
      * 按路径移动
      */
-	void moveWithPaths(CCArray* paths, int fromIndex);
+	virtual void moveWithPaths(CCArray* paths, int fromIndex);
     
     /**
      * 继续按路径移动
@@ -135,13 +138,6 @@ public:
 	bool beforeMovePath();
     
     /**
-     * 准备路径数据
-     */
-	void preparePath();
-    
-    void preparePath(int pathIndex);
-    
-    /**
      * 取得当前路径结点索引
      */
 	int getCurrentPathIndex();
@@ -155,7 +151,13 @@ public:
     /**
      * 计算速度分量
      */
-    void calcSpeedVector(float directionVectorX,float directionVectorY);
+    void calcSpeedVector();
+    
+    /**
+     * 移动动画步骤
+     * 通过方向移动的动画步骤
+     */
+    void updateTo(float delta);
     
     /**
      * 移动动画步骤
@@ -233,6 +235,13 @@ public:
         MoveContinue
     } MoveState;
     
+    typedef enum  {
+        kMoveNone=0,
+        kMoveDirection,
+        kMovePath,
+        kMoveTo
+    } MoveType;
+    
     
     inline bool isMoving()
     {
@@ -242,6 +251,16 @@ public:
     inline MoveState getMoveState()
     {
         return m_moveState;
+    }
+    
+    void setMoveType(MoveType moveType)
+    {
+        m_moveType = moveType;
+    }
+    
+    MoveType getMoveType()
+    {
+        return m_moveType;
     }
     
     inline float getSpeed()
@@ -307,8 +326,47 @@ public:
     {
         return m_pathIndex;
     }
+    
+protected:
+    
+    /**
+     * 准备移动到的数据
+     */
+    bool prepareTo(const CCPoint& to,const CCPoint& from);
+    
+    /**
+     * 准备方向移动的数据
+     */
+    void prepareDirection(float direction);
+    
+    /**
+     * 准备方向移动的数据
+     */
+    void prepareDirection(float directionX,float directionY);
+    
+    /**
+     * 准备路径数据
+     */
+	void preparePath();
+    
+    void preparePath(int pathIndex);
+    
+    /**
+     * 移动之前的准备
+     */
+    virtual void prepareMove();
+    
+    //开启更新定时器。为了使update不是虚函数，这里使用虚函数
+    virtual void startMoveUpdateSchedule();
+    virtual void stopMoveUpdateSchedule();
 
 protected:
+    //移动状态
+	MoveState m_moveState;
+    
+    //移动类型
+    MoveType m_moveType;
+    
 	//移动速度，屏幕坐标速度
 	float m_speed;
     
@@ -332,9 +390,6 @@ protected:
     
     //移动到的位置
     CCPoint m_to;
-
-    //移动状态
-	MoveState m_moveState;
     
     //是否正在移动
 	bool m_moving;

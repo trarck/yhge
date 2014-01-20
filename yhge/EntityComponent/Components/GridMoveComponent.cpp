@@ -161,11 +161,12 @@ bool GridMoveComponent::checkMoveable()
  */
 void GridMoveComponent::moveWithDirection(int directionX ,int directionY)
 {
-    m_moveType=kMoveDirection;
-
     //m_update=this->getUpdateDirectionHandle();
 
 	if (m_moveState==MoveStop) {
+        
+        m_moveType=kMoveDirection;
+        
 		resetState();
 		prepareDirection(directionX, directionY);
 		if(checkMoveable()){
@@ -183,6 +184,7 @@ void GridMoveComponent::moveWithDirection(int directionX ,int directionY)
  */
 void GridMoveComponent::continueMoveWithDirection(int directionX ,int directionY)
 {
+    CCAssert(m_moveType==kMoveDirection, "GridMoveComponent::continueMoveWithDirection before move type is not the same");
 	setNextDirection(directionX,directionY);
 	m_moveState=MoveContinue;
 }
@@ -375,7 +377,7 @@ void GridMoveComponent::preparePath()
  */
 void  GridMoveComponent::preparePath(int pathIndex)
 {
-	CCAssert(m_pathIndex>=0,"paths length less 2");
+	CCAssert(pathIndex>=0,"paths length less 2");
 	CCLOG("preparePath.iPathIndex:%d",pathIndex);
     m_to=  static_cast<CCPointValue*>(m_pCurrentPaths->objectAtIndex(pathIndex))->getPoint();
 	calcDirection();

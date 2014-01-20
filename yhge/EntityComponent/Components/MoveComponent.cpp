@@ -19,7 +19,9 @@ static int kDirectionMapping[8]={
 };
 
 MoveComponent::MoveComponent()
-:m_speed(0.0f)
+:m_moveState(MoveIdle)
+,m_moveType(kMoveNone)
+,m_speed(0.0f)
 ,m_speedX(0.0f)
 ,m_speedY(0.0f)
 ,m_direction(0.0f)
@@ -29,7 +31,6 @@ MoveComponent::MoveComponent()
 ,m_directionFlagY(0)
 ,m_to(CCPointZero)
 ,m_moving(false)
-,m_moveState(MoveIdle)
 ,m_fromIndex(0)
 ,m_hasEndPosition(false)
 ,m_pCurrentPaths(NULL)
@@ -122,8 +123,7 @@ void MoveComponent::startMove()
 {
     CCLOG("startMove");
 	m_moveState=MoveStart;
-    CCScheduler* pScheduler = CCDirector::sharedDirector()->getScheduler();
-    pScheduler->scheduleSelector(m_update,this, 0, false);
+    startMoveUpdateSchedule();
     doMoveStart();
 }
 
@@ -133,33 +133,43 @@ void MoveComponent::startMove()
  */
 void MoveComponent::stopMove()
 {
-    CCScheduler* pScheduler = CCDirector::sharedDirector()->getScheduler();
-    pScheduler->unscheduleSelector(m_update, this);
+    stopMoveUpdateSchedule();
     m_moveState=MoveStop;
     doMoveStop();
 }
 
-void MoveComponent::moveTo(CCPoint to)
+void MoveComponent::moveTo(const CCPoint& to)
 {
-    
-    CCPoint pos=((CCNode*)m_owner)->getPosition();
-    
-    float dx=to.x-pos.x;
-    float dy=to.y-pos.y;
-    
-    CCLOG("moveTo:%f,%f, diff:%f,%f",to.x,to.y,dx,dy);
-    
-    if(dx!=0 || dy!=0){
-        float s=sqrtf(dx*dx+dy*dy);
+    if (m_moveState==MoveStop) {
         
-        float directionX=dx/s;
-        float directionY=dy/s;
+        m_moveType=kMoveTo;
         
-        m_directionFlagX=dx>0?1:dx<0?-1:0;
-        m_directionFlagY=dy>0?1:dy<0?-1:0;
-        
-        setTo(to);
-        moveWithDirection(directionX, directionY,true);
+        CCPoint from=m_rendererComponent->getRenderer()->getPosition();
+        if(prepareTo(to, from)){
+            if(checkMoveable()){
+                prepareMove();
+                startMove();
+            }
+        }
+    }else{
+        continueMoveTo(to);
+    }
+}
+
+void MoveComponent::continueMoveTo(const CCPoint& to)
+{
+    CCAssert(m_moveType==kMoveTo, "MoveComponent::continueMoveTo before move type is not the same");
+    
+    CCPoint from=m_rendererComponent->getRenderer()->getPosition();
+    
+    if(prepareTo(to, from)){
+        if (checkMoveable()) {
+            prepareMove();
+        }else{
+            stopMove();
+        }
+    }else{
+        stopMove();
     }
 }
 
@@ -175,18 +185,18 @@ void MoveComponent::moveWithDirection(float direction,bool hasTo)
 {
     CCLOG("moveWithDirection:%f",direction);
     
-    m_update=schedule_selector(MoveComponent::updateDirection);
-    m_hasEndPosition=hasTo;
-    
-    if (m_moveState==MoveStart) {
-		continueMoveWithDirection(direction);
-	}else {
-        setDirection(direction);
-        calcSpeedVector(cosf(direction), sinf(direction));
+    if (m_moveState==MoveStop) {
         
+        m_moveType=kMoveDirection;
+        
+        prepareDirection(direction);
+
         if(checkMoveable()){
+            prepareMove();
             startMove();
         }
+	}else {
+        continueMoveWithDirection(direction);
 	}
 }
 
@@ -203,41 +213,47 @@ void MoveComponent::moveWithDirection(float directionX ,float directionY)
  */
 void MoveComponent::moveWithDirection(float directionX ,float directionY,bool hasTo)
 {
-    m_update=schedule_selector(MoveComponent::updateDirection);
-    m_hasEndPosition=hasTo;
-    
-    m_directionX=directionX;
-    m_directionY=directionY;
-    
-    m_direction=atan2f(directionY, directionX);
-    
-	calcSpeedVector(directionX, directionY);
-    
-    if(checkMoveable()){
-        startMove();
-    }
+    if (m_moveState==MoveStop) {
+        
+        m_moveType=kMoveDirection;
+        
+        prepareDirection(directionX,directionY);
+        
+        if(checkMoveable()){
+            prepareMove();
+            startMove();
+        }
+	}else {
+        continueMoveWithDirection(directionX,directionY);
+	}
 }
 /**
  * 断续指定方向移动
  */
 void MoveComponent::continueMoveWithDirection(float direction)
 {
-	setDirection(direction);
-    calcSpeedVector(cosf(direction), sinf(direction));
-	m_moveState=MoveContinue;
+    CCAssert(m_moveType==kMoveDirection, "MoveComponent::continueMoveWithDirection before move type is not the same");
+	prepareDirection(direction);
+    if (checkMoveable()) {
+        prepareMove();
+    }else{
+        stopMove();
+    }
 }
-
 
 /**
  * 断续指定方向移动
  */
 void MoveComponent::continueMoveWithDirection(float directionX ,float directionY)
 {
-	calcSpeedVector(directionX, directionY);
-    m_moveState=MoveContinue;
+    CCAssert(m_moveType==kMoveDirection, "MoveComponent::continueMoveWithDirection before move type is not the same");
+	prepareDirection(directionX,directionY);
+    if (checkMoveable()) {
+        prepareMove();
+    }else{
+        stopMove();
+    }
 }
-
-
 
 /**
  * 按指定路径移动
@@ -249,18 +265,20 @@ void MoveComponent::moveWithPaths(CCArray* paths)
 
 void MoveComponent::moveWithPaths(CCArray* paths,int fromIndex)
 {
-	m_update=schedule_selector(MoveComponent::updatePath);
-
-	if (m_moveState==MoveStart) {
-		m_fromIndex=fromIndex;
-		continueMoveWithPaths(paths);
-	}else if(m_moveState==MoveStop){
+	if (m_moveState==MoveStop) {
+        
+        m_moveType=kMovePath;
+        
 		m_fromIndex=fromIndex;
 		this->setCurrentPaths(paths);
 		preparePath();
-		if (beforeMovePath()) {
+		if (checkMoveable()) {
+            prepareMove();
 			startMove();
 		}
+	}else{
+		m_fromIndex=fromIndex;
+		continueMoveWithPaths(paths);
 	}
 }
 /**
@@ -268,8 +286,15 @@ void MoveComponent::moveWithPaths(CCArray* paths,int fromIndex)
  */
 void MoveComponent::continueMoveWithPaths(CCArray* paths)
 {
-	this->setNextPaths(paths);	
-	m_moveState=MoveContinue;
+    CCAssert(m_moveType==kMovePath, "MoveComponent::continueMoveWithPaths before move type is not the same");
+	this->setNextPaths(paths);
+    preparePath();
+    if (checkMoveable()) {
+        prepareMove();
+    }else{
+        stopMove();
+    }
+//	m_moveState=MoveContinue;
 }
 
 /**
@@ -292,24 +317,6 @@ void MoveComponent::restartMoveWithPaths()
 }
 
 /**
- * 准备移动路径
- */
-void MoveComponent::preparePath()
-{
-	m_pathIndex=getCurrentPathIndex();
-	preparePath(m_pathIndex);
-}
-
-void MoveComponent::preparePath(int pathIndex)
-{
-    
-    CCAssert(m_pathIndex>=0,"paths length less 2");
-	CCLOG("preparePath.PathIndex:%d",pathIndex);
-    m_to= static_cast<CCPointValue*>(m_pCurrentPaths->objectAtIndex(m_pathIndex))->getPoint();
-    calcDirection();
-}
-
-/**
  * 取得当前路径结点索引
  */
 int MoveComponent::getCurrentPathIndex(){
@@ -322,8 +329,7 @@ int MoveComponent::getCurrentPathIndex(){
  */
 void MoveComponent::calcDirection()
 {
-	CCNode* owner=(CCNode*)m_owner;
-	CCPoint pos=owner->getPosition();
+	CCPoint pos=m_rendererComponent->getRenderer()->getPosition();
 	m_directionX=m_to.x>pos.x?1:m_to.x<pos.y?-1:0;
 	m_directionY=m_to.y>pos.y?1:m_to.y<pos.y?-1:0;
 }
@@ -331,10 +337,34 @@ void MoveComponent::calcDirection()
 /**
  * 计算速度分量
  */
-void MoveComponent::calcSpeedVector(float directionVectorX,float directionVectorY){
-    m_speedX=m_speed*directionVectorX;
-    m_speedY=m_speed*directionVectorY;
-};
+void MoveComponent::calcSpeedVector(){
+    m_speedX=m_speed*m_directionX;
+    m_speedY=m_speed*m_directionY;
+}
+
+/**
+ * 移动动画步骤
+ * 通过方向移动的动画步骤
+ */
+void MoveComponent::updateTo( float delta)
+{
+    CCNode* renderer=m_rendererComponent->getRenderer();
+    
+    CCPoint pos=renderer->getPosition();
+	//根据速度计算移动距离
+	pos.x+=delta*m_speedX;
+	pos.y+=delta*m_speedY;
+    
+    //    CCLOG("x:%f,y:%f",pos.x,pos.y);
+	//判断是否结束
+	if ((m_directionFlagX * pos.x>m_directionFlagX*m_to.x  || fabs(pos.x-m_to.x)<0.00001) &&  (m_directionFlagY*pos.y> m_directionFlagY* m_to.y|| fabs(pos.y-m_to.y)<0.00001)) {
+		pos.x=m_to.x;
+		pos.y=m_to.y;
+		stopMove();
+	}
+    
+	renderer->setPosition(pos);
+}
 
 /**
  * 移动动画步骤
@@ -342,22 +372,18 @@ void MoveComponent::calcSpeedVector(float directionVectorX,float directionVector
  */
 void MoveComponent::updateDirection( float delta)
 {
-    CCNode* owner=(CCNode*)m_owner;
+    CCNode* renderer=m_rendererComponent->getRenderer();
     
-    CCPoint pos=owner->getPosition();
+    CCPoint pos=renderer->getPosition();
+    
 	//根据速度计算移动距离
-    float s=delta*10;
-	pos.x+=s*m_speedX;
-	pos.y+=s*m_speedY;
+	pos.x+=delta*m_speedX;
+	pos.y+=delta*m_speedY;
     
-//    CCLOG("x:%f,y:%f",pos.x,pos.y);
-	//判断是否结束	
-	if (m_hasEndPosition && (m_directionFlagX * pos.x>m_directionFlagX*m_to.x  || fabs(pos.x-m_to.x)<0.00001) &&  (m_directionFlagY*pos.y> m_directionFlagY* m_to.y|| fabs(pos.y-m_to.y)<0.00001)) {
-		pos.x=m_to.x;
-		pos.y=m_to.y;
-		stopMove();
-	}
-	owner->setPosition(pos);
+    renderer->setPosition(pos);
+    
+    //由于没有目标点，必须手动停止。或遇障碍物会停止。
+
 }
 
 /**
@@ -366,39 +392,35 @@ void MoveComponent::updateDirection( float delta)
  */
 void MoveComponent::updatePath(float delta)
 {
-    CCNode* owner=(CCNode*)m_owner;
+    CCNode* renderer=m_rendererComponent->getRenderer();
     
-    CCPoint pos=owner->getPosition();
+    CCPoint pos=renderer->getPosition();
 	//根据速度计算移动距离
-    float s=delta*10;
-	pos.x+=s*m_speedX;
-	pos.y+=s*m_speedY;
+	pos.x+=delta*m_speedX;
+	pos.y+=delta*m_speedY;
     
 //    CCLOG("x:%f,y:%f",pos.x,pos.y);
 	//判断是否结束	
-	if (m_hasEndPosition && (m_directionFlagX * pos.x>m_directionFlagX*m_to.x  || fabs(pos.x-m_to.x)<0.00001) &&  (m_directionFlagY*pos.y> m_directionFlagY* m_to.y|| fabs(pos.y-m_to.y)<0.00001)) {
+	if ((m_directionFlagX * pos.x>m_directionFlagX*m_to.x  || fabs(pos.x-m_to.x)<0.00001) &&  (m_directionFlagY*pos.y> m_directionFlagY* m_to.y|| fabs(pos.y-m_to.y)<0.00001)) {
 		pos.x=m_to.x;
 		pos.y=m_to.y;
 
-		if (m_moveState==MoveContinue) {
-			if (m_pNextPaths!=NULL) {
-				m_moveState=MoveStart;
-				this->setCurrentPaths(m_pNextPaths);
-				preparePath();
-				beforeMovePath();
-			}
-		}else if (--m_pathIndex>=0 && m_moveState==MoveStart) {
+        if (--m_pathIndex>=0 && m_moveState==MoveStart) {
 			//进行下一个格子
-            m_to= static_cast<CCPointValue*>(m_pCurrentPaths->objectAtIndex(m_pathIndex))->getPoint();
-			beforeMovePath();
+            preparePath(m_pathIndex);
+            if (checkMoveable()) {
+                prepareMove();
+            }else{
+                stopMove();
+            }
 		}else {
 			//stop move
 			this->setCurrentPaths(NULL);
-			m_moveState=MoveWillStop;//标记将要结束
 			stopMove();
 		}
 	}
-	owner->setPosition(pos);
+    
+	renderer->setPosition(pos);
 }
 
 /**
@@ -477,5 +499,96 @@ void MoveComponent::onMoveStop(Message *message)
     stopMove();
 }
 
+/**
+ * 准备移动到的数据
+ */
+bool MoveComponent::prepareTo(const CCPoint& to,const CCPoint& from)
+{
+    
+    float dx=to.x-from.x;
+    float dy=to.y-from.y;
+    
+    if(dx!=0 || dy!=0){
+        setTo(to);
+        float s=sqrtf(dx*dx+dy*dy);
+        prepareDirection(dx/s, dy/s);
+        return true;
+    }
+    
+    return false;
+}
+
+/**
+ * 准备方向移动的数据
+ */
+void MoveComponent::prepareDirection(float direction)
+{
+    m_directionX=cosf(direction);
+    m_directionY=sinf(direction);
+    m_direction=direction;
+    m_directionFlagX=m_directionX>0?1:m_directionX<0?-1:0;
+    m_directionFlagY=m_directionX>0?1:m_directionX<0?-1:0;
+}
+
+/**
+ * 准备方向移动的数据
+ */
+void MoveComponent::prepareDirection(float directionX,float directionY)
+{
+    m_directionX=directionX;
+    m_directionY=directionY;
+    m_direction=atan2f(directionY, directionX);
+    m_directionFlagX=m_directionX>0?1:m_directionX<0?-1:0;
+    m_directionFlagY=m_directionX>0?1:m_directionX<0?-1:0;
+}
+
+/**
+ * 准备移动路径
+ */
+void MoveComponent::preparePath()
+{
+	m_pathIndex=getCurrentPathIndex();
+	preparePath(m_pathIndex);
+}
+
+void MoveComponent::preparePath(int pathIndex)
+{
+    CCAssert(pathIndex>=0,"paths length less 2");
+	CCLOG("preparePath.PathIndex:%d",pathIndex);
+    CCPoint to= static_cast<CCPointValue*>(m_pCurrentPaths->objectAtIndex(pathIndex))->getPoint();
+    CCPoint from=m_rendererComponent->getRenderer()->getPosition();
+    prepareTo(to, from);
+}
+
+/**
+ * 移动之前的准备
+ */
+void MoveComponent::prepareMove()
+{
+    calcSpeedVector();
+}
+
+//开启更新定时器。为了使update不是虚函数，这里使用虚函数
+void MoveComponent::startMoveUpdateSchedule()
+{
+    switch (m_moveType)
+    {
+        case kMoveDirection:
+            m_update=schedule_selector(MoveComponent::updateDirection);
+            break;
+        case kMovePath:
+            m_update=schedule_selector(MoveComponent::updatePath);
+            break;
+        default:
+            break;
+    }
+    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(m_update,this, 0, false);
+}
+
+void MoveComponent::stopMoveUpdateSchedule()
+{
+    CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(m_update,this);
+    m_update=NULL;
+}
 
 NS_CC_YHGE_END
