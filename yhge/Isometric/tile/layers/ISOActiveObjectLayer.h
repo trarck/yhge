@@ -1,5 +1,5 @@
-#ifndef YHGE_ISOMETRIC_ISOACTIVELAYER_H_
-#define YHGE_ISOMETRIC_ISOACTIVELAYER_H_
+#ifndef YHGE_ISOMETRIC_ISOACTIVEOBJECTLAYER_H_
+#define YHGE_ISOMETRIC_ISOACTIVEOBJECTLAYER_H_
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
@@ -14,17 +14,17 @@ class ISOTileMap;
  * 提供场景活动元素的层
  * 对于tiled创建的地图文件，可以是tile layer,也可以是object layer。
  */
-class ISOActiveLayer : public CCNode {
+class ISOActiveObjectLayer : public CCNode {
 
 public:
 	
-	ISOActiveLayer();
+	ISOActiveObjectLayer();
     
-	virtual ~ISOActiveLayer(void);
+	virtual ~ISOActiveObjectLayer(void);
 	
     virtual bool init();
     
-    static ISOActiveLayer* create();
+    static ISOActiveObjectLayer* create();
     
     /**
      * 初始化显示tiles
@@ -197,4 +197,4 @@ protected:
 
 NS_CC_YHGE_END
 
-#endif //YHGE_ISOMETRIC_ISOACTIVELAYER_H_
+#endif //YHGE_ISOMETRIC_ISOACTIVEOBJECTLAYER_H_

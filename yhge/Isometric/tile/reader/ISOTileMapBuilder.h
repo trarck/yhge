@@ -93,7 +93,7 @@ public:
     
     /**
      * 构建map active layer
-     * TODO:把可显示的object group合并到active layer.
+     * 对于格子地图，object的坐标最好是基于格子的。
      */
     virtual void buildMapActiveLayer(ISOObjectGroup* objectGroup);
     

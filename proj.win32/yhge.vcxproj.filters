@@ -339,6 +339,18 @@
     <ClInclude Include="..\yhge\Isometric\ISOStaticCoordinate.h">
       <Filter>Isometric</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\CameraFlowGridMoveComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveObjectLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -553,6 +565,18 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinate.cpp">
       <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\CameraFlowGridMoveComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveObjectLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

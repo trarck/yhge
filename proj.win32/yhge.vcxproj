@@ -26,6 +26,7 @@
     <ClInclude Include="..\yhge\EntityComponent\Components\AnimationComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\AttackComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\AutoAttackComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\CameraFlowGridMoveComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\Component.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\ComponentMessageDefine.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\GridMoveComponent.h" />
@@ -69,6 +70,9 @@
     <ClInclude Include="..\yhge\Isometric\tile\ISOTileInterfaces.h" />
     <ClInclude Include="..\yhge\Isometric\tile\ISOTileMap.h" />
     <ClInclude Include="..\yhge\Isometric\tile\IsoTileUtils.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveObjectLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.h" />
@@ -116,6 +120,7 @@
     <ClCompile Include="..\yhge\EntityComponent\Components\AnimationComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\AttackComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\AutoAttackComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\CameraFlowGridMoveComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\Component.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\GridMoveComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\ISOPositionComponent.cpp" />
@@ -145,6 +150,9 @@
     <ClCompile Include="..\yhge\Isometric\tile\base\ISOTilesetGroup.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\ISOTileMap.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\IsoTileUtils.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveObjectLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.cpp" />
