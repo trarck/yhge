@@ -12,6 +12,8 @@
 #include "base/ISOTilesetGroup.h"
 #include "base/ISOObjectGroup.h"
 #include "layers/ISOTileLayer.h"
+#include "layers/ISOObjectLayer.h"
+#include "layers/ISOActiveLayer.h"
 //#include "ISOXMLParser.h"
 #include "layers/ISODynamicGroup.h"
 
@@ -29,6 +31,10 @@ NS_CC_YHGE_BEGIN
  * batch compoent>componet>batch>normal
  * 关于layer层的优化。
  * 上层的layer会挡住下层的layer所以只需要显示上层的layer块。如果上层是透明的，那么可以只渲染上层的元素。但是透明的就不可以使用，如果不显示下层，会出现空洞。
+ *
+ * 关于object group
+ * 通常object group不是用于显示的，用来定义一些事件或地图上的特殊信息。
+ * 如果地图上的元素要参与遮挡，则不能放在tile layer里。比如一堆火，一颗树。而这些必须放在一个层里。这个层就是ActiveLayer.
  */
 class ISOTileMap : public CCNode{
 
@@ -70,6 +76,11 @@ public:
      * 取得对象层
      */
     ISOObjectGroup* objectGroupNamed(const char *objectGroupName);
+    
+    /**
+     * 取得对象显示层
+     */
+    ISOObjectLayer* objectLayerNamed(const char *objectLayerName);
     
     /**
      * 取得属性
@@ -114,6 +125,10 @@ public:
 	 * 设置一些动态组
 	 */
 	void setupDynamicGroups();
+    
+    //==============active layer===============//
+    
+
 
 public://==============属性===============//
 	
@@ -180,6 +195,18 @@ public://==============属性===============//
 	{
 		return m_pObjectGroups;
 	}
+    
+    inline void setObjectLayers(CCArray* pObjectLayers)
+    {
+        CC_SAFE_RETAIN(pObjectLayers);
+        CC_SAFE_RELEASE(m_pObjectLayers);
+        m_pObjectLayers = pObjectLayers;
+    }
+    
+    inline CCArray* getObjectLayers()
+    {
+        return m_pObjectLayers;
+    }
 
 	inline void setProperties(CCDictionary* pProperties)
 	{
@@ -270,6 +297,17 @@ public://==============属性===============//
 		return m_dynamicComponents;
 	}
 
+    inline void setActiveLayer(ISOActiveLayer* activeLayer)
+    {
+        CC_SAFE_RETAIN(activeLayer);
+        CC_SAFE_RELEASE(m_activeLayer);
+        m_activeLayer = activeLayer;
+    }
+    
+    inline ISOActiveLayer* getActiveLayer()
+    {
+        return m_activeLayer;
+    }
     
 protected:
     
@@ -316,7 +354,7 @@ protected:
     ISOTilesetGroup* m_pTilesetGroup;
     
     /**
-     * 对像分组
+     * 图块层集
      */
     CCArray* m_pTileLayers;
     
@@ -324,6 +362,11 @@ protected:
      * 对像分组
      */
     CCArray* m_pObjectGroups;
+    
+    /**
+     * 对像层集
+     */
+    CCArray* m_pObjectLayers;
     
     /**
      * 属性列表
@@ -352,6 +395,14 @@ protected:
      * 需要集中管理的DynamicComponent
      */
     CCArray* m_dynamicComponents;
+    
+    /**
+     * 活动层。
+     * 不能是TileLayer
+     * 提供场景内活动元素的层
+     * 通常是在map的显示子结点
+     */
+    ISOActiveLayer* m_activeLayer;
 };
 
 

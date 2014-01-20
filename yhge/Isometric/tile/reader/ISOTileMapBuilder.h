@@ -91,6 +91,12 @@ public:
      */
     virtual void buildMapObjectLayer(ISOObjectGroup* objectGroup);
     
+    /**
+     * 构建map active layer
+     * TODO:把可显示的object group合并到active layer.
+     */
+    virtual void buildMapActiveLayer(ISOObjectGroup* objectGroup);
+    
     
 public:
     

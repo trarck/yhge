@@ -11,6 +11,7 @@ ISOTileMap::ISOTileMap()
 :m_tMapSize(CCSizeZero)
 ,m_pTileLayers(NULL)
 ,m_pObjectGroups(NULL)
+,m_pObjectLayers(NULL)
 ,m_pProperties(NULL)
 ,m_pTileProperties(NULL)
 ,m_pDynamicGroup(NULL)
@@ -22,6 +23,7 @@ ISOTileMap::ISOTileMap()
 ,m_nMapOrientation(0)
 ,m_pName("")
 ,m_tTileSize(CCSizeZero)
+,m_activeLayer(NULL)
 {
 	
 }
@@ -35,6 +37,8 @@ ISOTileMap::~ISOTileMap()
     CC_SAFE_RELEASE_NULL(m_pTileProperties);
     CC_SAFE_RELEASE_NULL(m_pDynamicGroup);
 	CC_SAFE_RELEASE_NULL(m_dynamicComponents);
+    CC_SAFE_RELEASE_NULL(m_pObjectLayers);
+    CC_SAFE_RELEASE_NULL(m_activeLayer);
 }
 
 ISOTileMap * ISOTileMap::createWithXMLFile(const char *xmlFile)
@@ -100,6 +104,8 @@ bool ISOTileMap::init()
 	m_dynamicComponents=new CCArray();
     
     m_pTileProperties=new CCDictionary();
+    
+    m_pObjectLayers=new CCArray();
 
 //    CCLayerColor* lc=CCLayerColor::create(ccc4(0,0,255,255), 600, 400);
 //    addChild(lc);
@@ -326,6 +332,31 @@ ISOObjectGroup * ISOTileMap::objectGroupNamed(const char *objectGroupName)
     }
     
     // objectGroup not found
+    return NULL;
+}
+
+/**
+ * 取得对象显示层
+ */
+ISOObjectLayer* ISOTileMap::objectLayerNamed(const char *objectLayerName)
+{
+    CCAssert(objectLayerName != NULL && strlen(objectLayerName) > 0, "Invalid layer name!");
+    
+    if (m_pObjectLayers && m_pObjectLayers->count()>0){
+        CCObject* pObj = NULL;
+        CCARRAY_FOREACH(m_pObjectLayers, pObj)
+        {
+            ISOObjectLayer* layer = dynamic_cast<ISOObjectLayer*>(pObj);
+            if(layer)
+            {
+                if(0 == strcmp(layer->getLayerName().c_str(), objectLayerName))
+                {
+                    return layer;
+                }
+            }
+        }
+    }
+    // layer not found
     return NULL;
 }
 
