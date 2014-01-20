@@ -328,11 +328,12 @@ void GridMoveComponent::moveWithPaths(CCArray* paths)
 
 void GridMoveComponent::moveWithPaths(CCArray* paths,int fromIndex)
 {
-    m_moveType=kMovePath;
-
 	//m_update=this->getUpdatePathHandle();//schedule_selector(GridMoveComponent::updatePath);
 
 	if(m_moveState==MoveStop){
+        
+        m_moveType=kMovePath;
+        
 		resetState();
 		m_fromIndex=fromIndex;
 		this->setCurrentPaths(paths);
@@ -352,6 +353,8 @@ void GridMoveComponent::moveWithPaths(CCArray* paths,int fromIndex)
  */
 void GridMoveComponent::continueMoveWithPaths(CCArray* paths)
 {
+    CCAssert(m_moveType==kMovePath, "GridMoveComponent::continueMoveWithDirection before move type is not the same");
+    
 	this->setNextPaths(paths);	
 	m_moveState=MoveContinue;
 }
