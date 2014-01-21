@@ -130,16 +130,16 @@ public:
         return m_map;
     }
     
-    inline void setObjectGroup(ISOObjectGroup* objectGroup)
+    inline void setObjects(CCArray* objects)
     {
-        CC_SAFE_RETAIN(objectGroup);
-        CC_SAFE_RELEASE(m_objectGroup);
-        m_objectGroup = objectGroup;
+        CC_SAFE_RETAIN(objects);
+        CC_SAFE_RELEASE(m_objects);
+        m_objects = objects;
     }
     
-    inline ISOObjectGroup* getObjectGroup()
+    inline CCArray* getObjects()
     {
-        return m_objectGroup;
+        return m_objects;
     }
     
 protected:
@@ -187,11 +187,11 @@ protected:
     
     //对地图的引用。
     ISOTileMap* m_map;
-
+    
     /**
-     * 使用object group
+     * 所有对象
      */
-    ISOObjectGroup* m_objectGroup;
+    CCArray* m_objects;
 };
 
 

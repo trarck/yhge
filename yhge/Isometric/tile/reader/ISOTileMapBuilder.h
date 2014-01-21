@@ -71,7 +71,6 @@ public:
     
     virtual ISOTilesetInfo * tilesetInfoForLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo);
     
-    
     /**
      * 构建object groups
      */
@@ -92,10 +91,21 @@ public:
     virtual void buildMapObjectLayer(ISOObjectGroup* objectGroup);
     
     /**
+     * 设置地图中的活动层
+     */
+    virtual void setupMapActiveLayer(ISOMapInfo* mapInfo);
+    
+    /**
      * 构建map active layer
      * 对于格子地图，object的坐标最好是基于格子的。
      */
-    virtual void buildMapActiveLayer(ISOObjectGroup* objectGroup);
+    virtual void buildMapActiveLayer(const std::string& name,CCArray* objects,CCDictionary* properties,int zOrder);
+    
+    /**
+     * 构建map active layer
+     * 对于格子地图，object的坐标最好是基于格子的。
+     */
+    virtual void buildMapActiveLayerWithObjectGroup(ISOObjectGroupInfo* objectGroupInfo);
     
     
 public:
@@ -117,6 +127,26 @@ public:
     {
         return m_uMapLayerType;
     }
+    
+    inline void setActiveLayerName(const std::string& activeLayerName)
+    {
+        m_activeLayerName = activeLayerName;
+    }
+    
+    inline const std::string& getActiveLayerName()
+    {
+        return m_activeLayerName;
+    }
+    
+    inline void setActiveLayerDefaultZOrder(int activeLayerDefaultZOrder)
+    {
+        m_activeLayerDefaultZOrder = activeLayerDefaultZOrder;
+    }
+    
+    inline int getActiveLayerDefaultZOrder()
+    {
+        return m_activeLayerDefaultZOrder;
+    }
    
 public:
     
@@ -133,6 +163,16 @@ protected:
     
     unsigned int m_uMapLayerType;
     
+    /**
+     * 活动层的名称
+     */
+    std::string m_activeLayerName;
+    
+    /**
+     * 活动层默认zorder
+     * 当没有指定的active layer，创建的默认active layer使用该值
+     */
+    int m_activeLayerDefaultZOrder;
 };
 
 

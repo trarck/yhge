@@ -130,6 +130,9 @@ protected:
     bool m_bTranslateLayerData;
     
     bool m_translateObjectCoord;
+    
+    //tile layer,object group出现在tmx中的顺序
+    int m_childIndex;
 };
 
 

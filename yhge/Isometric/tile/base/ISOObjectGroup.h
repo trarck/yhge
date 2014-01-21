@@ -47,6 +47,16 @@ public:
     
     virtual CCArray* getObjects();
     
+    inline void setRenderIndex(int renderIndex)
+    {
+        m_renderIndex = renderIndex;
+    }
+    
+    inline int getRenderIndex()
+    {
+        return m_renderIndex;
+    }
+    
 protected:    
     /** name of the group */
     std::string m_sName;
@@ -56,6 +66,12 @@ protected:
     CCDictionary* m_pProperties;
     
     CCArray* m_pObjects;
+    
+    /**
+     * 在地图文件中出现的顺序。
+     * 如果要显示Object，则要保证ObjectLayer和TileLayer之间的显示顺序正确
+     */
+    int m_renderIndex;
 
 };
 

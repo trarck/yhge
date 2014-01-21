@@ -33,6 +33,7 @@ ISOXMLParser::ISOXMLParser()
 :m_pMapInfo(NULL)
 ,m_bTranslateLayerData(false)
 ,m_translateObjectCoord(false)
+,m_childIndex(0)
 {
 
 }
@@ -253,6 +254,8 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         pos.y = (float)atof(valueForKey("y", attributeDict));
         layerInfo->setOffset(pos);
         
+        layerInfo->setRenderIndex(m_childIndex++);
+        
         m_pMapInfo->getLayers()->addObject(layerInfo);
         layerInfo->release();
         
@@ -268,6 +271,8 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         positionOffset.x = (float)atof(valueForKey("x", attributeDict)) * m_pMapInfo->getTileSize().width;
         positionOffset.y = (float)atof(valueForKey("y", attributeDict)) * m_pMapInfo->getTileSize().height;
         objectGroup->setPositionOffset(positionOffset);
+        
+        objectGroup->setRenderIndex(m_childIndex++);
         
         m_pMapInfo->getObjectGroups()->addObject(objectGroup);
         objectGroup->release();

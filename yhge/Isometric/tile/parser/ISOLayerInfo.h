@@ -118,6 +118,15 @@ public:
         return m_pProperties;
     }
     
+    inline void setRenderIndex(int renderIndex)
+    {
+        m_renderIndex = renderIndex;
+    }
+    
+    inline int getRenderIndex()
+    {
+        return m_renderIndex;
+    }
 
 
 protected:
@@ -160,6 +169,12 @@ protected:
      * layer的扩展属性
      */
     CCDictionary* m_pProperties;
+    
+    /**
+     * 在地图文件中出现的顺序。
+     * 如果要显示Object，则要保证ObjectLayer和TileLayer之间的显示顺序正确
+     */
+    int m_renderIndex;
 };
 
 

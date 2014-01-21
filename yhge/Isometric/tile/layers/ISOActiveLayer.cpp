@@ -14,7 +14,7 @@ ISOActiveLayer::ISOActiveLayer()
 ,m_properties(NULL)
 ,m_map(NULL)
 ,m_vertexZvalue(0)
-,m_objectGroup(NULL)
+,m_objects(NULL)
 {
 	
 }
@@ -22,7 +22,7 @@ ISOActiveLayer::ISOActiveLayer()
 ISOActiveLayer::~ISOActiveLayer()
 {
     CC_SAFE_RELEASE_NULL(m_properties);
-    CC_SAFE_RELEASE_NULL(m_objectGroup);
+    CC_SAFE_RELEASE_NULL(m_objects);
 }
 
 bool ISOActiveLayer::init()
@@ -52,11 +52,10 @@ void ISOActiveLayer::releaseLayer()
 
 void ISOActiveLayer::setupObjects()
 {
-    if (m_objectGroup) {
-        CCArray* objects=m_objectGroup->getObjects();
+    if (m_objects) {
         CCObject* pObj=NULL;
         ISOMapObject* mapObject=NULL;
-        CCARRAY_FOREACH(objects, pObj){
+        CCARRAY_FOREACH(m_objects, pObj){
             mapObject=static_cast<ISOMapObject*>(pObj);
             if (mapObject->getGid()!=0 && mapObject->getVisible()) {
                 createObject(mapObject->getGid(), mapObject->getPosition());
