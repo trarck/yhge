@@ -10,18 +10,18 @@ USING_NS_CC;
 NS_CC_YHGE_BEGIN
 
 ISOPositionComponent::ISOPositionComponent()
-:m_x(0.0f)
+:Component("ISOPositionComponent")
+,m_x(0.0f)
 ,m_y(0.0f)
 ,m_z(0.0f)
 ,m_rendererComponent(NULL)
 {
-    CCLOG("ISOPositionComponent create");
-    m_name="ISOPositionComponent";
+
 }
 
 ISOPositionComponent::~ISOPositionComponent()
 {
-    CCLOG("ISOPositionComponent destroy");
+
 }
 
 void ISOPositionComponent::setup()
@@ -38,8 +38,6 @@ void ISOPositionComponent::cleanup()
 
 bool ISOPositionComponent::registerMessages()
 {
-    CCLOG("ISOPositionComponent::registerMessages");
-    
     if(Component::registerMessages()){
         return true;
     }
@@ -48,8 +46,6 @@ bool ISOPositionComponent::registerMessages()
 
 void ISOPositionComponent::cleanupMessages()
 {
-	CCLOG("ISOPositionComponent::cleanupMessages");
-
     Component::cleanupMessages();
 }
 

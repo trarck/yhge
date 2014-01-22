@@ -19,6 +19,8 @@ public:
     
     Component();
     
+    Component(const std::string& name);
+    
     virtual ~Component();
     
     virtual bool init(void);  

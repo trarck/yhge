@@ -8,28 +8,24 @@ USING_NS_CC;
 NS_CC_YHGE_BEGIN
 
 AttackComponent::AttackComponent()
-:m_target(NULL)
+:Component("AttackComponent")
+,m_target(NULL)
 {
-    CCLOG("AttackComponent create");
-    m_name="AttackComponent";
+
 }
 
 AttackComponent::~AttackComponent()
 {
-    CCLOG("AttackComponent destroy");
     CC_SAFE_RELEASE_NULL(m_target);
 }
 
 bool AttackComponent::init()
 {
-    CCLOG("AttackComponent init");
     return true;
 }
 
 bool AttackComponent::registerMessages()
 {
-    CCLOG("AttackComponent::registerMessages");
-    
     if(Component::registerMessages()){
     
         yhge::MessageManager* messageManager=this->getMessageManager();
@@ -44,9 +40,7 @@ bool AttackComponent::registerMessages()
 }
 
 void AttackComponent::cleanupMessages()
-{
-	CCLOG("AttackComponent::cleanupMessages");
-    
+{    
     yhge::MessageManager* messageManager=this->getMessageManager();
     
     messageManager->removeReceiver(m_owner, MSG_SET_ATTACK_TARGET);

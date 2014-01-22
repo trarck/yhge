@@ -16,10 +16,6 @@ public:
     ~SpriteRendererComponent();
     
     virtual bool init();
-    
-    virtual bool registerMessages();
-    
-    virtual void cleanupMessages();
 
 public:
 

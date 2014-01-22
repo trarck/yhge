@@ -8,28 +8,19 @@ USING_NS_CC;
 NS_CC_YHGE_BEGIN
 
 RendererComponent::RendererComponent()
-:m_renderer(NULL)
+:Component("RendererComponent")
+,m_renderer(NULL)
 {
-    CCLOG("RendererComponent create");
-    m_name="RendererComponent";
+
 }
 
 RendererComponent::~RendererComponent()
 {
-    CCLOG("RendererComponent destroy");
     CC_SAFE_RELEASE_NULL(m_renderer);
-}
-
-bool RendererComponent::init()
-{
-    CCLOG("RendererComponent init");
-    return true;
 }
 
 bool RendererComponent::registerMessages()
 {
-    CCLOG("RendererComponent::registerMessages");
-    
     if(Component::registerMessages()){
 
         this->getMessageManager()->registerReceiver(m_owner,MSG_RUN_ACTION, NULL ,message_selector(RendererComponent::onRunAction),this);
@@ -43,8 +34,6 @@ bool RendererComponent::registerMessages()
 
 void RendererComponent::cleanupMessages()
 {
-	CCLOG("RendererComponent::cleanupMessages");
-
     this->getMessageManager()->removeReceiver(m_owner,MSG_RUN_ACTION);
     this->getMessageManager()->removeReceiver(m_owner,MSG_STOP_ACTION);
     this->getMessageManager()->removeReceiver(m_owner,MSG_STOP_ACTION_BY_TAG);

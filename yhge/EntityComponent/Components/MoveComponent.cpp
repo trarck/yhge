@@ -19,7 +19,8 @@ static int kDirectionMapping[8]={
 };
 
 MoveComponent::MoveComponent()
-:m_moveState(MoveIdle)
+:Component("MoveComponent")
+,m_moveState(MoveIdle)
 ,m_moveType(kMoveNone)
 ,m_speed(0.0f)
 ,m_speedX(0.0f)
@@ -38,13 +39,11 @@ MoveComponent::MoveComponent()
 ,m_pathIndex(0)
 ,m_update(NULL)
 {
-    CCLOG("MoveComponent create");
-	m_name="MoveComponent";
+
 }
 
 MoveComponent::~MoveComponent()
 {
-    CCLOG("MoveComponent destroy");
 	CC_SAFE_RELEASE(m_pCurrentPaths);
 	CC_SAFE_RELEASE(m_pNextPaths);
 }
@@ -81,7 +80,6 @@ void MoveComponent::cleanup()
 
 bool MoveComponent::registerMessages()
 {
-    CCLOG("MoveComponent::registerMessages");
     if(Component::registerMessages()){
         MessageManager* messageManager=MessageManager::defaultManager();
         
@@ -98,7 +96,6 @@ bool MoveComponent::registerMessages()
 
 void MoveComponent::cleanupMessages()
 {
-	CCLOG("MoveComponent::cleanupMessages");
     this->getMessageManager()->removeReceiver(m_owner, MSG_MOVE_DIRECTION);
     this->getMessageManager()->removeReceiver(m_owner, MSG_MOVE_DIRECTION_STOP);
     this->getMessageManager()->removeReceiver(m_owner, MSG_MOVE_TO);

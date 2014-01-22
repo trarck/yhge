@@ -11,19 +11,17 @@ NS_CC_YHGE_BEGIN
 static const int kEightDirectionAction=1001;
 
 AnimationComponent::AnimationComponent()
-:m_animations(NULL)
+:Component("AnimationComponent")
+,m_animations(NULL)
 ,m_lastAnimation(NULL)
 ,m_lastAction(NULL)
 ,m_rendererComponent(NULL)
 {
-	CCLOG("AnimationComponent create");
-	m_name="AnimationComponent";
+
 }
 
 AnimationComponent::~AnimationComponent()
 {
-	CCLOG("AnimationComponent destroy");
-
 	CC_SAFE_RELEASE_NULL(m_animations);
     CC_SAFE_RELEASE_NULL(m_lastAction);
 }

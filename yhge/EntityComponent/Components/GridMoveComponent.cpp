@@ -38,7 +38,8 @@ static float MoveDurationMap[3][3]={
  * 原始数据使用地图坐标，移动过程(动画)使用屏幕坐标
  */
 GridMoveComponent::GridMoveComponent()
-:m_moveState(MoveIdle)
+:Component("GridMoveComponent")
+,m_moveState(MoveIdle)
 ,m_moveType(kMoveNone)
 ,m_speed(0.0f)
 ,m_speedX(0.0f)
@@ -64,13 +65,11 @@ GridMoveComponent::GridMoveComponent()
 ,m_isoPositionComponent(NULL)
 ,m_rendererComponent(NULL)
 {
-    CCLOG("GridMoveComponent create");
-	m_name="GridMoveComponent";
+
 }
 
 GridMoveComponent::~GridMoveComponent()
 {
-    CCLOG("GridMoveComponent destroy");
 	CC_SAFE_RELEASE(m_pCurrentPaths);
 	CC_SAFE_RELEASE(m_pNextPaths);
 }
@@ -103,12 +102,12 @@ void GridMoveComponent::cleanup()
 {
     m_isoPositionComponent=NULL;
     m_rendererComponent=NULL;
+    stopMoveUpdateSchedule();
     Component::cleanup();
 }
 
 bool GridMoveComponent::registerMessages()
 {
-    CCLOG("GridMoveComponent::registerMessages");
     if(Component::registerMessages()){
         MessageManager* messageManager=MessageManager::defaultManager();
         
@@ -124,9 +123,7 @@ bool GridMoveComponent::registerMessages()
 }
 
 void GridMoveComponent::cleanupMessages()
-{
-	CCLOG("GridMoveComponent::cleanupMessages");
-    
+{    
     MessageManager* messageManager=MessageManager::defaultManager();
     
     messageManager->removeReceiver(m_owner, MSG_MOVE_DIRECTION);

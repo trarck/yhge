@@ -23,13 +23,12 @@ CameraFlowGridMoveComponent::CameraFlowGridMoveComponent()
 ,m_innerOffset(kDefaultInnerOffset)
 ,m_needMoveCamera(false)
 {
-    CCLOG("CameraFlowGridMoveComponent create");
 	m_name="GridMoveComponent";
 }
 
 CameraFlowGridMoveComponent::~CameraFlowGridMoveComponent()
 {
-    CCLOG("CameraFlowGridMoveComponent destroy");
+
 }
 
 /**

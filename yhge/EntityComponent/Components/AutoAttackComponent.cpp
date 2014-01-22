@@ -10,19 +10,16 @@ NS_CC_YHGE_BEGIN
 AutoAttackComponent::AutoAttackComponent()
 :m_attackSpeed(2)
 {
-    CCLOG("AutoAttackComponent create");
     m_name="AutoAttackComponent";
 }
 
 AutoAttackComponent::~AutoAttackComponent()
 {
-    CCLOG("AutoAttackComponent destroy");
     CC_SAFE_RELEASE(m_target);
 }
 
 bool AutoAttackComponent::init()
 {
-    CCLOG("AutoAttackComponent init");
     return true;
 }
 
@@ -39,7 +36,6 @@ bool AutoAttackComponent::registerMessages()
 
 void AutoAttackComponent::cleanupMessages()
 {
-	CCLOG("AttackComponent::cleanupMessages");
     this->getMessageManager()->removeReceiver(m_owner, MSG_AUTO_ATTACK);
     
     AttackComponent::cleanupMessages();
