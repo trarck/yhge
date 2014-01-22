@@ -107,7 +107,16 @@ public:
      */
     virtual void buildMapActiveLayerWithObjectGroup(ISOObjectGroupInfo* objectGroupInfo);
     
+    /**
+     * 构建map active layer
+     * 对于格子地图，object的坐标最好是基于格子的。
+     */
+    virtual void buildMapActiveLayerWithLayerInfo(ISOLayerInfo* layerInfo);
     
+    /**
+     * 把layer里的元素转成对象
+     */
+    CCArray* createObjectsFromLayerInfo(ISOLayerInfo* layerInfo);
 public:
     
     inline void setMap(ISOTileMap* pMap){

@@ -40,6 +40,7 @@ void ISOTileMapBuilder::buildWithMapInfo(ISOMapInfo* mapInfo)
     this->buildMapTilesets(mapInfo);
     this->buildMapLayers(mapInfo);
     this->buildMapObjectGroups(mapInfo);
+    this->setupMapActiveLayer(mapInfo);
 }
 
 void ISOTileMapBuilder::buildMapTilesets(ISOMapInfo* mapInfo)
@@ -467,7 +468,22 @@ void ISOTileMapBuilder::setupMapActiveLayer(ISOMapInfo* mapInfo)
         }
     }
 
-    //TODO 从tile layer里查找
+    //从tile layer里查找
+    CCArray* layerInfos = mapInfo->getLayers();
+    if (layerInfos && layerInfos->count()>0)
+    {
+        ISOLayerInfo* layerInfo = NULL;
+        CCObject* pObj = NULL;
+        CCARRAY_FOREACH(layerInfos, pObj)
+        {
+            layerInfo = (ISOLayerInfo*)pObj;
+            if (layerInfo && strcmp(layerInfo->getName(), m_activeLayerName.c_str())==0)
+            {
+                buildMapActiveLayerWithLayerInfo(layerInfo);
+                return;
+            }
+        }
+    }
     
     //没有找到创建一个空的layer，默认放在最上层
     buildMapActiveLayer(m_activeLayerName, NULL, NULL, m_activeLayerDefaultZOrder);
@@ -505,6 +521,50 @@ void ISOTileMapBuilder::buildMapActiveLayer(const std::string& name,CCArray* obj
 void ISOTileMapBuilder::buildMapActiveLayerWithObjectGroup(ISOObjectGroupInfo* objectGroupInfo)
 {
     buildMapActiveLayer(objectGroupInfo->getName(),objectGroupInfo->getObjects(),objectGroupInfo->getProperties(),objectGroupInfo->getRenderIndex());
+}
+
+/**
+ * 构建map active layer
+ * 对于格子地图，object的坐标最好是基于格子的。
+ */
+void ISOTileMapBuilder::buildMapActiveLayerWithLayerInfo(ISOLayerInfo* layerInfo)
+{
+    CCArray* objects=createObjectsFromLayerInfo(layerInfo);
+    
+    buildMapActiveLayer(layerInfo->getName(), objects, layerInfo->getProperties(), layerInfo->getRenderIndex());
+}
+
+/**
+ * 把layer里的元素转成对象
+ */
+CCArray* ISOTileMapBuilder::createObjectsFromLayerInfo(ISOLayerInfo* layerInfo)
+{
+    CCSize layerSize=layerInfo->getLayerSize();
+    
+    CCArray* objects=CCArray::createWithCapacity((unsigned int)(layerSize.width*layerSize.height*0.25));
+    
+    unsigned int * tiles=layerInfo->getTiles();
+    ISOMapObject* obj=NULL;
+    
+    for (unsigned int y=0; y < layerSize.height; y++)
+    {
+        for (unsigned int x=0; x < layerSize.width; x++)
+        {
+            unsigned int pos = (unsigned int)(x + layerSize.width * y);
+            unsigned int gid = tiles[ pos ];
+            
+            obj=new ISOMapObject();
+            obj->init();
+            obj->setGid(gid);
+            obj->setPosition(ccp(x,y));
+            objects->addObject(obj);
+            
+            obj->release();
+            
+        }
+    }
+    
+    return objects;
 }
 
 NS_CC_YHGE_END
