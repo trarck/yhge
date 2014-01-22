@@ -73,6 +73,8 @@
 		578E5F5418680D830042319C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		5792840F188CD37000B46136 /* CameraFlowGridMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5792840D188CD37000B46136 /* CameraFlowGridMoveComponent.cpp */; };
 		57928415188D2BFD00B46136 /* ISOActiveLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57928413188D2BFD00B46136 /* ISOActiveLayer.cpp */; };
+		57928424188E82EC00B46136 /* ISOMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57928422188E82EC00B46136 /* ISOMap.cpp */; };
+		57928428188F5BD400B46136 /* ISOLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57928426188F5BD400B46136 /* ISOLayer.cpp */; };
 		57C3375C1888C3A1008B5618 /* AnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337401888C3A1008B5618 /* AnimationComponent.cpp */; };
 		57C3375D1888C3A1008B5618 /* AttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337421888C3A1008B5618 /* AttackComponent.cpp */; };
 		57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337441888C3A1008B5618 /* AutoAttackComponent.cpp */; };
@@ -252,6 +254,10 @@
 		5792840E188CD37000B46136 /* CameraFlowGridMoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFlowGridMoveComponent.h; sourceTree = "<group>"; };
 		57928413188D2BFD00B46136 /* ISOActiveLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOActiveLayer.cpp; sourceTree = "<group>"; };
 		57928414188D2BFD00B46136 /* ISOActiveLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOActiveLayer.h; sourceTree = "<group>"; };
+		57928422188E82EC00B46136 /* ISOMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOMap.cpp; sourceTree = "<group>"; };
+		57928423188E82EC00B46136 /* ISOMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOMap.h; sourceTree = "<group>"; };
+		57928426188F5BD400B46136 /* ISOLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOLayer.cpp; sourceTree = "<group>"; };
+		57928427188F5BD400B46136 /* ISOLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOLayer.h; sourceTree = "<group>"; };
 		57C337401888C3A1008B5618 /* AnimationComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationComponent.cpp; sourceTree = "<group>"; };
 		57C337411888C3A1008B5618 /* AnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationComponent.h; sourceTree = "<group>"; };
 		57C337421888C3A1008B5618 /* AttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackComponent.cpp; sourceTree = "<group>"; };
@@ -347,6 +353,10 @@
 				5771056A18838D7200FA1446 /* ISOCamera.cpp */,
 				5771056B18838D7200FA1446 /* ISOCamera.h */,
 				576E3F73187D4BFB00745A0A /* ISOCoordinate.h */,
+				57928426188F5BD400B46136 /* ISOLayer.cpp */,
+				57928427188F5BD400B46136 /* ISOLayer.h */,
+				57928422188E82EC00B46136 /* ISOMap.cpp */,
+				57928423188E82EC00B46136 /* ISOMap.h */,
 				576E3FB1187D4BFB00745A0A /* ZIndex.cpp */,
 				576E3FB2187D4BFB00745A0A /* ZIndex.h */,
 				576E3FB3187D4BFB00745A0A /* ZIndexNode.cpp */,
@@ -785,6 +795,7 @@
 				577A7906186BF56500F1B5D5 /* Event.cpp in Sources */,
 				576E3FCF187D4BFB00745A0A /* ZIndex.cpp in Sources */,
 				57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */,
+				57928424188E82EC00B46136 /* ISOMap.cpp in Sources */,
 				576E3FBA187D4BFB00745A0A /* ISOTilesetGroup.cpp in Sources */,
 				577A78F4186BF56500F1B5D5 /* Astar.cpp in Sources */,
 				576E3FBC187D4BFB00745A0A /* ISOTileMap.cpp in Sources */,
@@ -825,6 +836,7 @@
 				5771056918837C3E00FA1446 /* IsoTileUtils.cpp in Sources */,
 				576E3FC1187D4BFB00745A0A /* ISODynamicTileLayer.cpp in Sources */,
 				577A78FE186BF56500F1B5D5 /* ccCArray.cpp in Sources */,
+				57928428188F5BD400B46136 /* ISOLayer.cpp in Sources */,
 				577A790B186BF56500F1B5D5 /* UIEvent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
