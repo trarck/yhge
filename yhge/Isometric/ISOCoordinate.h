@@ -105,6 +105,26 @@ static inline CCPoint isoGameToViewPoint(const CCPoint&  point)
 	return isoGameToView2F(point.x,point.y);
 }
 
+//只取得y方向的值,通常用于遮挡值
+static inline float isoGameToViewY3F(float x ,float y ,float z)
+{
+	double sy=x+y;
+	sy=sy*YUnit-z*ZUnit;//sy*16-z*32
+	return sy;
+}
+
+//只取得y方向的值,通常用于遮挡值
+static inline float isoGameToViewY2F(float x, float y)
+{
+	return (x+y)*YUnit;//sy=x+y;sy*16
+}
+
+//只取得y方向的值,通常用于遮挡值
+static inline float isoGameToViewYPoint(const CCPoint&  point)
+{
+	return isoGameToViewY2F(point.x,point.y);
+}
+
 //==============使用传址的方式=====================//
 
 static inline void isoViewToGame2FP(float x,float y,CCPoint* destPoint)
