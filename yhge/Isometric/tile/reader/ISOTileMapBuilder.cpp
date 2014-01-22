@@ -156,7 +156,7 @@ void ISOTileMapBuilder::buildMapLayers(ISOMapInfo* mapInfo)
         CCARRAY_FOREACH(layerInfos, pObj)
         {
             layerInfo = (ISOLayerInfo*)pObj;
-            if (layerInfo && layerInfo->getVisible())
+            if (layerInfo && layerInfo->getVisible() && layerInfo->getName()!=m_activeLayerName)
             {
                 buildMapLayer(layerInfo,mapInfo);
                 idx++;
@@ -382,7 +382,9 @@ void ISOTileMapBuilder::buildMapObjectGroups(ISOMapInfo* mapInfo)
                 m_pMap->getObjectGroups()->addObject(objGroup);
                 objGroup->release();
 
-				buildMapObjectLayer(objGroup);
+                if (objectGroupInfo->getName()!=m_activeLayerName) {
+                    buildMapObjectLayer(objGroup);
+                }
             }
         }
     }
