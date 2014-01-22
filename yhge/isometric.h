@@ -7,6 +7,11 @@
 #include "Isometric/ZIndexNode.h"
 #include "Isometric/ZIndex.h"
 
+#include "Isometric/ISOCamera.h"
+#include "Isometric/ISOLayer.h"
+#include "Isometric/ISOMap.h"
+
+
 #include "Isometric/tile/IsoTileUtils.h"
 
 //Isometric map info and parser
@@ -36,7 +41,5 @@
 #include "Isometric/tile/layers/ISOBatchDynamicTileLayer.h"
 #include "Isometric/tile/reader/ISOTileMapBuilder.h"
 #include "Isometric/tile/ISOTileMap.h"
-
-#include "Isometric/ISOCamera.h"
 
 #endif //COCOS_YHGE_ISOMETRIC_H_

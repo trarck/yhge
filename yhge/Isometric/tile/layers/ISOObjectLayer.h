@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/ISOLayer.h>
 #include "../base/ISOObjectGroup.h"
 
 NS_CC_YHGE_BEGIN
@@ -17,27 +18,30 @@ class ISOTileMap;
  * 按对象的y值做遮挡处理
  */
 
-class ISOObjectLayer : public CCNode {
+class ISOObjectLayer : public ISOLayer {
 
 public:
 	
 	ISOObjectLayer();
     
 	virtual ~ISOObjectLayer(void);
-	
-    virtual bool init();
     
     static ISOObjectLayer* create();
     
     /**
-     * 初始化显示tiles
+     * 初始化显示
      */
-    virtual void setupObjects();
+    virtual void setupLayer();
     
     /**
      * 释放本层的内容
      */
     virtual void releaseLayer();
+    
+    /**
+     * 初始化显示tiles
+     */
+    virtual void setupObjects();
     
     //移动
     virtual void scroll(const CCPoint& tOffset);
@@ -52,66 +56,11 @@ public:
      * 取得z值，处理遮挡使用
      */
     int vertexZForPos(const CCPoint& pos);
-
-    /**
-     * 获取属性名称
-     */
-    CCString *propertyNamed(const char *propertyName);
     
+    virtual void setMap(ISOMap* pMap);
 
 public:
     
-    inline void setLayerName(const std::string& layerName)
-    {
-        m_layerName = layerName;
-    }
-    
-    inline const std::string& getLayerName()
-    {
-        return m_layerName;
-    }
-    
-    inline void setOffset(const CCPoint& offset)
-    {
-        m_offset = offset;
-    }
-    
-    inline const CCPoint& getOffset()
-    {
-        return m_offset;
-    }
-    
-    inline void setProperties(CCDictionary* properties)
-    {
-        CC_SAFE_RETAIN(properties);
-        CC_SAFE_RELEASE(m_properties);
-        m_properties = properties;
-    }
-    
-    inline CCDictionary* getProperties()
-    {
-        return m_properties;
-    }
-    
-    inline void setLayerOrientation(unsigned int layerOrientation)
-    {
-        m_layerOrientation = layerOrientation;
-    }
-    
-    inline unsigned int getLayerOrientation()
-    {
-        return m_layerOrientation;
-    }
-    
-    inline void setOpacity(unsigned char opacity)
-    {
-        m_opacity = opacity;
-    }
-    
-    inline unsigned char getOpacity()
-    {
-        return m_opacity;
-    }
     
     inline void setVertexZvalue(int vertexZvalue)
     {
@@ -122,17 +71,7 @@ public:
     {
         return m_vertexZvalue;
     }
-    
-    inline void setMap(ISOTileMap* map)
-    {
-        m_map = map;
-    }
-    
-    inline ISOTileMap* getMap()
-    {
-        return m_map;
-    }
-    
+
     inline void setObjectGroup(ISOObjectGroup* objectGroup)
     {
         CC_SAFE_RETAIN(objectGroup);
@@ -158,38 +97,12 @@ protected:
     virtual void parseInternalProperties();
     
 protected:
-    /**
-     * 层的名称
-     */
-    std::string m_layerName;
-    
-    /**
-     * 地图的偏移量。屏幕坐标
-     * 可能层的原点和地图的原点不在一起。
-     */
-    CCPoint m_offset;
-    
-    /**
-     * 属性
-     */
-    CCDictionary* m_properties;
-    
-    /**
-     * 地图类型，斜视角，直角，六角。
-     * 这里直接使用斜视角。所以用不到，保留将来或许有用。
-     */
-    unsigned int m_layerOrientation;
-    
-    /**
-     * 透明度。
-     */
-    unsigned char m_opacity;
     
     //! Only used when vertexZ is used
     int m_vertexZvalue;
     
     //对地图的引用。
-    ISOTileMap* m_map;
+    ISOTileMap* m_tileMap;
 
     /**
      * 使用object group

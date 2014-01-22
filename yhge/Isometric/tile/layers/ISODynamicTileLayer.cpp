@@ -57,7 +57,7 @@ void ISODynamicTileLayer::setComponentColumnAndRow()
 
     if(m_pDynamicComponent && m_tMapTileSize.height!=0 && m_tMapTileSize.width!=0){
         
-        CCSize visibleSize=m_pMap->getVisibleSize();
+        CCSize visibleSize=m_tileMap->getVisibleSize();
         int componentTileColumn=0;
         int componentTileRow=0;
 
@@ -78,7 +78,7 @@ void ISODynamicTileLayer::draw()
 	
 	ccDrawColor4B(255,0,0,255);
     
-    CCSize visibleSize=m_pMap->getVisibleSize();
+    CCSize visibleSize=m_tileMap->getVisibleSize();
     
     ccDrawRect(m_tOffset,ccp(m_tOffset.x+visibleSize.width,m_tOffset.y+visibleSize.height));
 }

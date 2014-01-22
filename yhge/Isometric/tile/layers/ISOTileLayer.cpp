@@ -7,54 +7,49 @@
 NS_CC_YHGE_BEGIN
 
 ISOTileLayer::ISOTileLayer()
-:m_iStartX(0)
-,m_iStartY(0)
-,m_tLayerSize(CCSizeZero)
-,m_tMapTileSize(CCSizeZero)
-,m_tOffset(CCPointZero)
-,m_pProperties(NULL)
-,m_sLayerName("")
+:m_startX(0)
+,m_startY(0)
 ,m_pTiles(NULL)
 ,m_bUseAutomaticVertexZ(false)
 ,m_nVertexZvalue(0)
+,m_tileMap(NULL)
 {
 	
 }
 
 ISOTileLayer::~ISOTileLayer()
 {
-    CC_SAFE_RELEASE(m_pProperties);
     if(m_pTiles )
     {
         delete [] m_pTiles;
         m_pTiles = NULL;
     }
 }
-
-bool ISOTileLayer::init()
-{
-    m_pProperties=new CCDictionary();
-    
-	return true;
-}
-
-bool ISOTileLayer::init(CCSize& mapTileSize)
-{
-    if(init()){
-        m_tMapTileSize=mapTileSize;
-        return true;
-    }
-    return false;
-}
-
-bool ISOTileLayer::init(CCSize& mapTileSize,CCPoint& offset)
-{
-    if(init(mapTileSize)){
-        m_tOffset=offset;
-        return true;
-    }
-    return false;
-}
+//
+//bool ISOTileLayer::init()
+//{
+//    m_pProperties=new CCDictionary();
+//    
+//	return true;
+//}
+//
+//bool ISOTileLayer::init(CCSize& mapTileSize)
+//{
+//    if(init()){
+//        m_tMapTileSize=mapTileSize;
+//        return true;
+//    }
+//    return false;
+//}
+//
+//bool ISOTileLayer::init(CCSize& mapTileSize,CCPoint& offset)
+//{
+//    if(init(mapTileSize)){
+//        m_tOffset=offset;
+//        return true;
+//    }
+//    return false;
+//}
 
 
 void ISOTileLayer::initOffset(const CCPoint& tOffset)
@@ -62,8 +57,8 @@ void ISOTileLayer::initOffset(const CCPoint& tOffset)
 //    this->setPosition(tOffset);
 	this->setOffset(tOffset);
 	CCPoint startMapCoord=isoViewToGamePoint(tOffset);
-	m_iStartX=(int)startMapCoord.x;
-	m_iStartY=(int)startMapCoord.y;
+	m_startX=(int)startMapCoord.x;
+	m_startY=(int)startMapCoord.y;
 }
 
 void ISOTileLayer::initOffset(float x,float y)
@@ -82,6 +77,14 @@ ISOTileLayer* ISOTileLayer::create()
         pRet = NULL;
         return NULL; 
     }
+}
+
+/**
+ * 初始化显示
+ */
+void ISOTileLayer::setupLayer()
+{
+    setupTiles();
 }
 
 void ISOTileLayer::releaseLayer()
@@ -123,7 +126,7 @@ ISOTile* ISOTileLayer::tileAt(const CCPoint& pos)
     unsigned int gid=tileGIDAt(pos);
     
     if(gid>0){
-        ISOTileset* tileset=m_pMap->getTilesetGroup()->getTilesetByGid(gid);
+        ISOTileset* tileset=m_tileMap->getTilesetGroup()->getTilesetByGid(gid);
         tile=tileset->tileForGid(gid);
     }
     
@@ -257,78 +260,6 @@ unsigned int ISOTileLayer::zOrderToIndex(int z)
 	return (unsigned int)(m_tLayerSize.width*m_tLayerSize.height-z);
 }
 
-CCString* ISOTileLayer::propertyNamed(const char *propertyName)
-{
-    return (CCString*)m_pProperties->objectForKey(propertyName);
-}
-
-
-void ISOTileLayer::setLayerSize(const CCSize& tLayerSize)
-{
-    m_tLayerSize = tLayerSize;
-}
-
-CCSize ISOTileLayer::getLayerSize()
-{
-    return m_tLayerSize;
-}
-
-
-void ISOTileLayer::setOffset(const CCPoint& tOffset)
-{
-    m_tOffset = tOffset;
-}
-
-void ISOTileLayer::setOffset(float x,float y)
-{
-    m_tOffset.x=x;
-	m_tOffset.y=y;
-}
-
-CCPoint ISOTileLayer::getOffset()
-{
-    return m_tOffset;
-}
-
-void ISOTileLayer::setMapTileSize(float width,float height)
-{
-    m_tMapTileSize.width=width;
-    m_tMapTileSize.height=height;
-}
-
-void ISOTileLayer::setMapTileSize(const CCSize& tMapTileSize)
-{
-    m_tMapTileSize = tMapTileSize;
-}
-
-const CCSize& ISOTileLayer::getMapTileSize()
-{
-    return m_tMapTileSize;
-}
-
-
-void ISOTileLayer::setLayerOrientation(unsigned int uLayerOrientation)
-{
-    m_uLayerOrientation = uLayerOrientation;
-}
-
-unsigned int ISOTileLayer::getLayerOrientation()
-{
-    return m_uLayerOrientation;
-}
-
-void ISOTileLayer::setProperties(CCDictionary* pProperties)
-{
-    CC_SAFE_RETAIN(pProperties);
-    CC_SAFE_RELEASE(m_pProperties);
-    m_pProperties = pProperties;
-}
-
-CCDictionary* ISOTileLayer::getProperties()
-{
-    return m_pProperties;
-}
-
 void ISOTileLayer::setTiles(unsigned int* pTiles)
 {
     m_pTiles = pTiles;
@@ -372,5 +303,10 @@ void ISOTileLayer::removeTileSpriteAt(float x,float y)
 void ISOTileLayer::removeTileSpriteAt(const CCPoint& pos)
 {
     CCAssert(false, "you must impl ISOTileLayer::removeSpriteTileAt");
+}
+
+void ISOTileLayer::setMap(ISOMap* pMap)
+{
+    m_tileMap=static_cast<ISOTileMap*>(pMap);
 }
 NS_CC_YHGE_END

@@ -7,6 +7,7 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/ISOMap.h>
 
 #include "ISOTileInterfaces.h"
 #include "base/ISOTilesetGroup.h"
@@ -36,7 +37,7 @@ NS_CC_YHGE_BEGIN
  * 通常object group不是用于显示的，用来定义一些事件或地图上的特殊信息。
  * 如果地图上的元素要参与遮挡，则不能放在tile layer里。比如一堆火，一颗树。而这些必须放在一个层里。这个层就是ActiveLayer.
  */
-class ISOTileMap : public CCNode{
+class ISOTileMap : public ISOMap{
 
 public:
 	
@@ -54,38 +55,15 @@ public:
 	
     bool init();
     
-    bool initWithXMLFile(const char* xmlFile);
-    
-    bool initWithJSONFile(const char* jsonFile);
-    
-    bool initWithXML(const char* xmlString,const char* resourcePath);
-    
-    bool initWithJSON(const char* jsonString,const char* resourcePath);
-    
     /**
      * 取得贴图
      */
-	ISOTileset* tilesetNamed(const char* tilesetName);
-    
-    /**
-     * 取得普通层
-     */
-	ISOTileLayer* layerNamed(const char* layerName);
+	ISOTileset* tilesetNamed(const std::string& tilesetName);
     
     /**
      * 取得对象层
      */
-    ISOObjectGroup* objectGroupNamed(const char *objectGroupName);
-    
-    /**
-     * 取得对象显示层
-     */
-    ISOObjectLayer* objectLayerNamed(const char *objectLayerName);
-    
-    /**
-     * 取得属性
-     */
-	CCString *propertyNamed(const char *propertyName);
+    ISOObjectGroup* objectGroupNamed(const std::string& objectGroupName);
     
     /**
      * 通知layer，地图的显示位置改变。
@@ -131,58 +109,6 @@ public:
 
 
 public://==============属性===============//
-	
-	inline void setMapSize(CCSize tMapSize)
-	{
-		m_tMapSize = tMapSize;
-	}
-
-	inline CCSize getMapSize()
-	{
-		return m_tMapSize;
-	}
-
-	inline void setTileSize(const CCSize& tTileSize)
-	{
-		m_tTileSize = tTileSize;
-	}
-
-	inline const CCSize& getTileSize()
-	{
-		return m_tTileSize;
-	}
-
-	inline void setName(const char* pName)
-	{
-		m_pName = pName;
-	}
-
-	inline const char* getName()
-	{
-		return m_pName.c_str();
-	}
-
-	inline void setMapOrientation(int nMapOrientation)
-	{
-		m_nMapOrientation = nMapOrientation;
-	}
-
-	inline int getMapOrientation()
-	{
-		return m_nMapOrientation;
-	}
-
-	inline void setTileLayers(CCArray* pTileLayers)
-	{
-		CC_SAFE_RETAIN(pTileLayers);
-		CC_SAFE_RELEASE(m_pTileLayers);
-		m_pTileLayers = pTileLayers;
-	}
-
-	inline CCArray* getTileLayers()
-	{
-		return m_pTileLayers;
-	}
 
 	inline void setObjectGroups(CCArray* pObjectGroups)
 	{
@@ -194,52 +120,6 @@ public://==============属性===============//
 	inline CCArray* getObjectGroups()
 	{
 		return m_pObjectGroups;
-	}
-    
-    inline void setObjectLayers(CCArray* pObjectLayers)
-    {
-        CC_SAFE_RETAIN(pObjectLayers);
-        CC_SAFE_RELEASE(m_pObjectLayers);
-        m_pObjectLayers = pObjectLayers;
-    }
-    
-    inline CCArray* getObjectLayers()
-    {
-        return m_pObjectLayers;
-    }
-
-	inline void setProperties(CCDictionary* pProperties)
-	{
-		CC_SAFE_RETAIN(pProperties);
-		CC_SAFE_RELEASE(m_pProperties);
-		m_pProperties = pProperties;
-	}
-
-	inline CCDictionary* getProperties()
-	{
-		return m_pProperties;
-	}
-
-	inline void setIdentifier(int nIdentifier)
-	{
-		m_nIdentifier=nIdentifier;
-	}
-
-	inline int getIdentifier()
-	{
-		return m_nIdentifier;
-	}
-
-	inline void setTileProperties(CCDictionary* pTileProperties)
-	{
-		CC_SAFE_RETAIN(pTileProperties);
-		CC_SAFE_RELEASE(m_pTileProperties);
-		m_pTileProperties = pTileProperties;
-	}
-
-	inline CCDictionary* getTileProperties()
-	{
-		return m_pTileProperties;
 	}
 
 	inline void setTilesetGroup(ISOTilesetGroup* pTilesetGroup)
@@ -253,18 +133,6 @@ public://==============属性===============//
 	{
 		return m_pTilesetGroup;
 	}
-    
-    inline void setVisibleSize(const CCSize& visibleSize)
-    {
-        m_visibleSize = visibleSize;
-    }
-    
-    inline CCSize getOrignalVisibleSize()
-    {
-        return m_visibleSize;
-    }
-    
-    CCSize getVisibleSize();
 
 	void setDynamicGroup(ISODynamicGroup* dynamicGroup)
 	{
@@ -296,18 +164,6 @@ public://==============属性===============//
 	{
 		return m_dynamicComponents;
 	}
-
-    inline void setActiveLayer(ISOActiveLayer* activeLayer)
-    {
-        CC_SAFE_RETAIN(activeLayer);
-        CC_SAFE_RELEASE(m_activeLayer);
-        m_activeLayer = activeLayer;
-    }
-    
-    inline ISOActiveLayer* getActiveLayer()
-    {
-        return m_activeLayer;
-    }
     
 protected:
     
@@ -323,30 +179,6 @@ protected:
 //    virtual void buildMapLayers(ISOMapInfo* mapInfo);
     
 protected:
-    /**
-     * 地图大小，格子数，单位为格子。
-     */
-	CCSize m_tMapSize;
-    
-    /**
-     * 地图格子大小。
-     */
-    CCSize m_tTileSize;
-    
-    /**
-     * 地图名称
-     */
-    std::string m_pName;
-    
-    /**
-     * 地图编号
-     */
-    int m_nIdentifier;
-    
-    /**
-     * 地图类型
-     */
-    int m_nMapOrientation;
     
     /**
      * 图块合集
@@ -354,34 +186,9 @@ protected:
     ISOTilesetGroup* m_pTilesetGroup;
     
     /**
-     * 图块层集
-     */
-    CCArray* m_pTileLayers;
-    
-    /**
      * 对像分组
      */
     CCArray* m_pObjectGroups;
-    
-    /**
-     * 对像层集
-     */
-    CCArray* m_pObjectLayers;
-    
-    /**
-     * 属性列表
-     */
-    CCDictionary* m_pProperties;
-    
-    /**
-     * tile properties
-     */
-    CCDictionary* m_pTileProperties;
-    
-    /**
-     * 地图的可视区域
-     */
-    CCSize m_visibleSize;
     
     /**
      * 管理动态层的组件
@@ -395,14 +202,14 @@ protected:
      * 需要集中管理的DynamicComponent
      */
     CCArray* m_dynamicComponents;
-    
-    /**
-     * 活动层。
-     * 不能是TileLayer
-     * 提供场景内活动元素的层
-     * 通常是在map的显示子结点
-     */
-    ISOActiveLayer* m_activeLayer;
+//    
+//    /**
+//     * 活动层。
+//     * 不能是TileLayer
+//     * 提供场景内活动元素的层
+//     * 通常是在map的显示子结点
+//     */
+//    ISOActiveLayer* m_activeLayer;
 };
 
 

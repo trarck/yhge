@@ -7,12 +7,7 @@
 NS_CC_YHGE_BEGIN
 
 ISOObjectLayer::ISOObjectLayer()
-:m_layerName("")
-,m_layerOrientation(0)
-,m_opacity(255)
-,m_offset(CCPointZero)
-,m_properties(NULL)
-,m_map(NULL)
+:m_tileMap(NULL)
 ,m_vertexZvalue(0)
 ,m_objectGroup(NULL)
 {
@@ -21,15 +16,7 @@ ISOObjectLayer::ISOObjectLayer()
 
 ISOObjectLayer::~ISOObjectLayer()
 {
-    CC_SAFE_RELEASE_NULL(m_properties);
     CC_SAFE_RELEASE_NULL(m_objectGroup);
-}
-
-bool ISOObjectLayer::init()
-{
-    m_properties=new CCDictionary();
-    
-	return true;
 }
 
 ISOObjectLayer* ISOObjectLayer::create()
@@ -43,6 +30,15 @@ ISOObjectLayer* ISOObjectLayer::create()
         pRet = NULL;
         return NULL; 
     }
+}
+
+
+/**
+ * 初始化显示
+ */
+void ISOObjectLayer::setupLayer()
+{
+    setupObjects();
 }
 
 void ISOObjectLayer::releaseLayer()
@@ -70,7 +66,7 @@ void ISOObjectLayer::setupObjects()
  */
 CCSprite* ISOObjectLayer::createObject(int gid,const CCPoint& position)
 {
-    ISOTileset* tileset=m_map->getTilesetGroup()->getTilesetByGid(gid);
+    ISOTileset* tileset=m_tileMap->getTilesetGroup()->getTilesetByGid(gid);
     
     ISOTile* tile=tileset->tileForGid(gid);
     
@@ -78,7 +74,7 @@ CCSprite* ISOObjectLayer::createObject(int gid,const CCPoint& position)
     //object 的对齐方式为底部居中
     tileSprite->setAnchorPoint(ccp(0.5f,0));
     tileSprite->setPosition(isoGameToViewPoint(position));
-    tileSprite->setOpacity(m_opacity);
+    tileSprite->setOpacity(m_cOpacity);
     
     this->addChild(tileSprite,-position.y);
     
@@ -101,9 +97,9 @@ void ISOObjectLayer::parseInternalProperties()
 
 }
 
-CCString* ISOObjectLayer::propertyNamed(const char *propertyName)
+void ISOObjectLayer::setMap(ISOMap* pMap)
 {
-    return (CCString*)m_properties->objectForKey(propertyName);
+    m_tileMap=static_cast<ISOTileMap*>(pMap);
 }
 
 NS_CC_YHGE_END

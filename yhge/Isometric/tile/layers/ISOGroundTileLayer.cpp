@@ -134,7 +134,7 @@ CCSprite * ISOGroundTileLayer::tileSpriteAt(const CCPoint& pos)
         // tile not created yet. create it
         if (! tile)
         {
-            ISOTileset* tileset=m_pMap->getTilesetGroup()->getTilesetByGid(gid);
+            ISOTileset* tileset=m_tileMap->getTilesetGroup()->getTilesetByGid(gid);
             tile = tileset->tileSpriteForGid(gid);
             tile->setPosition(isoGameToViewPoint(pos));
             tile->setVertexZ((float)vertexZForPos(pos));
@@ -168,7 +168,7 @@ void ISOGroundTileLayer::removeTileSpriteAt(const CCPoint& pos)
 // ISOGroundTileLayer - adding helper methods
 CCSprite * ISOGroundTileLayer::insertTileForGID(unsigned int gid, const CCPoint& pos)
 {
-    ISOTileset* tileset=m_pMap->getTilesetGroup()->getTilesetByGid(gid);
+    ISOTileset* tileset=m_tileMap->getTilesetGroup()->getTilesetByGid(gid);
     CCSprite *tile = tileset->tileSpriteForGid(gid);
     
     int z = (int)(pos.x + pos.y * m_tLayerSize.width);
@@ -185,7 +185,7 @@ CCSprite * ISOGroundTileLayer::updateTileForGID(unsigned int gid, const CCPoint&
 
     this->removeChildByTag(z, true);
   
-    ISOTileset* tileset=m_pMap->getTilesetGroup()->getTilesetByGid(gid);
+    ISOTileset* tileset=m_tileMap->getTilesetGroup()->getTilesetByGid(gid);
     CCSprite *newTile = tileset->tileSpriteForGid(gid);
     
     setupTileSprite(newTile ,pos ,gid);
@@ -205,7 +205,7 @@ CCSprite * ISOGroundTileLayer::appendTileForGID(unsigned int gid, const CCPoint&
 
     int z = (int)(pos.x + pos.y * m_tLayerSize.width);
     
-    ISOTileset* tileset=m_pMap->getTilesetGroup()->getTilesetByGid(gid);
+    ISOTileset* tileset=m_tileMap->getTilesetGroup()->getTilesetByGid(gid);
     
     ISOTile* tile=tileset->tileForGid(gid);
    

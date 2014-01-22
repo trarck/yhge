@@ -3,7 +3,9 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/ISOLayer.h>
 #include "../base/ISOTile.h"
+
 
 NS_CC_YHGE_BEGIN
 
@@ -16,7 +18,7 @@ class ISOTileMap;
  * 坐为背景层或地表层，主要是静态的物体。
  */
 
-class ISOTileLayer : public CCNode {
+class ISOTileLayer : public ISOLayer {
 
 public:
 	
@@ -24,30 +26,36 @@ public:
     
 	virtual ~ISOTileLayer(void);
 	
-    virtual bool init();
-        
-    virtual bool init(CCSize& mapTileSize);
-    
-    virtual bool init(CCSize& mapTileSize,CCPoint& offset);
+//    virtual bool init();
+//        
+//    virtual bool init(CCSize& mapTileSize);
+//    
+//    virtual bool init(CCSize& mapTileSize,CCPoint& offset);
     
     static ISOTileLayer* create();
     
-    /**
-     * 初始化显示tiles
-     */
-    virtual void setupTiles();
-    
-    /**
-     * 释放本层的内容
-     */
-    virtual void releaseLayer();
-
     /**
      * 初始化偏移
      */
 	virtual void initOffset(const CCPoint& tOffset);
     
     virtual void initOffset(float x,float y);
+    
+    /**
+     * 初始化显示
+     */
+    virtual void setupLayer();
+    
+    /**
+     * 释放本层的内容
+     */
+    virtual void releaseLayer();
+    
+    
+    /**
+     * 初始化显示tiles
+     */
+    virtual void setupTiles();
     
     /**
      * 添加tile
@@ -115,11 +123,6 @@ public:
     int vertexZForPos(const CCPoint& pos);
     
 	unsigned int zOrderToIndex(int z);
-    /**
-     * 获取属性名称
-     */
-    CCString *propertyNamed(const char *propertyName);
-    
     
     
     //===============tile sprite tools function===============
@@ -143,57 +146,11 @@ public:
 public:
     //===================get set 属性====================//
     
-	virtual void setLayerSize(const CCSize& tLayerSize);
-    
-	virtual CCSize getLayerSize();
-
-    virtual void setMapTileSize(const CCSize& tMapTileSize);
-    
-    virtual void setMapTileSize(float width,float height);
-    
-    virtual const CCSize& getMapTileSize();
-
-	virtual void setOffset(const CCPoint& tOffset);
-    
-	virtual void setOffset(float x,float y);
-    
-	virtual CCPoint getOffset();
-    
-    inline const char* getLayerName(){ return m_sLayerName.c_str(); }
-    
-    inline void setLayerName(const char *layerName){ m_sLayerName = layerName; }
-       
-    virtual void setProperties(CCDictionary* pProperties);
-    
-    virtual CCDictionary* getProperties();
-    
-    virtual void setLayerOrientation(unsigned int uLayerOrientation);
-    
-    virtual unsigned int getLayerOrientation();
-    
     virtual void setTiles(unsigned int* pTiles);
     
     virtual unsigned int* getTiles();
     
-    inline void setOpacity(unsigned char cOpacity)
-    {
-        m_cOpacity = cOpacity;
-    }
-    
-    inline unsigned char getOpacity()
-    {
-        return m_cOpacity;
-    }
-    
-    inline void setMap(ISOTileMap* pMap)
-    {
-        m_pMap = pMap;
-    }
-    
-    inline ISOTileMap* getMap()
-    {
-        return m_pMap;
-    }
+    virtual void setMap(ISOMap* pMap);
     
 protected:
     /**
@@ -203,58 +160,22 @@ protected:
     
 protected:
     
-    /**
-     * 层的名称
-     */
-    std::string m_sLayerName;
-    
-    /**
-     * 层的地图大小
-     */
-	CCSize m_tLayerSize;
-    
-    /**
-      地图的一个图块大小
-     */
-    CCSize m_tMapTileSize;
-    
     unsigned int* m_pTiles;
-    
-    /**
-     * 地图的偏移量。屏幕坐标
-     * 可能层的原点和地图的原点不在一起。
-     */
-	CCPoint m_tOffset;
-    
+
     /**
      * 偏移量的地图坐标
      */
-	int m_iStartX;
-	int m_iStartY;
-    
-    /**
-     * 地图属性
-     */
-    CCDictionary* m_pProperties;
-       
-    /**
-     * 地图类型，斜视角，直角，六角。
-     * 这里直接使用斜视角。所以用不到，保留将来或许有用。
-     */
-    unsigned int m_uLayerOrientation;
-    
-    //! Layer supports opacity
-    unsigned char       m_cOpacity;
+	int m_startX;
+	int m_startY;
+
     
     //! Only used when vertexZ is used
     int                 m_nVertexZvalue;
     
     bool                m_bUseAutomaticVertexZ;
-        
-    // used for retina display
-    float               m_fContentScaleFactor;
+    
+    ISOTileMap* m_tileMap;
 
-    ISOTileMap* m_pMap;
 };
 
 

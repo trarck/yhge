@@ -6,7 +6,7 @@
 NS_CC_YHGE_BEGIN
 
 /**
- * ��Ҫ���ڽ�������������
+ * 主要用于接收组件坐标更新
  */
 class ISODynamicComponentUpdateDelegator
 {
@@ -15,8 +15,8 @@ public:
 };
 
 /**
- * ISODynamicComponent������ʾ���ݡ�
- * Ŀǰ�Ľṹû��ʹ�á�����ֱ�ӿ��Դ�TileSetȡ����ʾ���ݣ�������ʱû��ʹ�á�
+ * ISODynamicComponent用于显示内容。
+ * 目前的结构没有使用。由于直接可以从TileSet取得显示内容，所以暂时没有使用。
  */
 class ISODynamicComponentCreateDelegator
 {

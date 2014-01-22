@@ -231,7 +231,7 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
         setLayerAttribute(layer, layerInfo, mapInfo);
 
         m_pMap->addChild(layer,layerInfo->getRenderIndex());
-        m_pMap->getTileLayers()->addObject(layer);
+        m_pMap->getLayers()->addObject(layer);
         layer->release();
     }
     
@@ -255,7 +255,7 @@ void ISOTileMapBuilder::setLayerAttribute(ISOTileLayer* tileLayer,ISOLayerInfo *
     tileLayer->setTiles(layerInfo->getTiles());
     tileLayer->setProperties(layerInfo->getProperties());
     layerInfo->setOwnTiles(false);
-    tileLayer->setupTiles();
+    tileLayer->setupLayer();
 }
 
 ISOTileset * ISOTileMapBuilder::tilesetForLayer(ISOLayerInfo *layerInfo)
@@ -434,7 +434,7 @@ void ISOTileMapBuilder::buildMapObjectLayer(ISOObjectGroup* objectGroup)
 	objectLayer->setLayerOrientation(m_pMap->getMapOrientation());
 	objectLayer->setProperties(objectGroup->getProperties());
 	objectLayer->setObjectGroup(objectGroup);
-	objectLayer->setupObjects();
+	objectLayer->setupLayer();
     
     //fix object layer position
     //x方向向左移动半个地图大小
@@ -489,7 +489,7 @@ void ISOTileMapBuilder::buildMapActiveLayer(const std::string& name,CCArray* obj
         activeLayer->setProperties(properties);
     }
 	activeLayer->setObjects(objects);
-	activeLayer->setupObjects();
+	activeLayer->setupLayer();
     
 	m_pMap->addChild(activeLayer,zOrder);
     

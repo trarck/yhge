@@ -8,37 +8,21 @@ NS_CC_YHGE_BEGIN
 static const int kCoordLineZOrder=10000;
 
 ISOTileMap::ISOTileMap()
-:m_tMapSize(CCSizeZero)
-,m_pTileLayers(NULL)
-,m_pObjectGroups(NULL)
-,m_pObjectLayers(NULL)
-,m_pProperties(NULL)
-,m_pTileProperties(NULL)
+:m_pObjectGroups(NULL)
 ,m_pDynamicGroup(NULL)
 ,m_pTilesetGroup(NULL)
-,m_visibleSize(CCSizeZero)
 ,m_useDynamicGroup(false)
 ,m_dynamicComponents(NULL)
-,m_nIdentifier(0)
-,m_nMapOrientation(0)
-,m_pName("")
-,m_tTileSize(CCSizeZero)
-,m_activeLayer(NULL)
 {
 	
 }
 
 ISOTileMap::~ISOTileMap()
 {
-    CC_SAFE_RELEASE_NULL(m_pTileLayers);
     CC_SAFE_RELEASE_NULL(m_pTilesetGroup);
-    CC_SAFE_RELEASE_NULL(m_pProperties);
     CC_SAFE_RELEASE_NULL(m_pObjectGroups);
-    CC_SAFE_RELEASE_NULL(m_pTileProperties);
     CC_SAFE_RELEASE_NULL(m_pDynamicGroup);
 	CC_SAFE_RELEASE_NULL(m_dynamicComponents);
-    CC_SAFE_RELEASE_NULL(m_pObjectLayers);
-    CC_SAFE_RELEASE_NULL(m_activeLayer);
 }
 
 ISOTileMap * ISOTileMap::createWithXMLFile(const char *xmlFile)
@@ -91,72 +75,17 @@ ISOTileMap* ISOTileMap::createWithJSON(const char* jsonString, const char* resou
 
 bool ISOTileMap::init()
 {
-    m_pTileLayers=new CCArray();
-    m_pTileLayers->init();
-    
-    m_pObjectGroups=new CCArray();
-    m_pObjectGroups->init();
-    
-    m_pProperties=new CCDictionary();
-    
-    m_visibleSize=CCDirector::sharedDirector()->getWinSize();//CCSizeMake(480,320);
 
-	m_dynamicComponents=new CCArray();
-    
-    m_pTileProperties=new CCDictionary();
-    
-    m_pObjectLayers=new CCArray();
-
-//    CCLayerColor* lc=CCLayerColor::create(ccc4(0,0,255,255), 600, 400);
-//    addChild(lc);
-	return true;
-}
-
-bool ISOTileMap::initWithXMLFile(const char *xmlFile)
-{
-    CCAssert(xmlFile != NULL && strlen(xmlFile)>0, "ISOTileMap: map file should not bi NULL");
-    
-    setContentSize(CCSizeZero);
-    
-//    ISOXMLParser *xmlParser = ISOXMLParser::formatWithXMLFile(xmlFile);
-//    
-//    ISOMapInfo *mapInfo=xmlParser->getMapInfo();
-//    
-//    if (! mapInfo)
-//    {
-//        return false;
-//    }
-//    CCAssert( mapInfo->getTilesets()->count() != 0, "ISOTileMap: Map not found. Please check the filename.");
-//    buildWithMapInfo(mapInfo);
-    
-    return true;
-}
-
-bool ISOTileMap::initWithJSONFile(const char *jsonFile)
-{
-    CCAssert( false, "ISOTileMap::initWithJSONFile not support.");
-    
-    return true;
-}
-
-bool ISOTileMap::initWithXML(const char* xmlString, const char* resourcePath)
-{
-    setContentSize(CCSizeZero);
+    if (ISOMap::init()) {
+        m_pObjectGroups=new CCArray();
         
-//    ISOXMLParser *xmlParser = ISOXMLParser::formatWithXML(xmlString, resourcePath);
-//    ISOMapInfo *mapInfo=xmlParser->getMapInfo();
-//    
-//    CCAssert( mapInfo->getTilesets()->count() != 0, "ISOTileMap: Map not found. Please check the filename.");
-//    buildWithMapInfo(mapInfo);
+        m_dynamicComponents=new CCArray();
+        
+        return true;
+    }
     
-    return true;
-}
 
-bool ISOTileMap::initWithJSON(const char* jsonString, const char* resourcePath)
-{
-    CCAssert( false, "ISOTileMap::initWithJSON not support.");
-    
-    return true;
+    return false;
 }
 
 //=================build from info======================//
@@ -265,65 +194,46 @@ bool ISOTileMap::initWithJSON(const char* jsonString, const char* resourcePath)
 
 // public
 
-ISOTileset* ISOTileMap::tilesetNamed(const char* tilesetName)
+ISOTileset* ISOTileMap::tilesetNamed(const std::string& tilesetName)
 {
-    CCAssert(tilesetName != NULL && strlen(tilesetName) > 0, "Invalid tileset name!");
+    CCAssert(tilesetName!="", "Invalid tileset name!");
     
     if (m_pTilesetGroup && m_pTilesetGroup->tilesetCount()>0){
         CCArray* pTilesets=m_pTilesetGroup->getTilesets();
         CCObject* pObj = NULL;
+        ISOTileset* tileset =NULL;
+        
         CCARRAY_FOREACH(pTilesets, pObj)
         {
-            ISOTileset* tileset = dynamic_cast<ISOTileset*>(pObj);
+            tileset = dynamic_cast<ISOTileset*>(pObj);
             if(tileset)
             {
-                if(0 == strcmp(tileset->getName(), tilesetName))
+                if(tilesetName == tileset->getName())
                 {
                     return tileset;
                 }
             }
         }
     }
-    // layer not found
+    // tileset not found
     return NULL;
 }
 
-ISOTileLayer * ISOTileMap::layerNamed(const char *layerName)
+ISOObjectGroup * ISOTileMap::objectGroupNamed(const std::string& objectGroupName)
 {
-    CCAssert(layerName != NULL && strlen(layerName) > 0, "Invalid layer name!");
-    
-    if (m_pTileLayers && m_pTileLayers->count()>0){
-        CCObject* pObj = NULL;
-        CCARRAY_FOREACH(m_pTileLayers, pObj)
-        {
-            ISOTileLayer* layer = dynamic_cast<ISOTileLayer*>(pObj);
-            if(layer)
-            {
-                if(0 == strcmp(layer->getLayerName(), layerName))
-                {
-                    return layer;
-                }
-            }
-        }
-    }
-    // layer not found
-    return NULL;
-}
-
-ISOObjectGroup * ISOTileMap::objectGroupNamed(const char *objectGroupName)
-{
-    CCAssert(objectGroupName != NULL && strlen(objectGroupName) > 0, "Invalid object group name!");
+    CCAssert(objectGroupName != "", "Invalid object group name!");
     
     if (m_pObjectGroups && m_pObjectGroups->count()>0)
     {
         ISOObjectGroup* objectGroup = NULL;
         CCObject* pObj = NULL;
+        
         CCARRAY_FOREACH(m_pObjectGroups, pObj)
         {
             objectGroup = dynamic_cast<ISOObjectGroup*>(pObj);
             if(objectGroup)
             {
-                if(0 == strcmp(objectGroup->getName(), objectGroupName))
+                if(objectGroupName == objectGroup->getName())
                 {
                     return objectGroup;
                 }
@@ -333,36 +243,6 @@ ISOObjectGroup * ISOTileMap::objectGroupNamed(const char *objectGroupName)
     
     // objectGroup not found
     return NULL;
-}
-
-/**
- * 取得对象显示层
- */
-ISOObjectLayer* ISOTileMap::objectLayerNamed(const char *objectLayerName)
-{
-    CCAssert(objectLayerName != NULL && strlen(objectLayerName) > 0, "Invalid layer name!");
-    
-    if (m_pObjectLayers && m_pObjectLayers->count()>0){
-        CCObject* pObj = NULL;
-        CCARRAY_FOREACH(m_pObjectLayers, pObj)
-        {
-            ISOObjectLayer* layer = dynamic_cast<ISOObjectLayer*>(pObj);
-            if(layer)
-            {
-                if(0 == strcmp(layer->getLayerName().c_str(), objectLayerName))
-                {
-                    return layer;
-                }
-            }
-        }
-    }
-    // layer not found
-    return NULL;
-}
-
-CCString* ISOTileMap::propertyNamed(const char *propertyName)
-{
-    return (CCString*)m_pProperties->objectForKey(propertyName);
 }
 
 void ISOTileMap::scrollLayer(const CCPoint& pos)
@@ -376,11 +256,11 @@ void ISOTileMap::scrollLayer(const CCPoint& pos)
 	}else{
 
 		CCObject* pObj=NULL;
-		ISOTileLayer* tileLayer;
+		ISOLayer* layer;
 
-		CCARRAY_FOREACH(m_pTileLayers, pObj){
-			tileLayer=(ISOTileLayer*) pObj;
-			tileLayer->scroll(localPos);
+		CCARRAY_FOREACH(m_layers, pObj){
+			layer=(ISOLayer*) pObj;
+			layer->scroll(localPos);
 		}
 	}
 }
@@ -472,29 +352,8 @@ void ISOTileMap::setupDynamicGroup(ISODynamicGroup* dynamicGroup,const CCPoint& 
 void ISOTileMap::setupDynamicGroups()
 {
     if (m_useDynamicGroup) {
-        
+        //TODO
     }
-}
-
-///**
-// * for update component coordinate
-// */
-//void ISOTileMap::onUpdateComponentMapCoordinate(unsigned int index,float deltaMapX,float deltaMapY)
-//{
-//    CCLOG("ISOTileMap::updateComponentMapCoordinate");
-//    
-//    
-//    //TODO other thing.
-//    //1.标记地图哪些区域可以显示。
-//    //2.通知子层更改组件的位置。
-//
-//}
-
-CCSize ISOTileMap::getVisibleSize()
-{
-    if(m_fScaleX==0 || m_fScaleY==0) return m_visibleSize;
-    
-    return CCSizeMake(m_visibleSize.width/m_fScaleX, m_visibleSize.height/m_fScaleY);
 }
 
 void ISOTileMap::setUseDynamicGroup(bool useDynamicGroup)

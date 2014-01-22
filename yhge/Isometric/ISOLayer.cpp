@@ -1,19 +1,19 @@
 #include "ISOLayer.h"
 #include <yhge/Isometric/ISOCoordinate.h>
-#include "../base/ISOTileset.h"
-#include "../ISOTileMap.h"
-
+#include "ISOMap.h"
 
 NS_CC_YHGE_BEGIN
 
 ISOLayer::ISOLayer()
-:m_iStartX(0)
-,m_iStartY(0)
+:m_sLayerName("")
 ,m_tLayerSize(CCSizeZero)
 ,m_tMapTileSize(CCSizeZero)
 ,m_tOffset(CCPointZero)
 ,m_pProperties(NULL)
-,m_sLayerName("")
+,m_cOpacity(255)
+,m_pMap(NULL)
+,m_uLayerOrientation(0)
+,m_layerType(kEmptyLayer)
 {
 	
 }
@@ -59,19 +59,6 @@ void ISOLayer::initOffset(float x,float y)
 	this->initOffset(ccp(x,y));
 }
 
-ISOLayer* ISOLayer::create()
-{
-    ISOLayer* pRet=new ISOLayer();
-    if(pRet->init()){
-        pRet->autorelease();
-        return pRet;
-    }else{
-        delete pRet;
-        pRet = NULL;
-        return NULL; 
-    }
-}
-
 
 void ISOLayer::setupLayer()
 {
@@ -101,9 +88,22 @@ void ISOLayer::onMapScaleChange(float orignalScale,float newScale)
     
 }
 
+/**
+ * 获取属性名称
+ */
+CCString* ISOLayer::propertyNamed(const char *propertyName)
+{
+    return (CCString*)m_pProperties->objectForKey(propertyName);
+}
+
 void ISOLayer::parseInternalProperties()
 {
 
+}
+
+void ISOLayer::setMap(ISOMap* pMap)
+{
+    m_pMap = pMap;
 }
 
 NS_CC_YHGE_END

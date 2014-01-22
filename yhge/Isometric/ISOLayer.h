@@ -1,5 +1,5 @@
-#ifndef YHGE_ISOMETRIC_ISOTILELAYER_H_
-#define YHGE_ISOMETRIC_ISOTILELAYER_H_
+#ifndef YHGE_ISOMETRIC_ISOLAYER_H_
+#define YHGE_ISOMETRIC_ISOLAYER_H_
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
@@ -22,7 +22,12 @@ public:
     
     virtual bool init(CCSize& mapTileSize,CCPoint& offset);
     
-    static ISOLayer* create();
+    /**
+     * 初始化偏移
+     */
+	virtual void initOffset(const CCPoint& tOffset);
+    
+    virtual void initOffset(float x,float y);
     
     /**
      * 初始化显示
@@ -34,12 +39,6 @@ public:
      */
     virtual void releaseLayer();
 
-    /**
-     * 初始化偏移
-     */
-	virtual void initOffset(const CCPoint& tOffset);
-    
-    virtual void initOffset(float x,float y);
 
     /**
      * 移动到某个偏移量
@@ -61,13 +60,22 @@ public:
     CCString *propertyNamed(const char *propertyName);
 
 public:
+    
+    enum LayerType
+    {
+        kEmptyLayer=0,
+        kTileLayer=1,
+        kObjectLayer=2,
+        kImageLayer=3
+    };
+    
     //===================get set 属性====================//
 	inline void setLayerSize(const CCSize& tLayerSize)
 	{
 		m_tLayerSize = tLayerSize;
 	}
 
-	inline CCSize ISOLayer::getLayerSize()
+	inline CCSize getLayerSize()
 	{
 		return m_tLayerSize;
 	}
@@ -130,7 +138,7 @@ public:
     
     inline const std::string& getLayerName(){ return m_sLayerName; }
     
-    inline void setLayerName(const char *layerName){ m_sLayerName = layerName; }
+    inline void setLayerName(const std::string& layerName){ m_sLayerName = layerName; }
     
     inline void setOpacity(unsigned char cOpacity)
     {
@@ -142,14 +150,21 @@ public:
         return m_cOpacity;
     }
     
-    inline void setMap(ISOMap* pMap)
-    {
-        m_pMap = pMap;
-    }
+    virtual void setMap(ISOMap* pMap);
     
     inline ISOMap* getMap()
     {
         return m_pMap;
+    }
+    
+    inline void setLayerType(LayerType layerType)
+    {
+        m_layerType = layerType;
+    }
+    
+    inline LayerType getLayerType()
+    {
+        return m_layerType;
     }
     
 protected:
@@ -180,13 +195,7 @@ protected:
      * 可能层的原点和地图的原点不在一起。
      */
 	CCPoint m_tOffset;
-    
-    /**
-     * 偏移量的地图坐标
-     */
-	int m_iStartX;
-	int m_iStartY;
-    
+        
     /**
      * 地图属性
      */
@@ -201,10 +210,14 @@ protected:
     //! Layer supports opacity
     unsigned char       m_cOpacity;
 
+    //对地图文件的弱引用
     ISOMap* m_pMap;
+    
+    //层的类型
+    LayerType m_layerType;
 };
 
 
 NS_CC_YHGE_END
 
-#endif //YHGE_ISOMETRIC_ISOTILELAYER_H_
+#endif //YHGE_ISOMETRIC_ISOLAYER_H_

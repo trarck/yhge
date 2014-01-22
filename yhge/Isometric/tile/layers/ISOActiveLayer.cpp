@@ -7,28 +7,21 @@
 NS_CC_YHGE_BEGIN
 
 ISOActiveLayer::ISOActiveLayer()
-:m_layerName("")
-,m_layerOrientation(0)
-,m_opacity(255)
-,m_offset(CCPointZero)
-,m_properties(NULL)
-,m_map(NULL)
-,m_vertexZvalue(0)
+:m_vertexZvalue(0)
 ,m_objects(NULL)
+,m_tileMap(NULL)
 {
 	
 }
 
 ISOActiveLayer::~ISOActiveLayer()
 {
-    CC_SAFE_RELEASE_NULL(m_properties);
     CC_SAFE_RELEASE_NULL(m_objects);
 }
 
 bool ISOActiveLayer::init()
 {
-    m_properties=new CCDictionary();
-    
+    m_objects=new CCArray();
 	return true;
 }
 
@@ -43,6 +36,14 @@ ISOActiveLayer* ISOActiveLayer::create()
         pRet = NULL;
         return NULL; 
     }
+}
+
+/**
+ * 设置层
+ */
+void ISOActiveLayer::setupLayer()
+{
+    setupObjects();
 }
 
 void ISOActiveLayer::releaseLayer()
@@ -69,7 +70,7 @@ void ISOActiveLayer::setupObjects()
  */
 CCSprite* ISOActiveLayer::createObject(int gid,const CCPoint& position)
 {
-    ISOTileset* tileset=m_map->getTilesetGroup()->getTilesetByGid(gid);
+    ISOTileset* tileset=m_tileMap->getTilesetGroup()->getTilesetByGid(gid);
     
     ISOTile* tile=tileset->tileForGid(gid);
     
@@ -77,7 +78,7 @@ CCSprite* ISOActiveLayer::createObject(int gid,const CCPoint& position)
     //object 的对齐方式为底部居中
     tileSprite->setAnchorPoint(ccp(0.5f,0));
     tileSprite->setPosition(isoGameToViewPoint(position));
-    tileSprite->setOpacity(m_opacity);
+    tileSprite->setOpacity(m_cOpacity);
     
     this->addChild(tileSprite,-position.y);
     
@@ -89,20 +90,16 @@ void ISOActiveLayer::scroll(const CCPoint& tOffset)
     CCLOG("ISOActiveLayer::scroll");
 }
 
-void ISOActiveLayer::scroll(float x,float y)
+void ISOActiveLayer::setMap(ISOMap* pMap)
 {
-    scroll(ccp(x,y));
+    ISOLayer::setMap(pMap);
+    m_tileMap=static_cast<ISOTileMap*>(pMap);
 }
 
 void ISOActiveLayer::parseInternalProperties()
 {
     CCLOG("ISOActiveLayer::parseInternalProperties");
 
-}
-
-CCString* ISOActiveLayer::propertyNamed(const char *propertyName)
-{
-    return (CCString*)m_properties->objectForKey(propertyName);
 }
 
 NS_CC_YHGE_END
