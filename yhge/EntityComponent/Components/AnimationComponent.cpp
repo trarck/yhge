@@ -28,20 +28,29 @@ AnimationComponent::~AnimationComponent()
 
 bool AnimationComponent::init()
 {
-	m_animations=new CCDictionary();
-	return true;
+    if (Component::init()) {
+        m_animations=new CCDictionary();
+        return true;
+    }
+    return false;
 }
 
 bool AnimationComponent::init(const std::string& file)
 {
-	init();
-	return true;
+	if(Component::init()){
+        //TODO load animations from files
+        return true;
+    }
+    return false;
 }
 
 bool AnimationComponent::init(CCDictionary* data)
 {
-	init();
-	return true;
+	if (Component::init()) {
+        setAnimations(data);
+        return true;
+    }
+    return false;
 }
 
 void AnimationComponent::setup()
