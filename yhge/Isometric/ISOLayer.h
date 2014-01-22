@@ -39,7 +39,6 @@ public:
      */
     virtual void releaseLayer();
 
-
     /**
      * 移动到某个偏移量
      * 注意不是scroll by
@@ -54,6 +53,17 @@ public:
      */
     virtual void onMapScaleChange(float orignalScale,float newScale);
 
+    
+    /**
+     * 取得zOrder值，处理遮挡使用.zOrder vertexZ二者使用一
+     */
+    int zOrderForPos(const CCPoint& pos);
+    
+    /**
+     * 取得z值，处理遮挡使用
+     */
+    int vertexZForPos(const CCPoint& pos);
+    
 	/**
      * 获取属性名称
      */
@@ -167,7 +177,28 @@ public:
         return m_layerType;
     }
     
+    inline void setVertexZvalue(int vertexZvalue)
+    {
+        m_vertexZvalue = vertexZvalue;
+    }
+    
+    inline int getVertexZvalue()
+    {
+        return m_vertexZvalue;
+    }
+    
+    inline void setUseAutomaticVertexZ(int useAutomaticVertexZ)
+    {
+        m_useAutomaticVertexZ = useAutomaticVertexZ;
+    }
+    
+    inline int getUseAutomaticVertexZ()
+    {
+        return m_useAutomaticVertexZ;
+    }
+    
 protected:
+    
     /**
      * 处理扩展属性
      */
@@ -215,6 +246,13 @@ protected:
     
     //层的类型
     LayerType m_layerType;
+    
+    
+    //! Only used when vertexZ is used
+    int m_vertexZvalue;
+    
+    //自动计算vertex值
+    bool m_useAutomaticVertexZ;
 };
 
 

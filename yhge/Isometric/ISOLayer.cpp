@@ -14,6 +14,8 @@ ISOLayer::ISOLayer()
 ,m_pMap(NULL)
 ,m_uLayerOrientation(0)
 ,m_layerType(kEmptyLayer)
+,m_vertexZvalue(0)
+,m_useAutomaticVertexZ(false)
 {
 	
 }
@@ -86,6 +88,28 @@ void ISOLayer::scroll(float x,float y)
 void ISOLayer::onMapScaleChange(float orignalScale,float newScale)
 {
     
+}
+
+int  ISOLayer::zOrderForPos(const CCPoint& pos)
+{
+    return (int)(m_tLayerSize.width*m_tLayerSize.height -(pos.x + pos.y * m_tLayerSize.width));
+}
+
+int ISOLayer::vertexZForPos(const CCPoint& pos)
+{
+    int ret = 0;
+    unsigned int maxVal = 0;
+    if (m_useAutomaticVertexZ)
+    {
+        maxVal = (unsigned int)(m_tLayerSize.width + m_tLayerSize.height);
+        ret = (int)(-(maxVal - (pos.x + pos.y)));
+    }
+    else
+    {
+        ret = m_vertexZvalue;
+    }
+    
+    return ret;
 }
 
 /**
