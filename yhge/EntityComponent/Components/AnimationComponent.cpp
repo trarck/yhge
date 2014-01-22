@@ -58,8 +58,6 @@ void AnimationComponent::cleanup()
 
 bool AnimationComponent::registerMessages()
 {
-    CCLOG("AnimationComponent::registerMessages");
-    
     Component::registerMessages();
     
     this->getMessageManager()->registerReceiver(m_owner,MSG_CHANGE_ANIMATION, NULL ,message_selector(AnimationComponent::onChangeAnimation),this);
@@ -70,7 +68,6 @@ bool AnimationComponent::registerMessages()
 
 void AnimationComponent::cleanupMessages()
 {
-	CCLOG("AnimationComponent::cleanupMessages");
     this->getMessageManager()->removeReceiver(m_owner,MSG_CHANGE_ANIMATION);
     Component::cleanupMessages();
 }
