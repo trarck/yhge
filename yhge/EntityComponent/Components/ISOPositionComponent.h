@@ -36,6 +36,11 @@ public:
     void updateRendererPosition();
     
     /**
+     * 更新渲染层级
+     */
+    void updateRendererZOrder();
+    
+    /**
      * 设置坐标
      */
     inline void setCoordinate(float x,float y)

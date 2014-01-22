@@ -55,7 +55,19 @@ void ISOPositionComponent::cleanupMessages()
 void ISOPositionComponent::updateRendererPosition()
 {
     CCPoint viewPos=isoGameToView2F(m_x, m_y);
-    m_rendererComponent->getRenderer()->setPosition(viewPos);
+    CCNode* renderer=m_rendererComponent->getRenderer();
+    renderer->setPosition(viewPos);
+    renderer->setZOrder(-(int)(viewPos.y));
+}
+
+/**
+ * 更新渲染层级
+ */
+void ISOPositionComponent::updateRendererZOrder()
+{
+    float sy=isoGameToViewY2F(m_x, m_y);
+    CCNode* renderer=m_rendererComponent->getRenderer();
+    renderer->setZOrder(-(int)(sy));
 }
 
 NS_CC_YHGE_END

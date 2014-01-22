@@ -295,9 +295,12 @@ void GridMoveComponent::updateDirection( float delta)
 		//owner->setCoordinate(mx,my);
 		//CCLOG("posx2:%f,posy:%f:%f,%f:%f",pos.x,pos.y,m_fViewSpeedX,m_fViewSpeedY,delta);
 		renderer->setPosition(pos);
+        renderer->setZOrder(-(int)pos.y);
 	}else{
 		//一个路径结点移动完成
-		renderer->setPosition(isoGameToView2F(m_to.x,m_to.y));
+        pos=isoGameToView2F(m_to.x,m_to.y);
+		renderer->setPosition(pos);
+        renderer->setZOrder(-(int)pos.y);
 		if (m_moveState==MoveContinue) {
 			prepareDirection(m_nextDirectionX, m_nextDirectionY);
     		this->continueUpdate();
@@ -411,9 +414,12 @@ void GridMoveComponent::updatePath(float delta)
 		//owner->setCoordinate(mx,my);
 		//CCLOG("posx2:%f,posy:%f:%f,%f:%f",pos.x,pos.y,m_fViewSpeedX,m_fViewSpeedY,delta);
 		renderer->setPosition(pos);
+        renderer->setZOrder(-(int)pos.y);
 	}else{
 		//一个路径结点移动完成
-		renderer->setPosition(isoGameToView2F(m_to.x,m_to.y));
+        pos=isoGameToView2F(m_to.x,m_to.y);
+		renderer->setPosition(pos);
+        renderer->setZOrder(-(int)pos.y);
         //设置地图坐标
 		if (m_moveState==MoveContinue) {
 			if (m_pNextPaths!=NULL) {
