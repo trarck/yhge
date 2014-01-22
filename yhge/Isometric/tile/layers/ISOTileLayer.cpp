@@ -10,8 +10,6 @@ ISOTileLayer::ISOTileLayer()
 :m_startX(0)
 ,m_startY(0)
 ,m_pTiles(NULL)
-,m_bUseAutomaticVertexZ(false)
-,m_nVertexZvalue(0)
 ,m_tileMap(NULL)
 {
 	
@@ -205,7 +203,7 @@ void ISOTileLayer::parseInternalProperties()
         // If "automatic" is on, then parse the "cc_alpha_func" too
         if (vertexz->m_sString == "automatic")
         {
-            m_bUseAutomaticVertexZ = true;
+            m_useAutomaticVertexZ = true;
             CCString *alphaFuncVal = propertyNamed("cc_alpha_func");
             float alphaFuncValue = 0.0f;
             if (alphaFuncVal != NULL)
@@ -221,7 +219,7 @@ void ISOTileLayer::parseInternalProperties()
         }
         else
         {
-            m_nVertexZvalue = vertexz->intValue();
+            m_vertexZvalue = vertexz->intValue();
         }
     }
 }
@@ -230,29 +228,6 @@ unsigned int  ISOTileLayer::indexForPos(const CCPoint& pos)
 {
     unsigned int index=(unsigned int)(pos.x + pos.y * m_tLayerSize.width);
     return index;
-}
-
-int  ISOTileLayer::zOrderForPos(const CCPoint& pos)
-{
-    int ret=(int)(m_tLayerSize.width*m_tLayerSize.height -(pos.x + pos.y * m_tLayerSize.width));
-    return ret;
-}
-
-int ISOTileLayer::vertexZForPos(const CCPoint& pos)
-{
-    int ret = 0;
-    unsigned int maxVal = 0;
-    if (m_bUseAutomaticVertexZ)
-    {
-        maxVal = (unsigned int)(m_tLayerSize.width + m_tLayerSize.height);
-        ret = (int)(-(maxVal - (pos.x + pos.y)));
-    }
-    else
-    {
-        ret = m_nVertexZvalue;
-    }
-    
-    return ret;
 }
 
 unsigned int ISOTileLayer::zOrderToIndex(int z)

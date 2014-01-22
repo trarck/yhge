@@ -44,9 +44,6 @@ bool ISOBatchTileLayer::init()
         m_uMinGID = 100000;
         m_uMaxGID = 0;
         
-        m_bUseAutomaticVertexZ = false;
-        m_nVertexZvalue = 0;
-        
         return true;
     }
     

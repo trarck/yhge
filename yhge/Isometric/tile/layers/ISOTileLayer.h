@@ -111,16 +111,6 @@ public:
      * 地图格子对应到数组
      */
     unsigned int indexForPos(const CCPoint& pos);
-
-    /**
-     * 取得zOrder值，处理遮挡使用.zOrder vertexZ二者使用一
-     */
-    int zOrderForPos(const CCPoint& pos);
-    
-    /**
-     * 取得z值，处理遮挡使用
-     */
-    int vertexZForPos(const CCPoint& pos);
     
 	unsigned int zOrderToIndex(int z);
     
@@ -167,12 +157,6 @@ protected:
      */
 	int m_startX;
 	int m_startY;
-
-    
-    //! Only used when vertexZ is used
-    int                 m_nVertexZvalue;
-    
-    bool                m_bUseAutomaticVertexZ;
     
     ISOTileMap* m_tileMap;
 

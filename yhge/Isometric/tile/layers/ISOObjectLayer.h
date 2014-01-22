@@ -47,30 +47,9 @@ public:
     virtual void scroll(const CCPoint& tOffset);
     virtual void scroll(float x,float y);
     
-    /**
-     * 取得zOrder值，处理遮挡使用.zOrder vertexZ二者使用一
-     */
-    int zOrderForPos(const CCPoint& pos);
-    
-    /**
-     * 取得z值，处理遮挡使用
-     */
-    int vertexZForPos(const CCPoint& pos);
-    
     virtual void setMap(ISOMap* pMap);
 
 public:
-    
-    
-    inline void setVertexZvalue(int vertexZvalue)
-    {
-        m_vertexZvalue = vertexZvalue;
-    }
-    
-    inline int getVertexZvalue()
-    {
-        return m_vertexZvalue;
-    }
 
     inline void setObjectGroup(ISOObjectGroup* objectGroup)
     {
@@ -89,7 +68,7 @@ protected:
     /**
      * 使用gid从tileset中取出一个图片显示
      */
-    CCSprite* createObject(int gid,const CCPoint& position);
+    CCSprite* createObject(int gid,const CCPoint& coord);
     
     /**
      * 处理扩展属性
@@ -97,9 +76,6 @@ protected:
     virtual void parseInternalProperties();
     
 protected:
-    
-    //! Only used when vertexZ is used
-    int m_vertexZvalue;
     
     //对地图的引用。
     ISOTileMap* m_tileMap;

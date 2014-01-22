@@ -8,7 +8,6 @@ NS_CC_YHGE_BEGIN
 
 ISOObjectLayer::ISOObjectLayer()
 :m_tileMap(NULL)
-,m_vertexZvalue(0)
 ,m_objectGroup(NULL)
 {
 	
@@ -64,19 +63,23 @@ void ISOObjectLayer::setupObjects()
 /**
  * 使用gid从tileset中取出一个图片显示
  */
-CCSprite* ISOObjectLayer::createObject(int gid,const CCPoint& position)
+CCSprite* ISOObjectLayer::createObject(int gid,const CCPoint& coord)
 {
     ISOTileset* tileset=m_tileMap->getTilesetGroup()->getTilesetByGid(gid);
     
     ISOTile* tile=tileset->tileForGid(gid);
     
+    CCPoint pos=isoGameToViewPoint(coord);
+    
     CCSprite* tileSprite=CCSprite::createWithTexture(tile->getTexture(), tile->getTextureRect());
     //object 的对齐方式为底部居中
     tileSprite->setAnchorPoint(ccp(0.5f,0));
-    tileSprite->setPosition(isoGameToViewPoint(position));
+    tileSprite->setPosition(isoGameToViewPoint(coord));
     tileSprite->setOpacity(m_cOpacity);
     
-    this->addChild(tileSprite,-position.y);
+    //屏幕的y方向作为zOrder，由于opengl的坐标和屏幕坐标反向，这里取反.
+    //对于只占用一个格子的object来说，使用屏幕坐标的y方向来处理遮挡是可以的，如果大于一个格子，则会有问题。
+    this->addChild(tileSprite,-(int)(pos.y));
     
     return tileSprite;
 }
