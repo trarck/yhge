@@ -4,8 +4,8 @@
 //ISometric info base
 #include "Isometric/ISOCoordinate.h"
 #include "Isometric/Coordinate.h"
-#include "Isometric/ZIndexNode.h"
-#include "Isometric/ZIndex.h"
+#include "Isometric/occlusion/ZIndexNode.h"
+#include "Isometric/occlusion/ZIndex.h"
 
 #include "Isometric/ISOCamera.h"
 #include "Isometric/ISOLayer.h"
