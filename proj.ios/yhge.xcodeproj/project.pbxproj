@@ -77,7 +77,6 @@
 		57975AB21890FB16008A9F38 /* ZIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AAE1890FB16008A9F38 /* ZIndex.cpp */; };
 		57975AB31890FB16008A9F38 /* ZIndexNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AB01890FB16008A9F38 /* ZIndexNode.cpp */; };
 		57975AB618910123008A9F38 /* SortZIndexNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AB418910123008A9F38 /* SortZIndexNode.cpp */; };
-		57975AB9189266F8008A9F38 /* SortParseState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AB7189266F8008A9F38 /* SortParseState.cpp */; };
 		57C3375C1888C3A1008B5618 /* AnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337401888C3A1008B5618 /* AnimationComponent.cpp */; };
 		57C3375D1888C3A1008B5618 /* AttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337421888C3A1008B5618 /* AttackComponent.cpp */; };
 		57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337441888C3A1008B5618 /* AutoAttackComponent.cpp */; };
@@ -265,8 +264,6 @@
 		57975AB11890FB16008A9F38 /* ZIndexNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIndexNode.h; sourceTree = "<group>"; };
 		57975AB418910123008A9F38 /* SortZIndexNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SortZIndexNode.cpp; sourceTree = "<group>"; };
 		57975AB518910123008A9F38 /* SortZIndexNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortZIndexNode.h; sourceTree = "<group>"; };
-		57975AB7189266F8008A9F38 /* SortParseState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SortParseState.cpp; sourceTree = "<group>"; };
-		57975AB8189266F8008A9F38 /* SortParseState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortParseState.h; sourceTree = "<group>"; };
 		57C337401888C3A1008B5618 /* AnimationComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationComponent.cpp; sourceTree = "<group>"; };
 		57C337411888C3A1008B5618 /* AnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationComponent.h; sourceTree = "<group>"; };
 		57C337421888C3A1008B5618 /* AttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackComponent.cpp; sourceTree = "<group>"; };
@@ -663,8 +660,6 @@
 		57975AAA1890FAE9008A9F38 /* occlusion */ = {
 			isa = PBXGroup;
 			children = (
-				57975AB7189266F8008A9F38 /* SortParseState.cpp */,
-				57975AB8189266F8008A9F38 /* SortParseState.h */,
 				57975AAB1890FAE9008A9F38 /* SortZIndex.cpp */,
 				57975AAC1890FAE9008A9F38 /* SortZIndex.h */,
 				57975AB418910123008A9F38 /* SortZIndexNode.cpp */,
@@ -831,7 +826,6 @@
 				577A7908186BF56500F1B5D5 /* EventHandleD.cpp in Sources */,
 				57975AB21890FB16008A9F38 /* ZIndex.cpp in Sources */,
 				57C3376B1888CC67008B5618 /* IsometricProperty.cpp in Sources */,
-				57975AB9189266F8008A9F38 /* SortParseState.cpp in Sources */,
 				576E3FC9187D4BFB00745A0A /* ISOObjectInfo.cpp in Sources */,
 				577A78F7186BF56500F1B5D5 /* CallbackAstar.cpp in Sources */,
 				576E3FCA187D4BFB00745A0A /* ISOTileInfo.cpp in Sources */,
