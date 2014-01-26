@@ -4,18 +4,12 @@
 #define YHGE_COCOSEXT_SUPPORT_CCMAP_H_
 
 #include <vector>
-#include <functional>
-#include <algorithm> // for std::find
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
 
-ifndef USE_STD_UNORDERED_MAP
-#define USE_STD_UNORDERED_MAP 1
+#ifndef USE_STD_UNORDERED_MAP
+#define USE_STD_UNORDERED_MAP 0
 #endif
-
-#include "ccMacros.h"
-#include "CCObject.h"
-#include <vector>
 
 #if USE_STD_UNORDERED_MAP
 #include <unordered_map>
@@ -59,35 +53,35 @@ public:
     Map<K, V>()
     : _data()
     {
-        static_assert(std::is_convertible<V, Object*>::value, "Invalid Type for cocos2d::Map<K, V>!");
-        CCLOGINFO("In the default constructor of Map!");
+//        static_assert(std::is_convertible<V, Object*>::value, "Invalid Type for cocos2d::Map<K, V>!");
+//        CCLOGINFO("In the default constructor of Map!");
     }
     
     /** Contructor with capacity */
     explicit Map<K, V>(ssize_t capacity)
     : _data()
     {
-        static_assert(std::is_convertible<V, Object*>::value, "Invalid Type for cocos2d::Map<K, V>!");
-        CCLOGINFO("In the constructor with capacity of Map!");
+//        static_assert(std::is_convertible<V, Object*>::value, "Invalid Type for cocos2d::Map<K, V>!");
+//        CCLOGINFO("In the constructor with capacity of Map!");
         _data.reserve(capacity);
     }
     
     /** Copy constructor */
     Map<K, V>(const Map<K, V>& other)
     {
-        static_assert(std::is_convertible<V, Object*>::value, "Invalid Type for cocos2d::Map<K, V>!");
-        CCLOGINFO("In the copy constructor of Map!");
+//        static_assert(std::is_convertible<V, Object*>::value, "Invalid Type for cocos2d::Map<K, V>!");
+//        CCLOGINFO("In the copy constructor of Map!");
         _data = other._data;
         addRefForAllObjects();
     }
     
-    /** Move constructor */
-    Map<K, V>(Map<K, V>&& other)
-    {
-        static_assert(std::is_convertible<V, Object*>::value, "Invalid Type for cocos2d::Map<K, V>!");
-        CCLOGINFO("In the move constructor of Map!");
-        _data = std::move(other._data);
-    }
+//    /** Move constructor */
+//    Map<K, V>(Map<K, V>&& other)
+//    {
+//        static_assert(std::is_convertible<V, Object*>::value, "Invalid Type for cocos2d::Map<K, V>!");
+//        CCLOGINFO("In the move constructor of Map!");
+//        _data = std::move(other._data);
+//    }
     
     /** Destructor
      *  It will release all objects in map.
@@ -160,7 +154,7 @@ public:
         {
             keys.reserve(_data.size());
             
-            for (auto iter = _data.cbegin(); iter != _data.cend(); ++iter)
+            for (iterator iter = _data.cbegin(); iter != _data.cend(); ++iter)
             {
                 keys.push_back(iter->first);
             }
@@ -177,7 +171,7 @@ public:
         {
             keys.reserve(_data.size() / 10);
             
-            for (auto iter = _data.cbegin(); iter != _data.cend(); ++iter)
+            for (iterator iter = _data.cbegin(); iter != _data.cend(); ++iter)
             {
                 if (iter->second == object)
                 {
@@ -192,24 +186,24 @@ public:
     }
     
     /** @brief Returns a reference to the mapped value of the element with key k in the map.
-     *  @note If key does not match the key of any element in the container, the function return nullptr.
+     *  @note If key does not match the key of any element in the container, the function return NULL.
      *  @param key Key value of the element whose mapped value is accessed.
      *       Member type K is the keys for the elements in the container. defined in Map<K, V> as an alias of its first template parameter (Key).
      */
     const V at(const K& key) const
     {
-        auto iter = _data.find(key);
+        iterator iter = _data.find(key);
         if (iter != _data.end())
             return iter->second;
-        return nullptr;
+        return NULL;
     }
     
     V at(const K& key)
     {
-        auto iter = _data.find(key);
+        iterator iter = _data.find(key);
         if (iter != _data.end())
             return iter->second;
-        return nullptr;
+        return NULL;
     }
     
     /** @brief Searches the container for an element with 'key' as key and returns an iterator to it if found,
@@ -236,7 +230,7 @@ public:
      */
     void insert(const K& key, V object)
     {
-        CCASSERT(object != nullptr, "Object is nullptr!");
+        CCASSERT(object != NULL, "Object is NULL!");
         erase(key);
         _data.insert(std::make_pair(key, object));
         object->retain();
@@ -260,7 +254,7 @@ public:
      */
     size_t erase(const K& k)
     {
-        auto iter = _data.find(k);
+        iterator iter = _data.find(k);
         if (iter != _data.end())
         {
             iter->second->release();
@@ -276,8 +270,8 @@ public:
      */
     void erase(const std::vector<K>& keys)
     {
-        for(const auto &key : keys) {
-            this->erase(key);
+        for(typename std::vector<K>::iterator iter=keys.begin();iter!=keys.end();++iter) {
+            this->erase(*iter);
         }
     }
     
@@ -287,7 +281,7 @@ public:
      */
     void clear()
     {
-        for (auto iter = _data.cbegin(); iter != _data.cend(); ++iter)
+        for (iterator iter = _data.cbegin(); iter != _data.cend(); ++iter)
         {
             iter->second->release();
         }
@@ -296,7 +290,7 @@ public:
     }
     
     /** @brief Gets a random object in the map
-     *  @return Returns the random object if the map isn't empty, otherwise it returns nullptr.
+     *  @return Returns the random object if the map isn't empty, otherwise it returns NULL.
      */
     V getRandomObject() const
     {
@@ -307,7 +301,7 @@ public:
             std::advance(randIter , randIdx);
             return randIter->second;
         }
-        return nullptr;
+        return NULL;
     }
     
     // Don't uses operator since we could not decide whether it needs 'retain'/'release'.
@@ -347,23 +341,23 @@ public:
         return *this;
     }
     
-    /** Move assignment operator */
-    Map<K, V>& operator= ( Map<K, V>&& other )
-    {
-        if (this != &other) {
-            CCLOGINFO("In the move assignment operator of Map!");
-            clear();
-            _data = std::move(other._data);
-        }
-        return *this;
-    }
+//    /** Move assignment operator */
+//    Map<K, V>& operator= ( Map<K, V>&& other )
+//    {
+//        if (this != &other) {
+//            CCLOGINFO("In the move assignment operator of Map!");
+//            clear();
+//            _data = std::move(other._data);
+//        }
+//        return *this;
+//    }
     
 protected:
     
     /** Retains all the objects in the map */
     void addRefForAllObjects()
     {
-        for (auto iter = _data.begin(); iter != _data.end(); ++iter)
+        for (iterator iter = _data.begin(); iter != _data.end(); ++iter)
         {
             iter->second->retain();
         }

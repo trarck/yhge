@@ -46,15 +46,13 @@ public:
     Vector<T>()
     : _data()
     {
-        static_assert(std::is_convertible<T, Object*>::value, "Invalid Type for cocos2d::Vector<T>!");
+
     }
     
     /** Constructor with a capacity */
     explicit Vector<T>(ssize_t capacity)
     : _data()
     {
-        static_assert(std::is_convertible<T, Object*>::value, "Invalid Type for cocos2d::Vector<T>!");
-        CCLOGINFO("In the default constructor with capacity of Vector.");
         reserve(capacity);
     }
 
@@ -68,25 +66,21 @@ public:
     /** Copy constructor */
     Vector<T>(const Vector<T>& other)
     {
-        static_assert(std::is_convertible<T, Object*>::value, "Invalid Type for cocos2d::Vector<T>!");
-        CCLOGINFO("In the copy constructor!");
         _data = other._data;
         addRefForAllObjects();
     }
     
-    /** Move constructor */
-    Vector<T>(Vector<T>&& other)
-    {
-        static_assert(std::is_convertible<T, Object*>::value, "Invalid Type for cocos2d::Vector<T>!");
-        CCLOGINFO("In the move constructor of Vector!");
-        _data = std::move(other._data);
-    }
+//    /** Move constructor */
+//    Vector<T>(Vector<T>&& other)
+//    {
+//        _data = std::move(other._data);
+//    }
     
     /** Copy assignment operator */
     Vector<T>& operator=(const Vector<T>& other)
     {
         if (this != &other) {
-            CCLOGINFO("In the copy assignment operator!");
+//            CCLOGINFO("In the copy assignment operator!");
             clear();
             _data = other._data;
             addRefForAllObjects();
@@ -94,16 +88,16 @@ public:
         return *this;
     }
     
-    /** Move assignment operator */
-    Vector<T>& operator=(Vector<T>&& other)
-    {
-        if (this != &other) {
-            CCLOGINFO("In the move assignment operator!");
-            clear();
-            _data = std::move(other._data);
-        }
-        return *this;
-    }
+//    /** Move assignment operator */
+//    Vector<T>& operator=(Vector<T>&& other)
+//    {
+//        if (this != &other) {
+////            CCLOGINFO("In the move assignment operator!");
+//            clear();
+//            _data = std::move(other._data);
+//        }
+//        return *this;
+//    }
     
 // Don't uses operator since we could not decide whether it needs 'retain'/'release'.
 //    T& operator[](int index)
@@ -162,7 +156,7 @@ public:
     /** Returns index of a certain object, return UINT_MAX if doesn't contain the object */
     ssize_t getIndex(T object) const
     {
-        auto iter = std::find(_data.begin(), _data.end(), object);
+        iterator iter = std::find(_data.begin(), _data.end(), object);
         if (iter != _data.end())
             return iter - _data.begin();
 
@@ -210,7 +204,7 @@ public:
             ssize_t randIdx = rand() % _data.size();
             return *(_data.begin() + randIdx);
         }
-        return nullptr;
+        return NULL;
     }
 
     /** Returns a Boolean value that indicates whether object is present in vector. */
@@ -245,7 +239,7 @@ public:
      */
     void pushBack(T object)
     {
-        CCASSERT(object != nullptr, "The object should not be nullptr");
+        CCASSERT(object != NULL, "The object should not be NULL");
         _data.push_back( object );
         object->retain();
     }
@@ -253,9 +247,9 @@ public:
     /** Push all elements of an existing vector to the end of current vector. */
     void pushBack(const Vector<T>& other)
     {
-        for(const auto &obj : other) {
-            _data.push_back(obj);
-            obj->retain();
+        for(iterator iter=other.begin();iter!=other.end;++iter) {
+            _data.push_back((*iter));
+            (*iter)->retain();
         }
     }
 
@@ -268,8 +262,8 @@ public:
     void insert(ssize_t index, T object)
     {
         CCASSERT(index >= 0 && index <= size(), "Invalid index!");
-        CCASSERT(object != nullptr, "The object should not be nullptr");
-        _data.insert((std::begin(_data) + index), object);
+        CCASSERT(object != NULL, "The object should not be NULL");
+        _data.insert((_data.begin() + index), object);
         object->retain();
     }
     
@@ -281,7 +275,7 @@ public:
     void popBack()
     {
         CCASSERT(!_data.empty(), "no objects added");
-        auto last = _data.back();
+        iterator last = _data.back();
         _data.pop_back();
         last->release();
     }
@@ -292,8 +286,8 @@ public:
      */
     void eraseObject(T object, bool toRelease = true)
     {
-        CCASSERT(object != nullptr, "The object should not be nullptr");
-        auto iter = std::find(_data.begin(), _data.end(), object);
+        CCASSERT(object != NULL, "The object should not be NULL");
+        iterator iter = std::find(_data.begin(), _data.end(), object);
         if (iter != _data.end())
             _data.erase(iter);
         if (toRelease)
@@ -320,7 +314,7 @@ public:
      */
     iterator erase(iterator first, iterator last)
     {
-        for (auto iter = first; iter != last; ++iter)
+        for (iterator iter = first; iter != last; ++iter)
         {
             (*iter)->release();
         }
@@ -336,7 +330,7 @@ public:
     iterator erase(ssize_t index)
     {
         CCASSERT(!_data.empty() && index >=0 && index < size(), "Invalid index!");
-        auto it = std::next( begin(), index );
+        iterator it = _data.begin()+index;
         (*it)->release();
         return _data.erase(it);
     }
@@ -346,7 +340,7 @@ public:
      */
     void clear()
     {
-        for( auto it = std::begin(_data); it != std::end(_data); ++it ) {
+        for( iterator it = _data.begin(); it != _data.end(); ++it ) {
             (*it)->release();
         }
         _data.clear();
@@ -359,8 +353,6 @@ public:
     {
         ssize_t idx1 = getIndex(object1);
         ssize_t idx2 = getIndex(object2);
-
-        CCASSERT(idx1>=0 && idx2>=0, "invalid object index");
 
         std::swap( _data[idx1], _data[idx2] );
     }
@@ -377,7 +369,7 @@ public:
     void replace(ssize_t index, T object)
     {
         CCASSERT(index >= 0 && index < size(), "Invalid index!");
-        CCASSERT(object != nullptr, "The object should not be nullptr");
+        CCASSERT(object != NULL, "The object should not be NULL");
         
         _data[index]->release();
         _data[index] = object;
@@ -387,7 +379,7 @@ public:
     /** reverses the vector */
     void reverse()
     {
-        std::reverse( std::begin(_data), std::end(_data) );
+        std::reverse( _data.begin(), _data.end());
     }
     
     /** Shrinks the vector so the memory footprint corresponds with the number of items */
@@ -401,8 +393,8 @@ protected:
     /** Retains all the objects in the vector */
     void addRefForAllObjects()
     {
-        for(const auto &obj : _data) {
-            obj->retain();
+        for(iterator iter=_data.begin();iter!=_data.end();++iter) {
+            (*iter)->retain();
         }
     }
     
