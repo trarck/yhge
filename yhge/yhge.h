@@ -14,6 +14,8 @@
 #include "CocosExt/CCCallFuncNO.h"
 #include "CocosExt/CCGeometryValue.h"
 #include "CocosExt/CCSelectorWrap.h"
+#include "CocosExt/Support/CCVector.h"
+#include "CocosExt/Support/CCMap.h"
 
 //message
 #include "message.h"
