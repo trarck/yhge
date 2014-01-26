@@ -264,6 +264,8 @@
 		57975AB11890FB16008A9F38 /* ZIndexNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIndexNode.h; sourceTree = "<group>"; };
 		57975AB418910123008A9F38 /* SortZIndexNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SortZIndexNode.cpp; sourceTree = "<group>"; };
 		57975AB518910123008A9F38 /* SortZIndexNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortZIndexNode.h; sourceTree = "<group>"; };
+		57975ABB1894F5A0008A9F38 /* CCMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMap.h; sourceTree = "<group>"; };
+		57975ABC1894F5A0008A9F38 /* CCVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCVector.h; sourceTree = "<group>"; };
 		57C337401888C3A1008B5618 /* AnimationComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationComponent.cpp; sourceTree = "<group>"; };
 		57C337411888C3A1008B5618 /* AnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationComponent.h; sourceTree = "<group>"; };
 		57C337421888C3A1008B5618 /* AttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackComponent.cpp; sourceTree = "<group>"; };
@@ -572,6 +574,8 @@
 				577A7851186BF56500F1B5D5 /* base64.h */,
 				577A7852186BF56500F1B5D5 /* ccCArray.cpp */,
 				577A7853186BF56500F1B5D5 /* ccCArray.h */,
+				57975ABB1894F5A0008A9F38 /* CCMap.h */,
+				57975ABC1894F5A0008A9F38 /* CCVector.h */,
 			);
 			path = Support;
 			sourceTree = "<group>";
