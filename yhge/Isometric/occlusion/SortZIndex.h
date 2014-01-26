@@ -18,6 +18,21 @@ public:
     bool init();
     
     void insert(SortZIndexNode* node);
+    
+    /**
+     * 更新所有元素的zOrder值
+     */
+    void updateZOrder_();
+    
+    /**
+     * 更新所有元素的zOrder值
+     */
+    void updateZOrder();
+    
+    /**
+     * 测试使用
+     */
+    void showTest();
 
 public:
     
@@ -40,17 +55,21 @@ public:
     
 protected:
     
-    int parseTree(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
+    int parseNode(SortZIndexNode* currentNode,SortZIndexNode* node,int deep);
     
-    int parseEqualTree(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
-    int parseSmallTree(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
-    int parseBigTree(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
+    bool checkNode(SortZIndexNode* currentNode,SortZIndexNode* node,int deep);
     
-    int parseSmall(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
-    
-    int parseEqual(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
-    
-    int parseBig(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
+//    int parseTree(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
+//    
+//    int parseEqualTree(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
+//    int parseSmallTree(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
+//    int parseBigTree(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
+//    
+//    int parseSmall(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
+//    
+//    int parseEqual(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
+//    
+//    int parseBig(SortZIndexNode* currentNode,SortZIndexNode* node,int flag);
     
     int caculateSide(const CCRect& pFrom ,const CCRect& pTo);
     

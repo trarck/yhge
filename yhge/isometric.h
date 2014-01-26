@@ -4,8 +4,12 @@
 //ISometric info base
 #include "Isometric/ISOCoordinate.h"
 #include "Isometric/Coordinate.h"
+
+//遮挡算法
 #include "Isometric/occlusion/ZIndexNode.h"
 #include "Isometric/occlusion/ZIndex.h"
+#include "Isometric/occlusion/SortZIndexNode.h"
+#include "Isometric/occlusion/SortZIndex.h"
 
 #include "Isometric/ISOCamera.h"
 #include "Isometric/ISOLayer.h"
