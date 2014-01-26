@@ -554,15 +554,15 @@ CCArray* ISOTileMapBuilder::createObjectsFromLayerInfo(ISOLayerInfo* layerInfo)
         {
             unsigned int pos = (unsigned int)(x + layerSize.width * y);
             unsigned int gid = tiles[ pos ];
-            
-            obj=new ISOMapObject();
-            obj->init();
-            obj->setGid(gid);
-            obj->setPosition(ccp(x,y));
-            objects->addObject(obj);
-            
-            obj->release();
-            
+            if (gid) {
+                obj=new ISOMapObject();
+                obj->init();
+                obj->setGid(gid);
+                obj->setPosition(ccp(x,y));
+                objects->addObject(obj);
+                
+                obj->release();
+            }            
         }
     }
     
