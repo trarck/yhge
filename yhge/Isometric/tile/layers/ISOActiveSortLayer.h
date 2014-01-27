@@ -5,6 +5,7 @@
 #include <yhge/YHGEMacros.h>
 #include <yhge/Isometric/occlusion/SortZIndex.h>
 #include "../ISOBases.h"
+#include "../ISOInfos.h"
 #include "ISOActiveLayer.h"
 
 NS_CC_YHGE_BEGIN
@@ -109,10 +110,10 @@ public:
 protected:
     
     //对象添加到遮挡处理器中
-    virtual void addToOcclusion(CCNode* mapObject,ISOMapObject* mapObjectDef);
+    virtual void addToOcclusion(CCNode* mapObject,ISOObjectInfo* mapObjectDef);
     
     //创建排序结点
-    virtual SortZIndexNode* createSortZIndexNode(CCNode* mapObject,ISOMapObject* mapObjectDef);
+    virtual SortZIndexNode* createSortZIndexNode(CCNode* mapObject,ISOObjectInfo* mapObjectDef);
     
     //更新动态物体的ZOrder
     virtual void updateDynamicObjectsZOrder(bool updateNode=true);

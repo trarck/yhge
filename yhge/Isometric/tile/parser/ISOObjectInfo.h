@@ -48,7 +48,7 @@ public:
         return m_uGid;
     }
     
-    inline void setPosition(CCPoint& tPosition)
+    inline void setPosition(const CCPoint& tPosition)
     {
         m_tPosition = tPosition;
     }

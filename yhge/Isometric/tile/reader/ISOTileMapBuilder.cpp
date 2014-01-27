@@ -457,42 +457,8 @@ void ISOTileMapBuilder::buildMapObjectLayer(ISOObjectGroup* objectGroup)
  */
 void ISOTileMapBuilder::setupMapActiveLayer(ISOMapInfo* mapInfo)
 {
-    //首先从object groups里检找是否叫m_activeLayerName设置的layer
-    CCArray* objectGroups = mapInfo->getObjectGroups();
-    if (objectGroups && objectGroups->count()>0)
-    {
-        ISOObjectGroupInfo* objectGroupInfo = NULL;
-        CCObject* pObj = NULL;
-        CCARRAY_FOREACH(objectGroups, pObj)
-        {
-            objectGroupInfo = (ISOObjectGroupInfo*)pObj;
-            if (objectGroupInfo && strcmp(objectGroupInfo->getName(), m_activeLayerName.c_str())==0)
-            {
-                buildMapActiveLayerWithObjectGroup(objectGroupInfo);
-                return;
-            }
-        }
-    }
-
-    //从tile layer里查找
-    CCArray* layerInfos = mapInfo->getLayers();
-    if (layerInfos && layerInfos->count()>0)
-    {
-        ISOLayerInfo* layerInfo = NULL;
-        CCObject* pObj = NULL;
-        CCARRAY_FOREACH(layerInfos, pObj)
-        {
-            layerInfo = (ISOLayerInfo*)pObj;
-            if (layerInfo && strcmp(layerInfo->getName(), m_activeLayerName.c_str())==0)
-            {
-                buildMapActiveLayerWithLayerInfo(layerInfo);
-                return;
-            }
-        }
-    }
-    
-    //没有找到创建一个空的layer，默认放在最上层
-    buildMapActiveLayer(m_activeLayerName, NULL, NULL, m_activeLayerDefaultZOrder);
+    ISOActiveLayerInfo* activeLayerInfo=this->getActiveLayerInfo(mapInfo);
+    buildMapActiveLayerWithActiveLayerInfo(activeLayerInfo);
 }
 
 /**
@@ -520,24 +486,14 @@ void ISOTileMapBuilder::buildMapActiveLayer(const std::string& name,CCArray* obj
 	activeLayer->release();
 }
 
-/**
- * 构建map active layer
- * 对于格子地图，object的坐标最好是基于格子的。
- */
-void ISOTileMapBuilder::buildMapActiveLayerWithObjectGroup(ISOObjectGroupInfo* objectGroupInfo)
-{
-    buildMapActiveLayer(objectGroupInfo->getName(),objectGroupInfo->getObjects(),objectGroupInfo->getProperties(),objectGroupInfo->getRenderIndex());
-}
 
 /**
  * 构建map active layer
  * 对于格子地图，object的坐标最好是基于格子的。
  */
-void ISOTileMapBuilder::buildMapActiveLayerWithLayerInfo(ISOLayerInfo* layerInfo)
+void ISOTileMapBuilder::buildMapActiveLayerWithActiveLayerInfo(ISOActiveLayerInfo* activeLayerInfo)
 {
-    CCArray* objects=createObjectsFromLayerInfo(layerInfo);
-    
-    buildMapActiveLayer(layerInfo->getName(), objects, layerInfo->getProperties(), layerInfo->getRenderIndex());
+    buildMapActiveLayer(activeLayerInfo->getName(), activeLayerInfo->getObjects(), activeLayerInfo->getProperties(), activeLayerInfo->getRenderIndex());
 }
 
 /**
@@ -550,7 +506,7 @@ CCArray* ISOTileMapBuilder::createObjectsFromLayerInfo(ISOLayerInfo* layerInfo)
     CCArray* objects=CCArray::createWithCapacity((unsigned int)(layerSize.width*layerSize.height*0.25));
     
     unsigned int * tiles=layerInfo->getTiles();
-    ISOMapObject* obj=NULL;
+    ISOObjectInfo* obj=NULL;
     
     for (unsigned int y=0; y < layerSize.height; y++)
     {
@@ -559,8 +515,8 @@ CCArray* ISOTileMapBuilder::createObjectsFromLayerInfo(ISOLayerInfo* layerInfo)
             unsigned int pos = (unsigned int)(x + layerSize.width * y);
             unsigned int gid = tiles[ pos ];
             if (gid) {
-                obj=new ISOMapObject();
-                obj->init();
+                obj=new ISOObjectInfo();
+//                obj->init();
                 obj->setGid(gid);
                 obj->setPosition(ccp(x,y));
                 objects->addObject(obj);
@@ -571,6 +527,73 @@ CCArray* ISOTileMapBuilder::createObjectsFromLayerInfo(ISOLayerInfo* layerInfo)
     }
     
     return objects;
+}
+
+/**
+ * 取得活动层的信息
+ */
+ISOActiveLayerInfo* ISOTileMapBuilder::getActiveLayerInfo(ISOMapInfo* mapInfo)
+{
+    ISOActiveLayerInfo* activeLayerInfo=new ISOActiveLayerInfo();
+    
+    bool haveActiveLayer=false;
+    
+    //首先从object groups里检找是否叫m_activeLayerName设置的layer
+    CCArray* objectGroups = mapInfo->getObjectGroups();
+    if (objectGroups && objectGroups->count()>0)
+    {
+        ISOObjectGroupInfo* objectGroupInfo = NULL;
+        CCObject* pObj = NULL;
+        CCARRAY_FOREACH(objectGroups, pObj)
+        {
+            objectGroupInfo = (ISOObjectGroupInfo*)pObj;
+            if (objectGroupInfo && strcmp(objectGroupInfo->getName(), m_activeLayerName.c_str())==0)
+            {
+                activeLayerInfo->setName(objectGroupInfo->getName());
+                activeLayerInfo->setObjects(objectGroupInfo->getObjects());
+                activeLayerInfo->setProperties(objectGroupInfo->getProperties());
+                activeLayerInfo->setRenderIndex(objectGroupInfo->getRenderIndex());
+                
+                haveActiveLayer=true;
+                break;
+            }
+        }
+    }
+    
+    //从tile layer里查找
+    CCArray* layerInfos = mapInfo->getLayers();
+    if (layerInfos && layerInfos->count()>0)
+    {
+        ISOLayerInfo* layerInfo = NULL;
+        CCObject* pObj = NULL;
+        CCARRAY_FOREACH(layerInfos, pObj)
+        {
+            layerInfo = (ISOLayerInfo*)pObj;
+            if (layerInfo && strcmp(layerInfo->getName(), m_activeLayerName.c_str())==0)
+            {
+                activeLayerInfo->setName(layerInfo->getName());
+                activeLayerInfo->setProperties(layerInfo->getProperties());
+                activeLayerInfo->setRenderIndex(layerInfo->getRenderIndex());
+                
+                CCArray* objects=createObjectsFromLayerInfo(layerInfo);
+                activeLayerInfo->setObjects(objects);
+                
+                haveActiveLayer=true;
+                break;
+
+            }
+        }
+    }
+    
+    if (!haveActiveLayer) {
+        //没有找到创建一个空的layer，默认放在最上层
+        activeLayerInfo->setName(m_activeLayerName.c_str());
+        activeLayerInfo->setObjects(NULL);
+        activeLayerInfo->setRenderIndex(m_activeLayerDefaultZOrder);
+    }
+
+    activeLayerInfo->autorelease();
+    return activeLayerInfo;
 }
 
 NS_CC_YHGE_END

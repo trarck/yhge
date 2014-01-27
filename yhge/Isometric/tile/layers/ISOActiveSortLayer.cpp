@@ -1,7 +1,7 @@
 #include "ISOActiveSortLayer.h"
 #include <yhge/Isometric/ISOCoordinate.h>
 #include "../ISOTileMap.h"
-
+#include "../ISOInfos.h"
 
 NS_CC_YHGE_BEGIN
 
@@ -84,9 +84,9 @@ void ISOActiveSortLayer::setupObjects()
 {
     if (m_objects) {
         CCObject* pObj=NULL;
-        ISOMapObject* mapObject=NULL;
+        ISOObjectInfo* mapObject=NULL;
         CCARRAY_FOREACH(m_objects, pObj){
-            mapObject=static_cast<ISOMapObject*>(pObj);
+            mapObject=static_cast<ISOObjectInfo*>(pObj);
             if (mapObject->getGid()!=0 && mapObject->getVisible()) {
                 
                 CCSprite* mapObjectSprite=createObject(mapObject->getGid(), mapObject->getPosition());
@@ -104,7 +104,7 @@ void ISOActiveSortLayer::setupObjects()
 }
 
 //对象添加到遮挡处理器中
-void ISOActiveSortLayer::addToOcclusion(CCNode* mapObject,ISOMapObject* mapObjectDef)
+void ISOActiveSortLayer::addToOcclusion(CCNode* mapObject,ISOObjectInfo* mapObjectDef)
 {
     //取得对象的类型
     std::string objectTypeStr=mapObjectDef->getType();
@@ -131,7 +131,7 @@ void ISOActiveSortLayer::addToOcclusion(CCNode* mapObject,ISOMapObject* mapObjec
 }
 
 //创建排序结点
-SortZIndexNode* ISOActiveSortLayer::createSortZIndexNode(CCNode* mapObject,ISOMapObject* mapObjectDef)
+SortZIndexNode* ISOActiveSortLayer::createSortZIndexNode(CCNode* mapObject,ISOObjectInfo* mapObjectDef)
 {
     SortZIndexNode* node=new SortZIndexNode();
     node->setEntity(mapObject);

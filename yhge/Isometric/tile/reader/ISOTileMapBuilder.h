@@ -100,23 +100,23 @@ public:
      * 对于格子地图，object的坐标最好是基于格子的。
      */
     virtual void buildMapActiveLayer(const std::string& name,CCArray* objects,CCDictionary* properties,int zOrder);
-    
+
     /**
      * 构建map active layer
      * 对于格子地图，object的坐标最好是基于格子的。
      */
-    virtual void buildMapActiveLayerWithObjectGroup(ISOObjectGroupInfo* objectGroupInfo);
-    
-    /**
-     * 构建map active layer
-     * 对于格子地图，object的坐标最好是基于格子的。
-     */
-    virtual void buildMapActiveLayerWithLayerInfo(ISOLayerInfo* layerInfo);
+    virtual void buildMapActiveLayerWithActiveLayerInfo(ISOActiveLayerInfo* activeLayerInfo);
     
     /**
      * 把layer里的元素转成对象
      */
     CCArray* createObjectsFromLayerInfo(ISOLayerInfo* layerInfo);
+    
+    /**
+     * 取得活动层的信息
+     */
+    ISOActiveLayerInfo* getActiveLayerInfo(ISOMapInfo* mapInfo);
+    
 public:
     
     inline void setMap(ISOTileMap* pMap){

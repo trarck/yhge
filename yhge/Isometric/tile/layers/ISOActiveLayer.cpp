@@ -1,6 +1,7 @@
 #include "ISOActiveLayer.h"
 #include <yhge/Isometric/ISOCoordinate.h>
 #include "../ISOBases.h"
+#include "../ISOInfos.h"
 #include "../ISOTileMap.h"
 
 
@@ -56,11 +57,11 @@ void ISOActiveLayer::setupObjects()
 {
     if (m_objects) {
         CCObject* pObj=NULL;
-        ISOMapObject* mapObject=NULL;
+        ISOObjectInfo* objInfo=NULL;
         CCARRAY_FOREACH(m_objects, pObj){
-            mapObject=static_cast<ISOMapObject*>(pObj);
-            if (mapObject->getGid()!=0 && mapObject->getVisible()) {
-                createObject(mapObject->getGid(), mapObject->getPosition());
+            objInfo=static_cast<ISOObjectInfo*>(pObj);
+            if (objInfo->getGid()!=0 && objInfo->getVisible()) {
+                createObject(objInfo->getGid(), objInfo->getPosition());
             }
         }
     }
