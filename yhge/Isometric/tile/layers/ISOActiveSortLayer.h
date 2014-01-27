@@ -10,8 +10,6 @@
 
 NS_CC_YHGE_BEGIN
 
-class ISOTileMap;
-
 /**
  * 活动层。
  * 提供场景活动元素的层

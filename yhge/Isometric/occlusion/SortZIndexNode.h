@@ -21,6 +21,8 @@ public:
     
     ~SortZIndexNode();
     
+    inline bool init(){return true;}
+    
     /**
      * 添加一个子结点
      */
@@ -60,6 +62,8 @@ public:
      * 复制自身，包含子目录。
      */
     SortZIndexNode* clone();
+    
+    CREATE_FUNC(SortZIndexNode);
     
     /**
      * 定义子元素的遍历器

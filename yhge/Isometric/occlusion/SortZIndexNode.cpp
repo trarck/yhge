@@ -27,7 +27,7 @@ void SortZIndexNode::addChild(SortZIndexNode* child)
 {
     child->retain();
     m_children.push_back(child);
-    child->setParent(child);
+    child->setParent(this);
 }
 
 /**

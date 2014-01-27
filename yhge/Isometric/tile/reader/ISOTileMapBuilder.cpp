@@ -593,6 +593,7 @@ ISOActiveLayerInfo* ISOTileMapBuilder::getActiveLayerInfo(ISOMapInfo* mapInfo)
     }
 
     activeLayerInfo->autorelease();
+    
     return activeLayerInfo;
 }
 

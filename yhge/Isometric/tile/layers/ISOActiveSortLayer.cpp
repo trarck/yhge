@@ -149,7 +149,7 @@ void ISOActiveSortLayer::updateDynamicObjectsZOrder(bool updateNode)
     SortZIndexNode* node=NULL;
     CCNode* mapObject=NULL;
     
-    CCARRAY_FOREACH(m_dynamicObjects, pObj){
+    CCARRAY_FOREACH(m_dynamicNodes, pObj){
         node=static_cast<SortZIndexNode*>(pObj);
         if (updateNode) {
             mapObject=static_cast<CCNode*>(node->getEntity());

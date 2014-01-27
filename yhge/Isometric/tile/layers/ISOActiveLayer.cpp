@@ -21,8 +21,11 @@ ISOActiveLayer::~ISOActiveLayer()
 
 bool ISOActiveLayer::init()
 {
-    m_objects=new CCArray();
-	return true;
+    if (ISOLayer::init()) {
+        m_objects=new CCArray();
+        return true;
+    }
+	return false;
 }
 
 ISOActiveLayer* ISOActiveLayer::create()

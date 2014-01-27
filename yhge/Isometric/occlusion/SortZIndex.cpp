@@ -560,16 +560,37 @@ void SortZIndex::showTest()
 
 /**
  * 计算二个矩形的位置关系
+ * 这里使用的屏幕坐标。
        |     |
-    -2 | -1  | 0
+     2 |  1  | 0
    ----|-----|----
-    -1 |  0  | 1
+     1 |  0  | -1
    ----|-----|----
-     0 |  1  | 2
+     0 | -1  | -2
        |     |
  
- * 反回值小于0表示小于(from遮挡to)，大于0表示大于(to遮挡from)，等于0表示等于(相互不遮挡)
+ * 中间是from,其它8个位置表示to可能出现的位置。
+ * 反回值表示from-to的值
+ * 大于0,表示from大于to(from遮挡to);
+ * 小于0,表示from小于to(to遮挡from);
+ * 等于0,表示from等于to(相互不遮挡).
  * 注意屏幕坐标和opengl的坐标
+ 
+ *  opengl的斜视角的关系
+            
+ 
+          \  2 /
+           \  /
+         1  \/  1
+      \     /\    /
+       \   /  \  /
+        \ /  0 \/
+     0   /\    /\   0
+        /  \  /  \
+       / -1 \/ -1 \
+            /\
+           /  \
+          / -2 \
  */
 int SortZIndex::caculateSide(const CCRect& pFrom ,const CCRect& pTo)
 {
@@ -579,11 +600,11 @@ int SortZIndex::caculateSide(const CCRect& pFrom ,const CCRect& pTo)
     //大于等于
 	if ((pTo.origin.x > pFrom.origin.x+pFrom.size.width) || fabs(pTo.origin.x- (pFrom.origin.x+pFrom.size.width))<0.0001 ) {
 		//右
-		lr = -1;
+		lr = 1;
 	//小于等于
     }else if((pTo.origin.x+pTo.size.width<pFrom.origin.x) || fabs(pTo.origin.x+pTo.size.width-pFrom.origin.x)<0.0001){
 		//左
-		lr = 1;
+		lr = -1;
 	} else  {//desc.right<=src.right && desc.left>=src.left(内中),desc.right>=src.right && desc.left<=src.left(外中) 都算中
 		//中
 		lr = 0;
@@ -591,10 +612,10 @@ int SortZIndex::caculateSide(const CCRect& pFrom ,const CCRect& pTo)
 	
 	if ((pTo.origin.y > pFrom.origin.y+pFrom.size.height) ||fabs(pTo.origin.y-( pFrom.origin.y+pFrom.size.height))<0.0001) {
 		//上
-		tb = -1;
+		tb = 1;
 	} else if ((pTo.origin.y+pTo.size.height < pFrom.origin.y) || fabs(pTo.origin.y+pTo.size.height -pFrom.origin.y)<0.0001) {
 		//下
-		tb = 1;
+		tb = -1;
 	} else {
 		//中
 		tb = 0;
