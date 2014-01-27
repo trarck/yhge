@@ -42,12 +42,14 @@ ISOActiveLayer* ISOActiveLayer::create()
  */
 void ISOActiveLayer::setupLayer()
 {
+    ISOLayer::setupLayer();
     setupObjects();
 }
 
 void ISOActiveLayer::releaseLayer()
 {
     removeAllChildren();
+    ISOLayer::releaseLayer();
 }
 
 void ISOActiveLayer::setupObjects()

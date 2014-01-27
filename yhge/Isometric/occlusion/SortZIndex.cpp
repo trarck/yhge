@@ -11,28 +11,27 @@
 NS_CC_YHGE_BEGIN
 
 SortZIndex::SortZIndex()
-:m_pStatics(NULL)
-,m_pDynamics(NULL)
-,m_bIsWorking(true)
-,m_bStaticDirty(true)
-,m_rootNode(NULL)
+:m_rootNode(NULL)
+,m_rootZOrder(0)
+//,m_pStatics(NULL)
+//,m_pDynamics(NULL)
+//,m_bIsWorking(true)
+//,m_bStaticDirty(true)
+
 {
     
 }
 
 SortZIndex::~SortZIndex()
 {
-    CC_SAFE_RELEASE_NULL(m_pStatics);
-    CC_SAFE_RELEASE_NULL(m_pDynamics);
+//    CC_SAFE_RELEASE_NULL(m_pStatics);
+//    CC_SAFE_RELEASE_NULL(m_pDynamics);
     CC_SAFE_RELEASE_NULL(m_rootNode);
 }
 
 bool SortZIndex::init()
 {
-    m_pStatics=new CCArray(20);
-    m_pDynamics=new CCArray(20);
-    m_bIsWorking=false;
-    
+       
     m_rootNode=new SortZIndexNode();
 
 	return true;
@@ -40,10 +39,6 @@ bool SortZIndex::init()
 
 void SortZIndex::insert(SortZIndexNode* node)
 {
-//    parseTree(m_rootNode, node, kParseStateIdle);
-//    m_parsingState=kParseStateIdle;
-//    m_stateStack.push_back(kParseStateIdle);
-//    m_parsingNode=m_rootNode;
     
     bool addedFlag=parseNode(m_rootNode, node, 0);
     
@@ -158,15 +153,13 @@ void SortZIndex::updateZOrder()
     //把node按deep值存放
     std::vector< std::vector<SortZIndexNode*> > deepNodes;
     
-    int rootZOrder=0;
-    
     SortZIndexNode* item=NULL;
     
     SortZIndexNode::SortZIndexNodeIterator childIter;
     
     int currentDeep=0;
     int nextDeep=0;
-    int deepZOrder=rootZOrder-currentDeep;
+    int deepZOrder=0;
     
     std::vector<SortZIndexNode*> emptyVector;
     deepNodes.push_back(emptyVector);
@@ -176,7 +169,7 @@ void SortZIndex::updateZOrder()
     while (deepNodes[currentDeep].size()) {
         
         nextDeep=currentDeep+1;
-        deepZOrder=rootZOrder-currentDeep;
+        deepZOrder=m_rootZOrder-currentDeep;
         
         std::vector<SortZIndexNode*> subEmptyVector;
         deepNodes.push_back(subEmptyVector);

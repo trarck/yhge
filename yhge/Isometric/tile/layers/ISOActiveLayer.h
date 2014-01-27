@@ -66,8 +66,9 @@ protected:
     
     /**
      * 使用gid从tileset中取出一个图片显示
+     * TODO 使用代理来创建对象
      */
-    CCSprite* createObject(int gid,const CCPoint& coord);
+    virtual CCSprite* createObject(int gid,const CCPoint& coord);
     
     /**
      * 处理扩展属性

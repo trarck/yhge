@@ -8,6 +8,10 @@
 
 NS_CC_YHGE_BEGIN
 
+/**
+ * 物体接使用排序来确定zOrder值
+ * 这里不区分静态和动态物体，由调用SortZIndex的对象管理
+ */
 class SortZIndex : public CCObject {
 
 public:
@@ -53,6 +57,16 @@ public:
         return m_rootNode;
     }
     
+    inline void setRootZOrder(int rootZOrder)
+    {
+        m_rootZOrder = rootZOrder;
+    }
+    
+    inline int getRootZOrder()
+    {
+        return m_rootZOrder;
+    }
+    
 protected:
     
     int parseNode(SortZIndexNode* currentNode,SortZIndexNode* node,int deep);
@@ -74,20 +88,18 @@ protected:
     int caculateSide(const CCRect& pFrom ,const CCRect& pTo);
     
 protected:
-	CCArray *m_pStatics;
-	CCArray *m_pDynamics;
-	bool m_bIsWorking;
-	bool m_bStaticDirty;
+//	CCArray *m_pStatics;
+//	CCArray *m_pDynamics;
+//	bool m_bIsWorking;
+//	bool m_bStaticDirty;
 
     SortZIndexNode* m_rootNode;
     
-    SortZIndexNode* m_parsingNode;
+//    std::vector<int> m_stateStack;
+//    int m_parsingState;
     
-    std::vector<SortZIndexNode*> m_parseStack;
-    std::vector<SortZIndexNode*> m_nodeStack;
-    
-    std::vector<int> m_stateStack;
-    int m_parsingState;
+    //根结点的zOrder值
+    int m_rootZOrder;
 };
 
 

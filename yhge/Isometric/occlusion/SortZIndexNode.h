@@ -52,6 +52,16 @@ public:
     void clearChildren();
     
     /**
+     * 重制内部数据
+     */
+    void reset();
+    
+    /**
+     * 复制自身，包含子目录。
+     */
+    SortZIndexNode* clone();
+    
+    /**
      * 定义子元素的遍历器
      */
     typedef std::vector<SortZIndexNode*>::iterator SortZIndexNodeIterator;

@@ -90,4 +90,37 @@ void SortZIndexNode::clearChildren()
     }
 }
 
+/**
+ * 重制内部数据
+ */
+void SortZIndexNode::reset()
+{
+    setParent(NULL);
+    
+    clearChildren();
+    m_children.clear();
+    
+    m_rect=CCRectZero;
+    m_sortedDeep=0;
+    
+    setEntity(NULL);
+}
+
+/**
+ * 复制自身，包含子目录。
+ */
+SortZIndexNode* SortZIndexNode::clone()
+{
+    SortZIndexNode* node=new SortZIndexNode();
+    
+    //clone children
+    for (SortZIndexNodeIterator iter=m_children.begin(); iter!=m_children.end(); ++iter) {
+        node->addChild((*iter)->clone());
+    }
+    
+    node->autorelease();
+    
+    return node;
+}
+
 NS_CC_YHGE_END
