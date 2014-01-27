@@ -77,6 +77,7 @@
 		57975AB21890FB16008A9F38 /* ZIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AAE1890FB16008A9F38 /* ZIndex.cpp */; };
 		57975AB31890FB16008A9F38 /* ZIndexNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AB01890FB16008A9F38 /* ZIndexNode.cpp */; };
 		57975AB618910123008A9F38 /* SortZIndexNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AB418910123008A9F38 /* SortZIndexNode.cpp */; };
+		57975ABF1896012E008A9F38 /* ISOActiveSortLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975ABD1896012E008A9F38 /* ISOActiveSortLayer.cpp */; };
 		57C3375C1888C3A1008B5618 /* AnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337401888C3A1008B5618 /* AnimationComponent.cpp */; };
 		57C3375D1888C3A1008B5618 /* AttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337421888C3A1008B5618 /* AttackComponent.cpp */; };
 		57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337441888C3A1008B5618 /* AutoAttackComponent.cpp */; };
@@ -266,6 +267,8 @@
 		57975AB518910123008A9F38 /* SortZIndexNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortZIndexNode.h; sourceTree = "<group>"; };
 		57975ABB1894F5A0008A9F38 /* CCMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMap.h; sourceTree = "<group>"; };
 		57975ABC1894F5A0008A9F38 /* CCVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCVector.h; sourceTree = "<group>"; };
+		57975ABD1896012E008A9F38 /* ISOActiveSortLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOActiveSortLayer.cpp; sourceTree = "<group>"; };
+		57975ABE1896012E008A9F38 /* ISOActiveSortLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOActiveSortLayer.h; sourceTree = "<group>"; };
 		57C337401888C3A1008B5618 /* AnimationComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationComponent.cpp; sourceTree = "<group>"; };
 		57C337411888C3A1008B5618 /* AnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationComponent.h; sourceTree = "<group>"; };
 		57C337421888C3A1008B5618 /* AttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackComponent.cpp; sourceTree = "<group>"; };
@@ -417,6 +420,8 @@
 			children = (
 				57928413188D2BFD00B46136 /* ISOActiveLayer.cpp */,
 				57928414188D2BFD00B46136 /* ISOActiveLayer.h */,
+				57975ABD1896012E008A9F38 /* ISOActiveSortLayer.cpp */,
+				57975ABE1896012E008A9F38 /* ISOActiveSortLayer.h */,
 				576E3F88187D4BFB00745A0A /* ISOBatchDynamicComponent.cpp */,
 				576E3F89187D4BFB00745A0A /* ISOBatchDynamicComponent.h */,
 				576E3F8A187D4BFB00745A0A /* ISOBatchDynamicTileLayer.cpp */,
@@ -804,6 +809,7 @@
 				577A7934186BF56500F1B5D5 /* MessageTarget.cpp in Sources */,
 				577A7932186BF56500F1B5D5 /* MessageManager.cpp in Sources */,
 				576E3FB7187D4BFB00745A0A /* ISOTileObject.cpp in Sources */,
+				57975ABF1896012E008A9F38 /* ISOActiveSortLayer.cpp in Sources */,
 				577A792F186BF56500F1B5D5 /* DelayMessageManager.cpp in Sources */,
 				576E3FE7187E47F300745A0A /* ISOComponentNode.cpp in Sources */,
 				576E3FCC187D4BFB00745A0A /* ISOXMLParser.cpp in Sources */,
