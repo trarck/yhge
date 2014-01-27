@@ -6,6 +6,7 @@
 #include "parser/ISOObjectGroupInfo.h"
 #include "parser/ISOObjectInfo.h"
 #include "parser/ISOLayerInfo.h"
+#include "parser/ISOActiveLayerInfo.h"
 #include "parser/ISOMapInfo.h"
 
 #endif // YHGE_ISOMETRIC_ISOINFOS_H_
