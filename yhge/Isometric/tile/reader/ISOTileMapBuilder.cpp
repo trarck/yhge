@@ -10,6 +10,7 @@ ISOTileMapBuilder::ISOTileMapBuilder()
 ,m_uMapLayerType(NormalLayerType)
 ,m_activeLayerName("ActiveLayer")
 ,m_activeLayerDefaultZOrder(99999)
+,m_buildActiveLayer(false)
 {
 	
 }
@@ -40,7 +41,10 @@ void ISOTileMapBuilder::buildWithMapInfo(ISOMapInfo* mapInfo)
     this->buildMapTilesets(mapInfo);
     this->buildMapLayers(mapInfo);
     this->buildMapObjectGroups(mapInfo);
-    this->setupMapActiveLayer(mapInfo);
+    
+    if (m_buildActiveLayer) {
+        this->setupMapActiveLayer(mapInfo);
+    }
 }
 
 void ISOTileMapBuilder::buildMapTilesets(ISOMapInfo* mapInfo)

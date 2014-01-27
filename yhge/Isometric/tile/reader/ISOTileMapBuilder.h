@@ -156,6 +156,16 @@ public:
     {
         return m_activeLayerDefaultZOrder;
     }
+    
+    inline void setBuildActiveLayer(bool buildActiveLayer)
+    {
+        m_buildActiveLayer = buildActiveLayer;
+    }
+    
+    inline bool isBuildActiveLayer()
+    {
+        return m_buildActiveLayer;
+    }
    
 public:
     
@@ -182,6 +192,9 @@ protected:
      * 当没有指定的active layer，创建的默认active layer使用该值
      */
     int m_activeLayerDefaultZOrder;
+    
+    //是否自动构建活动层
+    bool m_buildActiveLayer;
 };
 
 
