@@ -20,9 +20,9 @@ class ISOStaticCoordinate:public CCObject
 {
 public:
 
-	static void initTileSize(int tileWidth,int tileHeight);
+	static void initTileSize(float tileWidth,float tileHeight);
  
-	static void initCoordinateUnit(int xUnit,int yUnit,int zUnit);
+	static void initCoordinateUnit(float xUnit,float yUnit,float zUnit);
 
 	//==============使用传值的方式==========================//
 	static inline CCPoint isoViewToGame2F(float x,float y)
@@ -139,7 +139,7 @@ public:
 		isoGameToView2FP(point.x,point.y,destPoint);
 	}
 
-private:
+public:
 
 	static float sTileWidth;
 	static float sTileHeight;

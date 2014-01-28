@@ -18,7 +18,7 @@ float ISOStaticCoordinate::sYUnit=YHGE_ISO_DEFAULT_TILEHEIGHT/2;
 float ISOStaticCoordinate::sZUnit=YHGE_ISO_DEFAULT_TILEHEIGHT;
 
 
-void ISOStaticCoordinate::initTileSize(int tileWidth,int tileHeight)
+void ISOStaticCoordinate::initTileSize(float tileWidth,float tileHeight)
 {
 	sTileWidth=tileWidth;
 	sTileHeight=tileHeight;
@@ -28,7 +28,7 @@ void ISOStaticCoordinate::initTileSize(int tileWidth,int tileHeight)
 	sZUnit=tileHeight;
 }
 
-void ISOStaticCoordinate::initCoordinateUnit(int xUnit,int yUnit,int zUnit)
+void ISOStaticCoordinate::initCoordinateUnit(float xUnit,float yUnit,float zUnit)
 {
 	sXUnit=xUnit;
 	sYUnit=yUnit;
