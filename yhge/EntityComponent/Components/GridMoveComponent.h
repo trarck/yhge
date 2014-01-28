@@ -420,7 +420,7 @@ protected:
     SEL_SCHEDULE m_update;
     
     ISOPositionComponent* m_isoPositionComponent;
-    RendererComponent* m_rendererComponent;
+//    RendererComponent* m_rendererComponent;
 };
 
 NS_CC_YHGE_END

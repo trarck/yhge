@@ -10,9 +10,8 @@ NS_CC_YHGE_BEGIN
 
 /**
  * 移动组件
- * 直接移动屏幕坐标。
+ * 使用地图坐标做为数据移动。
  * 万向移动.
- * 不是按格子，如果改变方向立即生效。
  */
 class MoveComponent : public Component{
 
@@ -367,7 +366,7 @@ protected:
     //移动类型
     MoveType m_moveType;
     
-	//移动速度，屏幕坐标速度
+	//移动速度，地图坐标速度。
 	float m_speed;
     
     //速度分量

@@ -112,7 +112,8 @@ void CameraFlowGridMoveComponent::startMoveUpdateSchedule()
 
 bool CameraFlowGridMoveComponent::checkNeedMoveCamera()
 {
-    CCPoint scenePos=m_camera->getLocationInScene(m_rendererComponent->getRenderer()->getPosition());
+//    CCPoint scenePos=m_camera->getLocationInScene(m_rendererComponent->getRenderer()->getPosition());
+     CCPoint scenePos=m_camera->getLocationInScene(m_isoPositionComponent->getRendererPosition());
     
     bool needMoveCamera=false;
     

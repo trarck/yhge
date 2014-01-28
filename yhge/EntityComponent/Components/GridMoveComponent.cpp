@@ -63,7 +63,7 @@ GridMoveComponent::GridMoveComponent()
 ,m_pathIndex(0)
 ,m_update(NULL)
 ,m_isoPositionComponent(NULL)
-,m_rendererComponent(NULL)
+//,m_rendererComponent(NULL)
 {
 
 }
@@ -95,13 +95,13 @@ void GridMoveComponent::setup()
 {
     Component::setup();
     m_isoPositionComponent=static_cast<ISOPositionComponent*>(m_owner->getComponent("ISOPositionComponent"));
-    m_rendererComponent=static_cast<RendererComponent*>(m_owner->getComponent("RendererComponent"));
+//    m_rendererComponent=static_cast<RendererComponent*>(m_owner->getComponent("RendererComponent"));
 }
 
 void GridMoveComponent::cleanup()
 {
     m_isoPositionComponent=NULL;
-    m_rendererComponent=NULL;
+//    m_rendererComponent=NULL;
     stopMoveUpdateSchedule();
     Component::cleanup();
 }
@@ -285,8 +285,9 @@ void GridMoveComponent::calcDirection()
  */
 void GridMoveComponent::updateDirection( float delta)
 {
-    CCNode* renderer=m_rendererComponent->getRenderer();
-	CCPoint pos=renderer->getPosition();
+//    CCNode* renderer=m_rendererComponent->getRenderer();
+//	CCPoint pos=renderer->getPosition();
+    CCPoint pos=m_isoPositionComponent->getRendererPosition();
 
 	m_movingDeltaTime+=delta;
 	if(m_movingDeltaTime<m_movingDuration){
@@ -294,13 +295,16 @@ void GridMoveComponent::updateDirection( float delta)
 		pos.y+=delta*m_fViewSpeedY;
 		//owner->setCoordinate(mx,my);
 		//CCLOG("posx2:%f,posy:%f:%f,%f:%f",pos.x,pos.y,m_fViewSpeedX,m_fViewSpeedY,delta);
-		renderer->setPosition(pos);
-        renderer->setZOrder(-(int)pos.y);
+        
+//		renderer->setPosition(pos);
+//        renderer->setZOrder(-(int)pos.y);
+        m_isoPositionComponent->updateRendererPosition(pos);
 	}else{
 		//一个路径结点移动完成
         pos=isoGameToView2F(m_to.x,m_to.y);
-		renderer->setPosition(pos);
-        renderer->setZOrder(-(int)pos.y);
+//		renderer->setPosition(pos);
+//        renderer->setZOrder(-(int)pos.y);
+        m_isoPositionComponent->updateRendererPosition(pos);
 		if (m_moveState==MoveContinue) {
 			prepareDirection(m_nextDirectionX, m_nextDirectionY);
     		this->continueUpdate();
@@ -400,9 +404,11 @@ int GridMoveComponent::getCurrentPathIndex(){
  */
 void GridMoveComponent::updatePath(float delta)
 {
-    CCNode* renderer=m_rendererComponent->getRenderer();
+//    CCNode* renderer=m_rendererComponent->getRenderer();
+//    
+//	CCPoint pos=renderer->getPosition();
     
-	CCPoint pos=renderer->getPosition();
+    CCPoint pos=m_isoPositionComponent->getRendererPosition();
 	
 	m_movingDeltaTime+=delta;
 	
@@ -413,13 +419,15 @@ void GridMoveComponent::updatePath(float delta)
 		pos.y+=delta*m_fViewSpeedY;
 		//owner->setCoordinate(mx,my);
 		//CCLOG("posx2:%f,posy:%f:%f,%f:%f",pos.x,pos.y,m_fViewSpeedX,m_fViewSpeedY,delta);
-		renderer->setPosition(pos);
-        renderer->setZOrder(-(int)pos.y);
+//		renderer->setPosition(pos);
+//        renderer->setZOrder(-(int)pos.y);
+        m_isoPositionComponent->updateRendererPosition(pos);
 	}else{
 		//一个路径结点移动完成
         pos=isoGameToView2F(m_to.x,m_to.y);
-		renderer->setPosition(pos);
-        renderer->setZOrder(-(int)pos.y);
+//		renderer->setPosition(pos);
+//        renderer->setZOrder(-(int)pos.y);
+        m_isoPositionComponent->updateRendererPosition(pos);
         //设置地图坐标
 		if (m_moveState==MoveContinue) {
 			if (m_pNextPaths!=NULL) {
