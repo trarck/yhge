@@ -73,6 +73,7 @@
 		57928415188D2BFD00B46136 /* ISOActiveLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57928413188D2BFD00B46136 /* ISOActiveLayer.cpp */; };
 		57928424188E82EC00B46136 /* ISOMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57928422188E82EC00B46136 /* ISOMap.cpp */; };
 		57928428188F5BD400B46136 /* ISOLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57928426188F5BD400B46136 /* ISOLayer.cpp */; };
+		57973E6218978FD4009C956E /* ISOStaticCoordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57973E6018978FD4009C956E /* ISOStaticCoordinate.cpp */; };
 		57975AAD1890FAE9008A9F38 /* SortZIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AAB1890FAE9008A9F38 /* SortZIndex.cpp */; };
 		57975AB21890FB16008A9F38 /* ZIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AAE1890FB16008A9F38 /* ZIndex.cpp */; };
 		57975AB31890FB16008A9F38 /* ZIndexNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AB01890FB16008A9F38 /* ZIndexNode.cpp */; };
@@ -261,6 +262,8 @@
 		57928423188E82EC00B46136 /* ISOMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOMap.h; sourceTree = "<group>"; };
 		57928426188F5BD400B46136 /* ISOLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOLayer.cpp; sourceTree = "<group>"; };
 		57928427188F5BD400B46136 /* ISOLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOLayer.h; sourceTree = "<group>"; };
+		57973E6018978FD4009C956E /* ISOStaticCoordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOStaticCoordinate.cpp; sourceTree = "<group>"; };
+		57973E6118978FD4009C956E /* ISOStaticCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOStaticCoordinate.h; sourceTree = "<group>"; };
 		57975AAB1890FAE9008A9F38 /* SortZIndex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SortZIndex.cpp; sourceTree = "<group>"; };
 		57975AAC1890FAE9008A9F38 /* SortZIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortZIndex.h; sourceTree = "<group>"; };
 		57975AAE1890FB16008A9F38 /* ZIndex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZIndex.cpp; sourceTree = "<group>"; };
@@ -381,6 +384,8 @@
 				57928427188F5BD400B46136 /* ISOLayer.h */,
 				57928422188E82EC00B46136 /* ISOMap.cpp */,
 				57928423188E82EC00B46136 /* ISOMap.h */,
+				57973E6018978FD4009C956E /* ISOStaticCoordinate.cpp */,
+				57973E6118978FD4009C956E /* ISOStaticCoordinate.h */,
 			);
 			path = Isometric;
 			sourceTree = "<group>";
@@ -823,6 +828,7 @@
 				57928415188D2BFD00B46136 /* ISOActiveLayer.cpp in Sources */,
 				576E3FC0187D4BFB00745A0A /* ISODynamicComponent.cpp in Sources */,
 				577A78F6186BF56500F1B5D5 /* AstarNode.cpp in Sources */,
+				57973E6218978FD4009C956E /* ISOStaticCoordinate.cpp in Sources */,
 				577A7931186BF56500F1B5D5 /* MessageHandler.cpp in Sources */,
 				576E3FB5187D4BFB00745A0A /* Coordinate.cpp in Sources */,
 				577A78FD186BF56500F1B5D5 /* base64.cpp in Sources */,
