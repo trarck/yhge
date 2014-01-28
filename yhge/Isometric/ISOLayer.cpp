@@ -1,5 +1,4 @@
 #include "ISOLayer.h"
-#include <yhge/Isometric/ISOCoordinate.h>
 #include "ISOMap.h"
 
 NS_CC_YHGE_BEGIN

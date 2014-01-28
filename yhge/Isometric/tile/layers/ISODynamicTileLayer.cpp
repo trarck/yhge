@@ -1,5 +1,4 @@
 #include "ISODynamicTileLayer.h"
-#include <yhge/Isometric/ISOCoordinate.h>
 #include "../ISOTileMap.h"
 #include "../IsoTileUtils.h"
 
@@ -62,8 +61,8 @@ void ISODynamicTileLayer::setComponentColumnAndRow()
         int componentTileRow=0;
 
         ISOTileUtils::calcDynamicComponetSize(visibleSize,m_tMapTileSize,&componentTileColumn,&componentTileRow);
-        ////²Î¿¼Isometric.Game.Programming.with.DirectX.7µÄµÚ421Ò³¡£
-        ////Èç¹ûÒªÏÔÊ¾È«visibleSizeµÄ´óĞ¡ÄÚµÄÔªËØ£¬ÔòÔÚ³ıÒÔ¿é´óĞ¡ºó£¬ËÄ¸ö½ÇÒªÏòÍâÒÆ¶¯Ò»¸ñ¡£ËùÒÔ×îºó´óĞ¡Òª¼Ó2.
+        ////å‚è€ƒIsometric.Game.Programming.with.DirectX.7çš„ç¬¬421é¡µã€‚
+        ////å¦‚æœè¦æ˜¾ç¤ºå…¨visibleSizeçš„å¤§å°å†…çš„å…ƒç´ ï¼Œåˆ™åœ¨é™¤ä»¥å—å¤§å°åï¼Œå››ä¸ªè§’è¦å‘å¤–ç§»åŠ¨ä¸€æ ¼ã€‚æ‰€ä»¥æœ€åå¤§å°è¦åŠ 2.
         //int componentTileColumn=floor(visibleSize.width/m_tMapTileSize.width)+2;
         //int componentTileRow=floor(visibleSize.height/m_tMapTileSize.height)+2;
         

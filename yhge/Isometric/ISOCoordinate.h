@@ -1,5 +1,5 @@
 /*
- *  CISOCoordinate.h
+ *  ISOCoordinate.h
  *  
  *  使用基于2的幂次方的数值，乘除直接使用位移操作
  *  每个游戏的tile大小都是固定的，直接定义好，可以提高效率

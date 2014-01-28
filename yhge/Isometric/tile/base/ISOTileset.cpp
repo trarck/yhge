@@ -1,7 +1,4 @@
 #include "ISOTileset.h"
-#include <yhge/Isometric/ISOCoordinate.h>
-
-
 
 NS_CC_YHGE_BEGIN
 
