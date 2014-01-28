@@ -146,8 +146,16 @@ void CameraFlowGridMoveComponent::moveCamera(float delta)
         float scale=m_camera->getScale();
         float endX=m_lastCameraPosition.x+scale*duration*m_fViewSpeedX;
         float endY=m_lastCameraPosition.y+scale*duration*m_fViewSpeedY;
+        
+//        float dx=endX-m_lastCameraPosition.x;
+//        float dy=endY-m_lastCameraPosition.y;
+        
         m_lastCameraPosition.x=endX;
         m_lastCameraPosition.y=endY;
+
+        //不能使用delta，好象有问题。
+        
+//        m_camera->move(dx, dy);
         m_camera->moveTo(endX,endY);
         //CCLOG("bb %f,%f",endX,endY);
     }
