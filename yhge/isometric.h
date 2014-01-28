@@ -4,6 +4,7 @@
 //ISometric info base
 #include "Isometric/ISOCoordinate.h"
 #include "Isometric/Coordinate.h"
+#include "Isometric/ISOStaticCoordinate.h"
 
 //遮挡算法
 #include "Isometric/occlusion/ZIndexNode.h"
