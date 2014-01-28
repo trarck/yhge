@@ -1,6 +1,7 @@
 #include "ISODynamicComponent.h"
 #include <yhge/CocosExt/CCDefaultTexture.h>
 #include <yhge/Isometric/ISOCoordinate.h>
+#include <yhge/Isometric/ISOStaticCoordinate.h>
 #include "../base/ISOTile.h"
 #include "ISOTileLayer.h"
 
@@ -129,9 +130,9 @@ bool ISODynamicComponent::beforeUpdateContent()
 {
 	
 	//屏幕的四个点。使用gl坐标系统，地图坐标x正方向右上，y正方向左上。初始点为屏幕左下角。也就是gl坐标的原点
-	//CCPoint startMapCoord=isoViewToGame2F(0,0);
+	//CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGame2F(0,0));
 	//only for test
-	CCPoint startMapCoord=isoViewToGamePoint(m_tOffset);
+	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(m_tOffset));
 	m_iStartX=(int)startMapCoord.x;
 	m_iStartY=(int)startMapCoord.y;
     //CCLOG("start:%d,%d %f,%f",m_iStartX,m_iStartY,m_tPosition.x,m_tPosition.y);
@@ -287,7 +288,7 @@ void ISODynamicComponent::updateNode(ISOComponentNode* node,float mx,float my)
     if (tile)
     {
         //更新位置
-        node->setPosition(isoGameToView2F(mx, my));
+        node->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(mx, my)));
         
         m_pTileLayer->reorderChild(node,m_pTileLayer->zOrderForPos(pos));
 //        node->reorderChild(m_pTileLayer->zOrderForPos(pos));
@@ -386,7 +387,7 @@ int ISODynamicComponent::getComponentTileExtendCount()
 void ISODynamicComponent::initOffset(const CCPoint& tOffset)
 {
     this->setOffset(tOffset);
-	CCPoint startMapCoord=isoViewToGamePoint(tOffset);
+	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(tOffset));
 	m_iStartX=(int)startMapCoord.x;
 	m_iStartY=(int)startMapCoord.y;
 	m_iLastStartX=m_iStartX;

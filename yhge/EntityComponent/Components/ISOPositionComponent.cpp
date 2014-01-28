@@ -2,6 +2,7 @@
 #include <yhge/message.h>
 #include <yhge/EntityComponent/Entity.h>
 #include <yhge/Isometric/ISOCoordinate.h>
+#include <yhge/Isometric/ISOStaticCoordinate.h>
 #include "ComponentMessageDefine.h"
 #include "RendererComponent.h"
 
@@ -55,7 +56,7 @@ void ISOPositionComponent::cleanupMessages()
  */
 void ISOPositionComponent::updateRendererPosition()
 {
-    CCPoint viewPos=isoGameToView2F(m_x, m_y);
+    CCPoint viewPos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(m_x, m_y));
     CCNode* renderer=m_rendererComponent->getRenderer();
     renderer->setPosition(viewPos);
     renderer->setZOrder(-(int)(viewPos.y));

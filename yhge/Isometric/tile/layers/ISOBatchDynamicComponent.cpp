@@ -1,5 +1,6 @@
 #include "ISOBatchDynamicComponent.h"
 #include <yhge/Isometric/ISOCoordinate.h>
+#include <yhge/Isometric/ISOStaticCoordinate.h>
 #include <yhge/Isometric/tile/base/ISOTile.h>
 #include "ISOTileLayer.h"
 #include "ISOBatchDynamicTileLayer.h"
@@ -75,7 +76,7 @@ void ISOBatchDynamicComponent::updateNode(ISOComponentNode* node,float mx,float 
     if (tile)
     {
         //更新位置
-        node->setPosition(isoGameToView2F(mx, my));
+        node->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(mx, my)));
         
 		m_pBatchNode->reorderChild(node,m_pTileLayer->zOrderForPos(pos));
         

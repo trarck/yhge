@@ -1,5 +1,6 @@
 #include "ISOCoordinateLayer.h"
 #include <yhge/Isometric/ISOCoordinate.h>
+#include <yhge/Isometric/ISOStaticCoordinate.h>
 
 USING_NS_CC;
 
@@ -35,15 +36,15 @@ void ISOCoordinateLayer::draw()
 		ccDrawColor4B(255,0,0,255);
 		//draw xias
 		for(i=0;i<=m_iMapWidth;i++){
-			from=isoGameToView2F(i,0);
-			to=isoGameToView2F(i,m_iMapHeight);
+			from=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(i,0));
+			to=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(i,m_iMapHeight));
 			
 			ccDrawLine( from, to );
 		}
 		//draw yias
 		for(j=0;j<=m_iMapHeight;j++){
-			from=isoGameToView2F(0,j);
-			to=isoGameToView2F(m_iMapWidth,j);
+			from=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(0,j));
+			to=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(m_iMapWidth,j));
 			
 			ccDrawLine( from, to );
 		}

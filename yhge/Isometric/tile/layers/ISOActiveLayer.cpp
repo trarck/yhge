@@ -1,5 +1,6 @@
 #include "ISOActiveLayer.h"
 #include <yhge/Isometric/ISOCoordinate.h>
+#include <yhge/Isometric/ISOStaticCoordinate.h>
 #include "../ISOBases.h"
 #include "../ISOInfos.h"
 #include "../ISOTileMap.h"
@@ -79,7 +80,7 @@ CCSprite* ISOActiveLayer::createObject(int gid,const CCPoint& coord)
     
     ISOTile* tile=tileset->tileForGid(gid);
     
-    CCPoint pos=isoGameToViewPoint(coord);
+    CCPoint pos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(coord));
     
     CCSprite* tileSprite=CCSprite::createWithTexture(tile->getTexture(), tile->getTextureRect());
     //object 的对齐方式为底部居中

@@ -1,5 +1,6 @@
 #include "ISOActiveSortLayer.h"
 #include <yhge/Isometric/ISOCoordinate.h>
+#include <yhge/Isometric/ISOStaticCoordinate.h>
 #include "../ISOTileMap.h"
 #include "../ISOInfos.h"
 
@@ -159,7 +160,7 @@ void ISOActiveSortLayer::updateDynamicObjectsZOrder(bool updateNode)
             node->setEntity(mapObject);
             
             //更新位置，直接把屏幕坐标转成地图坐标，根据不同的实现，这里可能不同
-            nodeRect.origin=isoViewToGamePoint(mapObject->getPosition());
+            nodeRect.origin=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(mapObject->getPosition()));
             node->setRect(nodeRect);
         }
         m_occlusion->insert(node);

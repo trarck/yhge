@@ -247,7 +247,7 @@ void GridMoveComponent::calcSpeedVector(int directionX,int directionY)
 		m_speedY=j*m_speed*BEVEL_VECTOR_HALF;
 	}
 
-	CCPoint viewSpeed=isoGameToView2F(m_speedX,m_speedY);
+	CCPoint viewSpeed=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(m_speedX,m_speedY));
 	m_fViewSpeedX=viewSpeed.x;
 	m_fViewSpeedY=viewSpeed.y;
 	CCLOGINFO("m_speedX:%f,m_speedY:%f,viewSpeed:%f,%f",m_speedX,m_speedY,m_fViewSpeedX,m_fViewSpeedY);
@@ -303,7 +303,7 @@ void GridMoveComponent::updateDirection( float delta)
         m_isoPositionComponent->updateRendererPositionDirectly(pos);
 	}else{
 		//一个路径结点移动完成,设置成终点所在的位置。使用时间计算出来的终点位置可能不准。
-//        pos=isoGameToView2F(m_to.x,m_to.y);
+//        pos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(m_to.x,m_to.y));
 ////		renderer->setPosition(pos);
 ////        renderer->setZOrder(-(int)pos.y);
 //        m_isoPositionComponent->updateRendererPositionDirectly(pos);
@@ -429,7 +429,7 @@ void GridMoveComponent::updatePath(float delta)
         m_isoPositionComponent->updateRendererPositionDirectly(pos);
 	}else{
 		//一个路径结点移动完成,设置成终点所在的位置。使用时间计算出来的终点位置可能不准。
-//        pos=isoGameToView2F(m_to.x,m_to.y);
+//        pos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(m_to.x,m_to.y));
 ////		renderer->setPosition(pos);
 ////        renderer->setZOrder(-(int)pos.y);
 //        m_isoPositionComponent->updateRendererPositionDirectly(pos);

@@ -1,5 +1,6 @@
 #include "ISOTileLayer.h"
 #include <yhge/Isometric/ISOCoordinate.h>
+#include <yhge/Isometric/ISOStaticCoordinate.h>
 #include "../base/ISOTileset.h"
 #include "../ISOTileMap.h"
 
@@ -54,7 +55,7 @@ void ISOTileLayer::initOffset(const CCPoint& tOffset)
 {
 //    this->setPosition(tOffset);
 	this->setOffset(tOffset);
-	CCPoint startMapCoord=isoViewToGamePoint(tOffset);
+	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(tOffset));
 	m_startX=(int)startMapCoord.x;
 	m_startY=(int)startMapCoord.y;
 }

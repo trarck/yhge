@@ -1,5 +1,6 @@
 #include "ISOBatchTileLayer.h"
 #include <yhge/Isometric/ISOCoordinate.h>
+#include <yhge/Isometric/ISOStaticCoordinate.h>
 #include <yhge/Isometric/tile/base/ISOTileset.h>
 
 
@@ -107,7 +108,7 @@ void ISOBatchTileLayer::setupTiles()
 
 void ISOBatchTileLayer::setupTileSprite(CCSprite* sprite, CCPoint mapCoord, unsigned int gid)
 {
-    sprite->setPosition(isoGameToViewPoint(mapCoord));
+    sprite->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(mapCoord)));
     sprite->setVertexZ((float)this->vertexZForPos(mapCoord));
     sprite->setAnchorPoint(ccp(0.5f,0.0f));
     sprite->setOpacity(m_cOpacity);
@@ -121,7 +122,7 @@ void ISOBatchTileLayer::setupTileSprite(CCSprite* sprite, CCPoint mapCoord, unsi
     {
         // put the anchor in the middle for ease of rotation.
         sprite->setAnchorPoint(ccp(0.5f,0.5f));
-        CCPoint viewPos=isoGameToViewPoint(mapCoord);
+        CCPoint viewPos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(mapCoord));
         sprite->setPosition(ccp(viewPos.x + sprite->getContentSize().height/2,
                                 viewPos.y + sprite->getContentSize().width/2 ) );
         
@@ -206,7 +207,7 @@ CCSprite * ISOBatchTileLayer::tileSpriteAt(const CCPoint& pos)
             tile = new CCSprite();
             tile->initWithTexture(m_pSpriteBatchNode->getTexture(), rect);
             tile->setBatchNode(m_pSpriteBatchNode);
-            tile->setPosition(isoGameToViewPoint(pos));
+            tile->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(pos)));
             tile->setVertexZ((float)vertexZForPos(pos));
             tile->setAnchorPoint(CCPointZero);
             tile->setOpacity(m_cOpacity);

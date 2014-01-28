@@ -1,5 +1,6 @@
 #include "ISOObjectLayer.h"
 #include <yhge/Isometric/ISOCoordinate.h>
+#include <yhge/Isometric/ISOStaticCoordinate.h>
 #include "../ISOBases.h"
 #include "../ISOTileMap.h"
 
@@ -69,12 +70,12 @@ CCSprite* ISOObjectLayer::createObject(int gid,const CCPoint& coord)
     
     ISOTile* tile=tileset->tileForGid(gid);
     
-    CCPoint pos=isoGameToViewPoint(coord);
+    CCPoint pos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(coord));
     
     CCSprite* tileSprite=CCSprite::createWithTexture(tile->getTexture(), tile->getTextureRect());
     //object 的对齐方式为底部居中
     tileSprite->setAnchorPoint(ccp(0.5f,0));
-    tileSprite->setPosition(isoGameToViewPoint(coord));
+    tileSprite->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(coord)));
     tileSprite->setOpacity(m_cOpacity);
     
     //屏幕的y方向作为zOrder，由于opengl的坐标和屏幕坐标反向，这里取反.
