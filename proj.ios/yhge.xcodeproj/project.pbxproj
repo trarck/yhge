@@ -81,6 +81,7 @@
 		57975AC818963599008A9F38 /* ISOActiveLayerInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AC618963599008A9F38 /* ISOActiveLayerInfo.cpp */; };
 		57975ACB18973A4A008A9F38 /* SceenCoordMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AC918973A4A008A9F38 /* SceenCoordMoveComponent.cpp */; };
 		57975ACE18974038008A9F38 /* ISOMapPositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975ACC18974038008A9F38 /* ISOMapPositionComponent.cpp */; };
+		57975AD5189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AD3189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp */; };
 		57C3375C1888C3A1008B5618 /* AnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337401888C3A1008B5618 /* AnimationComponent.cpp */; };
 		57C3375D1888C3A1008B5618 /* AttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337421888C3A1008B5618 /* AttackComponent.cpp */; };
 		57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337441888C3A1008B5618 /* AutoAttackComponent.cpp */; };
@@ -278,6 +279,8 @@
 		57975ACA18973A4A008A9F38 /* SceenCoordMoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceenCoordMoveComponent.h; sourceTree = "<group>"; };
 		57975ACC18974038008A9F38 /* ISOMapPositionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOMapPositionComponent.cpp; sourceTree = "<group>"; };
 		57975ACD18974038008A9F38 /* ISOMapPositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOMapPositionComponent.h; sourceTree = "<group>"; };
+		57975AD3189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOAutoZOrderPositionComponent.cpp; sourceTree = "<group>"; };
+		57975AD4189752E8008A9F38 /* ISOAutoZOrderPositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOAutoZOrderPositionComponent.h; sourceTree = "<group>"; };
 		57C337401888C3A1008B5618 /* AnimationComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationComponent.cpp; sourceTree = "<group>"; };
 		57C337411888C3A1008B5618 /* AnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationComponent.h; sourceTree = "<group>"; };
 		57C337421888C3A1008B5618 /* AttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackComponent.cpp; sourceTree = "<group>"; };
@@ -721,6 +724,8 @@
 				57C3374A1888C3A1008B5618 /* ComponentMessageDefine.h */,
 				57C3374B1888C3A1008B5618 /* GridMoveComponent.cpp */,
 				57C3374C1888C3A1008B5618 /* GridMoveComponent.h */,
+				57975AD3189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp */,
+				57975AD4189752E8008A9F38 /* ISOAutoZOrderPositionComponent.h */,
 				57975ACC18974038008A9F38 /* ISOMapPositionComponent.cpp */,
 				57975ACD18974038008A9F38 /* ISOMapPositionComponent.h */,
 				57C3374D1888C3A1008B5618 /* ISOPositionComponent.cpp */,
@@ -868,6 +873,7 @@
 				5771056418837C2C00FA1446 /* ISOCoordinateLayer.cpp in Sources */,
 				577A7936186BF56500F1B5D5 /* SimpleMessageManager.cpp in Sources */,
 				577A790D186BF56500F1B5D5 /* FSMState.cpp in Sources */,
+				57975AD5189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp in Sources */,
 				576E3FDF187E3DF800745A0A /* ISOMapObject.cpp in Sources */,
 				576E3FC4187D4BFB00745A0A /* ISOTileLayer.cpp in Sources */,
 				576E3FCD187D4BFB00745A0A /* ISOTileMapBuilder.cpp in Sources */,
