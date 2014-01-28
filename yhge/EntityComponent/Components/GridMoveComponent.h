@@ -86,13 +86,13 @@ public:
     /**
      * 计算移动到的位置
      */
-	void calcTo();
+	virtual void calcTo();
     
     /**
      * 计算方向
      * 主要用于按路径移动时
      */
-	void calcDirection();
+	virtual void calcDirection();
     
     /**
      * 按方向移动时的定时更新器

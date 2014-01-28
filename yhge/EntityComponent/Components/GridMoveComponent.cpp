@@ -209,7 +209,7 @@ void GridMoveComponent::calcMoveDuration(int directionX,int directionY)
 	CCAssert(j>=0 && j<=2,"prepareDirection error the direction out of range");
 	m_movingDuration=MoveDurationMap[i][j]/m_speed;
 
-	CCLOG("m_movingDuration:%f",m_movingDuration);
+	CCLOGINFO("m_movingDuration:%f",m_movingDuration);
 	//float absDirX=abs(directionX);
 	//float absDirY=abs(directionY);
 
@@ -250,7 +250,7 @@ void GridMoveComponent::calcSpeedVector(int directionX,int directionY)
 	CCPoint viewSpeed=isoGameToView2F(m_speedX,m_speedY);
 	m_fViewSpeedX=viewSpeed.x;
 	m_fViewSpeedY=viewSpeed.y;
-	CCLOG("m_speedX:%f,m_speedY:%f,viewSpeed:%f,%f",m_speedX,m_speedY,m_fViewSpeedX,m_fViewSpeedY);
+	CCLOGINFO("m_speedX:%f,m_speedY:%f,viewSpeed:%f,%f",m_speedX,m_speedY,m_fViewSpeedX,m_fViewSpeedY);
 }
 
 /**
@@ -294,17 +294,20 @@ void GridMoveComponent::updateDirection( float delta)
 		pos.x+=delta*m_fViewSpeedX;
 		pos.y+=delta*m_fViewSpeedY;
 		//owner->setCoordinate(mx,my);
-		//CCLOG("posx2:%f,posy:%f:%f,%f:%f",pos.x,pos.y,m_fViewSpeedX,m_fViewSpeedY,delta);
+		//CCLOGINFO("posx2:%f,posy:%f:%f,%f:%f",pos.x,pos.y,m_fViewSpeedX,m_fViewSpeedY,delta);
         
 //		renderer->setPosition(pos);
 //        renderer->setZOrder(-(int)pos.y);
-        m_isoPositionComponent->updateRendererPosition(pos);
+        //这里使用了虚函数，如果担心会影响性能，可以直接替换m_isoPositionComponent成一个没有虚函数的组件。
+        //但是一般性能影响可以忽略。
+        m_isoPositionComponent->updateRendererPositionDirectly(pos);
 	}else{
-		//一个路径结点移动完成
-        pos=isoGameToView2F(m_to.x,m_to.y);
-//		renderer->setPosition(pos);
-//        renderer->setZOrder(-(int)pos.y);
-        m_isoPositionComponent->updateRendererPosition(pos);
+		//一个路径结点移动完成,设置成终点所在的位置。使用时间计算出来的终点位置可能不准。
+//        pos=isoGameToView2F(m_to.x,m_to.y);
+////		renderer->setPosition(pos);
+////        renderer->setZOrder(-(int)pos.y);
+//        m_isoPositionComponent->updateRendererPositionDirectly(pos);
+        m_isoPositionComponent->updateRendererPosition();
 		if (m_moveState==MoveContinue) {
 			prepareDirection(m_nextDirectionX, m_nextDirectionY);
     		this->continueUpdate();
@@ -385,7 +388,7 @@ void GridMoveComponent::preparePath()
 void  GridMoveComponent::preparePath(int pathIndex)
 {
 	CCAssert(pathIndex>=0,"paths length less 2");
-	CCLOG("preparePath.iPathIndex:%d",pathIndex);
+	CCLOGINFO("preparePath.iPathIndex:%d",pathIndex);
     m_to=  static_cast<CCPointValue*>(m_pCurrentPaths->objectAtIndex(pathIndex))->getPoint();
 	calcDirection();
 }
@@ -412,22 +415,25 @@ void GridMoveComponent::updatePath(float delta)
 	
 	m_movingDeltaTime+=delta;
 	
-	//CCLOG("upate:%f,%f,%f",delta,m_movingDeltaTime,m_movingDuration);
+	//CCLOGINFO("upate:%f,%f,%f",delta,m_movingDeltaTime,m_movingDuration);
 	if(m_movingDeltaTime<m_movingDuration){
-		//CCLOG("posx1:%f,posy:%f:%f,%f:%f",pos.x,pos.y,m_fViewSpeedX,m_fViewSpeedY,delta);
+		//CCLOGINFO("posx1:%f,posy:%f:%f,%f:%f",pos.x,pos.y,m_fViewSpeedX,m_fViewSpeedY,delta);
 		pos.x+=delta*m_fViewSpeedX;
 		pos.y+=delta*m_fViewSpeedY;
 		//owner->setCoordinate(mx,my);
-		//CCLOG("posx2:%f,posy:%f:%f,%f:%f",pos.x,pos.y,m_fViewSpeedX,m_fViewSpeedY,delta);
+		//CCLOGINFO("posx2:%f,posy:%f:%f,%f:%f",pos.x,pos.y,m_fViewSpeedX,m_fViewSpeedY,delta);
 //		renderer->setPosition(pos);
 //        renderer->setZOrder(-(int)pos.y);
-        m_isoPositionComponent->updateRendererPosition(pos);
+        //这里使用了虚函数，如果担心会影响性能，可以直接替换m_isoPositionComponent成一个没有虚函数的组件。
+        //但是一般性能影响可以忽略。
+        m_isoPositionComponent->updateRendererPositionDirectly(pos);
 	}else{
-		//一个路径结点移动完成
-        pos=isoGameToView2F(m_to.x,m_to.y);
-//		renderer->setPosition(pos);
-//        renderer->setZOrder(-(int)pos.y);
-        m_isoPositionComponent->updateRendererPosition(pos);
+		//一个路径结点移动完成,设置成终点所在的位置。使用时间计算出来的终点位置可能不准。
+//        pos=isoGameToView2F(m_to.x,m_to.y);
+////		renderer->setPosition(pos);
+////        renderer->setZOrder(-(int)pos.y);
+//        m_isoPositionComponent->updateRendererPositionDirectly(pos);
+        m_isoPositionComponent->updateRendererPosition();
         //设置地图坐标
 		if (m_moveState==MoveContinue) {
 			if (m_pNextPaths!=NULL) {
@@ -437,7 +443,7 @@ void GridMoveComponent::updatePath(float delta)
 				this->continueUpdate();
 			}
 		}else if (--m_pathIndex>=0 && m_moveState==MoveStart) {
-			CCLOG("next cell %d",m_pathIndex);
+			CCLOGINFO("next cell %d",m_pathIndex);
 			//进行下一个格子
 			preparePath(m_pathIndex);
 			this->continueUpdate();
@@ -448,7 +454,6 @@ void GridMoveComponent::updatePath(float delta)
 		}
 	}
 }
-
 
 /**
  * 方向改变
@@ -462,7 +467,7 @@ void GridMoveComponent::doDirectionChange()
 	int i=floor(m_directionX)+1;
 	int j=floor(m_directionY)+1;
 	int index=directionMapping[i][j];
-	//CCLOG("index:%d,%d,%d,%f,%f",index,i,j,m_directionX,m_directionY);
+	//CCLOGINFO("index:%d,%d,%d,%f,%f",index,i,j,m_directionX,m_directionY);
 	if (index>-1) {
 		CCDictionary* data=new CCDictionary();
 		data->setObject(CCString::create("move"), "name");
@@ -547,7 +552,7 @@ void GridMoveComponent::setDirection(int directionX,int directionY)
 void GridMoveComponent::startMove()
 {
 	m_movingDeltaTime=0;
-    CCLOG("startMove");
+    CCLOGINFO("startMove");
 	m_moveState=MoveStart;
 
     startMoveUpdateSchedule();
