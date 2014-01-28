@@ -79,6 +79,8 @@
 		57975AB618910123008A9F38 /* SortZIndexNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AB418910123008A9F38 /* SortZIndexNode.cpp */; };
 		57975ABF1896012E008A9F38 /* ISOActiveSortLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975ABD1896012E008A9F38 /* ISOActiveSortLayer.cpp */; };
 		57975AC818963599008A9F38 /* ISOActiveLayerInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AC618963599008A9F38 /* ISOActiveLayerInfo.cpp */; };
+		57975ACB18973A4A008A9F38 /* SceenCoordMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AC918973A4A008A9F38 /* SceenCoordMoveComponent.cpp */; };
+		57975ACE18974038008A9F38 /* ISOMapPositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975ACC18974038008A9F38 /* ISOMapPositionComponent.cpp */; };
 		57C3375C1888C3A1008B5618 /* AnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337401888C3A1008B5618 /* AnimationComponent.cpp */; };
 		57C3375D1888C3A1008B5618 /* AttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337421888C3A1008B5618 /* AttackComponent.cpp */; };
 		57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337441888C3A1008B5618 /* AutoAttackComponent.cpp */; };
@@ -272,6 +274,10 @@
 		57975ABE1896012E008A9F38 /* ISOActiveSortLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOActiveSortLayer.h; sourceTree = "<group>"; };
 		57975AC618963599008A9F38 /* ISOActiveLayerInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOActiveLayerInfo.cpp; sourceTree = "<group>"; };
 		57975AC718963599008A9F38 /* ISOActiveLayerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOActiveLayerInfo.h; sourceTree = "<group>"; };
+		57975AC918973A4A008A9F38 /* SceenCoordMoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceenCoordMoveComponent.cpp; sourceTree = "<group>"; };
+		57975ACA18973A4A008A9F38 /* SceenCoordMoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceenCoordMoveComponent.h; sourceTree = "<group>"; };
+		57975ACC18974038008A9F38 /* ISOMapPositionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOMapPositionComponent.cpp; sourceTree = "<group>"; };
+		57975ACD18974038008A9F38 /* ISOMapPositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOMapPositionComponent.h; sourceTree = "<group>"; };
 		57C337401888C3A1008B5618 /* AnimationComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationComponent.cpp; sourceTree = "<group>"; };
 		57C337411888C3A1008B5618 /* AnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationComponent.h; sourceTree = "<group>"; };
 		57C337421888C3A1008B5618 /* AttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackComponent.cpp; sourceTree = "<group>"; };
@@ -715,6 +721,8 @@
 				57C3374A1888C3A1008B5618 /* ComponentMessageDefine.h */,
 				57C3374B1888C3A1008B5618 /* GridMoveComponent.cpp */,
 				57C3374C1888C3A1008B5618 /* GridMoveComponent.h */,
+				57975ACC18974038008A9F38 /* ISOMapPositionComponent.cpp */,
+				57975ACD18974038008A9F38 /* ISOMapPositionComponent.h */,
 				57C3374D1888C3A1008B5618 /* ISOPositionComponent.cpp */,
 				57C3374E1888C3A1008B5618 /* ISOPositionComponent.h */,
 				57C3374F1888C3A1008B5618 /* ManualAttackComponent.cpp */,
@@ -723,6 +731,8 @@
 				57C337521888C3A1008B5618 /* MoveComponent.h */,
 				57C337531888C3A1008B5618 /* RendererComponent.cpp */,
 				57C337541888C3A1008B5618 /* RendererComponent.h */,
+				57975AC918973A4A008A9F38 /* SceenCoordMoveComponent.cpp */,
+				57975ACA18973A4A008A9F38 /* SceenCoordMoveComponent.h */,
 				57C337571888C3A1008B5618 /* SpriteRendererComponent.cpp */,
 				57C337581888C3A1008B5618 /* SpriteRendererComponent.h */,
 			);
@@ -841,6 +851,7 @@
 				577A7908186BF56500F1B5D5 /* EventHandleD.cpp in Sources */,
 				57975AB21890FB16008A9F38 /* ZIndex.cpp in Sources */,
 				57C3376B1888CC67008B5618 /* IsometricProperty.cpp in Sources */,
+				57975ACE18974038008A9F38 /* ISOMapPositionComponent.cpp in Sources */,
 				576E3FC9187D4BFB00745A0A /* ISOObjectInfo.cpp in Sources */,
 				577A78F7186BF56500F1B5D5 /* CallbackAstar.cpp in Sources */,
 				576E3FCA187D4BFB00745A0A /* ISOTileInfo.cpp in Sources */,
@@ -874,6 +885,7 @@
 				577A78FE186BF56500F1B5D5 /* ccCArray.cpp in Sources */,
 				57928428188F5BD400B46136 /* ISOLayer.cpp in Sources */,
 				577A790B186BF56500F1B5D5 /* UIEvent.cpp in Sources */,
+				57975ACB18973A4A008A9F38 /* SceenCoordMoveComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
