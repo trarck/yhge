@@ -81,13 +81,15 @@ void SortZIndexNode::updateZOrder(int zOrder)
 }
 
 /**
- * 消除childre
+ * 消除children
  */
 void SortZIndexNode::clearChildren()
 {
     for (SortZIndexNodeIterator iter=m_children.begin(); iter!=m_children.end(); ++iter) {
         (*iter)->release();
     }
+    
+    m_children.clear();
 }
 
 /**
@@ -95,15 +97,25 @@ void SortZIndexNode::clearChildren()
  */
 void SortZIndexNode::reset()
 {
-    setParent(NULL);
-    
     clearChildren();
-    m_children.clear();
     
     m_rect=CCRectZero;
     m_sortedDeep=0;
     
     setEntity(NULL);
+    
+    setParent(NULL);
+}
+
+/**
+ * 重制相关联的结点
+ * 父结点和子结点
+ */
+void SortZIndexNode::resetRelation()
+{
+    clearChildren();
+    
+    setParent(NULL);
 }
 
 /**
@@ -112,6 +124,12 @@ void SortZIndexNode::reset()
 SortZIndexNode* SortZIndexNode::clone()
 {
     SortZIndexNode* node=new SortZIndexNode();
+    node->init();
+    
+    node->setEntity(m_entity);
+    node->setRect(m_rect);
+    
+    //不用设置parent，在clone child的时候会设置
     
     //clone children
     for (SortZIndexNodeIterator iter=m_children.begin(); iter!=m_children.end(); ++iter) {

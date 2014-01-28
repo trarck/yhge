@@ -49,7 +49,7 @@ public:
     void updateZOrder(int zOrder);
     
     /**
-     * 消除childre
+     * 消除children
      */
     void clearChildren();
     
@@ -57,6 +57,12 @@ public:
      * 重制内部数据
      */
     void reset();
+    
+    /**
+     * 重制相关联的结点
+     * 父结点和子结点
+     */
+    void resetRelation();
     
     /**
      * 复制自身，包含子目录。
