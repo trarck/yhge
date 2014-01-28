@@ -60,6 +60,9 @@ int SortZIndex::parseNode(SortZIndexNode* currentNode,SortZIndexNode* node,int d
 
 bool SortZIndex::checkNode(SortZIndexNode* currentNode,SortZIndexNode* node,int deep)
 {
+//    CCLOG("current deep:%d",currentNode->getDeep());
+//    CCAssert(currentNode->getDeep()==deep, "deep error");
+    
     bool addedFlag=false;
     
     int side=caculateSide(currentNode->getRect(), node->getRect());
@@ -67,18 +70,22 @@ bool SortZIndex::checkNode(SortZIndexNode* currentNode,SortZIndexNode* node,int 
     if (side<0) {
         //小于node
         //把当前结点作为被检查结点的子元素
-        node->addChild(currentNode);
+        //需要检查深度值。如果检查点所在的深度值大于等于当前结点所在的深度值，那么移过去深度值会增加，则执行移动操作，否则不需要
+        if (node->getDeep()>=deep) {
+            node->addChild(currentNode);
+        }
+        
         //不用处理当前结点的子结点
     }else if (side>0){
         //大于node
         //由于关系不能明确，需要处理其子元素。
-        int subAddedFlag=parseNode(currentNode, node, deep+1);
+        int subAddedFlag=parseNode(currentNode, node, deep);
         
         if (!subAddedFlag) {
             
             if (node->getParent()) {
                 //如果node已经被添加到树中，则比较二者的深度值.使用深度值较大者。
-                if (deep>node->getDeep()) {
+                if (deep>=node->getDeep()) {
                     currentNode->addChild(node);
                 }
                 
@@ -92,7 +99,7 @@ bool SortZIndex::checkNode(SortZIndexNode* currentNode,SortZIndexNode* node,int 
     }else{
         //等于node
         //由于关系不明确，需要处理子元素
-        parseNode(currentNode, node, deep+1);
+        parseNode(currentNode, node, deep);
         //不处理返回结果，由父结点处理
     }
     
@@ -182,7 +189,7 @@ void SortZIndex::updateZOrder()
             
             item->updateZOrder(deepZOrder);
             
-            CCLOG("%d:origin:%f,%f:size:%f,%f",deepZOrder,item->getRect().origin.x,item->getRect().origin.y,item->getRect().size.width,item->getRect().size.height);
+//            CCLOG("%d:origin:%f,%f:size:%f,%f",deepZOrder,item->getRect().origin.x,item->getRect().origin.y,item->getRect().size.width,item->getRect().size.height);
             
             for(childIter=item->beginChild();childIter!=item->endChild();++childIter){
                 deepNodes[nextDeep].push_back(*childIter);
@@ -232,7 +239,7 @@ void SortZIndex::showTest()
             
             item->updateZOrder(deepZOrder);
             
-            CCLOG("%d:origin:%f,%f:size:%f,%f",deepZOrder,item->getRect().origin.x,item->getRect().origin.y,item->getRect().size.width,item->getRect().size.height);
+            CCLOGINFO("%d:origin:%f,%f:size:%f,%f",deepZOrder,item->getRect().origin.x,item->getRect().origin.y,item->getRect().size.width,item->getRect().size.height);
             
             for(childIter=item->beginChild();childIter!=item->endChild();++iter){
                 deepNodes[nextDeep].push_back(*childIter);
