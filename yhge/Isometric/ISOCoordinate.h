@@ -16,11 +16,11 @@
 
 //tile width 
 #ifndef TileWidth
-#define TileWidth 120
+#define TileWidth 64
 #endif
 //tile height
 #ifndef TileHeight
-#define TileHeight 60 
+#define TileHeight 32
 #endif
 
 //MapUnit，一个地图坐标单元的地图坐标像素值
