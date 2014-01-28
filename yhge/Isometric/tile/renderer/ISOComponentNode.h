@@ -83,26 +83,12 @@ public:
     {
         return m_iMapCellY;
     };
-    
-    inline void setTile( CCSprite* pTile)
-    {
-        CC_SAFE_RETAIN(pTile);
-        CC_SAFE_RELEASE(m_pTile);
-        m_pTile = pTile;
-    };
-    
-    inline CCSprite* getTile()
-    {
-        return m_pTile;
-    };
 
 private:
 	int m_iColumn;
 	int m_iRow;
     float m_fMapX;
     float m_fMapY;
-
-    CCSprite* m_pTile;
     
     int m_iMapCellX;
     int m_iMapCellY;
