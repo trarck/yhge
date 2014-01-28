@@ -71,6 +71,11 @@ protected:
      */
     bool checkNeedMoveCamera();
     
+    /**
+     * 移动相机
+     */
+    void moveCamera(float delta);
+    
 protected:
     
     //相机，弱引用

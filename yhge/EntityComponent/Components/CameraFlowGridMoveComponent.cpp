@@ -38,7 +38,11 @@ CameraFlowGridMoveComponent::~CameraFlowGridMoveComponent()
  */
 void CameraFlowGridMoveComponent::updateDirection( float delta)
 {
-     GridMoveComponent::updateDirection(delta);
+    if (m_needMoveCamera)
+    {
+        this->moveCamera(delta);
+    }
+    GridMoveComponent::updateDirection(delta);
 }
 
 /**
@@ -54,24 +58,7 @@ void CameraFlowGridMoveComponent::updatePath(float delta)
     
     if (m_needMoveCamera)
     {
-        //CCLOG("needMoveCamera:%f,%f:%f,%f",scenePos.x,scenePos.y,m_rendererComponent->getRenderer()->getPosition().x,m_rendererComponent->getRenderer()->getPosition().y);
-
-        float duration=m_movingDuration;
-        float movingDelta=m_movingDeltaTime+delta;
-
-        if(movingDelta<duration){
-            float scale=m_camera->getScale();
-            m_camera->move(scale*delta*m_fViewSpeedX,scale*delta*m_fViewSpeedY);
-//            CCLOG("aa %f,%f",m_camera->getWorldPosition().x,m_camera->getWorldPosition().y);
-        }else{
-            float scale=m_camera->getScale();
-            float endX=m_lastCameraPosition.x+scale*duration*m_fViewSpeedX;
-            float endY=m_lastCameraPosition.y+scale*duration*m_fViewSpeedY;
-            m_lastCameraPosition.x=endX;
-            m_lastCameraPosition.y=endY;
-            m_camera->moveTo(endX,endY);
-//            CCLOG("bb %f,%f",endX,endY);
-        }
+        this->moveCamera(delta);
     }
 
     //update 放在后面，否则一些状态会改变如m_movingDeltaTime，m_movingDeltaTime，m_fViewSpeedX
@@ -139,6 +126,31 @@ bool CameraFlowGridMoveComponent::checkNeedMoveCamera()
     m_needMoveCamera=needMoveCamera;
 
     return needMoveCamera;
+}
+
+/**
+ * 移动相机
+ */
+void CameraFlowGridMoveComponent::moveCamera(float delta)
+{
+    //CCLOG("needMoveCamera:%f,%f:%f,%f",scenePos.x,scenePos.y,m_rendererComponent->getRenderer()->getPosition().x,m_rendererComponent->getRenderer()->getPosition().y);
+    
+    float duration=m_movingDuration;
+    float movingDelta=m_movingDeltaTime+delta;
+    
+    if(movingDelta<duration){
+        float scale=m_camera->getScale();
+        m_camera->move(scale*delta*m_fViewSpeedX,scale*delta*m_fViewSpeedY);
+        //CCLOG("aa %f,%f",m_camera->getWorldPosition().x,m_camera->getWorldPosition().y);
+    }else{
+        float scale=m_camera->getScale();
+        float endX=m_lastCameraPosition.x+scale*duration*m_fViewSpeedX;
+        float endY=m_lastCameraPosition.y+scale*duration*m_fViewSpeedY;
+        m_lastCameraPosition.x=endX;
+        m_lastCameraPosition.y=endY;
+        m_camera->moveTo(endX,endY);
+        //CCLOG("bb %f,%f",endX,endY);
+    }
 }
 
 NS_CC_YHGE_END
