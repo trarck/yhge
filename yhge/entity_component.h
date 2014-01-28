@@ -8,6 +8,7 @@
 #include "EntityComponent/Components/RendererComponent.h"
 #include "EntityComponent/Components/SpriteRendererComponent.h"
 #include "EntityComponent/Components/ISOPositionComponent.h"
+#include "EntityComponent/Components/ISOAutoZOrderPositionComponent.h"
 #include "EntityComponent/Components/AnimationComponent.h"
 #include "EntityComponent/Components/MoveComponent.h"
 #include "EntityComponent/Components/GridMoveComponent.h"

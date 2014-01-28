@@ -39,7 +39,7 @@ public:
      * 更新渲染坐标
      * 把地图坐标转成屏幕坐标，更新到渲染器上。
      */
-    void updateRendererPosition();
+    virtual void updateRendererPosition();
     
     /**
      * 更新渲染坐标
@@ -47,7 +47,7 @@ public:
      * 不会把屏幕坐标反向同步到地图坐标。
      * 一般作为移动的中间过过程
      */
-    void updateRendererPosition(const CCPoint& pos);
+    virtual void updateRendererPositionDirectly(const CCPoint& pos);
     
     /**
      * 更新渲染层级

@@ -27,7 +27,9 @@ enum
     //sprite renderer
     MSG_RUN_ACTION,
     MSG_STOP_ACTION,
-    MSG_STOP_ACTION_BY_TAG
+    MSG_STOP_ACTION_BY_TAG,
+    //position
+    MSG_POSITION_CHANGE
 };
 
 NS_CC_YHGE_END

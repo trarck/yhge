@@ -38,7 +38,7 @@ public:
      * 更新渲染坐标
      * 把地图坐标转成屏幕坐标，更新到渲染器上。
      */
-    void updateRendererPosition();
+    virtual void updateRendererPosition();
     
     /**
      * 更新渲染层级

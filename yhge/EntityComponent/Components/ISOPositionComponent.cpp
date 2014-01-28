@@ -67,7 +67,7 @@ void ISOPositionComponent::updateRendererPosition()
  * 不会把屏幕坐标反向同步到地图坐标。
  * 一般作为移动的中间过过程
  */
-void ISOPositionComponent::updateRendererPosition(const CCPoint& pos)
+void ISOPositionComponent::updateRendererPositionDirectly(const CCPoint& pos)
 {
     CCNode* renderer=m_rendererComponent->getRenderer();
     renderer->setPosition(pos);
