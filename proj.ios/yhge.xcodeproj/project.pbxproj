@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5768C14B18A8DD09005123C5 /* Property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5768C14918A8DD09005123C5 /* Property.cpp */; };
 		576E3FB5187D4BFB00745A0A /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F71187D4BFB00745A0A /* Coordinate.cpp */; };
 		576E3FB7187D4BFB00745A0A /* ISOTileObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F7A187D4BFB00745A0A /* ISOTileObject.cpp */; };
 		576E3FB8187D4BFB00745A0A /* ISOTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F7C187D4BFB00745A0A /* ISOTile.cpp */; };
@@ -115,6 +116,8 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5768C14918A8DD09005123C5 /* Property.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Property.cpp; sourceTree = "<group>"; };
+		5768C14A18A8DD09005123C5 /* Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Property.h; sourceTree = "<group>"; };
 		576E3F71187D4BFB00745A0A /* Coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinate.cpp; sourceTree = "<group>"; };
 		576E3F72187D4BFB00745A0A /* Coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinate.h; sourceTree = "<group>"; };
 		576E3F73187D4BFB00745A0A /* ISOCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOCoordinate.h; sourceTree = "<group>"; };
@@ -752,6 +755,8 @@
 		57C3375B1888C3A1008B5618 /* Properties */ = {
 			isa = PBXGroup;
 			children = (
+				5768C14918A8DD09005123C5 /* Property.cpp */,
+				5768C14A18A8DD09005123C5 /* Property.h */,
 				57C337691888CC67008B5618 /* IsometricProperty.cpp */,
 				57C3376A1888CC67008B5618 /* IsometricProperty.h */,
 			);
@@ -869,6 +874,7 @@
 				5792840F188CD37000B46136 /* CameraFlowGridMoveComponent.cpp in Sources */,
 				57975AC818963599008A9F38 /* ISOActiveLayerInfo.cpp in Sources */,
 				576E3FE2187E431500745A0A /* ISOTileObjectPart.cpp in Sources */,
+				5768C14B18A8DD09005123C5 /* Property.cpp in Sources */,
 				576E3FB8187D4BFB00745A0A /* ISOTile.cpp in Sources */,
 				57C337631888C3A1008B5618 /* MoveComponent.cpp in Sources */,
 				57C337621888C3A1008B5618 /* ManualAttackComponent.cpp in Sources */,

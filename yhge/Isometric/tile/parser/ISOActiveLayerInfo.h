@@ -16,14 +16,14 @@ public:
     ISOActiveLayerInfo();
     ~ISOActiveLayerInfo();
     
-    inline void setName(const char* sName)
+    inline void setName(const std::string& sName)
     {
         m_sName = sName;
     }
     
-    inline const char* getName()
+    inline const std::string& getName()
     {
-        return m_sName.c_str();
+        return m_sName;
     }
     
     inline void setLayerSize(CCSize& tLayerSize)
