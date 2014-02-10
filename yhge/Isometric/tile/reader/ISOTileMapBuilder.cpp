@@ -171,7 +171,7 @@ void ISOTileMapBuilder::buildMapLayers(ISOMapInfo* mapInfo)
 
 void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo)
 {
-    CCLOG("ISOTileMapBuilder::buildMapLayer:%s",layerInfo->getName());
+    CCLOG("ISOTileMapBuilder::buildMapLayer:%s",layerInfo->getName().c_str());
     ISOTileLayer *layer = NULL;
     
     switch (m_uMapLayerType) {
@@ -306,7 +306,7 @@ ISOTileset * ISOTileMapBuilder::tilesetForLayer(ISOLayerInfo *layerInfo)
     }
     
     // If all the tiles are 0, return empty tileset
-    CCLOG("cocos2d: Warning: ISO Layer '%s' has no tiles", layerInfo->getName());
+    CCLOG("cocos2d: Warning: ISO Layer '%s' has no tiles", layerInfo->getName().c_str());
     return NULL;
 }
 
@@ -355,7 +355,7 @@ ISOTilesetInfo * ISOTileMapBuilder::tilesetInfoForLayer(ISOLayerInfo *layerInfo,
     }
     
     // If all the tiles are 0, return empty tileset
-    CCLOG("cocos2d: Warning: ISO Layer '%s' has no tiles", layerInfo->getName());
+    CCLOG("cocos2d: Warning: ISO Layer '%s' has no tiles", layerInfo->getName().c_str());
     return NULL;
 }
 
@@ -569,7 +569,7 @@ ISOActiveLayerInfo* ISOTileMapBuilder::getActiveLayerInfo(ISOMapInfo* mapInfo)
         CCARRAY_FOREACH(layerInfos, pObj)
         {
             layerInfo = (ISOLayerInfo*)pObj;
-            if (layerInfo && strcmp(layerInfo->getName(), m_activeLayerName.c_str())==0)
+            if (layerInfo && layerInfo->getName()==m_activeLayerName)
             {
                 activeLayerInfo->setName(layerInfo->getName());
                 activeLayerInfo->setProperties(layerInfo->getProperties());
