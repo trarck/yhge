@@ -187,12 +187,12 @@ public:
         return m_vertexZvalue;
     }
     
-    inline void setUseAutomaticVertexZ(int useAutomaticVertexZ)
+    inline void setUseAutomaticVertexZ(bool useAutomaticVertexZ)
     {
         m_useAutomaticVertexZ = useAutomaticVertexZ;
     }
     
-    inline int getUseAutomaticVertexZ()
+    inline bool isUseAutomaticVertexZ()
     {
         return m_useAutomaticVertexZ;
     }
