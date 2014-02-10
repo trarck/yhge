@@ -7,6 +7,7 @@
 NS_CC_YHGE_BEGIN
 
 class Component;
+class Property;
 
 /**
  * 组件系统基类
@@ -73,6 +74,35 @@ public:
      * 移除一个具体的组件，不设置组件其它属性
      */
     virtual void removeComponentOnly(Component* component);
+    
+    
+    //==========================属性操作====================//
+    //属性只有一个，组件可以有多个
+    
+    /**
+     * 取得第一个名子为name的组件
+     */
+    virtual Property* getProperty(const std::string& name);
+    
+    /**
+     * 添加一个组件，并把组件的名称设置为name
+     */
+    virtual void addProperty(Property* property,const std::string& name);
+    
+    /**
+     * 移除所有名子为name的组件
+     */
+    virtual void removeProperty(const std::string& name);
+    
+    /**
+     * 移除一个具体的组件
+     */
+    virtual void removeProperty(Property* property);
+    
+    /**
+     * 移除所有组件
+     */
+    virtual void removeProperties();
 
 public:
     
@@ -88,9 +118,25 @@ public:
         return m_components;
     }
     
+    inline void setProperties(CCDictionary* properties)
+    {
+        CC_SAFE_RETAIN(properties);
+        CC_SAFE_RELEASE(m_properties);
+        m_properties = properties;
+    }
+    
+    inline CCDictionary* getProperties()
+    {
+        return m_properties;
+    }
+    
 protected:
     
+    //entity所拥有的组件
     CCArray* m_components;
+    
+    //entity的属性
+    CCDictionary* m_properties;
 	
 };
 

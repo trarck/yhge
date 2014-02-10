@@ -1,11 +1,13 @@
 #include "Entity.h"
 
 #include "Components/Component.h"
+#include "Properties/Property.h"
 
 NS_CC_YHGE_BEGIN
 
 Entity::Entity()
 :m_components(NULL)
+,m_properties(NULL)
 {
     CCLOG("Entity create");
 }
@@ -14,12 +16,14 @@ Entity::~Entity()
 {
     CCLOG("Entity destroy");
     CC_SAFE_RELEASE_NULL(m_components);
+    CC_SAFE_RELEASE_NULL(m_properties);
 }
 
 bool Entity::init(void)
 {
     CCLOG("Entity init");
     m_components=new CCArray();
+    m_properties=new CCDictionary();
     return true;
 }
 
@@ -141,6 +145,53 @@ void Entity::addComponentOnly(Component* component)
 void Entity::removeComponentOnly(Component* component)
 {
     m_components->removeObject(component);
+}
+
+//==========================属性操作====================//
+/**
+ * 取得第一个名子为name的组件
+ */
+Property* Entity::getProperty(const std::string& name)
+{
+    return static_cast<Property*>(m_properties->objectForKey(name));
+}
+
+/**
+ * 添加一个组件，并把组件的名称设置为name
+ */
+void Entity::addProperty(Property* property,const std::string& name)
+{
+    m_properties->setObject(property, name);
+}
+
+/**
+ * 移除所有名子为name的组件
+ */
+void Entity::removeProperty(const std::string& name)
+{
+    m_properties->removeObjectForKey(name);
+}
+
+/**
+ * 移除一个具体的组件
+ */
+void Entity::removeProperty(Property* property)
+{
+    CCDictElement* pElem=NULL;
+
+    CCDICT_FOREACH(m_properties, pElem){
+        if (pElem->getObject()==property) {
+            m_properties->removeObjectForKey(pElem->getStrKey());
+        }
+    }
+}
+
+/**
+ * 移除所有组件
+ */
+void Entity::removeProperties()
+{
+    m_properties->removeAllObjects();
 }
 
 NS_CC_YHGE_END
