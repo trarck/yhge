@@ -50,7 +50,7 @@ public:
     }
     
     /** Constructor with a capacity */
-    explicit Vector<T>(ssize_t capacity)
+    explicit Vector<T>(size_t capacity)
     : _data()
     {
         reserve(capacity);
@@ -115,7 +115,7 @@ public:
      *         If n is greater than the current vector capacity, 
      *         the function causes the container to reallocate its storage increasing its capacity to n (or greater).
      */
-    void reserve(ssize_t n)
+    void reserve(size_t n)
     {
         _data.reserve(n);
     }
@@ -125,7 +125,7 @@ public:
      *        It can be equal or greater, with the extra space allowing to accommodate for growth without the need to reallocate on each insertion.
      *  @return The size of the currently allocated storage capacity in the vector, measured in terms of the number elements it can hold.
      */
-    ssize_t capacity() const
+    size_t capacity() const
     {
         return _data.capacity();
     }
@@ -134,7 +134,7 @@ public:
      *  @note This is the number of actual objects held in the vector, which is not necessarily equal to its storage capacity.
      *  @return The number of elements in the container.
      */
-    ssize_t size() const
+    size_t size() const
     {
         return  _data.size();
     }
@@ -148,13 +148,13 @@ public:
     }
     
     /** Returns the maximum number of elements that the vector can hold. */
-    ssize_t max_size() const
+    size_t max_size() const
     {
         return _data.max_size();
     }
     
     /** Returns index of a certain object, return UINT_MAX if doesn't contain the object */
-    ssize_t getIndex(T object) const
+    size_t getIndex(T object) const
     {
         iterator iter = std::find(_data.begin(), _data.end(), object);
         if (iter != _data.end())
@@ -178,7 +178,7 @@ public:
     }
     
     /** Returns the element at position 'index' in the vector. */
-    T at(ssize_t index) const
+    T at(size_t index) const
     {
         CCASSERT( index >= 0 && index < size(), "index out of range in getObjectAtIndex()");
         return _data[index];
@@ -201,7 +201,7 @@ public:
     {
         if (!_data.empty())
         {
-            ssize_t randIdx = rand() % _data.size();
+            size_t randIdx = rand() % _data.size();
             return *(_data.begin() + randIdx);
         }
         return NULL;
@@ -216,11 +216,11 @@ public:
     /** Returns true if the two vectors are equal */
     bool equals(const Vector<T> &other)
     {
-        ssize_t s = this->size();
+        size_t s = this->size();
         if (s != other.size())
             return false;
         
-        for (ssize_t i = 0; i < s; i++)
+        for (size_t i = 0; i < s; i++)
         {
             if (!this->at(i)->isEqual(other.at(i)))
             {
@@ -259,7 +259,7 @@ public:
      *        This causes an automatic reallocation of the allocated storage space 
      *        if -and only if- the new vector size surpasses the current vector capacity.
      */
-    void insert(ssize_t index, T object)
+    void insert(size_t index, T object)
     {
         CCASSERT(index >= 0 && index <= size(), "Invalid index!");
         CCASSERT(object != NULL, "The object should not be NULL");
@@ -327,7 +327,7 @@ public:
      *  @return An iterator pointing to the new location of the element that followed the last element erased by the function call.
      *          This is the container end if the operation erased the last element in the sequence.
      */
-    iterator erase(ssize_t index)
+    iterator erase(size_t index)
     {
         CCASSERT(!_data.empty() && index >=0 && index < size(), "Invalid index!");
         iterator it = _data.begin()+index;
@@ -351,14 +351,14 @@ public:
     /** Swap two elements */
     void swap(T object1, T object2)
     {
-        ssize_t idx1 = getIndex(object1);
-        ssize_t idx2 = getIndex(object2);
+        size_t idx1 = getIndex(object1);
+        size_t idx2 = getIndex(object2);
 
         std::swap( _data[idx1], _data[idx2] );
     }
     
     /** Swap two elements with certain indexes */
-    void swap(ssize_t index1, ssize_t index2)
+    void swap(size_t index1, size_t index2)
     {
         CCASSERT(index1 >=0 && index1 < size() && index2 >= 0 && index2 < size(), "Invalid indices");
 
@@ -366,7 +366,7 @@ public:
     }
 
     /** Replace object at index with another object. */
-    void replace(ssize_t index, T object)
+    void replace(size_t index, T object)
     {
         CCASSERT(index >= 0 && index < size(), "Invalid index!");
         CCASSERT(object != NULL, "The object should not be NULL");
