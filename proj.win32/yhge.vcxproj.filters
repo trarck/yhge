@@ -73,6 +73,9 @@
     <Filter Include="EntityComponent\Properties">
       <UniqueIdentifier>{c6104d7f-8019-4a9e-b36f-c2a0fa17ec16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Isometric\occlusion">
+      <UniqueIdentifier>{070e2218-2826-497b-8084-3c5a4d591e03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h">
@@ -157,12 +160,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="..\yhge\Isometric\Coordinate.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ZIndex.h">
-      <Filter>Isometric</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ZIndexNode.h">
       <Filter>Isometric</Filter>
     </ClInclude>
     <ClInclude Include="..\yhge\Math\MersenneTwister.h">
@@ -351,6 +348,45 @@
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.h">
       <Filter>Isometric\tile\layers</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\ISOLayer.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\ISOMap.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\occlusion\SortZIndex.h">
+      <Filter>Isometric\occlusion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\occlusion\SortZIndexNode.h">
+      <Filter>Isometric\occlusion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\occlusion\ZIndex.h">
+      <Filter>Isometric\occlusion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\occlusion\ZIndexNode.h">
+      <Filter>Isometric\occlusion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOActiveLayerInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveSortLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\ISOAutoZOrderPositionComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\ISOMapPositionComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\SceenCoordMoveComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\Support\CCMap.h">
+      <Filter>CocosExt\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\Support\CCVector.h">
+      <Filter>CocosExt\Support</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -405,12 +441,6 @@
       <Filter>FSM\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\yhge\Isometric\Coordinate.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ZIndex.cpp">
-      <Filter>Isometric</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ZIndexNode.cpp">
       <Filter>Isometric</Filter>
     </ClCompile>
     <ClCompile Include="..\yhge\Math\MersenneTwister.cpp">
@@ -577,6 +607,39 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.cpp">
       <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\ISOLayer.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\ISOMap.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\occlusion\SortZIndex.cpp">
+      <Filter>Isometric\occlusion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\occlusion\SortZIndexNode.cpp">
+      <Filter>Isometric\occlusion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\occlusion\ZIndex.cpp">
+      <Filter>Isometric\occlusion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\occlusion\ZIndexNode.cpp">
+      <Filter>Isometric\occlusion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOActiveLayerInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveSortLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\ISOAutoZOrderPositionComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\ISOMapPositionComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\SceenCoordMoveComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
