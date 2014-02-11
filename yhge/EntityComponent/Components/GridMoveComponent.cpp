@@ -6,8 +6,10 @@
 #include <yhge/message.h>
 #include <yhge/CocosExt/CCGeometryValue.h>
 #include <yhge/isometric.h>
-#include "ComponentMessageDefine.h"
 #include <yhge/EntityComponent/Entity.h>
+#include "ComponentMessageDefine.h"
+#include "ComponentConsts.h"
+
 
 #define AXIS_VECTOR 1
 //sqrt(2)
@@ -470,8 +472,8 @@ void GridMoveComponent::doDirectionChange()
 	//CCLOGINFO("index:%d,%d,%d,%f,%f",index,i,j,m_directionX,m_directionY);
 	if (index>-1) {
 		CCDictionary* data=new CCDictionary();
-		data->setObject(CCString::create("move"), "name");
-		data->setObject(CCInteger::create(index), "direction");
+		data->setObject(CCString::create("move"), COMPONENT_ANIMATION_CHANGE_PARAM_NAME);
+		data->setObject(CCInteger::create(index), COMPONENT_ANIMATION_CHANGE_PARAM_DIRECTION);
     
 		MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
 	}
@@ -492,8 +494,8 @@ void GridMoveComponent::doMoveStart()
 void GridMoveComponent::doMoveStop()
 {
 	CCDictionary* data=new CCDictionary();
-    data->setObject(CCString::create("idle"), "name");
-    data->setObject(CCInteger::create(0), "direction");
+    data->setObject(CCString::create("idle"), COMPONENT_ANIMATION_CHANGE_PARAM_NAME);
+    data->setObject(CCInteger::create(0), COMPONENT_ANIMATION_CHANGE_PARAM_DIRECTION);
     
     MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
 
@@ -524,8 +526,8 @@ void GridMoveComponent::onMoveWithPathFrom(Message *message)
 {   
     CCDictionary* data=message->getDictionary();
     
-    CCArray* paths=(CCArray*)data->objectForKey("paths");
-    CCInteger* fromIndex=static_cast<CCInteger*>(data->objectForKey("fromIndex"));
+    CCArray* paths=(CCArray*)data->objectForKey(COMPONENT_GRID_MOVE_RARAM_PATHS);
+    CCInteger* fromIndex=static_cast<CCInteger*>(data->objectForKey(COMPONENT_GRID_MOVE_RARAM_FROMINDEX));
     moveWithPaths(paths,fromIndex->getValue());
 }
 

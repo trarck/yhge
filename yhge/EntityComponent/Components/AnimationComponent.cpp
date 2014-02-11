@@ -1,7 +1,8 @@
 #include "AnimationComponent.h"
 #include <yhge/message.h>
-#include "ComponentMessageDefine.h"
 #include <yhge/EntityComponent/Entity.h>
+#include "ComponentMessageDefine.h"
+#include "ComponentConsts.h"
 #include "RendererComponent.h"
 
 USING_NS_CC;
@@ -174,8 +175,8 @@ void AnimationComponent::onChangeAnimation(Message *message)
 {
     CCDictionary* data=message->getDictionary();
     
-    CCString* animationName=(CCString*)data->objectForKey("name");
-    int direction=((CCInteger*) data->objectForKey("direction"))->getValue();
+    CCString* animationName=(CCString*)data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_NAME);
+    int direction=((CCInteger*) data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_DIRECTION))->getValue();
     CCLOG("direction:%d name:%s",direction,animationName->getCString());
     
     CCAnimation* animation= animationForName(animationName->getCString(),direction);
