@@ -318,6 +318,7 @@
 		57C3376A1888CC67008B5618 /* IsometricProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsometricProperty.h; sourceTree = "<group>"; };
 		57CF76E518AA060D0085A22F /* DamageFormula.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DamageFormula.cpp; sourceTree = "<group>"; };
 		57CF76E618AA060D0085A22F /* DamageFormula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DamageFormula.h; sourceTree = "<group>"; };
+		57CF76EF18AA0A060085A22F /* ComponentConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentConsts.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -731,6 +732,7 @@
 				5792840E188CD37000B46136 /* CameraFlowGridMoveComponent.h */,
 				57C337461888C3A1008B5618 /* Component.cpp */,
 				57C337471888C3A1008B5618 /* Component.h */,
+				57CF76EF18AA0A060085A22F /* ComponentConsts.h */,
 				57C337481888C3A1008B5618 /* ComponentEntityInterface.h */,
 				57C337491888C3A1008B5618 /* ComponentInterface.h */,
 				57C3374A1888C3A1008B5618 /* ComponentMessageDefine.h */,
