@@ -3,11 +3,11 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
+#include "Properties/Property.h"
 
 NS_CC_YHGE_BEGIN
 
 class Component;
-class Property;
 
 /**
  * 组件系统基类

@@ -1,7 +1,6 @@
 #include "Entity.h"
 
 #include "Components/Component.h"
-#include "Properties/Property.h"
 
 NS_CC_YHGE_BEGIN
 
