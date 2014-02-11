@@ -23,6 +23,8 @@
     <ClInclude Include="..\yhge\CocosExt\CCSelectorWrap.h" />
     <ClInclude Include="..\yhge\CocosExt\Support\base64.h" />
     <ClInclude Include="..\yhge\CocosExt\Support\ccCArray.h" />
+    <ClInclude Include="..\yhge\CocosExt\Support\CCMap.h" />
+    <ClInclude Include="..\yhge\CocosExt\Support\CCVector.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\AnimationComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\AttackComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\AutoAttackComponent.h" />
@@ -30,10 +32,13 @@
     <ClInclude Include="..\yhge\EntityComponent\Components\Component.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\ComponentMessageDefine.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\GridMoveComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\ISOAutoZOrderPositionComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\ISOMapPositionComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\ISOPositionComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\ManualAttackComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\MoveComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\RendererComponent.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\SceenCoordMoveComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\SpriteRendererComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Entity.h" />
     <ClInclude Include="..\yhge\EntityComponent\Properties\IsometricProperty.h" />
@@ -56,7 +61,13 @@
     <ClInclude Include="..\yhge\Isometric\Coordinate.h" />
     <ClInclude Include="..\yhge\Isometric\ISOCamera.h" />
     <ClInclude Include="..\yhge\Isometric\ISOCoordinate.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOMap.h" />
     <ClInclude Include="..\yhge\Isometric\ISOStaticCoordinate.h" />
+    <ClInclude Include="..\yhge\Isometric\occlusion\SortZIndex.h" />
+    <ClInclude Include="..\yhge\Isometric\occlusion\SortZIndexNode.h" />
+    <ClInclude Include="..\yhge\Isometric\occlusion\ZIndex.h" />
+    <ClInclude Include="..\yhge\Isometric\occlusion\ZIndexNode.h" />
     <ClInclude Include="..\yhge\Isometric\tile\base\ISOMapObject.h" />
     <ClInclude Include="..\yhge\Isometric\tile\base\ISOObjectGroup.h" />
     <ClInclude Include="..\yhge\Isometric\tile\base\ISOTile.h" />
@@ -72,6 +83,7 @@
     <ClInclude Include="..\yhge\Isometric\tile\IsoTileUtils.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveObjectLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveSortLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.h" />
@@ -83,6 +95,7 @@
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOObjectLayer.h" />
     <ClInclude Include="..\yhge\Isometric\tile\layers\ISOTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOActiveLayerInfo.h" />
     <ClInclude Include="..\yhge\Isometric\tile\parser\ISOLayerInfo.h" />
     <ClInclude Include="..\yhge\Isometric\tile\parser\ISOMapInfo.h" />
     <ClInclude Include="..\yhge\Isometric\tile\parser\ISOObjectGroupInfo.h" />
@@ -92,8 +105,6 @@
     <ClInclude Include="..\yhge\Isometric\tile\parser\ISOXMLParser.h" />
     <ClInclude Include="..\yhge\Isometric\tile\reader\ISOTileMapBuilder.h" />
     <ClInclude Include="..\yhge\Isometric\tile\renderer\ISOComponentNode.h" />
-    <ClInclude Include="..\yhge\Isometric\ZIndex.h" />
-    <ClInclude Include="..\yhge\Isometric\ZIndexNode.h" />
     <ClInclude Include="..\yhge\Math\MersenneTwister.h" />
     <ClInclude Include="..\yhge\Math\RandomMT.h" />
     <ClInclude Include="..\yhge\message.h" />
@@ -123,10 +134,13 @@
     <ClCompile Include="..\yhge\EntityComponent\Components\CameraFlowGridMoveComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\Component.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\GridMoveComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\ISOAutoZOrderPositionComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\ISOMapPositionComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\ISOPositionComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\ManualAttackComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\MoveComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\RendererComponent.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\SceenCoordMoveComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\SpriteRendererComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Entity.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Properties\IsometricProperty.cpp" />
@@ -140,7 +154,13 @@
     <ClCompile Include="..\yhge\FSM\Common\FSMState.cpp" />
     <ClCompile Include="..\yhge\Isometric\Coordinate.cpp" />
     <ClCompile Include="..\yhge\Isometric\ISOCamera.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOMap.cpp" />
     <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinate.cpp" />
+    <ClCompile Include="..\yhge\Isometric\occlusion\SortZIndex.cpp" />
+    <ClCompile Include="..\yhge\Isometric\occlusion\SortZIndexNode.cpp" />
+    <ClCompile Include="..\yhge\Isometric\occlusion\ZIndex.cpp" />
+    <ClCompile Include="..\yhge\Isometric\occlusion\ZIndexNode.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\base\ISOMapObject.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\base\ISOObjectGroup.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\base\ISOTile.cpp" />
@@ -152,6 +172,7 @@
     <ClCompile Include="..\yhge\Isometric\tile\IsoTileUtils.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveObjectLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveSortLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.cpp" />
@@ -163,6 +184,7 @@
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOObjectLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\layers\ISOTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOActiveLayerInfo.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\parser\ISOLayerInfo.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\parser\ISOMapInfo.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\parser\ISOObjectGroupInfo.cpp" />
@@ -172,8 +194,6 @@
     <ClCompile Include="..\yhge\Isometric\tile\parser\ISOXMLParser.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\reader\ISOTileMapBuilder.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\renderer\ISOComponentNode.cpp" />
-    <ClCompile Include="..\yhge\Isometric\ZIndex.cpp" />
-    <ClCompile Include="..\yhge\Isometric\ZIndexNode.cpp" />
     <ClCompile Include="..\yhge\Math\MersenneTwister.cpp" />
     <ClCompile Include="..\yhge\Math\RandomMT.cpp" />
     <ClCompile Include="..\yhge\Message\Message.cpp" />
