@@ -105,7 +105,17 @@ public:
     virtual void removeProperties();
 
 public:
-    
+
+    void setEntityId(int entityId)
+    {
+        m_entityId = entityId;
+    }
+
+    int getEntityId()
+    {
+        return m_entityId;
+    }
+
     inline void setComponents(CCArray* components)
     {
         CC_SAFE_RETAIN(components);
@@ -131,6 +141,9 @@ public:
     }
     
 protected:
+
+    //entity的id
+    int m_entityId;
     
     //entity所拥有的组件
     CCArray* m_components;
