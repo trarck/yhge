@@ -96,6 +96,7 @@
 		57C337661888C3A1008B5618 /* SpriteRendererComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337571888C3A1008B5618 /* SpriteRendererComponent.cpp */; };
 		57C337671888C3A1008B5618 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337591888C3A1008B5618 /* Entity.cpp */; };
 		57C3376B1888CC67008B5618 /* IsometricProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337691888CC67008B5618 /* IsometricProperty.cpp */; };
+		57CF76E718AA060D0085A22F /* DamageFormula.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76E518AA060D0085A22F /* DamageFormula.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -315,6 +316,8 @@
 		57C337681888CB02008B5618 /* entity_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entity_component.h; sourceTree = "<group>"; };
 		57C337691888CC67008B5618 /* IsometricProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IsometricProperty.cpp; sourceTree = "<group>"; };
 		57C3376A1888CC67008B5618 /* IsometricProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsometricProperty.h; sourceTree = "<group>"; };
+		57CF76E518AA060D0085A22F /* DamageFormula.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DamageFormula.cpp; sourceTree = "<group>"; };
+		57CF76E618AA060D0085A22F /* DamageFormula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DamageFormula.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -538,6 +541,7 @@
 		577A7838186BF56500F1B5D5 /* Arithmetic */ = {
 			isa = PBXGroup;
 			children = (
+				57CF76E418AA060D0085A22F /* Formula */,
 				577A7839186BF56500F1B5D5 /* Search */,
 			);
 			path = Arithmetic;
@@ -763,6 +767,15 @@
 			path = Properties;
 			sourceTree = "<group>";
 		};
+		57CF76E418AA060D0085A22F /* Formula */ = {
+			isa = PBXGroup;
+			children = (
+				57CF76E518AA060D0085A22F /* DamageFormula.cpp */,
+				57CF76E618AA060D0085A22F /* DamageFormula.h */,
+			);
+			path = Formula;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -862,6 +875,7 @@
 				577A7933186BF56500F1B5D5 /* MessageManagerSenderPredominate.cpp in Sources */,
 				576E3FBF187D4BFB00745A0A /* ISOBatchTileLayer.cpp in Sources */,
 				57C337671888C3A1008B5618 /* Entity.cpp in Sources */,
+				57CF76E718AA060D0085A22F /* DamageFormula.cpp in Sources */,
 				577A78F5186BF56500F1B5D5 /* AstarFlexible.cpp in Sources */,
 				57975AB618910123008A9F38 /* SortZIndexNode.cpp in Sources */,
 				577A7908186BF56500F1B5D5 /* EventHandleD.cpp in Sources */,
