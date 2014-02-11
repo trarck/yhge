@@ -43,23 +43,18 @@ public:
      */
     virtual void onTargetDie(Message *message);
     
+    virtual void setTarget(Entity* target);
+    
 public:
     
-    inline void setTarget(CCObject* target)
-    {
-        CC_SAFE_RETAIN(target);
-        CC_SAFE_RELEASE(m_target);
-        m_target = target;
-    }
-    
-    inline CCObject* getTarget()
+    inline Entity* getTarget()
     {
         return m_target;
     }
     
 protected:
     
-    CCObject* m_target;
+    Entity* m_target;
 };
 
 NS_CC_YHGE_END

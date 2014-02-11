@@ -84,7 +84,7 @@ void AutoAttackComponent::didTargetDie()
  */
 void AutoAttackComponent::onAutoAttack(Message* message)
 {
-    CCObject* target=message->getData();
+    Entity* target= static_cast<Entity*>(message->getData());
     if(target){
         setTarget(target);
     }
