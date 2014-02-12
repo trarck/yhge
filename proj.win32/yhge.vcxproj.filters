@@ -79,6 +79,9 @@
     <Filter Include="Arithmetic\Formula">
       <UniqueIdentifier>{94444e28-7c56-4f44-839f-99e974fa6109}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sqlite">
+      <UniqueIdentifier>{ffbc94a9-adfd-4922-a2c2-b957caa368ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h">
@@ -396,6 +399,21 @@
     <ClInclude Include="..\yhge\EntityComponent\Properties\Property.h">
       <Filter>EntityComponent\Properties</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Sqlite\Column.h">
+      <Filter>Sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Sqlite\SqliteDB.h">
+      <Filter>Sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Sqlite\SqliteMacros.h">
+      <Filter>Sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Sqlite\Statement.h">
+      <Filter>Sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Sqlite\Transaction.h">
+      <Filter>Sqlite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -655,6 +673,18 @@
     </ClCompile>
     <ClCompile Include="..\yhge\EntityComponent\Properties\Property.cpp">
       <Filter>EntityComponent\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Sqlite\Column.cpp">
+      <Filter>Sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Sqlite\SqliteDB.cpp">
+      <Filter>Sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Sqlite\Statement.cpp">
+      <Filter>Sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Sqlite\Transaction.cpp">
+      <Filter>Sqlite</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -114,6 +114,11 @@
     <ClInclude Include="..\yhge\Message\MessageHandler.h" />
     <ClInclude Include="..\yhge\Message\MessageManager.h" />
     <ClInclude Include="..\yhge\Message\MessageTarget.h" />
+    <ClInclude Include="..\yhge\Sqlite\Column.h" />
+    <ClInclude Include="..\yhge\Sqlite\SqliteDB.h" />
+    <ClInclude Include="..\yhge\Sqlite\SqliteMacros.h" />
+    <ClInclude Include="..\yhge\Sqlite\Statement.h" />
+    <ClInclude Include="..\yhge\Sqlite\Transaction.h" />
     <ClInclude Include="..\yhge\yhge.h" />
     <ClInclude Include="..\yhge\YHGEMacros.h" />
   </ItemGroup>
@@ -204,6 +209,10 @@
     <ClCompile Include="..\yhge\Message\MessageHandler.cpp" />
     <ClCompile Include="..\yhge\Message\MessageManager.cpp" />
     <ClCompile Include="..\yhge\Message\MessageTarget.cpp" />
+    <ClCompile Include="..\yhge\Sqlite\Column.cpp" />
+    <ClCompile Include="..\yhge\Sqlite\SqliteDB.cpp" />
+    <ClCompile Include="..\yhge\Sqlite\Statement.cpp" />
+    <ClCompile Include="..\yhge\Sqlite\Transaction.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FC5564E4-EE35-49E8-90C1-4DE887E0D8E0}</ProjectGuid>
@@ -261,7 +270,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\cocos2dx;$(ProjectDir)..\..\..\cocos2dx\include;$(ProjectDir)..\..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\OGLES;..\yhge;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\cocos2dx;$(ProjectDir)..\..\..\cocos2dx\include;$(ProjectDir)..\..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\..\external\sqlite3\include;..\yhge;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -293,7 +302,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\cocos2dx;$(ProjectDir)..\..\..\cocos2dx\include;$(ProjectDir)..\..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\..\external;..\yhge;..\Classes;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\cocos2dx;$(ProjectDir)..\..\..\cocos2dx\include;$(ProjectDir)..\..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\..\external;$(ProjectDir)..\..\..\external\sqlite3\include;..\yhge;..\Classes;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
