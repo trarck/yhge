@@ -99,6 +99,10 @@
 		57CF76E718AA060D0085A22F /* DamageFormula.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76E518AA060D0085A22F /* DamageFormula.cpp */; };
 		57CF76FF18AB0A480085A22F /* ArrayData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76FB18AB0A480085A22F /* ArrayData.cpp */; };
 		57CF770018AB0A480085A22F /* DictionaryData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76FD18AB0A480085A22F /* DictionaryData.cpp */; };
+		57CF770418AB1A290085A22F /* SqliteDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770218AB1A290085A22F /* SqliteDB.cpp */; };
+		57CF770C18AB5B370085A22F /* Column.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770618AB5B370085A22F /* Column.cpp */; };
+		57CF770D18AB5B370085A22F /* Statement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770818AB5B370085A22F /* Statement.cpp */; };
+		57CF770E18AB5B370085A22F /* Transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770A18AB5B370085A22F /* Transaction.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -119,6 +123,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		57525CC718AB836A00166633 /* SqliteMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteMacros.h; sourceTree = "<group>"; };
 		5768C14918A8DD09005123C5 /* Property.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Property.cpp; sourceTree = "<group>"; };
 		5768C14A18A8DD09005123C5 /* Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Property.h; sourceTree = "<group>"; };
 		576E3F71187D4BFB00745A0A /* Coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinate.cpp; sourceTree = "<group>"; };
@@ -325,6 +330,14 @@
 		57CF76FC18AB0A480085A22F /* ArrayData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayData.h; sourceTree = "<group>"; };
 		57CF76FD18AB0A480085A22F /* DictionaryData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryData.cpp; sourceTree = "<group>"; };
 		57CF76FE18AB0A480085A22F /* DictionaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryData.h; sourceTree = "<group>"; };
+		57CF770218AB1A290085A22F /* SqliteDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SqliteDB.cpp; sourceTree = "<group>"; };
+		57CF770318AB1A290085A22F /* SqliteDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteDB.h; sourceTree = "<group>"; };
+		57CF770618AB5B370085A22F /* Column.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Column.cpp; sourceTree = "<group>"; };
+		57CF770718AB5B370085A22F /* Column.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Column.h; sourceTree = "<group>"; };
+		57CF770818AB5B370085A22F /* Statement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Statement.cpp; sourceTree = "<group>"; };
+		57CF770918AB5B370085A22F /* Statement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statement.h; sourceTree = "<group>"; };
+		57CF770A18AB5B370085A22F /* Transaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transaction.cpp; sourceTree = "<group>"; };
+		57CF770B18AB5B370085A22F /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -535,9 +548,10 @@
 				576E3F70187D4BFB00745A0A /* Isometric */,
 				577A78CB186BF56500F1B5D5 /* Math */,
 				577A78D0186BF56500F1B5D5 /* Message */,
+				57CF770118AB1A290085A22F /* Sqlite */,
 				57C337681888CB02008B5618 /* entity_component.h */,
-				577A78CA186BF56500F1B5D5 /* isometric.h */,
 				577A78E4186BF56500F1B5D5 /* message.h */,
+				577A78CA186BF56500F1B5D5 /* isometric.h */,
 				577A78E7186BF56500F1B5D5 /* yhge.h */,
 				577A78E8186BF56500F1B5D5 /* YHGEMacros.h */,
 			);
@@ -788,6 +802,22 @@
 			path = Formula;
 			sourceTree = "<group>";
 		};
+		57CF770118AB1A290085A22F /* Sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				57CF770618AB5B370085A22F /* Column.cpp */,
+				57CF770718AB5B370085A22F /* Column.h */,
+				57CF770218AB1A290085A22F /* SqliteDB.cpp */,
+				57CF770318AB1A290085A22F /* SqliteDB.h */,
+				57525CC718AB836A00166633 /* SqliteMacros.h */,
+				57CF770818AB5B370085A22F /* Statement.cpp */,
+				57CF770918AB5B370085A22F /* Statement.h */,
+				57CF770A18AB5B370085A22F /* Transaction.cpp */,
+				57CF770B18AB5B370085A22F /* Transaction.h */,
+			);
+			path = Sqlite;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -858,6 +888,7 @@
 				57928415188D2BFD00B46136 /* ISOActiveLayer.cpp in Sources */,
 				576E3FC0187D4BFB00745A0A /* ISODynamicComponent.cpp in Sources */,
 				577A78F6186BF56500F1B5D5 /* AstarNode.cpp in Sources */,
+				57CF770418AB1A290085A22F /* SqliteDB.cpp in Sources */,
 				57973E6218978FD4009C956E /* ISOStaticCoordinate.cpp in Sources */,
 				577A7931186BF56500F1B5D5 /* MessageHandler.cpp in Sources */,
 				576E3FB5187D4BFB00745A0A /* Coordinate.cpp in Sources */,
@@ -877,6 +908,7 @@
 				576E3FC7187D4BFB00745A0A /* ISOMapInfo.cpp in Sources */,
 				577A790C186BF56500F1B5D5 /* FSMMachine.cpp in Sources */,
 				576E3FC2187D4BFB00745A0A /* ISOGroundTileLayer.cpp in Sources */,
+				57CF770E18AB5B370085A22F /* Transaction.cpp in Sources */,
 				577A7906186BF56500F1B5D5 /* Event.cpp in Sources */,
 				57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */,
 				57928424188E82EC00B46136 /* ISOMap.cpp in Sources */,
@@ -913,8 +945,10 @@
 				5771056418837C2C00FA1446 /* ISOCoordinateLayer.cpp in Sources */,
 				577A7936186BF56500F1B5D5 /* SimpleMessageManager.cpp in Sources */,
 				577A790D186BF56500F1B5D5 /* FSMState.cpp in Sources */,
+				57CF770D18AB5B370085A22F /* Statement.cpp in Sources */,
 				57975AD5189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp in Sources */,
 				576E3FDF187E3DF800745A0A /* ISOMapObject.cpp in Sources */,
+				57CF770C18AB5B370085A22F /* Column.cpp in Sources */,
 				576E3FC4187D4BFB00745A0A /* ISOTileLayer.cpp in Sources */,
 				576E3FCD187D4BFB00745A0A /* ISOTileMapBuilder.cpp in Sources */,
 				5771056C18838D7200FA1446 /* ISOCamera.cpp in Sources */,
