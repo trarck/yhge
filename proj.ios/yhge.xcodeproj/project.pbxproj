@@ -97,6 +97,8 @@
 		57C337671888C3A1008B5618 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337591888C3A1008B5618 /* Entity.cpp */; };
 		57C3376B1888CC67008B5618 /* IsometricProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337691888CC67008B5618 /* IsometricProperty.cpp */; };
 		57CF76E718AA060D0085A22F /* DamageFormula.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76E518AA060D0085A22F /* DamageFormula.cpp */; };
+		57CF76FF18AB0A480085A22F /* ArrayData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76FB18AB0A480085A22F /* ArrayData.cpp */; };
+		57CF770018AB0A480085A22F /* DictionaryData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76FD18AB0A480085A22F /* DictionaryData.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -319,6 +321,10 @@
 		57CF76E518AA060D0085A22F /* DamageFormula.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DamageFormula.cpp; sourceTree = "<group>"; };
 		57CF76E618AA060D0085A22F /* DamageFormula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DamageFormula.h; sourceTree = "<group>"; };
 		57CF76EF18AA0A060085A22F /* ComponentConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentConsts.h; sourceTree = "<group>"; };
+		57CF76FB18AB0A480085A22F /* ArrayData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrayData.cpp; sourceTree = "<group>"; };
+		57CF76FC18AB0A480085A22F /* ArrayData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayData.h; sourceTree = "<group>"; };
+		57CF76FD18AB0A480085A22F /* DictionaryData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryData.cpp; sourceTree = "<group>"; };
+		57CF76FE18AB0A480085A22F /* DictionaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryData.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -575,6 +581,8 @@
 			isa = PBXGroup;
 			children = (
 				577A7844186BF56500F1B5D5 /* Actions */,
+				57CF76FB18AB0A480085A22F /* ArrayData.cpp */,
+				57CF76FC18AB0A480085A22F /* ArrayData.h */,
 				577A7847186BF56500F1B5D5 /* CCCallFuncNO.cpp */,
 				577A7848186BF56500F1B5D5 /* CCCallFuncNO.h */,
 				5771055D18837C1700FA1446 /* CCDefaultTexture.cpp */,
@@ -585,6 +593,8 @@
 				577A784C186BF56500F1B5D5 /* CCScopePtr.h */,
 				577A784D186BF56500F1B5D5 /* CCSelectorWrap.cpp */,
 				577A784E186BF56500F1B5D5 /* CCSelectorWrap.h */,
+				57CF76FD18AB0A480085A22F /* DictionaryData.cpp */,
+				57CF76FE18AB0A480085A22F /* DictionaryData.h */,
 				577A784F186BF56500F1B5D5 /* Support */,
 			);
 			path = CocosExt;
@@ -856,6 +866,7 @@
 				577A7932186BF56500F1B5D5 /* MessageManager.cpp in Sources */,
 				576E3FB7187D4BFB00745A0A /* ISOTileObject.cpp in Sources */,
 				57975ABF1896012E008A9F38 /* ISOActiveSortLayer.cpp in Sources */,
+				57CF76FF18AB0A480085A22F /* ArrayData.cpp in Sources */,
 				577A792F186BF56500F1B5D5 /* DelayMessageManager.cpp in Sources */,
 				576E3FE7187E47F300745A0A /* ISOComponentNode.cpp in Sources */,
 				576E3FCC187D4BFB00745A0A /* ISOXMLParser.cpp in Sources */,
@@ -869,6 +880,7 @@
 				577A7906186BF56500F1B5D5 /* Event.cpp in Sources */,
 				57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */,
 				57928424188E82EC00B46136 /* ISOMap.cpp in Sources */,
+				57CF770018AB0A480085A22F /* DictionaryData.cpp in Sources */,
 				576E3FBA187D4BFB00745A0A /* ISOTilesetGroup.cpp in Sources */,
 				577A78F4186BF56500F1B5D5 /* Astar.cpp in Sources */,
 				576E3FBC187D4BFB00745A0A /* ISOTileMap.cpp in Sources */,
