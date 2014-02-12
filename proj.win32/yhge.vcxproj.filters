@@ -76,6 +76,9 @@
     <Filter Include="Isometric\occlusion">
       <UniqueIdentifier>{070e2218-2826-497b-8084-3c5a4d591e03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Arithmetic\Formula">
+      <UniqueIdentifier>{94444e28-7c56-4f44-839f-99e974fa6109}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h">
@@ -387,6 +390,12 @@
     <ClInclude Include="..\yhge\CocosExt\Support\CCVector.h">
       <Filter>CocosExt\Support</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Arithmetic\Formula\DamageFormula.h">
+      <Filter>Arithmetic\Formula</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Properties\Property.h">
+      <Filter>EntityComponent\Properties</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -640,6 +649,12 @@
     </ClCompile>
     <ClCompile Include="..\yhge\EntityComponent\Components\SceenCoordMoveComponent.cpp">
       <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Arithmetic\Formula\DamageFormula.cpp">
+      <Filter>Arithmetic\Formula</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Properties\Property.cpp">
+      <Filter>EntityComponent\Properties</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

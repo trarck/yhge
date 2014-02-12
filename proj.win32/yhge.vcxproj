@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\yhge\Arithmetic\Formula\DamageFormula.h" />
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h" />
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\AstarFlexible.h" />
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\AstarNode.h" />
@@ -42,6 +43,7 @@
     <ClInclude Include="..\yhge\EntityComponent\Components\SpriteRendererComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Entity.h" />
     <ClInclude Include="..\yhge\EntityComponent\Properties\IsometricProperty.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Properties\Property.h" />
     <ClInclude Include="..\yhge\entity_component.h" />
     <ClInclude Include="..\yhge\Event\Event.h" />
     <ClInclude Include="..\yhge\Event\EventHandle.h" />
@@ -116,6 +118,7 @@
     <ClInclude Include="..\yhge\YHGEMacros.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\yhge\Arithmetic\Formula\DamageFormula.cpp" />
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp" />
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarFlexible.cpp" />
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarNode.cpp" />
@@ -144,6 +147,7 @@
     <ClCompile Include="..\yhge\EntityComponent\Components\SpriteRendererComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Entity.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Properties\IsometricProperty.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Properties\Property.cpp" />
     <ClCompile Include="..\yhge\Event\Event.cpp" />
     <ClCompile Include="..\yhge\Event\EventHandle.cpp" />
     <ClCompile Include="..\yhge\Event\EventHandleD.cpp" />

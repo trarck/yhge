@@ -5,7 +5,8 @@
 NS_CC_YHGE_BEGIN
 
 Entity::Entity()
-:m_components(NULL)
+:m_entityId(0)
+,m_components(NULL)
 ,m_properties(NULL)
 {
     CCLOG("Entity create");
