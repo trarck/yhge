@@ -38,7 +38,7 @@
 #include "entity_component.h"
 
 //json
-#include "jsoncpp/json.h"
+#include "Jsoncpp/json.h"
 
 //sqlite wrap
 #include "Sqlite/SqliteMacros.h"

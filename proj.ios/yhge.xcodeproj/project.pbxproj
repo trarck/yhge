@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		57525CD818AC663E00166633 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CD118AC663E00166633 /* json_reader.cpp */; };
-		57525CD918AC663E00166633 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CD218AC663E00166633 /* json_value.cpp */; };
-		57525CDA18AC663E00166633 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CD418AC663E00166633 /* json_writer.cpp */; };
+		57525CEB18AC690C00166633 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE418AC690C00166633 /* json_reader.cpp */; };
+		57525CEC18AC690C00166633 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE518AC690C00166633 /* json_value.cpp */; };
+		57525CED18AC690C00166633 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE718AC690C00166633 /* json_writer.cpp */; };
 		5768C14B18A8DD09005123C5 /* Property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5768C14918A8DD09005123C5 /* Property.cpp */; };
 		576E3FB5187D4BFB00745A0A /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F71187D4BFB00745A0A /* Coordinate.cpp */; };
 		576E3FB7187D4BFB00745A0A /* ISOTileObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F7A187D4BFB00745A0A /* ISOTileObject.cpp */; };
@@ -127,21 +127,21 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		57525CC718AB836A00166633 /* SqliteMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteMacros.h; sourceTree = "<group>"; };
-		57525CC918AC663E00166633 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
-		57525CCA18AC663E00166633 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
-		57525CCB18AC663E00166633 /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = features.h; sourceTree = "<group>"; };
-		57525CCC18AC663E00166633 /* forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forwards.h; sourceTree = "<group>"; };
-		57525CCD18AC663E00166633 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
-		57525CCE18AC663E00166633 /* json_batchallocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_batchallocator.h; sourceTree = "<group>"; };
-		57525CCF18AC663E00166633 /* json_internalarray.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalarray.inl; sourceTree = "<group>"; };
-		57525CD018AC663E00166633 /* json_internalmap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalmap.inl; sourceTree = "<group>"; };
-		57525CD118AC663E00166633 /* json_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_reader.cpp; sourceTree = "<group>"; };
-		57525CD218AC663E00166633 /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_value.cpp; sourceTree = "<group>"; };
-		57525CD318AC663E00166633 /* json_valueiterator.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_valueiterator.inl; sourceTree = "<group>"; };
-		57525CD418AC663E00166633 /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_writer.cpp; sourceTree = "<group>"; };
-		57525CD518AC663E00166633 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
-		57525CD618AC663E00166633 /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
-		57525CD718AC663E00166633 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
+		57525CDC18AC690C00166633 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
+		57525CDD18AC690C00166633 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		57525CDE18AC690C00166633 /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = features.h; sourceTree = "<group>"; };
+		57525CDF18AC690C00166633 /* forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forwards.h; sourceTree = "<group>"; };
+		57525CE018AC690C00166633 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		57525CE118AC690C00166633 /* json_batchallocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_batchallocator.h; sourceTree = "<group>"; };
+		57525CE218AC690C00166633 /* json_internalarray.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalarray.inl; sourceTree = "<group>"; };
+		57525CE318AC690C00166633 /* json_internalmap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalmap.inl; sourceTree = "<group>"; };
+		57525CE418AC690C00166633 /* json_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_reader.cpp; sourceTree = "<group>"; };
+		57525CE518AC690C00166633 /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_value.cpp; sourceTree = "<group>"; };
+		57525CE618AC690C00166633 /* json_valueiterator.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_valueiterator.inl; sourceTree = "<group>"; };
+		57525CE718AC690C00166633 /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_writer.cpp; sourceTree = "<group>"; };
+		57525CE818AC690C00166633 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
+		57525CE918AC690C00166633 /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
+		57525CEA18AC690C00166633 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
 		5768C14918A8DD09005123C5 /* Property.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Property.cpp; sourceTree = "<group>"; };
 		5768C14A18A8DD09005123C5 /* Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Property.h; sourceTree = "<group>"; };
 		576E3F71187D4BFB00745A0A /* Coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinate.cpp; sourceTree = "<group>"; };
@@ -414,26 +414,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		57525CC818AC663E00166633 /* jsoncpp */ = {
+		57525CDB18AC690C00166633 /* Jsoncpp */ = {
 			isa = PBXGroup;
 			children = (
-				57525CC918AC663E00166633 /* autolink.h */,
-				57525CCA18AC663E00166633 /* config.h */,
-				57525CCB18AC663E00166633 /* features.h */,
-				57525CCC18AC663E00166633 /* forwards.h */,
-				57525CCD18AC663E00166633 /* json.h */,
-				57525CCE18AC663E00166633 /* json_batchallocator.h */,
-				57525CCF18AC663E00166633 /* json_internalarray.inl */,
-				57525CD018AC663E00166633 /* json_internalmap.inl */,
-				57525CD118AC663E00166633 /* json_reader.cpp */,
-				57525CD218AC663E00166633 /* json_value.cpp */,
-				57525CD318AC663E00166633 /* json_valueiterator.inl */,
-				57525CD418AC663E00166633 /* json_writer.cpp */,
-				57525CD518AC663E00166633 /* reader.h */,
-				57525CD618AC663E00166633 /* value.h */,
-				57525CD718AC663E00166633 /* writer.h */,
+				57525CDC18AC690C00166633 /* autolink.h */,
+				57525CDD18AC690C00166633 /* config.h */,
+				57525CDE18AC690C00166633 /* features.h */,
+				57525CDF18AC690C00166633 /* forwards.h */,
+				57525CE018AC690C00166633 /* json.h */,
+				57525CE118AC690C00166633 /* json_batchallocator.h */,
+				57525CE218AC690C00166633 /* json_internalarray.inl */,
+				57525CE318AC690C00166633 /* json_internalmap.inl */,
+				57525CE418AC690C00166633 /* json_reader.cpp */,
+				57525CE518AC690C00166633 /* json_value.cpp */,
+				57525CE618AC690C00166633 /* json_valueiterator.inl */,
+				57525CE718AC690C00166633 /* json_writer.cpp */,
+				57525CE818AC690C00166633 /* reader.h */,
+				57525CE918AC690C00166633 /* value.h */,
+				57525CEA18AC690C00166633 /* writer.h */,
 			);
-			path = jsoncpp;
+			path = Jsoncpp;
 			sourceTree = "<group>";
 		};
 		576E3F70187D4BFB00745A0A /* Isometric */ = {
@@ -585,8 +585,8 @@
 				57C3373E1888C3A1008B5618 /* EntityComponent */,
 				577A7865186BF56500F1B5D5 /* Event */,
 				577A7874186BF56500F1B5D5 /* FSM */,
+				57525CDB18AC690C00166633 /* Jsoncpp */,
 				576E3F70187D4BFB00745A0A /* Isometric */,
-				57525CC818AC663E00166633 /* jsoncpp */,
 				577A78CB186BF56500F1B5D5 /* Math */,
 				577A78D0186BF56500F1B5D5 /* Message */,
 				57CF770118AB1A290085A22F /* Sqlite */,
@@ -918,9 +918,9 @@
 				576E3FEC187E7CB400745A0A /* ISOObjectLayer.cpp in Sources */,
 				576E3FB9187D4BFB00745A0A /* ISOTileset.cpp in Sources */,
 				577A792E186BF56500F1B5D5 /* AsyncMessageManager.cpp in Sources */,
-				57525CDA18AC663E00166633 /* json_writer.cpp in Sources */,
+				57525CED18AC690C00166633 /* json_writer.cpp in Sources */,
 				577A7909186BF56500F1B5D5 /* EventHandleWrap.cpp in Sources */,
-				57525CD918AC663E00166633 /* json_value.cpp in Sources */,
+				57525CEC18AC690C00166633 /* json_value.cpp in Sources */,
 				577A78F8186BF56500F1B5D5 /* CCParabolaMove.cpp in Sources */,
 				577A792C186BF56500F1B5D5 /* MersenneTwister.cpp in Sources */,
 				57975AAD1890FAE9008A9F38 /* SortZIndex.cpp in Sources */,
@@ -990,7 +990,7 @@
 				577A790D186BF56500F1B5D5 /* FSMState.cpp in Sources */,
 				57CF770D18AB5B370085A22F /* Statement.cpp in Sources */,
 				57975AD5189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp in Sources */,
-				57525CD818AC663E00166633 /* json_reader.cpp in Sources */,
+				57525CEB18AC690C00166633 /* json_reader.cpp in Sources */,
 				576E3FDF187E3DF800745A0A /* ISOMapObject.cpp in Sources */,
 				57CF770C18AB5B370085A22F /* Column.cpp in Sources */,
 				576E3FC4187D4BFB00745A0A /* ISOTileLayer.cpp in Sources */,
