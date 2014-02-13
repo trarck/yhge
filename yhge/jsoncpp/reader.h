@@ -7,7 +7,7 @@
 # include <stack>
 # include <string>
 # include <iostream>
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 
 NS_CC_YHGE_BEGIN
 	

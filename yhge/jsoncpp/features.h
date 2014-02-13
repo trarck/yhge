@@ -1,7 +1,7 @@
 #ifndef YHGE_JSONCPP_FEATURES_H_
 # define YHGE_JSONCPP_FEATURES_H_
 
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 # include "forwards.h"
 
 NS_CC_YHGE_BEGIN

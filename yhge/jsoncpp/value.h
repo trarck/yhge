@@ -14,7 +14,7 @@
 #  include <cpptl/forwards.h>
 # endif
 
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 
 /** \brief JSON (JavaScript Object Notation).
  */

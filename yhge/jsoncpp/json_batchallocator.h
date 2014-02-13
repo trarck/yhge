@@ -6,7 +6,7 @@
 
 # ifndef JSONCPP_DOC_EXCLUDE_IMPLEMENTATION
 
-#include "YHGEMacros.h"
+#include <yhge/YHGEMacros.h>
 
 NS_CC_YHGE_BEGIN
 	
