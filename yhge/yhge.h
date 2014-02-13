@@ -37,6 +37,9 @@
 //components
 #include "entity_component.h"
 
+//json
+#include "jsoncpp/json.h"
+
 //sqlite wrap
 #include "Sqlite/SqliteMacros.h"
 #include "Sqlite/Statement.h"
