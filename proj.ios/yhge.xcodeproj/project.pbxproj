@@ -87,6 +87,10 @@
 		57975ACB18973A4A008A9F38 /* SceenCoordMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AC918973A4A008A9F38 /* SceenCoordMoveComponent.cpp */; };
 		57975ACE18974038008A9F38 /* ISOMapPositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975ACC18974038008A9F38 /* ISOMapPositionComponent.cpp */; };
 		57975AD5189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AD3189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp */; };
+		57A76A1118ACB2D80014DEC9 /* BaseData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57A76A0D18ACB2D80014DEC9 /* BaseData.cpp */; };
+		57A76A1218ACB2D80014DEC9 /* DAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57A76A0F18ACB2D80014DEC9 /* DAO.cpp */; };
+		57A76A1518ACB5730014DEC9 /* CocosData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57A76A1318ACB5730014DEC9 /* CocosData.cpp */; };
+		57A76A1818ACBC860014DEC9 /* JSONData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57A76A1618ACBC860014DEC9 /* JSONData.cpp */; };
 		57C3375C1888C3A1008B5618 /* AnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337401888C3A1008B5618 /* AnimationComponent.cpp */; };
 		57C3375D1888C3A1008B5618 /* AttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337421888C3A1008B5618 /* AttackComponent.cpp */; };
 		57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337441888C3A1008B5618 /* AutoAttackComponent.cpp */; };
@@ -313,6 +317,14 @@
 		57975ACD18974038008A9F38 /* ISOMapPositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOMapPositionComponent.h; sourceTree = "<group>"; };
 		57975AD3189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOAutoZOrderPositionComponent.cpp; sourceTree = "<group>"; };
 		57975AD4189752E8008A9F38 /* ISOAutoZOrderPositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOAutoZOrderPositionComponent.h; sourceTree = "<group>"; };
+		57A76A0D18ACB2D80014DEC9 /* BaseData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseData.cpp; sourceTree = "<group>"; };
+		57A76A0E18ACB2D80014DEC9 /* BaseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseData.h; sourceTree = "<group>"; };
+		57A76A0F18ACB2D80014DEC9 /* DAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DAO.cpp; sourceTree = "<group>"; };
+		57A76A1018ACB2D80014DEC9 /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
+		57A76A1318ACB5730014DEC9 /* CocosData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosData.cpp; sourceTree = "<group>"; };
+		57A76A1418ACB5730014DEC9 /* CocosData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosData.h; sourceTree = "<group>"; };
+		57A76A1618ACBC860014DEC9 /* JSONData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONData.cpp; sourceTree = "<group>"; };
+		57A76A1718ACBC860014DEC9 /* JSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONData.h; sourceTree = "<group>"; };
 		57C337401888C3A1008B5618 /* AnimationComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationComponent.cpp; sourceTree = "<group>"; };
 		57C337411888C3A1008B5618 /* AnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationComponent.h; sourceTree = "<group>"; };
 		57C337421888C3A1008B5618 /* AttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackComponent.cpp; sourceTree = "<group>"; };
@@ -582,6 +594,7 @@
 			children = (
 				577A7838186BF56500F1B5D5 /* Arithmetic */,
 				577A7843186BF56500F1B5D5 /* CocosExt */,
+				57A76A0C18ACB2D80014DEC9 /* Datas */,
 				57C3373E1888C3A1008B5618 /* EntityComponent */,
 				577A7865186BF56500F1B5D5 /* Event */,
 				577A7874186BF56500F1B5D5 /* FSM */,
@@ -773,6 +786,21 @@
 			path = occlusion;
 			sourceTree = "<group>";
 		};
+		57A76A0C18ACB2D80014DEC9 /* Datas */ = {
+			isa = PBXGroup;
+			children = (
+				57A76A0D18ACB2D80014DEC9 /* BaseData.cpp */,
+				57A76A0E18ACB2D80014DEC9 /* BaseData.h */,
+				57A76A1318ACB5730014DEC9 /* CocosData.cpp */,
+				57A76A1418ACB5730014DEC9 /* CocosData.h */,
+				57A76A0F18ACB2D80014DEC9 /* DAO.cpp */,
+				57A76A1018ACB2D80014DEC9 /* DAO.h */,
+				57A76A1618ACBC860014DEC9 /* JSONData.cpp */,
+				57A76A1718ACBC860014DEC9 /* JSONData.h */,
+			);
+			path = Datas;
+			sourceTree = "<group>";
+		};
 		57C3373E1888C3A1008B5618 /* EntityComponent */ = {
 			isa = PBXGroup;
 			children = (
@@ -943,6 +971,7 @@
 				57CF76FF18AB0A480085A22F /* ArrayData.cpp in Sources */,
 				577A792F186BF56500F1B5D5 /* DelayMessageManager.cpp in Sources */,
 				576E3FE7187E47F300745A0A /* ISOComponentNode.cpp in Sources */,
+				57A76A1118ACB2D80014DEC9 /* BaseData.cpp in Sources */,
 				576E3FCC187D4BFB00745A0A /* ISOXMLParser.cpp in Sources */,
 				57C3375F1888C3A1008B5618 /* Component.cpp in Sources */,
 				576E3FBD187D4BFB00745A0A /* ISOBatchDynamicComponent.cpp in Sources */,
@@ -958,6 +987,7 @@
 				57CF770018AB0A480085A22F /* DictionaryData.cpp in Sources */,
 				576E3FBA187D4BFB00745A0A /* ISOTilesetGroup.cpp in Sources */,
 				577A78F4186BF56500F1B5D5 /* Astar.cpp in Sources */,
+				57A76A1518ACB5730014DEC9 /* CocosData.cpp in Sources */,
 				576E3FBC187D4BFB00745A0A /* ISOTileMap.cpp in Sources */,
 				576E3FC6187D4BFB00745A0A /* ISOLayerInfo.cpp in Sources */,
 				576E3FC8187D4BFB00745A0A /* ISOObjectGroupInfo.cpp in Sources */,
@@ -989,12 +1019,14 @@
 				577A7936186BF56500F1B5D5 /* SimpleMessageManager.cpp in Sources */,
 				577A790D186BF56500F1B5D5 /* FSMState.cpp in Sources */,
 				57CF770D18AB5B370085A22F /* Statement.cpp in Sources */,
+				57A76A1818ACBC860014DEC9 /* JSONData.cpp in Sources */,
 				57975AD5189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp in Sources */,
 				57525CEB18AC690C00166633 /* json_reader.cpp in Sources */,
 				576E3FDF187E3DF800745A0A /* ISOMapObject.cpp in Sources */,
 				57CF770C18AB5B370085A22F /* Column.cpp in Sources */,
 				576E3FC4187D4BFB00745A0A /* ISOTileLayer.cpp in Sources */,
 				576E3FCD187D4BFB00745A0A /* ISOTileMapBuilder.cpp in Sources */,
+				57A76A1218ACB2D80014DEC9 /* DAO.cpp in Sources */,
 				5771056C18838D7200FA1446 /* ISOCamera.cpp in Sources */,
 				57C337601888C3A1008B5618 /* GridMoveComponent.cpp in Sources */,
 				5771055F18837C1700FA1446 /* CCDefaultTexture.cpp in Sources */,

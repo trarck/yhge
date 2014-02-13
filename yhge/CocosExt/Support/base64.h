@@ -7,7 +7,7 @@
 NS_CC_YHGE_BEGIN
 
 /** 
- * Ö÷ÒªÊÇÒòÎªcocos2dÃ»ÓĞ¿ª·Åbase64µÄdllµ¼³ö½Ó¿Ú£¬ËùÒÔ±¾µØÊ¹ÓÃÒ»·İ
+ * ä¸»è¦æ˜¯å› ä¸ºcocos2dæ²¡æœ‰å¼€æ”¾base64çš„dllå¯¼å‡ºæ¥å£ï¼Œæ‰€ä»¥æœ¬åœ°ä½¿ç”¨ä¸€ä»½
  */
 int base64Decode(unsigned char *in, unsigned int inLength, unsigned char **out);
 
