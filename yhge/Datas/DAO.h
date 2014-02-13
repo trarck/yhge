@@ -2,7 +2,7 @@
 #define YHGE_DATAS_DAO_H_
 
 #include "cocos2d.h"
-#include <yhge/YHGEGEMacros.h>
+#include <yhge/YHGEMacros.h>
 
 NS_CC_YHGE_BEGIN
 
@@ -32,7 +32,7 @@ public:
     
 protected:
     
-	std::string formateToPrepare(CDictionary* data);
+	std::string formateToPrepare(CCDictionary* data);
     
 private:
     

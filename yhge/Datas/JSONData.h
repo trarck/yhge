@@ -1,5 +1,5 @@
-#ifndef YHGE_DATAS_COCOSDATA_H_
-#define YHGE_DATAS_COCOSDATA_H_
+#ifndef YHGE_DATAS_JSONDATA_H_
+#define YHGE_DATAS_JSONDATA_H_
 
 #include "BaseData.h"
 #include <yhge/Jsoncpp/json.h>
@@ -43,4 +43,4 @@ NS_CC_YHGE_END
 
 
 
-#endif //YHGE_DATAS_COCOSDATA_H_
+#endif //YHGE_DATAS_JSONDATA_H_

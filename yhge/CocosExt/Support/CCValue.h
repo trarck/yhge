@@ -41,21 +41,16 @@ public:
     explicit Value(const std::string& v);
     
     explicit Value(const ValueVector& v);
-    explicit Value(ValueVector&& v);
     
     explicit Value(const ValueMap& v);
-	explicit Value(ValueMap&& v);
     
     explicit Value(const ValueMapIntKey& v);
-    explicit Value(ValueMapIntKey&& v);
     
     Value(const Value& other);
-    Value(Value&& other);
     ~Value();
     
     // assignment operator
     Value& operator= (const Value& other);
-    Value& operator= (Value&& other);
     
     Value& operator= (unsigned char v);
     Value& operator= (int v);
@@ -66,13 +61,10 @@ public:
     Value& operator= (const std::string& v);
     
     Value& operator= (const ValueVector& v);
-    Value& operator= (ValueVector&& v);
     
     Value& operator= (const ValueMap& v);
-	Value& operator= (ValueMap&& v);
     
     Value& operator= (const ValueMapIntKey& v);
-    Value& operator= (ValueMapIntKey&& v);
     
     unsigned char asByte() const;
     int asInt() const;

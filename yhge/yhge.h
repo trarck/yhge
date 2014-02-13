@@ -47,4 +47,9 @@
 #include "Sqlite/Transaction.h"
 #include "Sqlite/SqliteDB.h"
 
+//data
+#include "Datas/BaseData.h"
+#include "Datas/JSONData.h"
+#include "Datas/CocosData.h"
+
 #endif //COCOS_YHGE_H_

@@ -57,7 +57,6 @@ public:
     {
         m_data->setObject(value, key);
     }
-    
 
 protected:
     

@@ -15,63 +15,63 @@ Value::Value()
 }
 
 Value::Value(unsigned char v)
-: _vectorData(nullptr)
-, _mapData(nullptr)
-, _intKeyMapData(nullptr)
+: _vectorData(NULL)
+, _mapData(NULL)
+, _intKeyMapData(NULL)
 , _type(Type::BYTE)
 {
     _baseData.byteVal = v;
 }
 
 Value::Value(int v)
-: _vectorData(nullptr)
-, _mapData(nullptr)
-, _intKeyMapData(nullptr)
+: _vectorData(NULL)
+, _mapData(NULL)
+, _intKeyMapData(NULL)
 , _type(Type::INTEGER)
 {
     _baseData.intVal = v;
 }
 
 Value::Value(float v)
-: _vectorData(nullptr)
-, _mapData(nullptr)
-, _intKeyMapData(nullptr)
+: _vectorData(NULL)
+, _mapData(NULL)
+, _intKeyMapData(NULL)
 , _type(Type::FLOAT)
 {
     _baseData.floatVal = v;
 }
 
 Value::Value(double v)
-: _vectorData(nullptr)
-, _mapData(nullptr)
-, _intKeyMapData(nullptr)
+: _vectorData(NULL)
+, _mapData(NULL)
+, _intKeyMapData(NULL)
 , _type(Type::DOUBLE)
 {
     _baseData.doubleVal = v;
 }
 
 Value::Value(bool v)
-: _vectorData(nullptr)
-, _mapData(nullptr)
-, _intKeyMapData(nullptr)
+: _vectorData(NULL)
+, _mapData(NULL)
+, _intKeyMapData(NULL)
 , _type(Type::BOOLEAN)
 {
     _baseData.boolVal = v;
 }
 
 Value::Value(const char* v)
-: _vectorData(nullptr)
-, _mapData(nullptr)
-, _intKeyMapData(nullptr)
+: _vectorData(NULL)
+, _mapData(NULL)
+, _intKeyMapData(NULL)
 , _type(Type::STRING)
 {
     _strData = v;
 }
 
 Value::Value(const std::string& v)
-: _vectorData(nullptr)
-, _mapData(nullptr)
-, _intKeyMapData(nullptr)
+: _vectorData(NULL)
+, _mapData(NULL)
+, _intKeyMapData(NULL)
 , _type(Type::STRING)
 {
     _strData = v;
@@ -79,72 +79,37 @@ Value::Value(const std::string& v)
 
 Value::Value(const ValueVector& v)
 : _vectorData(new ValueVector())
-, _mapData(nullptr)
-, _intKeyMapData(nullptr)
+, _mapData(NULL)
+, _intKeyMapData(NULL)
 , _type(Type::VECTOR)
 {
     *_vectorData = v;
 }
 
-Value::Value(ValueVector&& v)
-: _vectorData(new ValueVector())
-, _mapData(nullptr)
-, _intKeyMapData(nullptr)
-, _type(Type::VECTOR)
-{
-    *_vectorData = std::move(v);
-}
-
 Value::Value(const ValueMap& v)
-: _vectorData(nullptr)
+: _vectorData(NULL)
 , _mapData(new ValueMap())
-, _intKeyMapData(nullptr)
+, _intKeyMapData(NULL)
 , _type(Type::MAP)
 {
     *_mapData = v;
 }
 
-Value::Value(ValueMap&& v)
-: _vectorData(nullptr)
-, _mapData(new ValueMap())
-, _intKeyMapData(nullptr)
-, _type(Type::MAP)
-{
-    *_mapData = std::move(v);
-}
-
 Value::Value(const ValueMapIntKey& v)
-: _vectorData(nullptr)
-, _mapData(nullptr)
+: _vectorData(NULL)
+, _mapData(NULL)
 , _intKeyMapData(new ValueMapIntKey())
 , _type(Type::INT_KEY_MAP)
 {
     *_intKeyMapData = v;
 }
 
-Value::Value(ValueMapIntKey&& v)
-: _vectorData(nullptr)
-, _mapData(nullptr)
-, _intKeyMapData(new ValueMapIntKey())
-, _type(Type::INT_KEY_MAP)
-{
-    *_intKeyMapData = std::move(v);
-}
-
 Value::Value(const Value& other)
-: _vectorData(nullptr)
-, _mapData(nullptr)
-, _intKeyMapData(nullptr)
+: _vectorData(NULL)
+, _mapData(NULL)
+, _intKeyMapData(NULL)
 {
     *this = other;
-}
-
-Value::Value(Value&& other)
-: _vectorData(nullptr)
-, _mapData(nullptr)
-, _intKeyMapData(nullptr)
-{
-    *this = std::move(other);
 }
 
 Value::~Value()
@@ -175,17 +140,17 @@ Value& Value::operator= (const Value& other)
                 _strData = other._strData;
                 break;
             case Type::VECTOR:
-                if (_vectorData == nullptr)
+                if (_vectorData == NULL)
                     _vectorData = new ValueVector();
                 *_vectorData = *other._vectorData;
                 break;
             case Type::MAP:
-                if (_mapData == nullptr)
+                if (_mapData == NULL)
                     _mapData = new ValueMap();
                 *_mapData = *other._mapData;
                 break;
             case Type::INT_KEY_MAP:
-                if (_intKeyMapData == nullptr)
+                if (_intKeyMapData == NULL)
                     _intKeyMapData = new ValueMapIntKey();
                 *_intKeyMapData = *other._intKeyMapData;
                 break;
@@ -194,54 +159,6 @@ Value& Value::operator= (const Value& other)
         }
         _type = other._type;
     }
-    return *this;
-}
-
-Value& Value::operator= (Value&& other)
-{
-    if (this != &other) {
-        switch (other._type) {
-            case Type::BYTE:
-                _baseData.byteVal = other._baseData.byteVal;
-                break;
-            case Type::INTEGER:
-                _baseData.intVal = other._baseData.intVal;
-                break;
-            case Type::FLOAT:
-                _baseData.floatVal = other._baseData.floatVal;
-                break;
-            case Type::DOUBLE:
-                _baseData.doubleVal = other._baseData.doubleVal;
-                break;
-            case Type::BOOLEAN:
-                _baseData.boolVal = other._baseData.boolVal;
-                break;
-            case Type::STRING:
-                _strData = other._strData;
-                break;
-            case Type::VECTOR:
-                CC_SAFE_DELETE(_vectorData);
-                _vectorData = other._vectorData;
-                break;
-            case Type::MAP:
-                CC_SAFE_DELETE(_mapData);
-                _mapData = other._mapData;
-                break;
-            case Type::INT_KEY_MAP:
-                CC_SAFE_DELETE(_intKeyMapData);
-                _intKeyMapData = other._intKeyMapData;
-                break;
-            default:
-                break;
-        }
-        _type = other._type;
-        
-        other._vectorData = nullptr;
-        other._mapData = nullptr;
-        other._intKeyMapData = nullptr;
-        other._type = Type::NONE;
-    }
-    
     return *this;
 }
 
@@ -310,30 +227,12 @@ Value& Value::operator= (const ValueVector& v)
     return *this;
 }
 
-Value& Value::operator= (ValueVector&& v)
-{
-    clear();
-    _type = Type::VECTOR;
-    _vectorData = new ValueVector();
-    *_vectorData = std::move(v);
-    return *this;
-}
-
 Value& Value::operator= (const ValueMap& v)
 {
     clear();
     _type = Type::MAP;
     _mapData = new ValueMap();
     *_mapData = v;
-    return *this;
-}
-
-Value& Value::operator= (ValueMap&& v)
-{
-    clear();
-    _type = Type::MAP;
-    _mapData = new ValueMap();
-    *_mapData = std::move(v);
     return *this;
 }
 
@@ -346,19 +245,10 @@ Value& Value::operator= (const ValueMapIntKey& v)
     return *this;
 }
 
-Value& Value::operator= (ValueMapIntKey&& v)
-{
-    clear();
-    _type = Type::INT_KEY_MAP;
-    _intKeyMapData = new ValueMapIntKey();
-    *_intKeyMapData = std::move(v);
-    return *this;
-}
-
 ///
 unsigned char Value::asByte() const
 {
-    CCASSERT(_type != Type::VECTOR && _type != Type::MAP, "");
+    CCAssert(_type != Type::VECTOR && _type != Type::MAP, "");
     
     if (_type == Type::BYTE)
     {
@@ -395,7 +285,7 @@ unsigned char Value::asByte() const
 
 int Value::asInt() const
 {
-    CCASSERT(_type != Type::VECTOR && _type != Type::MAP, "");
+    CCAssert(_type != Type::VECTOR && _type != Type::MAP, "");
     if (_type == Type::INTEGER)
     {
         return _baseData.intVal;
@@ -431,7 +321,7 @@ int Value::asInt() const
 
 float Value::asFloat() const
 {
-    CCASSERT(_type != Type::VECTOR && _type != Type::MAP, "");
+    CCAssert(_type != Type::VECTOR && _type != Type::MAP, "");
     if (_type == Type::FLOAT)
     {
         return _baseData.floatVal;
@@ -467,7 +357,7 @@ float Value::asFloat() const
 
 double Value::asDouble() const
 {
-    CCASSERT(_type != Type::VECTOR && _type != Type::MAP, "");
+    CCAssert(_type != Type::VECTOR && _type != Type::MAP, "");
     if (_type == Type::DOUBLE)
     {
         return _baseData.doubleVal;
@@ -503,7 +393,7 @@ double Value::asDouble() const
 
 bool Value::asBool() const
 {
-    CCASSERT(_type != Type::VECTOR && _type != Type::MAP, "");
+    CCAssert(_type != Type::VECTOR && _type != Type::MAP, "");
     if (_type == Type::BOOLEAN)
     {
         return _baseData.boolVal;
@@ -539,7 +429,7 @@ bool Value::asBool() const
 
 std::string Value::asString() const
 {
-    CCASSERT(_type != Type::VECTOR && _type != Type::MAP, "");
+    CCAssert(_type != Type::VECTOR && _type != Type::MAP, "");
     
     if (_type == Type::STRING)
     {
@@ -572,7 +462,7 @@ std::string Value::asString() const
 
 ValueVector& Value::asValueVector()
 {
-	if (nullptr == _vectorData)
+	if (NULL == _vectorData)
 		_vectorData = new ValueVector();
 	return *_vectorData;
 }
@@ -580,14 +470,14 @@ ValueVector& Value::asValueVector()
 const ValueVector& Value::asValueVector() const
 {
 	static const ValueVector EMPTY_VALUEVECTOR;
-	if (nullptr == _vectorData)
+	if (NULL == _vectorData)
 		return EMPTY_VALUEVECTOR;
 	return *_vectorData; 
 }
 
 ValueMap& Value::asValueMap()
 {
-	if (nullptr == _mapData)
+	if (NULL == _mapData)
 		_mapData = new ValueMap();
 	return *_mapData;
 }
@@ -595,14 +485,14 @@ ValueMap& Value::asValueMap()
 const ValueMap& Value::asValueMap() const
 {
 	static const ValueMap EMPTY_VALUEMAP;
-	if (nullptr == _mapData)
+	if (NULL == _mapData)
 		return EMPTY_VALUEMAP;
 	return *_mapData;
 }
 
 ValueMapIntKey& Value::asIntKeyMap()
 {
-	if (nullptr == _intKeyMapData)
+	if (NULL == _intKeyMapData)
 		_intKeyMapData = new ValueMapIntKey();
 	return *_intKeyMapData;
 }
@@ -610,7 +500,7 @@ ValueMapIntKey& Value::asIntKeyMap()
 const ValueMapIntKey& Value::asIntKeyMap() const
 {
 	static const ValueMapIntKey EMPTY_VALUEMAP_INT_KEY;
-	if (nullptr == _intKeyMapData)
+	if (NULL == _intKeyMapData)
 		return EMPTY_VALUEMAP_INT_KEY;
 	return *_intKeyMapData;
 }
@@ -696,7 +586,7 @@ static std::string visit(const Value& v, int depth)
             ret << visitMap(v.asIntKeyMap(), depth);
             break;
         default:
-            CCASSERT(false, "Invalid type!");
+            CCAssert(false, "Invalid type!");
             break;
     }
     
