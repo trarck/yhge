@@ -82,6 +82,9 @@
     <Filter Include="Sqlite">
       <UniqueIdentifier>{ffbc94a9-adfd-4922-a2c2-b957caa368ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Datas">
+      <UniqueIdentifier>{22f4be57-779b-411c-be77-588d84369653}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h">
@@ -414,6 +417,21 @@
     <ClInclude Include="..\yhge\Sqlite\Transaction.h">
       <Filter>Sqlite</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\Support\CCValue.h">
+      <Filter>CocosExt\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\BaseData.h">
+      <Filter>Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\CocosData.h">
+      <Filter>Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\DAO.h">
+      <Filter>Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\JSONData.h">
+      <Filter>Datas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -685,6 +703,21 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Sqlite\Transaction.cpp">
       <Filter>Sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\Support\CCValue.cpp">
+      <Filter>CocosExt\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\BaseData.cpp">
+      <Filter>Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\CocosData.cpp">
+      <Filter>Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\DAO.cpp">
+      <Filter>Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\JSONData.cpp">
+      <Filter>Datas</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

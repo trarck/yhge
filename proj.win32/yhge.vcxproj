@@ -25,7 +25,12 @@
     <ClInclude Include="..\yhge\CocosExt\Support\base64.h" />
     <ClInclude Include="..\yhge\CocosExt\Support\ccCArray.h" />
     <ClInclude Include="..\yhge\CocosExt\Support\CCMap.h" />
+    <ClInclude Include="..\yhge\CocosExt\Support\CCValue.h" />
     <ClInclude Include="..\yhge\CocosExt\Support\CCVector.h" />
+    <ClInclude Include="..\yhge\Datas\BaseData.h" />
+    <ClInclude Include="..\yhge\Datas\CocosData.h" />
+    <ClInclude Include="..\yhge\Datas\DAO.h" />
+    <ClInclude Include="..\yhge\Datas\JSONData.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\AnimationComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\AttackComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\AutoAttackComponent.h" />
@@ -136,6 +141,11 @@
     <ClCompile Include="..\yhge\CocosExt\CCSelectorWrap.cpp" />
     <ClCompile Include="..\yhge\CocosExt\Support\base64.cpp" />
     <ClCompile Include="..\yhge\CocosExt\Support\ccCArray.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\Support\CCValue.cpp" />
+    <ClCompile Include="..\yhge\Datas\BaseData.cpp" />
+    <ClCompile Include="..\yhge\Datas\CocosData.cpp" />
+    <ClCompile Include="..\yhge\Datas\DAO.cpp" />
+    <ClCompile Include="..\yhge\Datas\JSONData.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\AnimationComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\AttackComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\AutoAttackComponent.cpp" />
