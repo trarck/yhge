@@ -3,6 +3,9 @@
 
 #include "YHGEMacros.h"
 
+//smart pointer
+#include "SmartPointer/smart_ptr.h"
+
 //Arithmetic
 #include "Arithmetic/Search/AStar/AstarNode.h"
 #include "Arithmetic/Search/AStar/Astar.h"

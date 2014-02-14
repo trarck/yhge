@@ -2,6 +2,7 @@
 #define YHGE_SMARTPOINTER_SMART_PTR_H_
 
 #include <yhge/YHGEMacros.h>
+#include <cstdlib>
 
 NS_CC_YHGE_BEGIN
 
@@ -53,33 +54,33 @@ private:
     int m_count;
 };
 
-#if defined(WIN32) || defined(_WIN32)
-template <class T> class _NoAddRefReleaseOnComPtr : public T {
-private:
-    virtual unsigned long __stdcall AddRef(void) = 0;
-    virtual unsigned long __stdcall Release(void) = 0;
-};
-#endif  // defined(WIN32) || defined(_WIN32)
+//#if defined(WIN32) || defined(_WIN32)
+//template <class T> class _NoAddRefReleaseOnComPtr : public T {
+//private:
+//    virtual unsigned long __stdcall AddRef(void) = 0;
+//    virtual unsigned long __stdcall Release(void) = 0;
+//};
+//#endif  // defined(WIN32) || defined(_WIN32)
 
 // base class for shared_ptr and weak_ptr
-template<class T, typename MemMgr>
+template<class T, bool is_strong , typename MemMgr>
 class BasePtr
 {
 public:
     explicit BasePtr(T *p=0) : m_counter(NULL), m_ptr(p)
     {
         if (m_ptr) {
-            m_counter = new RefCount();
+            m_counter = new RefCount(is_strong?1:0);
         }
     }
 
-    BasePtr(const BasePtr& rhs) : m_counter(NULL), m_ptr(0)
+    BasePtr(const BasePtr& rhs) : m_counter(NULL), m_ptr(NULL)
     {
         acquire(rhs);
     }
 
-    template<class Q, typename MemMgr2>
-    BasePtr(const BasePtr<Q, MemMgr2> &rhs) : m_counter(0), m_ptr(0)
+    template<class Q, bool b,typename MemMgr2>
+    BasePtr(const BasePtr<Q, b, MemMgr2> &rhs) : m_counter(NULL), m_ptr(NULL)
     {
         acquire(rhs);
     }
@@ -91,11 +92,11 @@ public:
 
     operator T*()   const    { return m_ptr; }
     T& operator*()  const    { return *m_ptr; }
-#if defined(WIN32) || defined(_WIN32)
-    _NoAddRefReleaseOnComPtr<T>* operator->() const  { return (_NoAddRefReleaseOnComPtr<T>*)m_ptr; }
-#else
+//#if defined(WIN32) || defined(_WIN32)
+//    _NoAddRefReleaseOnComPtr<T>* operator->() const  { return (_NoAddRefReleaseOnComPtr<T>*)m_ptr; }
+//#else
     T* operator->() const    { return m_ptr; }
-#endif  // defined(WIN32) || defined(_WIN32)
+//#endif  // defined(WIN32) || defined(_WIN32)
     T* get()        const    { return m_ptr; }
 
     bool unique() const 
@@ -103,12 +104,12 @@ public:
 
     void reset(T *p=0)
     {
-        BasePtr<T, MemMgr> ptr(p);
+        BasePtr<T,is_strong, MemMgr> ptr(p);
         reset(ptr);
     }
 
-    template <class Q, typename MemMgr2>
-    void reset(const BasePtr<Q,MemMgr2> &rhs)
+    template <class Q, bool b, typename MemMgr2>
+    void reset(const BasePtr<Q,b,MemMgr2> &rhs)
     {
         if ((void *)this != (void *)&rhs) {
             release();
@@ -122,8 +123,8 @@ public:
     }
 
     // swap pointers
-    template <class Q, typename MemMgr2>
-    void swap(BasePtr<Q, MemMgr2> & rhs)
+    template <class Q, bool b, typename MemMgr2>
+    void swap(BasePtr<Q, b,MemMgr2> & rhs)
     {
         privateSwap(m_counter, rhs.m_counter);
         privateSwap(m_ptr, rhs.m_ptr);
@@ -135,16 +136,14 @@ public:
         return *this;
     }
 
-    template <class Q,typename MemMgr2>
-    BasePtr& operator=(const BasePtr<Q,MemMgr2> &rhs)
+    template <class Q,bool b, typename MemMgr2>
+    BasePtr& operator=(const BasePtr<Q,b,MemMgr2> &rhs)
     {
         reset(rhs);
         return *this;
     }
 
 protected:
-    RefCount *m_counter;
-    T * m_ptr;
 
     template <typename TP1, typename TP2>
     static void privateSwap(TP1 &obj1, TP2 &obj2)
@@ -154,8 +153,8 @@ protected:
         obj2 = static_cast<TP2>(tmp);
     }
 
-    template <class Q, typename MemMgr2>
-    void acquire(const BasePtr<Q, MemMgr2> & rhs)
+    template <class Q, bool b, typename MemMgr2>
+    void acquire(const BasePtr<Q, b,MemMgr2> & rhs)
     {
         if (rhs.m_counter && rhs.m_counter->getCount()) {
             m_counter = rhs.m_counter;
@@ -184,11 +183,19 @@ protected:
         }
     }
 
-    template<class Q, typename MemMgr2> friend class BasePtr;
+    template<class Q, bool b,typename MemMgr2> friend class BasePtr;
+    
+protected:
+    RefCount *m_counter;
+    T * m_ptr;
 };
 
-template<class T, class Q,typename MemMgr1, typename MemMgr2>
-bool operator<(const BasePtr<T, MemMgr1> &lhs, const BasePtr<Q, MemMgr2> &rhs)
+//////////////////////////////////////////////////////////////////////////
+//
+//   operator
+//
+template<class T,  bool bx, class Q, bool by, typename MemMgr1, typename MemMgr2>
+bool operator<(const BasePtr<T, bx,MemMgr1> &lhs, const BasePtr<Q, by,MemMgr2> &rhs)
 {
     // test if left pointer < right pointer
     return lhs.get() < rhs.get();
@@ -210,9 +217,9 @@ public:
 };
 
 template <class T, typename MemMgr=StdMemMgr<T> >
-class shared_ptr : public BasePtr<T, MemMgr>
+class shared_ptr : public BasePtr<T,true, MemMgr>
 {
-    typedef BasePtr<T, MemMgr> BaseClass;
+    typedef BasePtr<T, true,MemMgr> BaseClass;
 public:
     explicit shared_ptr(T* p = 0) : BaseClass(p)
     {
@@ -260,13 +267,14 @@ public:
 
 
 template <class T, typename MemMgr=StdMemMgr<T> >
-class weak_ptr : public BasePtr<T, MemMgr>
+class weak_ptr : public BasePtr<T, false,MemMgr>
 {
-    typedef BasePtr<T, MemMgr> BaseClass;
+    typedef BasePtr<T, false,MemMgr> BaseClass;
 public:
     // construct empty weak_ptr object
     weak_ptr()
     {
+
     }
 
     // construct weak_ptr object for resource owned by rhs
@@ -326,12 +334,12 @@ protected:
     
     void release(void)
     {
-        if (m_counter) {
-            m_counter->decrease();
+        if (BaseClass::m_counter) {
+            BaseClass::m_counter->decrease();
         }
         
-        if (m_ptr) {
-            m_ptr = NULL;
+        if (BaseClass::m_ptr) {
+            BaseClass::m_ptr = NULL;
         }
     }
     
@@ -425,9 +433,9 @@ public:
 };
 
 template <class T, typename MemMgr=ArrayMemMgr<T> >
-class shared_array : public BasePtr<T, MemMgr>
+class shared_array : public BasePtr<T, true,MemMgr>
 {
-    typedef BasePtr<T, MemMgr> BaseClass;
+    typedef BasePtr<T, true,MemMgr> BaseClass;
 public:
     explicit shared_array(T* p = 0) : BaseClass(p)
     {
