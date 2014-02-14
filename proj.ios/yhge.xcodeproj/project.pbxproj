@@ -325,6 +325,8 @@
 		57A76A1418ACB5730014DEC9 /* CocosData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosData.h; sourceTree = "<group>"; };
 		57A76A1618ACBC860014DEC9 /* JSONData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONData.cpp; sourceTree = "<group>"; };
 		57A76A1718ACBC860014DEC9 /* JSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONData.h; sourceTree = "<group>"; };
+		57A76A1B18ADEBC50014DEC9 /* shared_ptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shared_ptr.h; sourceTree = "<group>"; };
+		57A76A1C18AE04460014DEC9 /* smart_ptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smart_ptr.h; sourceTree = "<group>"; };
 		57C337401888C3A1008B5618 /* AnimationComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationComponent.cpp; sourceTree = "<group>"; };
 		57C337411888C3A1008B5618 /* AnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationComponent.h; sourceTree = "<group>"; };
 		57C337421888C3A1008B5618 /* AttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackComponent.cpp; sourceTree = "<group>"; };
@@ -602,6 +604,7 @@
 				576E3F70187D4BFB00745A0A /* Isometric */,
 				577A78CB186BF56500F1B5D5 /* Math */,
 				577A78D0186BF56500F1B5D5 /* Message */,
+				57A76A1A18ADEBC50014DEC9 /* SmartPointer */,
 				57CF770118AB1A290085A22F /* Sqlite */,
 				57C337681888CB02008B5618 /* entity_component.h */,
 				577A78CA186BF56500F1B5D5 /* isometric.h */,
@@ -799,6 +802,15 @@
 				57A76A1718ACBC860014DEC9 /* JSONData.h */,
 			);
 			path = Datas;
+			sourceTree = "<group>";
+		};
+		57A76A1A18ADEBC50014DEC9 /* SmartPointer */ = {
+			isa = PBXGroup;
+			children = (
+				57A76A1C18AE04460014DEC9 /* smart_ptr.h */,
+				57A76A1B18ADEBC50014DEC9 /* shared_ptr.h */,
+			);
+			path = SmartPointer;
 			sourceTree = "<group>";
 		};
 		57C3373E1888C3A1008B5618 /* EntityComponent */ = {
