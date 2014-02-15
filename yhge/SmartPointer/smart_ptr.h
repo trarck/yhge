@@ -64,7 +64,7 @@ public:
     }
 
     // decrement weak count
-    int decrease()
+    int decreaseWeak()
     {
         return m_weakCount>0?--m_weakCount:0;
     }
@@ -154,12 +154,6 @@ public:
     bool unique() const 
     { return (m_counter ? (1 == m_counter->getCount()) : true); }
 
-	void reset()
-    {
-        shared_ptr<T,MemMgr> ptr();
-        reset(ptr);
-    }
-
     void reset(T *p=0)
     {
         shared_ptr<T,MemMgr> ptr(p);
@@ -221,11 +215,11 @@ protected:
     template <class Q, typename MemMgr2>
     void acquire(const shared_ptr<Q, MemMgr2> & rhs)
     {
-//        if (rhs.m_counter && rhs.m_counter->getCount()) {
+        if (rhs.m_counter && rhs.m_counter->getCount()) {
             m_counter = rhs.m_counter;
             m_counter->increase();
             m_ptr = static_cast<T*>(rhs.m_ptr);
-//        }
+        }
     }
 
 	template <class Q, typename MemMgr2>
@@ -260,7 +254,7 @@ protected:
     }
 
     template<class Q, typename MemMgr2> friend class shared_ptr;
-    
+    template<class Q, typename MemMgr2> friend class weak_ptr;
 protected:
     RefCount *m_counter;
     T * m_ptr;
@@ -423,7 +417,8 @@ protected:
         }
     }
 
-    template<class Q, bool b,typename MemMgr2> friend class BasePtr;
+    template<class Q, typename MemMgr2> friend class weak_ptr;
+    template<class Q, typename MemMgr2> friend class shared_ptr;
     
 protected:
     RefCount *m_counter;
@@ -521,7 +516,7 @@ public:
 template <class T, typename MemMgr=ArrayMemMgr<T> >
 class shared_array : public shared_ptr<T, MemMgr>
 {
-    typedef BasePtr<T, MemMgr> BaseClass;
+    typedef shared_ptr<T, MemMgr> BaseClass;
 public:
     explicit shared_array(T* p = 0) : BaseClass(p)
     {
