@@ -383,11 +383,11 @@ protected:
     template <class Q, typename MemMgr2>
     void acquire(const shared_ptr<Q, MemMgr2> & rhs)
     {
-//        if (rhs.m_counter && rhs.m_counter->getCount()) {
+        if (rhs.m_counter && rhs.m_counter->getCount()) {
             m_counter = rhs.m_counter;
             m_counter->increaseWeak();
             m_ptr = static_cast<T*>(rhs.m_ptr);
-//        }
+        }
     }
 
 	template <class Q, typename MemMgr2>
