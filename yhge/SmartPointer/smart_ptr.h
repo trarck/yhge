@@ -11,13 +11,19 @@ namespace smart_ptr {
 class RefCount
 {
 public:
-    RefCount() : m_count(1)
+    RefCount() : m_count(1),m_weakCount(0)
     {
         
     }
 
     RefCount(int count)
-    :m_count(count)
+    :m_count(count),m_weakCount(0)
+    {
+        
+    }
+    
+	RefCount(int count,int weakCount)
+    :m_count(count),m_weakCount(weakCount)
     {
         
     }
@@ -50,8 +56,28 @@ public:
         return getCount() == 0;
     }
 
+
+    // increment weak count
+    int increaseWeak()
+    {
+        return ++m_weakCount;
+    }
+
+    // decrement weak count
+    int decrease()
+    {
+        return m_weakCount>0?--m_weakCount:0;
+    }
+
+    // return weak count
+    int getWeakCount() const
+    {
+        return m_weakCount;
+    }
+
 private:
     int m_count;
+	int m_weakCount;
 };
 
 //#if defined(WIN32) || defined(_WIN32)
@@ -62,35 +88,61 @@ private:
 //};
 //#endif  // defined(WIN32) || defined(_WIN32)
 
-// base class for shared_ptr and weak_ptr
-template<class T, bool is_strong , typename MemMgr>
-class BasePtr
+
+template <class T, typename MemMgr> class weak_ptr;
+
+template<typename T>
+class StdMemMgr {
+public:
+    static void deallocate(T *p) { delete p; }
+    static T * allocate(void) { return new T(); }
+    template<typename A1> static T * allocate(A1 const &a1) { return new T(a1); }
+    template<typename A1, typename A2> static T * allocate(A1 const &a1, A2 const &a2) { return new T(a1, a2); }
+    template<typename A1, typename A2, typename A3> static T * allocate(A1 const &a1, A2 const &a2, A3 const &a3) { return new T(a1, a2, a3); }
+    template<typename A1, typename A2, typename A3, typename A4> static T * allocate(A1 const &a1, A2 const &a2, A3 const &a3, A4 const &a4) { return new T(a1, a2, a3, a4); }
+    template<typename A1, typename A2, typename A3, typename A4, typename A5> static T * allocate(A1 const &a1, A2 const &a2, A3 const &a3, A4 const &a4, A5 const &a5) { return new T(a1, a2, a3, a4, a5); }
+    template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6> static T * allocate(A1 const &a1, A2 const &a2, A3 const &a3, A4 const &a4, A5 const &a5, A6 const &a6) { return new T(a1, a2, a3, a4, a5, a6); }
+};
+
+//////////////////////////////////////////////////////////////////////////
+//
+//   shared_ptr
+//
+template <class T, typename MemMgr=StdMemMgr<T> >
+class shared_ptr
 {
 public:
-    explicit BasePtr(T *p=0) : m_counter(NULL), m_ptr(p)
+    explicit shared_ptr(T *p=0) : m_counter(NULL), m_ptr(p)
     {
         if (m_ptr) {
-            m_counter = new RefCount(is_strong?1:0);
+            m_counter = new RefCount();
         }
     }
 
-    BasePtr(const BasePtr& rhs) : m_counter(NULL), m_ptr(NULL)
+    shared_ptr(const shared_ptr& rhs) : m_counter(NULL), m_ptr(NULL)
     {
         acquire(rhs);
     }
 
-    template<class Q, bool b,typename MemMgr2>
-    BasePtr(const BasePtr<Q, b, MemMgr2> &rhs) : m_counter(NULL), m_ptr(NULL)
+    template<class Q, typename MemMgr2>
+    shared_ptr(const shared_ptr<Q, MemMgr2> &rhs) : m_counter(NULL), m_ptr(NULL)
     {
         acquire(rhs);
     }
 
-    virtual ~BasePtr()
+    // construct shared_ptr object that owns resource *rhs
+    template<class Q, typename MemMgr2> 
+    explicit shared_ptr(const weak_ptr<Q, MemMgr2> &rhs) : m_counter(NULL), m_ptr(NULL)
     {
-        release();
+		acquire(rhs);
     }
 
-    operator T*()   const    { return m_ptr; }
+    ~shared_ptr()
+    {
+		release();
+    }
+
+	operator T*()   const    { return m_ptr; }
     T& operator*()  const    { return *m_ptr; }
 //#if defined(WIN32) || defined(_WIN32)
 //    _NoAddRefReleaseOnComPtr<T>* operator->() const  { return (_NoAddRefReleaseOnComPtr<T>*)m_ptr; }
@@ -102,14 +154,20 @@ public:
     bool unique() const 
     { return (m_counter ? (1 == m_counter->getCount()) : true); }
 
-    void reset(T *p=0)
+	void reset()
     {
-        BasePtr<T,is_strong, MemMgr> ptr(p);
+        shared_ptr<T,MemMgr> ptr();
         reset(ptr);
     }
 
-    template <class Q, bool b, typename MemMgr2>
-    void reset(const BasePtr<Q,b,MemMgr2> &rhs)
+    void reset(T *p=0)
+    {
+        shared_ptr<T,MemMgr> ptr(p);
+        reset(ptr);
+    }
+
+    template <class Q, typename MemMgr2>
+    void reset(const shared_ptr<Q,MemMgr2> &rhs)
     {
         if ((void *)this != (void *)&rhs) {
             release();
@@ -117,27 +175,34 @@ public:
         }
     }
 
-    int useCount(void) const
+    int use_count(void) const
     {
         return m_counter?m_counter->getCount():0;
     }
 
     // swap pointers
-    template <class Q, bool b, typename MemMgr2>
-    void swap(BasePtr<Q, b,MemMgr2> & rhs)
+    template <class Q, typename MemMgr2>
+    void swap(shared_ptr<Q,MemMgr2> & rhs)
     {
-        privateSwap(m_counter, rhs.m_counter);
-        privateSwap(m_ptr, rhs.m_ptr);
+        private_swap(m_counter, rhs.m_counter);
+        private_swap(m_ptr, rhs.m_ptr);
     }
 
-    BasePtr& operator=(const BasePtr &rhs)
+	shared_ptr& operator=(const shared_ptr &rhs)
     {
         reset(rhs);
         return *this;
     }
 
-    template <class Q,bool b, typename MemMgr2>
-    BasePtr& operator=(const BasePtr<Q,b,MemMgr2> &rhs)
+    template <class Q, typename MemMgr2> 
+    shared_ptr& operator=(const shared_ptr<Q, MemMgr2> &rhs)
+    {
+        reset(rhs);
+        return *this;
+    }
+
+    template <class Q, typename MemMgr2>
+    shared_ptr& operator=(const weak_ptr<Q, MemMgr2> &rhs)
     {
         reset(rhs);
         return *this;
@@ -146,15 +211,25 @@ public:
 protected:
 
     template <typename TP1, typename TP2>
-    static void privateSwap(TP1 &obj1, TP2 &obj2)
+    static void private_swap(TP1 &obj1, TP2 &obj2)
     {
         TP1 tmp = obj1;
         obj1 = static_cast<TP1>(obj2);
         obj2 = static_cast<TP2>(tmp);
     }
 
-    template <class Q, bool b, typename MemMgr2>
-    void acquire(const BasePtr<Q, b,MemMgr2> & rhs)
+    template <class Q, typename MemMgr2>
+    void acquire(const shared_ptr<Q, MemMgr2> & rhs)
+    {
+//        if (rhs.m_counter && rhs.m_counter->getCount()) {
+            m_counter = rhs.m_counter;
+            m_counter->increase();
+            m_ptr = static_cast<T*>(rhs.m_ptr);
+//        }
+    }
+
+	template <class Q, typename MemMgr2>
+    void acquire(const weak_ptr<Q, MemMgr2> & rhs)
     {
         if (rhs.m_counter && rhs.m_counter->getCount()) {
             m_counter = rhs.m_counter;
@@ -172,7 +247,172 @@ protected:
                 m_ptr = NULL;
             }
 
-            if (0==m_counter->getCount()) {
+			if (0 == m_counter->getCount() && 0==m_counter->getWeakCount()) {
+                delete m_counter;
+            }
+
+            m_counter = NULL;
+        }
+        
+        if (m_ptr) {
+            m_ptr = NULL;
+        }
+    }
+
+    template<class Q, typename MemMgr2> friend class shared_ptr;
+    
+protected:
+    RefCount *m_counter;
+    T * m_ptr;
+};
+
+//////////////////////////////////////////////////////////////////////////
+//
+//   operator
+//
+template<class T,  class Q, typename MemMgr1, typename MemMgr2>
+bool operator<(const shared_ptr<T, MemMgr1> &lhs, const shared_ptr<Q, MemMgr2> &rhs)
+{
+    // test if left pointer < right pointer
+    return lhs.get() < rhs.get();
+}
+
+//////////////////////////////////////////////////////////////////////////
+//
+//   weak_ptr
+//
+template <class T, typename MemMgr=StdMemMgr<T> >
+class weak_ptr 
+{
+public:
+    // construct empty weak_ptr object
+    weak_ptr():m_counter(NULL),m_ptr(NULL)
+    {
+
+    }
+
+    // construct weak_ptr object for resource owned by rhs
+    template<class Q, typename MemMgr2>
+    weak_ptr(const shared_ptr<Q, MemMgr2> &rhs):m_counter(NULL),m_ptr(NULL)
+    {
+		acquire(rhs);
+    }
+
+    // construct weak_ptr object for resource pointed to by rhs
+    weak_ptr(const weak_ptr &rhs):m_counter(NULL),m_ptr(NULL)
+    {
+		acquire(rhs);
+    }
+
+    // construct weak_ptr object for resource pointed to by rhs
+    template<class Q, typename MemMgr2>
+    weak_ptr(const weak_ptr<Q, MemMgr2> &rhs):m_counter(NULL),m_ptr(NULL)
+    {
+		acquire(rhs);
+    }
+
+    ~weak_ptr()
+    {
+		release();
+    }
+
+	void reset()
+    {
+        weak_ptr<T,MemMgr> ptr;
+        reset(ptr);
+    }
+
+//    template <class Q, typename MemMgr2>
+//    void reset(const weak_ptr<Q,MemMgr2> &rhs)
+//    {
+//        if ((void *)this != (void *)&rhs) {
+//            release();
+//            acquire(rhs);
+//        }
+//    }
+
+    int use_count(void) const
+    {
+        return m_counter?m_counter->getCount():0;
+    }
+
+    // swap pointers
+    template <class Q, typename MemMgr2>
+    void swap(weak_ptr<Q,MemMgr2> & rhs)
+    {
+        private_swap(m_counter, rhs.m_counter);
+        private_swap(m_ptr, rhs.m_ptr);
+    }
+
+    // return true if resource no longer exists
+    bool expired() const
+    {
+        return m_counter ? m_counter->expired() : true;
+    }
+
+    // convert to shared_ptr
+    shared_ptr<T, MemMgr> lock() const
+    {
+        return shared_ptr<T, MemMgr>(*this);
+    }
+
+    weak_ptr& operator=(const weak_ptr &rhs)
+    {
+        reset(rhs);
+        return *this;
+    }
+
+    template <class Q, typename MemMgr2>
+    weak_ptr& operator=(const weak_ptr<Q, MemMgr2> &rhs)
+    {
+        reset(rhs);
+        return *this;
+    }
+
+    template <class Q, typename MemMgr2>
+    weak_ptr& operator=(const shared_ptr<Q, MemMgr2> &rhs)
+    {
+        reset(rhs);
+        return *this;
+    }
+    
+protected:
+
+    template <typename TP1, typename TP2>
+    static void private_swap(TP1 &obj1, TP2 &obj2)
+    {
+        TP1 tmp = obj1;
+        obj1 = static_cast<TP1>(obj2);
+        obj2 = static_cast<TP2>(tmp);
+    }
+
+    template <class Q, typename MemMgr2>
+    void acquire(const shared_ptr<Q, MemMgr2> & rhs)
+    {
+//        if (rhs.m_counter && rhs.m_counter->getCount()) {
+            m_counter = rhs.m_counter;
+            m_counter->increaseWeak();
+            m_ptr = static_cast<T*>(rhs.m_ptr);
+//        }
+    }
+
+	template <class Q, typename MemMgr2>
+    void acquire(const weak_ptr<Q, MemMgr2> & rhs)
+    {
+        if (rhs.m_counter && rhs.m_counter->getCount()) {
+            m_counter = rhs.m_counter;
+            m_counter->increaseWeak();
+            m_ptr = static_cast<T*>(rhs.m_ptr);
+        }
+    }
+
+    // decrement the count, delete if it is 0
+    void release(void)
+    {
+        if (m_counter) {
+			m_counter->decreaseWeak();
+
+			if (0 == m_counter->getCount() && 0==m_counter->getWeakCount()) {
                 delete m_counter;
             }
             m_counter = NULL;
@@ -188,160 +428,6 @@ protected:
 protected:
     RefCount *m_counter;
     T * m_ptr;
-};
-
-//////////////////////////////////////////////////////////////////////////
-//
-//   operator
-//
-template<class T,  bool bx, class Q, bool by, typename MemMgr1, typename MemMgr2>
-bool operator<(const BasePtr<T, bx,MemMgr1> &lhs, const BasePtr<Q, by,MemMgr2> &rhs)
-{
-    // test if left pointer < right pointer
-    return lhs.get() < rhs.get();
-}
-
-template <class T, typename MemMgr> class weak_ptr;
-
-template<typename T>
-class StdMemMgr {
-public:
-    static void deallocate(T *p) { delete p; }
-    static T * allocate(void) { return new T(); }
-    template<typename A1> static T * allocate(A1 const &a1) { return new T(a1); }
-    template<typename A1, typename A2> static T * allocate(A1 const &a1, A2 const &a2) { return new T(a1, a2); }
-    template<typename A1, typename A2, typename A3> static T * allocate(A1 const &a1, A2 const &a2, A3 const &a3) { return new T(a1, a2, a3); }
-    template<typename A1, typename A2, typename A3, typename A4> static T * allocate(A1 const &a1, A2 const &a2, A3 const &a3, A4 const &a4) { return new T(a1, a2, a3, a4); }
-    template<typename A1, typename A2, typename A3, typename A4, typename A5> static T * allocate(A1 const &a1, A2 const &a2, A3 const &a3, A4 const &a4, A5 const &a5) { return new T(a1, a2, a3, a4, a5); }
-    template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6> static T * allocate(A1 const &a1, A2 const &a2, A3 const &a3, A4 const &a4, A5 const &a5, A6 const &a6) { return new T(a1, a2, a3, a4, a5, a6); }
-};
-
-template <class T, typename MemMgr=StdMemMgr<T> >
-class shared_ptr : public BasePtr<T,true, MemMgr>
-{
-    typedef BasePtr<T, true,MemMgr> BaseClass;
-public:
-    explicit shared_ptr(T* p = 0) : BaseClass(p)
-    {
-    }
-
-    shared_ptr(const shared_ptr& rhs) : BaseClass(rhs)
-    {
-    }
-
-    template<class Q, typename MemMgr2> 
-    shared_ptr(const shared_ptr<Q, MemMgr2> &rhs) : BaseClass(rhs)
-    {
-    }
-
-    // construct shared_ptr object that owns resource *rhs
-    template<class Q, typename MemMgr2> 
-    explicit shared_ptr(const weak_ptr<Q, MemMgr2> &rhs) : BaseClass(rhs)
-    {
-    }
-
-    ~shared_ptr()
-    {
-    }
-
-    shared_ptr& operator=(const shared_ptr &rhs)
-    {
-        BaseClass::operator = (rhs);
-        return *this;
-    }
-
-    template <class Q, typename MemMgr2> 
-    shared_ptr& operator=(const shared_ptr<Q, MemMgr2> &rhs)
-    {
-        BaseClass::operator = (rhs);
-        return *this;
-    }
-
-    template <class Q, typename MemMgr2>
-    shared_ptr& operator=(const weak_ptr<Q, MemMgr2> &rhs)
-    {
-        BaseClass::operator = (rhs);
-        return *this;
-    }
-};
-
-
-template <class T, typename MemMgr=StdMemMgr<T> >
-class weak_ptr : public BasePtr<T, false,MemMgr>
-{
-    typedef BasePtr<T, false,MemMgr> BaseClass;
-public:
-    // construct empty weak_ptr object
-    weak_ptr()
-    {
-
-    }
-
-    // construct weak_ptr object for resource owned by rhs
-    template<class Q, typename MemMgr2>
-    weak_ptr(const shared_ptr<Q, MemMgr2> &rhs) : BaseClass(rhs)
-    {
-    }
-
-    // construct weak_ptr object for resource pointed to by rhs
-    weak_ptr(const weak_ptr &rhs) : BaseClass(rhs)
-    {
-    }
-
-    // construct weak_ptr object for resource pointed to by rhs
-    template<class Q, typename MemMgr2>
-    weak_ptr(const weak_ptr<Q, MemMgr2> &rhs) : BaseClass(rhs)
-    {
-    }
-
-    ~weak_ptr()
-    {
-    }
-
-    weak_ptr& operator=(const weak_ptr &rhs)
-    {
-        BaseClass::operator =(rhs);
-        return *this;
-    }
-
-    template <class Q, typename MemMgr2>
-    weak_ptr& operator=(const weak_ptr<Q, MemMgr2> &rhs)
-    {
-        BaseClass::operator = (rhs);
-        return *this;
-    }
-
-    template <class Q, typename MemMgr2>
-    weak_ptr& operator=(const shared_ptr<Q, MemMgr2> &rhs)
-    {
-        BaseClass::operator = (rhs);
-        return *this;
-    }
-
-    // return true if resource no longer exists
-    bool expired() const
-    {
-        return BaseClass::m_counter ? BaseClass::m_counter->expired() : true;
-    }
-
-    // convert to shared_ptr
-    shared_ptr<T, MemMgr> lock() const
-    {
-        return shared_ptr<T, MemMgr>(*this);
-    }
-    
-protected:
-    
-    void release(void)
-    {
-        if (BaseClass::m_counter) {
-            BaseClass::m_counter->decrease();
-        }
-        
-        if (BaseClass::m_ptr) {
-            BaseClass::m_ptr = NULL;
-        }
-    }
     
 private:
     operator T*()   const ;
@@ -433,9 +519,9 @@ public:
 };
 
 template <class T, typename MemMgr=ArrayMemMgr<T> >
-class shared_array : public BasePtr<T, true,MemMgr>
+class shared_array : public shared_ptr<T, MemMgr>
 {
-    typedef BasePtr<T, true,MemMgr> BaseClass;
+    typedef BasePtr<T, MemMgr> BaseClass;
 public:
     explicit shared_array(T* p = 0) : BaseClass(p)
     {
