@@ -6,6 +6,7 @@
 
 NS_CC_YHGE_BEGIN
 
+//flat of smart pointer class
 namespace smart_ptr {
 
 class RefCount

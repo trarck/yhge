@@ -6,6 +6,7 @@
 
 NS_CC_YHGE_BEGIN
 
+//use inherit
 namespace smart_ptr {
 
 class ref_count
