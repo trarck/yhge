@@ -16,13 +16,13 @@ public:
     
     inline bool init(){return true;}
     
-    virtual void loadFromFile(const std::string& file);
+    virtual void loadFromFile(const std::string& file){};
     
-    virtual void loadFromContentString(const std::string& content);
+    virtual void loadFromContentString(const std::string& content){};
     
-    virtual void loadFromUrl(const std::string& url);
+    virtual void loadFromUrl(const std::string& url){};
     
-    virtual void unload();
+    virtual void unload(){};
 
 };
 
