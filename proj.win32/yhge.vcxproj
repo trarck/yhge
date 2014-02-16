@@ -112,6 +112,15 @@
     <ClInclude Include="..\yhge\Isometric\tile\parser\ISOXMLParser.h" />
     <ClInclude Include="..\yhge\Isometric\tile\reader\ISOTileMapBuilder.h" />
     <ClInclude Include="..\yhge\Isometric\tile\renderer\ISOComponentNode.h" />
+    <ClInclude Include="..\yhge\Jsoncpp\autolink.h" />
+    <ClInclude Include="..\yhge\Jsoncpp\config.h" />
+    <ClInclude Include="..\yhge\Jsoncpp\features.h" />
+    <ClInclude Include="..\yhge\Jsoncpp\forwards.h" />
+    <ClInclude Include="..\yhge\Jsoncpp\json.h" />
+    <ClInclude Include="..\yhge\Jsoncpp\json_batchallocator.h" />
+    <ClInclude Include="..\yhge\Jsoncpp\reader.h" />
+    <ClInclude Include="..\yhge\Jsoncpp\value.h" />
+    <ClInclude Include="..\yhge\Jsoncpp\writer.h" />
     <ClInclude Include="..\yhge\Math\MersenneTwister.h" />
     <ClInclude Include="..\yhge\Math\RandomMT.h" />
     <ClInclude Include="..\yhge\message.h" />
@@ -213,6 +222,9 @@
     <ClCompile Include="..\yhge\Isometric\tile\parser\ISOXMLParser.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\reader\ISOTileMapBuilder.cpp" />
     <ClCompile Include="..\yhge\Isometric\tile\renderer\ISOComponentNode.cpp" />
+    <ClCompile Include="..\yhge\Jsoncpp\json_reader.cpp" />
+    <ClCompile Include="..\yhge\Jsoncpp\json_value.cpp" />
+    <ClCompile Include="..\yhge\Jsoncpp\json_writer.cpp" />
     <ClCompile Include="..\yhge\Math\MersenneTwister.cpp" />
     <ClCompile Include="..\yhge\Math\RandomMT.cpp" />
     <ClCompile Include="..\yhge\Message\Message.cpp" />

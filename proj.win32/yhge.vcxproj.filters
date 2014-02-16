@@ -85,6 +85,9 @@
     <Filter Include="Datas">
       <UniqueIdentifier>{22f4be57-779b-411c-be77-588d84369653}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Jsoncpp">
+      <UniqueIdentifier>{ae693235-a7e9-43ea-8a4a-526d3a86c36f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h">
@@ -432,6 +435,33 @@
     <ClInclude Include="..\yhge\Datas\JSONData.h">
       <Filter>Datas</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\autolink.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\config.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\features.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\forwards.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\json.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\json_batchallocator.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\reader.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\value.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\writer.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -718,6 +748,15 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Datas\JSONData.cpp">
       <Filter>Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Jsoncpp\json_reader.cpp">
+      <Filter>Jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Jsoncpp\json_value.cpp">
+      <Filter>Jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Jsoncpp\json_writer.cpp">
+      <Filter>Jsoncpp</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
