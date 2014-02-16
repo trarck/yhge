@@ -251,4 +251,28 @@ CCArray* AnimationComponent::eightDirectionActionListWithDir(const char* dir ,in
 	return animations;
 }
 
+/**
+ * 从目录中取得8方向动画
+ * 关键帧是一张张图片。根据名子来确定方向
+ */
+static CCArray* eightDirectionActionListWithDirResource(const char* resource ,int frameCount ,CCSize frameSize ,float delay)
+{
+    CCArray* animations=CCArray::createWithCapacity(8);
+	
+	//move action
+	char str[255] = {0};
+	for (int i=0; i<8; i++) {
+		CCAnimation* animation = CCAnimation::create();
+		for (int j=0; j<frameCount; j++) {
+			sprintf(str,resource,i,j);//"xxx/xx/%02d%03d.png"
+			animation->addSpriteFrameWithFileName(str);
+		}
+		animation->setDelayPerUnit(delay);
+		animation->setRestoreOriginalFrame(true);
+		//animation.delay=delay;
+        animations->addObject(animation);
+	}
+	return animations;
+}
+
 NS_CC_YHGE_END
