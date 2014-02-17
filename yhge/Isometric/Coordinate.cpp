@@ -16,6 +16,7 @@ Coordinate::Coordinate()
 :m_xUnit(0)
 ,m_yUnit(0)
 ,m_zUnit(0)
+,m_halfYUnit(0)
 ,m_tileWidth(0)
 ,m_tileHeight(0)
 {
@@ -50,7 +51,7 @@ Coordinate* Coordinate::create()
     }
 }
 
-Coordinate* Coordinate::create(int width,int height)
+Coordinate* Coordinate::create(float width,float height)
 {
 	Coordinate* pRet=new Coordinate();
 	if (pRet && pRet->init(width,height)){ 
@@ -63,7 +64,7 @@ Coordinate* Coordinate::create(int width,int height)
     }
 }
 
-Coordinate* Coordinate::create(int xUnit,int yUnit,int zUnit)
+Coordinate* Coordinate::create(float xUnit,float yUnit,float zUnit)
 {
 	Coordinate* pRet=new Coordinate();
 	if (pRet && pRet->init(xUnit,yUnit,zUnit)){ 
@@ -76,21 +77,23 @@ Coordinate* Coordinate::create(int xUnit,int yUnit,int zUnit)
     }
 }
 
-void Coordinate::setTileSize(int width ,int height)
+void Coordinate::setTileSize(float width ,float height)
 {
 	m_tileWidth=width;
 	m_tileHeight=height;
 	
 	m_xUnit=width/2;
-	m_yUnit=height/2;
+	m_yUnit=height;
 	m_zUnit=height;
+    m_halfYUnit=m_yUnit/2;
 }
 
-void Coordinate::setCoordinateUnit(int xUnit ,int yUnit ,int zUnit)
+void Coordinate::setCoordinateUnit(float xUnit ,float yUnit ,float zUnit)
 {
 	m_xUnit=xUnit;
 	m_yUnit=yUnit;
 	m_zUnit=zUnit;
+    m_halfYUnit=m_yUnit/2;
 	
 	m_tileWidth=xUnit*2;
 	m_tileHeight=yUnit*2;
@@ -104,7 +107,7 @@ CCSize Coordinate::mapToScreenSize(int l ,int b ,int h)
 	
 	s=l+b;
 	width=s*m_xUnit;
-	height=s*m_yUnit+h*m_zUnit;
+	height=s*m_halfYUnit+h*m_zUnit;
 	size.width=width;
 	size.height=height;
 	return size;

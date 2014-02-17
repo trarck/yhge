@@ -15,26 +15,26 @@ public:
     
 	static Coordinate* sharedCoordinate();
 	static Coordinate* create();
-	static Coordinate* create(int width,int height);
-	static Coordinate* create(int xUnit,int yUnit,int zUnit);
+	static Coordinate* create(float width,float height);
+	static Coordinate* create(float xUnit,float yUnit,float zUnit);
 
-    bool init(){
+    inline bool init(){
 		return true;
 	}
-   	bool init(int width,int height)
+   	inline bool init(float width,float height)
 	{
 		setTileSize(width ,height);
 		return true;
 	}
 
-	bool init(int xUnit,int yUnit,int zUnit){
+	inline bool init(float xUnit,float yUnit,float zUnit){
 		setCoordinateUnit(xUnit ,yUnit ,zUnit);
 		return true;
 	}
 
-	void setTileSize(int width ,int height);
-	void setCoordinateUnit(int xUnit ,int yUnit ,int zUnit);
-	void setCoordinateUnit(int xUnit ,int yUnit);
+	void setTileSize(float width ,float height);
+	void setCoordinateUnit(float xUnit ,float yUnit ,float zUnit);
+	void setCoordinateUnit(float xUnit ,float yUnit);
 
 	//==============使用传值的方式==========================//
 	inline CCPoint isoViewToGame2F(float x,float y)
@@ -79,7 +79,7 @@ public:
 		double sx=x-y,sy=x+y;
 		CCPoint p;
 		p.x=sx*m_xUnit;//sx*32
-		p.y=sy*m_yUnit-z*m_zUnit;//sy*16-z*32
+		p.y=sy*m_halfYUnit-z*m_zUnit;//sy*16-z*32
 		return p;
 	}
     
@@ -88,7 +88,7 @@ public:
 		double sx=x-y,sy=x+y;
 		CCPoint p;
 		p.x=sx*m_xUnit;//sx*32
-		p.y=sy*m_yUnit;//sy*16
+		p.y=sy*m_halfYUnit;//sy*16
 		return p;
 	}
     
@@ -136,14 +136,14 @@ public:
 	{
 		double sx=x-y,sy=x+y;
 		destPoint->x=sx*m_xUnit;//sx*32
-		destPoint->y=sy*m_yUnit-z*m_zUnit;//sy*16-z*32
+		destPoint->y=sy*m_halfYUnit-z*m_zUnit;//sy*16-z*32
 	}
     
 	inline void isoGameToView2FP(float x, float y,CCPoint* destPoint)
 	{
 		double sx=x-y,sy=x+y;
 		destPoint->x=sx*m_xUnit;//sx*32
-		destPoint->y=sy*m_yUnit;//sy*16
+		destPoint->y=sy*m_halfYUnit;//sy*16
 	}
     
 	inline void isoGameToViewPointP(const CCPoint&  point,CCPoint* destPoint)
@@ -164,12 +164,13 @@ public:
     CCPoint mapToScreenAnchor(int l ,int b ,int h);
     
 private:
-	int m_xUnit;
-	int m_yUnit;
-	int m_zUnit;
+	float m_xUnit;
+	float m_yUnit;
+	float m_zUnit;
+	float m_halfYUnit;
 	
-	int m_tileWidth;
-	int m_tileHeight;
+	float m_tileWidth;
+	float m_tileHeight;
 };
 
 
