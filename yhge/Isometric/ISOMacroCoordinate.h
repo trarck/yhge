@@ -8,8 +8,8 @@
  *
  */
 
-#ifndef YHGE_ISOMETRIC_ISOCOORDINATE_H_
-#define YHGE_ISOMETRIC_ISOCOORDINATE_H_
+#ifndef YHGE_ISOMETRIC_ISOMACROCOORDINATE_H_
+#define YHGE_ISOMETRIC_ISOMACROCOORDINATE_H_
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
@@ -185,4 +185,4 @@ static inline void isoGameToViewPointP(const CCPoint&  point,CCPoint* destPoint)
 
 NS_CC_YHGE_END
 
-#endif //YHGE_ISOMETRIC_ISOCOORDINATE_H_
+#endif //YHGE_ISOMETRIC_ISOMACROCOORDINATE_H_
