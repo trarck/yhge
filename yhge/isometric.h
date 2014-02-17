@@ -2,7 +2,7 @@
 #define COCOS_YHGE_ISOMETRIC_H_
 
 //ISometric info base
-#include "Isometric/ISOCoordinate.h"
+#include "Isometric/ISOMacroCoordinate.h"
 #include "Isometric/Coordinate.h"
 #include "Isometric/ISOStaticCoordinate.h"
 
