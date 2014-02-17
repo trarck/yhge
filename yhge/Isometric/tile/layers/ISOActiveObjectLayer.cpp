@@ -1,10 +1,10 @@
 #include "ISOActiveObjectLayer.h"
-#include <yhge/Isometric/ISOCoordinate.h>
+#include <yhge/Isometric/CoordinateFormulae.h>
 #include "../ISOBases.h"
 #include "../ISOTileMap.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOActiveObjectLayer::ISOActiveObjectLayer()
 :m_layerName("")
@@ -106,4 +106,4 @@ CCString* ISOActiveObjectLayer::propertyNamed(const char *propertyName)
     return (CCString*)m_properties->objectForKey(propertyName);
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

@@ -2,12 +2,12 @@
 #define YHGE_ISOMETRIC_ISOGROUNDTILELAYER_H_
 
 #include "cocos2d.h"
-#include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/IsometricMacros.h>
 #include "../ISOInfos.h"
 #include "ISOTileLayer.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 /**
  * 直接把tile当做子元素进行渲染，没有进行任何优化。
@@ -81,6 +81,6 @@ protected:
 
 
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END
 
 #endif //YHGE_ISOMETRIC_ISOGROUNDTILELAYER_H_

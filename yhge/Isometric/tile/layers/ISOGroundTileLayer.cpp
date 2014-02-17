@@ -1,9 +1,8 @@
 #include "ISOGroundTileLayer.h"
-#include <yhge/Isometric/ISOCoordinate.h>
-#include <yhge/Isometric/ISOStaticCoordinate.h>
+#include <yhge/Isometric/CoordinateFormulae.h>
 #include "../ISOTileMap.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 // ISOGroundTileLayer - atlasIndex and Z
 static inline int compareInts(const void * a, const void * b)
@@ -216,4 +215,4 @@ CCSprite * ISOGroundTileLayer::appendTileForGID(unsigned int gid, const CCPoint&
     
     return tileSprite;
 }
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

@@ -2,9 +2,9 @@
 #define YHGE_ISOMETRIC_ISOCOMPONENTNODE_H_
 
 #include "cocos2d.h"
-#include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/IsometricMacros.h>
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 class ISOComponentNode : public CCSprite{
 
@@ -96,6 +96,6 @@ private:
 };
 
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END
 
 #endif //YHGE_ISOMETRIC_ISOCOMPONENTNODE_H_

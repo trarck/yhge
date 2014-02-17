@@ -1,7 +1,7 @@
 
 #include "ISOStaticCoordinateFormulae.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 #ifndef YHGE_ISO_DEFAULT_TILEWIDTH
 #define YHGE_ISO_DEFAULT_TILEWIDTH 64
@@ -41,4 +41,4 @@ void ISOStaticCoordinateFormulae::initCoordinateUnit(float xUnit,float yUnit,flo
 	sTileHeight=sTileWidth/2;//(xUnit+yUnit)/2;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

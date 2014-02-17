@@ -1,7 +1,7 @@
 #include "ISOMapObject.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOMapObject::ISOMapObject()
 :m_uGid(0)
@@ -29,4 +29,4 @@ bool ISOMapObject::init()
     return true;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

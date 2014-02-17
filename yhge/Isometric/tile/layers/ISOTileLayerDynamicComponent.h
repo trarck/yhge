@@ -2,11 +2,11 @@
 #define YHGE_ISOMETRIC_ISOTileLayerDynamicComponent_H_
 
 #include "cocos2d.h"
-#include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/IsometricMacros.h>
 #include "ISOOptimizedTileLayer.h"
 #include "ISOComponentNode.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 /**
  * 更加优化的动态显示layer.
@@ -75,6 +75,6 @@ protected:
 
 
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END
 
 #endif //YHGE_ISOMETRIC_ISOTileLayerDynamicComponent_H_

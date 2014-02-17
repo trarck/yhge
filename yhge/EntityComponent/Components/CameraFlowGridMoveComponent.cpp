@@ -6,6 +6,7 @@
 #include <yhge/Isometric/ISOCamera.h>
 
 USING_NS_CC;
+USING_NS_CC_YHGE_ISOMETRIC;
 
 NS_CC_YHGE_BEGIN
 

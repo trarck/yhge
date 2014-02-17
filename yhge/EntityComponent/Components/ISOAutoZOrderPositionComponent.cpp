@@ -1,8 +1,7 @@
 #include "ISOAutoZOrderPositionComponent.h"
 #include <yhge/message.h>
 #include <yhge/EntityComponent/Entity.h>
-#include <yhge/Isometric/ISOCoordinate.h>
-#include <yhge/Isometric/ISOStaticCoordinate.h>
+#include <yhge/Isometric/CoordinateFormulae.h>
 #include "ComponentMessageDefine.h"
 #include "RendererComponent.h"
 

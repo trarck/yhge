@@ -3,10 +3,10 @@
 #define YHGE_ISOMETRIC_SORTZINDEX_H_
 
 #include "cocos2d.h"
-#include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/IsometricMacros.h>
 #include "SortZIndexNode.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 /**
  * 物体接使用排序来确定zOrder值
@@ -103,6 +103,6 @@ protected:
 };
 
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END
 
 #endif //YHGE_ISOMETRIC_SORTZINDEX_H_

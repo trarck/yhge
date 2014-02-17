@@ -2,7 +2,7 @@
 #include "../ISOTileMap.h"
 #include "../IsoTileUtils.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 
 
@@ -109,4 +109,4 @@ CCSprite* ISODynamicTileLayer::createTile()
     this->addChild(cellTile);
     return cellTile;
 }
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

@@ -6,7 +6,7 @@
 #define YHGE_ISOMETRIC_ISOTILEMAP_H_
 
 #include "cocos2d.h"
-#include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/IsometricMacros.h>
 #include <yhge/Isometric/ISOMap.h>
 
 #include "ISOTileInterfaces.h"
@@ -18,7 +18,7 @@
 //#include "ISOXMLParser.h"
 #include "layers/ISODynamicGroup.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 /**
  * 地图分为二种层。
@@ -214,6 +214,6 @@ protected:
 
 
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END
 
 #endif //YHGE_ISOMETRIC_IOSTILEMAP_H_

@@ -8,7 +8,7 @@
 
 #include "Coordinate.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 static Coordinate* l_coordinate=NULL;
 
@@ -121,4 +121,4 @@ CCPoint Coordinate::mapToScreenAnchor(int l ,int b ,int h)
 	return p;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

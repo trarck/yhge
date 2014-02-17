@@ -1,7 +1,7 @@
 #include "ISOBatchDynamicTileLayer.h"
 #include "ISOBatchDynamicComponent.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 
 
@@ -37,4 +37,4 @@ bool ISOBatchDynamicTileLayer::init(CCSize& mapTileSize,CCPoint& offset)
     return false;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

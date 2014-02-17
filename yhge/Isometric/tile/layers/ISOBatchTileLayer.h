@@ -2,13 +2,13 @@
 #define YHGE_ISOMETRIC_ISOBATCHTILELAYER_H_
 
 #include "cocos2d.h"
-#include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/IsometricMacros.h>
 #include <yhge/CocosExt/Support/ccCArray.h>
 #include "../ISOInfos.h"
 #include "ISOTileLayer.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 /**
  * 使用batch node来渲染layer.(TMX的渲染方式)
@@ -108,6 +108,6 @@ protected:
 
 
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END
 
 #endif //YHGE_ISOMETRIC_ISOBATCHTILELAYER_H_

@@ -8,7 +8,7 @@
 
 #include "ZIndex.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ZIndex::ZIndex()
 :m_pStatics(NULL)
@@ -241,4 +241,4 @@ void ZIndex::setUpdate(SEL_SCHEDULE pfnUpdate)
     m_pfnUpdate=pfnUpdate;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

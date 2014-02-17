@@ -1,11 +1,10 @@
 #include "ISOTileLayer.h"
-#include <yhge/Isometric/ISOCoordinate.h>
-#include <yhge/Isometric/ISOStaticCoordinate.h>
+#include <yhge/Isometric/CoordinateFormulae.h.h>
 #include "../base/ISOTileset.h"
 #include "../ISOTileMap.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileLayer::ISOTileLayer()
 :m_startX(0)
@@ -285,4 +284,4 @@ void ISOTileLayer::setMap(ISOMap* pMap)
 {
     m_tileMap=static_cast<ISOTileMap*>(pMap);
 }
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

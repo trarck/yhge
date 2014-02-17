@@ -1,11 +1,10 @@
 #include "ISODynamicGroup.h"
-#include <yhge/Isometric/ISOCoordinate.h>
-#include <yhge/Isometric/ISOStaticCoordinate.h>
+#include <yhge/Isometric/CoordinateFormulae.h>
 #include "../base/ISOTile.h"
 #include "ISOTileLayer.h"
 #include "ISODynamicComponent.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 //const CCSize testSize=CCSizeMake(256,160);
 static const int kComponentExtendCount=2;
@@ -257,4 +256,4 @@ void ISODynamicGroup::removeDynamicComponent(ISODynamicComponent* dynamicCompone
 	m_pDynamiceComponentList->removeObject(dynamicComponent);
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

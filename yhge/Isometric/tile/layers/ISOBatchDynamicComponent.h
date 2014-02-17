@@ -2,11 +2,11 @@
 #define YHGE_ISOMETRIC_ISOBATCHDYNAMICCOMPONENT_H_
 
 #include "cocos2d.h"
-#include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/IsometricMacros.h>
 #include <yhge/Isometric/tile/base/ISOTile.h>
 #include "ISODynamicComponent.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 class ISOTileLayer;
 
@@ -33,6 +33,6 @@ protected:
 
 
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END
 
 #endif //YHGE_ISOMETRIC_ISOBATCHDYNAMICCOMPONENT_H_

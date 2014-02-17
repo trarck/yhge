@@ -1,9 +1,9 @@
 #ifndef YHGE_ISOMETRIC_ISOTILEINTERFACES_H_
 #define YHGE_ISOMETRIC_ISOTILEINTERFACES_H_
 
-#include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/IsometricMacros.h>
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 /**
  * 主要用于接收组件坐标更新
@@ -24,6 +24,6 @@ public:
     virtual CCSprite* createTile()=0;
 };
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END
 
 #endif // YHGE_ISOMETRIC_ISOTILEINTERFACES_H_

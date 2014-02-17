@@ -1,7 +1,7 @@
 #include "ISOObjectGroupInfo.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOObjectGroupInfo::ISOObjectGroupInfo()
 :m_sName("")
@@ -24,4 +24,4 @@ ISOObjectGroupInfo::~ISOObjectGroupInfo()
     CC_SAFE_RELEASE(m_pObjects);
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

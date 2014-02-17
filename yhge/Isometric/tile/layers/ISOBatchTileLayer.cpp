@@ -1,11 +1,10 @@
 #include "ISOBatchTileLayer.h"
-#include <yhge/Isometric/ISOCoordinate.h>
-#include <yhge/Isometric/ISOStaticCoordinate.h>
+#include <yhge/Isometric/CoordinateFormulae.h>
 #include <yhge/Isometric/tile/base/ISOTileset.h>
 
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 // ISOBatchTileLayer - atlasIndex and Z
 static inline int compareInts(const void * a, const void * b)
@@ -527,4 +526,4 @@ ISOTileset* ISOBatchTileLayer::getTileset()
     return m_pTileset;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

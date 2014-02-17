@@ -1,10 +1,11 @@
 #ifndef COCOS_YHGE_ISOMETRIC_H_
 #define COCOS_YHGE_ISOMETRIC_H_
 
+#include "Isometric/IsometricMacros.h"
+
 //ISometric info base
-#include "Isometric/ISOMacroCoordinate.h"
+#include "Isometric/CoordinateFormulae.h"
 #include "Isometric/Coordinate.h"
-#include "Isometric/ISOStaticCoordinate.h"
 
 //遮挡算法
 #include "Isometric/occlusion/ZIndexNode.h"

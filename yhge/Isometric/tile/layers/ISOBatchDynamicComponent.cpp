@@ -1,12 +1,11 @@
 #include "ISOBatchDynamicComponent.h"
-#include <yhge/Isometric/ISOCoordinate.h>
-#include <yhge/Isometric/ISOStaticCoordinate.h>
+#include <yhge/Isometric/CoordinateFormulae.h>
 #include <yhge/Isometric/tile/base/ISOTile.h>
 #include "ISOTileLayer.h"
 #include "ISOBatchDynamicTileLayer.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 //const CCSize testSize=CCSizeMake(256,160);
 
@@ -91,4 +90,4 @@ void ISOBatchDynamicComponent::updateNode(ISOComponentNode* node,float mx,float 
     }
     
 }
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

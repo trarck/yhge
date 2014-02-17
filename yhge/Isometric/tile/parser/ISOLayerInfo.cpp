@@ -1,6 +1,6 @@
 #include "ISOLayerInfo.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOLayerInfo::ISOLayerInfo()
 :m_sName("")
@@ -26,4 +26,4 @@ ISOLayerInfo::~ISOLayerInfo()
     }
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

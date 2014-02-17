@@ -12,7 +12,7 @@
 #define YHGE_ISOMETRIC_ISOMACROCOORDINATE_H_
 
 #include "cocos2d.h"
-#include <yhge/YHGEMacros.h>
+#include "IsometricMacros.h"
 
 //tile width 
 #ifndef TileWidth
@@ -46,7 +46,7 @@
 #endif
 //tileWidth=64,tileHeight=32
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 //==============使用传值的方式==========================//
 static inline CCPoint isoViewToGame2F(float x,float y)
@@ -183,6 +183,6 @@ static inline void isoGameToViewPointP(const CCPoint&  point,CCPoint* destPoint)
 	isoGameToView2FP(point.x,point.y,destPoint);
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END
 
 #endif //YHGE_ISOMETRIC_ISOMACROCOORDINATE_H_

@@ -1,10 +1,9 @@
 #include "ISOActiveSortLayer.h"
-#include <yhge/Isometric/ISOCoordinate.h>
-#include <yhge/Isometric/ISOStaticCoordinate.h>
+#include <yhge/Isometric/CoordinateFormulae.h>
 #include "../ISOTileMap.h"
 #include "../ISOInfos.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 enum ObjectType
 {
@@ -167,4 +166,4 @@ void ISOActiveSortLayer::updateDynamicObjectsZOrder(bool updateNode)
     }
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

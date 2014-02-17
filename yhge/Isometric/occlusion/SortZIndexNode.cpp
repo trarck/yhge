@@ -3,7 +3,7 @@
 
 #include "SortZIndexNode.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 SortZIndexNode::SortZIndexNode()
 :m_entity(NULL)
@@ -141,4 +141,4 @@ SortZIndexNode* SortZIndexNode::clone()
     return node;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

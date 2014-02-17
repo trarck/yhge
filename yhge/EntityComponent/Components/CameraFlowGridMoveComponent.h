@@ -5,7 +5,7 @@
 
 NS_CC_YHGE_BEGIN
 
-class ISOCamera;
+class isometric::ISOCamera;
 
 /**
  * 按地图的格子移动
@@ -79,7 +79,7 @@ protected:
 protected:
     
     //相机，弱引用
-    ISOCamera* m_camera;
+    isometric::ISOCamera* m_camera;
 
     //相机的上次位置
     CCPoint m_lastCameraPosition;

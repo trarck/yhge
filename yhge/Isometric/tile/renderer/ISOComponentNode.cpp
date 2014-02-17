@@ -1,7 +1,7 @@
 #include "ISOComponentNode.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOComponentNode::ISOComponentNode()
 :m_iColumn(0)
@@ -39,4 +39,4 @@ void ISOComponentNode::updateMapCoordinate(float mapX,float mapY)
 //	ccDrawRect(ccp(0,0),ccp(m_obContentSize.width,m_obContentSize.height));
 //}
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

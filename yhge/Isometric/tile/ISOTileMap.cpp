@@ -3,7 +3,7 @@
 #include "layers/ISOCoordinateLayer.h"
 #include "IsoTileUtils.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 static const int kCoordLineZOrder=10000;
 
@@ -377,4 +377,4 @@ void ISOTileMap::setUseDynamicGroup(bool useDynamicGroup)
 	//}
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

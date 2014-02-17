@@ -1,7 +1,7 @@
 #include "ISOOptimizedTileLayer.h"
 #include <yhge/Isometric/ISOCoordinate.h>
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 
 
@@ -251,4 +251,4 @@ void ISOOptimizedTileLayer::setScreenSize(const CCSize& screenSize)
     m_tScreenSize=screenSize;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

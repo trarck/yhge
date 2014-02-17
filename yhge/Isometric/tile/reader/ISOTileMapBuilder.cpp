@@ -3,7 +3,7 @@
 #include "../ISOLayers.h"
 #include "../ISOTileMap.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileMapBuilder::ISOTileMapBuilder()
 :m_pMap(NULL)
@@ -597,4 +597,4 @@ ISOActiveLayerInfo* ISOTileMapBuilder::getActiveLayerInfo(ISOMapInfo* mapInfo)
     return activeLayerInfo;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

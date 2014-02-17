@@ -1,7 +1,7 @@
 #include "ISOTilesetInfo.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTilesetInfo::ISOTilesetInfo()
 :m_sName("")
@@ -28,4 +28,4 @@ ISOTilesetInfo::~ISOTilesetInfo()
     CC_SAFE_RELEASE(m_pTiles);
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

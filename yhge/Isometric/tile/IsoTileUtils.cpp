@@ -1,6 +1,6 @@
 #include "ISOTileUtils.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 /**
  * 计算显示区域内，组件数量的行列数
@@ -13,4 +13,4 @@ void ISOTileUtils::calcDynamicComponetSize(const CCSize& visibleSize,const CCSiz
 	*row=floor(visibleSize.height/tileSize.height)+2;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

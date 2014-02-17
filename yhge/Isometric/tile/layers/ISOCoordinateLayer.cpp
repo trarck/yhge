@@ -1,10 +1,9 @@
 #include "ISOCoordinateLayer.h"
-#include <yhge/Isometric/ISOCoordinate.h>
-#include <yhge/Isometric/ISOStaticCoordinate.h>
+#include <yhge/Isometric/CoordinateFormulae.h>
 
 USING_NS_CC;
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOCoordinateLayer::ISOCoordinateLayer()
 :m_iMapWidth(0)
@@ -77,4 +76,4 @@ int ISOCoordinateLayer::getMapHeight()
     return m_iMapHeight;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

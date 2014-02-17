@@ -2,12 +2,12 @@
 #define YHGE_ISOMETRIC_ISOBATCHDYNAMICTILELAYER_H_
 
 #include "cocos2d.h"
-#include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/IsometricMacros.h>
 #include <yhge/Isometric/tile/base/ISOTileset.h>
 #include "ISODynamicTileLayer.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 /**
  * 动态更新可显示区域,只渲染显示区域的tile.
@@ -43,6 +43,6 @@ protected:
 
 
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END
 
 #endif //YHGE_ISOMETRIC_ISOBATCHDYNAMICTILELAYER_H_

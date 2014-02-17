@@ -1,7 +1,7 @@
 #include "ISOTileInfo.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileInfo::ISOTileInfo()
 :m_uId(0)
@@ -17,4 +17,4 @@ ISOTileInfo::~ISOTileInfo()
     CC_SAFE_RELEASE(m_pProperties);
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

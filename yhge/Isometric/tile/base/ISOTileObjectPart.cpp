@@ -1,7 +1,7 @@
 #include "ISOTileObjectPart.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileObjectPart::ISOTileObjectPart()
 :m_id(0)
@@ -20,4 +20,4 @@ ISOTileObjectPart::~ISOTileObjectPart()
 }
 
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

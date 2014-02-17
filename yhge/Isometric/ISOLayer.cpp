@@ -1,7 +1,7 @@
 #include "ISOLayer.h"
 #include "ISOMap.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOLayer::ISOLayer()
 :m_sLayerName("")
@@ -129,4 +129,4 @@ void ISOLayer::setMap(ISOMap* pMap)
     m_pMap = pMap;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

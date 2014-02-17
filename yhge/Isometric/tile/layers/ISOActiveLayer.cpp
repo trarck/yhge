@@ -1,12 +1,11 @@
 #include "ISOActiveLayer.h"
-#include <yhge/Isometric/ISOCoordinate.h>
-#include <yhge/Isometric/ISOStaticCoordinate.h>
+#include <yhge/Isometric/CoordinateFormulae.h>
 #include "../ISOBases.h"
 #include "../ISOInfos.h"
 #include "../ISOTileMap.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOActiveLayer::ISOActiveLayer()
 :m_objects(NULL)
@@ -112,4 +111,4 @@ void ISOActiveLayer::parseInternalProperties()
 
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

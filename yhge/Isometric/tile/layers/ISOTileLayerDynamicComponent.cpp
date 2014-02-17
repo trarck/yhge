@@ -3,7 +3,7 @@
 
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 //const CCSize testSize=CCSizeMake(256,160);
 
@@ -361,4 +361,4 @@ void ISOTileLayerDynamicComponent::scroll(float x,float y)
     this->scroll(ccp(x,y));
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

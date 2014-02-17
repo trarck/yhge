@@ -2,13 +2,13 @@
 #define YHGE_ISOMETRIC_ISOACTIVESORTLAYER_H_
 
 #include "cocos2d.h"
-#include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/IsometricMacros.h>
 #include <yhge/Isometric/occlusion/SortZIndex.h>
 #include "../ISOBases.h"
 #include "../ISOInfos.h"
 #include "ISOActiveLayer.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 /**
  * 活动层。
@@ -135,6 +135,6 @@ protected:
 };
 
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END
 
 #endif //YHGE_ISOMETRIC_ISOACTIVESORTLAYER_H_

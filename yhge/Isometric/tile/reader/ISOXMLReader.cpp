@@ -10,7 +10,7 @@
 
 using namespace std;
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 /*
  void tmx_startElement(void *ctx, const xmlChar *name, const xmlChar **atts);
@@ -606,4 +606,4 @@ void ISOXMLReader::setMap(ISOTileMap* pMap)
 }
 
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

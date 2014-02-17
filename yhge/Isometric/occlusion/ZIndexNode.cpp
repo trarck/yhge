@@ -3,7 +3,7 @@
 
 #include "ZIndexNode.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ZIndexNode::ZIndexNode()
 :m_pEntity(NULL)
@@ -36,4 +36,4 @@ CCObject* ZIndexNode::getEntity()
     return m_pEntity;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

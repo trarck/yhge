@@ -1,7 +1,7 @@
 #include "ISOMap.h"
 #include "ISOLayer.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 static const int kCoordLineZOrder=10000;
 
@@ -209,4 +209,4 @@ void ISOMap::setActiveLayer(ISOLayer* activeLayer)
     m_activeLayer = activeLayer;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

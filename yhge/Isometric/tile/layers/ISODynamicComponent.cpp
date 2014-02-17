@@ -1,11 +1,10 @@
 #include "ISODynamicComponent.h"
 #include <yhge/CocosExt/CCDefaultTexture.h>
-#include <yhge/Isometric/ISOCoordinate.h>
-#include <yhge/Isometric/ISOStaticCoordinate.h>
+#include <yhge/Isometric/CoordinateFormulae.h>
 #include "../base/ISOTile.h"
 #include "ISOTileLayer.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 static const int kComponentExtendCount=2;
 
@@ -456,4 +455,4 @@ ISOTileLayer* ISODynamicComponent::getTileLayer()
     return m_pTileLayer;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

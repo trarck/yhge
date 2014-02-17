@@ -1,6 +1,6 @@
 #include "ISOMapInfo.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOMapInfo::ISOMapInfo()
 :m_tMapSize(CCSizeZero)
@@ -119,4 +119,4 @@ CCDictionary* ISOMapInfo::getProperties()
     return m_pProperties;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

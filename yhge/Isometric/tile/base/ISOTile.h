@@ -2,9 +2,9 @@
 #define YHGE_ISOMETRIC_ISOTILE_H_
 
 #include "cocos2d.h"
-#include <yhge/YHGEMacros.h>
+#include <yhge/Isometric/IsometricMacros.h>
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 class ISOTileset;
 
@@ -105,6 +105,6 @@ protected:
 };
 
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END
 
 #endif //YHGE_ISOMETRIC_ISOTILE_H_

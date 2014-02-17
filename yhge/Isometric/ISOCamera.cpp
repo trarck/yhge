@@ -3,7 +3,7 @@
 
 USING_NS_CC;
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 static const float kVisibleMax=3.402823466e+28F;
 static const float kVisibleMin=-kVisibleMax;
@@ -224,4 +224,4 @@ CCPoint ISOCamera::modifyPositionInRange(const CCPoint& position)
     return newPos;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

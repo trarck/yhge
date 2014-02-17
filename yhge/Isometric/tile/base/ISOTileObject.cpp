@@ -1,7 +1,7 @@
 #include "ISOTileObject.h"
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileObject::ISOTileObject()
 :m_uGid(0)
@@ -95,4 +95,4 @@ CCDictionary* ISOTileObject::getProperties()
     return m_pProperties;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END

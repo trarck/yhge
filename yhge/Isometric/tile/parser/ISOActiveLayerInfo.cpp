@@ -1,6 +1,6 @@
 #include "ISOActiveLayerInfo.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOActiveLayerInfo::ISOActiveLayerInfo()
 :m_sName("")
@@ -22,4 +22,4 @@ ISOActiveLayerInfo::~ISOActiveLayerInfo()
     CC_SAFE_RELEASE_NULL(m_objects);
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_ISOMETRIC_END
