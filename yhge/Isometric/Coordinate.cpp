@@ -95,8 +95,8 @@ void Coordinate::setCoordinateUnit(float xUnit ,float yUnit ,float zUnit)
 	m_zUnit=zUnit;
     m_halfYUnit=m_yUnit/2;
 	
-	m_tileWidth=xUnit*2;
-	m_tileHeight=yUnit*2;
+	m_tileWidth=xUnit+yUnit;
+	m_tileHeight=m_tileWidth/2;//(xUnit+yUnit)/2
 }
 
 CCSize Coordinate::mapToScreenSize(int l ,int b ,int h)

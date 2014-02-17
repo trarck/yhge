@@ -37,8 +37,8 @@ void ISOStaticCoordinate::initCoordinateUnit(float xUnit,float yUnit,float zUnit
 	sZUnit=zUnit;
     sHalfYUnit=sYUnit/2;
 
-	sTileWidth=xUnit*2;
-	sTileHeight=yUnit*2;
+	sTileWidth=xUnit+yUnit;
+	sTileHeight=sTileWidth/2;//(xUnit+yUnit)/2;
 }
 
 NS_CC_YHGE_END

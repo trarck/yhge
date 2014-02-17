@@ -16,12 +16,31 @@
 
 NS_CC_YHGE_BEGIN
 
+/**
+ @brief formulae
+ x,y,z is space coord.left handle coord system.x point left,y point top,z point front
+ x',y' is pix coord
+ ux,uy,uz is space unit to pix
+ 
+ x'=x*ux-z*uz;
+ y'=y*uy+(x*ux+z*uz)/2;
+ 
+ x=(x'/2+y'-y)/ux;
+ z=(-x'/2+y'-y)/uz
+ 
+ 如果单位坐标值相等
+ x=x'/TileWidth+y'/TileHeight;
+ z=-x'/TileWidth+y'/TileHeight;
+ */
 class ISOStaticCoordinate:public CCObject
 {
 public:
 
 	static void initTileSize(float tileWidth,float tileHeight);
  
+    /**
+     *@brief 通常各分轴单位是一样的。
+     */
 	static void initCoordinateUnit(float xUnit,float yUnit,float zUnit);
 
 	//==============使用传值的方式==========================//
