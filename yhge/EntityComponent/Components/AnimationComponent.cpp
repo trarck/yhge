@@ -255,11 +255,11 @@ CCArray* AnimationComponent::eightDirectionActionListWithDir(const char* dir ,in
  * 从目录中取得8方向动画
  * 关键帧是一张张图片。根据名子来确定方向
  */
-CCArray* eightDirectionActionListWithDirResource(const char* resource ,int frameCount ,CCSize frameSize ,float delay)
+CCArray* AnimationComponent::eightDirectionActionListWithDirResource(const char* resource ,int frameCount ,CCSize frameSize ,float delay)
 {
     CCArray* animations=CCArray::createWithCapacity(8);
 	
-	//move action
+	//move actiongit
 	char str[255] = {0};
 	for (int i=0; i<8; i++) {
 		CCAnimation* animation = CCAnimation::create();
