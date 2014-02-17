@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		574A56A818B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56A618B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp */; };
+		574A56AB18B2130700518953 /* StaticTopViewCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56A918B2130700518953 /* StaticTopViewCoordinateFormulae.cpp */; };
 		57525CEB18AC690C00166633 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE418AC690C00166633 /* json_reader.cpp */; };
 		57525CEC18AC690C00166633 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE518AC690C00166633 /* json_value.cpp */; };
 		57525CED18AC690C00166633 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE718AC690C00166633 /* json_writer.cpp */; };
@@ -130,6 +132,11 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		574A56A518B1F98D00518953 /* DimetricMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DimetricMacros.h; sourceTree = "<group>"; };
+		574A56A618B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticSideViewCoordinateFormulae.cpp; sourceTree = "<group>"; };
+		574A56A718B1F98D00518953 /* StaticSideViewCoordinateFormulae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticSideViewCoordinateFormulae.h; sourceTree = "<group>"; };
+		574A56A918B2130700518953 /* StaticTopViewCoordinateFormulae.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticTopViewCoordinateFormulae.cpp; sourceTree = "<group>"; };
+		574A56AA18B2130700518953 /* StaticTopViewCoordinateFormulae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticTopViewCoordinateFormulae.h; sourceTree = "<group>"; };
 		57525CC718AB836A00166633 /* SqliteMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteMacros.h; sourceTree = "<group>"; };
 		57525CDC18AC690C00166633 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
 		57525CDD18AC690C00166633 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -428,6 +435,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		574A56A418B1F98D00518953 /* Dimetric */ = {
+			isa = PBXGroup;
+			children = (
+				574A56A518B1F98D00518953 /* DimetricMacros.h */,
+				574A56A618B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp */,
+				574A56A718B1F98D00518953 /* StaticSideViewCoordinateFormulae.h */,
+				574A56A918B2130700518953 /* StaticTopViewCoordinateFormulae.cpp */,
+				574A56AA18B2130700518953 /* StaticTopViewCoordinateFormulae.h */,
+			);
+			path = Dimetric;
+			sourceTree = "<group>";
+		};
 		57525CDB18AC690C00166633 /* Jsoncpp */ = {
 			isa = PBXGroup;
 			children = (
@@ -597,6 +616,7 @@
 				577A7838186BF56500F1B5D5 /* Arithmetic */,
 				577A7843186BF56500F1B5D5 /* CocosExt */,
 				57A76A0C18ACB2D80014DEC9 /* Datas */,
+				574A56A418B1F98D00518953 /* Dimetric */,
 				57C3373E1888C3A1008B5618 /* EntityComponent */,
 				577A7865186BF56500F1B5D5 /* Event */,
 				577A7874186BF56500F1B5D5 /* FSM */,
@@ -996,6 +1016,7 @@
 				577A7906186BF56500F1B5D5 /* Event.cpp in Sources */,
 				57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */,
 				57928424188E82EC00B46136 /* ISOMap.cpp in Sources */,
+				574A56A818B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp in Sources */,
 				57CF770018AB0A480085A22F /* DictionaryData.cpp in Sources */,
 				576E3FBA187D4BFB00745A0A /* ISOTilesetGroup.cpp in Sources */,
 				577A78F4186BF56500F1B5D5 /* Astar.cpp in Sources */,
@@ -1052,6 +1073,7 @@
 				576E3FC1187D4BFB00745A0A /* ISODynamicTileLayer.cpp in Sources */,
 				577A78FE186BF56500F1B5D5 /* ccCArray.cpp in Sources */,
 				57928428188F5BD400B46136 /* ISOLayer.cpp in Sources */,
+				574A56AB18B2130700518953 /* StaticTopViewCoordinateFormulae.cpp in Sources */,
 				577A790B186BF56500F1B5D5 /* UIEvent.cpp in Sources */,
 				57975ACB18973A4A008A9F38 /* SceenCoordMoveComponent.cpp in Sources */,
 			);
