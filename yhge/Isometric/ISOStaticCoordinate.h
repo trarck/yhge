@@ -67,7 +67,7 @@ public:
 		double sx=x-y,sy=x+y;
 		CCPoint p;
 		p.x=sx*sXUnit;//sx*32
-		p.y=sy*sYUnit-z*sZUnit;//sy*16-z*32
+		p.y=sy*sHalfYUnit-z*sZUnit;//sy*16-z*32
 		return p;
 	}
 
@@ -76,7 +76,7 @@ public:
 		double sx=x-y,sy=x+y;
 		CCPoint p;
 		p.x=sx*sXUnit;//sx*32
-		p.y=sy*sYUnit;//sy*16
+		p.y=sy*sHalfYUnit;//sy*16
 		return p;
 	}
 
@@ -124,14 +124,14 @@ public:
 	{
 		double sx=x-y,sy=x+y;
 		destPoint->x=sx*sXUnit;//sx*32
-		destPoint->y=sy*sYUnit-z*sZUnit;//sy*16-z*32
+		destPoint->y=sy*sHalfYUnit-z*sZUnit;//sy*16-z*32
 	}
 
 	static inline void isoGameToView2FP(float x, float y,CCPoint* destPoint)
 	{
 		double sx=x-y,sy=x+y;
 		destPoint->x=sx*sXUnit;//sx*32
-		destPoint->y=sy*sYUnit;//sy*16
+		destPoint->y=sy*sHalfYUnit;//sy*16
 	}
 
 	static inline void isoGameToViewPointP(const CCPoint&  point,CCPoint* destPoint)
@@ -143,9 +143,11 @@ public:
 
 	static float sTileWidth;
 	static float sTileHeight;
+    //空间坐标的单位，对应空间的像素值。正常坐标系下，x,y,z单位值是一致的。
 	static float sXUnit;
 	static float sYUnit;
 	static float sZUnit;
+    static float sHalfYUnit;
 };
 
 NS_CC_YHGE_END

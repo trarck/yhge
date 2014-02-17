@@ -34,7 +34,11 @@
 #endif
 
 #ifndef YUnit
-#define YUnit TileHeight/2 
+#define YUnit TileHeight
+#endif
+
+#ifndef HalfYUnit
+#define HalfYUnit YUnit/2
 #endif
 
 #ifndef ZUnit
@@ -87,7 +91,7 @@ static inline CCPoint isoGameToView3F(float x ,float y ,float z)
 	double sx=x-y,sy=x+y;
 	CCPoint p;
 	p.x=sx*XUnit;//sx*32
-	p.y=sy*YUnit-z*ZUnit;//sy*16-z*32
+	p.y=sy*HalfYUnit-z*ZUnit;//sy*16-z*32
 	return p;
 }
 
@@ -96,7 +100,7 @@ static inline CCPoint isoGameToView2F(float x, float y)
 	double sx=x-y,sy=x+y;
 	CCPoint p;
 	p.x=sx*XUnit;//sx*32
-	p.y=sy*YUnit;//sy*16
+	p.y=sy*HalfYUnit;//sy*16
 	return p;
 }
 
@@ -109,14 +113,14 @@ static inline CCPoint isoGameToViewPoint(const CCPoint&  point)
 static inline float isoGameToViewY3F(float x ,float y ,float z)
 {
 	double sy=x+y;
-	sy=sy*YUnit-z*ZUnit;//sy*16-z*32
+	sy=sy*HalfYUnit-z*ZUnit;//sy*16-z*32
 	return sy;
 }
 
 //只取得y方向的值,通常用于遮挡值
 static inline float isoGameToViewY2F(float x, float y)
 {
-	return (x+y)*YUnit;//sy=x+y;sy*16
+	return (x+y)*HalfYUnit;//sy=x+y;sy*16
 }
 
 //只取得y方向的值,通常用于遮挡值
@@ -164,14 +168,14 @@ static inline void isoGameToView3FP(float x ,float y ,float z,CCPoint* destPoint
 {
 	double sx=x-y,sy=x+y;
 	destPoint->x=sx*XUnit;//sx*32
-	destPoint->y=sy*YUnit-z*ZUnit;//sy*16-z*32
+	destPoint->y=sy*HalfYUnit-z*ZUnit;//sy*16-z*32
 }
 
 static inline void isoGameToView2FP(float x, float y,CCPoint* destPoint)
 {
 	double sx=x-y,sy=x+y;
 	destPoint->x=sx*XUnit;//sx*32
-	destPoint->y=sy*YUnit;//sy*16
+	destPoint->y=sy*HalfYUnit;//sy*16
 }
 
 static inline void isoGameToViewPointP(const CCPoint&  point,CCPoint* destPoint)
