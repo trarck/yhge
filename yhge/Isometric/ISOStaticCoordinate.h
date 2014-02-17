@@ -59,7 +59,7 @@ public:
 		return isoViewToGame2F(point.x,point.y);
 	}
 
-	static inline CCPoint isoViewToGameGrid2F (float x,float  y)
+	static inline CCPoint isoViewToGameCell2F (float x,float  y)
 	{
 		CCPoint p=isoViewToGame2F(x,y);
 		p.x=floor(p.x);
@@ -67,19 +67,10 @@ public:
 		return p;
 	}
 
-	static inline CCPoint isoViewToGameGridPoint (const CCPoint& point)
+	static inline CCPoint isoViewToGameCellPoint (const CCPoint& point)
 	{
-		return isoViewToGameGrid2F(point.x,point.y);
+		return isoViewToGameCell2F(point.x,point.y);
 	}
-
-	static inline CCPoint isoViewToGameCell2F (float x,float  y)
-	{
-		CCPoint p=isoViewToGame2F(x,y);
-		p.x=(int)p.x;
-		p.y=(int)p.y;
-		return p;
-	}
-
 
 	static inline CCPoint isoGameToView3F(float x ,float y ,float z)
 	{
@@ -119,25 +110,17 @@ public:
 		isoViewToGame2FP(point.x,point.y,destPoint);
 	}
 
-	static inline void isoViewToGameGrid2FP(float x,float  y,CCPoint* destPoint)
+	static inline void isoViewToGameCell2FP(float x,float  y,CCPoint* destPoint)
 	{
 		isoViewToGame2FP(x,y,destPoint);
 		destPoint->x=floor(destPoint->x);
 		destPoint->y=floor(destPoint->y);
 	}
 
-	static inline void isoViewToGameGridPointP (const CCPoint& point,CCPoint* destPoint)
+	static inline void isoViewToGameCellPointP (const CCPoint& point,CCPoint* destPoint)
 	{
-		isoViewToGameGrid2FP(point.x,point.y,destPoint);
+		isoViewToGameCell2FP(point.x,point.y,destPoint);
 	}
-
-	static inline void isoViewToGameCell2FP(float x,float  y,CCPoint* destPoint)
-	{
-		isoViewToGame2FP(x,y,destPoint);
-		destPoint->x=(int)destPoint->x;
-		destPoint->y=(int)destPoint->y;
-	}
-
 
 	static inline void isoGameToView3FP(float x ,float y ,float z,CCPoint* destPoint)
 	{
