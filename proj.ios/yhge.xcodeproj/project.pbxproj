@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		574A56A818B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56A618B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp */; };
 		574A56AB18B2130700518953 /* StaticTopViewCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56A918B2130700518953 /* StaticTopViewCoordinateFormulae.cpp */; };
+		574A56AE18B217B100518953 /* ISOStaticCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56AC18B217B100518953 /* ISOStaticCoordinateFormulae.cpp */; };
 		57525CEB18AC690C00166633 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE418AC690C00166633 /* json_reader.cpp */; };
 		57525CEC18AC690C00166633 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE518AC690C00166633 /* json_value.cpp */; };
 		57525CED18AC690C00166633 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE718AC690C00166633 /* json_writer.cpp */; };
@@ -137,6 +138,8 @@
 		574A56A718B1F98D00518953 /* StaticSideViewCoordinateFormulae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticSideViewCoordinateFormulae.h; sourceTree = "<group>"; };
 		574A56A918B2130700518953 /* StaticTopViewCoordinateFormulae.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticTopViewCoordinateFormulae.cpp; sourceTree = "<group>"; };
 		574A56AA18B2130700518953 /* StaticTopViewCoordinateFormulae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticTopViewCoordinateFormulae.h; sourceTree = "<group>"; };
+		574A56AC18B217B100518953 /* ISOStaticCoordinateFormulae.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOStaticCoordinateFormulae.cpp; sourceTree = "<group>"; };
+		574A56AD18B217B100518953 /* ISOStaticCoordinateFormulae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOStaticCoordinateFormulae.h; sourceTree = "<group>"; };
 		57525CC718AB836A00166633 /* SqliteMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteMacros.h; sourceTree = "<group>"; };
 		57525CDC18AC690C00166633 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
 		57525CDD18AC690C00166633 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -485,6 +488,8 @@
 				57928423188E82EC00B46136 /* ISOMap.h */,
 				57973E6018978FD4009C956E /* ISOStaticCoordinate.cpp */,
 				57973E6118978FD4009C956E /* ISOStaticCoordinate.h */,
+				574A56AC18B217B100518953 /* ISOStaticCoordinateFormulae.cpp */,
+				574A56AD18B217B100518953 /* ISOStaticCoordinateFormulae.h */,
 			);
 			path = Isometric;
 			sourceTree = "<group>";
@@ -1072,6 +1077,7 @@
 				5771056918837C3E00FA1446 /* IsoTileUtils.cpp in Sources */,
 				576E3FC1187D4BFB00745A0A /* ISODynamicTileLayer.cpp in Sources */,
 				577A78FE186BF56500F1B5D5 /* ccCArray.cpp in Sources */,
+				574A56AE18B217B100518953 /* ISOStaticCoordinateFormulae.cpp in Sources */,
 				57928428188F5BD400B46136 /* ISOLayer.cpp in Sources */,
 				574A56AB18B2130700518953 /* StaticTopViewCoordinateFormulae.cpp in Sources */,
 				577A790B186BF56500F1B5D5 /* UIEvent.cpp in Sources */,
