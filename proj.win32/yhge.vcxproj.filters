@@ -462,6 +462,12 @@
     <ClInclude Include="..\yhge\Jsoncpp\writer.h">
       <Filter>Jsoncpp</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\ISOStaticCoordinateFormulae.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\IsometricMacros.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -757,6 +763,9 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Jsoncpp\json_writer.cpp">
       <Filter>Jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinateFormulae.cpp">
+      <Filter>Isometric</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

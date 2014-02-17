@@ -70,7 +70,9 @@
     <ClInclude Include="..\yhge\Isometric\ISOCoordinate.h" />
     <ClInclude Include="..\yhge\Isometric\ISOLayer.h" />
     <ClInclude Include="..\yhge\Isometric\ISOMap.h" />
+    <ClInclude Include="..\yhge\Isometric\IsometricMacros.h" />
     <ClInclude Include="..\yhge\Isometric\ISOStaticCoordinate.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOStaticCoordinateFormulae.h" />
     <ClInclude Include="..\yhge\Isometric\occlusion\SortZIndex.h" />
     <ClInclude Include="..\yhge\Isometric\occlusion\SortZIndexNode.h" />
     <ClInclude Include="..\yhge\Isometric\occlusion\ZIndex.h" />
@@ -185,6 +187,7 @@
     <ClCompile Include="..\yhge\Isometric\ISOLayer.cpp" />
     <ClCompile Include="..\yhge\Isometric\ISOMap.cpp" />
     <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinate.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinateFormulae.cpp" />
     <ClCompile Include="..\yhge\Isometric\occlusion\SortZIndex.cpp" />
     <ClCompile Include="..\yhge\Isometric\occlusion\SortZIndexNode.cpp" />
     <ClCompile Include="..\yhge\Isometric\occlusion\ZIndex.cpp" />
