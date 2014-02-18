@@ -140,6 +140,8 @@
 		574A56AA18B2130700518953 /* StaticTopViewCoordinateFormulae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticTopViewCoordinateFormulae.h; sourceTree = "<group>"; };
 		574A56AC18B217B100518953 /* ISOStaticCoordinateFormulae.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOStaticCoordinateFormulae.cpp; sourceTree = "<group>"; };
 		574A56AD18B217B100518953 /* ISOStaticCoordinateFormulae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOStaticCoordinateFormulae.h; sourceTree = "<group>"; };
+		574A56AF18B2F15B00518953 /* CoordinateFormulae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateFormulae.h; sourceTree = "<group>"; };
+		574A56B018B2F15B00518953 /* IsometricMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsometricMacros.h; sourceTree = "<group>"; };
 		57525CC718AB836A00166633 /* SqliteMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteMacros.h; sourceTree = "<group>"; };
 		57525CDC18AC690C00166633 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
 		57525CDD18AC690C00166633 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -479,9 +481,11 @@
 				576E3F75187D4BFB00745A0A /* tile */,
 				576E3F71187D4BFB00745A0A /* Coordinate.cpp */,
 				576E3F72187D4BFB00745A0A /* Coordinate.h */,
+				574A56AF18B2F15B00518953 /* CoordinateFormulae.h */,
 				5771056A18838D7200FA1446 /* ISOCamera.cpp */,
 				5771056B18838D7200FA1446 /* ISOCamera.h */,
 				576E3F73187D4BFB00745A0A /* ISOMacroCoordinate.h */,
+				574A56B018B2F15B00518953 /* IsometricMacros.h */,
 				57928426188F5BD400B46136 /* ISOLayer.cpp */,
 				57928427188F5BD400B46136 /* ISOLayer.h */,
 				57928422188E82EC00B46136 /* ISOMap.cpp */,
