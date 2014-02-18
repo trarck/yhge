@@ -5,7 +5,10 @@
 
 NS_CC_YHGE_BEGIN
 
-class isometric::ISOCamera;
+//前置声明
+namespace isometric {
+    class ISOCamera;
+}
 
 /**
  * 按地图的格子移动
@@ -30,12 +33,12 @@ public:
      */
     void updatePath(float delta);
 
-    void setCamera(ISOCamera* camera)
+    void setCamera(isometric::ISOCamera* camera)
     {
         m_camera = camera;
     }
 
-    ISOCamera* getCamera()
+    isometric::ISOCamera* getCamera()
     {
         return m_camera;
     }

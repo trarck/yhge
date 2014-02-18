@@ -1,5 +1,5 @@
 #include "ISOTileLayer.h"
-#include <yhge/Isometric/CoordinateFormulae.h.h>
+#include <yhge/Isometric/CoordinateFormulae.h>
 #include "../base/ISOTileset.h"
 #include "../ISOTileMap.h"
 
