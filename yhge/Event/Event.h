@@ -46,7 +46,7 @@ public:
         m_sType=type;
     }
 
-    inline std::string getType()
+    inline const std::string& getType()
     {
         return m_sType;
     }
