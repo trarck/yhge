@@ -30,6 +30,7 @@
 #include "Event/EventHandle.h"
 #include "Event/EventHandleWrap.h"
 #include "Event/EventListenerManager.h"
+#include "Event/StringifyEventListenerManager.h"
 
 //math
 #include "Math/MersenneTwister.h"

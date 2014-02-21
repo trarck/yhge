@@ -4,7 +4,6 @@ NS_CC_YHGE_BEGIN
 
 Event::Event()
 :m_sType("")
-,m_iType(0)
 ,m_pTarget(NULL)
 ,m_pCurrentTarget(NULL)
 ,m_nEventPhase(0)
@@ -27,20 +26,6 @@ Event::~Event()
 bool Event::initEvent(const std::string &eventType, bool canBubble, bool cancelable)
 {
     m_sType=eventType;
-    m_bBubbles=canBubble;
-    m_bCancelable=cancelable;
-    
-    m_nTimeStamp=0;
-
-    m_bDispatchStopped=false;
-    m_bNoDefault=false;
-
-    return true;
-}
-
-bool Event::initEvent(int eventType, bool canBubble, bool cancelable)
-{
-    m_iType=eventType;
     m_bBubbles=canBubble;
     m_bCancelable=cancelable;
     

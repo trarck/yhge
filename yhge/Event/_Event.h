@@ -1,5 +1,5 @@
-#ifndef YHGE_EVENT_EVENT_H_
-#define YHGE_EVENT_EVENT_H_
+#ifndef YHGE_EVENT_CCEVENT_H_
+#define YHGE_EVENT_CCEVENT_H_
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
@@ -22,12 +22,6 @@ public:
     bool initEvent(const std::string &eventType, bool canBubble, bool cancelable);
 
     inline bool initEvent(const std::string &eventType){
-        return initEvent(eventType,true,true);
-    }
-	
-    bool initEvent(int eventType, bool canBubble, bool cancelable);
-
-    inline bool initEvent(int eventType){
         return initEvent(eventType,true,true);
     }
     
@@ -55,21 +49,6 @@ public:
     inline const std::string& getType()
     {
         return m_sType;
-    }
-	
-    inline const std::string& getStrType()
-    {
-        return m_sType;
-    }
-	
-    inline void setType(int type)
-    {
-        m_iType=type;
-    }
-
-    inline int getIntType()
-    {
-        return m_iType;
     }
 
     inline void setTarget(CCNode* pTarget)
@@ -149,12 +128,8 @@ public:
     }
 
 protected:
-    /**event string 类型*/
+    /**event类型*/
     std::string m_sType;
-	
-    /**event int 类型*/
-    int m_iType;
-	
     /**event目标*/
     CCNode* m_pTarget;
     /**event 当前处理目标*/
@@ -184,4 +159,4 @@ typedef yhge::Event YHEvent;
 
 NS_CC_YHGE_END
 
-#endif  // YHGE_EVENT_EVENT_H_
+#endif  // YHGE_EVENT_CCEVENT_H_

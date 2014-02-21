@@ -1,36 +1,36 @@
-#include "EventListenerManager.h"
+#include "StringifyEventListenerManager.h"
 
 NS_CC_YHGE_BEGIN
 
-static EventListenerManager* s_sharedEventListenerManager=NULL;
+static StringifyEventListenerManager* s_sharedStringifyEventListenerManager=NULL;
 
-EventListenerManager::EventListenerManager()
+StringifyEventListenerManager::StringifyEventListenerManager()
 :m_pListeners(NULL)
 {
 
 }
 
-EventListenerManager::~EventListenerManager()
+StringifyEventListenerManager::~StringifyEventListenerManager()
 {
 	CC_SAFE_RELEASE(m_pListeners);
 }
 
-bool EventListenerManager::init()
+bool StringifyEventListenerManager::init()
 {
 	m_pListeners=new CCDictionary();
     return true;
 }
 
-EventListenerManager* EventListenerManager::sharedEventListenerManager()
+StringifyEventListenerManager* StringifyEventListenerManager::sharedStringifyEventListenerManager()
 {
-    if(!s_sharedEventListenerManager){
-        s_sharedEventListenerManager=new EventListenerManager();
-        s_sharedEventListenerManager->init();
+    if(!s_sharedStringifyEventListenerManager){
+        s_sharedStringifyEventListenerManager=new StringifyEventListenerManager();
+        s_sharedStringifyEventListenerManager->init();
     }
-    return s_sharedEventListenerManager;
+    return s_sharedStringifyEventListenerManager;
 }
 
-void EventListenerManager::addEventListener(CCObject* target,int type,CCObject* handleObject,yhge::SEL_EventHandle handle)
+void StringifyEventListenerManager::addEventListener(CCObject* target,const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle)
 {
 
     unsigned int targetId=target->m_uID;
@@ -59,15 +59,15 @@ void EventListenerManager::addEventListener(CCObject* target,int type,CCObject* 
         eventListeners->addObject(eventHandle);
         eventHandle->release();
     }else{
-        CCAssert(0,"EventListenerManager:Handle has register");
+        CCAssert(0,"StringifyEventListenerManager:Handle has register");
     }
 
 }
 
-void EventListenerManager::removeEventListener(CCObject* target,int type,CCObject* handleObject,yhge::SEL_EventHandle handle)
+void StringifyEventListenerManager::removeEventListener(CCObject* target,const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle)
 {
-    CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
-    CCAssert(handleObject!=NULL,"EventListenerManager::removeEventListener handleObject is null.");
+    CCAssert(target!=NULL,"StringifyEventListenerManager::removeEventListener target is null.");
+    CCAssert(handleObject!=NULL,"StringifyEventListenerManager::removeEventListener handleObject is null.");
 
     CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
     if(targetListeners) {
@@ -95,29 +95,29 @@ void EventListenerManager::removeEventListener(CCObject* target,int type,CCObjec
     }
 }
 
-void EventListenerManager::removeEventListener(CCObject* target,int type,CCObject* handleObject)
+void StringifyEventListenerManager::removeEventListener(CCObject* target,const char* type,CCObject* handleObject)
 {
 	removeEventListener(target,type,handleObject,NULL);
 }
 
-void EventListenerManager::removeEventListener(CCObject* target,int type)
+void StringifyEventListenerManager::removeEventListener(CCObject* target,const char* type)
 {
-    CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
-    CCAssert(type!=NULL,"EventListenerManager::removeEventListener type is null.");
+    CCAssert(target!=NULL,"StringifyEventListenerManager::removeEventListener target is null.");
+    CCAssert(type!=NULL,"StringifyEventListenerManager::removeEventListener type is null.");
     CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
     targetListeners->removeObjectForKey(type);
 }
 
-void EventListenerManager::removeEventListener(CCObject* target)
+void StringifyEventListenerManager::removeEventListener(CCObject* target)
 {
-    CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
+    CCAssert(target!=NULL,"StringifyEventListenerManager::removeEventListener target is null.");
     m_pListeners->removeObjectForKey(target->m_uID);
 }
 
-void EventListenerManager::removeEventListenerForHandle(CCObject* target,int type,yhge::SEL_EventHandle handle)
+void StringifyEventListenerManager::removeEventListenerForHandle(CCObject* target,const char* type,yhge::SEL_EventHandle handle)
 {
-	CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
-    CCAssert(handle!=NULL,"EventListenerManager::removeEventListener handle is null.");
+	CCAssert(target!=NULL,"StringifyEventListenerManager::removeEventListener target is null.");
+    CCAssert(handle!=NULL,"StringifyEventListenerManager::removeEventListener handle is null.");
 
     CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
     if(targetListeners) {
@@ -136,7 +136,7 @@ void EventListenerManager::removeEventListenerForHandle(CCObject* target,int typ
 }
 
 
-void EventListenerManager::removeListeners(CCArray* listeners,CCObject* handleObject)
+void StringifyEventListenerManager::removeListeners(CCArray* listeners,CCObject* handleObject)
 {
     //使用index删除，效率会高些。但要注意删除后的空位置.
     //如果使用object删除，则效率会低些，但不会有空位引发的问题。
@@ -157,7 +157,7 @@ void EventListenerManager::removeListeners(CCArray* listeners,CCObject* handleOb
     }
 }
 
-void EventListenerManager::removeListeners(CCArray* listeners,CCObject* handleObject,SEL_EventHandle handle)
+void StringifyEventListenerManager::removeListeners(CCArray* listeners,CCObject* handleObject,SEL_EventHandle handle)
 {
     //使用index删除，效率会高些。但要注意删除后的空位置.
     //如果使用object删除，则效率会低些，但不会有空位引发的问题。
@@ -178,7 +178,7 @@ void EventListenerManager::removeListeners(CCArray* listeners,CCObject* handleOb
     }
 }
 
-void EventListenerManager::removeListenersForHandle(CCArray* listeners,yhge::SEL_EventHandle handle)
+void StringifyEventListenerManager::removeListenersForHandle(CCArray* listeners,yhge::SEL_EventHandle handle)
 {
 	CCObject* pObject = NULL;
     if (listeners && listeners->data->num > 0){         
@@ -196,7 +196,7 @@ void EventListenerManager::removeListenersForHandle(CCArray* listeners,yhge::SEL
     }
 }
 
-void EventListenerManager::removeListenerMap(CCDictionary* listenerMap,CCObject* handleObject)
+void StringifyEventListenerManager::removeListenerMap(CCDictionary* listenerMap,CCObject* handleObject)
 {
 	CCDictElement* element = NULL;
     CCArray* listeners=NULL;
@@ -208,7 +208,7 @@ void EventListenerManager::removeListenerMap(CCDictionary* listenerMap,CCObject*
     }
 }
 
-void EventListenerManager::removeListenerMap(CCDictionary* listenerMap,CCObject* handleObject,yhge::SEL_EventHandle handle)
+void StringifyEventListenerManager::removeListenerMap(CCDictionary* listenerMap,CCObject* handleObject,yhge::SEL_EventHandle handle)
 {
 	CCDictElement* element = NULL;
     CCArray* listeners=NULL;
@@ -220,7 +220,7 @@ void EventListenerManager::removeListenerMap(CCDictionary* listenerMap,CCObject*
     }
 }
 
-void EventListenerManager::removeListenerMapForHandle(CCDictionary* listenerMap,yhge::SEL_EventHandle handle)
+void StringifyEventListenerManager::removeListenerMapForHandle(CCDictionary* listenerMap,yhge::SEL_EventHandle handle)
 {
 	CCDictElement* element = NULL;
     CCArray* listeners=NULL;
@@ -233,12 +233,12 @@ void EventListenerManager::removeListenerMapForHandle(CCDictionary* listenerMap,
 }
 
 
-void EventListenerManager::handleEvent(CCObject* target,Event* evt)
+void StringifyEventListenerManager::handleEvent(CCObject* target,Event* evt)
 {
 	CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
     if(targetListeners) {
-		int type=evt->getIntType();
-		if(type!=0) {
+		std::string type=evt->getType();
+		if(type!="") {
 			//执行对应的type事件
             CCArray* eventListeners=static_cast<CCArray*>(targetListeners->objectForKey(type));
             if(eventListeners) {
@@ -253,7 +253,7 @@ void EventListenerManager::handleEvent(CCObject* target,Event* evt)
 	}
 }
 
-void EventListenerManager::dispatchEvent(CCNode* target,yhge::Event* evt)
+void StringifyEventListenerManager::dispatchEvent(CCNode* target,yhge::Event* evt)
 {
     // Capture no
     
@@ -270,7 +270,7 @@ void EventListenerManager::dispatchEvent(CCNode* target,yhge::Event* evt)
 }
 
 //把new EventObject和dispatchEvent和起来，提供简便方法
-void EventListenerManager::trigger(CCNode* target,int type,CCObject* data,bool bubbles)
+void StringifyEventListenerManager::trigger(CCNode* target,const char* type,CCObject* data,bool bubbles)
 {    
     yhge::Event* e=new yhge::Event();
 	e->initEvent(type,bubbles,true);
@@ -286,7 +286,7 @@ void EventListenerManager::trigger(CCNode* target,int type,CCObject* data,bool b
 	* 触发事件
 	* 普通版，不需要事件传递
 	*/
-void EventListenerManager::dispatchEventWithObject(CCObject* target,yhge::Event* evt)
+void StringifyEventListenerManager::dispatchEventWithObject(CCObject* target,yhge::Event* evt)
 {
 	handleEvent(target,evt);
 }
@@ -296,7 +296,7 @@ void EventListenerManager::dispatchEventWithObject(CCObject* target,yhge::Event*
 	* 把new EventObject和dispatchEvent和起来，提供简便方法
 	* 普通版，不需要事件传递
 	*/
-void EventListenerManager::triggerWithObject(CCObject* target,int type,CCObject* data,bool bubbles)
+void StringifyEventListenerManager::triggerWithObject(CCObject* target,const char* type,CCObject* data,bool bubbles)
 {
 	yhge::Event* e=new yhge::Event();
 	e->initEvent(type,bubbles,true);
@@ -308,7 +308,7 @@ void EventListenerManager::triggerWithObject(CCObject* target,int type,CCObject*
 	e->release();
 }
 
-bool EventListenerManager::isListened(CCArray* listeners,yhge::SEL_EventHandle handle,CCObject* handleObject)
+bool StringifyEventListenerManager::isListened(CCArray* listeners,yhge::SEL_EventHandle handle,CCObject* handleObject)
 {
     CCObject* pObj=NULL;
     EventHandle* eventHandle=NULL;
@@ -322,7 +322,7 @@ bool EventListenerManager::isListened(CCArray* listeners,yhge::SEL_EventHandle h
     return false;
 }
 
-CCArray* EventListenerManager::getEventListeners(CCObject* target,int type)
+CCArray* StringifyEventListenerManager::getEventListeners(CCObject* target,const char* type)
 {
     CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
     if(targetListeners && type) {
@@ -331,5 +331,7 @@ CCArray* EventListenerManager::getEventListeners(CCObject* target,int type)
 	}
 	return NULL;
 }
+
+
 
 NS_CC_YHGE_END

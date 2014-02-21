@@ -2,8 +2,8 @@
 // 执行事件的函数句柄
 //
 
-#ifndef YHGE_EVENT_CCEVENTHANDLERD_H_
-#define YHGE_EVENT_CCEVENTHANDLERD_H_
+#ifndef YHGE_EVENT_EVENTHANDLERD_H_
+#define YHGE_EVENT_EVENTHANDLERD_H_
 
 #include "cocos2d.h"
 #include "EventHandle.h"
@@ -67,4 +67,4 @@ protected:
 
 NS_CC_YHGE_END
 
-#endif  // YHGE_EVENT_CCEVENTHANDLERD_H_
+#endif  // YHGE_EVENT_EVENTHANDLERD_H_

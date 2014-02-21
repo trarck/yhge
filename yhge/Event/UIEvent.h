@@ -1,5 +1,5 @@
-#ifndef YHGE_EVENT_CCUIEVENT_H_
-#define YHGE_EVENT_CCUIEVENT_H_
+#ifndef YHGE_EVENT_UIEVENT_H_
+#define YHGE_EVENT_UIEVENT_H_
 
 #include "Event.h"
 
@@ -43,4 +43,4 @@ private:
 };
 NS_CC_YHGE_END
 
-#endif  // YHGE_EVENT_CCUIEVENT_H_
+#endif  // YHGE_EVENT_UIEVENT_H_

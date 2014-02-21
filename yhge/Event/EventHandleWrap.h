@@ -2,8 +2,8 @@
 // 鎵ц浜嬩欢鐨勫嚱鏁板彞鏌?
 //
 
-#ifndef YHGE_EVENT_CCEVENTHANDLEWRAP_H_
-#define YHGE_EVENT_CCEVENTHANDLEWRAP_H_
+#ifndef YHGE_EVENT_EVENTHANDLEWRAP_H_
+#define YHGE_EVENT_EVENTHANDLEWRAP_H_
 
 #include "cocos2d.h"
 #include "EventHandle.h"
@@ -83,4 +83,4 @@ protected:
 
 NS_CC_YHGE_END
 
-#endif  // YHGE_EVENT_CCEVENTHANDLEWRAP_H_
+#endif  // YHGE_EVENT_EVENTHANDLEWRAP_H_
