@@ -82,9 +82,7 @@ public:
     ValueMapIntKey& asIntKeyMap();
     const ValueMapIntKey& asIntKeyMap() const;
 
-    inline bool isNull() const { return _type == Type::NONE; }
-    
-    enum class Type
+    enum Type
     {
         NONE,
         BYTE,
@@ -97,6 +95,10 @@ public:
         MAP,
         INT_KEY_MAP
     };
+    
+    inline bool isNull() const { return _type == NONE; }
+    
+
 
     inline Type getType() const { return _type; };
     
