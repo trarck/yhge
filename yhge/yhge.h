@@ -19,6 +19,7 @@
 #include "CocosExt/CCSelectorWrap.h"
 #include "CocosExt/Support/CCVector.h"
 #include "CocosExt/Support/CCMap.h"
+#include "CocosExt/Support/CCValue.h"
 
 //message
 #include "message.h"
