@@ -157,9 +157,10 @@ bool MessageManager::registerReceiver(CCObject* receiver ,unsigned int type ,CCO
 	//检查是否已经注册过
     bool isRegisted=false;
     CCObject* pObject = NULL;
+    MessageHandler* handlerItem=NULL;
     CCARRAY_FOREACH(handleList,pObject){
-        MessageHandler* handler=(MessageHandler*) pObject;
-        if (handler==pObject) {
+        handlerItem=(MessageHandler*) pObject;
+        if (handler->getTarget()==handlerItem->getTarget() && handler->getHandle()==handlerItem->getHandle()) {
 			CCAssert(0,"Handle has register");
             isRegisted=true;
             break;
