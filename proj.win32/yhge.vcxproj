@@ -57,6 +57,7 @@
     <ClInclude Include="..\yhge\Event\EventListenerManager.h" />
     <ClInclude Include="..\yhge\Event\EventTarget.h" />
     <ClInclude Include="..\yhge\Event\IEventTarget.h" />
+    <ClInclude Include="..\yhge\Event\StringifyEventListenerManager.h" />
     <ClInclude Include="..\yhge\Event\UIEvent.h" />
     <ClInclude Include="..\yhge\FSM\Common\FSMDelegateState.h" />
     <ClInclude Include="..\yhge\FSM\Common\FSMMachine.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="..\yhge\Event\EventHandleD.cpp" />
     <ClCompile Include="..\yhge\Event\EventHandleWrap.cpp" />
     <ClCompile Include="..\yhge\Event\EventListenerManager.cpp" />
+    <ClCompile Include="..\yhge\Event\StringifyEventListenerManager.cpp" />
     <ClCompile Include="..\yhge\Event\UIEvent.cpp" />
     <ClCompile Include="..\yhge\FSM\Common\FSMMachine.cpp" />
     <ClCompile Include="..\yhge\FSM\Common\FSMState.cpp" />

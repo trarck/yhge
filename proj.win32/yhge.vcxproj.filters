@@ -468,6 +468,9 @@
     <ClInclude Include="..\yhge\Isometric\IsometricMacros.h">
       <Filter>Isometric</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Event\StringifyEventListenerManager.h">
+      <Filter>Event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -766,6 +769,9 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinateFormulae.cpp">
       <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Event\StringifyEventListenerManager.cpp">
+      <Filter>Event</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
