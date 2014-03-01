@@ -64,6 +64,35 @@ void StringifyEventListenerManager::addEventListener(CCObject* target,const char
 
 }
 
+void StringifyEventListenerManager::addEventListener(CCObject* target,const char* type,EventHandle* handler)
+{
+    unsigned int targetId=target->m_uID;
+
+	CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(targetId));
+	if(targetListeners==NULL){
+		targetListeners=new CCDictionary();
+		m_pListeners->setObject(targetListeners,targetId);
+        targetListeners->release();
+	}
+
+    CCArray* eventListeners=static_cast<CCArray*>(targetListeners->objectForKey(type));
+    if(eventListeners==NULL){
+		eventListeners=new CCArray();
+		eventListeners->init();
+		targetListeners->setObject(eventListeners,type);
+        eventListeners->release();
+	}
+
+    //is listened. one type event only have a  handle ,have multi-processor function
+    //一个事件只有一个触发点，但有很多处理该事件的函数
+
+    if(!isListened(eventListeners,handler->getHandle(),handler->getTarget())) {
+        eventListeners->addObject(handler);
+    }else{
+        CCAssert(0,"StringifyEventListenerManager:Handle has register");
+    }
+}
+
 void StringifyEventListenerManager::removeEventListener(CCObject* target,const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle)
 {
     CCAssert(target!=NULL,"StringifyEventListenerManager::removeEventListener target is null.");
