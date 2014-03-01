@@ -26,6 +26,12 @@ public:
 	 */
     void addEventListener(CCObject* target,int type,CCObject* handleObject,yhge::SEL_EventHandle handle);
     
+    /**
+	 * 添加一个事件监听
+	 * 由于只需要目标的id,只要是Object对像就行
+	 */
+    void addEventListener(CCObject* target,int type,EventHandle* handler);
+
 	/**
 	 * 移除一个事件监听
 	 * 由于只需要目标的id,只要是Object对像就行
