@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		57243EF018B72BD30070163A /* CCValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EEE18B72BD30070163A /* CCValue.cpp */; };
 		57243EF318B737350070163A /* StringifyEventListenerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EF118B737350070163A /* StringifyEventListenerManager.cpp */; };
+		57381E9818C02B7B00CC17E9 /* CCAdaptSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57381E9618C02B7B00CC17E9 /* CCAdaptSprite.cpp */; };
 		574A56A818B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56A618B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp */; };
 		574A56AB18B2130700518953 /* StaticTopViewCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56A918B2130700518953 /* StaticTopViewCoordinateFormulae.cpp */; };
 		574A56AE18B217B100518953 /* ISOStaticCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56AC18B217B100518953 /* ISOStaticCoordinateFormulae.cpp */; };
@@ -139,6 +140,8 @@
 		57243EEF18B72BD30070163A /* CCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCValue.h; sourceTree = "<group>"; };
 		57243EF118B737350070163A /* StringifyEventListenerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringifyEventListenerManager.cpp; sourceTree = "<group>"; };
 		57243EF218B737350070163A /* StringifyEventListenerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringifyEventListenerManager.h; sourceTree = "<group>"; };
+		57381E9618C02B7B00CC17E9 /* CCAdaptSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAdaptSprite.cpp; sourceTree = "<group>"; };
+		57381E9718C02B7B00CC17E9 /* CCAdaptSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAdaptSprite.h; sourceTree = "<group>"; };
 		574A56A518B1F98D00518953 /* DimetricMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DimetricMacros.h; sourceTree = "<group>"; };
 		574A56A618B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticSideViewCoordinateFormulae.cpp; sourceTree = "<group>"; };
 		574A56A718B1F98D00518953 /* StaticSideViewCoordinateFormulae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticSideViewCoordinateFormulae.h; sourceTree = "<group>"; };
@@ -689,6 +692,8 @@
 				577A7844186BF56500F1B5D5 /* Actions */,
 				57CF76FB18AB0A480085A22F /* ArrayData.cpp */,
 				57CF76FC18AB0A480085A22F /* ArrayData.h */,
+				57381E9618C02B7B00CC17E9 /* CCAdaptSprite.cpp */,
+				57381E9718C02B7B00CC17E9 /* CCAdaptSprite.h */,
 				577A7847186BF56500F1B5D5 /* CCCallFuncNO.cpp */,
 				577A7848186BF56500F1B5D5 /* CCCallFuncNO.h */,
 				5771055D18837C1700FA1446 /* CCDefaultTexture.cpp */,
@@ -964,7 +969,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "yhge" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1000,6 +1005,7 @@
 				57525CED18AC690C00166633 /* json_writer.cpp in Sources */,
 				577A7909186BF56500F1B5D5 /* EventHandleWrap.cpp in Sources */,
 				57525CEC18AC690C00166633 /* json_value.cpp in Sources */,
+				57381E9818C02B7B00CC17E9 /* CCAdaptSprite.cpp in Sources */,
 				577A78F8186BF56500F1B5D5 /* CCParabolaMove.cpp in Sources */,
 				577A792C186BF56500F1B5D5 /* MersenneTwister.cpp in Sources */,
 				57975AAD1890FAE9008A9F38 /* SortZIndex.cpp in Sources */,
@@ -1108,7 +1114,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = NO;
@@ -1164,7 +1169,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = NO;
@@ -1214,12 +1218,12 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../cocos2dx/platform/third_party/ios/libraries";
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv6 armv7 i386";
 			};
@@ -1228,7 +1232,6 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
