@@ -1,47 +1,39 @@
-#ifndef YHGE_COCOSEXT_CCCALLFUNCNO_H_
-#define YHGE_COCOSEXT_CCCALLFUNCNO_H_
+#ifndef YHGE_COCOSEXT_CCADAPTSPRITE_H_
+#define YHGE_COCOSEXT_CCADAPTSPRITE_H_
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
 
 NS_CC_YHGE_BEGIN
 
-typedef void (CCObject::*SEL_CallFuncNO)(CCNode*, CCObject*);
-#define callfuncNO_selector(_SELECTOR) (SEL_CallFuncNO)(&_SELECTOR)
-
 /**
- * 加入对call function ccobject作为参数的支持
+ * 自适应大小的sprite
  */
-class CCCallFuncNO : public CCCallFuncN
+class CCAdaptSprite : public CCSprite
 {
 public:
-    virtual long getClassTypeInfo() {
-        static const long id = cocos2d::getHashCodeByString(typeid(CCCallFunc).name());
-		return id;
-    }
+    
+    static CCAdaptSprite* create();
+    
+    static CCAdaptSprite* create(const char *pszFileName);
+    
+    static CCAdaptSprite* create(const char *pszFileName, const CCRect& rect);
+    
+    static CCAdaptSprite* createWithTexture(CCTexture2D *pTexture);
+    
+    static CCAdaptSprite* createWithTexture(CCTexture2D *pTexture, const CCRect& rect);
+    
+    static CCAdaptSprite* createWithSpriteFrame(CCSpriteFrame *pSpriteFrame);
 
-	CCCallFuncNO();
-	~CCCallFuncNO();
-    /** creates the action with the callback and the data to pass as an argument 
-    @deprecated: This interface will be deprecated sooner or later.
-    */
-    CC_DEPRECATED_ATTRIBUTE static CCCallFuncNO * actionWithTarget(CCObject* pSelectorTarget, SEL_CallFuncNO selector, CCObject* d);
-
-    /** creates the action with the callback and the data to pass as an argument */
-    static CCCallFuncNO * create(CCObject* pSelectorTarget, SEL_CallFuncNO selector, CCObject* d);
-
-    /** initializes the action with the callback and the data to pass as an argument */
-    virtual bool initWithTarget(CCObject* pSelectorTarget, SEL_CallFuncNO selector, CCObject* d);
-    // super methods
-    virtual CCObject* copyWithZone(CCZone *pZone);
-    virtual void execute();
-
-protected:
-    CCObject            *m_pData;
-	SEL_CallFuncNO m_pCallFuncNO;
+    static CCAdaptSprite* createWithSpriteFrameName(const char *pszSpriteFrameName);
+    
+    virtual void setTextureRect(const CCRect& rect);
+    
+    virtual void setTextureRect(const CCRect& rect, bool rotated, const CCSize& untrimmedSize);
+    
 };
 
 
 NS_CC_YHGE_END
 
-#endif // YHGE_COCOSEXT_CCCALLFUNCNO_H_
+#endif // YHGE_COCOSEXT_CCADAPTSPRITE_H_

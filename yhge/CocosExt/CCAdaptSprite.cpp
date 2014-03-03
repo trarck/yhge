@@ -1,79 +1,146 @@
-#include "CCCallFuncNO.h"
+#include "CCAdaptSprite.h"
 
 NS_CC_YHGE_BEGIN
 
-CCCallFuncNO::CCCallFuncNO()
-:m_pData(NULL)
+
+CCAdaptSprite* CCAdaptSprite::createWithTexture(CCTexture2D *pTexture)
 {
-
-}
-
-CCCallFuncNO::~CCCallFuncNO()
-{
-	CC_SAFE_RELEASE(m_pData);
-}
-
-CCCallFuncNO * CCCallFuncNO::actionWithTarget(CCObject* pSelectorTarget, SEL_CallFuncNO selector, CCObject* d) 
-{
-    return CCCallFuncNO::create(pSelectorTarget, selector, d);
-}
-
-CCCallFuncNO * CCCallFuncNO::create(CCObject* pSelectorTarget, SEL_CallFuncNO selector, CCObject* d)
-{
-    CCCallFuncNO* pRet = new CCCallFuncNO();
-
-    if (pRet && pRet->initWithTarget(pSelectorTarget, selector, d)) {
-        pRet->autorelease();
-        return pRet;
+    CCAdaptSprite *pobSprite = new CCAdaptSprite();
+    if (pobSprite && pobSprite->initWithTexture(pTexture))
+    {
+        pobSprite->autorelease();
+        return pobSprite;
     }
-
-    CC_SAFE_DELETE(pRet);
+    CC_SAFE_DELETE(pobSprite);
     return NULL;
 }
 
-bool CCCallFuncNO::initWithTarget(CCObject* pSelectorTarget,
-        SEL_CallFuncNO selector, CCObject* d) {
-
-	if (pSelectorTarget) 
+CCAdaptSprite* CCAdaptSprite::createWithTexture(CCTexture2D *pTexture, const CCRect& rect)
+{
+    CCAdaptSprite *pobSprite = new CCAdaptSprite();
+    if (pobSprite && pobSprite->initWithTexture(pTexture, rect))
     {
-        pSelectorTarget->retain();
+        pobSprite->autorelease();
+        return pobSprite;
     }
+    CC_SAFE_DELETE(pobSprite);
+    return NULL;
+}
 
-    if (m_pSelectorTarget) 
+CCAdaptSprite* CCAdaptSprite::create(const char *pszFileName)
+{
+    CCAdaptSprite *pobSprite = new CCAdaptSprite();
+    if (pobSprite && pobSprite->initWithFile(pszFileName))
     {
-        m_pSelectorTarget->release();
+        pobSprite->autorelease();
+        return pobSprite;
     }
-
-    m_pSelectorTarget = pSelectorTarget;
-
-    m_pData = d;
-    m_pCallFuncNO = selector;
-    return true;
+    CC_SAFE_DELETE(pobSprite);
+    return NULL;
 }
 
-CCObject * CCCallFuncNO::copyWithZone(CCZone* zone) {
-    CCZone* pNewZone = NULL;
-    CCCallFuncNO* pRet = NULL;
-
-    if (zone && zone->m_pCopyObject) {
-        //in case of being called at sub class
-        pRet = (CCCallFuncNO*) (zone->m_pCopyObject);
-    } else {
-        pRet = new CCCallFuncNO();
-        zone = pNewZone = new CCZone(pRet);
+CCAdaptSprite* CCAdaptSprite::create(const char *pszFileName, const CCRect& rect)
+{
+    CCAdaptSprite *pobSprite = new CCAdaptSprite();
+    if (pobSprite && pobSprite->initWithFile(pszFileName, rect))
+    {
+        pobSprite->autorelease();
+        return pobSprite;
     }
-
-    CCCallFunc::copyWithZone(zone);
-    pRet->initWithTarget(m_pSelectorTarget, m_pCallFuncNO, m_pData);
-    CC_SAFE_DELETE(pNewZone);
-    return pRet;
+    CC_SAFE_DELETE(pobSprite);
+    return NULL;
 }
 
-void CCCallFuncNO::execute() {
-    if (m_pCallFuncNO) {
-        (m_pSelectorTarget->*m_pCallFuncNO)(m_pTarget, m_pData);
+CCAdaptSprite* CCAdaptSprite::createWithSpriteFrame(CCSpriteFrame *pSpriteFrame)
+{
+    CCAdaptSprite *pobSprite = new CCAdaptSprite();
+    if (pSpriteFrame && pobSprite && pobSprite->initWithSpriteFrame(pSpriteFrame))
+    {
+        pobSprite->autorelease();
+        return pobSprite;
     }
+    CC_SAFE_DELETE(pobSprite);
+    return NULL;
 }
+
+CCAdaptSprite* CCAdaptSprite::createWithSpriteFrameName(const char *pszSpriteFrameName)
+{
+    CCSpriteFrame *pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(pszSpriteFrameName);
     
+#if COCOS2D_DEBUG > 0
+    char msg[256] = {0};
+    sprintf(msg, "Invalid spriteFrameName: %s", pszSpriteFrameName);
+    CCAssert(pFrame != NULL, msg);
+#endif
     
+    return createWithSpriteFrame(pFrame);
+}
+
+CCAdaptSprite* CCAdaptSprite::create()
+{
+    CCAdaptSprite *pSprite = new CCAdaptSprite();
+    if (pSprite && pSprite->init())
+    {
+        pSprite->autorelease();
+        return pSprite;
+    }
+    CC_SAFE_DELETE(pSprite);
+    return NULL;
+}
+
+void CCAdaptSprite::setTextureRect(const CCRect& rect)
+{
+    CCSprite::setTextureRect(rect, false, rect.size);
+}
+
+void CCAdaptSprite::setTextureRect(const CCRect& rect, bool rotated, const CCSize& untrimmedSize)
+{
+    m_bRectRotated = rotated;
+    
+    CCRect vertexRect=rect;
+    vertexRect.size=untrimmedSize;
+    
+    setContentSize(untrimmedSize);
+    setVertexRect(vertexRect);
+    setTextureCoords(rect);
+    
+    CCPoint relativeOffset = m_obUnflippedOffsetPositionFromCenter;
+    
+    // issue #732
+    if (m_bFlipX)
+    {
+        relativeOffset.x = -relativeOffset.x;
+    }
+    if (m_bFlipY)
+    {
+        relativeOffset.y = -relativeOffset.y;
+    }
+    
+    m_obOffsetPosition.x = relativeOffset.x ;//+ (m_obContentSize.width - m_obRect.size.width) / 2;
+    m_obOffsetPosition.y = relativeOffset.y ;//+ (m_obContentSize.height - m_obRect.size.height) / 2;
+    
+    // rendering using batch node
+    if (m_pobBatchNode)
+    {
+        // update dirty_, don't update recursiveDirty_
+        setDirty(true);
+    }
+    else
+    {
+        // self rendering
+        
+        // Atlas: Vertex
+        float x1 = 0 + m_obOffsetPosition.x;
+        float y1 = 0 + m_obOffsetPosition.y;
+        float x2 = x1 + m_obRect.size.width;
+        float y2 = y1 + m_obRect.size.height;
+        
+        // Don't update Z.
+        m_sQuad.bl.vertices = vertex3(x1, y1, 0);
+        m_sQuad.br.vertices = vertex3(x2, y1, 0);
+        m_sQuad.tl.vertices = vertex3(x1, y2, 0);
+        m_sQuad.tr.vertices = vertex3(x2, y2, 0);
+    }
+}
+
 NS_CC_YHGE_END
