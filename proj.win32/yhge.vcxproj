@@ -17,6 +17,7 @@
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\AstarNode.h" />
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.h" />
     <ClInclude Include="..\yhge\CocosExt\Actions\CCParabolaMove.h" />
+    <ClInclude Include="..\yhge\CocosExt\CCAdaptSprite.h" />
     <ClInclude Include="..\yhge\CocosExt\CCCallFuncNO.h" />
     <ClInclude Include="..\yhge\CocosExt\CCDefaultTexture.h" />
     <ClInclude Include="..\yhge\CocosExt\CCGeometryValue.h" />
@@ -146,6 +147,7 @@
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarNode.cpp" />
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.cpp" />
     <ClCompile Include="..\yhge\CocosExt\Actions\CCParabolaMove.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\CCAdaptSprite.cpp" />
     <ClCompile Include="..\yhge\CocosExt\CCCallFuncNO.cpp" />
     <ClCompile Include="..\yhge\CocosExt\CCDefaultTexture.cpp" />
     <ClCompile Include="..\yhge\CocosExt\CCGeometryValue.cpp" />
@@ -306,7 +308,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4267;4251;4244;4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libExtensions.lib;libcocos2d.lib;libCocosDenshion.lib;opengl32.lib;glew32.lib;libBox2d.lib;libchipmunk.lib;libcurl_imp.lib;pthreadVCE2.lib;websockets.lib;%(AdditionalDependencies)</AdditionalDependencies>
