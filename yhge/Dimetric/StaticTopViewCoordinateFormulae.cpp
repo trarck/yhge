@@ -3,19 +3,15 @@
 
 NS_CC_YHGE_DIMETRIC_BEGIN
 
-#ifndef YHGE_ISO_DEFAULT_TILEWIDTH
-#define YHGE_ISO_DEFAULT_TILEWIDTH 48
-#endif
+// height:with = 2:5
+static const float kDimetricTopViewDefaultTileWidth=40.0f;
+static const float kDimetricTopViewDefaultTileHeight=16.0f;
 
-#ifndef YHGE_ISO_DEFAULT_TILEHEIGHT
-#define YHGE_ISO_DEFAULT_TILEHEIGHT 8
-#endif
-
-float StaticTopViewCoordinateFormulae::sTileWidth=YHGE_ISO_DEFAULT_TILEWIDTH;
-float StaticTopViewCoordinateFormulae::sTileHeight=YHGE_ISO_DEFAULT_TILEHEIGHT;
-float StaticTopViewCoordinateFormulae::sXUnit=YHGE_ISO_DEFAULT_TILEHEIGHT*4;
-float StaticTopViewCoordinateFormulae::sYUnit=YHGE_ISO_DEFAULT_TILEHEIGHT*4;
-float StaticTopViewCoordinateFormulae::sZUnit=YHGE_ISO_DEFAULT_TILEHEIGHT*4;
+float StaticTopViewCoordinateFormulae::sTileWidth=kDimetricTopViewDefaultTileWidth;
+float StaticTopViewCoordinateFormulae::sTileHeight=kDimetricTopViewDefaultTileHeight;
+float StaticTopViewCoordinateFormulae::sXUnit=kDimetricTopViewDefaultTileHeight*2;
+float StaticTopViewCoordinateFormulae::sYUnit=kDimetricTopViewDefaultTileHeight*2;
+float StaticTopViewCoordinateFormulae::sZUnit=kDimetricTopViewDefaultTileHeight*2;
 float StaticTopViewCoordinateFormulae::sHalfYUnit=sYUnit/2;
 float StaticTopViewCoordinateFormulae::sQuarterYUnit=sYUnit/4;
 
@@ -24,9 +20,9 @@ void StaticTopViewCoordinateFormulae::initTileSize(float tileWidth,float tileHei
 	sTileWidth=tileWidth;
 	sTileHeight=tileHeight;
 
-	sXUnit=tileHeight*4;
-	sYUnit=tileHeight*4;
-	sZUnit=tileHeight*4;
+	sXUnit=tileHeight*2;
+	sYUnit=tileHeight*2;
+	sZUnit=tileHeight*2;
     sHalfYUnit=sYUnit/2;
     sQuarterYUnit=sYUnit/4;
 }
@@ -39,8 +35,8 @@ void StaticTopViewCoordinateFormulae::initCoordinateUnit(float xUnit,float yUnit
     sHalfYUnit=sYUnit/2;
     sQuarterYUnit=sYUnit/4;
 
-	sTileWidth=xUnit+sHalfYUnit;
-	sTileHeight=sQuarterYUnit;
+	sTileWidth=xUnit+sQuarterYUnit;
+	sTileHeight=sHalfYUnit;
 }
 
 NS_CC_YHGE_DIMETRIC_END
