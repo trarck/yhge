@@ -40,6 +40,11 @@
 //isometric
 #include "isometric.h"
 
+//dimetric
+#include "Dimetric/DimetricMacros.h"
+#include "Dimetric/StaticSideViewCoordinateFormulae.h"
+#include "Dimetric/StaticTopViewCoordinateFormulae.h"
+
 //components
 #include "entity_component.h"
 
