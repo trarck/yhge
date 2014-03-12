@@ -43,6 +43,7 @@
 		576E3FE2187E431500745A0A /* ISOTileObjectPart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FE0187E431500745A0A /* ISOTileObjectPart.cpp */; };
 		576E3FE7187E47F300745A0A /* ISOComponentNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FE5187E47F300745A0A /* ISOComponentNode.cpp */; };
 		576E3FEC187E7CB400745A0A /* ISOObjectLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FEA187E7CB400745A0A /* ISOObjectLayer.cpp */; };
+		57704FA818CF1573006B8A62 /* Array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704FA618CF1573006B8A62 /* Array.cpp */; };
 		5771055F18837C1700FA1446 /* CCDefaultTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771055D18837C1700FA1446 /* CCDefaultTexture.cpp */; };
 		5771056418837C2C00FA1446 /* ISOCoordinateLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771056018837C2C00FA1446 /* ISOCoordinateLayer.cpp */; };
 		5771056518837C2C00FA1446 /* ISODynamicGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771056218837C2C00FA1446 /* ISODynamicGroup.cpp */; };
@@ -225,6 +226,9 @@
 		576E3FE6187E47F300745A0A /* ISOComponentNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOComponentNode.h; sourceTree = "<group>"; };
 		576E3FEA187E7CB400745A0A /* ISOObjectLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOObjectLayer.cpp; sourceTree = "<group>"; };
 		576E3FEB187E7CB400745A0A /* ISOObjectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOObjectLayer.h; sourceTree = "<group>"; };
+		57704FA618CF1573006B8A62 /* Array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Array.cpp; sourceTree = "<group>"; };
+		57704FA718CF1573006B8A62 /* Array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Array.h; sourceTree = "<group>"; };
+		57704FA918CFF313006B8A62 /* DataStructureMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStructureMacros.h; sourceTree = "<group>"; };
 		5771055D18837C1700FA1446 /* CCDefaultTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCDefaultTexture.cpp; sourceTree = "<group>"; };
 		5771055E18837C1700FA1446 /* CCDefaultTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDefaultTexture.h; sourceTree = "<group>"; };
 		5771056018837C2C00FA1446 /* ISOCoordinateLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOCoordinateLayer.cpp; sourceTree = "<group>"; };
@@ -628,12 +632,23 @@
 			path = renderer;
 			sourceTree = "<group>";
 		};
+		57704FA518CF1573006B8A62 /* DataStructure */ = {
+			isa = PBXGroup;
+			children = (
+				57704FA918CFF313006B8A62 /* DataStructureMacros.h */,
+				57704FA618CF1573006B8A62 /* Array.cpp */,
+				57704FA718CF1573006B8A62 /* Array.h */,
+			);
+			path = DataStructure;
+			sourceTree = "<group>";
+		};
 		577A781F186BF56500F1B5D5 /* yhge */ = {
 			isa = PBXGroup;
 			children = (
 				577A7838186BF56500F1B5D5 /* Arithmetic */,
 				577A7843186BF56500F1B5D5 /* CocosExt */,
 				57A76A0C18ACB2D80014DEC9 /* Datas */,
+				57704FA518CF1573006B8A62 /* DataStructure */,
 				574A56A418B1F98D00518953 /* Dimetric */,
 				57C3373E1888C3A1008B5618 /* EntityComponent */,
 				577A7865186BF56500F1B5D5 /* Event */,
@@ -1035,6 +1050,7 @@
 				576E3FBD187D4BFB00745A0A /* ISOBatchDynamicComponent.cpp in Sources */,
 				577A78FA186BF56500F1B5D5 /* CCGeometryValue.cpp in Sources */,
 				57C3375C1888C3A1008B5618 /* AnimationComponent.cpp in Sources */,
+				57704FA818CF1573006B8A62 /* Array.cpp in Sources */,
 				576E3FC7187D4BFB00745A0A /* ISOMapInfo.cpp in Sources */,
 				577A790C186BF56500F1B5D5 /* FSMMachine.cpp in Sources */,
 				576E3FC2187D4BFB00745A0A /* ISOGroundTileLayer.cpp in Sources */,
