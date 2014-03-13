@@ -9,6 +9,9 @@
 #define COMPONENT_GRID_MOVE_RARAM_PATHS "paths"
 #define COMPONENT_GRID_MOVE_RARAM_FROMINDEX "fromIndex"
 
+#define COMPONENT_ATTARCK_TARGET "target"
+#define COMPONENT_ATTARCK_SKILL_ID "skillId"
+
 //#include <yhge/YHGEMacros.h>
 //
 //NS_CC_YHGE_BEGIN

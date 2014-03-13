@@ -11,6 +11,8 @@ NS_CC_YHGE_BEGIN
 
 static const int kEightDirectionAction=1001;
 
+//const int AnimationComponent::kRepeatForverLoop=-1;
+
 AnimationComponent::AnimationComponent()
 :Component("AnimationComponent")
 ,m_animations(NULL)
@@ -157,12 +159,13 @@ void AnimationComponent::runAnimation(CCAnimation* animation)
     if(animation && m_lastAnimation!=animation){
         CCAction* action=createActionFromAnimation(animation);
 
+        //停止上一个action
         if (m_lastAction)
         {
-            m_rendererComponent->runAction(m_lastAction);
+            m_rendererComponent->stopAction(m_lastAction);
         }
         
-        //TODO 如果性能比较低，可以直接调用renderer component的相关函数
+        //如果性能比较低，可以直接调用renderer component的相关函数
         //通知render run action
         m_rendererComponent->runAction(action);
         
@@ -188,13 +191,30 @@ void AnimationComponent::onChangeAnimation(Message *message)
     }
 }
 
+void AnimationComponent::onAnimationComplete()
+{
+    //消除上次action
+    setLastAction(NULL);
+    //发送动画播放完成
+    getMessageManager()->dispatchMessage(MSG_ANIMATION_COMPLETE, this, m_owner);
+}
+
 /**
  * 从动画里创建action
  */
 CCAction* AnimationComponent::createActionFromAnimation(CCAnimation* animation)
 {
-    CCAnimate *animate= CCAnimate::create(animation);
-    CCAction* action=CCRepeatForever::create((CCActionInterval*)CCSequence::create(animate,NULL));
+    CCAction* action=NULL;
+    int loops=animation->getLoops();
+    
+    if (loops==kRepeatForverLoop) {
+        CCAnimate *animate= CCAnimate::create(animation);
+        action=CCRepeatForever::create(CCSequence::create(animate,NULL));
+    }else{
+        action= CCSequence::createWithTwoActions(
+                                                 CCAnimate::create(animation),
+                                                 CCCallFunc::create(this, callfunc_selector(AnimationComponent::onAnimationComplete)));
+    }
     action->setTag(kEightDirectionAction);
     return action;
 }
@@ -203,7 +223,7 @@ CCAction* AnimationComponent::createActionFromAnimation(CCAnimation* animation)
  * 从文件中取得8方向动画
  * 关键帧在一张图片里。根据名子来确定方向
  */
-CCArray* AnimationComponent::eightDirectionActionListWithFile(const char* file ,int frameCount ,CCSize frameSize ,float delay)
+CCArray* AnimationComponent::eightDirectionActionListWithFile(const char* file ,int frameCount ,CCSize frameSize ,float delay,int loops)
 {
 	CCTexture2D *texture=CCTextureCache::sharedTextureCache()->addImage(file);
 	
@@ -219,6 +239,8 @@ CCArray* AnimationComponent::eightDirectionActionListWithFile(const char* file ,
 		}
         
 		CCAnimation *animation=CCAnimation::createWithSpriteFrames(animFrames,delay);
+        animation->setLoops(loops);
+        
         animFrames->release();
         
         animations->addObject(animation);
@@ -231,7 +253,7 @@ CCArray* AnimationComponent::eightDirectionActionListWithFile(const char* file ,
  * 从目录中取得8方向动画
  * 关键帧是一张张图片。根据名子来确定方向
  */
-CCArray* AnimationComponent::eightDirectionActionListWithDir(const char* dir ,int frameCount ,CCSize frameSize ,float delay,const char* pathFormat)
+CCArray* AnimationComponent::eightDirectionActionListWithDir(const char* dir ,int frameCount ,CCSize frameSize ,float delay,const char* pathFormat,int loops)
 {
 	CCArray* animations=CCArray::createWithCapacity(8);
 	
@@ -245,6 +267,7 @@ CCArray* AnimationComponent::eightDirectionActionListWithDir(const char* dir ,in
 		}
 		animation->setDelayPerUnit(delay);
 		animation->setRestoreOriginalFrame(true);
+        animation->setLoops(loops);
 		//animation.delay=delay;
         animations->addObject(animation);
 	}
@@ -255,7 +278,7 @@ CCArray* AnimationComponent::eightDirectionActionListWithDir(const char* dir ,in
  * 从目录中取得8方向动画
  * 关键帧是一张张图片。根据名子来确定方向
  */
-CCArray* AnimationComponent::eightDirectionActionListWithDirResource(const char* resource ,int frameCount ,CCSize frameSize ,float delay)
+CCArray* AnimationComponent::eightDirectionActionListWithDirResource(const char* resource ,int frameCount ,CCSize frameSize ,float delay,int loops)
 {
     CCArray* animations=CCArray::createWithCapacity(8);
 	
@@ -269,6 +292,7 @@ CCArray* AnimationComponent::eightDirectionActionListWithDirResource(const char*
 		}
 		animation->setDelayPerUnit(delay);
 		animation->setRestoreOriginalFrame(true);
+        animation->setLoops(loops);
 		//animation.delay=delay;
         animations->addObject(animation);
 	}

@@ -8,11 +8,15 @@ NS_CC_YHGE_BEGIN
 //message id从10000开始
 enum
 {
-    //attack
+    //animation
     MSG_ANIMATION=10000,
     MSG_CHANGE_ANIMATION,
+    MSG_ANIMATION_COMPLETE,
     //attack
+    //normal attack
     MSG_ATTACK,
+    //skill attack
+    MSG_SKILL_ATTACK,
     MSG_SET_ATTACK_TARGET,
     MSG_AUTO_ATTACK,
     MSG_TARGET_DIE,

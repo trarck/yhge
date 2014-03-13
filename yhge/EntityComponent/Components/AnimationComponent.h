@@ -106,30 +106,37 @@ public:
     void onChangeAnimation(Message* message);
     
     /**
+     * 处理动画播放完成
+     */
+    void onAnimationComplete();
+    
+    /**
      * 从动画里创建action
      */
-    static CCAction* createActionFromAnimation(CCAnimation* animation);
+    CCAction* createActionFromAnimation(CCAnimation* animation);
 
     /**
      * 从文件中取得8方向动画
      * 关键帧在一张图片里。根据名子来确定方向
      */
-	static CCArray* eightDirectionActionListWithFile(const char* file ,int frameCount ,CCSize frameSize ,float delay);
+	static CCArray* eightDirectionActionListWithFile(const char* file ,int frameCount ,CCSize frameSize ,float delay,int loops=-1);
 	
     /**
      * 从目录中取得8方向动画
      * 关键帧是一张张图片。根据名子来确定方向
      */
-    static CCArray* eightDirectionActionListWithDir(const char* dir ,int frameCount ,CCSize frameSize ,float delay,const char* pathFormat);
+    static CCArray* eightDirectionActionListWithDir(const char* dir ,int frameCount ,CCSize frameSize ,float delay,const char* pathFormat,int loops=-1);
 
     /**
      * 从目录中取得8方向动画
      * 关键帧是一张张图片。根据名子来确定方向
      */
-    static CCArray* eightDirectionActionListWithDirResource(const char* resource ,int frameCount ,CCSize frameSize ,float delay);
+    static CCArray* eightDirectionActionListWithDirResource(const char* resource ,int frameCount ,CCSize frameSize ,float delay,int loops=-1);
     
     
 public:
+    
+    static const int kRepeatForverLoop=-1;
     
     inline void setAnimations(CCDictionary* animations)
     {
