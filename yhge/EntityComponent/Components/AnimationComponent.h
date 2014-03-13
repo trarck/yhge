@@ -8,6 +8,10 @@ NS_CC_YHGE_BEGIN
 
 class RendererComponent;
 
+/**
+ * 动画组件。
+ * 主要是帧动画。主要是序列帧。即cocos2d的CCAnimation
+ */
 class AnimationComponent : public Component
 {
 public:
