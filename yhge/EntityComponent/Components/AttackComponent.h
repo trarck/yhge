@@ -29,9 +29,14 @@ public:
     virtual void attackWithSkillId(int skillId);
 
     /**
-     * 处理攻击消息
+     * 处理普通攻击消息
      */
     virtual void onAttack(Message *message);
+    
+    /**
+     * 处理技能攻击消息
+     */
+    virtual void onSkillAttack(Message *message);
     
     /**
      * 处理设置目标消息
@@ -54,6 +59,8 @@ public:
     
 protected:
     
+    //攻击目标。对于目标的持有，由具体子类决定。
+    //攻击完成后是否消除目标，根据实际需求来设置
     Entity* m_target;
 };
 
