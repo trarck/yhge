@@ -194,4 +194,9 @@ void Entity::removeProperties()
     m_properties->removeAllObjects();
 }
 
+void Entity::cleanup()
+{
+    cleanupComponents();
+}
+
 NS_CC_YHGE_END

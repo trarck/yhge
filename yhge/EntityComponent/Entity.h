@@ -103,6 +103,11 @@ public:
      * 移除所有组件
      */
     virtual void removeProperties();
+    
+    /**
+     * entity的生命周期结束前的清理操作。必须手动调用，否则entity可能不会被消除。组件也可能不会被消除。
+     */
+    virtual void cleanup();
 
 public:
 
