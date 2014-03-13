@@ -44,6 +44,7 @@
 		576E3FE7187E47F300745A0A /* ISOComponentNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FE5187E47F300745A0A /* ISOComponentNode.cpp */; };
 		576E3FEC187E7CB400745A0A /* ISOObjectLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3FEA187E7CB400745A0A /* ISOObjectLayer.cpp */; };
 		57704FA818CF1573006B8A62 /* Array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704FA618CF1573006B8A62 /* Array.cpp */; };
+		57704FB118D039F0006B8A62 /* CCActionMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57704FAF18D039F0006B8A62 /* CCActionMessage.cpp */; };
 		5771055F18837C1700FA1446 /* CCDefaultTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771055D18837C1700FA1446 /* CCDefaultTexture.cpp */; };
 		5771056418837C2C00FA1446 /* ISOCoordinateLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771056018837C2C00FA1446 /* ISOCoordinateLayer.cpp */; };
 		5771056518837C2C00FA1446 /* ISODynamicGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5771056218837C2C00FA1446 /* ISODynamicGroup.cpp */; };
@@ -229,6 +230,8 @@
 		57704FA618CF1573006B8A62 /* Array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Array.cpp; sourceTree = "<group>"; };
 		57704FA718CF1573006B8A62 /* Array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Array.h; sourceTree = "<group>"; };
 		57704FA918CFF313006B8A62 /* DataStructureMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStructureMacros.h; sourceTree = "<group>"; };
+		57704FAF18D039F0006B8A62 /* CCActionMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionMessage.cpp; sourceTree = "<group>"; };
+		57704FB018D039F0006B8A62 /* CCActionMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionMessage.h; sourceTree = "<group>"; };
 		5771055D18837C1700FA1446 /* CCDefaultTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCDefaultTexture.cpp; sourceTree = "<group>"; };
 		5771055E18837C1700FA1446 /* CCDefaultTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDefaultTexture.h; sourceTree = "<group>"; };
 		5771056018837C2C00FA1446 /* ISOCoordinateLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOCoordinateLayer.cpp; sourceTree = "<group>"; };
@@ -707,6 +710,8 @@
 				577A7844186BF56500F1B5D5 /* Actions */,
 				57CF76FB18AB0A480085A22F /* ArrayData.cpp */,
 				57CF76FC18AB0A480085A22F /* ArrayData.h */,
+				57704FAF18D039F0006B8A62 /* CCActionMessage.cpp */,
+				57704FB018D039F0006B8A62 /* CCActionMessage.h */,
 				57381E9618C02B7B00CC17E9 /* CCAdaptSprite.cpp */,
 				57381E9718C02B7B00CC17E9 /* CCAdaptSprite.h */,
 				577A7847186BF56500F1B5D5 /* CCCallFuncNO.cpp */,
@@ -1102,6 +1107,7 @@
 				57CF770C18AB5B370085A22F /* Column.cpp in Sources */,
 				576E3FC4187D4BFB00745A0A /* ISOTileLayer.cpp in Sources */,
 				576E3FCD187D4BFB00745A0A /* ISOTileMapBuilder.cpp in Sources */,
+				57704FB118D039F0006B8A62 /* CCActionMessage.cpp in Sources */,
 				57A76A1218ACB2D80014DEC9 /* DAO.cpp in Sources */,
 				5771056C18838D7200FA1446 /* ISOCamera.cpp in Sources */,
 				57C337601888C3A1008B5618 /* GridMoveComponent.cpp in Sources */,
