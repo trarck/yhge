@@ -32,6 +32,9 @@ enum
     MSG_RUN_ACTION,
     MSG_STOP_ACTION,
     MSG_STOP_ACTION_BY_TAG,
+    MSG_RUN_ANIMATE,
+    MSG_STOP_ANIMATE,
+    MSG_STOP_ANIMATE_BY_TAG,
     //position
     MSG_POSITION_CHANGE,
     //entity

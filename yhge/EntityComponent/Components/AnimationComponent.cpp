@@ -154,10 +154,10 @@ void AnimationComponent::removeAnimationNamed(const std::string& name)
 /**
  * 播放一个动画
  */
-void AnimationComponent::runAnimation(CCAnimation* animation)
+void AnimationComponent::runAnimation(CCAnimation* animation,bool needCompleteAction)
 {
     if(animation && m_lastAnimation!=animation){
-        CCAction* action=createActionFromAnimation(animation);
+        CCAction* action=createActionFromAnimation(animation,needCompleteAction);
 
         //停止上一个action
         if (m_lastAction)
@@ -177,15 +177,28 @@ void AnimationComponent::runAnimation(CCAnimation* animation)
 void AnimationComponent::onChangeAnimation(Message *message)
 {
     CCDictionary* data=message->getDictionary();
+    int direction=0;
     
     CCString* animationName=(CCString*)data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_NAME);
-    int direction=((CCInteger*) data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_DIRECTION))->getValue();
+    
+    CCInteger* directionValue=((CCInteger*) data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_DIRECTION));
+    if (directionValue) {
+        direction=directionValue->getValue();
+    }
+    
+    bool needCompleteAction=false;
+    
+    CCBool* needCompleteAcionValue=static_cast<CCBool*>(data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_NEEDCOMPLETEACTION));
+    if(needCompleteAcionValue){
+        needCompleteAction=needCompleteAcionValue->getValue();
+    }
+    
     CCLOG("direction:%d name:%s",direction,animationName->getCString());
     
     CCAnimation* animation= animationForName(animationName->getCString(),direction);
     
     if(animation){
-        runAnimation(animation);
+        runAnimation(animation,needCompleteAction);
     }else {
         CCLOG("unknow animation name %s action is null",animationName->getCString());
     }
@@ -202,18 +215,23 @@ void AnimationComponent::onAnimationComplete()
 /**
  * 从动画里创建action
  */
-CCAction* AnimationComponent::createActionFromAnimation(CCAnimation* animation)
+CCAction* AnimationComponent::createActionFromAnimation(CCAnimation* animation,bool needCompleteAction)
 {
     CCAction* action=NULL;
     int loops=animation->getLoops();
     
     if (loops==kRepeatForverLoop) {
+        //不能修改animation的任何属性，由于它是一个指针。
         CCAnimate *animate= CCAnimate::create(animation);
         action=CCRepeatForever::create(CCSequence::create(animate,NULL));
     }else{
-        action= CCSequence::createWithTwoActions(
-                                                 CCAnimate::create(animation),
-                                                 CCCallFunc::create(this, callfunc_selector(AnimationComponent::onAnimationComplete)));
+        if (needCompleteAction) {
+            action= CCSequence::createWithTwoActions(
+                                                     CCAnimate::create(animation),
+                                                     CCCallFunc::create(this, callfunc_selector(AnimationComponent::onAnimationComplete)));
+        }else{
+            action=CCAnimate::create(animation);
+        }
     }
     action->setTag(kEightDirectionAction);
     return action;

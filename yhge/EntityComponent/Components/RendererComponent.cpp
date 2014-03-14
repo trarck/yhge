@@ -23,9 +23,14 @@ bool RendererComponent::registerMessages()
 {
     if(Component::registerMessages()){
 
-        this->getMessageManager()->registerReceiver(m_owner,MSG_RUN_ACTION, NULL ,message_selector(RendererComponent::onRunAction),this);
-        this->getMessageManager()->registerReceiver(m_owner,MSG_STOP_ACTION, NULL ,message_selector(RendererComponent::onStopAction),this);
-        this->getMessageManager()->registerReceiver(m_owner,MSG_STOP_ACTION_BY_TAG, NULL ,message_selector(RendererComponent::onStopActionByTag),this);
+        MessageManager* messageManager=this->getMessageManager();
+        
+        messageManager->registerReceiver(m_owner,MSG_RUN_ACTION, NULL ,message_selector(RendererComponent::onRunAction),this);
+        messageManager->registerReceiver(m_owner,MSG_STOP_ACTION, NULL ,message_selector(RendererComponent::onStopAction),this);
+        messageManager->registerReceiver(m_owner,MSG_STOP_ACTION_BY_TAG, NULL ,message_selector(RendererComponent::onStopActionByTag),this);
+        messageManager->registerReceiver(m_owner,MSG_RUN_ANIMATE, NULL ,message_selector(RendererComponent::onRunAnimate),this);
+        messageManager->registerReceiver(m_owner,MSG_STOP_ANIMATE, NULL ,message_selector(RendererComponent::onStopAnimate),this);
+        messageManager->registerReceiver(m_owner,MSG_STOP_ANIMATE_BY_TAG, NULL ,message_selector(RendererComponent::onStopAnimateByTag),this);
         
         return true;
     }
@@ -34,9 +39,13 @@ bool RendererComponent::registerMessages()
 
 void RendererComponent::cleanupMessages()
 {
-    this->getMessageManager()->removeReceiver(m_owner,MSG_RUN_ACTION);
-    this->getMessageManager()->removeReceiver(m_owner,MSG_STOP_ACTION);
-    this->getMessageManager()->removeReceiver(m_owner,MSG_STOP_ACTION_BY_TAG);
+    MessageManager* messageManager=this->getMessageManager();
+    messageManager->removeReceiver(m_owner,MSG_RUN_ACTION);
+    messageManager->removeReceiver(m_owner,MSG_STOP_ACTION);
+    messageManager->removeReceiver(m_owner,MSG_STOP_ACTION_BY_TAG);
+    messageManager->removeReceiver(m_owner,MSG_RUN_ANIMATE);
+    messageManager->removeReceiver(m_owner,MSG_STOP_ANIMATE);
+    messageManager->removeReceiver(m_owner,MSG_STOP_ANIMATE_BY_TAG);
     
     Component::cleanupMessages();
 }
@@ -110,7 +119,70 @@ void RendererComponent::onStopAction(Message* message)
 void RendererComponent::onStopActionByTag(Message* message)
 {
     CCInteger* tagValue=static_cast<CCInteger*>(message->getData());
-    m_renderer->stopActionByTag(tagValue->getValue());
+    if (tagValue) {
+        m_renderer->stopActionByTag(tagValue->getValue());
+    }
+}
+
+
+//==============对animation的特殊支持==============//
+/**
+ * 执行action
+ */
+void RendererComponent::runAnimate(CCAction* animate)
+{
+    //default as action
+    runAction(animate);
+}
+
+/**
+ * 停止action
+ */
+void RendererComponent::stopAnimate(CCAction* animate)
+{
+    //default as action
+    stopAction(animate);
+}
+
+/**
+ * 停止action by tag
+ */
+void RendererComponent::stopAnimateByTag(int tag)
+{
+    //default as action
+    stopActionByTag(tag);
+}
+
+/**
+ * 响应执行action
+ */
+void RendererComponent::onRunAnimate(Message* message)
+{
+    //do nothing
+    CCAction* action=static_cast<CCAction*>(message->getData());
+    runAnimate(action);
+}
+
+/**
+ * 响应停止action
+ */
+void RendererComponent::onStopAnimate(Message* message)
+{
+    //do nothing
+    CCAction* action=static_cast<CCAction*>(message->getData());
+    stopAnimate(action);
+}
+
+/**
+ * 响应停止action by tag
+ */
+void RendererComponent::onStopAnimateByTag(Message* message)
+{
+    //do nothing
+    CCInteger* tagValue=static_cast<CCInteger*>(message->getData());
+    if (tagValue) {
+        stopAnimateByTag(tagValue->getValue());
+    }
 }
 
 NS_CC_YHGE_END

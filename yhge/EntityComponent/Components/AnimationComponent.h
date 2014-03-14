@@ -78,30 +78,30 @@ public:
     /**
      * 播放一个动画
      */
-    void runAnimation(CCAnimation* animation);
+    void runAnimation(CCAnimation* animation,bool needCompleteAction=false);
 
     /**
      * 播放一个动画
      */
-    inline void runAnimation(const std::string& name)
+    inline void runAnimation(const std::string& name,bool needCompleteAction=false)
     {
-        runAnimation(animationForName(name));
+        runAnimation(animationForName(name),needCompleteAction);
     }
 
     /**
      * 播放一个动画
      */
-    inline void runAnimation(const std::string& name,int index)
+    inline void runAnimation(const std::string& name,int index,bool needCompleteAction=false)
     {
-        runAnimation(animationForName(name,index));
+        runAnimation(animationForName(name,index),needCompleteAction);
     }
 
     /**
      * 播放一个动画
      */
-    inline void runAnimation(const std::string& name,const std::string& key)
+    inline void runAnimation(const std::string& name,const std::string& key,bool needCompleteAction=false)
     {
-        runAnimation(animationForName(name,key));
+        runAnimation(animationForName(name,key),needCompleteAction);
     }
 
     /**
@@ -117,7 +117,7 @@ public:
     /**
      * 从动画里创建action
      */
-    CCAction* createActionFromAnimation(CCAnimation* animation);
+    CCAction* createActionFromAnimation(CCAnimation* animation,bool needCompleteAction);
 
     /**
      * 从文件中取得8方向动画
