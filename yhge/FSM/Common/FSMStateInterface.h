@@ -1,5 +1,5 @@
 //
-//  State.h
+//  FSMStateInterface
 //  做为 state的基类，具体功能由实现决定	
 //  enter exit update是基础可以保障设计的灵活
 //  update 是个定时事件，代替实体的update，进行处理，也可以改变状态。

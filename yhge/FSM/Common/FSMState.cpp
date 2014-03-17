@@ -17,6 +17,11 @@ void FSMState::update()
 	CCLOG("FSMState update");
 }
 
+void FSMState::update(float delta)
+{
+	CCLOG("FSMState update");
+}
+
 void FSMState::onMessage(Message* message)
 {
 	CCLOG("FSMState onMessage");
