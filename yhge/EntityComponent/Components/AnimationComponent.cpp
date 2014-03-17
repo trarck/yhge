@@ -317,4 +317,43 @@ CCArray* AnimationComponent::eightDirectionActionListWithDirResource(const char*
 	return animations;
 }
 
+/**
+ * 从目录中取得8方向动画
+ * 关键帧是一张张图片。根据名子来确定方向
+ */
+CCArray* AnimationComponent::createDirectionActionListWithResource(const char* resource ,const char* filenameFormat,int directionCount,int frameCount,float delay,int loops)
+{
+    CCSpriteFrameCache *frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
+    frameCache->addSpriteFramesWithFile(resource);
+    
+    CCArray* animations=CCArray::createWithCapacity(directionCount);
+	
+    CCSpriteFrame *spriteFrame =NULL;
+    
+	//move actiongit
+	char str[255] = {0};
+	for (int i=0; i<directionCount; i++) {
+        
+		CCAnimation* animation = CCAnimation::create();
+        
+		for (int j=0; j<frameCount; j++) {
+			sprintf(str,filenameFormat,i,j);//"xxx-xx-%02d%03d.png"
+            spriteFrame = frameCache->spriteFrameByName(str);
+            if (!spriteFrame) {
+                CCLOG("AnimationComponent::createDirectionActionListWithResource no fined %s",str);
+            }
+			animation->addSpriteFrame(spriteFrame);
+		}
+        
+		animation->setDelayPerUnit(delay);
+		animation->setRestoreOriginalFrame(true);
+        animation->setLoops(loops);
+		//animation.delay=delay;
+        animations->addObject(animation);
+        
+	}
+    
+	return animations;
+}
+
 NS_CC_YHGE_END

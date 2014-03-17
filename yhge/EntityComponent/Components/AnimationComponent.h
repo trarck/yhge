@@ -137,6 +137,12 @@ public:
      */
     static CCArray* eightDirectionActionListWithDirResource(const char* resource ,int frameCount ,CCSize frameSize ,float delay,int loops=-1);
     
+    /**
+     * 从集合里创建8方向动画
+     * 关键帧是一张张图片。根据名子来确定方向
+     */
+    static CCArray* createDirectionActionListWithResource(const char* resource,const char* filenameFormat,int directionCount ,int frameCount ,float delay,int loops=-1);
+    
     
 public:
     
