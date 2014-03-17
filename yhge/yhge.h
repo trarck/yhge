@@ -63,4 +63,10 @@
 #include "Datas/JSONData.h"
 #include "Datas/CocosData.h"
 
+//FSM
+#include "FSM/Common/FSMState.h"
+#include "FSM/Common/FSMParameterState.h"
+#include "FSM/Common/FSMDelegateState.h"
+#include "FSM/Common/FSMMachine.h"
+
 #endif //COCOS_YHGE_H_
