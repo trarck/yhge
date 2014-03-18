@@ -59,9 +59,21 @@ public:
     
     /**
      * 移动
+     * 相对位置，屏幕坐标系的值。
+     */
+	void move(const CCPoint& delta);
+    
+    /**
+     * 移动
      * 绝对位置，屏幕坐标系的值。
      */
     void moveTo(float x,float y);
+    
+    /**
+     * 移动
+     * 绝对位置，屏幕坐标系的值。
+     */
+    void moveTo(const CCPoint& position);
 
     /**
      * 反向移动
@@ -69,6 +81,13 @@ public:
      * 移动相机，其实在反向移动游戏世界
      */
 	void moveOpposite(float deltaX,float deltaY);
+    
+    /**
+     * 反向移动
+     * 相对位置
+     * 移动相机，其实在反向移动游戏世界
+     */
+	void moveOpposite(const CCPoint& delta);
     
     /**
      * 更新坐标

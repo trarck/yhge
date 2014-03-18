@@ -47,6 +47,14 @@ void  ISOCamera::move(float deltaX,float deltaY)
     this->updatePosition();
 }
 
+void ISOCamera::move(const CCPoint& delta)
+{
+    m_tWorldPosition.x+=delta.x;
+    m_tWorldPosition.y+=delta.y;
+    
+    this->updatePosition();
+}
+
 /**
  * 移动
  * 绝对位置
@@ -60,6 +68,14 @@ void  ISOCamera::moveTo(float x,float y)
 
 }
 
+void ISOCamera::moveTo(const CCPoint& position)
+{
+    m_tWorldPosition.x=position.x;
+    m_tWorldPosition.y=position.y;
+    
+    this->updatePosition();
+}
+
 
 /**
  * 反向移动
@@ -70,6 +86,14 @@ void  ISOCamera::moveOpposite(float deltaX,float deltaY)
     m_tWorldPosition.x-=deltaX;
     m_tWorldPosition.y-=deltaY;
 
+    this->updatePosition();
+}
+
+void ISOCamera::moveOpposite(const CCPoint& delta)
+{
+    m_tWorldPosition.x-=delta.x;
+    m_tWorldPosition.y-=delta.y;
+    
     this->updatePosition();
 }
 
