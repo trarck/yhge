@@ -353,6 +353,11 @@ protected:
      */
 	void resetState();
     
+    /**
+     * 移动完成
+     */
+    virtual void completeMove();
+    
     //开启更新定时器。为了使update不是虚函数，这里使用虚函数
     virtual void startMoveUpdateSchedule();
     virtual void stopMoveUpdateSchedule();

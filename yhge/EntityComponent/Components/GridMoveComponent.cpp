@@ -452,7 +452,7 @@ void GridMoveComponent::updatePath(float delta)
 		}else {
 			//stop move
 			this->setCurrentPaths(NULL);
-			stop();
+			completeMove();
 		}
 	}
 }
@@ -497,8 +497,9 @@ void GridMoveComponent::doMoveStop()
     data->setObject(CCString::create("idle"), COMPONENT_ANIMATION_CHANGE_PARAM_NAME);
     data->setObject(CCInteger::create(0), COMPONENT_ANIMATION_CHANGE_PARAM_DIRECTION);
     
-    MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
+    getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
 
+    getMessageManager()->dispatchMessage(MSG_MOVE_STOPED,NULL,m_owner);
 }
 
 /**
@@ -609,6 +610,14 @@ void GridMoveComponent::resetState()
 	m_lastDirectionY=0;
 	m_nextDirectionX=0;
     m_nextDirectionY=0;
+}
+
+void GridMoveComponent::completeMove()
+{
+    //send move complete message
+    getMessageManager()->dispatchMessage(MSG_MOVE_COMPLETE,NULL,m_owner);
+    
+    stop();
 }
 
 //开启更新定时器。为了使update不是虚函数，这里使用虚函数

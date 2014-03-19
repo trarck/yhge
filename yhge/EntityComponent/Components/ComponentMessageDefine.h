@@ -28,6 +28,8 @@ enum
 	MSG_MOVE_PATH,
     MSG_MOVE_PATH_FROM,
     MSG_MOVE_STOP,
+    MSG_MOVE_COMPLETE,
+    MSG_MOVE_STOPED,
     //sprite renderer
     MSG_RUN_ACTION,
     MSG_STOP_ACTION,
