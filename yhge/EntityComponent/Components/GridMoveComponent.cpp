@@ -497,9 +497,9 @@ void GridMoveComponent::doMoveStop()
     data->setObject(CCString::create("idle"), COMPONENT_ANIMATION_CHANGE_PARAM_NAME);
     data->setObject(CCInteger::create(0), COMPONENT_ANIMATION_CHANGE_PARAM_DIRECTION);
     
-    getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
+    getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, this, m_owner,data);
 
-    getMessageManager()->dispatchMessage(MSG_MOVE_STOPED,NULL,m_owner);
+    getMessageManager()->dispatchMessage(MSG_MOVE_STOPED,this,m_owner);
 }
 
 /**
@@ -615,7 +615,7 @@ void GridMoveComponent::resetState()
 void GridMoveComponent::completeMove()
 {
     //send move complete message
-    getMessageManager()->dispatchMessage(MSG_MOVE_COMPLETE,NULL,m_owner);
+    getMessageManager()->dispatchMessage(MSG_MOVE_COMPLETE,this,m_owner,CCPointValue::create(m_to));
     
     stop();
 }

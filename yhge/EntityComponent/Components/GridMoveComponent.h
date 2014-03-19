@@ -102,6 +102,8 @@ public:
     
     /**
      * 按路径移动
+     * 路径结点是反向的。即第一个结点是终点。
+     * 主要原因是为了配合A星的搜索结果,减少一次数组元素的反向。
      */
     virtual void moveWithPaths(CCArray* paths);
     
