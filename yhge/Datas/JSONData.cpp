@@ -23,6 +23,8 @@ void JSONData::loadFromFile(const std::string& file)
     
     Json::Reader reader;
     reader.parse((const char*)pBytes, (const char*)end, m_data);
+    
+    CC_SAFE_DELETE_ARRAY(pBytes);
 }
 
 void JSONData::loadFromContentString(const std::string& content)
