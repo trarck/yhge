@@ -54,6 +54,7 @@ public:
     /**
      * 移动
      * 相对位置，屏幕坐标系的值。
+     * 相对当前的缩放大小的移动，不是原始大小，这样看上去很平滑。不会出现当放大时，相机移动过快，缩小时相机移动缓慢。
      */
 	void move(float deltaX,float deltaY);
     
@@ -116,6 +117,8 @@ public:
     
     /**
      * 更新缩放
+     * 由于m_tWorldPosition记录的是旧的缩放下相机所在世界的位置。为了保持显示的一致性，要把m_tWorldPosition进行缩放修正。
+     * 在新的缩放模式下，相机的移动是相对新的缩放模式的。
      */
     void updateScale();
 
