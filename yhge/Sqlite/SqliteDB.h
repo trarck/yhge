@@ -9,7 +9,7 @@
 
 NS_CC_YHGE_SQLITE_BEGIN
 
-class SqliteDB : public CCObject
+class SqliteDB //: public CCObject
 {
 public:
     
