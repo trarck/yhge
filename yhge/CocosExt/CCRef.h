@@ -6,11 +6,23 @@
 
 NS_CC_YHGE_BEGIN
 
+template<typename T>
+class RefObjectDeallocater {
+public:
+    static void deallocate(T *p) { delete p; }
+};
+
+template<typename T>
+class RefArrayDeallocater {
+public:
+    static void deallocate(T *p) { delete[] p; }
+};
+
 /**
  * 普通指针包装成cocos object
  * 或者给普通指针一个ref count;
  */
-template <class T>
+template <class T,typename Deallocater= RefObjectDeallocater<T> >
 class CCRef : public cocos2d::CCObject
 {
 public:
@@ -27,9 +39,10 @@ public:
     }
     
     ~CCRef(){
-        CCLOG("ccscope destry");
-        CC_SAFE_DELETE(m_ptr);
-        m_ptr=NULL;
+        if (m_ptr) {
+            Deallocater::deallocate(m_ptr);
+            m_ptr=NULL;
+        }
     }
     
     inline void setPtr(T* ptr){
