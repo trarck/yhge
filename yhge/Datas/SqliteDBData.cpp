@@ -43,4 +43,34 @@ void JSONData::unload()
     m_data=Json::Value::null;
 }
 
+Json::Value JSONData::getValue(const std::string& key)
+{
+    return m_data.get(key, Json::Value::null);
+}
+
+void JSONData::setValue(const std::string& key,int value)
+{
+    m_data[key]=value;
+}
+
+void JSONData::setValue(const std::string& key,float value)
+{
+    m_data[key]=value;
+}
+
+void JSONData::setValue(const std::string& key,double value)
+{
+    m_data[key]=value;
+}
+
+void JSONData::setValue(const std::string& key,const std::string& value)
+{
+    m_data[key]=value;
+}
+
+void JSONData::setValue(const std::string& key,Json::Value value)
+{
+    m_data[key]=value;
+}
+
 NS_CC_YHGE_END

@@ -28,32 +28,68 @@ public:
         return static_cast<CCDictionary*>(m_data->objectForKey(key));
     }
     
-    void setValue(const std::string& key,int value)
+    inline void setValue(const std::string& key,int value)
     {
         m_data->setObject(CCInteger::create(value), key);
     }
     
-    void setValue(const std::string& key,float value)
+    inline void setValue(const std::string& key,float value)
     {
         m_data->setObject(CCFloat::create(value), key);
     }
     
-    void setValue(const std::string& key,double value)
+    inline void setValue(const std::string& key,double value)
     {
         m_data->setObject(CCDouble::create(value), key);
     }
     
-    void setValue(const std::string& key,const std::string& value)
+    inline void setValue(const std::string& key,const std::string& value)
     {
         m_data->setObject(CCString::create(value), key);
     }
     
-    inline void setValue(const std::string& key,CCArray* value)
+    inline inline void setValue(const std::string& key,CCArray* value)
     {
         m_data->setObject(value, key);
     }
     
-    void setValue(const std::string& key,CCDictionary* value)
+    inline void setValue(const std::string& key,CCDictionary* value)
+    {
+        m_data->setObject(value, key);
+    }
+    
+    
+    inline CCDictionary* getValue(int key)
+    {
+        return static_cast<CCDictionary*>(m_data->objectForKey(key));
+    }
+    
+    inline void setValue(int key,int value)
+    {
+        m_data->setObject(CCInteger::create(value), key);
+    }
+    
+    inline void setValue(int key,float value)
+    {
+        m_data->setObject(CCFloat::create(value), key);
+    }
+    
+    inline void setValue(int key,double value)
+    {
+        m_data->setObject(CCDouble::create(value), key);
+    }
+    
+    inline void setValue(int key,const std::string& value)
+    {
+        m_data->setObject(CCString::create(value), key);
+    }
+    
+    inline inline void setValue(int key,CCArray* value)
+    {
+        m_data->setObject(value, key);
+    }
+    
+    inline void setValue(int key,CCDictionary* value)
     {
         m_data->setObject(value, key);
     }

@@ -22,17 +22,66 @@ public:
     
     virtual void unload();
     
-    Json::Value getValue(const std::string& key);
-
-    void setValue(const std::string& key,int value);
     
-    void setValue(const std::string& key,float value);
+    inline Json::Value getValue(const std::string& key)
+    {
+        return m_data.get(key, Json::Value::null);
+    }
     
-    void setValue(const std::string& key,double value);
+    inline void setValue(const std::string& key,int value)
+    {
+        m_data[key]=value;
+    }
     
-    void setValue(const std::string& key,const std::string& value);
+    inline void setValue(const std::string& key,float value)
+    {
+        m_data[key]=value;
+    }
     
-    void setValue(const std::string& key,Json::Value value);
+    inline void setValue(const std::string& key,double value)
+    {
+        m_data[key]=value;
+    }
+    
+    inline void setValue(const std::string& key,const std::string& value)
+    {
+        m_data[key]=value;
+    }
+    
+    inline void setValue(const std::string& key,Json::Value value)
+    {
+        m_data[key]=value;
+    }
+    
+    inline Json::Value getValue(int key)
+    {
+        return m_data[key];
+    }
+    
+    inline void setValue(int key,int value)
+    {
+        m_data[key]=value;
+    }
+    
+    inline void setValue(int key,float value)
+    {
+        m_data[key]=value;
+    }
+    
+    inline void setValue(int key,double value)
+    {
+        m_data[key]=value;
+    }
+    
+    inline void setValue(int key,const std::string& value)
+    {
+        m_data[key]=value;
+    }
+    
+    inline void setValue(int key,Json::Value value)
+    {
+        m_data[key]=value;
+    }
     
 protected:
     
