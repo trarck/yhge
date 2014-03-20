@@ -56,7 +56,7 @@
 #include "Sqlite/Statement.h"
 #include "Sqlite/Column.h"
 #include "Sqlite/Transaction.h"
-#include "Sqlite/SqliteDB.h"
+#include "Sqlite/SqliteDriver.h"
 
 //data
 #include "Datas/BaseData.h"
