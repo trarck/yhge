@@ -10,19 +10,19 @@ class BaseData:public CCObject
 {
 public:
     
-	BaseData();
-    
-	~BaseData();
+//	BaseData();
+//    
+//	~BaseData();
     
     inline bool init(){return true;}
     
-    virtual void loadFromFile(const std::string& file){};
+    virtual void loadFromFile(const std::string& file)=0;
     
-    virtual void loadFromContentString(const std::string& content){};
+    virtual void loadFromContentString(const std::string& content)=0;
     
-    virtual void loadFromUrl(const std::string& url){};
+    virtual void loadFromUrl(const std::string& url)=0;
     
-    virtual void unload(){};
+    virtual void unload()=0;
 
 };
 
