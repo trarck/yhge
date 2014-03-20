@@ -1,18 +1,18 @@
-#ifndef YHGE_DATAS_DAO_H_
-#define YHGE_DATAS_DAO_H_
+#ifndef YHGE_DATAS_DB_COCOSDAO_H_
+#define YHGE_DATAS_DB_COCOSDAO_H_
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
 
 NS_CC_YHGE_BEGIN
 
-class DAO:public CCObject
+class CocosDAO:public CCObject
 {
 public:
     
-	DAO();
+	CocosDAO();
     
-	~DAO();
+	~CocosDAO();
     
     int fetchNumber(const std::string& querySql);
     
@@ -44,4 +44,4 @@ NS_CC_YHGE_END
 
 
 
-#endif //YHGE_DATAS_DAO_H_
+#endif //YHGE_DATAS_DB_COCOSDAO_H_

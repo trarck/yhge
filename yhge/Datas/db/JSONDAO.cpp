@@ -1,0 +1,18 @@
+#include "JSONDAO.h"
+
+USING_NS_CC;
+
+NS_CC_YHGE_BEGIN
+
+JSONDAO::JSONDAO()
+:m_driver(NULL)
+{
+
+}
+
+JSONDAO::~JSONDAO()
+{
+    CC_SAFE_RELEASE_NULL(m_driver);
+}
+
+NS_CC_YHGE_END
