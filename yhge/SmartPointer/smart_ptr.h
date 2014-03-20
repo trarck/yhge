@@ -9,27 +9,27 @@ NS_CC_YHGE_BEGIN
 //flat of smart pointer class
 namespace smart_ptr {
 
-class RefCount
+class ref_count
 {
 public:
-    RefCount() : m_count(1),m_weakCount(0)
+    ref_count() : m_count(1),m_weakCount(0)
     {
         
     }
 
-    RefCount(int count)
+    ref_count(int count)
     :m_count(count),m_weakCount(0)
     {
         
     }
     
-	RefCount(int count,int weakCount)
+	ref_count(int count,int weakCount)
     :m_count(count),m_weakCount(weakCount)
     {
         
     }
     
-    ~RefCount()
+    ~ref_count()
     {
     }
 
@@ -116,7 +116,7 @@ public:
     explicit shared_ptr(T *p=0) : m_counter(NULL), m_ptr(p)
     {
         if (m_ptr) {
-            m_counter = new RefCount();
+            m_counter = new ref_count();
         }
     }
 
@@ -257,7 +257,7 @@ protected:
     template<class Q, typename MemMgr2> friend class shared_ptr;
     template<class Q, typename MemMgr2> friend class weak_ptr;
 protected:
-    RefCount *m_counter;
+    ref_count *m_counter;
     T * m_ptr;
 };
 
@@ -422,7 +422,7 @@ protected:
     template<class Q, typename MemMgr2> friend class shared_ptr;
     
 protected:
-    RefCount *m_counter;
+    ref_count *m_counter;
     T * m_ptr;
     
 private:
