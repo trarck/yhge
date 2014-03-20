@@ -115,7 +115,7 @@
 		57CF76E718AA060D0085A22F /* DamageFormula.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76E518AA060D0085A22F /* DamageFormula.cpp */; };
 		57CF76FF18AB0A480085A22F /* ArrayData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76FB18AB0A480085A22F /* ArrayData.cpp */; };
 		57CF770018AB0A480085A22F /* DictionaryData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF76FD18AB0A480085A22F /* DictionaryData.cpp */; };
-		57CF770418AB1A290085A22F /* SqliteDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770218AB1A290085A22F /* SqliteDB.cpp */; };
+		57CF770418AB1A290085A22F /* SqliteDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770218AB1A290085A22F /* SqliteDriver.cpp */; };
 		57CF770C18AB5B370085A22F /* Column.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770618AB5B370085A22F /* Column.cpp */; };
 		57CF770D18AB5B370085A22F /* Statement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770818AB5B370085A22F /* Statement.cpp */; };
 		57CF770E18AB5B370085A22F /* Transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770A18AB5B370085A22F /* Transaction.cpp */; };
@@ -393,8 +393,8 @@
 		57CF76FC18AB0A480085A22F /* ArrayData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayData.h; sourceTree = "<group>"; };
 		57CF76FD18AB0A480085A22F /* DictionaryData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryData.cpp; sourceTree = "<group>"; };
 		57CF76FE18AB0A480085A22F /* DictionaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryData.h; sourceTree = "<group>"; };
-		57CF770218AB1A290085A22F /* SqliteDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SqliteDB.cpp; sourceTree = "<group>"; };
-		57CF770318AB1A290085A22F /* SqliteDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteDB.h; sourceTree = "<group>"; };
+		57CF770218AB1A290085A22F /* SqliteDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SqliteDriver.cpp; sourceTree = "<group>"; };
+		57CF770318AB1A290085A22F /* SqliteDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteDriver.h; sourceTree = "<group>"; };
 		57CF770618AB5B370085A22F /* Column.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Column.cpp; sourceTree = "<group>"; };
 		57CF770718AB5B370085A22F /* Column.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Column.h; sourceTree = "<group>"; };
 		57CF770818AB5B370085A22F /* Statement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Statement.cpp; sourceTree = "<group>"; };
@@ -957,8 +957,8 @@
 			children = (
 				57CF770618AB5B370085A22F /* Column.cpp */,
 				57CF770718AB5B370085A22F /* Column.h */,
-				57CF770218AB1A290085A22F /* SqliteDB.cpp */,
-				57CF770318AB1A290085A22F /* SqliteDB.h */,
+				57CF770218AB1A290085A22F /* SqliteDriver.cpp */,
+				57CF770318AB1A290085A22F /* SqliteDriver.h */,
 				57525CC718AB836A00166633 /* SqliteMacros.h */,
 				57CF770818AB5B370085A22F /* Statement.cpp */,
 				57CF770918AB5B370085A22F /* Statement.h */,
@@ -1041,7 +1041,7 @@
 				57928415188D2BFD00B46136 /* ISOActiveLayer.cpp in Sources */,
 				576E3FC0187D4BFB00745A0A /* ISODynamicComponent.cpp in Sources */,
 				577A78F6186BF56500F1B5D5 /* AstarNode.cpp in Sources */,
-				57CF770418AB1A290085A22F /* SqliteDB.cpp in Sources */,
+				57CF770418AB1A290085A22F /* SqliteDriver.cpp in Sources */,
 				57973E6218978FD4009C956E /* ISOStaticCoordinate.cpp in Sources */,
 				57243EF018B72BD30070163A /* CCValue.cpp in Sources */,
 				577A7931186BF56500F1B5D5 /* MessageHandler.cpp in Sources */,

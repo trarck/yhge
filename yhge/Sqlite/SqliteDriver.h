@@ -1,5 +1,5 @@
-#ifndef YHGE_SQLITE_SQLITEDB_H_
-#define YHGE_SQLITE_SQLITEDB_H_
+#ifndef YHGE_SQLITE_SQLITEDRIVER_H_
+#define YHGE_SQLITE_SQLITEDRIVER_H_
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
@@ -9,12 +9,12 @@
 
 NS_CC_YHGE_SQLITE_BEGIN
 
-class SqliteDB //: public CCObject
+class SqliteDriver //: public CCObject
 {
 public:
     
-    SqliteDB();
-    ~SqliteDB();
+    SqliteDriver();
+    ~SqliteDriver();
     
     bool init();
     
@@ -187,8 +187,8 @@ public:
     
 private:
     /// @{ Database must be non-copyable
-    SqliteDB(const SqliteDB&);
-    SqliteDB& operator=(const SqliteDB&);
+    SqliteDriver(const SqliteDriver&);
+    SqliteDriver& operator=(const SqliteDriver&);
     /// @}
     
     /**
@@ -207,4 +207,4 @@ private:
 
 NS_CC_YHGE_SQLITE_END
 
-#endif // YHGE_SQLITE_SQLITEDB_H_
+#endif // YHGE_SQLITE_SQLITEDRIVER_H_
