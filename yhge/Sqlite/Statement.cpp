@@ -1,16 +1,16 @@
 
 #include "Statement.h"
 
-#include "SqliteDB.h"
+#include "SqliteDriver.h"
 #include "Column.h"
 
 
 NS_CC_YHGE_SQLITE_BEGIN
 
 // Compile and register the SQL query for the provided SQLite Database Connection
-Statement::Statement(SqliteDB &database, const char* query) : // throw(SQLite::Exception)
+Statement::Statement(SqliteDriver &driver, const char* query) : // throw(SQLite::Exception)
     m_query(query),
-    m_stmtPtr(database.getDB(), m_query), // prepare the SQL query, and ref count (needs Database friendship)
+    m_stmtPtr(driver.getDB(), m_query), // prepare the SQL query, and ref count (needs Database friendship)
     m_columnCount(0),
     m_ok(false),
     m_done(false)
@@ -19,9 +19,9 @@ Statement::Statement(SqliteDB &database, const char* query) : // throw(SQLite::E
 }
 
 // Compile and register the SQL query for the provided SQLite Database Connection
-Statement::Statement(SqliteDB &database, const std::string& query) : // throw(SQLite::Exception)
+Statement::Statement(SqliteDriver &driver, const std::string& query) : // throw(SQLite::Exception)
     m_query(query),
-    m_stmtPtr(database.getDB(), m_query), // prepare the SQL query, and ref count (needs Database friendship)
+    m_stmtPtr(driver.getDB(), m_query), // prepare the SQL query, and ref count (needs Database friendship)
     m_columnCount(0),
     m_ok(false),
     m_done(false)

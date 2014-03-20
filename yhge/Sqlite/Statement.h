@@ -10,7 +10,7 @@
 NS_CC_YHGE_SQLITE_BEGIN
 
 // Forward declaration
-class SqliteDB;
+class SqliteDriver;
 class Column;
 
 /**
@@ -43,7 +43,7 @@ public:
      *
      * Exception is thrown in case of error, then the Statement object is NOT constructed.
      */
-    Statement(SqliteDB& database, const char* query); // throw(SQLite::Exception);
+    Statement(SqliteDriver& driver, const char* query); // throw(SQLite::Exception);
 
     /**
      * @brief Compile and register the SQL query for the provided SQLite Database Connection
@@ -53,7 +53,7 @@ public:
      *
      * Exception is thrown in case of error, then the Statement object is NOT constructed.
      */
-    Statement(SqliteDB& database, const std::string& query); // throw(SQLite::Exception);
+    Statement(SqliteDriver& driver, const std::string& query); // throw(SQLite::Exception);
 
     /**
      * @brief Finalize and unregister the SQL query from the SQLite Database Connection.

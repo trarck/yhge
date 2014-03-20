@@ -10,16 +10,16 @@
  */
 #include "Transaction.h"
 
-#include "SqliteDB.h"
+#include "SqliteDriver.h"
 
 NS_CC_YHGE_SQLITE_BEGIN
 
 // Begins the SQLite transaction
-Transaction::Transaction(SqliteDB& database) : // throw(SQLite::Exception)
-    m_database(database),
+Transaction::Transaction(SqliteDriver& driver) : // throw(SQLite::Exception)
+    m_driver(driver),
     m_commited(false)
 {
-    m_database.execute("BEGIN");
+    m_driver.execute("BEGIN");
 }
 
 // Safely rollback the transaction if it has not been committed.
@@ -27,7 +27,7 @@ Transaction::~Transaction(void) throw() // nothrow
 {
     if (false == m_commited)
     {
-        m_database.execute("ROLLBACK");
+        m_driver.execute("ROLLBACK");
     }
 }
 
@@ -36,7 +36,7 @@ void Transaction::commit(void) // throw(SQLite::Exception)
 {
     if (false == m_commited)
     {
-        m_database.execute("COMMIT");
+        m_driver.execute("COMMIT");
         m_commited = true;
     }
     else

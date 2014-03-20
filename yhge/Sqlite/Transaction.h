@@ -8,7 +8,7 @@
 NS_CC_YHGE_SQLITE_BEGIN
 
 // Forward declaration
-class SqliteDB;
+class SqliteDriver;
 
 /**
  * @brief RAII encapsulation of a SQLite Transaction.
@@ -40,7 +40,7 @@ public:
      *
      * Exception is thrown in case of error, then the Transaction is NOT initiated.
      */
-    explicit Transaction(SqliteDB& database); // throw(SQLite::Exception);
+    explicit Transaction(SqliteDriver& driver); // throw(SQLite::Exception);
 
     /**
      * @brief Safely rollback the transaction if it has not been committed.
@@ -59,7 +59,7 @@ private:
     /// @}
 
 private:
-    SqliteDB&   m_database;  //!< Reference to the SQLite Database Connection
+    SqliteDriver&   m_driver;  //!< Reference to the SQLite Database Connection
     bool        m_commited; //!< True when commit has been called
 };
 
