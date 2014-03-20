@@ -9,10 +9,11 @@ NS_CC_YHGE_BEGIN
 static const char* kSqlSeprate=",";
 static const char* kSqlFieldQuto="`";
 static const char* kSqlNullValue="null";
+static const char* kSqlDefaultPrepareFlag=":";
 
 JSONDAO::JSONDAO()
 :m_driver(NULL)
-,m_prepareFlag(":")
+,m_prepareFlag(kSqlDefaultPrepareFlag)
 {
 
 }
@@ -263,13 +264,13 @@ int JSONDAO::remove(const std::string& table,const Json::Value& where)
  */
 std::string JSONDAO::formateToInsertPrepare(const Json::Value& data)
 {
-    Json::Value::Members members=data.getMemberNames();
     
     std::string fields="(";
     std::string values="(";
     
     bool isFirst=true;
     
+    Json::Value::Members members=data.getMemberNames();
     for (Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
         
         //如果不是第一项，则加入分割符
@@ -308,11 +309,12 @@ std::string JSONDAO::formateToInsertPrepare(const Json::Value& data)
  */
 std::string JSONDAO::formateToEqualPrepare(const Json::Value& data)
 {
-    Json::Value::Members members=data.getMemberNames();
     
     std::string prepareStr="";
     
     bool isFirst=true;
+    
+    Json::Value::Members members=data.getMemberNames();
     
     for (Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
         
@@ -360,11 +362,12 @@ std::string JSONDAO::formateToEqualPrepare(const Json::Value& data)
  */
 std::string JSONDAO::formateToConditionPrepare(const Json::Value& data,Json::Value& whereData,const std::string& separator)
 {
-    Json::Value::Members members=data.getMemberNames();
-    
+
     std::string prepareStr="";
     
     bool isFirst=true;
+    
+    Json::Value::Members members=data.getMemberNames();
     
     for (Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
         
@@ -389,7 +392,7 @@ std::string JSONDAO::formateToConditionPrepare(const Json::Value& data,Json::Val
     return prepareStr;
 }
 
-void setRecordValue(const sqlite::Column& col, Json::Value& record)
+void JSONDAO::setRecordValue(const sqlite::Column& col, Json::Value& record)
 {
     switch (col.getType()) {
         case SQLITE_INTEGER:
