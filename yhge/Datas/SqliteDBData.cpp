@@ -1,76 +1,42 @@
-#include "JSONData.h"
+#include "SqliteDBData.h"
 
 USING_NS_CC;
 
 NS_CC_YHGE_BEGIN
 
-JSONData::JSONData()
+SqliteDBData::SqliteDBData()
+:m_dao(NULL)
 {
 
 }
 
-JSONData::~JSONData()
+SqliteDBData::~SqliteDBData()
 {
-
+    CC_SAFE_RELEASE_NULL(m_dao);
 }
 
-void JSONData::loadFromFile(const std::string& file)
+void SqliteDBData::loadFromFile(const std::string& file)
 {
-    unsigned long size = 0;
-    
-    unsigned char * pBytes = CCFileUtils::sharedFileUtils()->getFileData(file.c_str(), "rb", &size);
-    unsigned char *end = pBytes + size;
-    
-    Json::Reader reader;
-    reader.parse((const char*)pBytes, (const char*)end, m_data);
-    
-    CC_SAFE_DELETE_ARRAY(pBytes);
+    //do nothing
+    //数据的访问通过dao来实现
 }
 
-void JSONData::loadFromContentString(const std::string& content)
+void SqliteDBData::loadFromContentString(const std::string& content)
 {
-    Json::Reader reader;
-    reader.parse(content, m_data);
+    //do nothing
+    //数据的访问通过dao来实现
 }
 
-void JSONData::loadFromUrl(const std::string& url)
+void SqliteDBData::loadFromUrl(const std::string& url)
 {
-    //TODO
+    //do nothing
+    //数据的访问通过dao来实现
 }
 
-void JSONData::unload()
+void SqliteDBData::unload()
 {
-    m_data=Json::Value::null;
+    setDao(NULL);
 }
 
-Json::Value JSONData::getValue(const std::string& key)
-{
-    return m_data.get(key, Json::Value::null);
-}
-
-void JSONData::setValue(const std::string& key,int value)
-{
-    m_data[key]=value;
-}
-
-void JSONData::setValue(const std::string& key,float value)
-{
-    m_data[key]=value;
-}
-
-void JSONData::setValue(const std::string& key,double value)
-{
-    m_data[key]=value;
-}
-
-void JSONData::setValue(const std::string& key,const std::string& value)
-{
-    m_data[key]=value;
-}
-
-void JSONData::setValue(const std::string& key,Json::Value value)
-{
-    m_data[key]=value;
-}
 
 NS_CC_YHGE_END

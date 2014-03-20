@@ -1,18 +1,19 @@
-#ifndef YHGE_DATAS_JSONDATA_H_
-#define YHGE_DATAS_JSONDATA_H_
+#ifndef YHGE_DATAS_SQLITEDBDATA_H_
+#define YHGE_DATAS_SQLITEDBDATA_H_
 
 #include "BaseData.h"
 #include <yhge/Jsoncpp/json.h>
+#include "db/JSONDAO.h"
 
 NS_CC_YHGE_BEGIN
 
-class JSONData:public BaseData
+class SqliteDBData:public BaseData
 {
 public:
     
-	JSONData();
+	SqliteDBData();
     
-	~JSONData();
+	~SqliteDBData();
     
     virtual void loadFromFile(const std::string& file);
     
@@ -22,25 +23,26 @@ public:
     
     virtual void unload();
     
-    Json::Value getValue(const std::string& key);
-
-    void setValue(const std::string& key,int value);
+public:
     
-    void setValue(const std::string& key,float value);
+    inline void setDao(JSONDAO* dao)
+    {
+        CC_SAFE_RETAIN(dao);
+        CC_SAFE_RELEASE(m_dao);
+        m_dao = dao;
+    }
     
-    void setValue(const std::string& key,double value);
-    
-    void setValue(const std::string& key,const std::string& value);
-    
-    void setValue(const std::string& key,Json::Value value);
-    
+    inline JSONDAO* getDao()
+    {
+        return m_dao;
+    }
 protected:
     
-    Json::Value m_data;
+    JSONDAO* m_dao;
 };
 
 NS_CC_YHGE_END
 
 
 
-#endif //YHGE_DATAS_JSONDATA_H_
+#endif //YHGE_DATAS_SQLITEDBDATA_H_
