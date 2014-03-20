@@ -9,7 +9,7 @@
 
 NS_CC_YHGE_SQLITE_BEGIN
 
-class SqliteDriver //: public CCObject
+class SqliteDriver
 {
 public:
     
