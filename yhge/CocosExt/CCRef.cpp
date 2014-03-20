@@ -1,4 +1,4 @@
-#include "CCScopePtr.h"
+#include "CCRef.h"
 
 NS_CC_YHGE_BEGIN
 
