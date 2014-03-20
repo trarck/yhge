@@ -14,6 +14,9 @@
 		574A56A818B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56A618B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp */; };
 		574A56AB18B2130700518953 /* StaticTopViewCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56A918B2130700518953 /* StaticTopViewCoordinateFormulae.cpp */; };
 		574A56AE18B217B100518953 /* ISOStaticCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56AC18B217B100518953 /* ISOStaticCoordinateFormulae.cpp */; };
+		574FE4E518DA831D00490B18 /* CocosDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4E118DA831D00490B18 /* CocosDAO.cpp */; };
+		574FE4E618DA831D00490B18 /* JSONDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4E318DA831D00490B18 /* JSONDAO.cpp */; };
+		574FE4F218DA920E00490B18 /* RefCount.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4F018DA920E00490B18 /* RefCount.cpp */; };
 		57525CEB18AC690C00166633 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE418AC690C00166633 /* json_reader.cpp */; };
 		57525CEC18AC690C00166633 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE518AC690C00166633 /* json_value.cpp */; };
 		57525CED18AC690C00166633 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE718AC690C00166633 /* json_writer.cpp */; };
@@ -58,7 +61,7 @@
 		577A78F8186BF56500F1B5D5 /* CCParabolaMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A7845186BF56500F1B5D5 /* CCParabolaMove.cpp */; };
 		577A78F9186BF56500F1B5D5 /* CCCallFuncNO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A7847186BF56500F1B5D5 /* CCCallFuncNO.cpp */; };
 		577A78FA186BF56500F1B5D5 /* CCGeometryValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A7849186BF56500F1B5D5 /* CCGeometryValue.cpp */; };
-		577A78FB186BF56500F1B5D5 /* CCScopePtr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A784B186BF56500F1B5D5 /* CCScopePtr.cpp */; };
+		577A78FB186BF56500F1B5D5 /* CCRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A784B186BF56500F1B5D5 /* CCRef.cpp */; };
 		577A78FC186BF56500F1B5D5 /* CCSelectorWrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A784D186BF56500F1B5D5 /* CCSelectorWrap.cpp */; };
 		577A78FD186BF56500F1B5D5 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A7850186BF56500F1B5D5 /* base64.cpp */; };
 		577A78FE186BF56500F1B5D5 /* ccCArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577A7852186BF56500F1B5D5 /* ccCArray.cpp */; };
@@ -97,7 +100,6 @@
 		57975ACE18974038008A9F38 /* ISOMapPositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975ACC18974038008A9F38 /* ISOMapPositionComponent.cpp */; };
 		57975AD5189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AD3189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp */; };
 		57A76A1118ACB2D80014DEC9 /* BaseData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57A76A0D18ACB2D80014DEC9 /* BaseData.cpp */; };
-		57A76A1218ACB2D80014DEC9 /* DAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57A76A0F18ACB2D80014DEC9 /* DAO.cpp */; };
 		57A76A1518ACB5730014DEC9 /* CocosData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57A76A1318ACB5730014DEC9 /* CocosData.cpp */; };
 		57A76A1818ACBC860014DEC9 /* JSONData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57A76A1618ACBC860014DEC9 /* JSONData.cpp */; };
 		57C3375C1888C3A1008B5618 /* AnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337401888C3A1008B5618 /* AnimationComponent.cpp */; };
@@ -156,6 +158,12 @@
 		574A56AD18B217B100518953 /* ISOStaticCoordinateFormulae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOStaticCoordinateFormulae.h; sourceTree = "<group>"; };
 		574A56AF18B2F15B00518953 /* CoordinateFormulae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateFormulae.h; sourceTree = "<group>"; };
 		574A56B018B2F15B00518953 /* IsometricMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsometricMacros.h; sourceTree = "<group>"; };
+		574FE4E118DA831D00490B18 /* CocosDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosDAO.cpp; sourceTree = "<group>"; };
+		574FE4E218DA831D00490B18 /* CocosDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosDAO.h; sourceTree = "<group>"; };
+		574FE4E318DA831D00490B18 /* JSONDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONDAO.cpp; sourceTree = "<group>"; };
+		574FE4E418DA831D00490B18 /* JSONDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDAO.h; sourceTree = "<group>"; };
+		574FE4F018DA920E00490B18 /* RefCount.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RefCount.cpp; sourceTree = "<group>"; };
+		574FE4F118DA920E00490B18 /* RefCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefCount.h; sourceTree = "<group>"; };
 		57525CC718AB836A00166633 /* SqliteMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteMacros.h; sourceTree = "<group>"; };
 		57525CDC18AC690C00166633 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
 		57525CDD18AC690C00166633 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -260,8 +268,8 @@
 		577A7848186BF56500F1B5D5 /* CCCallFuncNO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCallFuncNO.h; sourceTree = "<group>"; };
 		577A7849186BF56500F1B5D5 /* CCGeometryValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCGeometryValue.cpp; sourceTree = "<group>"; };
 		577A784A186BF56500F1B5D5 /* CCGeometryValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGeometryValue.h; sourceTree = "<group>"; };
-		577A784B186BF56500F1B5D5 /* CCScopePtr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCScopePtr.cpp; sourceTree = "<group>"; };
-		577A784C186BF56500F1B5D5 /* CCScopePtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScopePtr.h; sourceTree = "<group>"; };
+		577A784B186BF56500F1B5D5 /* CCRef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCRef.cpp; sourceTree = "<group>"; };
+		577A784C186BF56500F1B5D5 /* CCRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRef.h; sourceTree = "<group>"; };
 		577A784D186BF56500F1B5D5 /* CCSelectorWrap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSelectorWrap.cpp; sourceTree = "<group>"; };
 		577A784E186BF56500F1B5D5 /* CCSelectorWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSelectorWrap.h; sourceTree = "<group>"; };
 		577A7850186BF56500F1B5D5 /* base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base64.cpp; sourceTree = "<group>"; };
@@ -350,8 +358,6 @@
 		57975AD4189752E8008A9F38 /* ISOAutoZOrderPositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOAutoZOrderPositionComponent.h; sourceTree = "<group>"; };
 		57A76A0D18ACB2D80014DEC9 /* BaseData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseData.cpp; sourceTree = "<group>"; };
 		57A76A0E18ACB2D80014DEC9 /* BaseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseData.h; sourceTree = "<group>"; };
-		57A76A0F18ACB2D80014DEC9 /* DAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DAO.cpp; sourceTree = "<group>"; };
-		57A76A1018ACB2D80014DEC9 /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
 		57A76A1318ACB5730014DEC9 /* CocosData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosData.cpp; sourceTree = "<group>"; };
 		57A76A1418ACB5730014DEC9 /* CocosData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosData.h; sourceTree = "<group>"; };
 		57A76A1618ACBC860014DEC9 /* JSONData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONData.cpp; sourceTree = "<group>"; };
@@ -469,6 +475,26 @@
 				574A56AA18B2130700518953 /* StaticTopViewCoordinateFormulae.h */,
 			);
 			path = Dimetric;
+			sourceTree = "<group>";
+		};
+		574FE4E018DA831D00490B18 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				574FE4E118DA831D00490B18 /* CocosDAO.cpp */,
+				574FE4E218DA831D00490B18 /* CocosDAO.h */,
+				574FE4E318DA831D00490B18 /* JSONDAO.cpp */,
+				574FE4E418DA831D00490B18 /* JSONDAO.h */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
+		574FE4EF18DA920E00490B18 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				574FE4F018DA920E00490B18 /* RefCount.cpp */,
+				574FE4F118DA920E00490B18 /* RefCount.h */,
+			);
+			path = base;
 			sourceTree = "<group>";
 		};
 		57525CDB18AC690C00166633 /* Jsoncpp */ = {
@@ -652,6 +678,7 @@
 			isa = PBXGroup;
 			children = (
 				577A7838186BF56500F1B5D5 /* Arithmetic */,
+				574FE4EF18DA920E00490B18 /* base */,
 				577A7843186BF56500F1B5D5 /* CocosExt */,
 				57A76A0C18ACB2D80014DEC9 /* Datas */,
 				57704FA518CF1573006B8A62 /* DataStructure */,
@@ -711,6 +738,7 @@
 			isa = PBXGroup;
 			children = (
 				577A7844186BF56500F1B5D5 /* Actions */,
+				577A784F186BF56500F1B5D5 /* Support */,
 				57CF76FB18AB0A480085A22F /* ArrayData.cpp */,
 				57CF76FC18AB0A480085A22F /* ArrayData.h */,
 				57704FAF18D039F0006B8A62 /* CCActionMessage.cpp */,
@@ -723,13 +751,12 @@
 				5771055E18837C1700FA1446 /* CCDefaultTexture.h */,
 				577A7849186BF56500F1B5D5 /* CCGeometryValue.cpp */,
 				577A784A186BF56500F1B5D5 /* CCGeometryValue.h */,
-				577A784B186BF56500F1B5D5 /* CCScopePtr.cpp */,
-				577A784C186BF56500F1B5D5 /* CCScopePtr.h */,
+				577A784B186BF56500F1B5D5 /* CCRef.cpp */,
+				577A784C186BF56500F1B5D5 /* CCRef.h */,
 				577A784D186BF56500F1B5D5 /* CCSelectorWrap.cpp */,
 				577A784E186BF56500F1B5D5 /* CCSelectorWrap.h */,
 				57CF76FD18AB0A480085A22F /* DictionaryData.cpp */,
 				57CF76FE18AB0A480085A22F /* DictionaryData.h */,
-				577A784F186BF56500F1B5D5 /* Support */,
 			);
 			path = CocosExt;
 			sourceTree = "<group>";
@@ -859,12 +886,11 @@
 		57A76A0C18ACB2D80014DEC9 /* Datas */ = {
 			isa = PBXGroup;
 			children = (
+				574FE4E018DA831D00490B18 /* db */,
 				57A76A0D18ACB2D80014DEC9 /* BaseData.cpp */,
 				57A76A0E18ACB2D80014DEC9 /* BaseData.h */,
 				57A76A1318ACB5730014DEC9 /* CocosData.cpp */,
 				57A76A1418ACB5730014DEC9 /* CocosData.h */,
-				57A76A0F18ACB2D80014DEC9 /* DAO.cpp */,
-				57A76A1018ACB2D80014DEC9 /* DAO.h */,
 				57A76A1618ACBC860014DEC9 /* JSONData.cpp */,
 				57A76A1718ACBC860014DEC9 /* JSONData.h */,
 			);
@@ -1021,7 +1047,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				577A78FB186BF56500F1B5D5 /* CCScopePtr.cpp in Sources */,
+				577A78FB186BF56500F1B5D5 /* CCRef.cpp in Sources */,
 				57C337611888C3A1008B5618 /* ISOPositionComponent.cpp in Sources */,
 				577A78F9186BF56500F1B5D5 /* CCCallFuncNO.cpp in Sources */,
 				576E3FEC187E7CB400745A0A /* ISOObjectLayer.cpp in Sources */,
@@ -1031,6 +1057,7 @@
 				577A7909186BF56500F1B5D5 /* EventHandleWrap.cpp in Sources */,
 				57525CEC18AC690C00166633 /* json_value.cpp in Sources */,
 				57381E9818C02B7B00CC17E9 /* CCAdaptSprite.cpp in Sources */,
+				574FE4E618DA831D00490B18 /* JSONDAO.cpp in Sources */,
 				577A78F8186BF56500F1B5D5 /* CCParabolaMove.cpp in Sources */,
 				577A792C186BF56500F1B5D5 /* MersenneTwister.cpp in Sources */,
 				57975AAD1890FAE9008A9F38 /* SortZIndex.cpp in Sources */,
@@ -1079,6 +1106,7 @@
 				577A7933186BF56500F1B5D5 /* MessageManagerSenderPredominate.cpp in Sources */,
 				576E3FBF187D4BFB00745A0A /* ISOBatchTileLayer.cpp in Sources */,
 				57C337671888C3A1008B5618 /* Entity.cpp in Sources */,
+				574FE4F218DA920E00490B18 /* RefCount.cpp in Sources */,
 				57CF76E718AA060D0085A22F /* DamageFormula.cpp in Sources */,
 				577A78F5186BF56500F1B5D5 /* AstarFlexible.cpp in Sources */,
 				57975AB618910123008A9F38 /* SortZIndexNode.cpp in Sources */,
@@ -1113,8 +1141,8 @@
 				57CF770C18AB5B370085A22F /* Column.cpp in Sources */,
 				576E3FC4187D4BFB00745A0A /* ISOTileLayer.cpp in Sources */,
 				576E3FCD187D4BFB00745A0A /* ISOTileMapBuilder.cpp in Sources */,
+				574FE4E518DA831D00490B18 /* CocosDAO.cpp in Sources */,
 				57704FB118D039F0006B8A62 /* CCActionMessage.cpp in Sources */,
-				57A76A1218ACB2D80014DEC9 /* DAO.cpp in Sources */,
 				5771056C18838D7200FA1446 /* ISOCamera.cpp in Sources */,
 				57C337601888C3A1008B5618 /* GridMoveComponent.cpp in Sources */,
 				5771055F18837C1700FA1446 /* CCDefaultTexture.cpp in Sources */,
