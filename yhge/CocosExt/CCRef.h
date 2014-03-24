@@ -65,7 +65,7 @@ private:
     
     CCRef(const CCRef& other);
     
-    CCRef& operator= (const CCRef& other){return *this;};
+    CCRef& operator= (const CCRef& other);
     
 	T* m_ptr;
 };
