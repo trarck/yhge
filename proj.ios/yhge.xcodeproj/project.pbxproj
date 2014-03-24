@@ -19,6 +19,8 @@
 		574FE4F218DA920E00490B18 /* RefCount.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4F018DA920E00490B18 /* RefCount.cpp */; };
 		574FE4F518DAE7B100490B18 /* CCSimpleValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4F318DAE7B100490B18 /* CCSimpleValue.cpp */; };
 		574FE4F818DAF27F00490B18 /* SqliteDBData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4F618DAF27F00490B18 /* SqliteDBData.cpp */; };
+		574FE61918DFC6C400490B18 /* JsonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE61718DFC6C400490B18 /* JsonObject.cpp */; };
+		574FE61C18DFD97F00490B18 /* CocosValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE61A18DFD97F00490B18 /* CocosValue.cpp */; };
 		57525CEB18AC690C00166633 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE418AC690C00166633 /* json_reader.cpp */; };
 		57525CEC18AC690C00166633 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE518AC690C00166633 /* json_value.cpp */; };
 		57525CED18AC690C00166633 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE718AC690C00166633 /* json_writer.cpp */; };
@@ -170,6 +172,10 @@
 		574FE4F418DAE7B100490B18 /* CCSimpleValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSimpleValue.h; sourceTree = "<group>"; };
 		574FE4F618DAF27F00490B18 /* SqliteDBData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SqliteDBData.cpp; sourceTree = "<group>"; };
 		574FE4F718DAF27F00490B18 /* SqliteDBData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteDBData.h; sourceTree = "<group>"; };
+		574FE61718DFC6C400490B18 /* JsonObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JsonObject.cpp; sourceTree = "<group>"; };
+		574FE61818DFC6C400490B18 /* JsonObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonObject.h; sourceTree = "<group>"; };
+		574FE61A18DFD97F00490B18 /* CocosValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosValue.cpp; sourceTree = "<group>"; };
+		574FE61B18DFD97F00490B18 /* CocosValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosValue.h; sourceTree = "<group>"; };
 		57525CC718AB836A00166633 /* SqliteMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteMacros.h; sourceTree = "<group>"; };
 		57525CDC18AC690C00166633 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
 		57525CDD18AC690C00166633 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -763,8 +769,12 @@
 				577A784E186BF56500F1B5D5 /* CCSelectorWrap.h */,
 				574FE4F318DAE7B100490B18 /* CCSimpleValue.cpp */,
 				574FE4F418DAE7B100490B18 /* CCSimpleValue.h */,
+				574FE61A18DFD97F00490B18 /* CocosValue.cpp */,
+				574FE61B18DFD97F00490B18 /* CocosValue.h */,
 				57CF76FD18AB0A480085A22F /* DictionaryData.cpp */,
 				57CF76FE18AB0A480085A22F /* DictionaryData.h */,
+				574FE61718DFC6C400490B18 /* JsonObject.cpp */,
+				574FE61818DFC6C400490B18 /* JsonObject.h */,
 			);
 			path = CocosExt;
 			sourceTree = "<group>";
@@ -1077,6 +1087,7 @@
 				577A7935186BF56500F1B5D5 /* NormalMessageManager.cpp in Sources */,
 				577A7907186BF56500F1B5D5 /* EventHandle.cpp in Sources */,
 				57928415188D2BFD00B46136 /* ISOActiveLayer.cpp in Sources */,
+				574FE61C18DFD97F00490B18 /* CocosValue.cpp in Sources */,
 				576E3FC0187D4BFB00745A0A /* ISODynamicComponent.cpp in Sources */,
 				577A78F6186BF56500F1B5D5 /* AstarNode.cpp in Sources */,
 				57CF770418AB1A290085A22F /* SqliteDriver.cpp in Sources */,
@@ -1141,6 +1152,7 @@
 				5771056518837C2C00FA1446 /* ISODynamicGroup.cpp in Sources */,
 				57975AB31890FB16008A9F38 /* ZIndexNode.cpp in Sources */,
 				576E3FCB187D4BFB00745A0A /* ISOTilesetInfo.cpp in Sources */,
+				574FE61918DFC6C400490B18 /* JsonObject.cpp in Sources */,
 				576E3FBE187D4BFB00745A0A /* ISOBatchDynamicTileLayer.cpp in Sources */,
 				5771056418837C2C00FA1446 /* ISOCoordinateLayer.cpp in Sources */,
 				577A7936186BF56500F1B5D5 /* SimpleMessageManager.cpp in Sources */,
