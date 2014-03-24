@@ -30,8 +30,8 @@ public:
     iterator end() { return _data.end(); }
     const_iterator end() const { return _data.end(); }
     
-    const_iterator cbegin() const { return _data.cbegin(); }
-    const_iterator cend() const { return _data.cend(); }
+//    const_iterator cbegin() const { return _data.cbegin(); }
+//    const_iterator cend() const { return _data.cend(); }
     
     reverse_iterator rbegin() { return _data.rbegin(); }
     const_reverse_iterator rbegin() const { return _data.rbegin(); }
@@ -39,8 +39,8 @@ public:
     reverse_iterator rend() { return _data.rend(); }
     const_reverse_iterator rend() const { return _data.rend(); }
     
-    const_reverse_iterator crbegin() const { return _data.crbegin(); }
-    const_reverse_iterator crend() const { return _data.crend(); }
+//    const_reverse_iterator crbegin() const { return _data.crbegin(); }
+//    const_reverse_iterator crend() const { return _data.crend(); }
     
     /** Constructor */
     Vector<T>()

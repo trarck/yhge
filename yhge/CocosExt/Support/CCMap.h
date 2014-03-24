@@ -46,8 +46,8 @@ public:
     iterator end() { return _data.end(); }
     const_iterator end() const { return _data.end(); }
     
-    const_iterator cbegin() const { return _data.cbegin(); }
-    const_iterator cend() const { return _data.cend(); }
+//    const_iterator cbegin() const { return _data.cbegin(); }
+//    const_iterator cend() const { return _data.cend(); }
     
     /** Default constructor */
     Map<K, V>()
@@ -281,7 +281,7 @@ public:
      */
     void clear()
     {
-        for (iterator iter = _data.cbegin(); iter != _data.cend(); ++iter)
+        for (iterator iter = _data.begin(); iter != _data.end(); ++iter)
         {
             iter->second->release();
         }
