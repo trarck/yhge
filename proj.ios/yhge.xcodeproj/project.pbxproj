@@ -183,11 +183,8 @@
 		57525CDF18AC690C00166633 /* forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forwards.h; sourceTree = "<group>"; };
 		57525CE018AC690C00166633 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
 		57525CE118AC690C00166633 /* json_batchallocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_batchallocator.h; sourceTree = "<group>"; };
-		57525CE218AC690C00166633 /* json_internalarray.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalarray.inl; sourceTree = "<group>"; };
-		57525CE318AC690C00166633 /* json_internalmap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalmap.inl; sourceTree = "<group>"; };
 		57525CE418AC690C00166633 /* json_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_reader.cpp; sourceTree = "<group>"; };
 		57525CE518AC690C00166633 /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_value.cpp; sourceTree = "<group>"; };
-		57525CE618AC690C00166633 /* json_valueiterator.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_valueiterator.inl; sourceTree = "<group>"; };
 		57525CE718AC690C00166633 /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_writer.cpp; sourceTree = "<group>"; };
 		57525CE818AC690C00166633 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
 		57525CE918AC690C00166633 /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
@@ -518,11 +515,8 @@
 				57525CDF18AC690C00166633 /* forwards.h */,
 				57525CE018AC690C00166633 /* json.h */,
 				57525CE118AC690C00166633 /* json_batchallocator.h */,
-				57525CE218AC690C00166633 /* json_internalarray.inl */,
-				57525CE318AC690C00166633 /* json_internalmap.inl */,
 				57525CE418AC690C00166633 /* json_reader.cpp */,
 				57525CE518AC690C00166633 /* json_value.cpp */,
-				57525CE618AC690C00166633 /* json_valueiterator.inl */,
 				57525CE718AC690C00166633 /* json_writer.cpp */,
 				57525CE818AC690C00166633 /* reader.h */,
 				57525CE918AC690C00166633 /* value.h */,
