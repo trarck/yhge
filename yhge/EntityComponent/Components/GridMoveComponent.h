@@ -334,12 +334,12 @@ public:
         return m_pNextPaths;
     }
     
-    inline void setMoveableDelegate(MoveableDelegate* moveableDelegate)
+    inline void setMoveableDelegate(GirdMoveableDelegate* moveableDelegate)
     {
         m_moveableDelegate = moveableDelegate;
     }
     
-    inline MoveableDelegate* getMoveableDelegate()
+    inline GirdMoveableDelegate* getMoveableDelegate()
     {
         return m_moveableDelegate;
     }
