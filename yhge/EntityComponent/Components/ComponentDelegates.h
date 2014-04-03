@@ -1,0 +1,19 @@
+#ifndef YHGE_ENTITYCOMPONENT_COMPONENTS_COMPONENTDELEGATE_H_
+#define YHGE_ENTITYCOMPONENT_COMPONENTS_COMPONENTDELEGATE_H_
+
+#include "cocos2d.h"
+
+NS_CC_YHGE_BEGIN
+
+
+class GirdMoveableDelegate
+{
+public:
+    virtual bool isWorkable(float x,float y)=0;
+};
+
+
+NS_CC_YHGE_END
+
+
+#endif //YHGE_ENTITYCOMPONENT_COMPONENTS_COMPONENTDELEGATE_H_

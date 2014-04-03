@@ -5,6 +5,7 @@
 #include "Component.h"
 #include "ISOPositionComponent.h"
 #include "RendererComponent.h"
+#include "ComponentDelegates.h"
 
 NS_CC_YHGE_BEGIN
 
@@ -56,7 +57,7 @@ public:
     /**
      * 检查是不是可以移动
      */
-    bool checkMoveable();
+    virtual bool checkMoveable();
 
     /**
      * 按方向移动
@@ -333,6 +334,16 @@ public:
         return m_pNextPaths;
     }
     
+    inline void setMoveableDelegate(MoveableDelegate* moveableDelegate)
+    {
+        m_moveableDelegate = moveableDelegate;
+    }
+    
+    inline MoveableDelegate* getMoveableDelegate()
+    {
+        return m_moveableDelegate;
+    }
+    
 protected:
     
     /**
@@ -422,6 +433,7 @@ protected:
     //当前移动路径进行的位置
 	int m_pathIndex;
     
+    GirdMoveableDelegate* m_moveableDelegate;
     
     //定时器函数
     SEL_SCHEDULE m_update;

@@ -64,6 +64,7 @@ GridMoveComponent::GridMoveComponent()
 ,m_pNextPaths(NULL)
 ,m_pathIndex(0)
 ,m_update(NULL)
+,m_moveableDelegate(NULL)
 ,m_isoPositionComponent(NULL)
 //,m_rendererComponent(NULL)
 {
@@ -152,6 +153,9 @@ void GridMoveComponent::stop()
 
 bool GridMoveComponent::checkMoveable()
 {
+    if (m_moveableDelegate) {
+        return m_moveableDelegate->isWorkable(m_to.x,m_to.y);
+    }
 	return true;
 }
 
