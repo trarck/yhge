@@ -416,6 +416,7 @@
 		57CF770918AB5B370085A22F /* Statement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statement.h; sourceTree = "<group>"; };
 		57CF770A18AB5B370085A22F /* Transaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transaction.cpp; sourceTree = "<group>"; };
 		57CF770B18AB5B370085A22F /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		57E2C2B318ED64A300124DF1 /* ComponentDelegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentDelegates.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -947,6 +948,7 @@
 				57C337461888C3A1008B5618 /* Component.cpp */,
 				57C337471888C3A1008B5618 /* Component.h */,
 				57CF76EF18AA0A060085A22F /* ComponentConsts.h */,
+				57E2C2B318ED64A300124DF1 /* ComponentDelegates.h */,
 				57C337481888C3A1008B5618 /* ComponentEntityInterface.h */,
 				57C337491888C3A1008B5618 /* ComponentInterface.h */,
 				57C3374A1888C3A1008B5618 /* ComponentMessageDefine.h */,
