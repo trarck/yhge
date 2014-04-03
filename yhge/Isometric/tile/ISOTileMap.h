@@ -79,7 +79,7 @@ public:
     /**
 	 *检查某个单元是否可以通过
 	 */
-	virtual bool isWorkable(int x,int y);
+	virtual bool isWorkable(float x,float y);
 
 	//==============dynamic group===============//
 	
