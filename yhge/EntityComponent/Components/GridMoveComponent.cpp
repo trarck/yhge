@@ -618,10 +618,11 @@ void GridMoveComponent::resetState()
 
 void GridMoveComponent::completeMove()
 {
+    stop();
+    
     //send move complete message
     getMessageManager()->dispatchMessage(MSG_MOVE_COMPLETE,this,m_owner,CCPointValue::create(m_to));
-    
-    stop();
+
 }
 
 //开启更新定时器。为了使update不是虚函数，这里使用虚函数
