@@ -19,6 +19,14 @@ RendererComponent::~RendererComponent()
     CC_SAFE_RELEASE_NULL(m_renderer);
 }
 
+void RendererComponent::cleanup(void)
+{
+    if (m_renderer) {
+        m_renderer->stopAllActions();
+    }
+    Component::cleanup();
+}
+
 bool RendererComponent::registerMessages()
 {
     if(Component::registerMessages()){
