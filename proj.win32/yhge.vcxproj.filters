@@ -88,6 +88,12 @@
     <Filter Include="Jsoncpp">
       <UniqueIdentifier>{ae693235-a7e9-43ea-8a4a-526d3a86c36f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Datas\db">
+      <UniqueIdentifier>{7441cf49-bebb-4ca7-acc3-ccdea45eb45a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dimetric">
+      <UniqueIdentifier>{aab1697a-05b6-4d6f-8b23-fed9fbb35277}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h">
@@ -106,9 +112,6 @@
       <Filter>CocosExt</Filter>
     </ClInclude>
     <ClInclude Include="..\yhge\CocosExt\CCGeometryValue.h">
-      <Filter>CocosExt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCScopePtr.h">
       <Filter>CocosExt</Filter>
     </ClInclude>
     <ClInclude Include="..\yhge\CocosExt\CCSelectorWrap.h">
@@ -191,9 +194,6 @@
     </ClInclude>
     <ClInclude Include="..\yhge\Message\MessageTarget.h">
       <Filter>Message</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOCoordinate.h">
-      <Filter>Isometric</Filter>
     </ClInclude>
     <ClInclude Include="..\yhge\Isometric\tile\base\ISOMapObject.h">
       <Filter>Isometric\tile\base</Filter>
@@ -408,9 +408,6 @@
     <ClInclude Include="..\yhge\Sqlite\Column.h">
       <Filter>Sqlite</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\Sqlite\SqliteDB.h">
-      <Filter>Sqlite</Filter>
-    </ClInclude>
     <ClInclude Include="..\yhge\Sqlite\SqliteMacros.h">
       <Filter>Sqlite</Filter>
     </ClInclude>
@@ -427,9 +424,6 @@
       <Filter>Datas</Filter>
     </ClInclude>
     <ClInclude Include="..\yhge\Datas\CocosData.h">
-      <Filter>Datas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Datas\DAO.h">
       <Filter>Datas</Filter>
     </ClInclude>
     <ClInclude Include="..\yhge\Datas\JSONData.h">
@@ -474,6 +468,48 @@
     <ClInclude Include="..\yhge\CocosExt\CCAdaptSprite.h">
       <Filter>CocosExt</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CCActionMessage.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CCRef.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CCSimpleValue.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CocosValue.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\JsonObject.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\SqliteDBData.h">
+      <Filter>Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\db\CocosDAO.h">
+      <Filter>Datas\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\db\JSONDAO.h">
+      <Filter>Datas\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Dimetric\DimetricMacros.h">
+      <Filter>Dimetric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Dimetric\StaticSideViewCoordinateFormulae.h">
+      <Filter>Dimetric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Dimetric\StaticTopViewCoordinateFormulae.h">
+      <Filter>Dimetric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\CoordinateFormulae.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\ISOMacroCoordinate.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Sqlite\SqliteDriver.h">
+      <Filter>Sqlite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -492,9 +528,6 @@
       <Filter>CocosExt</Filter>
     </ClCompile>
     <ClCompile Include="..\yhge\CocosExt\CCGeometryValue.cpp">
-      <Filter>CocosExt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCScopePtr.cpp">
       <Filter>CocosExt</Filter>
     </ClCompile>
     <ClCompile Include="..\yhge\CocosExt\CCSelectorWrap.cpp">
@@ -737,9 +770,6 @@
     <ClCompile Include="..\yhge\Sqlite\Column.cpp">
       <Filter>Sqlite</Filter>
     </ClCompile>
-    <ClCompile Include="..\yhge\Sqlite\SqliteDB.cpp">
-      <Filter>Sqlite</Filter>
-    </ClCompile>
     <ClCompile Include="..\yhge\Sqlite\Statement.cpp">
       <Filter>Sqlite</Filter>
     </ClCompile>
@@ -753,9 +783,6 @@
       <Filter>Datas</Filter>
     </ClCompile>
     <ClCompile Include="..\yhge\Datas\CocosData.cpp">
-      <Filter>Datas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Datas\DAO.cpp">
       <Filter>Datas</Filter>
     </ClCompile>
     <ClCompile Include="..\yhge\Datas\JSONData.cpp">
@@ -778,6 +805,39 @@
     </ClCompile>
     <ClCompile Include="..\yhge\CocosExt\CCAdaptSprite.cpp">
       <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CCActionMessage.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CCRef.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CCSimpleValue.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CocosValue.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\JsonObject.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\SqliteDBData.cpp">
+      <Filter>Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\db\CocosDAO.cpp">
+      <Filter>Datas\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\db\JSONDAO.cpp">
+      <Filter>Datas\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Dimetric\StaticSideViewCoordinateFormulae.cpp">
+      <Filter>Dimetric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Dimetric\StaticTopViewCoordinateFormulae.cpp">
+      <Filter>Dimetric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Sqlite\SqliteDriver.cpp">
+      <Filter>Sqlite</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
