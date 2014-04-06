@@ -48,7 +48,7 @@ public:
         m_data->setObject(CCString::create(value), key);
     }
     
-    inline inline void setValue(const std::string& key,CCArray* value)
+    inline void setValue(const std::string& key,CCArray* value)
     {
         m_data->setObject(value, key);
     }
@@ -84,7 +84,7 @@ public:
         m_data->setObject(CCString::create(value), key);
     }
     
-    inline inline void setValue(int key,CCArray* value)
+    inline void setValue(int key,CCArray* value)
     {
         m_data->setObject(value, key);
     }
