@@ -3,6 +3,8 @@
 
 #include "YHGEMacros.h"
 
+#include "Base/Log.h"
+
 //smart pointer
 #include "SmartPointer/smart_ptr.h"
 
