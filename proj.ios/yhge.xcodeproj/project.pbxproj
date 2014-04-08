@@ -16,7 +16,6 @@
 		574A56AE18B217B100518953 /* ISOStaticCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56AC18B217B100518953 /* ISOStaticCoordinateFormulae.cpp */; };
 		574FE4E518DA831D00490B18 /* CocosDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4E118DA831D00490B18 /* CocosDAO.cpp */; };
 		574FE4E618DA831D00490B18 /* JSONDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4E318DA831D00490B18 /* JSONDAO.cpp */; };
-		574FE4F218DA920E00490B18 /* RefCount.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4F018DA920E00490B18 /* RefCount.cpp */; };
 		574FE4F518DAE7B100490B18 /* CCSimpleValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4F318DAE7B100490B18 /* CCSimpleValue.cpp */; };
 		574FE4F818DAF27F00490B18 /* SqliteDBData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4F618DAF27F00490B18 /* SqliteDBData.cpp */; };
 		574FE61918DFC6C400490B18 /* JsonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE61718DFC6C400490B18 /* JsonObject.cpp */; };
@@ -125,6 +124,7 @@
 		57CF770C18AB5B370085A22F /* Column.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770618AB5B370085A22F /* Column.cpp */; };
 		57CF770D18AB5B370085A22F /* Statement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770818AB5B370085A22F /* Statement.cpp */; };
 		57CF770E18AB5B370085A22F /* Transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770A18AB5B370085A22F /* Transaction.cpp */; };
+		57E2C2B918F393DE00124DF1 /* RefCount.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E2C2B718F393DE00124DF1 /* RefCount.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -166,8 +166,6 @@
 		574FE4E218DA831D00490B18 /* CocosDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosDAO.h; sourceTree = "<group>"; };
 		574FE4E318DA831D00490B18 /* JSONDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONDAO.cpp; sourceTree = "<group>"; };
 		574FE4E418DA831D00490B18 /* JSONDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDAO.h; sourceTree = "<group>"; };
-		574FE4F018DA920E00490B18 /* RefCount.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RefCount.cpp; sourceTree = "<group>"; };
-		574FE4F118DA920E00490B18 /* RefCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefCount.h; sourceTree = "<group>"; };
 		574FE4F318DAE7B100490B18 /* CCSimpleValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSimpleValue.cpp; sourceTree = "<group>"; };
 		574FE4F418DAE7B100490B18 /* CCSimpleValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSimpleValue.h; sourceTree = "<group>"; };
 		574FE4F618DAF27F00490B18 /* SqliteDBData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SqliteDBData.cpp; sourceTree = "<group>"; };
@@ -417,6 +415,9 @@
 		57CF770A18AB5B370085A22F /* Transaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transaction.cpp; sourceTree = "<group>"; };
 		57CF770B18AB5B370085A22F /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
 		57E2C2B318ED64A300124DF1 /* ComponentDelegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentDelegates.h; sourceTree = "<group>"; };
+		57E2C2B618F393DE00124DF1 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		57E2C2B718F393DE00124DF1 /* RefCount.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RefCount.cpp; sourceTree = "<group>"; };
+		57E2C2B818F393DE00124DF1 /* RefCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefCount.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -496,15 +497,6 @@
 				574FE4E418DA831D00490B18 /* JSONDAO.h */,
 			);
 			path = db;
-			sourceTree = "<group>";
-		};
-		574FE4EF18DA920E00490B18 /* base */ = {
-			isa = PBXGroup;
-			children = (
-				574FE4F018DA920E00490B18 /* RefCount.cpp */,
-				574FE4F118DA920E00490B18 /* RefCount.h */,
-			);
-			path = base;
 			sourceTree = "<group>";
 		};
 		57525CDB18AC690C00166633 /* Jsoncpp */ = {
@@ -685,7 +677,7 @@
 			isa = PBXGroup;
 			children = (
 				577A7838186BF56500F1B5D5 /* Arithmetic */,
-				574FE4EF18DA920E00490B18 /* base */,
+				57E2C2B518F393DE00124DF1 /* Base */,
 				577A7843186BF56500F1B5D5 /* CocosExt */,
 				57A76A0C18ACB2D80014DEC9 /* Datas */,
 				57704FA518CF1573006B8A62 /* DataStructure */,
@@ -1010,6 +1002,16 @@
 			path = Sqlite;
 			sourceTree = "<group>";
 		};
+		57E2C2B518F393DE00124DF1 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				57E2C2B618F393DE00124DF1 /* Log.h */,
+				57E2C2B718F393DE00124DF1 /* RefCount.cpp */,
+				57E2C2B818F393DE00124DF1 /* RefCount.h */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1125,7 +1127,6 @@
 				577A7933186BF56500F1B5D5 /* MessageManagerSenderPredominate.cpp in Sources */,
 				576E3FBF187D4BFB00745A0A /* ISOBatchTileLayer.cpp in Sources */,
 				57C337671888C3A1008B5618 /* Entity.cpp in Sources */,
-				574FE4F218DA920E00490B18 /* RefCount.cpp in Sources */,
 				57CF76E718AA060D0085A22F /* DamageFormula.cpp in Sources */,
 				577A78F5186BF56500F1B5D5 /* AstarFlexible.cpp in Sources */,
 				57975AB618910123008A9F38 /* SortZIndexNode.cpp in Sources */,
@@ -1160,6 +1161,7 @@
 				576E3FDF187E3DF800745A0A /* ISOMapObject.cpp in Sources */,
 				57CF770C18AB5B370085A22F /* Column.cpp in Sources */,
 				576E3FC4187D4BFB00745A0A /* ISOTileLayer.cpp in Sources */,
+				57E2C2B918F393DE00124DF1 /* RefCount.cpp in Sources */,
 				576E3FCD187D4BFB00745A0A /* ISOTileMapBuilder.cpp in Sources */,
 				574FE4E518DA831D00490B18 /* CocosDAO.cpp in Sources */,
 				57704FB118D039F0006B8A62 /* CCActionMessage.cpp in Sources */,
