@@ -125,6 +125,7 @@
 		57CF770D18AB5B370085A22F /* Statement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770818AB5B370085A22F /* Statement.cpp */; };
 		57CF770E18AB5B370085A22F /* Transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CF770A18AB5B370085A22F /* Transaction.cpp */; };
 		57E2C2B918F393DE00124DF1 /* RefCount.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E2C2B718F393DE00124DF1 /* RefCount.cpp */; };
+		57E2C2BC18F39B6F00124DF1 /* EightDirectionAnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E2C2BA18F39B6F00124DF1 /* EightDirectionAnimationComponent.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -418,6 +419,8 @@
 		57E2C2B618F393DE00124DF1 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		57E2C2B718F393DE00124DF1 /* RefCount.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RefCount.cpp; sourceTree = "<group>"; };
 		57E2C2B818F393DE00124DF1 /* RefCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefCount.h; sourceTree = "<group>"; };
+		57E2C2BA18F39B6F00124DF1 /* EightDirectionAnimationComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EightDirectionAnimationComponent.cpp; sourceTree = "<group>"; };
+		57E2C2BB18F39B6F00124DF1 /* EightDirectionAnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EightDirectionAnimationComponent.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -944,6 +947,8 @@
 				57C337481888C3A1008B5618 /* ComponentEntityInterface.h */,
 				57C337491888C3A1008B5618 /* ComponentInterface.h */,
 				57C3374A1888C3A1008B5618 /* ComponentMessageDefine.h */,
+				57E2C2BA18F39B6F00124DF1 /* EightDirectionAnimationComponent.cpp */,
+				57E2C2BB18F39B6F00124DF1 /* EightDirectionAnimationComponent.h */,
 				57C3374B1888C3A1008B5618 /* GridMoveComponent.cpp */,
 				57C3374C1888C3A1008B5618 /* GridMoveComponent.h */,
 				57975AD3189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp */,
@@ -1169,6 +1174,7 @@
 				57C337601888C3A1008B5618 /* GridMoveComponent.cpp in Sources */,
 				5771055F18837C1700FA1446 /* CCDefaultTexture.cpp in Sources */,
 				577A790A186BF56500F1B5D5 /* EventListenerManager.cpp in Sources */,
+				57E2C2BC18F39B6F00124DF1 /* EightDirectionAnimationComponent.cpp in Sources */,
 				57C337641888C3A1008B5618 /* RendererComponent.cpp in Sources */,
 				577A792D186BF56500F1B5D5 /* RandomMT.cpp in Sources */,
 				577A78FC186BF56500F1B5D5 /* CCSelectorWrap.cpp in Sources */,
