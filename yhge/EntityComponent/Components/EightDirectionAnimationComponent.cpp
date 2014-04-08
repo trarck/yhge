@@ -1,4 +1,4 @@
-#include "AnimationComponent.h"
+#include "EightDirectionAnimationComponent.h"
 #include <yhge/Base/Log.h>
 #include <yhge/message.h>
 #include <yhge/EntityComponent/Entity.h>
@@ -10,178 +10,18 @@ USING_NS_CC;
 
 NS_CC_YHGE_BEGIN
 
-static const int kEightDirectionAction=1001;
 
-//const int AnimationComponent::kRepeatForverLoop=-1;
-
-AnimationComponent::AnimationComponent()
-:Component("AnimationComponent")
-,m_animations(NULL)
-,m_lastAnimation(NULL)
-,m_lastAction(NULL)
-,m_rendererComponent(NULL)
+EightDirectionAnimationComponent::EightDirectionAnimationComponent()
 {
-
-}
-
-AnimationComponent::~AnimationComponent()
-{
-	CC_SAFE_RELEASE_NULL(m_animations);
-    CC_SAFE_RELEASE_NULL(m_lastAction);
-}
-
-bool AnimationComponent::init()
-{
-    if (Component::init()) {
-        m_animations=new CCDictionary();
-        return true;
-    }
-    return false;
-}
-
-bool AnimationComponent::init(const std::string& file)
-{
-	if(Component::init()){
-        //TODO load animations from files
-        return true;
-    }
-    return false;
-}
-
-bool AnimationComponent::init(CCDictionary* data)
-{
-	if (Component::init()) {
-        setAnimations(data);
-        return true;
-    }
-    return false;
-}
-
-void AnimationComponent::setup()
-{
-    Component::setup();
-    m_rendererComponent=static_cast<SpriteRendererComponent*>(m_owner->getComponent("RendererComponent"));
-}
-
-void AnimationComponent::cleanup()
-{
-    if (m_lastAction)
-    {
-        m_rendererComponent->getSpriteRenderer()->stopAction(m_lastAction);
-    }
     
-    m_rendererComponent=NULL;
-
-    Component::cleanup();
 }
 
-bool AnimationComponent::registerMessages()
+EightDirectionAnimationComponent::~EightDirectionAnimationComponent()
 {
-    Component::registerMessages();
-    
-    this->getMessageManager()->registerReceiver(m_owner,MSG_CHANGE_ANIMATION, NULL ,message_selector(AnimationComponent::onChangeAnimation),this);
-    
-    return true;
+
 }
 
-
-void AnimationComponent::cleanupMessages()
-{
-    this->getMessageManager()->removeReceiver(m_owner,MSG_CHANGE_ANIMATION);
-    Component::cleanupMessages();
-}
-
-
-/**
- * 按名称取得动画
- */
-CCAnimation* AnimationComponent::animationForName(const std::string& name)
-{
-	return (CCAnimation*) m_animations->objectForKey(name);
-}
-
-CCAnimation* AnimationComponent::animationForName(const std::string& name ,int index)
-{
-	return (CCAnimation*)((CCArray*)(m_animations->objectForKey(name)))->objectAtIndex(index);
-}
-
-CCAnimation* AnimationComponent::animationForName(const std::string& name ,const std::string& key)
-{
-	return (CCAnimation*)((CCDictionary*)(m_animations->objectForKey(name)))->objectForKey(key);
-}
-
-/**
- * 按名称取得动画列表
- */
-CCArray* AnimationComponent::animationListForName(const std::string& name)
-{
-	return (CCArray*)(m_animations->objectForKey(name));
-}
-
-/**
- * 按名称取得动画字典
- */
-CCDictionary* AnimationComponent::animationMapForName(const std::string& name)
-{
-	return (CCDictionary*)m_animations->objectForKey(name);
-}
-
-/**
- * 添加一个动画
- */
-void AnimationComponent::addAnimation(CCAnimation* animation,const std::string&  name)
-{
-	m_animations->setObject(animation ,name);
-}
-
-/**
- * 添加一个动画列表
- */
-void AnimationComponent::addAnimationList(CCArray* animationList ,const std::string& name)
-{
-	m_animations->setObject(animationList ,name);
-}
-
-/**
- * 添加一个动画字典
- */
-void AnimationComponent::addAnimationMap(CCDictionary* animationMap ,const std::string& name)
-{
-	m_animations->setObject(animationMap ,name);
-}
-
-/**
- * 移除一个动画
- */
-void AnimationComponent::removeAnimationNamed(const std::string& name)
-{
-	m_animations->removeObjectForKey(name);
-}
-
-/**
- * 播放一个动画
- */
-void AnimationComponent::runAnimation(CCAnimation* animation,bool needCompleteAction)
-{
-    if(animation && m_lastAnimation!=animation){
-        CCAction* action=createActionFromAnimation(animation,needCompleteAction);
-
-        //停止上一个action
-        if (m_lastAction)
-        {
-            m_rendererComponent->getSpriteRenderer()->stopAction(m_lastAction);
-        }
-        
-        //如果性能比较低，可以直接调用renderer component的相关函数
-        //通知render run action
-        m_rendererComponent->getSpriteRenderer()->runAction(action);
-        
-        setLastAction(action);
-        setLastAnimation(animation);
-    }
-}
-
-void AnimationComponent::onChangeAnimation(Message *message)
+void EightDirectionAnimationComponent::onChangeAnimation(Message *message)
 {
     CCDictionary* data=message->getDictionary();
     int direction=0;
@@ -211,44 +51,11 @@ void AnimationComponent::onChangeAnimation(Message *message)
     }
 }
 
-void AnimationComponent::onAnimationComplete()
-{
-    //消除上次action
-    setLastAction(NULL);
-    //发送动画播放完成
-    getMessageManager()->dispatchMessage(MSG_ANIMATION_COMPLETE, this, m_owner);
-}
-
-/**
- * 从动画里创建action
- */
-CCAction* AnimationComponent::createActionFromAnimation(CCAnimation* animation,bool needCompleteAction)
-{
-    CCAction* action=NULL;
-    int loops=animation->getLoops();
-    
-    if (loops==kRepeatForverLoop) {
-        //不能修改animation的任何属性，由于它是一个指针。
-        CCAnimate *animate= CCAnimate::create(animation);
-        action=CCRepeatForever::create(CCSequence::create(animate,NULL));
-    }else{
-        if (needCompleteAction) {
-            action= CCSequence::createWithTwoActions(
-                                                     CCAnimate::create(animation),
-                                                     CCCallFunc::create(this, callfunc_selector(AnimationComponent::onAnimationComplete)));
-        }else{
-            action=CCAnimate::create(animation);
-        }
-    }
-    action->setTag(kEightDirectionAction);
-    return action;
-}
-
 /**
  * 从文件中取得8方向动画
  * 关键帧在一张图片里。根据名子来确定方向
  */
-CCArray* AnimationComponent::eightDirectionActionListWithFile(const char* file ,int frameCount ,CCSize frameSize ,float delay,int loops)
+CCArray* EightDirectionAnimationComponent::eightDirectionActionListWithFile(const char* file ,int frameCount ,CCSize frameSize ,float delay,int loops)
 {
 	CCTexture2D *texture=CCTextureCache::sharedTextureCache()->addImage(file);
 	
@@ -278,7 +85,7 @@ CCArray* AnimationComponent::eightDirectionActionListWithFile(const char* file ,
  * 从目录中取得8方向动画
  * 关键帧是一张张图片。根据名子来确定方向
  */
-CCArray* AnimationComponent::eightDirectionActionListWithDir(const char* dir ,int frameCount ,CCSize frameSize ,float delay,const char* pathFormat,int loops)
+CCArray* EightDirectionAnimationComponent::eightDirectionActionListWithDir(const char* dir ,int frameCount ,CCSize frameSize ,float delay,const char* pathFormat,int loops)
 {
 	CCArray* animations=CCArray::createWithCapacity(8);
 	
@@ -303,7 +110,7 @@ CCArray* AnimationComponent::eightDirectionActionListWithDir(const char* dir ,in
  * 从目录中取得8方向动画
  * 关键帧是一张张图片。根据名子来确定方向
  */
-CCArray* AnimationComponent::eightDirectionActionListWithDirResource(const char* resource ,int frameCount ,CCSize frameSize ,float delay,int loops)
+CCArray* EightDirectionAnimationComponent::eightDirectionActionListWithDirResource(const char* resource ,int frameCount ,CCSize frameSize ,float delay,int loops)
 {
     CCArray* animations=CCArray::createWithCapacity(8);
 	
@@ -328,7 +135,7 @@ CCArray* AnimationComponent::eightDirectionActionListWithDirResource(const char*
  * 从目录中取得8方向动画
  * 关键帧是一张张图片。根据名子来确定方向
  */
-CCArray* AnimationComponent::createDirectionActionListWithResource(const char* resource ,const char* filenameFormat,int directionCount,int frameCount,float delay,int loops)
+CCArray* EightDirectionAnimationComponent::createDirectionActionListWithResource(const char* resource ,const char* filenameFormat,int directionCount,int frameCount,float delay,int loops)
 {
     CCSpriteFrameCache *frameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     frameCache->addSpriteFramesWithFile(resource);
@@ -347,7 +154,7 @@ CCArray* AnimationComponent::createDirectionActionListWithResource(const char* r
 			sprintf(str,filenameFormat,i,j);//"xxx-xx-%02d%03d.png"
             spriteFrame = frameCache->spriteFrameByName(str);
             if (!spriteFrame) {
-                YHERROR("AnimationComponent::createDirectionActionListWithResource no fined %s",str);
+                YHERROR("EightDirectionAnimationComponent::createDirectionActionListWithResource no fined %s",str);
             }
 			animation->addSpriteFrame(spriteFrame);
 		}
