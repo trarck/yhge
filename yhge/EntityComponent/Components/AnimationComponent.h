@@ -6,11 +6,12 @@
 
 NS_CC_YHGE_BEGIN
 
-class RendererComponent;
+class SpriteRendererComponent;
 
 /**
  * 动画组件。
  * 主要是帧动画。主要是序列帧。即cocos2d的CCAnimation
+ * 由于此动画只能做用在sprite上，即只能使用SpriteRendererComponent
  */
 class AnimationComponent : public Component
 {
@@ -192,7 +193,7 @@ protected:
     
     CCAction* m_lastAction;
 
-    RendererComponent* m_rendererComponent;
+    SpriteRendererComponent* m_rendererComponent;
 };
 
 NS_CC_YHGE_END

@@ -4,7 +4,7 @@
 #include <yhge/EntityComponent/Entity.h>
 #include "ComponentMessageDefine.h"
 #include "ComponentConsts.h"
-#include "RendererComponent.h"
+#include "SpriteRendererComponent.h"
 
 USING_NS_CC;
 
@@ -60,12 +60,18 @@ bool AnimationComponent::init(CCDictionary* data)
 void AnimationComponent::setup()
 {
     Component::setup();
-    m_rendererComponent=static_cast<RendererComponent*>(m_owner->getComponent("RendererComponent"));
+    m_rendererComponent=static_cast<SpriteRendererComponent*>(m_owner->getComponent("RendererComponent"));
 }
 
 void AnimationComponent::cleanup()
 {
+    if (m_lastAction)
+    {
+        m_rendererComponent->getSpriteRenderer()->stopAction(m_lastAction);
+    }
+    
     m_rendererComponent=NULL;
+
     Component::cleanup();
 }
 
@@ -163,12 +169,12 @@ void AnimationComponent::runAnimation(CCAnimation* animation,bool needCompleteAc
         //停止上一个action
         if (m_lastAction)
         {
-            m_rendererComponent->stopAction(m_lastAction);
+            m_rendererComponent->getSpriteRenderer()->stopAction(m_lastAction);
         }
         
         //如果性能比较低，可以直接调用renderer component的相关函数
         //通知render run action
-        m_rendererComponent->runAction(action);
+        m_rendererComponent->getSpriteRenderer()->runAction(action);
         
         setLastAction(action);
         setLastAnimation(animation);
