@@ -6,6 +6,7 @@ NS_CC_YHGE_BEGIN
 Component::Component()
 :m_name("")
 ,m_owner(NULL)
+,m_type(0)
 {
     CCLOG("Component[0x%lx] create",(unsigned long)this);
 }
