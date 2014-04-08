@@ -1,4 +1,5 @@
 #include "AnimationComponent.h"
+#include <yhge/Base/Log.h>
 #include <yhge/message.h>
 #include <yhge/EntityComponent/Entity.h>
 #include "ComponentMessageDefine.h"
@@ -193,14 +194,14 @@ void AnimationComponent::onChangeAnimation(Message *message)
         needCompleteAction=needCompleteAcionValue->getValue();
     }
     
-    CCLOG("direction:%d name:%s",direction,animationName->getCString());
+    YHDEBUG("direction:%d name:%s",direction,animationName->getCString());
     
     CCAnimation* animation= animationForName(animationName->getCString(),direction);
     
     if(animation){
         runAnimation(animation,needCompleteAction);
     }else {
-        CCLOG("unknow animation name %s action is null",animationName->getCString());
+        YHERROR("unknow animation name %s action is null",animationName->getCString());
     }
 }
 
@@ -340,7 +341,7 @@ CCArray* AnimationComponent::createDirectionActionListWithResource(const char* r
 			sprintf(str,filenameFormat,i,j);//"xxx-xx-%02d%03d.png"
             spriteFrame = frameCache->spriteFrameByName(str);
             if (!spriteFrame) {
-                CCLOG("AnimationComponent::createDirectionActionListWithResource no fined %s",str);
+                YHERROR("AnimationComponent::createDirectionActionListWithResource no fined %s",str);
             }
 			animation->addSpriteFrame(spriteFrame);
 		}

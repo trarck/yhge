@@ -3,6 +3,7 @@
  * 可以考虑按时间来判断。
  */
 #include "MoveComponent.h"
+#include <yhge/Base/Log.h>
 #include <yhge/message.h>
 #include <yhge/CocosExt/CCGeometryValue.h>
 #include "ComponentMessageDefine.h"
@@ -118,7 +119,6 @@ bool MoveComponent::checkMoveable()
  */
 void MoveComponent::startMove()
 {
-    CCLOG("startMove");
 	m_moveState=MoveStart;
     startMoveUpdateSchedule();
     doMoveStart();
@@ -180,7 +180,7 @@ void MoveComponent::moveWithDirection(float direction)
 
 void MoveComponent::moveWithDirection(float direction,bool hasTo)
 {
-    CCLOG("moveWithDirection:%f",direction);
+    YHINFO("moveWithDirection:%f",direction);
     
     if (m_moveState==MoveStop) {
         
@@ -551,7 +551,7 @@ void MoveComponent::preparePath()
 void MoveComponent::preparePath(int pathIndex)
 {
     CCAssert(pathIndex>=0,"paths length less 2");
-	CCLOG("preparePath.PathIndex:%d",pathIndex);
+	YHINFO("preparePath.PathIndex:%d",pathIndex);
     CCPoint to= static_cast<CCPointValue*>(m_pCurrentPaths->objectAtIndex(pathIndex))->getPoint();
     CCPoint from=m_rendererComponent->getRenderer()->getPosition();
     prepareTo(to, from);

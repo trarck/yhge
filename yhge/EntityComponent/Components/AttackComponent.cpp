@@ -1,4 +1,5 @@
 #include "AttackComponent.h"
+#include <yhge/Base/Log.h>
 #include <yhge/message.h>
 #include "ComponentMessageDefine.h"
 #include <yhge/EntityComponent/Entity.h>
@@ -126,7 +127,7 @@ void AttackComponent::onSetAttackTarget(Message *message)
  */
 void AttackComponent::onTargetDie(Message *message)
 {
-    CCLOG("target is die");
+    YHINFO("target is die");
     this->getMessageManager()->removeReceiver(this->getMessageManager()->getGlobalObject(), MSG_ENTITY_DIE, m_target, message_selector(AttackComponent::onTargetDie));
     CC_SAFE_RELEASE(m_target);
     m_target=NULL;

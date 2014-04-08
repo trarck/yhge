@@ -3,6 +3,7 @@
  * 可以考虑按时间来判断。
  */
 #include "GridMoveComponent.h"
+#include <yhge/Base/Log.h>
 #include <yhge/message.h>
 #include <yhge/CocosExt/CCGeometryValue.h>
 #include <yhge/isometric.h>
@@ -215,7 +216,7 @@ void GridMoveComponent::calcMoveDuration(int directionX,int directionY)
 	CCAssert(j>=0 && j<=2,"prepareDirection error the direction out of range");
 	m_movingDuration=MoveDurationMap[i][j]/m_speed;
 
-	CCLOGINFO("m_movingDuration:%f",m_movingDuration);
+	YHDEBUG("m_movingDuration:%f",m_movingDuration);
 	//float absDirX=abs(directionX);
 	//float absDirY=abs(directionY);
 
@@ -256,7 +257,7 @@ void GridMoveComponent::calcSpeedVector(int directionX,int directionY)
 	CCPoint viewSpeed=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(m_speedX,m_speedY));
 	m_fViewSpeedX=viewSpeed.x;
 	m_fViewSpeedY=viewSpeed.y;
-	CCLOGINFO("m_speedX:%f,m_speedY:%f,viewSpeed:%f,%f",m_speedX,m_speedY,m_fViewSpeedX,m_fViewSpeedY);
+	YHDEBUG("m_speedX:%f,m_speedY:%f,viewSpeed:%f,%f",m_speedX,m_speedY,m_fViewSpeedX,m_fViewSpeedY);
 }
 
 /**
@@ -394,7 +395,7 @@ void GridMoveComponent::preparePath()
 void  GridMoveComponent::preparePath(int pathIndex)
 {
 	CCAssert(pathIndex>=0,"paths length less 2");
-	CCLOGINFO("preparePath.iPathIndex:%d",pathIndex);
+	YHDEBUG("preparePath.iPathIndex:%d",pathIndex);
     m_to=  static_cast<CCPointValue*>(m_pCurrentPaths->objectAtIndex(pathIndex))->getPoint();
 	calcDirection();
 }
@@ -449,7 +450,7 @@ void GridMoveComponent::updatePath(float delta)
 				this->continueUpdate();
 			}
 		}else if (--m_pathIndex>=0 && m_moveState==MoveStart) {
-			CCLOGINFO("next cell %d",m_pathIndex);
+			YHDEBUG("next cell %d",m_pathIndex);
 			//进行下一个格子
 			preparePath(m_pathIndex);
 			this->continueUpdate();
@@ -559,7 +560,7 @@ void GridMoveComponent::setDirection(int directionX,int directionY)
 void GridMoveComponent::startMove()
 {
 	m_movingDeltaTime=0;
-    CCLOGINFO("startMove");
+
 	m_moveState=MoveStart;
 
     startMoveUpdateSchedule();

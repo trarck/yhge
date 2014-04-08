@@ -1,4 +1,5 @@
 #include "ActionComponent.h"
+#include <yhge/Base/Log.h>
 #include <yhge/message.h>
 #include <yhge/EntityComponent/Entity.h>
 #include "ComponentMessageDefine.h"
@@ -172,15 +173,13 @@ void ActionComponent::onChangeAction(Message *message)
     CCDictionary* data=message->getDictionary();
     
     CCString* actionName=(CCString*)data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_NAME);
-    int direction=((CCInteger*) data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_DIRECTION))->getValue();
-    CCLOG("direction:%d name:%s",direction,actionName->getCString());
     
-    CCAction* action= actionForName(actionName->getCString(),direction);
+    CCAction* action= actionForName(actionName->getCString());
     
     if(action){
         runAction(action);
     }else {
-        CCLOG("unknow action name %s action is null",actionName->getCString());
+        YHERROR("unknow action name %s action is null",actionName->getCString());
     }
 }
 

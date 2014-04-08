@@ -1,4 +1,5 @@
 #include "AutoAttackComponent.h"
+#include <yhge/Base/Log.h>
 #include <yhge/message.h>
 #include "ComponentMessageDefine.h"
 #include <yhge/EntityComponent/Entity.h>
@@ -44,7 +45,7 @@ void AutoAttackComponent::cleanupMessages()
 
 void AutoAttackComponent::startAttack()
 {
-    CCLOG("AutoAttackComponent::startAttack");
+    YHINFO("AutoAttackComponent::startAttack");
 	if (m_target) {
         CCScheduler* pScheduler = CCDirector::sharedDirector()->getScheduler();
         pScheduler->scheduleSelector(schedule_selector(AutoAttackComponent::updateAttack),this, m_attackSpeed, false);
@@ -53,14 +54,14 @@ void AutoAttackComponent::startAttack()
 
 void AutoAttackComponent::stopAttack()
 {
-    CCLOG("AutoAttackComponent::stopAttack");
+    YHINFO("AutoAttackComponent::stopAttack");
     CCScheduler* pScheduler = CCDirector::sharedDirector()->getScheduler();
     pScheduler->unscheduleSelector(schedule_selector(AutoAttackComponent::updateAttack),this);
 }
 
 void AutoAttackComponent::updateAttack(float delta)
 {
-    CCLOG("AutoAttackComponent::updateAttack");
+    YHINFO("AutoAttackComponent::updateAttack");
 	//check attack stop
 	/*
 	 1.target die
@@ -68,7 +69,7 @@ void AutoAttackComponent::updateAttack(float delta)
 	 */
     //TODO get target hp
 	int targetHp=10;//m_target->getHealth();
-    CCLOG("current target hp %d after attack %d",targetHp,targetHp-1);
+    YHINFO("current target hp %d after attack %d",targetHp,targetHp-1);
     
     //TODO set target hp
 //    m_target->setHealth(targetHp-1);
