@@ -34,34 +34,34 @@ bool SpriteRendererComponent::init()
     }
     return true;
 }
-
-/**
- * 执行action
- */
-void SpriteRendererComponent::runAnimate(CCAction* animate)
-{
-    if (animate->getTag()) {
-        m_spriteRenderer->stopActionByTag(animate->getTag());
-    }
-    m_spriteRenderer->runAction(animate);
-    
-}
-
-/**
- * 停止action
- */
-void SpriteRendererComponent::stopAnimate(CCAction* animate)
-{
-    m_spriteRenderer->stopAction(animate);
-}
-
-/**
- * 停止action by tag
- */
-void SpriteRendererComponent::stopAnimateByTag(int tag)
-{
-    m_spriteRenderer->stopActionByTag(tag);
-}
+//
+///**
+// * 执行action
+// */
+//void SpriteRendererComponent::runAnimate(CCAction* animate)
+//{
+//    if (animate->getTag()) {
+//        m_spriteRenderer->stopActionByTag(animate->getTag());
+//    }
+//    m_spriteRenderer->runAction(animate);
+//    
+//}
+//
+///**
+// * 停止action
+// */
+//void SpriteRendererComponent::stopAnimate(CCAction* animate)
+//{
+//    m_spriteRenderer->stopAction(animate);
+//}
+//
+///**
+// * 停止action by tag
+// */
+//void SpriteRendererComponent::stopAnimateByTag(int tag)
+//{
+//    m_spriteRenderer->stopActionByTag(tag);
+//}
 
 NS_CC_YHGE_END
 

@@ -16,21 +16,21 @@ public:
     ~SpriteRendererComponent();
     
     virtual bool init();
-    
-    /**
-     * 执行animation
-     */
-    virtual void runAnimate(CCAction* animate);
-    
-    /**
-     * 停止animation
-     */
-    virtual void stopAnimate(CCAction* animate);
-    
-    /**
-     * 停止animation
-     */
-    virtual void stopAnimateByTag(int tag);
+//    
+//    /**
+//     * 执行animation
+//     */
+//    virtual void runAnimate(CCAction* animate);
+//    
+//    /**
+//     * 停止animation
+//     */
+//    virtual void stopAnimate(CCAction* animate);
+//    
+//    /**
+//     * 停止animation
+//     */
+//    virtual void stopAnimateByTag(int tag);
 
 public:
 

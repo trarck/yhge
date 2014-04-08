@@ -55,36 +55,36 @@ public:
      */
     virtual void onStopActionByTag(Message* message);
     
-    //==============对animation的特殊支持==============//
-    /**
-     * 执行animation
-     */
-    virtual void runAnimate(CCAction* animate);
-    
-    /**
-     * 停止animation
-     */
-    virtual void stopAnimate(CCAction* animate);
-    
-    /**
-     * 停止animation
-     */
-    virtual void stopAnimateByTag(int tag);
-    
-    /**
-     * 响应执行animation
-     */
-    virtual void onRunAnimate(Message* message);
-    
-    /**
-     * 响应停止animation
-     */
-    virtual void onStopAnimate(Message* message);
-    
-    /**
-     * 响应停止animation by tag
-     */
-    virtual void onStopAnimateByTag(Message* message);
+//    //==============对animation的特殊支持==============//
+//    /**
+//     * 执行animation
+//     */
+//    virtual void runAnimate(CCAction* animate);
+//    
+//    /**
+//     * 停止animation
+//     */
+//    virtual void stopAnimate(CCAction* animate);
+//    
+//    /**
+//     * 停止animation
+//     */
+//    virtual void stopAnimateByTag(int tag);
+//    
+//    /**
+//     * 响应执行animation
+//     */
+//    virtual void onRunAnimate(Message* message);
+//    
+//    /**
+//     * 响应停止animation
+//     */
+//    virtual void onStopAnimate(Message* message);
+//    
+//    /**
+//     * 响应停止animation by tag
+//     */
+//    virtual void onStopAnimateByTag(Message* message);
     
 protected:
     
