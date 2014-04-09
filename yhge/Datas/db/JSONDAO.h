@@ -26,23 +26,88 @@ public:
     /**
      * @brief 取得第一行第一列的值。为了方便count(*)
      *
+     * @param querySql 查询语句
+     *
      * @return int 值
      */
     int fetchNumber(const std::string& querySql);
     
     /**
+     * @brief 取得第一行第一列的值。为了方便count(*)
+     *
+     * @param querySql 查询语句
+     * @param params 查询参数
+     *
+     * @return int 值
+     */
+    int fetchNumber(const std::string& querySql,const Json::Value& params);
+    
+    /**
      * @brief 取得所有查询结果
+     *
+     * @param querySql 查询语句
      *
      * @return json的数组
      */
     Json::Value fetchAll(const std::string& querySql);
     
     /**
+     * @brief 取得所有查询结果
+     *
+     * @param querySql 查询语句
+     * @param params 查询参数
+     *
+     * @return json的数组
+     */
+    Json::Value fetchAll(const std::string& querySql,const Json::Value& params);
+    
+    /**
      * @brief 取得第一条查询结果
+     *
+     * @param querySql 查询语句
      *
      * @return json的对象
      */
     Json::Value fetchOne(const std::string& querySql);
+    
+    /**
+     * @brief 取得第一行第一列的值。为了方便count(*)
+     *
+     * @param querySql 查询语句
+     * @param params 查询参数
+     *
+     * @return json的对象
+     */
+    Json::Value fetchOne(const std::string& querySql,const Json::Value& params);
+    
+    /**
+     * @brief 取得第一条查询结果
+     * 用于按key取得一条数据
+     * @param querySql 查询语句
+     *
+     * @return json的对象
+     */
+    Json::Value load(const std::string& querySql);
+    
+    /**
+     * @brief 取得第一行第一列的值。为了方便count(*)
+     * 用于按key取得一条数据
+     * @param querySql 查询语句
+     * @param value 主键的值
+     *
+     * @return json的对象
+     */
+    Json::Value load(const std::string& querySql,int value);
+    
+    /**
+     * @brief 取得第一行第一列的值。为了方便count(*)
+     * 用于按key取得一条数据
+     * @param querySql 查询语句
+     * @param value 主键的值
+     *
+     * @return json的对象
+     */
+    Json::Value load(const std::string& querySql,const std::string& value);
     
     /**
      * @brief 执行sql语句

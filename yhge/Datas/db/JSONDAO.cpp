@@ -57,6 +57,28 @@ int JSONDAO::fetchNumber(const std::string& querySql)
     return 0;
 }
 
+//带参数的查询
+int JSONDAO::fetchNumber(const std::string& querySql,const Json::Value& params)
+{
+    Statement stmt(*(m_driver->getPtr()),querySql);
+    
+    //bind parameter
+    Json::Value::Members members=params.getMemberNames();
+    
+    for (Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
+        bindStatement(stmt,*iter,params[*iter]);
+    }
+    
+    if(stmt.execute()){
+        
+        Column col=stmt.getColumn(0);
+        
+        return col.getInt();
+    }
+    
+    return 0;
+}
+
 Json::Value JSONDAO::fetchAll(const std::string& querySql)
 {
     Statement stmt(*(m_driver->getPtr()), querySql);
@@ -80,6 +102,36 @@ Json::Value JSONDAO::fetchAll(const std::string& querySql)
 
 }
 
+//带参数的查询
+Json::Value JSONDAO::fetchAll(const std::string& querySql,const Json::Value& params)
+{
+    Statement stmt(*(m_driver->getPtr()), querySql);
+    
+    //bind parameter
+    Json::Value::Members members=params.getMemberNames();
+    
+    for (Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
+        bindStatement(stmt,*iter,params[*iter]);
+    }
+    
+    int colCount=stmt.getColumnCount();
+    
+    Json::Value result;
+    
+    while (stmt.executeStep()) {
+        
+        Json::Value record;
+        
+        for (int i=0; i<colCount; i++) {
+            setRecordValue(stmt.getColumn(i),record);
+        }
+        
+        result.append(record);
+    }
+    
+    return result;
+}
+
 Json::Value JSONDAO::fetchOne(const std::string& querySql)
 {
     Statement stmt(*(m_driver->getPtr()), querySql);
@@ -88,6 +140,90 @@ Json::Value JSONDAO::fetchOne(const std::string& querySql)
     
     Json::Value result;
 
+    if (stmt.executeStep()) {
+        for (int i=0; i<colCount; i++) {
+            setRecordValue(stmt.getColumn(i),result);
+        }
+    }
+    
+    return result;
+}
+
+//带参数的查询
+Json::Value JSONDAO::fetchOne(const std::string& querySql,const Json::Value& params)
+{
+    Statement stmt(*(m_driver->getPtr()), querySql);
+    
+    //bind parameter
+    Json::Value::Members members=params.getMemberNames();
+    
+    for (Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
+        bindStatement(stmt,*iter,params[*iter]);
+    }
+    
+    int colCount=stmt.getColumnCount();
+    
+    Json::Value result;
+    
+    if (stmt.executeStep()) {
+        for (int i=0; i<colCount; i++) {
+            setRecordValue(stmt.getColumn(i),result);
+        }
+    }
+    
+    return result;
+}
+
+Json::Value JSONDAO::load(const std::string& querySql)
+{
+    Statement stmt(*(m_driver->getPtr()), querySql);
+    
+    int colCount=stmt.getColumnCount();
+    
+    Json::Value result;
+    
+    if (stmt.executeStep()) {
+        for (int i=0; i<colCount; i++) {
+            setRecordValue(stmt.getColumn(i),result);
+        }
+    }
+    
+    return result;
+}
+
+//带参数的查询
+Json::Value JSONDAO::load(const std::string& querySql,int value)
+{
+    Statement stmt(*(m_driver->getPtr()), querySql);
+    
+    //bind key value
+    stmt.bind(1, value);
+    
+    int colCount=stmt.getColumnCount();
+    
+    Json::Value result;
+    
+    if (stmt.executeStep()) {
+        for (int i=0; i<colCount; i++) {
+            setRecordValue(stmt.getColumn(i),result);
+        }
+    }
+    
+    return result;
+}
+
+//带参数的查询
+Json::Value JSONDAO::load(const std::string& querySql,const std::string& value)
+{
+    Statement stmt(*(m_driver->getPtr()), querySql);
+    
+    //bind key value
+    stmt.bind(1, value);
+    
+    int colCount=stmt.getColumnCount();
+    
+    Json::Value result;
+    
     if (stmt.executeStep()) {
         for (int i=0; i<colCount; i++) {
             setRecordValue(stmt.getColumn(i),result);
