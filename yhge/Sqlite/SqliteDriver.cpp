@@ -37,6 +37,7 @@ void SqliteDriver::connect(const std::string& dbPath,const int flag)
         CCLOGERROR("SqliteDriver::open %s err:%s",dbPath.c_str(),strerr.c_str());
 //        throw SQLite::Exception(strerr);
     }
+    m_dbPath=dbPath;
 }
 
 void SqliteDriver::close()

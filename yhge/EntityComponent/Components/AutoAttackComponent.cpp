@@ -68,8 +68,8 @@ void AutoAttackComponent::updateAttack(float delta)
 	 2.if use skill, mp less then the skill requirement
 	 */
     //TODO get target hp
-	int targetHp=10;//m_target->getHealth();
-    YHINFO("current target hp %d after attack %d",targetHp,targetHp-1);
+//	int targetHp=10;//m_target->getHealth();
+//    YHINFO("current target hp %d after attack %d",targetHp,targetHp-1);
     
     //TODO set target hp
 //    m_target->setHealth(targetHp-1);

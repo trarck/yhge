@@ -131,7 +131,6 @@ void EventListenerManager::removeEventListener(CCObject* target,int type,CCObjec
 void EventListenerManager::removeEventListener(CCObject* target,int type)
 {
     CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
-    CCAssert(type!=NULL,"EventListenerManager::removeEventListener type is null.");
     CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
     targetListeners->removeObjectForKey(type);
 }
@@ -169,8 +168,7 @@ void EventListenerManager::removeListeners(CCArray* listeners,CCObject* handleOb
     //使用index删除，效率会高些。但要注意删除后的空位置.
     //如果使用object删除，则效率会低些，但不会有空位引发的问题。
     
-    CCObject* pObject = NULL;
-    if (listeners && listeners->data->num > 0){         
+    if (listeners && listeners->data->num > 0){
         int len=listeners->data->num;
         CCObject** arr = listeners->data->arr;
         for(int i=0;i<len;){
@@ -190,7 +188,6 @@ void EventListenerManager::removeListeners(CCArray* listeners,CCObject* handleOb
     //使用index删除，效率会高些。但要注意删除后的空位置.
     //如果使用object删除，则效率会低些，但不会有空位引发的问题。
 
-    CCObject* pObject = NULL;
     if (listeners && listeners->data->num > 0){         
         int len=listeners->data->num;
         CCObject** arr = listeners->data->arr;
@@ -208,8 +205,7 @@ void EventListenerManager::removeListeners(CCArray* listeners,CCObject* handleOb
 
 void EventListenerManager::removeListenersForHandle(CCArray* listeners,yhge::SEL_EventHandle handle)
 {
-	CCObject* pObject = NULL;
-    if (listeners && listeners->data->num > 0){         
+    if (listeners && listeners->data->num > 0){
         int len=listeners->data->num;
         CCObject** arr = listeners->data->arr;
         for(int i=0;i<len;){

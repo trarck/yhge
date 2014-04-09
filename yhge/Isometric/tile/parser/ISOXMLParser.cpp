@@ -153,7 +153,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         std::string version = valueForKey("version", attributeDict);
         if ( version != "1.0")
         {
-            CCLOG("cocos2d: TMXFormat: Unsupported TMX version: %@", version.c_str());
+            CCLOG("cocos2d: TMXFormat: Unsupported TMX version: %s", version.c_str());
         }
         
         CCSize s;
@@ -565,7 +565,7 @@ void ISOXMLParser::endElement(void *ctx, const char *name)
             
             struct timeval endTime;
             gettimeofday(&endTime,0);
-            CCLOG("trans use:%d,%d",endTime.tv_sec-startTime.tv_sec,endTime.tv_usec-startTime.tv_usec);
+            CCLOG("trans use:%ld,%d",endTime.tv_sec-startTime.tv_sec,endTime.tv_usec-startTime.tv_usec);
         }else{
             layerInfo->setTiles(tiles);
         }

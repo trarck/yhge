@@ -170,8 +170,7 @@ void StringifyEventListenerManager::removeListeners(CCArray* listeners,CCObject*
     //使用index删除，效率会高些。但要注意删除后的空位置.
     //如果使用object删除，则效率会低些，但不会有空位引发的问题。
     
-    CCObject* pObject = NULL;
-    if (listeners && listeners->data->num > 0){         
+    if (listeners && listeners->data->num > 0){
         int len=listeners->data->num;
         CCObject** arr = listeners->data->arr;
         for(int i=0;i<len;){
@@ -191,8 +190,7 @@ void StringifyEventListenerManager::removeListeners(CCArray* listeners,CCObject*
     //使用index删除，效率会高些。但要注意删除后的空位置.
     //如果使用object删除，则效率会低些，但不会有空位引发的问题。
 
-    CCObject* pObject = NULL;
-    if (listeners && listeners->data->num > 0){         
+    if (listeners && listeners->data->num > 0){
         int len=listeners->data->num;
         CCObject** arr = listeners->data->arr;
         for(int i=0;i<len;){
@@ -209,7 +207,6 @@ void StringifyEventListenerManager::removeListeners(CCArray* listeners,CCObject*
 
 void StringifyEventListenerManager::removeListenersForHandle(CCArray* listeners,yhge::SEL_EventHandle handle)
 {
-	CCObject* pObject = NULL;
     if (listeners && listeners->data->num > 0){         
         int len=listeners->data->num;
         CCObject** arr = listeners->data->arr;

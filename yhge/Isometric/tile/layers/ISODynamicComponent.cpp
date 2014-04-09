@@ -322,7 +322,7 @@ void ISODynamicComponent::setupComponents()
 
 	gettimeofday(&end,NULL);
 
-	CCLOG("setupComponents1:%d",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
+	CCLOG("setupComponents1:%ld",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
 
 	gettimeofday(&start,0);
 
@@ -330,7 +330,7 @@ void ISODynamicComponent::setupComponents()
 	
 	gettimeofday(&end,NULL);
 
-	CCLOG("setupComponents2:%d",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
+	CCLOG("setupComponents2:%ld",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
 
 	gettimeofday(&start,0);
 
@@ -338,7 +338,7 @@ void ISODynamicComponent::setupComponents()
 
 	gettimeofday(&end,NULL);
 
-	CCLOG("setupComponents3:%d",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
+	CCLOG("setupComponents3:%ld",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
 }
 
 
