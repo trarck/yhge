@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		57243EF018B72BD30070163A /* CCValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EEE18B72BD30070163A /* CCValue.cpp */; };
 		57243EF318B737350070163A /* StringifyEventListenerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EF118B737350070163A /* StringifyEventListenerManager.cpp */; };
+		5726027518F4E24D004C77A1 /* DAOFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5726027318F4E24D004C77A1 /* DAOFactory.cpp */; };
 		57381E9818C02B7B00CC17E9 /* CCAdaptSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57381E9618C02B7B00CC17E9 /* CCAdaptSprite.cpp */; };
 		5747632D18D18E3E0031E2E0 /* ActionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747632B18D18E3E0031E2E0 /* ActionComponent.cpp */; };
 		574A56A818B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56A618B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp */; };
@@ -150,6 +151,8 @@
 		57243EEF18B72BD30070163A /* CCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCValue.h; sourceTree = "<group>"; };
 		57243EF118B737350070163A /* StringifyEventListenerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringifyEventListenerManager.cpp; sourceTree = "<group>"; };
 		57243EF218B737350070163A /* StringifyEventListenerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringifyEventListenerManager.h; sourceTree = "<group>"; };
+		5726027318F4E24D004C77A1 /* DAOFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DAOFactory.cpp; sourceTree = "<group>"; };
+		5726027418F4E24D004C77A1 /* DAOFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOFactory.h; sourceTree = "<group>"; };
 		57381E9618C02B7B00CC17E9 /* CCAdaptSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAdaptSprite.cpp; sourceTree = "<group>"; };
 		57381E9718C02B7B00CC17E9 /* CCAdaptSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAdaptSprite.h; sourceTree = "<group>"; };
 		5747632B18D18E3E0031E2E0 /* ActionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionComponent.cpp; sourceTree = "<group>"; };
@@ -496,6 +499,8 @@
 			children = (
 				574FE4E118DA831D00490B18 /* CocosDAO.cpp */,
 				574FE4E218DA831D00490B18 /* CocosDAO.h */,
+				5726027318F4E24D004C77A1 /* DAOFactory.cpp */,
+				5726027418F4E24D004C77A1 /* DAOFactory.h */,
 				574FE4E318DA831D00490B18 /* JSONDAO.cpp */,
 				574FE4E418DA831D00490B18 /* JSONDAO.h */,
 			);
@@ -1134,6 +1139,7 @@
 				57C337671888C3A1008B5618 /* Entity.cpp in Sources */,
 				57CF76E718AA060D0085A22F /* DamageFormula.cpp in Sources */,
 				577A78F5186BF56500F1B5D5 /* AstarFlexible.cpp in Sources */,
+				5726027518F4E24D004C77A1 /* DAOFactory.cpp in Sources */,
 				57975AB618910123008A9F38 /* SortZIndexNode.cpp in Sources */,
 				577A7908186BF56500F1B5D5 /* EventHandleD.cpp in Sources */,
 				57975AB21890FB16008A9F38 /* ZIndex.cpp in Sources */,
