@@ -104,6 +104,19 @@ public:
     {
         runAnimation(animationForName(name,key),needCompleteAction);
     }
+    
+    /**
+     * 显示动画的一帧
+     */
+    void displayAnimationFrame(CCAnimation* animation,int frameIndex);
+    
+    /**
+     * 显示第一帧
+     */
+    inline void displayFirstFrame(CCAnimation* animation)
+    {
+        displayAnimationFrame(animation, 0);
+    }
 
     /**
      * 处理动画改变事件
@@ -119,6 +132,28 @@ public:
      * 从动画里创建action
      */
     CCAction* createActionFromAnimation(CCAnimation* animation,bool needCompleteAction);
+        
+    /**
+     * 取得动画内容大小
+     * 目前只取第一帧的大小。可以取平均值或包围值
+     */
+    CCSize getAnimationContentSize(CCAnimation* animation);
+    
+	inline CCSize getAnimationContentSize(const std::string& name)
+    {
+        return getAnimationContentSize(animationForName(name));
+    }
+    
+	CCSize getAnimationContentSize(const std::string& name ,int index)
+    {
+        return getAnimationContentSize(animationForName(name,index));
+    }
+    
+	CCSize getAnimationContentSize(const std::string& name ,const std::string& key)
+    {
+        return getAnimationContentSize(animationForName(name,key));
+    }
+    
     
 public:
     

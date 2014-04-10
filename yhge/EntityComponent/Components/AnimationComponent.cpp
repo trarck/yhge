@@ -172,11 +172,21 @@ void AnimationComponent::runAnimation(CCAnimation* animation,bool needCompleteAc
         
         //如果性能比较低，可以直接调用renderer component的相关函数
         //通知render run action
+        //由于runAction要到下一帧才设置成具体的元素,如果此时取得的元素大小是之前的，不是动画的大小。
         m_rendererComponent->getSpriteRenderer()->runAction(action);
         
         setLastAction(action);
         setLastAnimation(animation);
     }
+}
+
+void AnimationComponent::displayAnimationFrame(CCAnimation* animation,int frameIndex)
+{
+    CCAnimationFrame* frame = (CCAnimationFrame*)animation->getFrames()->objectAtIndex(frameIndex);
+    
+    CCAssert(frame, "AnimationComponent#displayAnimationFrame. Invalid frame");
+    
+    m_rendererComponent->getSpriteRenderer()->setDisplayFrame(frame->getSpriteFrame());
 }
 
 void AnimationComponent::onChangeAnimation(Message *message)
@@ -241,6 +251,21 @@ CCAction* AnimationComponent::createActionFromAnimation(CCAnimation* animation,b
     }
 
     return action;
+}
+
+CCSize AnimationComponent::getAnimationContentSize(CCAnimation* animation)
+{
+    if (animation) {
+        
+        CCArray* frames=animation->getFrames();
+        if (frames && frames->count()) {
+            CCAnimationFrame* animationFrame=static_cast<CCAnimationFrame*>(frames->objectAtIndex(0));
+            CCSpriteFrame* spriteFrame=animationFrame->getSpriteFrame();
+            return spriteFrame->getOriginalSize();
+        }
+    }
+    
+    return CCSizeZero;
 }
 
 NS_CC_YHGE_END

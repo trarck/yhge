@@ -45,7 +45,15 @@ void EightDirectionAnimationComponent::onChangeAnimation(Message *message)
     CCAnimation* animation= animationForName(animationName->getCString(),direction);
     
     if(animation){
+        
         runAnimation(animation,needCompleteAction);
+        
+        CCBool* showFirstFrameValue=static_cast<CCBool*>(data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_SHOW_FIRST_FRAME));
+        if(showFirstFrameValue && showFirstFrameValue->getValue()){
+            
+            displayFirstFrame(animation);
+        }
+
     }else {
         YHERROR("unknow animation name %s action is null",animationName->getCString());
     }
