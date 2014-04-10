@@ -23,12 +23,13 @@ SpriteRendererComponent::~SpriteRendererComponent()
 
 bool SpriteRendererComponent::init()
 {
-    if (Component::init()) {
+    if (RendererComponent::init()) {
         m_spriteRenderer=new CCSprite();
         m_spriteRenderer->initWithTexture(CCDefaultTexture::getInstance()->getTexture());
         m_spriteRenderer->setAnchorPoint(ccp(0.5,0));
 
-        setRenderer(m_spriteRenderer);
+//        setRenderer(m_spriteRenderer);
+        m_renderer->addChild(m_spriteRenderer);
         
         m_spriteRenderer->release();
     }

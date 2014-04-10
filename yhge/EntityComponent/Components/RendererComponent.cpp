@@ -19,6 +19,18 @@ RendererComponent::~RendererComponent()
     CC_SAFE_RELEASE_NULL(m_renderer);
 }
 
+bool RendererComponent::init()
+{
+    if (Component::init()) {
+        
+        m_renderer=new CCNode();
+        
+        return true;
+    }
+    
+    return false;
+}
+
 void RendererComponent::cleanup(void)
 {
     if (m_renderer) {

@@ -15,6 +15,8 @@ public:
     
     ~RendererComponent();
     
+    bool init();
+    
     virtual void cleanup(void);
     
     virtual bool registerMessages();
