@@ -1,5 +1,5 @@
 #include "Entity.h"
-
+#include <yhge/Base/Log.h>
 #include "Components/Component.h"
 
 NS_CC_YHGE_BEGIN
@@ -9,19 +9,19 @@ Entity::Entity()
 ,m_components(NULL)
 ,m_properties(NULL)
 {
-    CCLOG("Entity create");
+    YHDEBUG("Entity create");
 }
 
 Entity::~Entity()
 {
-    CCLOG("Entity destroy");
+    YHDEBUG("Entity destroy");
     CC_SAFE_RELEASE_NULL(m_components);
     CC_SAFE_RELEASE_NULL(m_properties);
 }
 
 bool Entity::init(void)
 {
-    CCLOG("Entity init");
+    YHDEBUG("Entity init");
     m_components=new CCArray();
     m_properties=new CCDictionary();
     return true;
