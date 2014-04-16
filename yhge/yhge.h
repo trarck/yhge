@@ -23,6 +23,9 @@
 #include "CocosExt/Support/CCMap.h"
 #include "CocosExt/Support/CCValue.h"
 #include "CocosExt/CCAdaptSprite.h"
+#include "CocosExt/CCDefaultTexture.h"
+#include "CocosExt/CocosValue.h"
+#include "CocosExt/CCSimpleValue.h"
 
 //message
 #include "message.h"
