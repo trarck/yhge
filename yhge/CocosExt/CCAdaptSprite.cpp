@@ -98,7 +98,7 @@ CCAdaptSprite* CCAdaptSprite::create()
     return NULL;
 }
 
-void ImageSprite::setTextureRect(const CCRect& rect)
+void CCAdaptSprite::setTextureRect(const CCRect& rect)
 {
     CCSprite::setTextureRect(rect, false, rect.size);
 }

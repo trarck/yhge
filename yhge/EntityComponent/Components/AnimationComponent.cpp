@@ -192,32 +192,37 @@ void AnimationComponent::displayAnimationFrame(CCAnimation* animation,int frameI
 void AnimationComponent::onChangeAnimation(Message *message)
 {
     YHINFO("AnimationComponent::onChangeAnimation do nothing.you must implement by child");
-//    CCDictionary* data=message->getDictionary();
-//    int direction=0;
-//    
-//    CCString* animationName=(CCString*)data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_NAME);
-//    
-//    CCInteger* directionValue=((CCInteger*) data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_DIRECTION));
-//    if (directionValue) {
-//        direction=directionValue->getValue();
-//    }
-//    
-//    bool needCompleteAction=false;
-//    
-//    CCBool* needCompleteAcionValue=static_cast<CCBool*>(data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_NEEDCOMPLETEACTION));
-//    if(needCompleteAcionValue){
-//        needCompleteAction=needCompleteAcionValue->getValue();
-//    }
-//    
-//    YHDEBUG("direction:%d name:%s",direction,animationName->getCString());
-//    
-//    CCAnimation* animation= animationForName(animationName->getCString(),direction);
-//    
-//    if(animation){
-//        runAnimation(animation,needCompleteAction);
-//    }else {
-//        YHERROR("unknow animation name %s action is null",animationName->getCString());
-//    }
+    CCDictionary* data=message->getDictionary();
+    
+    CCString* animationName=(CCString*)data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_NAME);
+    YHDEBUG("onChangeAnimation name:%s",animationName->getCString());
+    
+    CCAnimation* animation= NULL;
+    
+    CCInteger* indexValue=((CCInteger*) data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_INDEX));
+    if (indexValue) {
+        animation=animationForName(animationName->getCString(), indexValue->getValue());
+    }else{
+        CCString* keyValue=static_cast<CCString*>(data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_KEY));
+        if (keyValue) {
+            animation=animationForName(animationName->getCString(), keyValue->getCString());
+        }else{
+            animation=animationForName(animationName->getCString());
+        }
+    }
+    
+    bool needCompleteAction=false;
+    
+    CCBool* needCompleteAcionValue=static_cast<CCBool*>(data->objectForKey(COMPONENT_ANIMATION_CHANGE_PARAM_NEEDCOMPLETEACTION));
+    if(needCompleteAcionValue){
+        needCompleteAction=needCompleteAcionValue->getValue();
+    }
+
+    if(animation){
+        runAnimation(animation,needCompleteAction);
+    }else {
+        YHERROR("unknow animation name %s action is null",animationName->getCString());
+    }
 }
 
 void AnimationComponent::onAnimationComplete()
