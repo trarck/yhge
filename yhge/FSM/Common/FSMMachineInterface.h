@@ -8,10 +8,12 @@
 
 NS_CC_YHGE_BEGIN
 
+/**
+ * 暂不使用接口
+ */
 class FSMMachineInterface
 {
 public:
-	virtual bool init();
 
     virtual void addState(FSMStateInterface* state ,const std::string& name)=0;
     virtual void addState(FSMStateInterface* state ,unsigned int guid)=0;

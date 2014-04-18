@@ -32,6 +32,9 @@
 
 NS_CC_YHGE_BEGIN
 
+/**
+ * 暂不使用接口
+ */
 class FSMStateInterface
 {
 public:

@@ -32,14 +32,36 @@
 
 NS_CC_YHGE_BEGIN
 
+class FSMMachine;
+
 class FSMState:public CCObject 
 {
 public:
+    virtual bool init();
+    
+    virtual bool init(FSMMachine* fsmMachine);
+    
 	virtual void enter();
     virtual void exit();
     virtual void update();
 	virtual void update(float delta);
     virtual void onMessage(Message* message);
+    
+public:
+    
+    inline void setFSMMachine(FSMMachine* fSMMachine)
+    {
+        m_fSMMachine = fSMMachine;
+    }
+    
+    inline FSMMachine* getFSMMachine()
+    {
+        return m_fSMMachine;
+    }
+    
+protected:
+    //如果state使用单例，则不要设置该值
+    FSMMachine* m_fSMMachine;
 };
 
 NS_CC_YHGE_END

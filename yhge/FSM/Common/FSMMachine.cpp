@@ -5,7 +5,9 @@ NS_CC_YHGE_BEGIN
 
 FSMMachine::FSMMachine(void)
 :m_pCurrentState(NULL)
+,m_lastState(NULL)
 ,m_pStates(NULL)
+,m_pOwner(NULL)
 
 {
     CCLOG("FSMMachine create");
@@ -15,8 +17,9 @@ FSMMachine::FSMMachine(void)
 FSMMachine::~FSMMachine(void)
 {
     CCLOG("FSMMachine destroy");
-	CC_SAFE_RELEASE(m_pCurrentState);
-	CC_SAFE_RELEASE(m_pStates);
+//	CC_SAFE_RELEASE_NULL(m_pCurrentState);
+//    CC_SAFE_RELEASE_NULL(m_lastState);
+	CC_SAFE_RELEASE_NULL(m_pStates);
 }
 
 bool FSMMachine::init()
@@ -25,41 +28,66 @@ bool FSMMachine::init()
 	return true;
 }
 
-void FSMMachine::addState(FSMState* state ,const std::string& name)
+bool FSMMachine::init(CCObject* owner)
 {
-	m_pStates->setObject(state,name);
+    setOwner(owner);
+    
+    return init();
 }
 
-void FSMMachine::addState(FSMState* state ,unsigned int uId)
+void FSMMachine::addState(FSMState* state ,const std::string& key)
 {
-	m_pStates->setObject(state,uId);
+	m_pStates->setObject(state,key);
 }
 
-void FSMMachine::removeStateWithName(const std::string& name)
+void FSMMachine::addState(FSMState* state ,unsigned int key)
 {
-	m_pStates->removeObjectForKey(name);
+	m_pStates->setObject(state,key);
 }
 
-void FSMMachine::removeStateWithGuid(unsigned int uId)
+void FSMMachine::removeState(const std::string& key)
 {
-	m_pStates->removeObjectForKey(uId);
+	m_pStates->removeObjectForKey(key);
 }
 
-FSMState* FSMMachine::stateForName(const std::string& name)
+void FSMMachine::removeState(unsigned int key)
 {
-	return static_cast<FSMState*>(m_pStates->objectForKey(name));
+	m_pStates->removeObjectForKey(key);
 }
 
-FSMState* FSMMachine::stateForGuid(unsigned int uId)
+FSMState* FSMMachine::getState(const std::string& key)
 {
-	return static_cast<FSMState*>(m_pStates->objectForKey(uId));
+	return static_cast<FSMState*>(m_pStates->objectForKey(key));
+}
+
+FSMState* FSMMachine::getState(unsigned int key)
+{
+	return static_cast<FSMState*>(m_pStates->objectForKey(key));
 }
 
 void FSMMachine::changeState(FSMState* state)
 {
-	m_pCurrentState->exit();
-	setCurrentState(state);
-	m_pCurrentState->enter();
+	if(m_pCurrentState) m_pCurrentState->exit();
+	
+	if(state) state->enter();
+    
+    setLastState(m_pCurrentState);
+    setCurrentState(state);
+}
+
+void FSMMachine::changeState(unsigned int key)
+{
+    changeState(getState(key));
+}
+
+void FSMMachine::changeState(const std::string& key)
+{
+    changeState(getState(key));
+}
+
+void FSMMachine::changeToLastState()
+{
+    changeState(m_lastState);
 }
 
 void FSMMachine::update()
