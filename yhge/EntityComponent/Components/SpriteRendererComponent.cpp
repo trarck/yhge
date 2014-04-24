@@ -31,6 +31,10 @@ bool SpriteRendererComponent::init()
 //        setRenderer(m_spriteRenderer);
         m_renderer->addChild(m_spriteRenderer);
         
+//        CCLayer* test=CCLayerColor::create(ccc4(128, 0, 0, 128), 100, 200);
+//        
+//        m_renderer->addChild(test);
+        
         m_spriteRenderer->release();
     }
     return true;
