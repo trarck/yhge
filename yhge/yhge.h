@@ -41,6 +41,7 @@
 //math
 #include "Math/MersenneTwister.h"
 #include "Math/RandomMT.h"
+#include "Math/FloatUtil.h"
 
 //isometric
 #include "isometric.h"
