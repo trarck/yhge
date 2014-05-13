@@ -21,6 +21,7 @@
 		574FE4F818DAF27F00490B18 /* SqliteDBData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4F618DAF27F00490B18 /* SqliteDBData.cpp */; };
 		574FE61918DFC6C400490B18 /* JsonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE61718DFC6C400490B18 /* JsonObject.cpp */; };
 		574FE61C18DFD97F00490B18 /* CocosValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE61A18DFD97F00490B18 /* CocosValue.cpp */; };
+		574FF7191921CC5100DC1791 /* UpdateManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF7171921CC5100DC1791 /* UpdateManager.cpp */; };
 		57525CEB18AC690C00166633 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE418AC690C00166633 /* json_reader.cpp */; };
 		57525CEC18AC690C00166633 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE518AC690C00166633 /* json_value.cpp */; };
 		57525CED18AC690C00166633 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE718AC690C00166633 /* json_writer.cpp */; };
@@ -179,6 +180,8 @@
 		574FE61A18DFD97F00490B18 /* CocosValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosValue.cpp; sourceTree = "<group>"; };
 		574FE61B18DFD97F00490B18 /* CocosValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosValue.h; sourceTree = "<group>"; };
 		574FF70E191B827C00DC1791 /* FloatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatUtil.h; sourceTree = "<group>"; };
+		574FF7171921CC5100DC1791 /* UpdateManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UpdateManager.cpp; sourceTree = "<group>"; };
+		574FF7181921CC5100DC1791 /* UpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateManager.h; sourceTree = "<group>"; };
 		57525CC718AB836A00166633 /* SqliteMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteMacros.h; sourceTree = "<group>"; };
 		57525CDC18AC690C00166633 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
 		57525CDD18AC690C00166633 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -506,6 +509,15 @@
 				574FE4E418DA831D00490B18 /* JSONDAO.h */,
 			);
 			path = db;
+			sourceTree = "<group>";
+		};
+		574FF7161921CC5100DC1791 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				574FF7171921CC5100DC1791 /* UpdateManager.cpp */,
+				574FF7181921CC5100DC1791 /* UpdateManager.h */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		57525CDB18AC690C00166633 /* Jsoncpp */ = {
@@ -927,6 +939,7 @@
 			isa = PBXGroup;
 			children = (
 				57C3373F1888C3A1008B5618 /* Components */,
+				574FF7161921CC5100DC1791 /* Managers */,
 				57C3375B1888C3A1008B5618 /* Properties */,
 				57C337591888C3A1008B5618 /* Entity.cpp */,
 				57C3375A1888C3A1008B5618 /* Entity.h */,
@@ -1125,6 +1138,7 @@
 				577A790C186BF56500F1B5D5 /* FSMMachine.cpp in Sources */,
 				576E3FC2187D4BFB00745A0A /* ISOGroundTileLayer.cpp in Sources */,
 				57CF770E18AB5B370085A22F /* Transaction.cpp in Sources */,
+				574FF7191921CC5100DC1791 /* UpdateManager.cpp in Sources */,
 				577A7906186BF56500F1B5D5 /* Event.cpp in Sources */,
 				57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */,
 				57928424188E82EC00B46136 /* ISOMap.cpp in Sources */,
