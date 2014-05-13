@@ -13,7 +13,10 @@
 二、组件的更新方法
   1.在entity里更新
   	component定义一个update的接口，entity也定义一个update接口，在entity manager里调用entity的update,再在entity的update里调用component的update。
-	由于实现简单，适用中小型的逻辑
+	更新是按entity一个一个更新，只要保证component在entity的顺序，整个更新就是有序的。
+	由于实现简单，适用中小型的逻辑.
   2.由component自己定义
     外部实现一个定时器，component把自己注册到该管理器，由管理器调用component的update.
+	更新是无序的，如果要先后顺序，则使用更新优先级，就是一个大的更新组。
+	如果要实现按entity更新，可以定义一个更新组，同一个entity的更新组件放在同一个组里。
 	中间逻辑比较复杂，适用中大型项目。
