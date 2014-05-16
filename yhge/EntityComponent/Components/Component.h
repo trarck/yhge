@@ -58,6 +58,12 @@ public:
      */
     virtual void onRemovedFromEntity();
     
+    /**
+     * 组件更新。
+     * 不是所有组件都需要更新，不需要更新的组件可以忽略该方法。
+     */
+    virtual void update(float delta);
+    
     //====================消息操作================//
     static inline MessageManager* getMessageManager()
     {

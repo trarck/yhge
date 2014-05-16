@@ -70,5 +70,10 @@ void Component::onRemovedFromEntity()
     
 }
 
+void Component::update(float delta)
+{
+    //do nothing
+}
+
 
 NS_CC_YHGE_END

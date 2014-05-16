@@ -3,8 +3,12 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
+#include <yhge/EntityComponent/Components/Component.h>
+#include <yhge/EntityComponent/Interfaces/IUpdateable.h>
 
 NS_CC_YHGE_BEGIN
+
+struct _listEntry;
 
 class UpdateGroup:public CCObject
 {
@@ -26,6 +30,34 @@ public:
     virtual ~UpdateManager();
     
     virtual bool init(void);
+    
+    void update(float delta);
+    
+    void addUpdater(IUpdateable* updater,int priority);
+    
+    void removeUpdater(IUpdateable* updater);
+    
+public:
+    
+    inline void setUpdating(bool updating)
+    {
+        m_updating = updating;
+    }
+    
+    inline bool isUpdating()
+    {
+        return m_updating;
+    }
+    
+protected:
+    
+    struct _listEntry *m_pUpdatesNegList;        // list of priority < 0
+    struct _listEntry *m_pUpdates0List;          // list priority == 0
+    struct _listEntry *m_pUpdatesPosList;        // list priority > 0
+    
+    bool m_updating;
+    
+    std::vector<IUpdateable*> m_willRemoveList;
     	
 };
 

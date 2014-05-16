@@ -1,0 +1,18 @@
+#ifndef YHGE_ENTITYCOMPONENT_MANAGERS_INTERFACES_IUPDATEABLE_H_
+#define YHGE_ENTITYCOMPONENT_MANAGERS_INTERFACES_IUPDATEABLE_H_
+
+#include "cocos2d.h"
+#include <yhge/YHGEMacros.h>
+
+NS_CC_YHGE_BEGIN
+
+class IUpdateable
+{
+public:
+    virtual void update(float delta)=0;
+    
+};
+
+NS_CC_YHGE_END
+
+#endif // YHGE_ENTITYCOMPONENT_MANAGERS_INTERFACES_IUPDATEABLE_H_

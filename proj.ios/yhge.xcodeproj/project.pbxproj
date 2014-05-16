@@ -22,6 +22,8 @@
 		574FE61918DFC6C400490B18 /* JsonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE61718DFC6C400490B18 /* JsonObject.cpp */; };
 		574FE61C18DFD97F00490B18 /* CocosValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE61A18DFD97F00490B18 /* CocosValue.cpp */; };
 		574FF7191921CC5100DC1791 /* UpdateManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF7171921CC5100DC1791 /* UpdateManager.cpp */; };
+		574FF74E1924A02B00DC1791 /* Scheduler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF74C1924A02B00DC1791 /* Scheduler.cpp */; };
+		574FF7561925BA5C00DC1791 /* Engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF7541925BA5C00DC1791 /* Engine.cpp */; };
 		57525CEB18AC690C00166633 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE418AC690C00166633 /* json_reader.cpp */; };
 		57525CEC18AC690C00166633 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE518AC690C00166633 /* json_value.cpp */; };
 		57525CED18AC690C00166633 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE718AC690C00166633 /* json_writer.cpp */; };
@@ -182,6 +184,15 @@
 		574FF70E191B827C00DC1791 /* FloatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatUtil.h; sourceTree = "<group>"; };
 		574FF7171921CC5100DC1791 /* UpdateManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UpdateManager.cpp; sourceTree = "<group>"; };
 		574FF7181921CC5100DC1791 /* UpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateManager.h; sourceTree = "<group>"; };
+		574FF71B1923610300DC1791 /* IUpdateable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUpdateable.h; sourceTree = "<group>"; };
+		574FF74719249E5200DC1791 /* Iterator-implement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Iterator-implement.h"; sourceTree = "<group>"; };
+		574FF74819249E5200DC1791 /* Iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
+		574FF74919249E5200DC1791 /* LinkedList-implement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LinkedList-implement.h"; sourceTree = "<group>"; };
+		574FF74A19249E5200DC1791 /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
+		574FF74C1924A02B00DC1791 /* Scheduler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scheduler.cpp; sourceTree = "<group>"; };
+		574FF74D1924A02B00DC1791 /* Scheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scheduler.h; sourceTree = "<group>"; };
+		574FF7541925BA5C00DC1791 /* Engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Engine.cpp; sourceTree = "<group>"; };
+		574FF7551925BA5C00DC1791 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Engine.h; sourceTree = "<group>"; };
 		57525CC718AB836A00166633 /* SqliteMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteMacros.h; sourceTree = "<group>"; };
 		57525CDC18AC690C00166633 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
 		57525CDD18AC690C00166633 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -520,6 +531,23 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		574FF71A1923610300DC1791 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				574FF71B1923610300DC1791 /* IUpdateable.h */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		574FF74B1924A02B00DC1791 /* Time */ = {
+			isa = PBXGroup;
+			children = (
+				574FF74C1924A02B00DC1791 /* Scheduler.cpp */,
+				574FF74D1924A02B00DC1791 /* Scheduler.h */,
+			);
+			path = Time;
+			sourceTree = "<group>";
+		};
 		57525CDB18AC690C00166633 /* Jsoncpp */ = {
 			isa = PBXGroup;
 			children = (
@@ -687,9 +715,13 @@
 		57704FA518CF1573006B8A62 /* DataStructure */ = {
 			isa = PBXGroup;
 			children = (
-				57704FA918CFF313006B8A62 /* DataStructureMacros.h */,
 				57704FA618CF1573006B8A62 /* Array.cpp */,
 				57704FA718CF1573006B8A62 /* Array.h */,
+				57704FA918CFF313006B8A62 /* DataStructureMacros.h */,
+				574FF74719249E5200DC1791 /* Iterator-implement.h */,
+				574FF74819249E5200DC1791 /* Iterator.h */,
+				574FF74919249E5200DC1791 /* LinkedList-implement.h */,
+				574FF74A19249E5200DC1791 /* LinkedList.h */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
@@ -712,6 +744,7 @@
 				577A78D0186BF56500F1B5D5 /* Message */,
 				57A76A1A18ADEBC50014DEC9 /* SmartPointer */,
 				57CF770118AB1A290085A22F /* Sqlite */,
+				574FF74B1924A02B00DC1791 /* Time */,
 				57C337681888CB02008B5618 /* entity_component.h */,
 				577A78CA186BF56500F1B5D5 /* isometric.h */,
 				577A78E4186BF56500F1B5D5 /* message.h */,
@@ -939,10 +972,13 @@
 			isa = PBXGroup;
 			children = (
 				57C3373F1888C3A1008B5618 /* Components */,
+				574FF71A1923610300DC1791 /* Interfaces */,
 				574FF7161921CC5100DC1791 /* Managers */,
 				57C3375B1888C3A1008B5618 /* Properties */,
 				57C337591888C3A1008B5618 /* Entity.cpp */,
 				57C3375A1888C3A1008B5618 /* Entity.h */,
+				574FF7541925BA5C00DC1791 /* Engine.cpp */,
+				574FF7551925BA5C00DC1791 /* Engine.h */,
 			);
 			path = EntityComponent;
 			sourceTree = "<group>";
@@ -1152,6 +1188,7 @@
 				576E3FC8187D4BFB00745A0A /* ISOObjectGroupInfo.cpp in Sources */,
 				577A7933186BF56500F1B5D5 /* MessageManagerSenderPredominate.cpp in Sources */,
 				576E3FBF187D4BFB00745A0A /* ISOBatchTileLayer.cpp in Sources */,
+				574FF74E1924A02B00DC1791 /* Scheduler.cpp in Sources */,
 				57C337671888C3A1008B5618 /* Entity.cpp in Sources */,
 				57CF76E718AA060D0085A22F /* DamageFormula.cpp in Sources */,
 				577A78F5186BF56500F1B5D5 /* AstarFlexible.cpp in Sources */,
@@ -1202,6 +1239,7 @@
 				577A78FC186BF56500F1B5D5 /* CCSelectorWrap.cpp in Sources */,
 				57C3375D1888C3A1008B5618 /* AttackComponent.cpp in Sources */,
 				57C337661888C3A1008B5618 /* SpriteRendererComponent.cpp in Sources */,
+				574FF7561925BA5C00DC1791 /* Engine.cpp in Sources */,
 				5771056918837C3E00FA1446 /* IsoTileUtils.cpp in Sources */,
 				576E3FC1187D4BFB00745A0A /* ISODynamicTileLayer.cpp in Sources */,
 				577A78FE186BF56500F1B5D5 /* ccCArray.cpp in Sources */,
