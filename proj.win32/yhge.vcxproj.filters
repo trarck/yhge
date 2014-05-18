@@ -94,6 +94,15 @@
     <Filter Include="Dimetric">
       <UniqueIdentifier>{aab1697a-05b6-4d6f-8b23-fed9fbb35277}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DataStructure">
+      <UniqueIdentifier>{915a5297-1194-4d60-b278-09f2678aebad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{c2d3657c-a7c2-4dd2-a4bf-c308e22105f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EntityComponent\Managers">
+      <UniqueIdentifier>{3198ae67-7985-436a-878a-9c6f307818ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h">
@@ -516,6 +525,30 @@
     <ClInclude Include="..\yhge\Datas\db\DAOFactory.h">
       <Filter>Datas\db</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\DataStructure\DataStructureMacros.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\DataStructure\Iterator.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\DataStructure\Iterator-implement.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\DataStructure\LinkedList.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\DataStructure\LinkedList-implement.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Time\Scheduler.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Managers\UpdateManager.h">
+      <Filter>EntityComponent\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Engine.h">
+      <Filter>EntityComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -850,6 +883,15 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Datas\db\DAOFactory.cpp">
       <Filter>Datas\db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Time\Scheduler.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Managers\UpdateManager.cpp">
+      <Filter>EntityComponent\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Engine.cpp">
+      <Filter>EntityComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

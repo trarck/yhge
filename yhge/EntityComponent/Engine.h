@@ -18,6 +18,12 @@ public:
     static void destroyInstance();
     
     virtual bool init();
+
+    virtual void setup();
+
+    virtual void cleanup();
+
+    //virtual void update(float delta);
     
 public:
     

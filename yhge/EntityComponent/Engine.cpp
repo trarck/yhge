@@ -43,4 +43,22 @@ bool Engine::init()
     return true;
 }
 
+void Engine::setup()
+{
+    //add game scheduler to main loop
+    if(m_scheduler)
+        CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(m_scheduler,0,false);
+}
+
+void Engine::cleanup()
+{
+    if(m_scheduler)
+        CCDirector::sharedDirector()->getScheduler()->unscheduleAllForTarget(m_scheduler);
+}
+
+//void Engine::update(float delta)
+//{
+//    m_scheduler->tick(delta);
+//}
+
 NS_CC_YHGE_END
