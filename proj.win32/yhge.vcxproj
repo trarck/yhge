@@ -35,6 +35,7 @@
     <ClInclude Include="..\yhge\Datas\BaseData.h" />
     <ClInclude Include="..\yhge\Datas\CocosData.h" />
     <ClInclude Include="..\yhge\Datas\db\CocosDAO.h" />
+    <ClInclude Include="..\yhge\Datas\db\DAOFactory.h" />
     <ClInclude Include="..\yhge\Datas\db\JSONDAO.h" />
     <ClInclude Include="..\yhge\Datas\JSONData.h" />
     <ClInclude Include="..\yhge\Datas\SqliteDBData.h" />
@@ -47,6 +48,7 @@
     <ClInclude Include="..\yhge\EntityComponent\Components\CameraFlowGridMoveComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\Component.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\ComponentMessageDefine.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Components\EightDirectionAnimationComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\GridMoveComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\ISOAutoZOrderPositionComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\ISOMapPositionComponent.h" />
@@ -173,6 +175,7 @@
     <ClCompile Include="..\yhge\Datas\BaseData.cpp" />
     <ClCompile Include="..\yhge\Datas\CocosData.cpp" />
     <ClCompile Include="..\yhge\Datas\db\CocosDAO.cpp" />
+    <ClCompile Include="..\yhge\Datas\db\DAOFactory.cpp" />
     <ClCompile Include="..\yhge\Datas\db\JSONDAO.cpp" />
     <ClCompile Include="..\yhge\Datas\JSONData.cpp" />
     <ClCompile Include="..\yhge\Datas\SqliteDBData.cpp" />
@@ -183,6 +186,7 @@
     <ClCompile Include="..\yhge\EntityComponent\Components\AutoAttackComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\CameraFlowGridMoveComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\Component.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Components\EightDirectionAnimationComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\GridMoveComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\ISOAutoZOrderPositionComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\ISOMapPositionComponent.cpp" />

@@ -510,6 +510,12 @@
     <ClInclude Include="..\yhge\Sqlite\SqliteDriver.h">
       <Filter>Sqlite</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\EightDirectionAnimationComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\db\DAOFactory.h">
+      <Filter>Datas\db</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -838,6 +844,12 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Sqlite\SqliteDriver.cpp">
       <Filter>Sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\EightDirectionAnimationComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\db\DAOFactory.cpp">
+      <Filter>Datas\db</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
