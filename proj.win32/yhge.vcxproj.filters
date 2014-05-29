@@ -103,6 +103,9 @@
     <Filter Include="EntityComponent\Managers">
       <UniqueIdentifier>{3198ae67-7985-436a-878a-9c6f307818ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{066cfbd5-ce1c-4ba9-9bdd-4ba3957ff6a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h">
@@ -549,6 +552,45 @@
     <ClInclude Include="..\yhge\EntityComponent\Engine.h">
       <Filter>EntityComponent</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Animation\ActionAnimation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\ActionFrame.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\Animation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\AnimationGroup.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\AnimationManager.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\AvatarSprite.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\Frame.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\LoopAnimation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\LoopAnimationVariable.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\TransformFrame.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\VariableAnimation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\AnimationSprite.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\AnimationInterface.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -892,6 +934,42 @@
     </ClCompile>
     <ClCompile Include="..\yhge\EntityComponent\Engine.cpp">
       <Filter>EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\ActionAnimation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\ActionFrame.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\Animation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\AnimationGroup.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\AnimationManager.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\AvatarSprite.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\Frame.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\LoopAnimation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\LoopAnimationVariable.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\TransformFrame.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\VariableAnimation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\AnimationSprite.cpp">
+      <Filter>Animation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

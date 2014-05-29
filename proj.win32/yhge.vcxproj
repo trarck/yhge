@@ -11,6 +11,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\yhge\Animation\ActionAnimation.h" />
+    <ClInclude Include="..\yhge\Animation\ActionFrame.h" />
+    <ClInclude Include="..\yhge\Animation\AnimationInterface.h" />
+    <ClInclude Include="..\yhge\Animation\AnimationSprite.h" />
+    <ClInclude Include="..\yhge\Animation\Animation.h" />
+    <ClInclude Include="..\yhge\Animation\AnimationGroup.h" />
+    <ClInclude Include="..\yhge\Animation\AnimationManager.h" />
+    <ClInclude Include="..\yhge\Animation\AvatarSprite.h" />
+    <ClInclude Include="..\yhge\Animation\Frame.h" />
+    <ClInclude Include="..\yhge\Animation\LoopAnimation.h" />
+    <ClInclude Include="..\yhge\Animation\LoopAnimationVariable.h" />
+    <ClInclude Include="..\yhge\Animation\TransformFrame.h" />
+    <ClInclude Include="..\yhge\Animation\VariableAnimation.h" />
     <ClInclude Include="..\yhge\Arithmetic\Formula\DamageFormula.h" />
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h" />
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\AstarFlexible.h" />
@@ -161,6 +174,18 @@
     <ClInclude Include="..\yhge\YHGEMacros.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\yhge\Animation\ActionAnimation.cpp" />
+    <ClCompile Include="..\yhge\Animation\ActionFrame.cpp" />
+    <ClCompile Include="..\yhge\Animation\AnimationSprite.cpp" />
+    <ClCompile Include="..\yhge\Animation\Animation.cpp" />
+    <ClCompile Include="..\yhge\Animation\AnimationGroup.cpp" />
+    <ClCompile Include="..\yhge\Animation\AnimationManager.cpp" />
+    <ClCompile Include="..\yhge\Animation\AvatarSprite.cpp" />
+    <ClCompile Include="..\yhge\Animation\Frame.cpp" />
+    <ClCompile Include="..\yhge\Animation\LoopAnimation.cpp" />
+    <ClCompile Include="..\yhge\Animation\LoopAnimationVariable.cpp" />
+    <ClCompile Include="..\yhge\Animation\TransformFrame.cpp" />
+    <ClCompile Include="..\yhge\Animation\VariableAnimation.cpp" />
     <ClCompile Include="..\yhge\Arithmetic\Formula\DamageFormula.cpp" />
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp" />
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarFlexible.cpp" />
@@ -277,7 +302,7 @@
     <ClCompile Include="..\yhge\Time\Scheduler.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FC5564E4-EE35-49E8-90C1-4DE887E0D8E0}</ProjectGuid>
+    <ProjectGuid>{76A39BB2-9B84-4C65-98A5-654D86B86F2A}</ProjectGuid>
     <RootNamespace>test_win32</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>libyhge</ProjectName>
