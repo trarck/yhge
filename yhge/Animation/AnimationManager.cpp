@@ -78,7 +78,11 @@ void AnimationManager::addToAnimationGroup(Animation* animation)
 
 void AnimationManager::removeFromAnimationGroup(Animation* animation)
 {
-    
+    CCAssert(animation!=NULL, "AnimationManager::removeFromAnimationGroup cant be null");
+    AnimationGroup* animationGroup=getAnimationGroupByDuration(animation->getDuration());
+    if (animationGroup) {
+        animationGroup->remove(animation);
+    }
 }
 
 NS_CC_YHGE_END

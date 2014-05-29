@@ -10,6 +10,7 @@ Animation::Animation()
 ,m_duration(0.0f)
 ,m_elapsed(0.0f)
 ,m_frames(NULL)
+,m_animationSprite(NULL)
 {
     
 }
@@ -111,12 +112,21 @@ void Animation::update(float delta)
     if (m_enable) {
         m_elapsed+=delta;
         m_currentFrameIndex=(int)floor(m_elapsed/m_duration)%m_frameCount;
+
+        if (m_animationSprite)
+        {
+            m_animationSprite->setAnimationFrame(getCurrentFrame());
+        }
     }
 }
 
 void Animation::update(float delta,int deltaFrame)
 {
     m_currentFrameIndex=(m_currentFrameIndex+deltaFrame)%m_frameCount;
+    if (m_animationSprite)
+    {
+        m_animationSprite->setAnimationFrame(getCurrentFrame());
+    }
 }
 
 NS_CC_YHGE_END

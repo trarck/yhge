@@ -3,13 +3,21 @@
 
 #include "cocos2d.h"
 #include "../YHGEMacros.h"
+#include "AnimationInterface.h"
 #include "Frame.h"
 
 NS_CC_YHGE_BEGIN
 
+typedef struct _AnimationDataFlag
+{
+    bool haveTransform;
+    bool haveColor;
+    bool haveOpacity;
+
+} AnimationDataFlag;
+
 class Animation:public CCObject
 {
-    
 public:
     
     Animation();
@@ -167,6 +175,36 @@ public:
         return m_frames;
     }
 
+    inline AnimationDataFlag getAnimationDataFlag()
+    {
+        return m_animationDataFlag;
+    }
+
+    inline bool haveTransform()
+    {
+        return m_animationDataFlag.haveTransform;
+    }
+
+    inline bool haveColor()
+    {
+        return m_animationDataFlag.haveColor;
+    }
+
+    inline bool haveOpacity()
+    {
+        return m_animationDataFlag.haveOpacity;
+    }
+
+    void setAnimationSprite(IAnimationSprite* animationSprite)
+    {
+        m_animationSprite = animationSprite;
+    }
+
+    IAnimationSprite* getAnimationSprite()
+    {
+        return m_animationSprite;
+    }
+
 protected:
     
     inline void setFrameInfo()
@@ -202,6 +240,10 @@ protected:
     //帧对象。frame使用对象。因为动画中的相同帧，可以使用同一个对象，节省空间。
     CCArray* m_frames;
     
+    //frame中使用的数据标志。一个animation的所有frame使用统一的标志，所以放在animation里，而不是Frame中。
+    AnimationDataFlag m_animationDataFlag;
+
+    IAnimationSprite* m_animationSprite;
 };
 
 

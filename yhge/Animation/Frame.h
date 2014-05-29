@@ -11,29 +11,17 @@ class Frame:public CCObject
     
 public:
     
-    Frame()
-    :m_size(CCSizeZero)
-    ,m_offset(CCPointZero)
-    ,m_rect(CCRectZero)
-    ,m_texture(NULL)
-    {
-        
-    }
+    Frame();
     
-    ~Frame()
-    {
-        CC_SAFE_RELEASE_NULL(m_texture);
-    }
+    ~Frame();
     
     bool init();
     
-    bool init(CCTexture2D* texture,const CCRect& rect);
-    
-    bool init(CCTexture2D* texture,const CCRect& rect,const CCSize & size,const CCPoint & offset);
+    bool init(CCSpriteFrame* spriteFrame);
     
 public:
     
-    inline void setSize(const CCSize & size)
+    /*inline void setSize(const CCSize & size)
     {
         m_size = size;
     }
@@ -73,19 +61,73 @@ public:
     inline CCTexture2D* getTexture()
     {
         return m_texture;
+    }*/
+    void setSpriteFrame(CCSpriteFrame* spriteFrame)
+    {
+        CC_SAFE_RETAIN(spriteFrame);
+        CC_SAFE_RELEASE(m_spriteFrame);
+        m_spriteFrame = spriteFrame;
     }
-    
+
+    CCSpriteFrame* getSpriteFrame()
+    {
+        return m_spriteFrame;
+    }
+
+    bool haveTransform()
+    {
+        return m_haveTransform;
+    }
+
+    void setTransform(const CCAffineTransform& transform)
+    {
+        m_transform = transform;
+    }
+
+    const CCAffineTransform& getTransform()
+    {
+        return m_transform;
+    }
+
+    void setColor(const ccColor3B& color)
+    {
+        m_color = color;
+    }
+
+    const ccColor3B& getColor()
+    {
+        return m_color;
+    }
+
+    void setOpacity(GLubyte opacity)
+    {
+        m_opacity = opacity;
+    }
+
+    GLubyte getOpacity()
+    {
+        return m_opacity;
+    }
+
 protected:
-    //需要显示的大小
-    CCSize m_size;
-    
-    //显示的偏移量
-    CCPoint m_offset;
-    
-    //在texture中的位置
-    CCRect m_rect;
-    
-    CCTexture2D* m_texture;
+    ////需要显示的大小
+    //CCSize m_size;
+    //
+    ////显示的偏移量
+    //CCPoint m_offset;
+    //
+    ////在texture中的位置
+    //CCRect m_rect;
+    //
+    //CCTexture2D* m_texture;
+
+    CCSpriteFrame* m_spriteFrame;
+
+    bool m_haveTransform;
+    CCAffineTransform m_transform;
+
+    ccColor3B m_color;
+    GLubyte m_opacity;
 };
 
 

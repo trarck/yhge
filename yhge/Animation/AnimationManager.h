@@ -8,8 +8,6 @@
 
 NS_CC_YHGE_BEGIN
 
-
-
 class AnimationManager:public CCObject
 {
     

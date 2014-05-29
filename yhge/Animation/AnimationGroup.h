@@ -9,7 +9,7 @@ NS_CC_YHGE_BEGIN
 
 class AnimationGroup:public CCObject
 {
-    
+public:
     AnimationGroup();
     
     ~AnimationGroup();

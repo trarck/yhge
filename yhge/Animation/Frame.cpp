@@ -3,28 +3,29 @@
 
 NS_CC_YHGE_BEGIN
 
+Frame::Frame()
+:m_spriteFrame(NULL)
+,m_haveTransform(false)
+,m_transform(CCAffineTransformMakeIdentity())
+,m_color(ccWHITE)
+,m_opacity(255)
+{
+
+}
+    
+Frame::~Frame()
+{
+    CC_SAFE_RELEASE_NULL(m_spriteFrame);
+}
+
 bool Frame::init()
 {
     return true;
 }
 
-bool Frame::init(CCTexture2D* texture,const CCRect& rect)
+bool Frame::init(CCSpriteFrame* spriteFrame)
 {
-    
-    setTexture(texture);
-    m_rect=rect;
-    
-    m_size=rect.size;
-    
-    return true;
-}
-
-bool Frame::init(CCTexture2D* texture,const CCRect& rect,const CCSize & size,const CCPoint & offset)
-{
-    setTexture(texture);
-    m_rect=rect;
-    m_size=size;
-    m_offset=offset;
+    setSpriteFrame(spriteFrame);    
     return true;
 }
 
