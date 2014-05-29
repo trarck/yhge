@@ -18,6 +18,7 @@
     <ClInclude Include="..\yhge\Animation\Animation.h" />
     <ClInclude Include="..\yhge\Animation\AnimationGroup.h" />
     <ClInclude Include="..\yhge\Animation\AnimationManager.h" />
+    <ClInclude Include="..\yhge\Animation\AvatarFrame.h" />
     <ClInclude Include="..\yhge\Animation\AvatarSprite.h" />
     <ClInclude Include="..\yhge\Animation\Frame.h" />
     <ClInclude Include="..\yhge\Animation\LoopAnimation.h" />
@@ -180,6 +181,7 @@
     <ClCompile Include="..\yhge\Animation\Animation.cpp" />
     <ClCompile Include="..\yhge\Animation\AnimationGroup.cpp" />
     <ClCompile Include="..\yhge\Animation\AnimationManager.cpp" />
+    <ClCompile Include="..\yhge\Animation\AvatarFrame.cpp" />
     <ClCompile Include="..\yhge\Animation\AvatarSprite.cpp" />
     <ClCompile Include="..\yhge\Animation\Frame.cpp" />
     <ClCompile Include="..\yhge\Animation\LoopAnimation.cpp" />
