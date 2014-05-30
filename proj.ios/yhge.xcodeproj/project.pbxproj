@@ -111,7 +111,6 @@
 		57A76A1818ACBC860014DEC9 /* JSONData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57A76A1618ACBC860014DEC9 /* JSONData.cpp */; };
 		57B0CA4A1936D5F000098C22 /* ActionAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA331936D5F000098C22 /* ActionAnimation.cpp */; };
 		57B0CA4B1936D5F000098C22 /* ActionFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA351936D5F000098C22 /* ActionFrame.cpp */; };
-		57B0CA4C1936D5F000098C22 /* AnimateSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA371936D5F000098C22 /* AnimateSprite.cpp */; };
 		57B0CA4D1936D5F000098C22 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA391936D5F000098C22 /* Animation.cpp */; };
 		57B0CA4E1936D5F000098C22 /* AnimationGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA3B1936D5F000098C22 /* AnimationGroup.cpp */; };
 		57B0CA4F1936D5F000098C22 /* VariableAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA3D1936D5F000098C22 /* VariableAnimation.cpp */; };
@@ -121,6 +120,9 @@
 		57B0CA531936D5F000098C22 /* LoopAnimationVariable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA451936D5F000098C22 /* LoopAnimationVariable.cpp */; };
 		57B0CA541936D5F000098C22 /* TransformFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA481936D5F000098C22 /* TransformFrame.cpp */; };
 		57B0CA571936D7CA00098C22 /* AnimationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA551936D7CA00098C22 /* AnimationManager.cpp */; };
+		57B0CA5E19385A1500098C22 /* AnimationSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA5A19385A1500098C22 /* AnimationSprite.cpp */; };
+		57B0CA5F19385A1500098C22 /* AvatarFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA5C19385A1500098C22 /* AvatarFrame.cpp */; };
+		57B0CA6219385F5500098C22 /* DisplayProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA6019385F5500098C22 /* DisplayProperty.cpp */; };
 		57C3375C1888C3A1008B5618 /* AnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337401888C3A1008B5618 /* AnimationComponent.cpp */; };
 		57C3375D1888C3A1008B5618 /* AttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337421888C3A1008B5618 /* AttackComponent.cpp */; };
 		57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337441888C3A1008B5618 /* AutoAttackComponent.cpp */; };
@@ -407,8 +409,6 @@
 		57B0CA341936D5F000098C22 /* ActionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionAnimation.h; sourceTree = "<group>"; };
 		57B0CA351936D5F000098C22 /* ActionFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionFrame.cpp; sourceTree = "<group>"; };
 		57B0CA361936D5F000098C22 /* ActionFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionFrame.h; sourceTree = "<group>"; };
-		57B0CA371936D5F000098C22 /* AnimateSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimateSprite.cpp; sourceTree = "<group>"; };
-		57B0CA381936D5F000098C22 /* AnimateSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimateSprite.h; sourceTree = "<group>"; };
 		57B0CA391936D5F000098C22 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
 		57B0CA3A1936D5F000098C22 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
 		57B0CA3B1936D5F000098C22 /* AnimationGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationGroup.cpp; sourceTree = "<group>"; };
@@ -427,6 +427,13 @@
 		57B0CA491936D5F000098C22 /* TransformFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformFrame.h; sourceTree = "<group>"; };
 		57B0CA551936D7CA00098C22 /* AnimationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationManager.cpp; sourceTree = "<group>"; };
 		57B0CA561936D7CA00098C22 /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
+		57B0CA5919385A1500098C22 /* AnimationInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationInterface.h; sourceTree = "<group>"; };
+		57B0CA5A19385A1500098C22 /* AnimationSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationSprite.cpp; sourceTree = "<group>"; };
+		57B0CA5B19385A1500098C22 /* AnimationSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationSprite.h; sourceTree = "<group>"; };
+		57B0CA5C19385A1500098C22 /* AvatarFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AvatarFrame.cpp; sourceTree = "<group>"; };
+		57B0CA5D19385A1500098C22 /* AvatarFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarFrame.h; sourceTree = "<group>"; };
+		57B0CA6019385F5500098C22 /* DisplayProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisplayProperty.cpp; sourceTree = "<group>"; };
+		57B0CA6119385F5500098C22 /* DisplayProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayProperty.h; sourceTree = "<group>"; };
 		57C337401888C3A1008B5618 /* AnimationComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationComponent.cpp; sourceTree = "<group>"; };
 		57C337411888C3A1008B5618 /* AnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationComponent.h; sourceTree = "<group>"; };
 		57C337421888C3A1008B5618 /* AttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackComponent.cpp; sourceTree = "<group>"; };
@@ -1014,18 +1021,21 @@
 				57B0CA341936D5F000098C22 /* ActionAnimation.h */,
 				57B0CA351936D5F000098C22 /* ActionFrame.cpp */,
 				57B0CA361936D5F000098C22 /* ActionFrame.h */,
-				57B0CA371936D5F000098C22 /* AnimateSprite.cpp */,
-				57B0CA381936D5F000098C22 /* AnimateSprite.h */,
 				57B0CA391936D5F000098C22 /* Animation.cpp */,
 				57B0CA3A1936D5F000098C22 /* Animation.h */,
 				57B0CA3B1936D5F000098C22 /* AnimationGroup.cpp */,
 				57B0CA3C1936D5F000098C22 /* AnimationGroup.h */,
+				57B0CA5919385A1500098C22 /* AnimationInterface.h */,
 				57B0CA551936D7CA00098C22 /* AnimationManager.cpp */,
 				57B0CA561936D7CA00098C22 /* AnimationManager.h */,
-				57B0CA3D1936D5F000098C22 /* VariableAnimation.cpp */,
-				57B0CA3E1936D5F000098C22 /* VariableAnimation.h */,
+				57B0CA5A19385A1500098C22 /* AnimationSprite.cpp */,
+				57B0CA5B19385A1500098C22 /* AnimationSprite.h */,
+				57B0CA5C19385A1500098C22 /* AvatarFrame.cpp */,
+				57B0CA5D19385A1500098C22 /* AvatarFrame.h */,
 				57B0CA3F1936D5F000098C22 /* AvatarSprite.cpp */,
 				57B0CA401936D5F000098C22 /* AvatarSprite.h */,
+				57B0CA6019385F5500098C22 /* DisplayProperty.cpp */,
+				57B0CA6119385F5500098C22 /* DisplayProperty.h */,
 				57B0CA411936D5F000098C22 /* Frame.cpp */,
 				57B0CA421936D5F000098C22 /* Frame.h */,
 				57B0CA431936D5F000098C22 /* LoopAnimation.cpp */,
@@ -1034,6 +1044,8 @@
 				57B0CA461936D5F000098C22 /* LoopAnimationVariable.h */,
 				57B0CA481936D5F000098C22 /* TransformFrame.cpp */,
 				57B0CA491936D5F000098C22 /* TransformFrame.h */,
+				57B0CA3D1936D5F000098C22 /* VariableAnimation.cpp */,
+				57B0CA3E1936D5F000098C22 /* VariableAnimation.h */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -1210,10 +1222,10 @@
 				574FE4E618DA831D00490B18 /* JSONDAO.cpp in Sources */,
 				577A78F8186BF56500F1B5D5 /* CCParabolaMove.cpp in Sources */,
 				577A792C186BF56500F1B5D5 /* MersenneTwister.cpp in Sources */,
+				57B0CA5F19385A1500098C22 /* AvatarFrame.cpp in Sources */,
 				57975AAD1890FAE9008A9F38 /* SortZIndex.cpp in Sources */,
 				574FE4F818DAF27F00490B18 /* SqliteDBData.cpp in Sources */,
 				577A7930186BF56500F1B5D5 /* Message.cpp in Sources */,
-				57B0CA4C1936D5F000098C22 /* AnimateSprite.cpp in Sources */,
 				576E3FD5187D5D5500745A0A /* ISOObjectGroup.cpp in Sources */,
 				577A7935186BF56500F1B5D5 /* NormalMessageManager.cpp in Sources */,
 				577A7907186BF56500F1B5D5 /* EventHandle.cpp in Sources */,
@@ -1235,6 +1247,7 @@
 				57CF76FF18AB0A480085A22F /* ArrayData.cpp in Sources */,
 				577A792F186BF56500F1B5D5 /* DelayMessageManager.cpp in Sources */,
 				574FE4F518DAE7B100490B18 /* CCSimpleValue.cpp in Sources */,
+				57B0CA6219385F5500098C22 /* DisplayProperty.cpp in Sources */,
 				576E3FE7187E47F300745A0A /* ISOComponentNode.cpp in Sources */,
 				57B0CA4D1936D5F000098C22 /* Animation.cpp in Sources */,
 				57A76A1118ACB2D80014DEC9 /* BaseData.cpp in Sources */,
@@ -1282,6 +1295,7 @@
 				577A78F7186BF56500F1B5D5 /* CallbackAstar.cpp in Sources */,
 				576E3FCA187D4BFB00745A0A /* ISOTileInfo.cpp in Sources */,
 				57B0CA501936D5F000098C22 /* AvatarSprite.cpp in Sources */,
+				57B0CA5E19385A1500098C22 /* AnimationSprite.cpp in Sources */,
 				5747632D18D18E3E0031E2E0 /* ActionComponent.cpp in Sources */,
 				5792840F188CD37000B46136 /* CameraFlowGridMoveComponent.cpp in Sources */,
 				57975AC818963599008A9F38 /* ISOActiveLayerInfo.cpp in Sources */,
