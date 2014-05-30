@@ -23,10 +23,10 @@ bool Frame::init()
     return true;
 }
 
-bool Frame::init(CCSpriteFrame* spriteFrame)
-{
-    setSpriteFrame(spriteFrame);    
-    return true;
-}
+//bool Frame::init(CCSpriteFrame* spriteFrame)
+//{
+//    setSpriteFrame(spriteFrame);    
+//    return true;
+//}
 
 NS_CC_YHGE_END

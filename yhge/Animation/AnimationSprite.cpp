@@ -20,7 +20,7 @@ void AnimationSprite::setAnimationFrame(Frame* frame)
     AnimationDataFlag flag=m_animation->getAnimationDataFlag();
 
     if(flag.haveTransform){
-        setAdditionalTransform(frame->getTransform);
+        setAdditionalTransform(frame->getTransform());
     }
 
     if (flag.haveColor)
@@ -45,5 +45,6 @@ void AnimationSprite::updateCurrentAnimationFrame()
         }
     }
 }
+
 
 NS_CC_YHGE_END

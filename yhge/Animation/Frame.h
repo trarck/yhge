@@ -15,9 +15,9 @@ public:
     
     ~Frame();
     
-    bool init();
+    virtual bool init();
     
-    bool init(CCSpriteFrame* spriteFrame);
+//    virtual bool init(CCSpriteFrame* spriteFrame);
     
 public:
     
