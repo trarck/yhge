@@ -79,4 +79,14 @@
 #include "FSM/Common/FSMDelegateState.h"
 #include "FSM/Common/FSMMachine.h"
 
+//animation
+#include "Animation/DisplayProperty.h"
+#include "Animation/Frame.h"
+#include "Animation/Animation.h"
+#include "Animation/AnimationGroup.h"
+#include "Animation/AnimationManager.h"
+#include "Animation/AnimationSprite.h"
+#include "Animation/AvatarFrame.h"
+#include "Animation/AvatarSprite.h"
+
 #endif //COCOS_YHGE_H_

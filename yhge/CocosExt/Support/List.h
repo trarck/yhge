@@ -136,7 +136,7 @@ public:
     iterator erase(iterator position)
     {
         (*position)->release();
-        return m_data->erase(position);
+        return m_data.erase(position);
     }
     
     iterator erase(iterator first,iterator last)

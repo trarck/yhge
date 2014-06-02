@@ -1,7 +1,8 @@
 #include "AnimationManager.h"
 
-
 NS_CC_YHGE_BEGIN
+
+static AnimationManager* sAnimationManagerInstance=NULL;
 
 AnimationManager::AnimationManager()
 :m_animations(NULL)
@@ -23,6 +24,26 @@ bool AnimationManager::init()
     
     
     return true;
+}
+
+AnimationManager* AnimationManager::getInstance()
+{
+    if (!sAnimationManagerInstance)
+    {
+        sAnimationManagerInstance=new AnimationManager();
+        sAnimationManagerInstance->init();
+    }
+
+    return sAnimationManagerInstance;
+}
+
+void AnimationManager::destroyInstance()
+{
+    if (sAnimationManagerInstance)
+    {
+        sAnimationManagerInstance->release();
+        sAnimationManagerInstance=NULL;
+    }
 }
 
 void AnimationManager::add(Animation* animation)

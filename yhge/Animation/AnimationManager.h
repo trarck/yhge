@@ -10,17 +10,19 @@ NS_CC_YHGE_BEGIN
 
 class AnimationManager:public CCObject
 {
-    
+public:
     AnimationManager();
     
     ~AnimationManager();
     
     bool init();
+
+    static AnimationManager* getInstance();
+    static void destroyInstance();
     
     void add(Animation* animation);
     
     void remove(Animation* animation);
-    
     
     void addAnimationGroup(AnimationGroup* animationGroup,int key);
     
@@ -29,7 +31,6 @@ class AnimationManager:public CCObject
     AnimationGroup* getAnimationGroupByKey(int key);
     
     AnimationGroup* getAnimationGroupByDuration(float duration);
-    
     
     void addToAnimationGroup(Animation* animation);
     
