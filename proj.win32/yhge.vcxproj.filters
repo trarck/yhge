@@ -594,6 +594,9 @@
     <ClInclude Include="..\yhge\Animation\AvatarFrame.h">
       <Filter>Animation</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Animation\DisplayProperty.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -975,6 +978,9 @@
       <Filter>Animation</Filter>
     </ClCompile>
     <ClCompile Include="..\yhge\Animation\AvatarFrame.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\DisplayProperty.cpp">
       <Filter>Animation</Filter>
     </ClCompile>
   </ItemGroup>

@@ -20,6 +20,7 @@
     <ClInclude Include="..\yhge\Animation\AnimationManager.h" />
     <ClInclude Include="..\yhge\Animation\AvatarFrame.h" />
     <ClInclude Include="..\yhge\Animation\AvatarSprite.h" />
+    <ClInclude Include="..\yhge\Animation\DisplayProperty.h" />
     <ClInclude Include="..\yhge\Animation\Frame.h" />
     <ClInclude Include="..\yhge\Animation\LoopAnimation.h" />
     <ClInclude Include="..\yhge\Animation\LoopAnimationVariable.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="..\yhge\Animation\AnimationManager.cpp" />
     <ClCompile Include="..\yhge\Animation\AvatarFrame.cpp" />
     <ClCompile Include="..\yhge\Animation\AvatarSprite.cpp" />
+    <ClCompile Include="..\yhge\Animation\DisplayProperty.cpp" />
     <ClCompile Include="..\yhge\Animation\Frame.cpp" />
     <ClCompile Include="..\yhge\Animation\LoopAnimation.cpp" />
     <ClCompile Include="..\yhge\Animation\LoopAnimationVariable.cpp" />
@@ -304,7 +306,7 @@
     <ClCompile Include="..\yhge\Time\Scheduler.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{76A39BB2-9B84-4C65-98A5-654D86B86F2A}</ProjectGuid>
+    <ProjectGuid>{FC5564E4-EE35-49E8-90C1-4DE887E0D8E0}</ProjectGuid>
     <RootNamespace>test_win32</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>libyhge</ProjectName>
