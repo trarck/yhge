@@ -123,6 +123,10 @@
 		57B0CA5E19385A1500098C22 /* AnimationSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA5A19385A1500098C22 /* AnimationSprite.cpp */; };
 		57B0CA5F19385A1500098C22 /* AvatarFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA5C19385A1500098C22 /* AvatarFrame.cpp */; };
 		57B0CA6219385F5500098C22 /* DisplayProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA6019385F5500098C22 /* DisplayProperty.cpp */; };
+		57B0CA79193DA7FB00098C22 /* Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA70193DA7FB00098C22 /* Buffer.cpp */; };
+		57B0CA7A193DA7FB00098C22 /* IeeeHalfPrecision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA72193DA7FB00098C22 /* IeeeHalfPrecision.cpp */; };
+		57B0CA7B193DA7FB00098C22 /* InputStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA74193DA7FB00098C22 /* InputStream.cpp */; };
+		57B0CA7C193DA7FB00098C22 /* OutputStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA77193DA7FB00098C22 /* OutputStream.cpp */; };
 		57C3375C1888C3A1008B5618 /* AnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337401888C3A1008B5618 /* AnimationComponent.cpp */; };
 		57C3375D1888C3A1008B5618 /* AttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337421888C3A1008B5618 /* AttackComponent.cpp */; };
 		57C3375E1888C3A1008B5618 /* AutoAttackComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C337441888C3A1008B5618 /* AutoAttackComponent.cpp */; };
@@ -434,6 +438,16 @@
 		57B0CA5D19385A1500098C22 /* AvatarFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarFrame.h; sourceTree = "<group>"; };
 		57B0CA6019385F5500098C22 /* DisplayProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisplayProperty.cpp; sourceTree = "<group>"; };
 		57B0CA6119385F5500098C22 /* DisplayProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayProperty.h; sourceTree = "<group>"; };
+		57B0CA70193DA7FB00098C22 /* Buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Buffer.cpp; sourceTree = "<group>"; };
+		57B0CA71193DA7FB00098C22 /* Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Buffer.h; sourceTree = "<group>"; };
+		57B0CA72193DA7FB00098C22 /* IeeeHalfPrecision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IeeeHalfPrecision.cpp; sourceTree = "<group>"; };
+		57B0CA73193DA7FB00098C22 /* IeeeHalfPrecision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IeeeHalfPrecision.h; sourceTree = "<group>"; };
+		57B0CA74193DA7FB00098C22 /* InputStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputStream.cpp; sourceTree = "<group>"; };
+		57B0CA75193DA7FB00098C22 /* InputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStream.h; sourceTree = "<group>"; };
+		57B0CA76193DA7FB00098C22 /* IOMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOMacros.h; sourceTree = "<group>"; };
+		57B0CA77193DA7FB00098C22 /* OutputStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OutputStream.cpp; sourceTree = "<group>"; };
+		57B0CA78193DA7FB00098C22 /* OutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputStream.h; sourceTree = "<group>"; };
+		57B0CA7D193DA90E00098C22 /* Internals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Internals.h; sourceTree = "<group>"; };
 		57C337401888C3A1008B5618 /* AnimationComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationComponent.cpp; sourceTree = "<group>"; };
 		57C337411888C3A1008B5618 /* AnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationComponent.h; sourceTree = "<group>"; };
 		57C337421888C3A1008B5618 /* AttackComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackComponent.cpp; sourceTree = "<group>"; };
@@ -784,6 +798,7 @@
 				577A7865186BF56500F1B5D5 /* Event */,
 				577A7874186BF56500F1B5D5 /* FSM */,
 				57525CDB18AC690C00166633 /* Jsoncpp */,
+				57B0CA6F193DA7FB00098C22 /* IO */,
 				576E3F70187D4BFB00745A0A /* Isometric */,
 				577A78CB186BF56500F1B5D5 /* Math */,
 				577A78D0186BF56500F1B5D5 /* Message */,
@@ -1050,6 +1065,22 @@
 			path = Animation;
 			sourceTree = "<group>";
 		};
+		57B0CA6F193DA7FB00098C22 /* IO */ = {
+			isa = PBXGroup;
+			children = (
+				57B0CA70193DA7FB00098C22 /* Buffer.cpp */,
+				57B0CA71193DA7FB00098C22 /* Buffer.h */,
+				57B0CA72193DA7FB00098C22 /* IeeeHalfPrecision.cpp */,
+				57B0CA73193DA7FB00098C22 /* IeeeHalfPrecision.h */,
+				57B0CA74193DA7FB00098C22 /* InputStream.cpp */,
+				57B0CA75193DA7FB00098C22 /* InputStream.h */,
+				57B0CA76193DA7FB00098C22 /* IOMacros.h */,
+				57B0CA77193DA7FB00098C22 /* OutputStream.cpp */,
+				57B0CA78193DA7FB00098C22 /* OutputStream.h */,
+			);
+			path = IO;
+			sourceTree = "<group>";
+		};
 		57C3373E1888C3A1008B5618 /* EntityComponent */ = {
 			isa = PBXGroup;
 			children = (
@@ -1148,6 +1179,7 @@
 		57E2C2B518F393DE00124DF1 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				57B0CA7D193DA90E00098C22 /* Internals.h */,
 				57E2C2B618F393DE00124DF1 /* Log.h */,
 				57E2C2B718F393DE00124DF1 /* RefCount.cpp */,
 				57E2C2B818F393DE00124DF1 /* RefCount.h */,
@@ -1225,6 +1257,7 @@
 				57B0CA5F19385A1500098C22 /* AvatarFrame.cpp in Sources */,
 				57975AAD1890FAE9008A9F38 /* SortZIndex.cpp in Sources */,
 				574FE4F818DAF27F00490B18 /* SqliteDBData.cpp in Sources */,
+				57B0CA7A193DA7FB00098C22 /* IeeeHalfPrecision.cpp in Sources */,
 				577A7930186BF56500F1B5D5 /* Message.cpp in Sources */,
 				576E3FD5187D5D5500745A0A /* ISOObjectGroup.cpp in Sources */,
 				577A7935186BF56500F1B5D5 /* NormalMessageManager.cpp in Sources */,
@@ -1242,6 +1275,7 @@
 				577A78FD186BF56500F1B5D5 /* base64.cpp in Sources */,
 				577A7934186BF56500F1B5D5 /* MessageTarget.cpp in Sources */,
 				577A7932186BF56500F1B5D5 /* MessageManager.cpp in Sources */,
+				57B0CA7B193DA7FB00098C22 /* InputStream.cpp in Sources */,
 				576E3FB7187D4BFB00745A0A /* ISOTileObject.cpp in Sources */,
 				57975ABF1896012E008A9F38 /* ISOActiveSortLayer.cpp in Sources */,
 				57CF76FF18AB0A480085A22F /* ArrayData.cpp in Sources */,
@@ -1268,6 +1302,7 @@
 				574A56A818B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp in Sources */,
 				57CF770018AB0A480085A22F /* DictionaryData.cpp in Sources */,
 				576E3FBA187D4BFB00745A0A /* ISOTilesetGroup.cpp in Sources */,
+				57B0CA7C193DA7FB00098C22 /* OutputStream.cpp in Sources */,
 				577A78F4186BF56500F1B5D5 /* Astar.cpp in Sources */,
 				57B0CA571936D7CA00098C22 /* AnimationManager.cpp in Sources */,
 				57A76A1518ACB5730014DEC9 /* CocosData.cpp in Sources */,
@@ -1276,6 +1311,7 @@
 				57B0CA4A1936D5F000098C22 /* ActionAnimation.cpp in Sources */,
 				576E3FC8187D4BFB00745A0A /* ISOObjectGroupInfo.cpp in Sources */,
 				577A7933186BF56500F1B5D5 /* MessageManagerSenderPredominate.cpp in Sources */,
+				57B0CA79193DA7FB00098C22 /* Buffer.cpp in Sources */,
 				576E3FBF187D4BFB00745A0A /* ISOBatchTileLayer.cpp in Sources */,
 				574FF74E1924A02B00DC1791 /* Scheduler.cpp in Sources */,
 				57B0CA521936D5F000098C22 /* LoopAnimation.cpp in Sources */,
