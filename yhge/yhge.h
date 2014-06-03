@@ -57,6 +57,12 @@
 //json
 #include "Jsoncpp/json.h"
 
+//io
+#include "IO/IOMacros.h"
+#include "IO/Buffer.h"
+#include "IO/InputStream.h"
+#include "IO/OutputStream.h"
+
 //sqlite wrap
 #include "Sqlite/SqliteMacros.h"
 #include "Sqlite/Statement.h"
