@@ -10,6 +10,26 @@
 
 NS_CC_YHGE_BEGIN
 
+class AvatarComponent:public CCSprite
+{
+public:
+
+    static AvatarComponent* create();
+  
+    static AvatarComponent* create(const char *pszFileName);
+
+    static AvatarComponent* create(const char *pszFileName, const CCRect& rect);
+
+    static AvatarComponent* createWithTexture(CCTexture2D *pTexture);
+    
+    static AvatarComponent* createWithTexture(CCTexture2D *pTexture, const CCRect& rect);
+    
+    static AvatarComponent* createWithSpriteFrame(CCSpriteFrame *pSpriteFrame);
+    
+    static AvatarComponent* createWithSpriteFrameName(const char *pszSpriteFrameName);
+
+    void setTransform(const CCAffineTransform& transform);
+};
 /**
  * 显示组件
  * 通常分为二种类型

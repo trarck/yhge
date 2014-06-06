@@ -6,6 +6,103 @@
 
 NS_CC_YHGE_BEGIN
 
+AvatarComponent* AvatarComponent::create()
+{
+    AvatarComponent* avatarComponent=new AvatarComponent();
+    if (avatarComponent && avatarComponent->init())
+    {
+        avatarComponent->autorelease();
+        return avatarComponent;
+    }
+
+    CC_SAFE_DELETE(avatarComponent);
+    return NULL;
+}
+
+AvatarComponent* AvatarComponent::create(const char *pszFileName)
+{
+    AvatarComponent* avatarComponent=new AvatarComponent();
+    if (avatarComponent && avatarComponent->initWithFile(pszFileName))
+    {
+        avatarComponent->autorelease();
+        return avatarComponent;
+    }
+
+    CC_SAFE_DELETE(avatarComponent);
+    return NULL;
+}
+
+AvatarComponent* AvatarComponent::create(const char *pszFileName, const CCRect& rect)
+{
+    AvatarComponent* avatarComponent=new AvatarComponent();
+    if (avatarComponent && avatarComponent->initWithFile(pszFileName,rect))
+    {
+        avatarComponent->autorelease();
+        return avatarComponent;
+    }
+
+    CC_SAFE_DELETE(avatarComponent);
+    return NULL;
+}
+
+AvatarComponent* AvatarComponent::createWithTexture(CCTexture2D *pTexture)
+{
+    AvatarComponent* avatarComponent=new AvatarComponent();
+    if (avatarComponent && avatarComponent->initWithTexture(pTexture))
+    {
+        avatarComponent->autorelease();
+        return avatarComponent;
+    }
+
+    CC_SAFE_DELETE(avatarComponent);
+    return NULL;
+}
+
+AvatarComponent* AvatarComponent::createWithTexture(CCTexture2D *pTexture, const CCRect& rect)
+{
+    AvatarComponent* avatarComponent=new AvatarComponent();
+    if (avatarComponent && avatarComponent->initWithTexture(pTexture,rect))
+    {
+        avatarComponent->autorelease();
+        return avatarComponent;
+    }
+
+    CC_SAFE_DELETE(avatarComponent);
+    return NULL;
+}
+
+AvatarComponent* AvatarComponent::createWithSpriteFrame(CCSpriteFrame *pSpriteFrame)
+{
+    AvatarComponent* avatarComponent=new AvatarComponent();
+    if (avatarComponent && avatarComponent->initWithSpriteFrame(pSpriteFrame))
+    {
+        avatarComponent->autorelease();
+        return avatarComponent;
+    }
+
+    CC_SAFE_DELETE(avatarComponent);
+    return NULL;
+}
+
+AvatarComponent* AvatarComponent::createWithSpriteFrameName(const char *pszSpriteFrameName)
+{
+    AvatarComponent* avatarComponent=new AvatarComponent();
+    if (avatarComponent && avatarComponent->initWithSpriteFrameName(pszSpriteFrameName))
+    {
+        avatarComponent->autorelease();
+        return avatarComponent;
+    }
+
+    CC_SAFE_DELETE(avatarComponent);
+    return NULL;
+}
+
+ void AvatarComponent::setTransform(const CCAffineTransform& transform)
+{
+    m_sTransform=transform;
+    m_bTransformDirty=false;
+}
+
 AvatarSprite::AvatarSprite()
 :m_animation(NULL)
 ,m_components(NULL)
@@ -66,12 +163,12 @@ void AvatarSprite::setAnimationFrame(Frame* frame)
     
     //update components
     CCObject* obj=NULL;
-    CCSprite* component=NULL;
+    AvatarComponent* component=NULL;
     FrameElement* frameElement=NULL;
     int characterId=0;
     
     CCARRAY_FOREACH(m_components, obj){
-        component=static_cast<CCSprite*>(obj);
+        component=static_cast<AvatarComponent*>(obj);
         
         characterId=component->getTag();
         
@@ -179,7 +276,7 @@ void AvatarSprite::setupComponets(CCArray* characters)
         character=static_cast<Character*>(obj);
         res=character->getResource();
         
-        CCSprite* component=CCSprite::createWithTexture(CCDefaultTexture::getInstance()->createDefaultTexture());
+        AvatarComponent* component=AvatarComponent::createWithTexture(CCDefaultTexture::getInstance()->createDefaultTexture());
         
         switch (res->getType()) {
             case Resource::kPackTexture:

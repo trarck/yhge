@@ -2,6 +2,17 @@
 
 NS_CC_YHGE_BEGIN
 
+ FrameElement::FrameElement()
+ :m_displayProperty(NULL)
+ ,m_characterId(0)
+{
+
+}
+ FrameElement::~FrameElement()
+ {
+     CC_SAFE_RELEASE_NULL(m_displayProperty);
+ }
+
 AvatarFrame::AvatarFrame()
 :m_elements(NULL)
 {
