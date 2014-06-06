@@ -2,6 +2,8 @@
 
 NS_CC_YHGE_BEGIN
 
+static const AnimationDataFlag kDefaultFlag={false,false,false};
+
 Animation::Animation()
 :m_enable(true)
 ,m_currentFrameIndex(0)
@@ -11,6 +13,7 @@ Animation::Animation()
 ,m_elapsed(0.0f)
 ,m_frames(NULL)
 ,m_animationSprite(NULL)
+,m_animationDataFlag(kDefaultFlag)
 {
     
 }
@@ -104,28 +107,33 @@ Frame* Animation::getFrame(int index)
 
 Frame* Animation::getCurrentFrame()
 {
-    return static_cast<Frame*>(m_frames->objectAtIndex(m_currentFrameIndex));
+    return m_frames->count()?static_cast<Frame*>(m_frames->objectAtIndex(m_currentFrameIndex)):NULL;
 }
 
 void Animation::update(float delta)
 {
     if (m_enable) {
         m_elapsed+=delta;
-        m_currentFrameIndex=(int)floor(m_elapsed/m_duration)%m_frameCount;
+        int frameIndex=(int)floor(m_elapsed/m_duration)%m_frameCount;
 
-        if (m_animationSprite)
-        {
-            m_animationSprite->setAnimationFrame(getCurrentFrame());
+        if (m_currentFrameIndex!=frameIndex) {
+            m_currentFrameIndex=frameIndex;
+            if (m_animationSprite)
+            {
+                m_animationSprite->setAnimationFrame(getCurrentFrame());
+            }
         }
     }
 }
 
 void Animation::update(float delta,int deltaFrame)
 {
-    m_currentFrameIndex=(m_currentFrameIndex+deltaFrame)%m_frameCount;
-    if (m_animationSprite)
-    {
-        m_animationSprite->setAnimationFrame(getCurrentFrame());
+    if (delta>0) {
+        m_currentFrameIndex=(m_currentFrameIndex+deltaFrame)%m_frameCount;
+        if (m_animationSprite)
+        {
+            m_animationSprite->setAnimationFrame(getCurrentFrame());
+        }
     }
 }
 

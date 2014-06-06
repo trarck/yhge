@@ -18,7 +18,10 @@ public:
     bool init();
 
     static AnimationManager* getInstance();
+    
     static void destroyInstance();
+    
+    void update(float delta);
     
     void add(Animation* animation);
     

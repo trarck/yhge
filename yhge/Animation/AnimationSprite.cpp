@@ -15,21 +15,25 @@ AnimationSprite::~AnimationSprite()
 
 void AnimationSprite::setAnimationFrame(Frame* frame)
 {
-    setDisplayFrame(frame->getSpriteFrame());
-
-    AnimationDataFlag flag=m_animation->getAnimationDataFlag();
-
-    if(flag.haveTransform){
-        setAdditionalTransform(frame->getTransform());
-    }
-
-    if (flag.haveColor)
-    {
-        setColor(frame->getColor());
+    DisplayProperty* displayProperty=frame->getDisplayProperty();
+    
+    if (displayProperty->haveCharacter()) {
+        setDisplayFrame(displayProperty->getSpriteFrame());
     }
     
-    if(flag.haveOpacity){
-        setOpacity(frame->getOpacity());
+    AnimationDataFlag flag=m_animation->getAnimationDataFlag();
+
+    if(flag.haveTransform && displayProperty->haveTransform()){
+        setAdditionalTransform(displayProperty->getTransform());
+    }
+
+    if (flag.haveColor && displayProperty->haveColor())
+    {
+        setColor(displayProperty->getColor());
+    }
+    
+    if(flag.haveOpacity && displayProperty->haveOpacity()){
+        setOpacity(displayProperty->getOpacity());
     }
 }
 

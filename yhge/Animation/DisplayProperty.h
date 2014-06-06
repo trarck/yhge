@@ -21,62 +21,136 @@ public:
     
 public:
    
-    void setSpriteFrame(CCSpriteFrame* spriteFrame)
+    inline bool haveCharacter()
+    {
+        return m_haveCharacter;
+    }
+    
+    inline void setHaveCharacter(bool value)
+    {
+        m_haveCharacter=value;
+    }
+    
+    inline void setSpriteFrame(CCSpriteFrame* spriteFrame)
     {
         CC_SAFE_RETAIN(spriteFrame);
         CC_SAFE_RELEASE(m_spriteFrame);
         m_spriteFrame = spriteFrame;
+        
+        m_haveCharacter=true;
     }
 
-    CCSpriteFrame* getSpriteFrame()
+    inline CCSpriteFrame* getSpriteFrame()
     {
         return m_spriteFrame;
     }
 
-    bool haveTransform()
+    inline bool haveTransform()
     {
         return m_haveTransform;
     }
-
-    void setTransform(const CCAffineTransform& transform)
+    
+    inline void setHaveTransform(bool value)
     {
-        m_transform = transform;
+        m_haveTransform=value;
     }
 
-    const CCAffineTransform& getTransform()
+    inline void setTransform(const CCAffineTransform& transform)
+    {
+        m_transform = transform;
+        
+        m_haveTransform=true;
+    }
+
+    inline const CCAffineTransform& getTransform()
     {
         return m_transform;
     }
-
-    void setColor(const ccColor3B& color)
+    
+    inline bool haveColor()
     {
-        m_color = color;
+        return m_haveColor;
+    }
+    
+    inline void setHaveColor(bool value)
+    {
+        m_haveColor=value;
     }
 
-    const ccColor3B& getColor()
+    inline void setColor(const ccColor3B& color)
+    {
+        m_color = color;
+        m_haveColor=true;
+    }
+
+    inline const ccColor3B& getColor()
     {
         return m_color;
     }
-
-    void setOpacity(GLubyte opacity)
+    
+    inline bool haveOpacity()
     {
-        m_opacity = opacity;
+        return m_haveOpacity;
+    }
+    
+    inline void setHaveOpacity(bool value)
+    {
+        m_haveOpacity=value;
     }
 
-    GLubyte getOpacity()
+    inline void setOpacity(unsigned char opacity)
+    {
+        m_opacity = opacity;
+        m_haveOpacity=true;
+    }
+
+    inline unsigned char getOpacity()
     {
         return m_opacity;
+    }
+    
+    inline void setHaveZOrder(bool haveZOrder)
+    {
+        m_haveZOrder = haveZOrder;
+    }
+    
+    inline bool haveZOrder()
+    {
+        return m_haveZOrder;
+    }
+    
+    inline void setZOrder( int zOrder)
+    {
+        m_zOrder = zOrder;
+        m_haveZOrder=true;
+    }
+    
+    inline  int getZOrder()
+    {
+        return m_zOrder;
     }
 
 protected:
 
+    bool m_haveCharacter;
+    
     CCSpriteFrame* m_spriteFrame;
 
     bool m_haveTransform;
+    
     CCAffineTransform m_transform;
 
+    bool m_haveColor;
+    
     ccColor3B m_color;
-    GLubyte m_opacity;
+    
+    bool m_haveOpacity;
+    
+    unsigned char m_opacity;
+    
+    bool m_haveZOrder;
+    
+    int m_zOrder;
 };
 
 NS_CC_YHGE_END

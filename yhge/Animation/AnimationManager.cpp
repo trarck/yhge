@@ -46,6 +46,21 @@ void AnimationManager::destroyInstance()
     }
 }
 
+void AnimationManager::update(float delta)
+{
+    CCObject* pObj=NULL;
+
+    CCARRAY_FOREACH_REVERSE(m_animations, pObj){
+        static_cast<Animation*>(pObj)->update(delta);
+    }
+    
+    CCDictElement* element=NULL;
+    
+    CCDICT_FOREACH(m_animationGroups, element){
+        static_cast<AnimationGroup*>(element->getObject())->update(delta);
+    }
+}
+
 void AnimationManager::add(Animation* animation)
 {
     m_animations->addObject(animation);

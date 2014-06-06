@@ -86,6 +86,8 @@
 #include "FSM/Common/FSMMachine.h"
 
 //animation
+#include "Animation/Resource.h"
+#include "Animation/Character.h"
 #include "Animation/DisplayProperty.h"
 #include "Animation/Frame.h"
 #include "Animation/Animation.h"

@@ -179,20 +179,40 @@ public:
     {
         return m_animationDataFlag;
     }
+    
+    inline void setAnimationDataFlag(AnimationDataFlag animationDataFlag)
+    {
+        m_animationDataFlag=animationDataFlag;
+    }
 
     inline bool haveTransform()
     {
         return m_animationDataFlag.haveTransform;
+    }
+    
+    inline void setHaveTransform(bool value)
+    {
+        m_animationDataFlag.haveTransform=value;
     }
 
     inline bool haveColor()
     {
         return m_animationDataFlag.haveColor;
     }
+    
+    inline void setHaveColor(bool value)
+    {
+        m_animationDataFlag.haveColor=value;
+    }
 
     inline bool haveOpacity()
     {
         return m_animationDataFlag.haveOpacity;
+    }
+    
+    inline void setHaveOpacity(bool value)
+    {
+        m_animationDataFlag.haveOpacity=value;
     }
 
     void setAnimationSprite(IAnimationSprite* animationSprite)

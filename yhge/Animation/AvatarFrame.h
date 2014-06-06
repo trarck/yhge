@@ -55,16 +55,55 @@ protected:
 };
 
 
+//class AvatarFrame:public Frame
+//{  
+//public:
+//
+//    AvatarFrame();
+//
+//    ~AvatarFrame();
+//    
+//    virtual bool init();
+//
+//    void addElement(FrameElement* element);
+//    
+//    void removeElement(FrameElement* element);
+//    
+//    void removeElementByZOrder(int zOrder);
+//    
+//public:
+//
+//    inline void setElements(CCArray* elements)
+//    {
+//        CC_SAFE_RETAIN(elements);
+//        CC_SAFE_RELEASE(m_elements);
+//        m_elements = elements;
+//    }
+//    
+//    inline CCArray* getElements()
+//    {
+//        return m_elements;
+//    }
+//    
+//protected:
+//
+//    //sort by zorder
+//    CCArray* m_elements;
+//};
+
+/**
+ * 组成帧的元素的角色id唯一
+ */
 class AvatarFrame:public Frame
-{  
+{
 public:
-
+    
     AvatarFrame();
-
+    
     ~AvatarFrame();
     
     virtual bool init();
-
+    
     void addElement(FrameElement* element);
     
     void removeElement(FrameElement* element);
@@ -72,23 +111,22 @@ public:
     void removeElementByZOrder(int zOrder);
     
 public:
-
-    inline void setElements(CCArray* elements)
+    
+    inline void setElements(CCDictionary* elements)
     {
         CC_SAFE_RETAIN(elements);
         CC_SAFE_RELEASE(m_elements);
         m_elements = elements;
     }
     
-    inline CCArray* getElements()
+    inline CCDictionary* getElements()
     {
         return m_elements;
     }
     
 protected:
-
-    //sort by zorder
-    CCArray* m_elements;
+    
+    CCDictionary* m_elements;
 };
 
 NS_CC_YHGE_END
