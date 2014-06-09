@@ -180,77 +180,10 @@ void AvatarSprite::setAnimationFrame(Frame* frame)
             
             updateDisplayElement(component, frameElement->getDisplayProperty());
             
-//            CCLOG("update:%d,%d,%d",frameElement->getCharacterId(),frameElement->getDisplayProperty()->getZOrder(),frameElement->getDisplayProperty()->haveZOrder());
         }else{
             component->setVisible(false);
         }
     }
-//    int characterCount=m_components->count();
-//    int dataCount=frameElements->count();
-//    
-//    CCSprite* character=NULL;
-//    int i=0,j=0;
-//    int characterZOrder=0;
-//    
-//    while (i<characterCount && j<dataCount) {
-//        //update property
-//        character= static_cast<CCSprite*>(m_components->objectAtIndex(i));
-//        frameElement=static_cast<FrameElement*>(frameElements->objectAtIndex(j));
-//        
-//        //don't check character id
-//        
-//        characterZOrder=character->getZOrder();
-//        if (characterZOrder == frameElement->getZOrder()) {
-//            updateDisplayElement(character, frameElement->getDisplayProperty());
-//            
-//            ++i;
-//            ++j;
-//            
-//        }else if (characterZOrder<frameElement->getZOrder()){
-//            //don't display
-//            character->setVisible(false);
-//            ++i;
-//        }else{
-//            //add new element
-//            CCSprite* newCharacter=CCSprite::createWithTexture(CCDefaultTexture::getInstance()->createDefaultTexture());
-//            
-//            updateDisplayElement(newCharacter, frameElement->getDisplayProperty());
-//            
-//            newCharacter->setZOrder(frameElement->getZOrder());
-//            newCharacter->setAnchorPoint(ccp(0, 0));
-//            
-//            m_components->addObject(newCharacter);
-//            
-//            addChild(newCharacter);
-//            
-//            ++j;
-//        }
-//    }
-//    
-//    if (j<dataCount) {
-//        //add new element
-//        for (; j<dataCount; ++j) {
-//            frameElement=static_cast<FrameElement*>(frameElements->objectAtIndex(j));
-//            
-//            CCSprite* newCharacter=CCSprite::createWithTexture(CCDefaultTexture::getInstance()->createDefaultTexture());
-//            
-//            updateDisplayElement(newCharacter, frameElement->getDisplayProperty());
-//            
-//            newCharacter->setZOrder(frameElement->getZOrder());
-//            newCharacter->setAnchorPoint(ccp(0, 0));
-//            
-//            m_components->addObject(newCharacter);
-//            
-//            addChild(newCharacter);
-//        }
-//    }else if (i<characterCount) {
-//        //remove element
-//        for (; i<characterCount; ++i) {
-//            character= static_cast<CCSprite*>(m_components->objectAtIndex(i));
-//            character->setVisible(false);
-//        }
-//    }
-    
 }
 
 void AvatarSprite::updateCurrentAnimationFrame()
@@ -306,31 +239,31 @@ void AvatarSprite::clearComponents()
 }
 
 
-void AvatarSprite::updateDisplayElement(CCSprite* element,DisplayProperty* property)
+void AvatarSprite::updateDisplayElement(AvatarComponent* component,DisplayProperty* property)
 {
     
     if (property->haveCharacter()) {
-        element->setDisplayFrame(property->getSpriteFrame());
+        component->setDisplayFrame(property->getSpriteFrame());
     }
     
     AnimationDataFlag flag=m_animation->getAnimationDataFlag();
     
     if(flag.haveTransform && property->haveTransform()){
-//        element->setAdditionalTransform(property->getTransform());
-        element->setTransform(property->getTransform());
+        component->setTransform(property->getTransform());
     }
     
     if (flag.haveColor && property->haveColor())
     {
-        element->setColor(property->getColor());
+        component->setColor(property->getColor());
     }
     
     if(flag.haveOpacity && property->haveOpacity()){
-        element->setOpacity(property->getOpacity());
+        component->setOpacity(property->getOpacity());
     }
     
     if (property->haveZOrder()) {
-        element->getParent()->reorderChild(element, property->getZOrder());
+        if(component->getParent())
+            component->getParent()->reorderChild(component, property->getZOrder());
     }
 }
 

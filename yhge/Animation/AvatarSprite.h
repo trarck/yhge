@@ -30,6 +30,7 @@ public:
 
     void setTransform(const CCAffineTransform& transform);
 };
+
 /**
  * 显示组件
  * 通常分为二种类型
@@ -72,7 +73,7 @@ public:
     
 protected:
     
-    void updateDisplayElement(CCSprite* element,DisplayProperty* property);
+    void updateDisplayElement(AvatarComponent* component,DisplayProperty* property);
     
 public:
 
