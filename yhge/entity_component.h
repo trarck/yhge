@@ -20,4 +20,8 @@
 #include "EntityComponent/Components/AutoAttackComponent.h"
 #include "EntityComponent/Components/ManualAttackComponent.h"
 
+#include "EntityComponent/Managers/UpdateManager.h"
+#include "EntityComponent/Engine.h"
+
+
 #endif //COCOS_YHGE_ENTITY_COMPONENT_H_

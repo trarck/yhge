@@ -110,11 +110,11 @@ void UpdateManager::removeGroup(int groupId)
     }
 }
 
-void UpdateManager::addUpdaterToGroup(int groupId,CCObject* target,SEL_SCHEDULE handle,int priority)
+void UpdateManager::addUpdaterToGroup(int groupId,CCObject* target,SEL_SCHEDULE handle,int priority,int groupPriority)
 {
     UpdateManager* group=getGroup(groupId);
     if (!group) {
-        group=createGroup(groupId, priority);
+        group=createGroup(groupId, groupPriority);
     }
     
     group->addUpdater(target, handle, priority);

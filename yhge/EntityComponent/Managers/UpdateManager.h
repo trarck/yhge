@@ -144,7 +144,7 @@ public:
     /**
      * @brief 添加一个更新器到一个组里
      */
-    void addUpdaterToGroup(int groupId,CCObject* target,SEL_SCHEDULE handle,int priority);
+    void addUpdaterToGroup(int groupId,CCObject* target,SEL_SCHEDULE handle,int priority,int groupPriority=0);
     
     /**
      * @brief 从组里移除一个更新器

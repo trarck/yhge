@@ -5,6 +5,8 @@ NS_CC_YHGE_BEGIN
 static Engine* s_engineInstance=NULL;
 
 Engine::Engine()
+:m_scheduler(NULL)
+,m_updateManager(NULL)
 {
    
     
@@ -12,7 +14,8 @@ Engine::Engine()
 
 Engine::~Engine()
 {
-    
+    CC_SAFE_RELEASE_NULL(m_scheduler);
+    CC_SAFE_RELEASE_NULL(m_updateManager);
 }
 
 Engine* Engine::getInstance()
@@ -35,10 +38,14 @@ void Engine::destroyInstance()
 
 bool Engine::init()
 {
-    yhge::Scheduler* scheduler=new yhge::Scheduler();
-    scheduler->init();
-    setScheduler(scheduler);
-    scheduler->release();
+    m_scheduler=new yhge::Scheduler();
+    m_scheduler->init();
+    
+    m_updateManager=new UpdateManager();
+    m_updateManager->init();
+    
+    //add update manager to scheduler
+    m_scheduler->registerUpdate(m_updateManager, schedule_selector(UpdateManager::update), 0);
     
     return true;
 }

@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
 #include <yhge/Time/Scheduler.h>
+#include "Managers/UpdateManager.h"
 
 NS_CC_YHGE_BEGIN
 
@@ -15,6 +16,7 @@ public:
     ~Engine();
     
     static Engine* getInstance();
+    
     static void destroyInstance();
     
     virtual bool init();
@@ -26,21 +28,32 @@ public:
     //virtual void update(float delta);
     
 public:
-    
-    inline void setScheduler(yhge::Scheduler* scheduler)
-    {
-        CC_SAFE_RETAIN(scheduler);
-        CC_SAFE_RELEASE(m_scheduler);
-        m_scheduler = scheduler;
-    }
+
     
     inline yhge::Scheduler* getScheduler()
     {
         return m_scheduler;
     }
     
+    inline UpdateManager* getUpdateManager()
+    {
+        return m_updateManager;
+    }
+    
+//protected:
+//    
+//    inline void setScheduler(yhge::Scheduler* scheduler)
+//    {
+//        CC_SAFE_RETAIN(scheduler);
+//        CC_SAFE_RELEASE(m_scheduler);
+//        m_scheduler = scheduler;
+//    }
+    
 protected:
+    
     yhge::Scheduler* m_scheduler;
+    
+    UpdateManager* m_updateManager;
     
 };
 
