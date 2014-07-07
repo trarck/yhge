@@ -230,7 +230,7 @@ public:
      */
     void insert(const K& key, V object)
     {
-        CCASSERT(object != NULL, "Object is NULL!");
+        CCAssert(object != NULL, "Object is NULL!");
         erase(key);
         _data.insert(std::make_pair(key, object));
         object->retain();
@@ -242,7 +242,7 @@ public:
      */
     iterator erase(const_iterator position)
     {
-        CCASSERT(position != _data.cend(), "Invalid iterator!");
+        CCAssert(position != _data.cend(), "Invalid iterator!");
         position->second->release();
         return _data.erase(position);
     }

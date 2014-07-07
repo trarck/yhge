@@ -180,7 +180,7 @@ public:
     /** Returns the element at position 'index' in the vector. */
     T at(size_t index) const
     {
-        CCASSERT( index >= 0 && index < size(), "index out of range in getObjectAtIndex()");
+        CCAssert( index >= 0 && index < size(), "index out of range in getObjectAtIndex()");
         return _data[index];
     }
 
@@ -239,7 +239,14 @@ public:
      */
     void pushBack(T object)
     {
-        CCASSERT(object != NULL, "The object should not be NULL");
+        CCAssert(object != NULL, "The object should not be NULL");
+        _data.push_back( object );
+        object->retain();
+    }
+    
+    void push_back(T object)
+    {
+        CCAssert(object != NULL, "The object should not be NULL");
         _data.push_back( object );
         object->retain();
     }
@@ -253,7 +260,7 @@ public:
         }
     }
 
-    /** @brief Insert a certain object at a certain index 
+    /** @brief Insert a certain object at a certain index
      *  @note The vector is extended by inserting new elements before the element at the specified 'index',
      *        effectively increasing the container size by the number of elements inserted.
      *        This causes an automatic reallocation of the allocated storage space 
@@ -261,8 +268,8 @@ public:
      */
     void insert(size_t index, T object)
     {
-        CCASSERT(index >= 0 && index <= size(), "Invalid index!");
-        CCASSERT(object != NULL, "The object should not be NULL");
+        CCAssert(index >= 0 && index <= size(), "Invalid index!");
+        CCAssert(object != NULL, "The object should not be NULL");
         _data.insert((_data.begin() + index), object);
         object->retain();
     }
@@ -274,7 +281,15 @@ public:
      */
     void popBack()
     {
-        CCASSERT(!_data.empty(), "no objects added");
+        CCAssert(!_data.empty(), "no objects added");
+        iterator last = _data.back();
+        _data.pop_back();
+        last->release();
+    }
+    
+    void pop_back()
+    {
+        CCAssert(!_data.empty(), "no objects added");
         iterator last = _data.back();
         _data.pop_back();
         last->release();
@@ -286,7 +301,7 @@ public:
      */
     void eraseObject(T object, bool toRelease = true)
     {
-        CCASSERT(object != NULL, "The object should not be NULL");
+        CCAssert(object != NULL, "The object should not be NULL");
         iterator iter = std::find(_data.begin(), _data.end(), object);
         if (iter != _data.end())
             _data.erase(iter);
@@ -301,7 +316,7 @@ public:
      */
     iterator erase(iterator position)
     {
-        CCASSERT(position >= _data.begin() && position < _data.end(), "Invalid position!");
+        CCAssert(position >= _data.begin() && position < _data.end(), "Invalid position!");
         (*position)->release();
         return _data.erase(position);
     }
@@ -329,7 +344,7 @@ public:
      */
     iterator erase(size_t index)
     {
-        CCASSERT(!_data.empty() && index >=0 && index < size(), "Invalid index!");
+        CCAssert(!_data.empty() && index >=0 && index < size(), "Invalid index!");
         iterator it = _data.begin()+index;
         (*it)->release();
         return _data.erase(it);
@@ -360,7 +375,7 @@ public:
     /** Swap two elements with certain indexes */
     void swap(size_t index1, size_t index2)
     {
-        CCASSERT(index1 >=0 && index1 < size() && index2 >= 0 && index2 < size(), "Invalid indices");
+        CCAssert(index1 >=0 && index1 < size() && index2 >= 0 && index2 < size(), "Invalid indices");
 
         std::swap( _data[index1], _data[index2] );
     }
@@ -368,8 +383,8 @@ public:
     /** Replace object at index with another object. */
     void replace(size_t index, T object)
     {
-        CCASSERT(index >= 0 && index < size(), "Invalid index!");
-        CCASSERT(object != NULL, "The object should not be NULL");
+        CCAssert(index >= 0 && index < size(), "Invalid index!");
+        CCAssert(object != NULL, "The object should not be NULL");
         
         _data[index]->release();
         _data[index] = object;
