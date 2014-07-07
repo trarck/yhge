@@ -63,9 +63,10 @@ void Engine::cleanup()
         CCDirector::sharedDirector()->getScheduler()->unscheduleAllForTarget(m_scheduler);
 }
 
-//void Engine::update(float delta)
-//{
+void Engine::update(float delta)
+{
 //    m_scheduler->tick(delta);
-//}
+    //do noting
+}
 
 NS_CC_YHGE_END

@@ -25,7 +25,7 @@ public:
 
     virtual void cleanup();
 
-    //virtual void update(float delta);
+    virtual void update(float delta);
     
 public:
 
