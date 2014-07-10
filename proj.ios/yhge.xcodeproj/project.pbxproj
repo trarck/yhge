@@ -27,6 +27,7 @@
 		57525CEB18AC690C00166633 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE418AC690C00166633 /* json_reader.cpp */; };
 		57525CEC18AC690C00166633 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE518AC690C00166633 /* json_value.cpp */; };
 		57525CED18AC690C00166633 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57525CE718AC690C00166633 /* json_writer.cpp */; };
+		57564166196BD7CD00AA1194 /* ECManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57564164196BD7CD00AA1194 /* ECManager.cpp */; };
 		5768C14B18A8DD09005123C5 /* Property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5768C14918A8DD09005123C5 /* Property.cpp */; };
 		576E3FB5187D4BFB00745A0A /* Coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F71187D4BFB00745A0A /* Coordinate.cpp */; };
 		576E3FB7187D4BFB00745A0A /* ISOTileObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 576E3F7A187D4BFB00745A0A /* ISOTileObject.cpp */; };
@@ -227,6 +228,8 @@
 		57525CE818AC690C00166633 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
 		57525CE918AC690C00166633 /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
 		57525CEA18AC690C00166633 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
+		57564164196BD7CD00AA1194 /* ECManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ECManager.cpp; sourceTree = "<group>"; };
+		57564165196BD7CD00AA1194 /* ECManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECManager.h; sourceTree = "<group>"; };
 		5768C14918A8DD09005123C5 /* Property.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Property.cpp; sourceTree = "<group>"; };
 		5768C14A18A8DD09005123C5 /* Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Property.h; sourceTree = "<group>"; };
 		576E3F71187D4BFB00745A0A /* Coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coordinate.cpp; sourceTree = "<group>"; };
@@ -589,6 +592,8 @@
 		574FF7161921CC5100DC1791 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				57564164196BD7CD00AA1194 /* ECManager.cpp */,
+				57564165196BD7CD00AA1194 /* ECManager.h */,
 				574FF7171921CC5100DC1791 /* UpdateManager.cpp */,
 				574FF7181921CC5100DC1791 /* UpdateManager.h */,
 			);
@@ -1351,6 +1356,7 @@
 				5768C14B18A8DD09005123C5 /* Property.cpp in Sources */,
 				576E3FB8187D4BFB00745A0A /* ISOTile.cpp in Sources */,
 				57C337631888C3A1008B5618 /* MoveComponent.cpp in Sources */,
+				57564166196BD7CD00AA1194 /* ECManager.cpp in Sources */,
 				57C337621888C3A1008B5618 /* ManualAttackComponent.cpp in Sources */,
 				5771056518837C2C00FA1446 /* ISODynamicGroup.cpp in Sources */,
 				57975AB31890FB16008A9F38 /* ZIndexNode.cpp in Sources */,
