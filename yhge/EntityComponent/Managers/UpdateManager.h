@@ -104,62 +104,62 @@ public:
         return m_updateList.empty();
     }
     
-    size_t size()
+    inline size_t size()
     {
         return m_updateList.size();
     }
     
-    void update(float delta);
+    virtual void update(float delta);
     
     /**
      * @brief 添加一个更新器
      */
-    void addUpdater(CCObject* target,SEL_SCHEDULE handle,int priority);
+    virtual void addUpdater(CCObject* target,SEL_SCHEDULE handle,int priority);
 
     /**
      * @brief 移除一个更新器
      */
-    void removeUpdater(CCObject* target);
+    virtual void removeUpdater(CCObject* target);
     
     /**
      * @brief 按优先级移除一组更新器
      */
-    void removeUpdaterByPriority(int priority);
+    virtual void removeUpdaterByPriority(int priority);
     
     /**
      * @brief 创建一个更新器组
      */
-    UpdateManager* createGroup(int groupId,int priority);
+    virtual UpdateManager* createGroup(int groupId,int priority);
     
     /**
      * @brief 取得一个更新器组
      */
-    UpdateManager* getGroup(int groupId);
+    virtual UpdateManager* getGroup(int groupId);
     
     /**
      * @brief 删除一个更新器组
      */
-    void removeGroup(int groupId);
+    virtual void removeGroup(int groupId);
     
     /**
      * @brief 添加一个更新器到一个组里
      */
-    void addUpdaterToGroup(int groupId,CCObject* target,SEL_SCHEDULE handle,int priority,int groupPriority=0);
+    virtual void addUpdaterToGroup(int groupId,CCObject* target,SEL_SCHEDULE handle,int priority,int groupPriority=0);
     
     /**
      * @brief 从组里移除一个更新器
      */
-    void removeUpdaterFromGroup(int groupId,CCObject* target);
+    virtual void removeUpdaterFromGroup(int groupId,CCObject* target);
     
     /**
      * @brief 按优先级从组里移除一组更新器
      */
-    void removeUpdaterFromGroupByPriority(int groupId,int priority);
+    virtual void removeUpdaterFromGroupByPriority(int groupId,int priority);
 
     /**
      * @brief 消除更新器组
      */
-    void clearGroup();
+    virtual void clearGroup();
     
 public:
     
@@ -172,6 +172,16 @@ public:
     {
         return m_id;
     }
+    
+    inline void setPaused(bool paused)
+    {
+        m_paused = paused;
+    }
+    
+    inline bool isPaused()
+    {
+        return m_paused;
+    }
 
 protected:
     
@@ -180,6 +190,8 @@ protected:
     UpdateList m_updateList;
     
     UpdateGroupMap m_updateGroup;
+    
+    bool m_paused;
     
 };
 

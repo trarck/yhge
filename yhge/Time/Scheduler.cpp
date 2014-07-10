@@ -48,22 +48,22 @@ void Scheduler::clear()
     m_pUpdatesZeroList.clear();
 }
 
-void Scheduler::tick(float delta)
+void Scheduler::update(float delta)
 {
     m_updating=true;
     
     TaskList::Iterator iter;
     //it safe with remove list on iterate
     for (iter=m_pUpdatesNegList.begin(); iter!=m_pUpdatesNegList.end(); ++iter) {
-        (*iter)->tick(delta);
+        (*iter)->update(delta);
     }
     
     for (iter=m_pUpdatesZeroList.begin(); iter!=m_pUpdatesZeroList.end(); ++iter) {
-        (*iter)->tick(delta);
+        (*iter)->update(delta);
     }
     
     for (iter=m_pUpdatesPosList.begin(); iter!=m_pUpdatesPosList.end(); ++iter) {
-        (*iter)->tick(delta);
+        (*iter)->update(delta);
     }
     
     m_updating=false;
@@ -74,7 +74,7 @@ void Scheduler::registerUpdate(CCObject* target,SEL_SCHEDULE handle,int priority
     CCAssert(target!=NULL, "[Scheduler::scheduleUpdate] target must not be null");
     
     //check target is registered
-    if (m_registerMap.find(target->m_uID)==m_registerMap.end()) {
+    if (m_registerMap.find(target->m_uID)!=m_registerMap.end()) {
         //is registered do nothing
         return;
     }

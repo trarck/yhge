@@ -8,6 +8,7 @@ UpdateManager::UpdateManager()
 :m_id(0)
 ,m_updateList()
 ,m_updateGroup()
+,m_paused(false)
 {
     YHDEBUG("UpdateManager create");
 }
@@ -33,6 +34,10 @@ bool UpdateManager::init(int managerId)
 
 void UpdateManager::update(float delta)
 {
+    if (m_paused) {
+        return;
+    }
+    
     for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
         (*iter)->update(delta);
     }
@@ -40,16 +45,25 @@ void UpdateManager::update(float delta)
 
 void UpdateManager::addUpdater(CCObject* target,SEL_SCHEDULE handle,int priority)
 {
-    for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
-        if (priority<(*iter)->getPriority()) {
-            //insert here
-            UpdateHandler* updateHandler=new UpdateHandler(target,handle,priority);
-            
-            m_updateList.insert(iter, updateHandler);
+    if (m_updateList.size()==0) {
+        UpdateHandler* updateHandler=new UpdateHandler(target,handle,priority);
+        
+        m_updateList.pushBack(updateHandler);
+        
+        updateHandler->release();
 
-            updateHandler->release();
-            
-            break;
+    }else{
+        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+            if (priority<(*iter)->getPriority()) {
+                //insert here
+                UpdateHandler* updateHandler=new UpdateHandler(target,handle,priority);
+                
+                m_updateList.insert(iter, updateHandler);
+
+                updateHandler->release();
+                
+                break;
+            }
         }
     }
 }
@@ -83,7 +97,7 @@ UpdateManager* UpdateManager::createGroup(int groupId,int priority)
     //add to update list
     
     //retain by update list
-    addUpdater(group, schedule_selector(UpdateHandler::update), priority);
+    addUpdater(group, schedule_selector(UpdateManager::update), priority);
     
     //auto release
     return group;
@@ -105,6 +119,8 @@ void UpdateManager::removeGroup(int groupId)
 {
     UpdateGroupMap::iterator iter=m_updateGroup.find(groupId);
     if (iter!=m_updateGroup.end()) {
+        //remove from updater
+        removeUpdater(iter->second);
         iter->second->release();
         m_updateGroup.erase(iter);
     }
@@ -150,6 +166,7 @@ void UpdateManager::removeUpdaterFromGroupByPriority(int groupId,int priority)
 void UpdateManager::clearGroup()
 {
     for (UpdateGroupMap::iterator iter=m_updateGroup.begin(); iter!=m_updateGroup.end(); ++iter) {
+        removeUpdater(iter->second);
         iter->second->release();
     }
     m_updateGroup.clear();

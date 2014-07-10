@@ -65,7 +65,7 @@ void Engine::cleanup()
 
 void Engine::update(float delta)
 {
-//    m_scheduler->tick(delta);
+//    m_scheduler->update(delta);
     //do noting
 }
 

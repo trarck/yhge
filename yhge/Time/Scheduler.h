@@ -30,7 +30,7 @@ public:
         CC_SAFE_RELEASE_NULL(m_target);
     }
     
-    void tick(float delta)
+    void update(float delta)
     {
         (m_target->*m_handle)(delta);
     }
@@ -94,12 +94,6 @@ public:
     
     virtual bool init(void);
     
-    //用于添加到cocos的scheduler里的接口。
-    virtual void update(float delta)
-    {
-        tick(delta);
-    }
-    
     /**
      * 消除更新列表
      */
@@ -108,7 +102,7 @@ public:
     /**
      * 每帧执行的tick
      */
-    void tick(float delta);
+    void update(float delta);
     
     /**
      * 添加一个更新器

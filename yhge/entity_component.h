@@ -20,6 +20,7 @@
 #include "EntityComponent/Components/AutoAttackComponent.h"
 #include "EntityComponent/Components/ManualAttackComponent.h"
 
+#include "EntityComponent/Managers/ECManager.h"
 #include "EntityComponent/Managers/UpdateManager.h"
 #include "EntityComponent/Engine.h"
 

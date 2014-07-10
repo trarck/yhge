@@ -91,7 +91,7 @@ public:
     
     void pushBack(T value)
     {
-        CCASSERT(value != NULL, "The object should not be NULL");
+        CCAssert(value != NULL, "The object should not be NULL");
         m_data.push_back(value);
         value->retain();
     }
