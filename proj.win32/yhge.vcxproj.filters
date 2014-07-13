@@ -621,6 +621,9 @@
     <ClInclude Include="..\yhge\IO\OutputStream.h">
       <Filter>IO</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Managers\ECManager.h">
+      <Filter>EntityComponent\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -1024,6 +1027,9 @@
     </ClCompile>
     <ClCompile Include="..\yhge\IO\OutputStream.cpp">
       <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Managers\ECManager.cpp">
+      <Filter>EntityComponent\Managers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

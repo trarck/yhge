@@ -82,6 +82,7 @@
     <ClInclude Include="..\yhge\EntityComponent\Components\SpriteRendererComponent.h" />
     <ClInclude Include="..\yhge\EntityComponent\Engine.h" />
     <ClInclude Include="..\yhge\EntityComponent\Entity.h" />
+    <ClInclude Include="..\yhge\EntityComponent\Managers\ECManager.h" />
     <ClInclude Include="..\yhge\EntityComponent\Managers\UpdateManager.h" />
     <ClInclude Include="..\yhge\EntityComponent\Properties\IsometricProperty.h" />
     <ClInclude Include="..\yhge\EntityComponent\Properties\Property.h" />
@@ -244,6 +245,7 @@
     <ClCompile Include="..\yhge\EntityComponent\Components\SpriteRendererComponent.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Engine.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Entity.cpp" />
+    <ClCompile Include="..\yhge\EntityComponent\Managers\ECManager.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Managers\UpdateManager.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Properties\IsometricProperty.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Properties\Property.cpp" />
