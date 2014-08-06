@@ -6,6 +6,7 @@
 #include <yhge/CocosExt/Support/List.h>
 #include <yhge/EntityComponent/Components/Component.h>
 #include <yhge/DataStructure/LinkedList.h>
+#include "ECManager.h"
 
 NS_CC_YHGE_BEGIN
 
@@ -82,7 +83,7 @@ protected:
  * 更新管理器
  * 负责组件的更新统一处理
  */
-class UpdateManager : public CCObject
+class UpdateManager : public ECManager
 {
 protected:
     
