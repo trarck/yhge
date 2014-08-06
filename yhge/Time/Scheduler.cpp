@@ -188,6 +188,8 @@ void Scheduler::insertToList(TaskList& list,SchedulerTask* task)
         }
     }
     
+    list.push_back(task);
+    
 }
 
 //void Scheduler::removeFromList(TaskList& list,CCObject* target,SEL_SCHEDULE handle)

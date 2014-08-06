@@ -45,27 +45,29 @@ void UpdateManager::update(float delta)
 
 void UpdateManager::addUpdater(CCObject* target,SEL_SCHEDULE handle,int priority)
 {
+    UpdateHandler* updateHandler=new UpdateHandler(target,handle,priority);
+    
     if (m_updateList.size()==0) {
-        UpdateHandler* updateHandler=new UpdateHandler(target,handle,priority);
-        
         m_updateList.pushBack(updateHandler);
-        
-        updateHandler->release();
-
     }else{
+        bool insered=false;
         for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
             if (priority<(*iter)->getPriority()) {
                 //insert here
-                UpdateHandler* updateHandler=new UpdateHandler(target,handle,priority);
-                
                 m_updateList.insert(iter, updateHandler);
 
-                updateHandler->release();
+                insered=true;
                 
                 break;
             }
         }
+        
+        if (!insered) {
+            m_updateList.pushBack(updateHandler);
+        }
     }
+    
+    updateHandler->release();
 }
 
 void UpdateManager::removeUpdater(CCObject* target)
