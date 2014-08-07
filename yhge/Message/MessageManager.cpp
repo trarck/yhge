@@ -660,7 +660,7 @@ void MessageManager::removeReceiverMapForTarget(CCDictionary* receiverMap,CCObje
 
 void MessageManager::removeHandleList(CCArray* handleList,SEL_MessageHandler handle,CCObject* handleObject){
 
-    if (handleList && handleList->data->num > 0){         
+    if (handleList && handleList->data->num > 0){
         int len=handleList->data->num;
         CCObject** arr = handleList->data->arr;
         for(int i=0;i<len;){
@@ -668,6 +668,9 @@ void MessageManager::removeHandleList(CCArray* handleList,SEL_MessageHandler han
 		    if (handler->getTarget()==handleObject && handler->getHandle()==handle) {
 			    handleList->removeObjectAtIndex(i);
                 --len;
+                //这里可以优化，handleList的handle和handleObject是唯一的，一但在for循环中找到，就可以直接break，因为后面不会存在同样的元素。
+                //这里的handle和handleObject都不为空。通过调用的asset得以保证
+                break;
 		    }else{
                 ++i;
             }
