@@ -75,6 +75,24 @@ void UpdateManager::removeUpdater(CCObject* target)
     for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
         if (target==(*iter)->getTarget()) {
             m_updateList.erase(iter);
+        }
+    }
+}
+
+void UpdateManager::removeUpdater(CCObject* target,SEL_SCHEDULE handle)
+{
+    for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+        if (target==(*iter)->getTarget() && handle==(*iter)->getHandle()) {
+            m_updateList.erase(iter);
+        }
+    }
+}
+
+void UpdateManager::removeUpdater(CCObject* target,SEL_SCHEDULE handle,int priority)
+{
+    for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+        if (target==(*iter)->getTarget() && handle==(*iter)->getHandle() && priority==(*iter)->getPriority()) {
+            m_updateList.erase(iter);
             break;
         }
     }

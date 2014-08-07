@@ -123,6 +123,16 @@ public:
     virtual void removeUpdater(CCObject* target);
     
     /**
+     * @brief 移除一个更新器
+     */
+    virtual void removeUpdater(CCObject* target,SEL_SCHEDULE handle);
+    
+    /**
+     * @brief 移除一个更新器
+     */
+    virtual void removeUpdater(CCObject* target,SEL_SCHEDULE handle,int priority);
+    
+    /**
      * @brief 按优先级移除一组更新器
      */
     virtual void removeUpdaterByPriority(int priority);
