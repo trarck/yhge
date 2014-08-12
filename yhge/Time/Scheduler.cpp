@@ -221,8 +221,8 @@ void Scheduler::removeFromList(TaskList& list,CCObject* target)
             //delete Task Object
             delete *iter;
             
-            list.erase(iter);
-            
+            iter=list.erase(iter);
+            --iter;
             return;
         }
     }
