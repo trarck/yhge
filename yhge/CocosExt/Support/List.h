@@ -13,7 +13,7 @@ class List
 protected:
     typedef ds::LinkedList<T> ObjectList;
 public:
-    typedef typename ds::LinkedList<T>::Iterator iterator;
+    typedef typename ds::LinkedList<T>::iterator iterator;
     typedef size_t      size_type;
     
     
