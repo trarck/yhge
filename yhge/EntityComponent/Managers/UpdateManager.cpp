@@ -9,6 +9,7 @@ UpdateManager::UpdateManager()
 ,m_updateList()
 ,m_updateGroup()
 ,m_paused(false)
+,m_updating(false)
 {
     YHDEBUG("UpdateManager create");
 }
@@ -38,8 +39,20 @@ void UpdateManager::update(float delta)
         return;
     }
     
+    m_updating=true;
     for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
-        (*iter)->update(delta);
+        if(!(*iter)->isMarkedForDeletion()){
+            (*iter)->update(delta);
+        }
+    }
+    m_updating=false;
+    
+    //remove mark delete
+    
+    for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+        if((*iter)->isMarkedForDeletion()){
+            iter=m_updateList.erase(iter)-1;
+        }
     }
 }
 
@@ -72,37 +85,70 @@ void UpdateManager::addUpdater(CCObject* target,SEL_SCHEDULE handle,int priority
 
 void UpdateManager::removeUpdater(CCObject* target)
 {
-    for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
-        if (target==(*iter)->getTarget()) {
-            m_updateList.erase(iter);
+    if (m_updating) {
+        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+            if (target==(*iter)->getTarget()) {
+                (*iter)->setMarkedForDeletion(true);
+            }
+        }
+    }else{
+        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+            if (target==(*iter)->getTarget()) {
+                iter=m_updateList.erase(iter)-1;
+            }
         }
     }
 }
 
 void UpdateManager::removeUpdater(CCObject* target,SEL_SCHEDULE handle)
 {
-    for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
-        if (target==(*iter)->getTarget() && handle==(*iter)->getHandle()) {
-            m_updateList.erase(iter);
+    if (m_updating) {
+        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+            if (target==(*iter)->getTarget() && handle==(*iter)->getHandle()) {
+                (*iter)->setMarkedForDeletion(true);
+            }
+        }
+    }else{
+        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+            if (target==(*iter)->getTarget() && handle==(*iter)->getHandle()) {
+                iter=m_updateList.erase(iter)-1;
+            }
         }
     }
 }
 
 void UpdateManager::removeUpdater(CCObject* target,SEL_SCHEDULE handle,int priority)
 {
-    for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
-        if (target==(*iter)->getTarget() && handle==(*iter)->getHandle() && priority==(*iter)->getPriority()) {
-            m_updateList.erase(iter);
-            break;
+    if (m_updating) {
+        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+            if (target==(*iter)->getTarget() && handle==(*iter)->getHandle() && priority==(*iter)->getPriority()) {
+                (*iter)->setMarkedForDeletion(true);
+                break;
+            }
+        }
+    }else{
+        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+            if (target==(*iter)->getTarget() && handle==(*iter)->getHandle() && priority==(*iter)->getPriority()) {
+                m_updateList.erase(iter);
+                break;
+            }
         }
     }
 }
 
 void UpdateManager::removeUpdaterByPriority(int priority)
 {
-    for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
-        if (priority==(*iter)->getPriority()) {
-            m_updateList.erase(iter);
+    if (m_updating) {
+        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+            if (priority==(*iter)->getPriority()) {
+                (*iter)->setMarkedForDeletion(true);
+            }
+        }
+    }else{
+        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+            if (priority==(*iter)->getPriority()) {
+                iter=m_updateList.erase(iter)-1;
+            }
         }
     }
 }

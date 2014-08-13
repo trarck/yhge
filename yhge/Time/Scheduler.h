@@ -13,6 +13,8 @@ public:
     SchedulerTask()
     :m_target(NULL)
     ,m_handle(NULL)
+    ,m_priority(0)
+    ,m_markedForDeletion(false)
     {
         
     }
@@ -21,6 +23,7 @@ public:
     :m_target(target)
     ,m_handle(handle)
     ,m_priority(priority)
+    ,m_markedForDeletion(false)
     {
         CC_SAFE_RETAIN(target);
     }
@@ -69,10 +72,21 @@ public:
         return m_priority;
     }
     
+    inline void setMarkedForDeletion(bool markedForDeletion)
+    {
+        m_markedForDeletion = markedForDeletion;
+    }
+    
+    inline bool isMarkedForDeletion()
+    {
+        return m_markedForDeletion;
+    }
+    
 protected:
     CCObject* m_target;
     SEL_SCHEDULE m_handle;
     int m_priority;
+    bool m_markedForDeletion;
 };
 
 
@@ -136,6 +150,12 @@ protected:
 //    void removeFromList(TaskList& list,CCObject* target,SEL_SCHEDULE handle);
     
     void removeFromList(TaskList& list,CCObject* target);
+    
+    void directRemoveFromList(TaskList& list,CCObject* target);
+    
+    void markRemoveFromList(TaskList& list,CCObject* target);
+    
+    void removeMarkedList(TaskList& list);
     
 protected:
     

@@ -29,7 +29,7 @@ bool Scheduler::init(void)
 void Scheduler::clear()
 {
     //remove node
-    TaskList::Iterator iter;
+    TaskList::iterator iter;
 
     for (iter=m_pUpdatesNegList.begin(); iter!=m_pUpdatesNegList.end(); ++iter) {
         delete *iter;
@@ -52,21 +52,37 @@ void Scheduler::update(float delta)
 {
     m_updating=true;
     
-    TaskList::Iterator iter;
-    //it safe with remove list on iterate
+    TaskList::iterator iter;
+    SchedulerTask* task=NULL;
+
     for (iter=m_pUpdatesNegList.begin(); iter!=m_pUpdatesNegList.end(); ++iter) {
-        (*iter)->update(delta);
+        task=*iter;
+        if (!task->isMarkedForDeletion()) {
+            (*iter)->update(delta);
+        }
     }
     
     for (iter=m_pUpdatesZeroList.begin(); iter!=m_pUpdatesZeroList.end(); ++iter) {
-        (*iter)->update(delta);
+        task=*iter;
+        if (!task->isMarkedForDeletion()) {
+            (*iter)->update(delta);
+        }
     }
     
     for (iter=m_pUpdatesPosList.begin(); iter!=m_pUpdatesPosList.end(); ++iter) {
-        (*iter)->update(delta);
+        task=*iter;
+        if (!task->isMarkedForDeletion()) {
+            (*iter)->update(delta);
+        }
     }
     
     m_updating=false;
+    
+    //remove marked for delete
+    removeMarkedList(m_pUpdatesNegList);
+    removeMarkedList(m_pUpdatesZeroList);
+    removeMarkedList(m_pUpdatesPosList);
+    
 }
 
 void Scheduler::registerUpdate(CCObject* target,SEL_SCHEDULE handle,int priority)
@@ -168,7 +184,6 @@ void Scheduler::unregisterUpdate(CCObject* target)
         //remove from neg list
         removeFromList(m_pUpdatesNegList, target);
     }
-    
 }
 
 void Scheduler::insertToList(TaskList& list,SchedulerTask* task)
@@ -177,7 +192,7 @@ void Scheduler::insertToList(TaskList& list,SchedulerTask* task)
     
     int taskPriority=task->getPriority();
     
-    for (TaskList::Iterator iter=list.begin(); iter!=list.end(); ++iter) {
+    for (TaskList::iterator iter=list.begin(); iter!=list.end(); ++iter) {
         if (taskPriority<(*iter)->getPriority()) {
             
             //insert here
@@ -211,19 +226,52 @@ void Scheduler::insertToList(TaskList& list,SchedulerTask* task)
 
 void Scheduler::removeFromList(TaskList& list,CCObject* target)
 {
+    if (m_updating){
+        markRemoveFromList(list, target);
+    }else{
+        directRemoveFromList(list, target);
+    }
+}
+
+void Scheduler::directRemoveFromList(TaskList& list,CCObject* target)
+{
     CCAssert(target!=NULL, "[Scheduler::insertToList] target must not be null");
-    
-    for (TaskList::Iterator iter=list.begin(); iter!=list.end(); ++iter) {
+    for (TaskList::iterator iter=list.begin(); iter!=list.end(); ++iter) {
         
         if (target==(*iter)->getTarget()) {
             //remove here
             
             //delete Task Object
             delete *iter;
-            
-            iter=list.erase(iter);
-            --iter;
+            list.erase(iter);
+            //because return ,not use iter any more
+//            iter=list.erase(iter);
+//            --iter;
             return;
+        }
+    }
+}
+
+void Scheduler::markRemoveFromList(TaskList& list,CCObject* target)
+{
+    CCAssert(target!=NULL, "[Scheduler::insertToList] target must not be null");
+    for (TaskList::iterator iter=list.begin(); iter!=list.end(); ++iter) {
+        
+        if (target==(*iter)->getTarget()) {
+            //mark delete
+            
+            //delete Task Object
+            (*iter)->setMarkedForDeletion(true);
+            return;
+        }
+    }
+}
+
+void Scheduler::removeMarkedList(TaskList& list)
+{
+    for (TaskList::iterator iter=m_pUpdatesNegList.begin(); iter!=m_pUpdatesNegList.end(); ++iter) {
+        if ((*iter)->isMarkedForDeletion()) {
+            iter=list.erase(iter)-1;
         }
     }
 }
