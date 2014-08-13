@@ -769,52 +769,52 @@ void MessageManager::dispatchMessage(unsigned int type ,CCObject* sender ,CCObje
 
 void MessageManager::dispatchMessageMap(CCDictionary* msgMap,Message* message)
 {
-        CCAssert(msgMap!=NULL,"MessageManager:dispatchMessageMap:msgMap can't be null!");
-        CCObject* receiver=message->getReceiver();
-        CCObject* sender=message->getSender();
-        if(receiver){
-                CCDictionary* receiverMap=(CCDictionary *)msgMap->objectForKey(receiver->m_uID);
-				if(receiverMap){
-					CCArray* handleList=NULL;
-					if(sender){
-						//执行注册到送送者为sender的消息的处理方法
-						handleList=(CCArray *)receiverMap->objectForKey(sender->m_uID);
-						if(handleList)
-							execHandleList(handleList,message);
-	//                        //执行注册到送送者为null的消息的处理方法
-	//
-	//                    }else{
-	//                        //执行注册到送送者为null的消息的处理方法
-	//                    }
-					}
+    CCAssert(msgMap!=NULL,"MessageManager:dispatchMessageMap:msgMap can't be null!");
+    CCObject* receiver=message->getReceiver();
+    CCObject* sender=message->getSender();
+    if(receiver){
+            CCDictionary* receiverMap=(CCDictionary *)msgMap->objectForKey(receiver->m_uID);
+            if(receiverMap){
+                CCArray* handleList=NULL;
+                if(sender){
+                    //执行注册到送送者为sender的消息的处理方法
+                    handleList=(CCArray *)receiverMap->objectForKey(sender->m_uID);
+                    if(handleList)
+                        execHandleList(handleList,message);
+//                        //执行注册到送送者为null的消息的处理方法
+//
+//                    }else{
+//                        //执行注册到送送者为null的消息的处理方法
+//                    }
+                }
 
-					//执行注册到送送者为null的消息的处理方法
-					handleList=(CCArray *)receiverMap->objectForKey(kNullObjectId);
-					if(handleList)
-						execHandleList(handleList,message);
-				}
-        }else{
-                //发送到注册时的接收者为sender的所有接收者
-                dispathMessageToAllReceiverWithSender(message,msgMap,sender);
-        }
+                //执行注册到送送者为null的消息的处理方法
+                handleList=(CCArray *)receiverMap->objectForKey(kNullObjectId);
+                if(handleList)
+                    execHandleList(handleList,message);
+            }
+    }else{
+            //发送到注册时的接收者为sender的所有接收者
+            dispathMessageToAllReceiverWithSender(message,msgMap,sender);
+    }
 }
 
 void MessageManager::dispathMessageToAllReceiverWithSender(Message* message,CCDictionary* msgMap,CCObject* sender)
 {
-        CCAssert(msgMap!=NULL,"MessageManager:dispatchMessageMap:msgMap can't be null!");
+    CCAssert(msgMap!=NULL,"MessageManager:dispatchMessageMap:msgMap can't be null!");
 
-        int senderKey=sender==NULL?kNullObjectId:sender->m_uID;
+    int senderKey=sender==NULL?kNullObjectId:sender->m_uID;
 
-        CCDictElement* pElement = NULL;
-        CCDictionary* receiverMap=NULL;
-        CCArray* handleList=NULL;
+    CCDictElement* pElement = NULL;
+    CCDictionary* receiverMap=NULL;
+    CCArray* handleList=NULL;
 
-        CCDICT_FOREACH(msgMap,pElement){
-            receiverMap=(CCDictionary*)pElement->getObject();
-            handleList=(CCArray*)receiverMap->objectForKey(senderKey);
-            if(handleList)
-                execHandleList(handleList,message);
-        }
+    CCDICT_FOREACH(msgMap,pElement){
+        receiverMap=(CCDictionary*)pElement->getObject();
+        handleList=(CCArray*)receiverMap->objectForKey(senderKey);
+        if(handleList)
+            execHandleList(handleList,message);
+    }
 }
 
 void MessageManager::execHandleList(CCArray* handleList ,Message* message)
@@ -828,6 +828,10 @@ void MessageManager::execHandleList(CCArray* handleList ,Message* message)
 	handleListCopy->initWithArray(handleList);
     CCARRAY_FOREACH(handleListCopy,pObject){
         MessageHandler* handler=(MessageHandler*) pObject;
+        //TODO 不执行删除的消息。在执行消息的时候，可能会调用到(直接或间接)反注册函数，把消息接收处理列表删除。
+        //如果删除，这里的handler的retain就是1否则大于1.
+        //所以这里可以加个判断，如果等于1，表示被删除，可以不执行。
+        //给manager设置个开关，来决定执不执行删除了的消息。通常执行删除的消息也不会有什么逻辑问题，目前就不加这个开关。
 		handler->execute(message);
     }
 	handleListCopy->release();
