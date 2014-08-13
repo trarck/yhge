@@ -32,10 +32,10 @@ class LinkedList
         typedef size_t      size_type;
         typedef ptrdiff_t   difference_type;
 
-        typedef BaseIterator<Type, Node, ForwardSeek<Node> > Iterator;
-        typedef BaseIterator<Type, Node, ReverseSeek<Node> > ReverseIterator;
-        typedef BaseIterator<const Type, const Node, ForwardSeek<const Node> > ConstIterator;
-        typedef BaseIterator<const Type, const Node, ReverseSeek<const Node> > ConstReverseIterator;
+        typedef BaseIterator<Type, Node, ForwardSeek<Node> > iterator;
+        typedef BaseIterator<Type, Node, ReverseSeek<Node> > reverse_iterator;
+        typedef BaseIterator<const Type, const Node, ForwardSeek<const Node> > const_iterator;
+        typedef BaseIterator<const Type, const Node, ReverseSeek<const Node> > const_reverse_iterator;
 
         // Constructor(s) & Destructor(s)
         LinkedList(void);
@@ -48,14 +48,14 @@ class LinkedList
         ~LinkedList(void);
 
         // Iterator Method(s)
-        Iterator                begin(void);
-        ConstIterator           begin(void)     const;
-        Iterator                end(void);
-        ConstIterator           end(void)       const;
-        ReverseIterator         rbegin(void);
-        ConstReverseIterator    rbegin(void)    const;
-        ReverseIterator         rend(void);
-        ConstReverseIterator    rend(void)      const;
+        iterator                begin(void);
+        const_iterator           begin(void)     const;
+        iterator                end(void);
+        const_iterator           end(void)       const;
+        reverse_iterator         rbegin(void);
+        const_reverse_iterator    rbegin(void)    const;
+        reverse_iterator         rend(void);
+        const_reverse_iterator    rend(void)      const;
 
         // Element Access Method(s)
         Type            &front(void);
@@ -70,11 +70,11 @@ class LinkedList
         void            pop_back(void);
 
         template <typename InputIterator>
-        void            insert(Iterator position, InputIterator first, InputIterator last);
-        Iterator        insert(Iterator position, const Type &value);
-        void            insert(Iterator position, size_type number, const Type &value);
-        Iterator        erase(Iterator position);
-        Iterator        erase(Iterator first, Iterator last);
+        void            insert(iterator position, InputIterator first, InputIterator last);
+        iterator        insert(iterator position, const Type &value);
+        void            insert(iterator position, size_type number, const Type &value);
+        iterator        erase(iterator position);
+        iterator        erase(iterator first, iterator last);
 
         template <typename InputIterator>
         void            assign(InputIterator first, InputIterator last);
@@ -83,9 +83,9 @@ class LinkedList
         void            clear(void);
 
         // Operation Method(s)
-        void            splice(Iterator position, LinkedList &list);
-        void            splice(Iterator position, LinkedList &list, Iterator iter);
-        void            splice(Iterator position, LinkedList &list, Iterator first, Iterator last);
+        void            splice(iterator position, LinkedList &list);
+        void            splice(iterator position, LinkedList &list, iterator iter);
+        void            splice(iterator position, LinkedList &list, iterator first, iterator last);
 
         template <typename Predicate>
         void            merge(LinkedList &list, Predicate predicate);

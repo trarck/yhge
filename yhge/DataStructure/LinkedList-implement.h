@@ -44,59 +44,59 @@ LinkedList<Type>::~LinkedList(void)
 }
 
 template <typename Type>
-typename LinkedList<Type>::Iterator LinkedList<Type>::begin(void)
+typename LinkedList<Type>::iterator LinkedList<Type>::begin(void)
 {
     // return an iterator to the beginning
-    return Iterator(_sentinel.next());
+    return iterator(_sentinel.next());
 }
 
 template <typename Type>
-typename LinkedList<Type>::ConstIterator LinkedList<Type>::begin(void) const
+typename LinkedList<Type>::const_iterator LinkedList<Type>::begin(void) const
 {
     // return an constant iterator to the beginning
-    return ConstIterator(_sentinel.next());
+    return const_iterator(_sentinel.next());
 }
 
 template <typename Type>
-typename LinkedList<Type>::Iterator LinkedList<Type>::end(void)
+typename LinkedList<Type>::iterator LinkedList<Type>::end(void)
 {
     // return an iterator just past the end
-    return Iterator(&_sentinel);
+    return iterator(&_sentinel);
 }
 
 template <typename Type>
-typename LinkedList<Type>::ConstIterator LinkedList<Type>::end(void) const
+typename LinkedList<Type>::const_iterator LinkedList<Type>::end(void) const
 {
     // return an constant iterator just past the end
-    return ConstIterator(&_sentinel);
+    return const_iterator(&_sentinel);
 }
 
 template <typename Type>
-typename LinkedList<Type>::ReverseIterator LinkedList<Type>::rbegin(void)
+typename LinkedList<Type>::reverse_iterator LinkedList<Type>::rbegin(void)
 {
     // return a reverse iterator to the end
-    return ReverseIterator(_sentinel.previous());
+    return reverse_iterator(_sentinel.previous());
 }
 
 template <typename Type>
-typename LinkedList<Type>::ConstReverseIterator LinkedList<Type>::rbegin(void) const
+typename LinkedList<Type>::const_reverse_iterator LinkedList<Type>::rbegin(void) const
 {
     // return a constant reverse iterator to the end
-    return ConstReverseIterator(_sentinel.previous());
+    return const_reverse_iterator(_sentinel.previous());
 }
 
 template <typename Type>
-typename LinkedList<Type>::ReverseIterator LinkedList<Type>::rend(void)
+typename LinkedList<Type>::reverse_iterator LinkedList<Type>::rend(void)
 {
     // return a reverse iterator just past the beginning
-    return ReverseIterator(&_sentinel);
+    return reverse_iterator(&_sentinel);
 }
 
 template <typename Type>
-typename LinkedList<Type>::ConstReverseIterator LinkedList<Type>::rend(void) const
+typename LinkedList<Type>::const_reverse_iterator LinkedList<Type>::rend(void) const
 {
     // return a constant reverse iterator just past the beginning
-    return ConstReverseIterator(&_sentinel);
+    return const_reverse_iterator(&_sentinel);
 }
 
 template <typename Type>
@@ -157,7 +157,7 @@ void LinkedList<Type>::pop_back(void)
 
 template <typename Type>
 template <typename InputIterator>
-void LinkedList<Type>::insert(Iterator position, InputIterator first, InputIterator last)
+void LinkedList<Type>::insert(iterator position, InputIterator first, InputIterator last)
 {
     Node *location, *now;
     location = position.location();
@@ -174,7 +174,7 @@ void LinkedList<Type>::insert(Iterator position, InputIterator first, InputItera
 }
 
 template <typename Type>
-typename LinkedList<Type>::Iterator LinkedList<Type>::insert(Iterator position, const Type &value)
+typename LinkedList<Type>::iterator LinkedList<Type>::insert(iterator position, const Type &value)
 {
     // insert the element [value] before [position]
     insert(position, size_type(1), value);
@@ -184,7 +184,7 @@ typename LinkedList<Type>::Iterator LinkedList<Type>::insert(Iterator position, 
 }
 
 template <typename Type>
-void LinkedList<Type>::insert(Iterator position, size_type number, const Type &value)
+void LinkedList<Type>::insert(iterator position, size_type number, const Type &value)
 {
     Node *location, *now;
     location = position.location();
@@ -201,20 +201,20 @@ void LinkedList<Type>::insert(Iterator position, size_type number, const Type &v
 }
 
 template <typename Type>
-typename LinkedList<Type>::Iterator LinkedList<Type>::erase(Iterator position)
+typename LinkedList<Type>::iterator LinkedList<Type>::erase(iterator position)
 {
     // remove the element at [position]
     return erase(position, position + 1);
 }
 
 template <typename Type>
-typename LinkedList<Type>::Iterator LinkedList<Type>::erase(Iterator first, Iterator last)
+typename LinkedList<Type>::iterator LinkedList<Type>::erase(iterator first, iterator last)
 {
     if (first == last) { return last; }
 
     // remove the element from [first] to [last]
     Node *previous = first.location()->previous();
-    for (Iterator iter = first; iter != last; )
+    for (iterator iter = first; iter != last; )
     {
         delete (iter++).location();
     }
@@ -263,21 +263,21 @@ void LinkedList<Type>::clear(void)
 }
 
 template <typename Type>
-void LinkedList<Type>::splice(Iterator position, LinkedList &list)
+void LinkedList<Type>::splice(iterator position, LinkedList &list)
 {
     // move elements from [list] before location [position]
     splice(position, list, list.begin(), list.end());
 }
 
 template <typename Type>
-void LinkedList<Type>::splice(Iterator position, LinkedList &list, Iterator iter)
+void LinkedList<Type>::splice(iterator position, LinkedList &list, iterator iter)
 {
     // move element at [iter] before location [position]
     splice(position, list, iter, iter + 1);
 }
 
 template <typename Type>
-void LinkedList<Type>::splice(Iterator position, LinkedList &list, Iterator first, Iterator last)
+void LinkedList<Type>::splice(iterator position, LinkedList &list, iterator first, iterator last)
 {
     if (first == last) { return; }
 
@@ -300,11 +300,11 @@ template <typename Type>
 template <typename Predicate>
 void LinkedList<Type>::merge(LinkedList &list, Predicate predicate)
 {
-    Iterator iter1 = begin();
-    Iterator iter2 = list.begin();
+    iterator iter1 = begin();
+    iterator iter2 = list.begin();
 
-    Iterator last1 = end();
-    Iterator last2 = list.end();
+    iterator last1 = end();
+    iterator last2 = list.end();
 
     while (iter1 != last1 && iter2 != last2)
     {
@@ -316,7 +316,7 @@ void LinkedList<Type>::merge(LinkedList &list, Predicate predicate)
         else
         {
             // move element at location [iter2] to this list before [iter1]
-            Iterator position = iter2++;
+            iterator position = iter2++;
             splice(iter1, list, position, iter2);
         }
     }
@@ -336,10 +336,10 @@ template <typename Predicate>
 void LinkedList<Type>::remove_if(Predicate predicate)
 {
     // remove elements for which [predicate] is true
-    Iterator iter = begin();
+    iterator iter = begin();
     while (iter != end())
     {
-        Iterator position = iter++;
+        iterator position = iter++;
         if (predicate(*position))
         {
             erase(position);
@@ -359,10 +359,10 @@ template <typename Predicate>
 void LinkedList<Type>::unique(Predicate predicate)
 {
     // remove elements if [predicate] is true
-    Iterator iter = ++begin();
+    iterator iter = ++begin();
     while (iter != end())
     {
-        Iterator position = iter++;
+        iterator position = iter++;
         if (predicate(*(position - 1), *position))
         {
             erase(position);
@@ -385,8 +385,8 @@ void LinkedList<Type>::sort(Predicate predicate)
     while (!empty())
     {
         // find the smallest element of this list
-        Iterator smallest = begin();
-        for (Iterator iter = ++begin(); iter != end(); ++iter)
+        iterator smallest = begin();
+        for (iterator iter = ++begin(); iter != end(); ++iter)
         {
             if (predicate(*iter, *smallest))
             {
@@ -413,7 +413,7 @@ template <typename Type>
 void LinkedList<Type>::reverse(void)
 {
     // reverse the list
-    Iterator iter;
+    iterator iter;
     for (iter = begin(); iter != end(); --iter)
     {
         // reverse all nodes
@@ -436,7 +436,7 @@ typename LinkedList<Type>::size_type LinkedList<Type>::size(void) const
 {
     // count the size of this list
     size_type number = 0;
-    for (ConstIterator iter = begin(); iter != end(); ++iter)
+    for (const_iterator iter = begin(); iter != end(); ++iter)
     {
         ++number;
     }
@@ -454,7 +454,7 @@ typename LinkedList<Type>::size_type LinkedList<Type>::max_size(void) const
 template <typename Type>
 void LinkedList<Type>::resize(size_type number, const Type &value)
 {
-    Iterator iter = begin();
+    iterator iter = begin();
     for (size_type count = 0; count < number; ++count, ++iter)
     {
         // Check whether [number] is greater than the current size
@@ -485,11 +485,11 @@ LinkedList<Type> &LinkedList<Type>::operator=(const LinkedList &list)
 template <typename Type>
 bool LinkedList<Type>::operator==(const LinkedList &list) const
 {
-    ConstIterator iter1 = begin();
-    ConstIterator iter2 = list.begin();
+    const_iterator iter1 = begin();
+    const_iterator iter2 = list.begin();
 
-    ConstIterator last1 = end();
-    ConstIterator last2 = list.end();
+    const_iterator last1 = end();
+    const_iterator last2 = list.end();
 
     while (iter1 != last1 && iter2 != last2 && *iter1 == *iter2)
     {
@@ -509,11 +509,11 @@ bool LinkedList<Type>::operator!=(const LinkedList &list) const
 template <typename Type>
 bool LinkedList<Type>::operator<(const LinkedList &list) const
 {
-    ConstIterator iter1 = begin();
-    ConstIterator iter2 = list.begin();
+    const_iterator iter1 = begin();
+    const_iterator iter2 = list.begin();
 
-    ConstIterator last1 = end();
-    ConstIterator last2 = list.end();
+    const_iterator last1 = end();
+    const_iterator last2 = list.end();
 
     while (iter1 != last1 && iter2 != last2)
     {
