@@ -70,11 +70,7 @@ int JSONSqliteDAO::fetchNumber(const std::string& querySql,const Json::Value& pa
     Statement stmt(*(m_driver->getPtr()),querySql);
     
     //bind parameter
-    Json::Value::Members members=params.getMemberNames();
-    
-    for (Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
-        bindStatement(stmt,*iter,params[*iter]);
-    }
+    bindParams(stmt, params);
     
     if(stmt.execute()){
         
@@ -115,11 +111,7 @@ Json::Value JSONSqliteDAO::fetchAll(const std::string& querySql,const Json::Valu
     Statement stmt(*(m_driver->getPtr()), querySql);
     
     //bind parameter
-    Json::Value::Members members=params.getMemberNames();
-    
-    for (Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
-        bindStatement(stmt,*iter,params[*iter]);
-    }
+    bindParams(stmt, params);
     
     int colCount=stmt.getColumnCount();
     
@@ -162,11 +154,7 @@ Json::Value JSONSqliteDAO::fetchOne(const std::string& querySql,const Json::Valu
     Statement stmt(*(m_driver->getPtr()), querySql);
     
     //bind parameter
-    Json::Value::Members members=params.getMemberNames();
-    
-    for (Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
-        bindStatement(stmt,*iter,params[*iter]);
-    }
+    bindParams(stmt, params);
     
     int colCount=stmt.getColumnCount();
     
@@ -357,10 +345,10 @@ int JSONSqliteDAO::update(const std::string& table,const Json::Value& data,const
         }
         
         //绑定where数据
-        members=whereData.getMemberNames();
+        int size=whereData.size();
         
-        for (Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
-            bindStatement(stmt,i++,whereData[*iter]);
+        for (int j=0;j<size;++j) {
+            bindStatement(stmt,i++,whereData[j]);
         }
         
         return stmt.execute();
@@ -381,10 +369,9 @@ int JSONSqliteDAO::remove(const std::string& table,const Json::Value& where)
     Statement stmt(*(m_driver->getPtr()), deleteSql);
     
     //绑定条件数据
-    Json::Value::Members members=whereData.getMemberNames();
-    int i=1;
-    for (Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
-        bindStatement(stmt,i++,whereData[*iter]);
+    int size =whereData.size();
+    for (int i=0; i<size; ++i){
+        bindStatement(stmt,i+1,whereData[i]);
     }
     
     return stmt.execute();
@@ -558,6 +545,27 @@ void JSONSqliteDAO::setRecordValue(const sqlite::Column& col, Json::Value& recor
             break;
         default:
             break;
+    }
+}
+
+void JSONSqliteDAO::bindParams(sqlite::Statement& stmt,const Json::Value& params)
+{
+    Json::ValueType type=params.type();
+    if(type==Json::arrayValue){
+        
+        int size=params.size();
+        
+        for (int i=0; i<size; ++i) {
+            bindStatement(stmt,i+1,params[i]);
+        }
+        
+    }else if (type==Json::objectValue){
+        
+        Json::Value::Members members=params.getMemberNames();
+        
+        for (Json::Value::Members::iterator iter=members.begin(); iter!=members.end(); ++iter) {
+            bindStatement(stmt,*iter,params[*iter]);
+        }
     }
 }
 

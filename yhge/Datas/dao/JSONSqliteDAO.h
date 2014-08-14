@@ -201,6 +201,11 @@ protected:
     void setRecordValue(const sqlite::Column& col, Json::Value& record);
     
     /**
+     * @brief 绑定一个集合
+     */
+    void bindParams(sqlite::Statement& stmt,const Json::Value& params);
+    
+    /**
      * @brief 绑定一个列值
      */
     void bindStatement(sqlite::Statement& stmt,const std::string& name,const Json::Value& val);
