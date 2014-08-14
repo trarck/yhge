@@ -9,16 +9,18 @@
 /* Begin PBXBuildFile section */
 		57243EF018B72BD30070163A /* CCValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EEE18B72BD30070163A /* CCValue.cpp */; };
 		57243EF318B737350070163A /* StringifyEventListenerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57243EF118B737350070163A /* StringifyEventListenerManager.cpp */; };
-		5726027518F4E24D004C77A1 /* DAOFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5726027318F4E24D004C77A1 /* DAOFactory.cpp */; };
 		57381E9818C02B7B00CC17E9 /* CCAdaptSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57381E9618C02B7B00CC17E9 /* CCAdaptSprite.cpp */; };
+		573D9425199B67C300F47394 /* CocosDataDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9419199B67C300F47394 /* CocosDataDAO.cpp */; };
+		573D9426199B67C300F47394 /* CocosSqliteDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D941B199B67C300F47394 /* CocosSqliteDAO.cpp */; };
+		573D9427199B67C300F47394 /* DAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D941D199B67C300F47394 /* DAO.cpp */; };
+		573D9428199B67C300F47394 /* DAOFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D941F199B67C300F47394 /* DAOFactory.cpp */; };
+		573D9429199B67C300F47394 /* JSONDataDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9421199B67C300F47394 /* JSONDataDAO.cpp */; };
+		573D942A199B67C300F47394 /* JSONSqliteDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 573D9423199B67C300F47394 /* JSONSqliteDAO.cpp */; };
 		5747632D18D18E3E0031E2E0 /* ActionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5747632B18D18E3E0031E2E0 /* ActionComponent.cpp */; };
 		574A56A818B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56A618B1F98D00518953 /* StaticSideViewCoordinateFormulae.cpp */; };
 		574A56AB18B2130700518953 /* StaticTopViewCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56A918B2130700518953 /* StaticTopViewCoordinateFormulae.cpp */; };
 		574A56AE18B217B100518953 /* ISOStaticCoordinateFormulae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574A56AC18B217B100518953 /* ISOStaticCoordinateFormulae.cpp */; };
-		574FE4E518DA831D00490B18 /* CocosDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4E118DA831D00490B18 /* CocosDAO.cpp */; };
-		574FE4E618DA831D00490B18 /* JSONDAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4E318DA831D00490B18 /* JSONDAO.cpp */; };
 		574FE4F518DAE7B100490B18 /* CCSimpleValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4F318DAE7B100490B18 /* CCSimpleValue.cpp */; };
-		574FE4F818DAF27F00490B18 /* SqliteDBData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE4F618DAF27F00490B18 /* SqliteDBData.cpp */; };
 		574FE61918DFC6C400490B18 /* JsonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE61718DFC6C400490B18 /* JsonObject.cpp */; };
 		574FE61C18DFD97F00490B18 /* CocosValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FE61A18DFD97F00490B18 /* CocosValue.cpp */; };
 		574FF7191921CC5100DC1791 /* UpdateManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 574FF7171921CC5100DC1791 /* UpdateManager.cpp */; };
@@ -107,9 +109,6 @@
 		57975ACB18973A4A008A9F38 /* SceenCoordMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AC918973A4A008A9F38 /* SceenCoordMoveComponent.cpp */; };
 		57975ACE18974038008A9F38 /* ISOMapPositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975ACC18974038008A9F38 /* ISOMapPositionComponent.cpp */; };
 		57975AD5189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57975AD3189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp */; };
-		57A76A1118ACB2D80014DEC9 /* BaseData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57A76A0D18ACB2D80014DEC9 /* BaseData.cpp */; };
-		57A76A1518ACB5730014DEC9 /* CocosData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57A76A1318ACB5730014DEC9 /* CocosData.cpp */; };
-		57A76A1818ACBC860014DEC9 /* JSONData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57A76A1618ACBC860014DEC9 /* JSONData.cpp */; };
 		57B0CA4A1936D5F000098C22 /* ActionAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA331936D5F000098C22 /* ActionAnimation.cpp */; };
 		57B0CA4B1936D5F000098C22 /* ActionFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA351936D5F000098C22 /* ActionFrame.cpp */; };
 		57B0CA4D1936D5F000098C22 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B0CA391936D5F000098C22 /* Animation.cpp */; };
@@ -175,10 +174,21 @@
 		57243EEF18B72BD30070163A /* CCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCValue.h; sourceTree = "<group>"; };
 		57243EF118B737350070163A /* StringifyEventListenerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringifyEventListenerManager.cpp; sourceTree = "<group>"; };
 		57243EF218B737350070163A /* StringifyEventListenerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringifyEventListenerManager.h; sourceTree = "<group>"; };
-		5726027318F4E24D004C77A1 /* DAOFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DAOFactory.cpp; sourceTree = "<group>"; };
-		5726027418F4E24D004C77A1 /* DAOFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOFactory.h; sourceTree = "<group>"; };
 		57381E9618C02B7B00CC17E9 /* CCAdaptSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAdaptSprite.cpp; sourceTree = "<group>"; };
 		57381E9718C02B7B00CC17E9 /* CCAdaptSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAdaptSprite.h; sourceTree = "<group>"; };
+		573D9419199B67C300F47394 /* CocosDataDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosDataDAO.cpp; sourceTree = "<group>"; };
+		573D941A199B67C300F47394 /* CocosDataDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosDataDAO.h; sourceTree = "<group>"; };
+		573D941B199B67C300F47394 /* CocosSqliteDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosSqliteDAO.cpp; sourceTree = "<group>"; };
+		573D941C199B67C300F47394 /* CocosSqliteDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosSqliteDAO.h; sourceTree = "<group>"; };
+		573D941D199B67C300F47394 /* DAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DAO.cpp; sourceTree = "<group>"; };
+		573D941E199B67C300F47394 /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
+		573D941F199B67C300F47394 /* DAOFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DAOFactory.cpp; sourceTree = "<group>"; };
+		573D9420199B67C300F47394 /* DAOFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOFactory.h; sourceTree = "<group>"; };
+		573D9421199B67C300F47394 /* JSONDataDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONDataDAO.cpp; sourceTree = "<group>"; };
+		573D9422199B67C300F47394 /* JSONDataDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDataDAO.h; sourceTree = "<group>"; };
+		573D9423199B67C300F47394 /* JSONSqliteDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONSqliteDAO.cpp; sourceTree = "<group>"; };
+		573D9424199B67C300F47394 /* JSONSqliteDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONSqliteDAO.h; sourceTree = "<group>"; };
+		573D942B199B67EE00F47394 /* DataMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataMacros.h; sourceTree = "<group>"; };
 		5747632B18D18E3E0031E2E0 /* ActionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionComponent.cpp; sourceTree = "<group>"; };
 		5747632C18D18E3E0031E2E0 /* ActionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionComponent.h; sourceTree = "<group>"; };
 		574A56A518B1F98D00518953 /* DimetricMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DimetricMacros.h; sourceTree = "<group>"; };
@@ -190,14 +200,8 @@
 		574A56AD18B217B100518953 /* ISOStaticCoordinateFormulae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOStaticCoordinateFormulae.h; sourceTree = "<group>"; };
 		574A56AF18B2F15B00518953 /* CoordinateFormulae.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateFormulae.h; sourceTree = "<group>"; };
 		574A56B018B2F15B00518953 /* IsometricMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsometricMacros.h; sourceTree = "<group>"; };
-		574FE4E118DA831D00490B18 /* CocosDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosDAO.cpp; sourceTree = "<group>"; };
-		574FE4E218DA831D00490B18 /* CocosDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosDAO.h; sourceTree = "<group>"; };
-		574FE4E318DA831D00490B18 /* JSONDAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONDAO.cpp; sourceTree = "<group>"; };
-		574FE4E418DA831D00490B18 /* JSONDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDAO.h; sourceTree = "<group>"; };
 		574FE4F318DAE7B100490B18 /* CCSimpleValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSimpleValue.cpp; sourceTree = "<group>"; };
 		574FE4F418DAE7B100490B18 /* CCSimpleValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSimpleValue.h; sourceTree = "<group>"; };
-		574FE4F618DAF27F00490B18 /* SqliteDBData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SqliteDBData.cpp; sourceTree = "<group>"; };
-		574FE4F718DAF27F00490B18 /* SqliteDBData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteDBData.h; sourceTree = "<group>"; };
 		574FE61718DFC6C400490B18 /* JsonObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JsonObject.cpp; sourceTree = "<group>"; };
 		574FE61818DFC6C400490B18 /* JsonObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonObject.h; sourceTree = "<group>"; };
 		574FE61A18DFD97F00490B18 /* CocosValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosValue.cpp; sourceTree = "<group>"; };
@@ -406,12 +410,6 @@
 		57975ACD18974038008A9F38 /* ISOMapPositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOMapPositionComponent.h; sourceTree = "<group>"; };
 		57975AD3189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISOAutoZOrderPositionComponent.cpp; sourceTree = "<group>"; };
 		57975AD4189752E8008A9F38 /* ISOAutoZOrderPositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISOAutoZOrderPositionComponent.h; sourceTree = "<group>"; };
-		57A76A0D18ACB2D80014DEC9 /* BaseData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseData.cpp; sourceTree = "<group>"; };
-		57A76A0E18ACB2D80014DEC9 /* BaseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseData.h; sourceTree = "<group>"; };
-		57A76A1318ACB5730014DEC9 /* CocosData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosData.cpp; sourceTree = "<group>"; };
-		57A76A1418ACB5730014DEC9 /* CocosData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosData.h; sourceTree = "<group>"; };
-		57A76A1618ACBC860014DEC9 /* JSONData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONData.cpp; sourceTree = "<group>"; };
-		57A76A1718ACBC860014DEC9 /* JSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONData.h; sourceTree = "<group>"; };
 		57A76A1B18ADEBC50014DEC9 /* shared_ptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shared_ptr.h; sourceTree = "<group>"; };
 		57A76A1C18AE04460014DEC9 /* smart_ptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smart_ptr.h; sourceTree = "<group>"; };
 		57B0CA331936D5F000098C22 /* ActionAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionAnimation.cpp; sourceTree = "<group>"; };
@@ -564,6 +562,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		573D9417199B67C300F47394 /* Datas */ = {
+			isa = PBXGroup;
+			children = (
+				573D9418199B67C300F47394 /* dao */,
+				573D942B199B67EE00F47394 /* DataMacros.h */,
+			);
+			path = Datas;
+			sourceTree = "<group>";
+		};
+		573D9418199B67C300F47394 /* dao */ = {
+			isa = PBXGroup;
+			children = (
+				573D9419199B67C300F47394 /* CocosDataDAO.cpp */,
+				573D941A199B67C300F47394 /* CocosDataDAO.h */,
+				573D941B199B67C300F47394 /* CocosSqliteDAO.cpp */,
+				573D941C199B67C300F47394 /* CocosSqliteDAO.h */,
+				573D941D199B67C300F47394 /* DAO.cpp */,
+				573D941E199B67C300F47394 /* DAO.h */,
+				573D941F199B67C300F47394 /* DAOFactory.cpp */,
+				573D9420199B67C300F47394 /* DAOFactory.h */,
+				573D9421199B67C300F47394 /* JSONDataDAO.cpp */,
+				573D9422199B67C300F47394 /* JSONDataDAO.h */,
+				573D9423199B67C300F47394 /* JSONSqliteDAO.cpp */,
+				573D9424199B67C300F47394 /* JSONSqliteDAO.h */,
+			);
+			path = dao;
+			sourceTree = "<group>";
+		};
 		574A56A418B1F98D00518953 /* Dimetric */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,19 +600,6 @@
 				574A56AA18B2130700518953 /* StaticTopViewCoordinateFormulae.h */,
 			);
 			path = Dimetric;
-			sourceTree = "<group>";
-		};
-		574FE4E018DA831D00490B18 /* db */ = {
-			isa = PBXGroup;
-			children = (
-				574FE4E118DA831D00490B18 /* CocosDAO.cpp */,
-				574FE4E218DA831D00490B18 /* CocosDAO.h */,
-				5726027318F4E24D004C77A1 /* DAOFactory.cpp */,
-				5726027418F4E24D004C77A1 /* DAOFactory.h */,
-				574FE4E318DA831D00490B18 /* JSONDAO.cpp */,
-				574FE4E418DA831D00490B18 /* JSONDAO.h */,
-			);
-			path = db;
 			sourceTree = "<group>";
 		};
 		574FF7161921CC5100DC1791 /* Managers */ = {
@@ -802,7 +815,7 @@
 				577A7838186BF56500F1B5D5 /* Arithmetic */,
 				57E2C2B518F393DE00124DF1 /* Base */,
 				577A7843186BF56500F1B5D5 /* CocosExt */,
-				57A76A0C18ACB2D80014DEC9 /* Datas */,
+				573D9417199B67C300F47394 /* Datas */,
 				57704FA518CF1573006B8A62 /* DataStructure */,
 				574A56A418B1F98D00518953 /* Dimetric */,
 				57C3373E1888C3A1008B5618 /* EntityComponent */,
@@ -1013,22 +1026,6 @@
 				57975AB11890FB16008A9F38 /* ZIndexNode.h */,
 			);
 			path = occlusion;
-			sourceTree = "<group>";
-		};
-		57A76A0C18ACB2D80014DEC9 /* Datas */ = {
-			isa = PBXGroup;
-			children = (
-				574FE4E018DA831D00490B18 /* db */,
-				57A76A0D18ACB2D80014DEC9 /* BaseData.cpp */,
-				57A76A0E18ACB2D80014DEC9 /* BaseData.h */,
-				57A76A1318ACB5730014DEC9 /* CocosData.cpp */,
-				57A76A1418ACB5730014DEC9 /* CocosData.h */,
-				57A76A1618ACBC860014DEC9 /* JSONData.cpp */,
-				57A76A1718ACBC860014DEC9 /* JSONData.h */,
-				574FE4F618DAF27F00490B18 /* SqliteDBData.cpp */,
-				574FE4F718DAF27F00490B18 /* SqliteDBData.h */,
-			);
-			path = Datas;
 			sourceTree = "<group>";
 		};
 		57A76A1A18ADEBC50014DEC9 /* SmartPointer */ = {
@@ -1266,12 +1263,10 @@
 				577A7909186BF56500F1B5D5 /* EventHandleWrap.cpp in Sources */,
 				57525CEC18AC690C00166633 /* json_value.cpp in Sources */,
 				57381E9818C02B7B00CC17E9 /* CCAdaptSprite.cpp in Sources */,
-				574FE4E618DA831D00490B18 /* JSONDAO.cpp in Sources */,
 				577A78F8186BF56500F1B5D5 /* CCParabolaMove.cpp in Sources */,
 				577A792C186BF56500F1B5D5 /* MersenneTwister.cpp in Sources */,
 				57B0CA5F19385A1500098C22 /* AvatarFrame.cpp in Sources */,
 				57975AAD1890FAE9008A9F38 /* SortZIndex.cpp in Sources */,
-				574FE4F818DAF27F00490B18 /* SqliteDBData.cpp in Sources */,
 				57B0CA7A193DA7FB00098C22 /* IeeeHalfPrecision.cpp in Sources */,
 				577A7930186BF56500F1B5D5 /* Message.cpp in Sources */,
 				576E3FD5187D5D5500745A0A /* ISOObjectGroup.cpp in Sources */,
@@ -1287,8 +1282,10 @@
 				57243EF018B72BD30070163A /* CCValue.cpp in Sources */,
 				577A7931186BF56500F1B5D5 /* MessageHandler.cpp in Sources */,
 				576E3FB5187D4BFB00745A0A /* Coordinate.cpp in Sources */,
+				573D9427199B67C300F47394 /* DAO.cpp in Sources */,
 				577A78FD186BF56500F1B5D5 /* base64.cpp in Sources */,
 				577A7934186BF56500F1B5D5 /* MessageTarget.cpp in Sources */,
+				573D9426199B67C300F47394 /* CocosSqliteDAO.cpp in Sources */,
 				577A7932186BF56500F1B5D5 /* MessageManager.cpp in Sources */,
 				57B0CA7B193DA7FB00098C22 /* InputStream.cpp in Sources */,
 				576E3FB7187D4BFB00745A0A /* ISOTileObject.cpp in Sources */,
@@ -1300,7 +1297,6 @@
 				57B0CA92194014F200098C22 /* Character.cpp in Sources */,
 				576E3FE7187E47F300745A0A /* ISOComponentNode.cpp in Sources */,
 				57B0CA4D1936D5F000098C22 /* Animation.cpp in Sources */,
-				57A76A1118ACB2D80014DEC9 /* BaseData.cpp in Sources */,
 				576E3FCC187D4BFB00745A0A /* ISOXMLParser.cpp in Sources */,
 				57C3375F1888C3A1008B5618 /* Component.cpp in Sources */,
 				576E3FBD187D4BFB00745A0A /* ISOBatchDynamicComponent.cpp in Sources */,
@@ -1322,7 +1318,6 @@
 				57B0CA7C193DA7FB00098C22 /* OutputStream.cpp in Sources */,
 				577A78F4186BF56500F1B5D5 /* Astar.cpp in Sources */,
 				57B0CA571936D7CA00098C22 /* AnimationManager.cpp in Sources */,
-				57A76A1518ACB5730014DEC9 /* CocosData.cpp in Sources */,
 				576E3FBC187D4BFB00745A0A /* ISOTileMap.cpp in Sources */,
 				576E3FC6187D4BFB00745A0A /* ISOLayerInfo.cpp in Sources */,
 				57B0CA4A1936D5F000098C22 /* ActionAnimation.cpp in Sources */,
@@ -1335,7 +1330,6 @@
 				57C337671888C3A1008B5618 /* Entity.cpp in Sources */,
 				57CF76E718AA060D0085A22F /* DamageFormula.cpp in Sources */,
 				577A78F5186BF56500F1B5D5 /* AstarFlexible.cpp in Sources */,
-				5726027518F4E24D004C77A1 /* DAOFactory.cpp in Sources */,
 				57975AB618910123008A9F38 /* SortZIndexNode.cpp in Sources */,
 				577A7908186BF56500F1B5D5 /* EventHandleD.cpp in Sources */,
 				57B0CA4E1936D5F000098C22 /* AnimationGroup.cpp in Sources */,
@@ -1345,6 +1339,7 @@
 				57B0CA4F1936D5F000098C22 /* VariableAnimation.cpp in Sources */,
 				57975ACE18974038008A9F38 /* ISOMapPositionComponent.cpp in Sources */,
 				576E3FC9187D4BFB00745A0A /* ISOObjectInfo.cpp in Sources */,
+				573D9425199B67C300F47394 /* CocosDataDAO.cpp in Sources */,
 				577A78F7186BF56500F1B5D5 /* CallbackAstar.cpp in Sources */,
 				576E3FCA187D4BFB00745A0A /* ISOTileInfo.cpp in Sources */,
 				57B0CA501936D5F000098C22 /* AvatarSprite.cpp in Sources */,
@@ -1356,6 +1351,7 @@
 				5768C14B18A8DD09005123C5 /* Property.cpp in Sources */,
 				576E3FB8187D4BFB00745A0A /* ISOTile.cpp in Sources */,
 				57C337631888C3A1008B5618 /* MoveComponent.cpp in Sources */,
+				573D9428199B67C300F47394 /* DAOFactory.cpp in Sources */,
 				57564166196BD7CD00AA1194 /* ECManager.cpp in Sources */,
 				57C337621888C3A1008B5618 /* ManualAttackComponent.cpp in Sources */,
 				5771056518837C2C00FA1446 /* ISODynamicGroup.cpp in Sources */,
@@ -1369,7 +1365,6 @@
 				577A7936186BF56500F1B5D5 /* SimpleMessageManager.cpp in Sources */,
 				577A790D186BF56500F1B5D5 /* FSMState.cpp in Sources */,
 				57CF770D18AB5B370085A22F /* Statement.cpp in Sources */,
-				57A76A1818ACBC860014DEC9 /* JSONData.cpp in Sources */,
 				57975AD5189752E8008A9F38 /* ISOAutoZOrderPositionComponent.cpp in Sources */,
 				57525CEB18AC690C00166633 /* json_reader.cpp in Sources */,
 				576E3FDF187E3DF800745A0A /* ISOMapObject.cpp in Sources */,
@@ -1377,7 +1372,6 @@
 				576E3FC4187D4BFB00745A0A /* ISOTileLayer.cpp in Sources */,
 				57E2C2B918F393DE00124DF1 /* RefCount.cpp in Sources */,
 				576E3FCD187D4BFB00745A0A /* ISOTileMapBuilder.cpp in Sources */,
-				574FE4E518DA831D00490B18 /* CocosDAO.cpp in Sources */,
 				57704FB118D039F0006B8A62 /* CCActionMessage.cpp in Sources */,
 				5771056C18838D7200FA1446 /* ISOCamera.cpp in Sources */,
 				57C337601888C3A1008B5618 /* GridMoveComponent.cpp in Sources */,
@@ -1388,6 +1382,7 @@
 				577A792D186BF56500F1B5D5 /* RandomMT.cpp in Sources */,
 				577A78FC186BF56500F1B5D5 /* CCSelectorWrap.cpp in Sources */,
 				57C3375D1888C3A1008B5618 /* AttackComponent.cpp in Sources */,
+				573D942A199B67C300F47394 /* JSONSqliteDAO.cpp in Sources */,
 				57C337661888C3A1008B5618 /* SpriteRendererComponent.cpp in Sources */,
 				574FF7561925BA5C00DC1791 /* Engine.cpp in Sources */,
 				5771056918837C3E00FA1446 /* IsoTileUtils.cpp in Sources */,
@@ -1397,6 +1392,7 @@
 				57928428188F5BD400B46136 /* ISOLayer.cpp in Sources */,
 				574A56AB18B2130700518953 /* StaticTopViewCoordinateFormulae.cpp in Sources */,
 				577A790B186BF56500F1B5D5 /* UIEvent.cpp in Sources */,
+				573D9429199B67C300F47394 /* JSONDataDAO.cpp in Sources */,
 				57975ACB18973A4A008A9F38 /* SceenCoordMoveComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
