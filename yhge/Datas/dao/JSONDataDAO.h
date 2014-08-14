@@ -1,18 +1,18 @@
-#ifndef YHGE_DATAS_JSONDATA_H_
-#define YHGE_DATAS_JSONDATA_H_
+#ifndef YHGE_DATAS_DAO_JSONDATADAO_H_
+#define YHGE_DATAS_DAO_JSONDATADAO_H_
 
-#include "BaseData.h"
 #include <yhge/Jsoncpp/json.h>
+#include "DAO.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_DATA_BEGIN
 
-class JSONData:public BaseData
+class JSONDataDAO:public DAO
 {
 public:
     
-	JSONData();
+	JSONDataDAO();
     
-	~JSONData();
+	~JSONDataDAO();
     
     virtual void loadFromFile(const std::string& file);
     
@@ -88,8 +88,8 @@ protected:
     Json::Value m_data;
 };
 
-NS_CC_YHGE_END
+NS_CC_YHGE_DATA_END
 
 
 
-#endif //YHGE_DATAS_JSONDATA_H_
+#endif //YHGE_DATAS_DAO_JSONDATADAO_H_

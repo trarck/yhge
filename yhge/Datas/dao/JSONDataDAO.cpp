@@ -1,20 +1,20 @@
-#include "JSONData.h"
+#include "JSONDataDAO.h"
 
 USING_NS_CC;
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_DATA_BEGIN
 
-JSONData::JSONData()
+JSONDataDAO::JSONDataDAO()
 {
 
 }
 
-JSONData::~JSONData()
+JSONDataDAO::~JSONDataDAO()
 {
 
 }
 
-void JSONData::loadFromFile(const std::string& file)
+void JSONDataDAO::loadFromFile(const std::string& file)
 {
     unsigned long size = 0;
     
@@ -27,20 +27,20 @@ void JSONData::loadFromFile(const std::string& file)
     CC_SAFE_DELETE_ARRAY(pBytes);
 }
 
-void JSONData::loadFromContentString(const std::string& content)
+void JSONDataDAO::loadFromContentString(const std::string& content)
 {
     Json::Reader reader;
     reader.parse(content, m_data);
 }
 
-void JSONData::loadFromUrl(const std::string& url)
+void JSONDataDAO::loadFromUrl(const std::string& url)
 {
     //TODO
 }
 
-void JSONData::unload()
+void JSONDataDAO::unload()
 {
     m_data=Json::Value::null;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_DATA_END

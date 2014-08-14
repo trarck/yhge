@@ -71,13 +71,13 @@
 #include "Sqlite/SqliteDriver.h"
 
 //data
-#include "Datas/db/JSONDAO.h"
-#include "Datas/db/CocosDAO.h"
-#include "Datas/db/DAOFactory.h"
-#include "Datas/BaseData.h"
-#include "Datas/JSONData.h"
-#include "Datas/CocosData.h"
-#include "Datas/SqliteDBData.h"
+#include "Datas/DataMacros.h"
+#include "Datas/dao/DAO.h"
+#include "Datas/dao/CocosDataDAO.h"
+#include "Datas/dao/CocosSqliteDAO.h"
+#include "Datas/dao/JSONDataDAO.h"
+#include "Datas/dao/JSONSqliteDAO.h"
+#include "Datas/dao/DAOFactory.h"
 
 //FSM
 #include "FSM/Common/FSMState.h"

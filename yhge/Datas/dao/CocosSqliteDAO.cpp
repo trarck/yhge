@@ -1,29 +1,29 @@
-#include "CocosDAO.h"
+#include "CocosSqliteDAO.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE_SQLITE;
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_DATA_BEGIN
 
 static const char* kSqlSeprate=",";
 static const char* kSqlFieldQuto="`";
 static const char* kSqlNullValue="null";
 static const char* kSqlDefaultPrepareFlag=":";
 
-CocosDAO::CocosDAO()
+CocosSqliteDAO::CocosSqliteDAO()
 :m_driver(NULL)
 ,m_prepareFlag(kSqlDefaultPrepareFlag)
 {
 
 }
 
-CocosDAO::~CocosDAO()
+CocosSqliteDAO::~CocosSqliteDAO()
 {
     CC_SAFE_RELEASE_NULL(m_driver);
 }
 
 
-bool CocosDAO::init()
+bool CocosSqliteDAO::init()
 {
     sqlite::SqliteDriver* sqliteDriver=new sqlite::SqliteDriver();
     
@@ -32,7 +32,7 @@ bool CocosDAO::init()
     return true;
 }
 
-bool CocosDAO::init(const std::string& dbPath,int flag)
+bool CocosSqliteDAO::init(const std::string& dbPath,int flag)
 {
     sqlite::SqliteDriver* sqliteDriver=new sqlite::SqliteDriver();
     
@@ -43,7 +43,14 @@ bool CocosDAO::init(const std::string& dbPath,int flag)
     return true;
 }
 
-int CocosDAO::fetchNumber(const std::string& querySql)
+bool CocosSqliteDAO::init(CocosSqliteDriver* driver)
+{
+    setDriver(driver);
+    
+    return true;
+}
+
+int CocosSqliteDAO::fetchNumber(const std::string& querySql)
 {
     Statement stmt(*(m_driver->getPtr()),querySql);
     
@@ -57,7 +64,7 @@ int CocosDAO::fetchNumber(const std::string& querySql)
     return 0;
 }
 
-CCArray* CocosDAO::fetchAll(const std::string& querySql)
+CCArray* CocosSqliteDAO::fetchAll(const std::string& querySql)
 {
     Statement stmt(*(m_driver->getPtr()), querySql);
     
@@ -80,7 +87,7 @@ CCArray* CocosDAO::fetchAll(const std::string& querySql)
     
 }
 
-CCDictionary* CocosDAO::fetchOne(const std::string& querySql)
+CCDictionary* CocosSqliteDAO::fetchOne(const std::string& querySql)
 {
     Statement stmt(*(m_driver->getPtr()), querySql);
     
@@ -97,22 +104,22 @@ CCDictionary* CocosDAO::fetchOne(const std::string& querySql)
     return result;
 }
 
-int CocosDAO::insert(const std::string& insertSql)
+int CocosSqliteDAO::insert(const std::string& insertSql)
 {
     return m_driver->getPtr()->execute(insertSql);
 }
 
-int CocosDAO::update(const std::string& updateSql)
+int CocosSqliteDAO::update(const std::string& updateSql)
 {
     return m_driver->getPtr()->execute(updateSql);
 }
 
-int CocosDAO::remove(const std::string& deleteSql)
+int CocosSqliteDAO::remove(const std::string& deleteSql)
 {
     return m_driver->getPtr()->execute(deleteSql);
 }
 
-int CocosDAO::insert(const std::string& table,CCDictionary* data)
+int CocosSqliteDAO::insert(const std::string& table,CCDictionary* data)
 {
     //生成sql
     std::string insertSql = "INSERT INTO "+table+" ";
@@ -133,7 +140,7 @@ int CocosDAO::insert(const std::string& table,CCDictionary* data)
     return stmt.execute();
 }
 
-void CocosDAO::batchInsert(const std::string& table,CCArray* data)
+void CocosSqliteDAO::batchInsert(const std::string& table,CCArray* data)
 {
     //准备sql
     std::string insertSql = "INSERT INTO "+table+" ";
@@ -167,7 +174,7 @@ void CocosDAO::batchInsert(const std::string& table,CCArray* data)
     }
 }
 
-int CocosDAO::update(const std::string& table,CCDictionary* data,CCDictionary* where)
+int CocosSqliteDAO::update(const std::string& table,CCDictionary* data,CCDictionary* where)
 {
     //生成sql
     std::string updateSql = "UPDATE "+table+" SET ";
@@ -223,7 +230,7 @@ int CocosDAO::update(const std::string& table,CCDictionary* data,CCDictionary* w
     }
 }
 
-int CocosDAO::remove(const std::string& table,CCDictionary* where)
+int CocosSqliteDAO::remove(const std::string& table,CCDictionary* where)
 {
     //生成sql
     std::string deleteSql = "DELETE FROM "+table+" WHERE ";
@@ -261,7 +268,7 @@ int CocosDAO::remove(const std::string& table,CCDictionary* where)
  
  
  */
-std::string CocosDAO::formateToInsertPrepare(CCDictionary* data)
+std::string CocosSqliteDAO::formateToInsertPrepare(CCDictionary* data)
 {
     
     
@@ -308,7 +315,7 @@ std::string CocosDAO::formateToInsertPrepare(CCDictionary* data)
  `a`=:a,`b`=:b,`c`=:c
  
  */
-std::string CocosDAO::formateToEqualPrepare(CCDictionary* data)
+std::string CocosSqliteDAO::formateToEqualPrepare(CCDictionary* data)
 {
     std::string prepareStr="";
     
@@ -360,7 +367,7 @@ std::string CocosDAO::formateToEqualPrepare(CCDictionary* data)
  `a`=? AND (`b`=? OR `c`=?)
  
  */
-std::string CocosDAO::formateToConditionPrepare(CCDictionary* data,CCArray* whereData,const std::string& separator)
+std::string CocosSqliteDAO::formateToConditionPrepare(CCDictionary* data,CCArray* whereData,const std::string& separator)
 {
     
     std::string prepareStr="";
@@ -394,7 +401,7 @@ std::string CocosDAO::formateToConditionPrepare(CCDictionary* data,CCArray* wher
     return prepareStr;
 }
 
-void CocosDAO::setRecordValue(const sqlite::Column& col, CCDictionary* record)
+void CocosSqliteDAO::setRecordValue(const sqlite::Column& col, CCDictionary* record)
 {
     switch (col.getType()) {
         case SQLITE_INTEGER:
@@ -420,7 +427,7 @@ void CocosDAO::setRecordValue(const sqlite::Column& col, CCDictionary* record)
     }
 }
 //
-//void CocosDAO::bindStatement(Statement& stmt,const std::string& name,CCObject* val)
+//void CocosSqliteDAO::bindStatement(Statement& stmt,const std::string& name,CCObject* val)
 //{
 //    CCInteger* integerValue=dynamic_cast<CCInteger*>(val);
 //    if (integerValue) {
@@ -453,7 +460,7 @@ void CocosDAO::setRecordValue(const sqlite::Column& col, CCDictionary* record)
 //
 //}
 //
-//void CocosDAO::bindStatement(Statement& stmt,int index,CCObject* val)
+//void CocosSqliteDAO::bindStatement(Statement& stmt,int index,CCObject* val)
 //{
 //    CCInteger* integerValue=dynamic_cast<CCInteger*>(val);
 //    if (integerValue) {
@@ -486,7 +493,7 @@ void CocosDAO::setRecordValue(const sqlite::Column& col, CCDictionary* record)
 //}
 
 
-void CocosDAO::bindStatement(Statement& stmt,const std::string& name,SimpleValue* val)
+void CocosSqliteDAO::bindStatement(Statement& stmt,const std::string& name,SimpleValue* val)
 {
     
     switch (val->getType()) {
@@ -516,7 +523,7 @@ void CocosDAO::bindStatement(Statement& stmt,const std::string& name,SimpleValue
     }
 }
 
-void CocosDAO::bindStatement(Statement& stmt,int index,SimpleValue* val)
+void CocosSqliteDAO::bindStatement(Statement& stmt,int index,SimpleValue* val)
 {
     
     switch (val->getType()) {
@@ -546,4 +553,4 @@ void CocosDAO::bindStatement(Statement& stmt,int index,SimpleValue* val)
     }
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_DATA_END

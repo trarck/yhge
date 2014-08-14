@@ -1,29 +1,29 @@
-#include "JSONDAO.h"
+#include "JSONSqliteDAO.h"
 
 USING_NS_CC;
 
 USING_NS_CC_YHGE_SQLITE;
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_DATA_BEGIN
 
 static const char* kSqlSeprate=",";
 static const char* kSqlFieldQuto="`";
 static const char* kSqlNullValue="null";
 static const char* kSqlDefaultPrepareFlag=":";
 
-JSONDAO::JSONDAO()
+JSONSqliteDAO::JSONSqliteDAO()
 :m_driver(NULL)
 ,m_prepareFlag(kSqlDefaultPrepareFlag)
 {
 
 }
 
-JSONDAO::~JSONDAO()
+JSONSqliteDAO::~JSONSqliteDAO()
 {
     CC_SAFE_RELEASE_NULL(m_driver);
 }
 
-bool JSONDAO::init()
+bool JSONSqliteDAO::init()
 {
     sqlite::SqliteDriver* sqliteDriver=new sqlite::SqliteDriver();
     
@@ -32,7 +32,7 @@ bool JSONDAO::init()
     return true;
 }
 
-bool JSONDAO::init(const std::string& dbPath,int flag)
+bool JSONSqliteDAO::init(const std::string& dbPath,int flag)
 {
     sqlite::SqliteDriver* sqliteDriver=new sqlite::SqliteDriver();
     
@@ -43,7 +43,14 @@ bool JSONDAO::init(const std::string& dbPath,int flag)
     return true;
 }
 
-int JSONDAO::fetchNumber(const std::string& querySql)
+bool JSONSqliteDAO::init(CocosSqliteDriver* driver)
+{
+    setDriver(driver);
+    
+    return true;
+}
+
+int JSONSqliteDAO::fetchNumber(const std::string& querySql)
 {
     Statement stmt(*(m_driver->getPtr()),querySql);
     
@@ -58,7 +65,7 @@ int JSONDAO::fetchNumber(const std::string& querySql)
 }
 
 //带参数的查询
-int JSONDAO::fetchNumber(const std::string& querySql,const Json::Value& params)
+int JSONSqliteDAO::fetchNumber(const std::string& querySql,const Json::Value& params)
 {
     Statement stmt(*(m_driver->getPtr()),querySql);
     
@@ -79,7 +86,7 @@ int JSONDAO::fetchNumber(const std::string& querySql,const Json::Value& params)
     return 0;
 }
 
-Json::Value JSONDAO::fetchAll(const std::string& querySql)
+Json::Value JSONSqliteDAO::fetchAll(const std::string& querySql)
 {
     Statement stmt(*(m_driver->getPtr()), querySql);
     
@@ -103,7 +110,7 @@ Json::Value JSONDAO::fetchAll(const std::string& querySql)
 }
 
 //带参数的查询
-Json::Value JSONDAO::fetchAll(const std::string& querySql,const Json::Value& params)
+Json::Value JSONSqliteDAO::fetchAll(const std::string& querySql,const Json::Value& params)
 {
     Statement stmt(*(m_driver->getPtr()), querySql);
     
@@ -132,7 +139,7 @@ Json::Value JSONDAO::fetchAll(const std::string& querySql,const Json::Value& par
     return result;
 }
 
-Json::Value JSONDAO::fetchOne(const std::string& querySql)
+Json::Value JSONSqliteDAO::fetchOne(const std::string& querySql)
 {
     Statement stmt(*(m_driver->getPtr()), querySql);
     
@@ -150,7 +157,7 @@ Json::Value JSONDAO::fetchOne(const std::string& querySql)
 }
 
 //带参数的查询
-Json::Value JSONDAO::fetchOne(const std::string& querySql,const Json::Value& params)
+Json::Value JSONSqliteDAO::fetchOne(const std::string& querySql,const Json::Value& params)
 {
     Statement stmt(*(m_driver->getPtr()), querySql);
     
@@ -174,7 +181,7 @@ Json::Value JSONDAO::fetchOne(const std::string& querySql,const Json::Value& par
     return result;
 }
 
-Json::Value JSONDAO::load(const std::string& querySql)
+Json::Value JSONSqliteDAO::load(const std::string& querySql)
 {
     Statement stmt(*(m_driver->getPtr()), querySql);
     
@@ -192,7 +199,7 @@ Json::Value JSONDAO::load(const std::string& querySql)
 }
 
 //带参数的查询
-Json::Value JSONDAO::load(const std::string& querySql,int value)
+Json::Value JSONSqliteDAO::load(const std::string& querySql,int value)
 {
     Statement stmt(*(m_driver->getPtr()), querySql);
     
@@ -213,7 +220,7 @@ Json::Value JSONDAO::load(const std::string& querySql,int value)
 }
 
 //带参数的查询
-Json::Value JSONDAO::load(const std::string& querySql,const std::string& value)
+Json::Value JSONSqliteDAO::load(const std::string& querySql,const std::string& value)
 {
     Statement stmt(*(m_driver->getPtr()), querySql);
     
@@ -233,22 +240,22 @@ Json::Value JSONDAO::load(const std::string& querySql,const std::string& value)
     return result;
 }
 
-int JSONDAO::insert(const std::string& insertSql)
+int JSONSqliteDAO::insert(const std::string& insertSql)
 {
     return m_driver->getPtr()->execute(insertSql);
 }
 
-int JSONDAO::update(const std::string& updateSql)
+int JSONSqliteDAO::update(const std::string& updateSql)
 {
     return m_driver->getPtr()->execute(updateSql);
 }
 
-int JSONDAO::remove(const std::string& deleteSql)
+int JSONSqliteDAO::remove(const std::string& deleteSql)
 {
     return m_driver->getPtr()->execute(deleteSql);
 }
 
-int JSONDAO::insert(const std::string& table,const Json::Value& data)
+int JSONSqliteDAO::insert(const std::string& table,const Json::Value& data)
 {
     //生成sql
     std::string insertSql = "INSERT INTO "+table+" ";
@@ -269,7 +276,7 @@ int JSONDAO::insert(const std::string& table,const Json::Value& data)
     return stmt.execute();
 }
 
-void JSONDAO::batchInsert(const std::string& table,const Json::Value& data)
+void JSONSqliteDAO::batchInsert(const std::string& table,const Json::Value& data)
 {
     //准备sql
     std::string insertSql = "INSERT INTO "+table+" ";
@@ -303,7 +310,7 @@ void JSONDAO::batchInsert(const std::string& table,const Json::Value& data)
     }
 }
 
-int JSONDAO::update(const std::string& table,const Json::Value& data,const Json::Value& where)
+int JSONSqliteDAO::update(const std::string& table,const Json::Value& data,const Json::Value& where)
 {
     //生成sql
     std::string updateSql = "UPDATE "+table+" SET ";
@@ -360,7 +367,7 @@ int JSONDAO::update(const std::string& table,const Json::Value& data,const Json:
     }
 }
 
-int JSONDAO::remove(const std::string& table,const Json::Value& where)
+int JSONSqliteDAO::remove(const std::string& table,const Json::Value& where)
 {
     //生成sql
     std::string deleteSql = "DELETE FROM "+table+" WHERE ";
@@ -398,7 +405,7 @@ int JSONDAO::remove(const std::string& table,const Json::Value& where)
  
  
  */
-std::string JSONDAO::formateToInsertPrepare(const Json::Value& data)
+std::string JSONSqliteDAO::formateToInsertPrepare(const Json::Value& data)
 {
     
     std::string fields="(";
@@ -443,7 +450,7 @@ std::string JSONDAO::formateToInsertPrepare(const Json::Value& data)
  `a`=:a,`b`=:b,`c`=:c
  
  */
-std::string JSONDAO::formateToEqualPrepare(const Json::Value& data)
+std::string JSONSqliteDAO::formateToEqualPrepare(const Json::Value& data)
 {
     
     std::string prepareStr="";
@@ -496,7 +503,7 @@ std::string JSONDAO::formateToEqualPrepare(const Json::Value& data)
  `a`=? AND (`b`=? OR `c`=?)
  
  */
-std::string JSONDAO::formateToConditionPrepare(const Json::Value& data,Json::Value& whereData,const std::string& separator)
+std::string JSONSqliteDAO::formateToConditionPrepare(const Json::Value& data,Json::Value& whereData,const std::string& separator)
 {
 
     std::string prepareStr="";
@@ -528,7 +535,7 @@ std::string JSONDAO::formateToConditionPrepare(const Json::Value& data,Json::Val
     return prepareStr;
 }
 
-void JSONDAO::setRecordValue(const sqlite::Column& col, Json::Value& record)
+void JSONSqliteDAO::setRecordValue(const sqlite::Column& col, Json::Value& record)
 {
     switch (col.getType()) {
         case SQLITE_INTEGER:
@@ -554,7 +561,7 @@ void JSONDAO::setRecordValue(const sqlite::Column& col, Json::Value& record)
     }
 }
 
-void JSONDAO::bindStatement(Statement& stmt,const std::string& name,const Json::Value& val)
+void JSONSqliteDAO::bindStatement(Statement& stmt,const std::string& name,const Json::Value& val)
 {
     switch (val.type()) {
         case Json::intValue:
@@ -577,7 +584,7 @@ void JSONDAO::bindStatement(Statement& stmt,const std::string& name,const Json::
     }
 }
 
-void JSONDAO::bindStatement(Statement& stmt,int index,const Json::Value& val)
+void JSONSqliteDAO::bindStatement(Statement& stmt,int index,const Json::Value& val)
 {
     switch (val.type()) {
         case Json::intValue:
@@ -602,4 +609,4 @@ void JSONDAO::bindStatement(Statement& stmt,int index,const Json::Value& val)
 
 
 
-NS_CC_YHGE_END
+NS_CC_YHGE_DATA_END

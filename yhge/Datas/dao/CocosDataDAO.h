@@ -1,17 +1,17 @@
-#ifndef YHGE_DATAS_COCOSDATA_H_
-#define YHGE_DATAS_COCOSDATA_H_
+#ifndef YHGE_DATAS_DAO_COCOSDATADAO_H_
+#define YHGE_DATAS_DAO_COCOSDATADAO_H_
 
-#include "BaseData.h"
+#include "DAO.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_DATA_BEGIN
 
-class CocosData:public BaseData
+class CocosDataDAO:public DAO
 {
 public:
     
-	CocosData();
+	CocosDataDAO();
     
-	~CocosData();
+	~CocosDataDAO();
     
     bool init();
     
@@ -100,8 +100,8 @@ protected:
     
 };
 
-NS_CC_YHGE_END
+NS_CC_YHGE_DATA_END
 
 
 
-#endif //YHGE_DATAS_COCOSDATA_H_
+#endif //YHGE_DATAS_DAO_COCOSDATADAO_H_

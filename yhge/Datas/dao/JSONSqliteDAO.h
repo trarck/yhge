@@ -1,27 +1,30 @@
-#ifndef YHGE_DATAS_DB_JSONDAO_H_
-#define YHGE_DATAS_DB_JSONDAO_H_
+#ifndef YHGE_DATA_DAO_JSONSQLITEDAO_H_
+#define YHGE_DATA_DAO_JSONSQLITEDAO_H_
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
 #include <yhge/Jsoncpp/json.h>
 #include <yhge/Sqlite/SqliteDriver.h>
 #include <yhge/CocosExt/CCRef.h>
+#include "DAO.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_DATA_BEGIN
 
 typedef CCRef<sqlite::SqliteDriver> CocosSqliteDriver;
 
-class JSONDAO:public CCObject
+class JSONSqliteDAO:public DAO
 {
 public:
     
-	JSONDAO();
+	JSONSqliteDAO();
     
-	~JSONDAO();
+	~JSONSqliteDAO();
     
     bool init();
     
     bool init(const std::string& dbPath,int flag);
+    
+    bool init(CocosSqliteDriver* driver);
     
     /**
      * @brief 取得第一行第一列的值。为了方便count(*)
@@ -214,6 +217,13 @@ public:
         return m_driver;
     }
     
+    inline void setDriver(CocosSqliteDriver* driver)
+    {
+        CC_SAFE_RETAIN(driver);
+        CC_SAFE_RELEASE(m_driver);
+        m_driver = driver;
+    }
+    
     inline void setPrepareFlag(const std::string& prepareFlag)
     {
         m_prepareFlag = prepareFlag;
@@ -231,8 +241,8 @@ protected:
     std::string m_prepareFlag;
 };
 
-NS_CC_YHGE_END
+NS_CC_YHGE_DATA_END
 
 
 
-#endif //YHGE_DATAS_DB_JSONDAO_H_
+#endif //YHGE_DATA_DAO_JSONSQLITEDAO_H_

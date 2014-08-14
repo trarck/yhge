@@ -1,12 +1,12 @@
-#ifndef YHGE_DATAS_DB_DAOFactory_H_
-#define YHGE_DATAS_DB_DAOFactory_H_
+#ifndef YHGE_DATA_DAO_DAOFactory_H_
+#define YHGE_DATA_DAO_DAOFactory_H_
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
-#include "JSONDAO.h"
-#include "CocosDAO.h"
+#include "JSONSqliteDAO.h"
+#include "CocosSqliteDAO.h"
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_DATA_BEGIN
 
 class DAOFactory:public CCObject
 {
@@ -20,9 +20,9 @@ public:
     
     static DAOFactory* getInstance();
     
-    JSONDAO* getJsonDao(const std::string& dbPath);
+    JSONSqliteDAO* getJsonDao(const std::string& dbPath);
     
-    CocosDAO* getCocosDao(const std::string& dbPath);
+    CocosSqliteDAO* getCocosDao(const std::string& dbPath);
     
 public:
     
@@ -46,8 +46,8 @@ protected:
     
 };
 
-NS_CC_YHGE_END
+NS_CC_YHGE_DATA_END
 
 
 
-#endif //YHGE_DATAS_DB_DAOFactory_H_
+#endif //YHGE_DATA_DAO_DAOFactory_H_

@@ -4,7 +4,7 @@
 USING_NS_CC;
 
 
-NS_CC_YHGE_BEGIN
+NS_CC_YHGE_DATA_BEGIN
 
 static DAOFactory* sDaoFactoryInstance=NULL;
 
@@ -41,12 +41,12 @@ DAOFactory* DAOFactory::getInstance()
     return sDaoFactoryInstance;
 }
 
-JSONDAO* DAOFactory::getJsonDao(const std::string& dbPath)
+JSONSqliteDAO* DAOFactory::getJsonDao(const std::string& dbPath)
 {
-    JSONDAO* dao=static_cast<JSONDAO*>(m_jsonDaos->objectForKey(dbPath));
+    JSONSqliteDAO* dao=static_cast<JSONSqliteDAO*>(m_jsonDaos->objectForKey(dbPath));
     
     if (!dao) {
-        dao=new JSONDAO();
+        dao=new JSONSqliteDAO();
         dao->init(dbPath, m_openFlag);
         
         m_jsonDaos->setObject(dao, dbPath);
@@ -55,12 +55,12 @@ JSONDAO* DAOFactory::getJsonDao(const std::string& dbPath)
     return dao;
 }
 
-CocosDAO* DAOFactory::getCocosDao(const std::string& dbPath)
+CocosSqliteDAO* DAOFactory::getCocosDao(const std::string& dbPath)
 {
-    CocosDAO* dao=static_cast<CocosDAO*>(m_cocosDaos->objectForKey(dbPath));
+    CocosSqliteDAO* dao=static_cast<CocosSqliteDAO*>(m_cocosDaos->objectForKey(dbPath));
     
     if (!dao) {
-        dao=new CocosDAO();
+        dao=new CocosSqliteDAO();
         dao->init(dbPath, m_openFlag);
         
         m_cocosDaos->setObject(dao, dbPath);
@@ -69,4 +69,4 @@ CocosDAO* DAOFactory::getCocosDao(const std::string& dbPath)
     return dao;
 }
 
-NS_CC_YHGE_END
+NS_CC_YHGE_DATA_END
