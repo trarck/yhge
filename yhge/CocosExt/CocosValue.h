@@ -3,8 +3,8 @@
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
-#include "Support/CCVector.h"
-#include "Support/CCMap.h"
+#include "Support/Vector.h"
+#include "Support/Map.h"
 
 NS_CC_YHGE_BEGIN
 
