@@ -119,6 +119,28 @@ public:
     }
     
     
+    void push_back(T value)
+    {
+        CCAssert(value != NULL, "The object should not be NULL");
+        m_data.push_back(value);
+        value->retain();
+    }
+    
+    void pop_front()
+    {
+        iterator front=m_data.front();
+        m_data.pop_front();
+        front->release();
+    }
+    
+    void pop_back()
+    {
+        iterator last=m_data.back();
+        m_data.pop_back();
+        last->release();
+    }
+    
+    
     void insert(iterator position,T value)
     {
         m_data.insert(position,value);
