@@ -474,7 +474,7 @@ template <typename Type>
 LinkedList<Type> &LinkedList<Type>::operator=(const LinkedList &list)
 {
     // avoid self-assignment
-    if (&list != this) { return *this; }
+    if (&list == this) { return *this; }
 
     // copy all elements from [list]
     assign(list.begin(), list.end());
