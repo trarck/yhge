@@ -37,9 +37,19 @@ class FSMMachine;
 class FSMState:public CCObject 
 {
 public:
+    
+    FSMState()
+    :m_fSMMachine(NULL)
+    ,m_type(0)
+    {
+        
+    }
+    
     virtual bool init();
     
     virtual bool init(FSMMachine* fsmMachine);
+    
+    virtual bool init(FSMMachine* fsmMachine,int type);
     
 	virtual void enter();
     virtual void exit();
@@ -59,9 +69,21 @@ public:
         return m_fSMMachine;
     }
     
+    inline void setType(int type)
+    {
+        m_type = type;
+    }
+    
+    inline int getType()
+    {
+        return m_type;
+    }
+    
 protected:
     //如果state使用单例，则不要设置该值
     FSMMachine* m_fSMMachine;
+    
+    int m_type;
 };
 
 NS_CC_YHGE_END

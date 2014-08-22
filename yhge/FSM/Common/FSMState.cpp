@@ -13,6 +13,13 @@ bool FSMState::init(FSMMachine* fsmMachine)
     return true;
 }
 
+bool FSMState::init(FSMMachine* fsmMachine,int type)
+{
+    m_fSMMachine=fsmMachine;
+    m_type=type;
+    return true;
+}
+
 void FSMState::enter()
 {
 //	CCLOG("FSMState enter");
