@@ -88,9 +88,6 @@
     <Filter Include="Jsoncpp">
       <UniqueIdentifier>{ae693235-a7e9-43ea-8a4a-526d3a86c36f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Datas\db">
-      <UniqueIdentifier>{7441cf49-bebb-4ca7-acc3-ccdea45eb45a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Dimetric">
       <UniqueIdentifier>{aab1697a-05b6-4d6f-8b23-fed9fbb35277}</UniqueIdentifier>
     </Filter>
@@ -108,6 +105,9 @@
     </Filter>
     <Filter Include="IO">
       <UniqueIdentifier>{53547458-6af1-486f-8315-c4ce70b42514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Datas\dao">
+      <UniqueIdentifier>{af3eb7b1-7fe2-4e09-b41d-7f3f6d4245ed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -435,15 +435,6 @@
     <ClInclude Include="..\yhge\CocosExt\Support\CCValue.h">
       <Filter>CocosExt\Support</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\Datas\BaseData.h">
-      <Filter>Datas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Datas\CocosData.h">
-      <Filter>Datas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Datas\JSONData.h">
-      <Filter>Datas</Filter>
-    </ClInclude>
     <ClInclude Include="..\yhge\Jsoncpp\autolink.h">
       <Filter>Jsoncpp</Filter>
     </ClInclude>
@@ -498,15 +489,6 @@
     <ClInclude Include="..\yhge\CocosExt\JsonObject.h">
       <Filter>CocosExt</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\Datas\SqliteDBData.h">
-      <Filter>Datas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Datas\db\CocosDAO.h">
-      <Filter>Datas\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Datas\db\JSONDAO.h">
-      <Filter>Datas\db</Filter>
-    </ClInclude>
     <ClInclude Include="..\yhge\Dimetric\DimetricMacros.h">
       <Filter>Dimetric</Filter>
     </ClInclude>
@@ -527,9 +509,6 @@
     </ClInclude>
     <ClInclude Include="..\yhge\EntityComponent\Components\EightDirectionAnimationComponent.h">
       <Filter>EntityComponent\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Datas\db\DAOFactory.h">
-      <Filter>Datas\db</Filter>
     </ClInclude>
     <ClInclude Include="..\yhge\DataStructure\DataStructureMacros.h">
       <Filter>DataStructure</Filter>
@@ -623,6 +602,27 @@
     </ClInclude>
     <ClInclude Include="..\yhge\EntityComponent\Managers\ECManager.h">
       <Filter>EntityComponent\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\dao\CocosDataDAO.h">
+      <Filter>Datas\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\dao\CocosSqliteDAO.h">
+      <Filter>Datas\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\dao\DAO.h">
+      <Filter>Datas\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\dao\DAOFactory.h">
+      <Filter>Datas\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\dao\JSONDataDAO.h">
+      <Filter>Datas\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\dao\JSONSqliteDAO.h">
+      <Filter>Datas\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\DataMacros.h">
+      <Filter>Datas</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -893,15 +893,6 @@
     <ClCompile Include="..\yhge\CocosExt\Support\CCValue.cpp">
       <Filter>CocosExt\Support</Filter>
     </ClCompile>
-    <ClCompile Include="..\yhge\Datas\BaseData.cpp">
-      <Filter>Datas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Datas\CocosData.cpp">
-      <Filter>Datas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Datas\JSONData.cpp">
-      <Filter>Datas</Filter>
-    </ClCompile>
     <ClCompile Include="..\yhge\Jsoncpp\json_reader.cpp">
       <Filter>Jsoncpp</Filter>
     </ClCompile>
@@ -935,15 +926,6 @@
     <ClCompile Include="..\yhge\CocosExt\JsonObject.cpp">
       <Filter>CocosExt</Filter>
     </ClCompile>
-    <ClCompile Include="..\yhge\Datas\SqliteDBData.cpp">
-      <Filter>Datas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Datas\db\CocosDAO.cpp">
-      <Filter>Datas\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Datas\db\JSONDAO.cpp">
-      <Filter>Datas\db</Filter>
-    </ClCompile>
     <ClCompile Include="..\yhge\Dimetric\StaticSideViewCoordinateFormulae.cpp">
       <Filter>Dimetric</Filter>
     </ClCompile>
@@ -955,9 +937,6 @@
     </ClCompile>
     <ClCompile Include="..\yhge\EntityComponent\Components\EightDirectionAnimationComponent.cpp">
       <Filter>EntityComponent\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Datas\db\DAOFactory.cpp">
-      <Filter>Datas\db</Filter>
     </ClCompile>
     <ClCompile Include="..\yhge\Time\Scheduler.cpp">
       <Filter>Time</Filter>
@@ -1030,6 +1009,24 @@
     </ClCompile>
     <ClCompile Include="..\yhge\EntityComponent\Managers\ECManager.cpp">
       <Filter>EntityComponent\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\dao\CocosDataDAO.cpp">
+      <Filter>Datas\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\dao\CocosSqliteDAO.cpp">
+      <Filter>Datas\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\dao\DAO.cpp">
+      <Filter>Datas\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\dao\DAOFactory.cpp">
+      <Filter>Datas\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\dao\JSONDataDAO.cpp">
+      <Filter>Datas\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\dao\JSONSqliteDAO.cpp">
+      <Filter>Datas\dao</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
