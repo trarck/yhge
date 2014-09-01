@@ -90,6 +90,7 @@
 #include "FSM/Common/FSMMachine.h"
 
 //animation
+#include "Animation/AnimationMacros.h"
 #include "Animation/Resource.h"
 #include "Animation/Character.h"
 #include "Animation/DisplayProperty.h"
