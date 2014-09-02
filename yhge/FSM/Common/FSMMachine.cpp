@@ -67,13 +67,16 @@ FSMState* FSMMachine::getState(unsigned int key)
 
 void FSMMachine::changeState(FSMState* state)
 {
-	if(m_pCurrentState) m_pCurrentState->exit();
-	
-    setLastState(m_pCurrentState);
-    setCurrentState(state);
-    
-	if(state) state->enter();
-
+    if (m_pCurrentState!=state) {
+        
+        setLastState(m_pCurrentState);
+        
+        if(m_pCurrentState) m_pCurrentState->exit();
+        
+        setCurrentState(state);
+        
+        if(state) state->enter();
+    }
 }
 
 void FSMMachine::changeState(unsigned int key)
