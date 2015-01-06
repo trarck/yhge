@@ -150,6 +150,8 @@ bool Astar::checkNearby()
 					if (g < searchedNode->getG()) {
 						//有最小F值，重新排序
 						setOpenSeqNode(searchedNode,g);
+						//重新指定路径
+						searchedNode->setParent(m_current);
 					}
 				}else {
 					//没有搜索过，直接添加到开起列表中
