@@ -83,9 +83,9 @@ bool SceenCoordMoveComponent::registerMessages()
     if(Component::registerMessages()){
         MessageManager* messageManager=MessageManager::defaultManager();
         
-        messageManager->registerReceiver(_owner, MSG_MOVE_DIRECTION, NULL, message_selector(SceenCoordMoveComponent::onMoveDirection),this);
-        messageManager->registerReceiver(_owner, MSG_MOVE_STOP, NULL, message_selector(SceenCoordMoveComponent::onMoveStop),this);
-        messageManager->registerReceiver(_owner, MSG_MOVE_TO, NULL, message_selector(SceenCoordMoveComponent::onMoveTo),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_DIRECTION, NULL, MESSAGE_SELECTOR(SceenCoordMoveComponent::onMoveDirection),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_STOP, NULL, MESSAGE_SELECTOR(SceenCoordMoveComponent::onMoveStop),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_TO, NULL, MESSAGE_SELECTOR(SceenCoordMoveComponent::onMoveTo),this);
         
         return true;
     }

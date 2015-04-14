@@ -115,10 +115,10 @@ bool GridMoveComponent::registerMessages()
     if(Component::registerMessages()){
         MessageManager* messageManager=MessageManager::defaultManager();
         
-        messageManager->registerReceiver(_owner, MSG_MOVE_DIRECTION, NULL, message_selector(GridMoveComponent::onMoveWithDirection),this);
-        messageManager->registerReceiver(_owner, MSG_MOVE_PATH, NULL, message_selector(GridMoveComponent::onMoveWithPath),this);
-        messageManager->registerReceiver(_owner, MSG_MOVE_PATH_FROM, NULL, message_selector(GridMoveComponent::onMoveWithPathFrom),this);
-        messageManager->registerReceiver(_owner, MSG_MOVE_STOP, NULL, message_selector(GridMoveComponent::onMoveStop),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_DIRECTION, NULL, MESSAGE_SELECTOR(GridMoveComponent::onMoveWithDirection),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_PATH, NULL, MESSAGE_SELECTOR(GridMoveComponent::onMoveWithPath),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_PATH_FROM, NULL, MESSAGE_SELECTOR(GridMoveComponent::onMoveWithPathFrom),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_STOP, NULL, MESSAGE_SELECTOR(GridMoveComponent::onMoveStop),this);
         
         return true;
     }

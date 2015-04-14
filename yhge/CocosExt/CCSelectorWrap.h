@@ -13,7 +13,7 @@ class CCSelectorWrap : public Ref {
 public:
     
 	inline CCSelectorWrap()
-        :_pTarget(NULL)
+        :_target(NULL)
 		,_selector(NULL)
         ,_data(NULL)
 	{
@@ -33,20 +33,20 @@ public:
 
     inline void execute(){
         if(_selector){
-		    (_pTarget->*_selector)(_data);
+		    (_target->*_selector)(_data);
 	    }
     }
 
     inline Ref* getTarget()
 	{
-		return _pTarget;
+		return _target;
 	}
 
 	inline void setTarget(Ref* pTarget)
 	{
 		CC_SAFE_RETAIN(pTarget);
-		CC_SAFE_RELEASE(_pTarget);
-		_pTarget=pTarget;
+		CC_SAFE_RELEASE(_target);
+		_target=pTarget;
 	}
 
 	inline SEL_SelectorWrapD getSelector()
@@ -72,7 +72,7 @@ public:
     }
 
 protected:
-	Ref* _pTarget;
+	Ref* _target;
 	SEL_SelectorWrapD _selector;
     Ref* _data;
 };

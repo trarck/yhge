@@ -20,7 +20,7 @@ EventHandleD::~EventHandleD()
 void EventHandleD::execute(Event *event)
 {
 	if(_handle){
-		(_pTarget->*_handleD)(event,_data);
+		(_target->*_handleD)(event,_data);
 	}
 }
 

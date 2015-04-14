@@ -19,7 +19,7 @@ class EventHandle : public Ref {
 public:
     
 	inline EventHandle()
-		:_pTarget(NULL),
+		:_target(NULL),
 		 _handle(NULL)
 	{
 		CCLOG("EventHandle create");
@@ -29,14 +29,14 @@ public:
 
 	inline Ref* getTarget()
 	{
-		return _pTarget;
+		return _target;
 	}
 
 	inline void setTarget(Ref* pTarget)
 	{
 		CC_SAFE_RETAIN(pTarget);
-		CC_SAFE_RELEASE(_pTarget);
-		_pTarget=pTarget;
+		CC_SAFE_RELEASE(_target);
+		_target=pTarget;
 	}
 
 	inline SEL_EventHandle getHandle()
@@ -62,12 +62,12 @@ public:
 	inline void execute(yhge::Event *event)
 	{
 		if(_handle){
-			(_pTarget->*_handle)(event);
+			(_target->*_handle)(event);
 		}
 	}
 
 protected:
-	Ref* _pTarget;
+	Ref* _target;
 	SEL_EventHandle _handle;
 };
 
@@ -75,7 +75,7 @@ protected:
 //public:
 //    
 //	EventHandleD()
-//		:_pTarget(NULL),
+//		:_target(NULL),
 //		 _handle(NULL)
 //	{
 //		CCLOG("EventHandle create");
@@ -86,13 +86,13 @@ protected:
 //    inline void execute(Event *event)
 //	{
 //		if(_handle){
-//			(_pTarget->*_handle)(event);
+//			(_target->*_handle)(event);
 //		}
 //	}
 //    
 //private:
 //
-//    Ref* _pData;
+//    Ref* _data;
 //
 //};
 

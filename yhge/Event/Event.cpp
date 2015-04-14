@@ -5,7 +5,7 @@ NS_CC_YHGE_BEGIN
 Event::Event()
 :_sType("")
 ,_iType(0)
-,_pTarget(NULL)
+,_target(NULL)
 ,_pCurrentTarget(NULL)
 ,_nEventPhase(0)
 ,_bBubbles(true)
@@ -13,14 +13,14 @@ Event::Event()
 ,_nTimeStamp(0)
 ,_bDispatchStopped(false)
 ,_bNoDefault(false)
-,_pData(NULL)
+,_data(NULL)
 {
 
 }
 
 Event::~Event()
 {
-    CC_SAFE_RELEASE(_pTarget);
+    CC_SAFE_RELEASE(_target);
     CC_SAFE_RELEASE(_pCurrentTarget);
 }
 

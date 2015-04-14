@@ -18,7 +18,7 @@ class EventHandleWrap : public Ref {
 public:
     
 	inline EventHandleWrap()
-        :_pTarget(NULL)
+        :_target(NULL)
 		,_handle(NULL)
         ,_data(NULL)
 	{
@@ -29,20 +29,20 @@ public:
 
     inline void handle(yhge::Event* event){
         if(_handle){
-		    (_pTarget->*_handle)(event,_data);
+		    (_target->*_handle)(event,_data);
 	    }
     }
 
     inline Ref* getTarget()
 	{
-		return _pTarget;
+		return _target;
 	}
 
 	inline void setTarget(Ref* pTarget)
 	{
 		CC_SAFE_RETAIN(pTarget);
-		CC_SAFE_RELEASE(_pTarget);
-		_pTarget=pTarget;
+		CC_SAFE_RELEASE(_target);
+		_target=pTarget;
 	}
 
 	inline SEL_EventHandleD getHandle()
@@ -76,7 +76,7 @@ public:
     }
 
 protected:
-	Ref* _pTarget;
+	Ref* _target;
 	SEL_EventHandleD _handle;
     Ref* _data;
 };

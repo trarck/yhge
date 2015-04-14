@@ -14,13 +14,13 @@ class Message;
 
 //定义处理函数类型
 typedef void (Ref::*SEL_MessageHandler)(Message*);
-#define message_selector(_SELECTOR) (SEL_MessageHandler)(&_SELECTOR)
+#define MESSAGE_SELECTOR(_SELECTOR) static_cast<cocos2d::yhge::SEL_MessageHandler>(&_SELECTOR)
 
 class MessageHandler : public Ref {
 public:
     
 	MessageHandler()
-		:_pTarget(NULL),
+		:_target(NULL),
 		 _handle(NULL)
 	{
 		//CCLOG("MessageHandler create");
@@ -30,14 +30,14 @@ public:
 
 	Ref* getTarget()
 	{
-		return _pTarget;
+		return _target;
 	}
 
 	void setTarget(Ref* pTarget)
 	{
 		CC_SAFE_RETAIN(pTarget);
-		CC_SAFE_RELEASE(_pTarget);
-		_pTarget=pTarget;
+		CC_SAFE_RELEASE(_target);
+		_target=pTarget;
 	}
 
 	SEL_MessageHandler getHandle()
@@ -60,12 +60,12 @@ public:
 	void execute(Message *msg)
 	{
 		if(_handle){
-			(_pTarget->*_handle)(msg);
+			(_target->*_handle)(msg);
 		}
 	}
 
 private:
-	Ref* _pTarget;
+	Ref* _target;
 	SEL_MessageHandler _handle;
 };
 

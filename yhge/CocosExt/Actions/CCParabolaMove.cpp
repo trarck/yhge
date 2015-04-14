@@ -76,14 +76,14 @@ void CCParabolaMove::step(float delta)
 
 void CCParabolaMove::update(float t)
 {
-    if (_pTarget)
+    if (_target)
     {
         float sx=_tSpeed.x*_elapsed;
         float sy=_tSpeed.y*_elapsed+0.5*_fGravity*_elapsed*_elapsed;
 
         CCPoint newPos=ccp(_startPosition.x+sx,_startPosition.y+sy);
 
-        _pTarget->setPosition(newPos);
+        _target->setPosition(newPos);
         _previousPosition = newPos;
 
     }
@@ -172,7 +172,7 @@ void CCParabolaMoveTo::startWithTarget(CCNode *pTarget)
 
 void CCParabolaMoveTo::stop()
 {
-    _pTarget->setPosition(_endPosition);
+    _target->setPosition(_endPosition);
     CCParabolaMove::stop();
 }
 

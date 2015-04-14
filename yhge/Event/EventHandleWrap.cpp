@@ -12,7 +12,7 @@ NS_CC_YHGE_BEGIN
 
 EventHandleWrap::~EventHandleWrap()
 {
-     CC_SAFE_RELEASE(_pTarget);
+     CC_SAFE_RELEASE(_target);
     CC_SAFE_RELEASE(_data);
 }
 

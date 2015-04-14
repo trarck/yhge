@@ -28,7 +28,7 @@ bool AutoAttackComponent::registerMessages()
 {
 
     if(AttackComponent::registerMessages()){
-        this->getMessageManager()->registerReceiver(_owner, MSG_AUTO_ATTACK, NULL, message_selector(AutoAttackComponent::onAutoAttack));
+        this->getMessageManager()->registerReceiver(_owner, MSG_AUTO_ATTACK, NULL, MESSAGE_SELECTOR(AutoAttackComponent::onAutoAttack));
         return true;
     }
     

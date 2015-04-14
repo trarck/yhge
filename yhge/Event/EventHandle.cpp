@@ -13,14 +13,14 @@ NS_CC_YHGE_BEGIN
 EventHandle::~EventHandle()
 {
 	CCLOG("EventHandle destroy begin ");
-    CC_SAFE_RELEASE(_pTarget);
+    CC_SAFE_RELEASE(_target);
     CCLOG("EventHandle destroy end ");
 }
 
 //void EventHandle::execute(Event *event)
 //{
 //	if(_handle){
-//		(_pTarget->*_handle)(event);
+//		(_target->*_handle)(event);
 //	}
 //}
 

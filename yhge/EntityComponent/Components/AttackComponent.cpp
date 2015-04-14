@@ -32,11 +32,11 @@ bool AttackComponent::registerMessages()
     
         yhge::MessageManager* messageManager=this->getMessageManager();
         
-        messageManager->registerReceiver(_owner, MSG_SET_ATTACK_TARGET, NULL, message_selector(AttackComponent::onSetAttackTarget),this);
+        messageManager->registerReceiver(_owner, MSG_SET_ATTACK_TARGET, NULL, MESSAGE_SELECTOR(AttackComponent::onSetAttackTarget),this);
         
-        messageManager->registerReceiver(_owner, MSG_ATTACK, NULL, message_selector(AttackComponent::onAttack),this);
+        messageManager->registerReceiver(_owner, MSG_ATTACK, NULL, MESSAGE_SELECTOR(AttackComponent::onAttack),this);
         
-        messageManager->registerReceiver(_owner, MSG_SKILL_ATTACK, NULL, message_selector(AttackComponent::onSkillAttack),this);
+        messageManager->registerReceiver(_owner, MSG_SKILL_ATTACK, NULL, MESSAGE_SELECTOR(AttackComponent::onSkillAttack),this);
         
         return true;
     }
@@ -117,9 +117,9 @@ void AttackComponent::onSetAttackTarget(Message *message)
 {
     Entity* target= static_cast<Entity*>(message->getData());
     
-    this->getMessageManager()->removeReceiver(this->getMessageManager()->getGlobalObject(), MSG_ENTITY_DIE, _target, message_selector(AttackComponent::onTargetDie));
+    this->getMessageManager()->removeReceiver(this->getMessageManager()->getGlobalObject(), MSG_ENTITY_DIE, _target, MESSAGE_SELECTOR(AttackComponent::onTargetDie));
     setTarget(target);
-    this->getMessageManager()->registerReceiver(this->getMessageManager()->getGlobalObject(), MSG_ENTITY_DIE, _target, message_selector(AttackComponent::onTargetDie),this);
+    this->getMessageManager()->registerReceiver(this->getMessageManager()->getGlobalObject(), MSG_ENTITY_DIE, _target, MESSAGE_SELECTOR(AttackComponent::onTargetDie),this);
 }
 
 /**
@@ -128,7 +128,7 @@ void AttackComponent::onSetAttackTarget(Message *message)
 void AttackComponent::onTargetDie(Message *message)
 {
     YHINFO("target is die");
-    this->getMessageManager()->removeReceiver(this->getMessageManager()->getGlobalObject(), MSG_ENTITY_DIE, _target, message_selector(AttackComponent::onTargetDie));
+    this->getMessageManager()->removeReceiver(this->getMessageManager()->getGlobalObject(), MSG_ENTITY_DIE, _target, MESSAGE_SELECTOR(AttackComponent::onTargetDie));
     CC_SAFE_RELEASE(_target);
     _target=NULL;
 }

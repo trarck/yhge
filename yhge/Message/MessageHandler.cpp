@@ -13,7 +13,7 @@ NS_CC_YHGE_BEGIN
 MessageHandler::~MessageHandler()
 {
 	//CCLOG("MessageHandler destroy begin ");
-    CC_SAFE_RELEASE(_pTarget);
+    CC_SAFE_RELEASE(_target);
     //CCLOG("MessageHandler destroy end ");
 }
 

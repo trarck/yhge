@@ -45,12 +45,12 @@ bool RendererComponent::registerMessages()
 
         MessageManager* messageManager=this->getMessageManager();
         
-        messageManager->registerReceiver(_owner,MSG_RUN_ACTION, NULL ,message_selector(RendererComponent::onRunAction),this);
-        messageManager->registerReceiver(_owner,MSG_STOP_ACTION, NULL ,message_selector(RendererComponent::onStopAction),this);
-        messageManager->registerReceiver(_owner,MSG_STOP_ACTION_BY_TAG, NULL ,message_selector(RendererComponent::onStopActionByTag),this);
-//        messageManager->registerReceiver(_owner,MSG_RUN_ANIMATE, NULL ,message_selector(RendererComponent::onRunAnimate),this);
-//        messageManager->registerReceiver(_owner,MSG_STOP_ANIMATE, NULL ,message_selector(RendererComponent::onStopAnimate),this);
-//        messageManager->registerReceiver(_owner,MSG_STOP_ANIMATE_BY_TAG, NULL ,message_selector(RendererComponent::onStopAnimateByTag),this);
+        messageManager->registerReceiver(_owner,MSG_RUN_ACTION, NULL ,MESSAGE_SELECTOR(RendererComponent::onRunAction),this);
+        messageManager->registerReceiver(_owner,MSG_STOP_ACTION, NULL ,MESSAGE_SELECTOR(RendererComponent::onStopAction),this);
+        messageManager->registerReceiver(_owner,MSG_STOP_ACTION_BY_TAG, NULL ,MESSAGE_SELECTOR(RendererComponent::onStopActionByTag),this);
+//        messageManager->registerReceiver(_owner,MSG_RUN_ANIMATE, NULL ,MESSAGE_SELECTOR(RendererComponent::onRunAnimate),this);
+//        messageManager->registerReceiver(_owner,MSG_STOP_ANIMATE, NULL ,MESSAGE_SELECTOR(RendererComponent::onStopAnimate),this);
+//        messageManager->registerReceiver(_owner,MSG_STOP_ANIMATE_BY_TAG, NULL ,MESSAGE_SELECTOR(RendererComponent::onStopAnimateByTag),this);
         
         return true;
     }

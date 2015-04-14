@@ -84,9 +84,9 @@ bool MoveComponent::registerMessages()
     if(Component::registerMessages()){
         MessageManager* messageManager=MessageManager::defaultManager();
         
-        messageManager->registerReceiver(_owner, MSG_MOVE_DIRECTION, NULL, message_selector(MoveComponent::onMoveDirection),this);
-        messageManager->registerReceiver(_owner, MSG_MOVE_STOP, NULL, message_selector(MoveComponent::onMoveStop),this);
-        messageManager->registerReceiver(_owner, MSG_MOVE_TO, NULL, message_selector(MoveComponent::onMoveTo),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_DIRECTION, NULL, MESSAGE_SELECTOR(MoveComponent::onMoveDirection),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_STOP, NULL, MESSAGE_SELECTOR(MoveComponent::onMoveStop),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_TO, NULL, MESSAGE_SELECTOR(MoveComponent::onMoveTo),this);
         
         return true;
     }

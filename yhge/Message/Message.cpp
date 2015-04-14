@@ -17,8 +17,8 @@ Message::~Message(void)
     CC_SAFE_RELEASE_NULL(_sender);
     CC_SAFE_RELEASE_NULL(_receiver);
 //    CC_SAFE_RELEASE(_dData);
-    CC_SAFE_RELEASE_NULL(_pData);
-	CC_SAFE_RELEASE_NULL(_pExtData);
+    CC_SAFE_RELEASE_NULL(_data);
+	CC_SAFE_RELEASE_NULL(_extData);
     //CCLOG("Message destroy end");
 }
 

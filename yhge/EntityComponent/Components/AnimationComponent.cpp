@@ -77,7 +77,7 @@ bool AnimationComponent::registerMessages()
 {
     Component::registerMessages();
     
-    this->getMessageManager()->registerReceiver(_owner,MSG_CHANGE_ANIMATION, NULL ,message_selector(AnimationComponent::onChangeAnimation),this);
+    this->getMessageManager()->registerReceiver(_owner,MSG_CHANGE_ANIMATION, NULL ,MESSAGE_SELECTOR(AnimationComponent::onChangeAnimation),this);
     
     return true;
 }

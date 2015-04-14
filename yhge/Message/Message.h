@@ -19,9 +19,9 @@ public:
 	:_type(0)
 	,_sender(NULL)
 	,_receiver(NULL)
-	,_pData(NULL)
+	,_data(NULL)
 	,_timeStamp(0.0f)
-	,_pExtData(NULL)
+	,_extData(NULL)
 	{
 		
 	}
@@ -77,27 +77,27 @@ public:
 	}
     
 	Ref* getData(){
-		return _pData;
+		return _data;
 	}
 
     void setData(Ref* data){
 		CC_SAFE_RETAIN(data);
-		CC_SAFE_RELEASE(_pData);
-		_pData=data;
+		CC_SAFE_RELEASE(_data);
+		_data=data;
 	}
 
     CCDictionary* getDictionary(){
-		 return (CCDictionary*) _pData;
+		 return (CCDictionary*) _data;
 	}
 
 	Ref* getExtData(){
-		return _pExtData;
+		return _extData;
 	}
 
-    void setExtData(Ref* ExtData){
-		CC_SAFE_RETAIN(ExtData);
-		CC_SAFE_RELEASE(_pExtData);
-		_pExtData=ExtData;
+    void setExtData(Ref* extData){
+		CC_SAFE_RETAIN(extData);
+		CC_SAFE_RELEASE(_extData);
+		_extData=extData;
 	}
 
 private:
@@ -105,8 +105,8 @@ private:
     Ref* _sender;//消息的发送者
 	Ref* _receiver;//消息的接收者
     float _timeStamp;//发送时间
-    Ref* _pData;
-	Ref* _pExtData;//附加数据。
+    Ref* _data;
+	Ref* _extData;//附加数据。
 };
 
 NS_CC_YHGE_END

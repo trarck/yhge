@@ -3,14 +3,14 @@
 NS_CC_YHGE_BEGIN
 
 CCCallFuncNO::CCCallFuncNO()
-:_pData(NULL)
+:_data(NULL)
 {
 
 }
 
 CCCallFuncNO::~CCCallFuncNO()
 {
-	CC_SAFE_RELEASE(_pData);
+	CC_SAFE_RELEASE(_data);
 }
 
 CCCallFuncNO * CCCallFuncNO::actionWithTarget(Ref* pSelectorTarget, SEL_CallFuncNO selector, Ref* d) 
@@ -46,7 +46,7 @@ bool CCCallFuncNO::initWithTarget(Ref* pSelectorTarget,
 
     _pSelectorTarget = pSelectorTarget;
 
-    _pData = d;
+    _data = d;
     _pCallFuncNO = selector;
     return true;
 }
@@ -64,14 +64,14 @@ Ref * CCCallFuncNO::copyWithZone(CCZone* zone) {
     }
 
     CCCallFunc::copyWithZone(zone);
-    pRet->initWithTarget(_pSelectorTarget, _pCallFuncNO, _pData);
+    pRet->initWithTarget(_pSelectorTarget, _pCallFuncNO, _data);
     CC_SAFE_DELETE(pNewZone);
     return pRet;
 }
 
 void CCCallFuncNO::execute() {
     if (_pCallFuncNO) {
-        (_pSelectorTarget->*_pCallFuncNO)(_pTarget, _pData);
+        (_pSelectorTarget->*_pCallFuncNO)(_target, _data);
     }
 }
     

@@ -11,6 +11,22 @@ NS_CC_YHGE_BEGIN
 
 const int kNullObjectId=0;
 
+class MessageGlobalObject:public Ref
+{
+public:
+	MessageGlobalObject()
+	{
+	}
+
+	~MessageGlobalObject()
+	{
+
+	}
+
+private:
+
+};
+
 static MessageManager* s_sharedMessageManagerInstance=NULL;
 
 MessageManager::MessageManager()
@@ -41,7 +57,7 @@ MessageManager* MessageManager::defaultManager(void)
 bool MessageManager::init()
 {
 	_messages=new CCDictionary();
-	_globalObject=new Ref();
+	_globalObject=new MessageGlobalObject();
 	return true;
 }
 

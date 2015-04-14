@@ -75,13 +75,13 @@ public:
     inline void setTarget(CCNode* pTarget)
     {
         CC_SAFE_RETAIN(pTarget);
-        CC_SAFE_RELEASE(_pTarget);
-        _pTarget = pTarget;
+        CC_SAFE_RELEASE(_target);
+        _target = pTarget;
     }
 
     inline CCNode* getTarget()
     {
-        return _pTarget;
+        return _target;
     }
 
     inline void setCurrentTarget(CCNode* pCurrentTarget)
@@ -139,13 +139,13 @@ public:
 	void setData(Ref* data)
     {
         CC_SAFE_RETAIN(data);
-		CC_SAFE_RELEASE(_pData);
-        _pData=data;
+		CC_SAFE_RELEASE(_data);
+        _data=data;
     }
 
     inline Ref* getData()
     {
-        return _pData;
+        return _data;
     }
 
 protected:
@@ -156,7 +156,7 @@ protected:
     int _iType;
 	
     /**event目标*/
-    CCNode* _pTarget;
+    CCNode* _target;
     /**event 当前处理目标*/
     CCNode* _pCurrentTarget;
     /**
@@ -177,7 +177,7 @@ protected:
     bool _bNoDefault;
 
     /**event数据*/
-	Ref* _pData;
+	Ref* _data;
 };
 
 typedef yhge::Event YHEvent;

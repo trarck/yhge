@@ -37,7 +37,7 @@ public:
     virtual void execute();
 
 protected:
-    Ref            *_pData;
+    Ref            *_data;
 	SEL_CallFuncNO _pCallFuncNO;
 };
 
