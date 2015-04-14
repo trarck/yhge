@@ -6,7 +6,7 @@
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
-class Coordinate : public CCObject {
+class Coordinate : public Ref {
 
 public:
     

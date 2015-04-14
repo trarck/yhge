@@ -10,7 +10,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
  * 对象信息
  * 用于描述每个组的元素信息。
  */
-class ISOObjectInfo : public CCObject{
+class ISOObjectInfo : public Ref{
 
 public:
     

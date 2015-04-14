@@ -28,7 +28,7 @@ bool FSMMachine::init()
 	return true;
 }
 
-bool FSMMachine::init(CCObject* owner)
+bool FSMMachine::init(Ref* owner)
 {
     setOwner(owner);
     

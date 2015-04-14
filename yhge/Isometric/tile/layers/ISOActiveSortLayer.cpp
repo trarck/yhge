@@ -83,7 +83,7 @@ void ISOActiveSortLayer::releaseLayer()
 void ISOActiveSortLayer::setupObjects()
 {
     if (m_objects) {
-        CCObject* pObj=NULL;
+        Ref* pObj=NULL;
         ISOObjectInfo* mapObject=NULL;
         CCARRAY_FOREACH(m_objects, pObj){
             mapObject=static_cast<ISOObjectInfo*>(pObj);
@@ -145,7 +145,7 @@ SortZIndexNode* ISOActiveSortLayer::createSortZIndexNode(CCNode* mapObject,ISOOb
 //更新动态物体的ZOrder
 void ISOActiveSortLayer::updateDynamicObjectsZOrder(bool updateNode)
 {
-    CCObject* pObj=NULL;
+    Ref* pObj=NULL;
     SortZIndexNode* node=NULL;
     CCNode* mapObject=NULL;
     

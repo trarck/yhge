@@ -58,7 +58,7 @@ void ISOTileMapBuilder::buildMapTilesets(ISOMapInfo* mapInfo)
         tilesetGroup->init();
         
         ISOTilesetInfo* tilesetInfo = NULL;
-        CCObject* pObj = NULL;
+        Ref* pObj = NULL;
         CCARRAY_FOREACH(tilesets, pObj)
         {
             tilesetInfo = (ISOTilesetInfo*)pObj;
@@ -115,7 +115,7 @@ void ISOTileMapBuilder::buildMapTileset(ISOTilesetInfo* tilesetInfo,ISOTilesetGr
 void ISOTileMapBuilder::buildMapTiles(CCArray* tileInfos,ISOTileset* tileset)
 {
     CCAssert(tileInfos, "buildMapTiles tiles must non't be null");
-    CCObject* pObj;
+    Ref* pObj;
 
     CCARRAY_FOREACH(tileInfos, pObj){
         ISOTileInfo* tileInfo=(ISOTileInfo*)pObj;
@@ -138,7 +138,7 @@ void ISOTileMapBuilder::buildMapTiles(CCArray* tileInfos,ISOTileset* tileset)
 void ISOTileMapBuilder::setMapTilesProperties(CCArray* tileInfos,ISOTileset* tileset)
 {
     CCAssert(tileInfos, "setMapTilesProperties tiles must non't be null");
-    CCObject* pObj;
+    Ref* pObj;
     
     CCARRAY_FOREACH(tileInfos, pObj){
         ISOTileInfo* tileInfo=(ISOTileInfo*)pObj;
@@ -156,7 +156,7 @@ void ISOTileMapBuilder::buildMapLayers(ISOMapInfo* mapInfo)
     if (layerInfos && layerInfos->count()>0)
     {
         ISOLayerInfo* layerInfo = NULL;
-        CCObject* pObj = NULL;
+        Ref* pObj = NULL;
         CCARRAY_FOREACH(layerInfos, pObj)
         {
             layerInfo = (ISOLayerInfo*)pObj;
@@ -270,7 +270,7 @@ ISOTileset * ISOTileMapBuilder::tilesetForLayer(ISOLayerInfo *layerInfo)
     if (tilesets && tilesets->count()>0)
     {
         ISOTileset* tileset = NULL;
-        CCObject* pObj = NULL;
+        Ref* pObj = NULL;
         CCARRAY_FOREACH_REVERSE(tilesets, pObj)
         {
             tileset = (ISOTileset*)pObj;
@@ -319,7 +319,7 @@ ISOTilesetInfo * ISOTileMapBuilder::tilesetInfoForLayer(ISOLayerInfo *layerInfo,
     if (tilesets && tilesets->count()>0)
     {
         ISOTilesetInfo* tileset = NULL;
-        CCObject* pObj = NULL;
+        Ref* pObj = NULL;
         CCARRAY_FOREACH_REVERSE(tilesets, pObj)
         {
             tileset = (ISOTilesetInfo*)pObj;
@@ -368,7 +368,7 @@ void ISOTileMapBuilder::buildMapObjectGroups(ISOMapInfo* mapInfo)
     if (objectGroups && objectGroups->count()>0)
     {
         ISOObjectGroupInfo* objectGroupInfo = NULL;
-        CCObject* pObj = NULL;
+        Ref* pObj = NULL;
         CCARRAY_FOREACH(objectGroups, pObj)
         {
             objectGroupInfo = (ISOObjectGroupInfo*)pObj;
@@ -400,7 +400,7 @@ void ISOTileMapBuilder::buildMapObjects(CCArray* objects,ISOObjectGroup* objectG
     CCAssert(objectGroup!=NULL, "buildMapObjects objectGroup must non't be null");
     
     ISOObjectInfo* objectInfo = NULL;
-    CCObject* pObj = NULL;
+    Ref* pObj = NULL;
     CCARRAY_FOREACH(objects, pObj)
     {
         objectInfo = (ISOObjectInfo*)pObj;
@@ -543,7 +543,7 @@ ISOActiveLayerInfo* ISOTileMapBuilder::getActiveLayerInfo(ISOMapInfo* mapInfo)
     if (objectGroups && objectGroups->count()>0)
     {
         ISOObjectGroupInfo* objectGroupInfo = NULL;
-        CCObject* pObj = NULL;
+        Ref* pObj = NULL;
         CCARRAY_FOREACH(objectGroups, pObj)
         {
             objectGroupInfo = (ISOObjectGroupInfo*)pObj;
@@ -565,7 +565,7 @@ ISOActiveLayerInfo* ISOTileMapBuilder::getActiveLayerInfo(ISOMapInfo* mapInfo)
     if (layerInfos && layerInfos->count()>0)
     {
         ISOLayerInfo* layerInfo = NULL;
-        CCObject* pObj = NULL;
+        Ref* pObj = NULL;
         CCARRAY_FOREACH(layerInfos, pObj)
         {
             layerInfo = (ISOLayerInfo*)pObj;

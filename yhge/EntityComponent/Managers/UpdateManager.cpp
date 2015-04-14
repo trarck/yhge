@@ -56,7 +56,7 @@ void UpdateManager::update(float delta)
     }
 }
 
-void UpdateManager::addUpdater(CCObject* target,SEL_SCHEDULE handle,int priority)
+void UpdateManager::addUpdater(Ref* target,SEL_SCHEDULE handle,int priority)
 {
     UpdateHandler* updateHandler=new UpdateHandler(target,handle,priority);
     
@@ -83,7 +83,7 @@ void UpdateManager::addUpdater(CCObject* target,SEL_SCHEDULE handle,int priority
     updateHandler->release();
 }
 
-void UpdateManager::removeUpdater(CCObject* target)
+void UpdateManager::removeUpdater(Ref* target)
 {
     if (m_updating) {
         for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
@@ -100,7 +100,7 @@ void UpdateManager::removeUpdater(CCObject* target)
     }
 }
 
-void UpdateManager::removeUpdater(CCObject* target,SEL_SCHEDULE handle)
+void UpdateManager::removeUpdater(Ref* target,SEL_SCHEDULE handle)
 {
     if (m_updating) {
         for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
@@ -117,7 +117,7 @@ void UpdateManager::removeUpdater(CCObject* target,SEL_SCHEDULE handle)
     }
 }
 
-void UpdateManager::removeUpdater(CCObject* target,SEL_SCHEDULE handle,int priority)
+void UpdateManager::removeUpdater(Ref* target,SEL_SCHEDULE handle,int priority)
 {
     if (m_updating) {
         for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
@@ -192,7 +192,7 @@ void UpdateManager::removeGroup(int groupId)
     }
 }
 
-void UpdateManager::addUpdaterToGroup(int groupId,CCObject* target,SEL_SCHEDULE handle,int priority,int groupPriority)
+void UpdateManager::addUpdaterToGroup(int groupId,Ref* target,SEL_SCHEDULE handle,int priority,int groupPriority)
 {
     UpdateManager* group=getGroup(groupId);
     if (!group) {
@@ -202,7 +202,7 @@ void UpdateManager::addUpdaterToGroup(int groupId,CCObject* target,SEL_SCHEDULE 
     group->addUpdater(target, handle, priority);
 }
 
-void UpdateManager::removeUpdaterFromGroup(int groupId,CCObject* target)
+void UpdateManager::removeUpdaterFromGroup(int groupId,Ref* target)
 {
     UpdateManager* group=getGroup(groupId);
     

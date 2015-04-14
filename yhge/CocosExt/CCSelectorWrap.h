@@ -6,10 +6,10 @@
 
 NS_CC_YHGE_BEGIN
 
-typedef void (CCObject::*SEL_SelectorWrapD)(CCObject* data);
+typedef void (Ref::*SEL_SelectorWrapD)(Ref* data);
 #define WRAPD_SELECTOR(_SELECTOR) (SEL_SelectorWrapD)(&_SELECTOR)
 
-class CCSelectorWrap : public CCObject {
+class CCSelectorWrap : public Ref {
 public:
     
 	inline CCSelectorWrap()
@@ -22,7 +22,7 @@ public:
 
     ~CCSelectorWrap();
 
-	inline bool initWithTarget(CCObject* pTarget,SEL_SelectorWrapD selector,CCObject* data)
+	inline bool initWithTarget(Ref* pTarget,SEL_SelectorWrapD selector,Ref* data)
 	{
 		setTarget(pTarget);
 		m_selector=selector;
@@ -37,12 +37,12 @@ public:
 	    }
     }
 
-    inline CCObject* getTarget()
+    inline Ref* getTarget()
 	{
 		return m_pTarget;
 	}
 
-	inline void setTarget(CCObject* pTarget)
+	inline void setTarget(Ref* pTarget)
 	{
 		CC_SAFE_RETAIN(pTarget);
 		CC_SAFE_RELEASE(m_pTarget);
@@ -59,22 +59,22 @@ public:
 		m_selector=selector;
 	}
 
-    inline void setData(CCObject* data)
+    inline void setData(Ref* data)
     {
         CC_SAFE_RETAIN(data);
 		CC_SAFE_RELEASE(m_data);
         m_data=data;
     }
 
-    inline CCObject* getData()
+    inline Ref* getData()
     {
         return m_data;
     }
 
 protected:
-	CCObject* m_pTarget;
+	Ref* m_pTarget;
 	SEL_SelectorWrapD m_selector;
-    CCObject* m_data;
+    Ref* m_data;
 };
 
 NS_CC_YHGE_END

@@ -9,15 +9,15 @@
 
 NS_CC_YHGE_BEGIN
 
-class MessageTarget : public CCObject {
+class MessageTarget : public Ref {
 public:
     
   
     //message operate
-    virtual void registerMessage(unsigned int type,SEL_MessageHandler handle , CCObject* pSender);
-    virtual void unregisterMessage(unsigned int type ,SEL_MessageHandler handle ,CCObject* pSender);
-    virtual void sendMessage(unsigned int type ,CCObject* pReceiver ,CCObject* data);
-    virtual void sendMessage(unsigned int type ,CCObject* pReceiver);
+    virtual void registerMessage(unsigned int type,SEL_MessageHandler handle , Ref* pSender);
+    virtual void unregisterMessage(unsigned int type ,SEL_MessageHandler handle ,Ref* pSender);
+    virtual void sendMessage(unsigned int type ,Ref* pReceiver ,Ref* data);
+    virtual void sendMessage(unsigned int type ,Ref* pReceiver);
 	virtual void cleanupMessages();
     
 protected:

@@ -7,7 +7,7 @@
 
 NS_CC_YHGE_BEGIN
 
-class Character:public CCObject
+class Character:public Ref
 {
     
 public:

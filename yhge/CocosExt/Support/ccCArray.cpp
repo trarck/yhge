@@ -10,7 +10,7 @@ ccArray* ccArrayNew(unsigned int capacity)
 	
 	ccArray *arr = (ccArray*)malloc( sizeof(ccArray) );
 	arr->num = 0;
-	arr->arr =  (CCObject**)calloc(capacity, sizeof(CCObject*));
+	arr->arr =  (Ref**)calloc(capacity, sizeof(Ref*));
 	arr->max = capacity;
 	
 	return arr;
@@ -34,7 +34,7 @@ void ccArrayFree(ccArray*& arr)
 void ccArrayDoubleCapacity(ccArray *arr)
 {
 	arr->max *= 2;
-	CCObject** newArr = (CCObject**)realloc( arr->arr, arr->max * sizeof(CCObject*) );
+	Ref** newArr = (Ref**)realloc( arr->arr, arr->max * sizeof(Ref*) );
 	// will fail when there's not enough memory
     CCAssert(newArr != 0, "ccArrayDoubleCapacity failed. Not enough memory");
 	arr->arr = newArr;
@@ -66,16 +66,16 @@ void ccArrayShrink(ccArray *arr)
 			arr->max=1;
 		}
 		
-		arr->arr = (CCObject**)realloc(arr->arr,newSize * sizeof(CCObject*) );
+		arr->arr = (Ref**)realloc(arr->arr,newSize * sizeof(Ref*) );
 		CCAssert(arr->arr!=NULL,"could not reallocate the memory");
 	}
 }
 
 /** Returns index of first occurrence of object, CC_INVALID_INDEX if object not found. */
-unsigned int ccArrayGetIndexOfObject(ccArray *arr, CCObject* object)
+unsigned int ccArrayGetIndexOfObject(ccArray *arr, Ref* object)
 {
     const unsigned int arrNum = arr->num;
-    CCObject** ptr = arr->arr;
+    Ref** ptr = arr->arr;
 	for(unsigned int i = 0; i < arrNum; ++i, ++ptr)
     {
 		if( *ptr == object ) return i;
@@ -85,13 +85,13 @@ unsigned int ccArrayGetIndexOfObject(ccArray *arr, CCObject* object)
 }
 
 /** Returns a Boolean value that indicates whether object is present in array. */
-bool ccArrayContainsObject(ccArray *arr, CCObject* object)
+bool ccArrayContainsObject(ccArray *arr, Ref* object)
 {
 	return ccArrayGetIndexOfObject(arr, object) != CC_INVALID_INDEX;
 }
 
 /** Appends an object. Behavior undefined if array doesn't have enough capacity. */
-void ccArrayAppendObject(ccArray *arr, CCObject* object)
+void ccArrayAppendObject(ccArray *arr, Ref* object)
 {
     CCAssert(object != NULL, "Invalid parameter!");
     object->retain();
@@ -100,7 +100,7 @@ void ccArrayAppendObject(ccArray *arr, CCObject* object)
 }
 
 /** Appends an object. Capacity of arr is increased if needed. */
-void ccArrayAppendObjectWithResize(ccArray *arr, CCObject* object)
+void ccArrayAppendObjectWithResize(ccArray *arr, Ref* object)
 {
 	ccArrayEnsureExtraCapacity(arr, 1);
 	ccArrayAppendObject(arr, object);
@@ -124,7 +124,7 @@ void ccArrayAppendArrayWithResize(ccArray *arr, ccArray *plusArr)
 }
 
 /** Inserts an object at index */
-void ccArrayInsertObjectAtIndex(ccArray *arr, CCObject* object, unsigned int index)
+void ccArrayInsertObjectAtIndex(ccArray *arr, Ref* object, unsigned int index)
 {
 	CCAssert(index<=arr->num, "Invalid index. Out of bounds");
 	CCAssert(object != NULL, "Invalid parameter!");
@@ -134,7 +134,7 @@ void ccArrayInsertObjectAtIndex(ccArray *arr, CCObject* object, unsigned int ind
 	unsigned int remaining = arr->num - index;
 	if( remaining > 0)
     {
-		memmove((void *)&arr->arr[index+1], (void *)&arr->arr[index], sizeof(CCObject*) * remaining );
+		memmove((void *)&arr->arr[index+1], (void *)&arr->arr[index], sizeof(Ref*) * remaining );
     }
 
     object->retain();
@@ -148,7 +148,7 @@ void ccArraySwapObjectsAtIndexes(ccArray *arr, unsigned int index1, unsigned int
 	CCAssert(index1 < arr->num, "(1) Invalid index. Out of bounds");
 	CCAssert(index2 < arr->num, "(2) Invalid index. Out of bounds");
 	
-	CCObject* object1 = arr->arr[index1];
+	Ref* object1 = arr->arr[index1];
 	
 	arr->arr[index1] = arr->arr[index2];
 	arr->arr[index2] = object1;
@@ -178,7 +178,7 @@ void ccArrayRemoveObjectAtIndex(ccArray *arr, unsigned int index, bool bReleaseO
 	unsigned int remaining = arr->num - index;
 	if(remaining>0)
     {
-		memmove((void *)&arr->arr[index], (void *)&arr->arr[index+1], remaining * sizeof(CCObject*));
+		memmove((void *)&arr->arr[index], (void *)&arr->arr[index+1], remaining * sizeof(Ref*));
     }
 }
 
@@ -192,7 +192,7 @@ void ccArrayFastRemoveObjectAtIndex(ccArray *arr, unsigned int index)
 	arr->arr[index] = arr->arr[last];
 }
 
-void ccArrayFastRemoveObject(ccArray *arr, CCObject* object)
+void ccArrayFastRemoveObject(ccArray *arr, Ref* object)
 {
 	unsigned int index = ccArrayGetIndexOfObject(arr, object);
 	if (index != CC_INVALID_INDEX)
@@ -203,7 +203,7 @@ void ccArrayFastRemoveObject(ccArray *arr, CCObject* object)
 
 /** Searches for the first occurrence of object and removes it. If object is not
  found the function has no effect. */
-void ccArrayRemoveObject(ccArray *arr, CCObject* object, bool bReleaseObj/* = true*/)
+void ccArrayRemoveObject(ccArray *arr, Ref* object, bool bReleaseObj/* = true*/)
 {
 	unsigned int index = ccArrayGetIndexOfObject(arr, object);
 	if (index != CC_INVALID_INDEX)

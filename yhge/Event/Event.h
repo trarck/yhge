@@ -12,7 +12,7 @@ enum EventPhase{
     BUBBLING_PHASE
 };
 
-class Event:public CCObject
+class Event:public Ref
 {
 public:
 
@@ -136,14 +136,14 @@ public:
         return m_nTimeStamp;
     }
 
-	void setData(CCObject* data)
+	void setData(Ref* data)
     {
         CC_SAFE_RETAIN(data);
 		CC_SAFE_RELEASE(m_pData);
         m_pData=data;
     }
 
-    inline CCObject* getData()
+    inline Ref* getData()
     {
         return m_pData;
     }
@@ -177,7 +177,7 @@ protected:
     bool m_bNoDefault;
 
     /**event数据*/
-	CCObject* m_pData;
+	Ref* m_pData;
 };
 
 typedef yhge::Event YHEvent;

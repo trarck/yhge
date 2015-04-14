@@ -13,7 +13,7 @@ NS_CC_YHGE_BEGIN
 class Event;
 
 //定义处理函数类型
-typedef void (CCObject::*SEL_EventHandleD)(Event*,CCObject* data);
+typedef void (Ref::*SEL_EventHandleD)(Event*,Ref* data);
 #define yh_event_selectorD(_SELECTOR) (SEL_EventHandleD)(&_SELECTOR)
 
 class EventHandleD : public EventHandle {
@@ -38,7 +38,7 @@ public:
 		m_handleD=handle;
 	}
 
-	inline bool initWithTarget(CCObject* pTarget,SEL_EventHandleD handle,CCObject* data)
+	inline bool initWithTarget(Ref* pTarget,SEL_EventHandleD handle,Ref* data)
 	{
 		setTarget(pTarget);
 		m_handleD=handle;
@@ -46,14 +46,14 @@ public:
 		return true;
 	}
     
-    inline void setData(CCObject* data)
+    inline void setData(Ref* data)
     {
         CC_SAFE_RETAIN(data);
         CC_SAFE_RELEASE(m_data);
         m_data=data;
     }
 
-    inline CCObject* getData()
+    inline Ref* getData()
     {
         return m_data;
     }
@@ -62,7 +62,7 @@ public:
 
 protected:
 	SEL_EventHandleD m_handleD;
-    CCObject* m_data;
+    Ref* m_data;
 };
 
 NS_CC_YHGE_END

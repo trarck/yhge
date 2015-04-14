@@ -26,12 +26,12 @@ const CCRect& ZIndexNode::getRect()
     return m_tRect;
 }
 
-void ZIndexNode::setEntity(CCObject* entity)
+void ZIndexNode::setEntity(Ref* entity)
 {
     m_pEntity=entity;
 }
 
-CCObject* ZIndexNode::getEntity()
+Ref* ZIndexNode::getEntity()
 {
     return m_pEntity;
 }

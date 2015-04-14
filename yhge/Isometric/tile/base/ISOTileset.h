@@ -18,7 +18,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
  *    1.支持sprite sheet.即不规则tile.
  *      id到名称的映射表，一个描述sprite sheet文件。
  */
-class ISOTileset : public CCObject{
+class ISOTileset : public Ref{
 
 public:
     

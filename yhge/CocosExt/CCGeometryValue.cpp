@@ -18,7 +18,7 @@ CCPointValue& CCPointValue::operator= (const CCPointValue& other)
     return *this;
 }
 
-cocos2d::CCObject* CCPointValue::copyWithZone(cocos2d::CCZone* pZone)
+cocos2d::Ref* CCPointValue::copyWithZone(cocos2d::CCZone* pZone)
 {
     CCPointValue* pRet = new CCPointValue();
     pRet->setPoint(this->m_tPoint);
@@ -54,7 +54,7 @@ CCSizeValue& CCSizeValue::operator= (const CCSizeValue& other)
 }
 
 
-cocos2d::CCObject* CCSizeValue::copyWithZone(cocos2d::CCZone* pZone)
+cocos2d::Ref* CCSizeValue::copyWithZone(cocos2d::CCZone* pZone)
 {
     CCSizeValue* pRet = new CCSizeValue();
     pRet->setSize(this->m_tSize);
@@ -89,7 +89,7 @@ CCRectValue& CCRectValue::operator= (const CCRectValue& other)
     return *this;
 }
 
-cocos2d::CCObject* CCRectValue::copyWithZone(cocos2d::CCZone* pZone)
+cocos2d::Ref* CCRectValue::copyWithZone(cocos2d::CCZone* pZone)
 {
     CCRectValue* pRet = new CCRectValue();
     pRet->setRect(this->getRect());

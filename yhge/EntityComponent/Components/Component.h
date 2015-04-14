@@ -13,7 +13,7 @@ class Entity;
 /**
  * 组件系统基类
  */
-class Component : public CCObject
+class Component : public Ref
 {
 public:
     
@@ -70,12 +70,12 @@ public:
         return MessageManager::defaultManager();
     }
 //    
-//    static inline bool registerReceiver(CCObject* receiver ,unsigned int type ,CCObject* sender,SEL_MessageHandler handle)
+//    static inline bool registerReceiver(Ref* receiver ,unsigned int type ,Ref* sender,SEL_MessageHandler handle)
 //    {
 //        return MessageManager::defaultManager()->registerReceiver(receiver, type, sender, handle,receiver);
 //    }
 //    
-//    static inline bool registerReceiver(CCObject* receiver ,unsigned int type ,CCObject* sender,SEL_MessageHandler handle ,CCObject*  handleObject)
+//    static inline bool registerReceiver(Ref* receiver ,unsigned int type ,Ref* sender,SEL_MessageHandler handle ,Ref*  handleObject)
 //    {
 //        return MessageManager::defaultManager()->registerReceiver(receiver, type, sender, handle,handleObject);
 //    }
@@ -83,27 +83,27 @@ public:
 //    /**
 //	 * 取消注册到接收者的处理对象的处理方法，该方法注册到发送者的某个消息。
 //	 */
-//    static inline void removeReceiver(CCObject* receiver,unsigned int type ,CCObject* sender,SEL_MessageHandler handle,CCObject*  handleObject)
+//    static inline void removeReceiver(Ref* receiver,unsigned int type ,Ref* sender,SEL_MessageHandler handle,Ref*  handleObject)
 //    {
 //        MessageManager::defaultManager()->removeReceiver(receiver, type, sender, handle,handleObject);
 //    }
 //
-//	static inline void removeReceiver(CCObject* receiver,unsigned int type ,CCObject* sender,SEL_MessageHandler handle)
+//	static inline void removeReceiver(Ref* receiver,unsigned int type ,Ref* sender,SEL_MessageHandler handle)
 //    {
 //        MessageManager::defaultManager()->removeReceiver(receiver, type, sender, handle);
 //    }
 //    
-//    static inline void removeReceiver(CCObject* receiver,unsigned int type ,CCObject* sender)
+//    static inline void removeReceiver(Ref* receiver,unsigned int type ,Ref* sender)
 //    {
 //        MessageManager::defaultManager()->removeReceiver(receiver, type, sender);
 //    }
 //    
-//    static inline void removeReceiver(CCObject* receiver,unsigned int type)
+//    static inline void removeReceiver(Ref* receiver,unsigned int type)
 //    {
 //        MessageManager::defaultManager()->removeReceiver(receiver, type);
 //    }
 //    
-//    static inline void removeReceiver(CCObject* receiver)
+//    static inline void removeReceiver(Ref* receiver)
 //    {
 //        MessageManager::defaultManager()->removeReceiver(receiver);
 //    }
@@ -120,7 +120,7 @@ public:
 //	/**
 //	 * 发送消息的工具方法。
 //	 */
-//    static inline void dispatchMessage(unsigned int type ,CCObject* sender ,CCObject* receiver,CCObject* data)
+//    static inline void dispatchMessage(unsigned int type ,Ref* sender ,Ref* receiver,Ref* data)
 //    {
 //        MessageManager::defaultManager()->dispatchMessage(type, sender, receiver, data);
 //    }
@@ -128,7 +128,7 @@ public:
 //    /**
 //	 * 发送消息的工具方法。
 //	 */
-//    static inline void dispatchMessage(unsigned int type ,CCObject* sender ,CCObject* receiver)
+//    static inline void dispatchMessage(unsigned int type ,Ref* sender ,Ref* receiver)
 //    {
 //        MessageManager::defaultManager()->dispatchMessage(type, sender, receiver);
 //    }

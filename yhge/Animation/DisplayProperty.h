@@ -6,7 +6,7 @@
 
 NS_CC_YHGE_BEGIN
 
-class DisplayProperty:public CCObject
+class DisplayProperty:public Ref
 {
     
 public:

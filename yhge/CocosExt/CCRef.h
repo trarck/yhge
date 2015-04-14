@@ -23,7 +23,7 @@ public:
  * 或者给普通指针一个ref count;
  */
 template <class T,typename Deallocater= RefObjectDeallocater<T> >
-class CCRef : public cocos2d::CCObject
+class CCRef : public cocos2d::Ref
 {
 public:
 	inline CCRef()

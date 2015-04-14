@@ -48,7 +48,7 @@ void AnimationManager::destroyInstance()
 
 void AnimationManager::update(float delta)
 {
-    CCObject* pObj=NULL;
+    Ref* pObj=NULL;
 
     CCARRAY_FOREACH_REVERSE(m_animations, pObj){
         static_cast<Animation*>(pObj)->update(delta);

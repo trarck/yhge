@@ -12,7 +12,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
  * 物体接使用排序来确定zOrder值
  * 这里不区分静态和动态物体，由调用SortZIndex的对象管理
  */
-class SortZIndex : public CCObject {
+class SortZIndex : public Ref {
 
 public:
     SortZIndex();

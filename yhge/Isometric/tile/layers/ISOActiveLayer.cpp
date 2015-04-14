@@ -59,7 +59,7 @@ void ISOActiveLayer::releaseLayer()
 void ISOActiveLayer::setupObjects()
 {
     if (m_objects) {
-        CCObject* pObj=NULL;
+        Ref* pObj=NULL;
         ISOObjectInfo* objInfo=NULL;
         CCARRAY_FOREACH(m_objects, pObj){
             objInfo=static_cast<ISOObjectInfo*>(pObj);

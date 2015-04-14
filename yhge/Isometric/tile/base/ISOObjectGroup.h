@@ -11,7 +11,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
  * 保存对象层的数据。
  * 和ISOObjectGroupInfo的区别是info只保存数据，而这里会加入一些逻辑。
  */
-class ISOObjectGroup : public CCObject
+class ISOObjectGroup : public Ref
 {
 
 public:

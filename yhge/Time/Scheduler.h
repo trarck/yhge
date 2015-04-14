@@ -19,7 +19,7 @@ public:
         
     }
     
-    SchedulerTask(CCObject* target,SEL_SCHEDULE handle,int priority)
+    SchedulerTask(Ref* target,SEL_SCHEDULE handle,int priority)
     :m_target(target)
     ,m_handle(handle)
     ,m_priority(priority)
@@ -40,14 +40,14 @@ public:
     
 public:
     
-    inline void setTarget( CCObject* target)
+    inline void setTarget( Ref* target)
     {
         CC_SAFE_RETAIN(target);
         CC_SAFE_RELEASE(m_target);
         m_target = target;
     }
     
-    inline  CCObject* getTarget()
+    inline  Ref* getTarget()
     {
         return m_target;
     }
@@ -83,7 +83,7 @@ public:
     }
     
 protected:
-    CCObject* m_target;
+    Ref* m_target;
     SEL_SCHEDULE m_handle;
     int m_priority;
     bool m_markedForDeletion;
@@ -96,7 +96,7 @@ protected:
  * 这里只处理每帧都运行的，对于一定时间间隔的调用，则由其它类实现。
  * 为了性能，一个target只能注册一次，而不管它的方法是什么。如果遇到一个target的二个方法都需要注册，则把target拆成二个。
  */
-class Scheduler : public CCObject
+class Scheduler : public Ref
 {
 public:
 
@@ -121,39 +121,39 @@ public:
     /**
      * 添加一个更新器
      */
-    void registerUpdate(CCObject* target,SEL_SCHEDULE handle,int priority);
+    void registerUpdate(Ref* target,SEL_SCHEDULE handle,int priority);
     
 //    /**
 //     * 移除一个更新器
 //     */
-//    void unregisterUpdate(CCObject* target,int priority);
+//    void unregisterUpdate(Ref* target,int priority);
     
     /**
      * 移除一个更新器
      */
-//    void unregisterUpdate(CCObject* target,SEL_SCHEDULE handle,int priority);
+//    void unregisterUpdate(Ref* target,SEL_SCHEDULE handle,int priority);
     
     /**
      * 移除一个更新器
      */
-//    void unregisterUpdate(CCObject* target,SEL_SCHEDULE handle);
+//    void unregisterUpdate(Ref* target,SEL_SCHEDULE handle);
 
     /**
      * 移除一个更新器
      */
-    void unregisterUpdate(CCObject* target);
+    void unregisterUpdate(Ref* target);
     
 protected:
     
     void insertToList(TaskList& list,SchedulerTask* task);
     
-//    void removeFromList(TaskList& list,CCObject* target,SEL_SCHEDULE handle);
+//    void removeFromList(TaskList& list,Ref* target,SEL_SCHEDULE handle);
     
-    void removeFromList(TaskList& list,CCObject* target);
+    void removeFromList(TaskList& list,Ref* target);
     
-    void directRemoveFromList(TaskList& list,CCObject* target);
+    void directRemoveFromList(TaskList& list,Ref* target);
     
-    void markRemoveFromList(TaskList& list,CCObject* target);
+    void markRemoveFromList(TaskList& list,Ref* target);
     
     void removeMarkedList(TaskList& list);
     

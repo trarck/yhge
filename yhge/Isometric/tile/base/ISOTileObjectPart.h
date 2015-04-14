@@ -12,7 +12,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
  * 绝对:组成部分直接添加到map中，使用map坐标系统，没有具体的对象。
  * 相对:组成部分添加到对象渲染树中，再把对象添加到map中，组成部分使用局部坐标系。
  */
-class ISOTileObjectPart : public CCObject{
+class ISOTileObjectPart : public Ref{
 
 public:
     

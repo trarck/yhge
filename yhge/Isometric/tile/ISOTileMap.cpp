@@ -110,7 +110,7 @@ bool ISOTileMap::init()
 //    if (tilesets && tilesets->count()>0)
 //    {
 //        ISOTilesetInfo* tileset = NULL;
-//        CCObject* pObj = NULL;
+//        Ref* pObj = NULL;
 //        CCARRAY_FOREACH_REVERSE(tilesets, pObj)
 //        {
 //            tileset = (ISOTilesetInfo*)pObj;
@@ -170,7 +170,7 @@ bool ISOTileMap::init()
 //    if (layers && layers->count()>0)
 //    {
 //        ISOLayerInfo* layerInfo = NULL;
-//        CCObject* pObj = NULL;
+//        Ref* pObj = NULL;
 //        CCARRAY_FOREACH(layers, pObj)
 //        {
 //            layerInfo = (ISOLayerInfo*)pObj;
@@ -200,7 +200,7 @@ ISOTileset* ISOTileMap::tilesetNamed(const std::string& tilesetName)
     
     if (m_pTilesetGroup && m_pTilesetGroup->tilesetCount()>0){
         CCArray* pTilesets=m_pTilesetGroup->getTilesets();
-        CCObject* pObj = NULL;
+        Ref* pObj = NULL;
         ISOTileset* tileset =NULL;
         
         CCARRAY_FOREACH(pTilesets, pObj)
@@ -226,7 +226,7 @@ ISOObjectGroup * ISOTileMap::objectGroupNamed(const std::string& objectGroupName
     if (m_pObjectGroups && m_pObjectGroups->count()>0)
     {
         ISOObjectGroup* objectGroup = NULL;
-        CCObject* pObj = NULL;
+        Ref* pObj = NULL;
         
         CCARRAY_FOREACH(m_pObjectGroups, pObj)
         {
@@ -255,7 +255,7 @@ void ISOTileMap::scrollLayer(const CCPoint& pos)
 
 	}else{
 
-		CCObject* pObj=NULL;
+		Ref* pObj=NULL;
 		ISOLayer* layer;
 
 		CCARRAY_FOREACH(m_layers, pObj){
@@ -336,7 +336,7 @@ void ISOTileMap::setupDynamicGroup(ISODynamicGroup* dynamicGroup,const CCPoint& 
         
         dynamicGroup->calcComponentsCount();
         
-        CCObject* pObj=NULL;
+        Ref* pObj=NULL;
         ISODynamicComponent* dynamicComponent=NULL;
 
         CCARRAY_FOREACH(m_dynamicComponents,pObj){

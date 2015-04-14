@@ -47,7 +47,7 @@ void AnimationGroup::update(float delta)
             
             int deltaFrame=nextFrameIndex-m_frameIndex;
             
-            CCObject* obj=NULL;
+            Ref* obj=NULL;
             Animation* animation=NULL;
             CCARRAY_FOREACH_REVERSE(m_animations, obj){
                 animation=static_cast<Animation*>(obj);
@@ -60,7 +60,7 @@ void AnimationGroup::update(float delta)
     }else{
         ++m_frameIndex;
         
-        CCObject* obj=NULL;
+        Ref* obj=NULL;
         Animation* animation=NULL;
         CCARRAY_FOREACH_REVERSE(m_animations, obj){
             animation=static_cast<Animation*>(obj);

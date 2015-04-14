@@ -10,7 +10,7 @@
 NS_CC_YHGE_BEGIN
 
 
-class DamageFormula : public CCObject 
+class DamageFormula : public Ref 
 {
 
 public:

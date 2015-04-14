@@ -34,7 +34,7 @@ NS_CC_YHGE_BEGIN
 
 class FSMMachine;
 
-class FSMState:public CCObject 
+class FSMState:public Ref 
 {
 public:
     

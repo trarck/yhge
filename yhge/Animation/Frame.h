@@ -7,7 +7,7 @@
 
 NS_CC_YHGE_BEGIN
 
-class Frame:public CCObject
+class Frame:public Ref
 {
     
 public:

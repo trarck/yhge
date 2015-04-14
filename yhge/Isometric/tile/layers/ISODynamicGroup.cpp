@@ -182,7 +182,7 @@ void ISODynamicGroup::updateMapCoordinate(unsigned int nodeIndex,float deltaMapX
     if(m_pUpdateDelegator) m_pUpdateDelegator->onUpdateComponentMapCoordinate(nodeIndex, deltaMapX, deltaMapY);
     
 	//更新组内的元素
-	CCObject* pObj=NULL;
+	Ref* pObj=NULL;
 	ISODynamicComponent* dynamicComponent=NULL;
 	CCARRAY_FOREACH(m_pDynamiceComponentList,pObj){
 		dynamicComponent=static_cast<ISODynamicComponent*>(pObj);

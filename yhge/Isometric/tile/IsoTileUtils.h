@@ -6,7 +6,7 @@
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
-class ISOTileUtils : public CCObject {
+class ISOTileUtils : public Ref {
 
 public:
 	

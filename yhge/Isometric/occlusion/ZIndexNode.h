@@ -10,7 +10,7 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 
-class ZIndexNode : public CCObject {
+class ZIndexNode : public Ref {
 
 public:
     ZIndexNode();
@@ -20,10 +20,10 @@ public:
     const CCRect& getRect();
     
     //弱引用
-    void setEntity(CCObject* entity);
-    CCObject* getEntity();
+    void setEntity(Ref* entity);
+    Ref* getEntity();
 protected:
-    CCObject* m_pEntity;
+    Ref* m_pEntity;
     CCRect m_tRect;
 };
 

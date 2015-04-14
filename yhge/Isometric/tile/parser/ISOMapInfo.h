@@ -10,7 +10,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
  * 地图的信息
  * 主要是layers和objectGroups。
  */
-class ISOMapInfo : public CCObject{
+class ISOMapInfo : public Ref{
 
 public:
     

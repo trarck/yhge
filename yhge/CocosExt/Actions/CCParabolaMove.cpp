@@ -25,7 +25,7 @@ bool CCParabolaMove::initWithDuration(float duration, const CCPoint& speed)
     return false;
 }
 
-CCObject* CCParabolaMove::copyWithZone(CCZone *pZone)
+Ref* CCParabolaMove::copyWithZone(CCZone *pZone)
 {
     CCZone* pNewZone = NULL;
     CCParabolaMove* pCopy = NULL;
@@ -130,7 +130,7 @@ bool CCParabolaMoveTo::initWithDuration(float duration, const CCPoint& position,
     return false;
 }
 
-CCObject* CCParabolaMoveTo::copyWithZone(CCZone *pZone)
+Ref* CCParabolaMoveTo::copyWithZone(CCZone *pZone)
 {
     CCZone* pNewZone = NULL;
     CCParabolaMoveTo* pCopy = NULL;

@@ -11,7 +11,7 @@
 NS_CC_YHGE_BEGIN
 
 
-typedef bool (CCObject::*SEL_CheckWorkableHandler)(int x,int y);
+typedef bool (Ref::*SEL_CheckWorkableHandler)(int x,int y);
 #define check_workable_selector(_SELECTOR) (SEL_CheckWorkableHandler)(&_SELECTOR)
 
 /**
@@ -27,13 +27,13 @@ public:
 	//由具体应用实现
 	bool isWorkable(int x ,int y) ;
 
-	void setCheckBarrierHandle(SEL_CheckWorkableHandler checkWorkableHandle,CCObject* target);
+	void setCheckBarrierHandle(SEL_CheckWorkableHandler checkWorkableHandle,Ref* target);
 
 protected:
 	
 	//检查是否可通过的具体对像和方法。都是若引用
 	SEL_CheckWorkableHandler m_checkWorkableHandle;
-	CCObject* m_checkWorkableTarget;
+	Ref* m_checkWorkableTarget;
 };
 
 NS_CC_YHGE_END

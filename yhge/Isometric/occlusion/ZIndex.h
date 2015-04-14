@@ -10,7 +10,7 @@
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
-class ZIndex : public CCObject {
+class ZIndex : public Ref {
 
 public:
     ZIndex();

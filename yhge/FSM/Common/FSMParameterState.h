@@ -16,10 +16,10 @@ NS_CC_YHGE_BEGIN
 class FSMParameterState:public FSMState
 {
 public:
-	virtual void enter(CCObject* entity)=0;
-	virtual void exit(CCObject* entity)=0;
-	virtual void update(CCObject* entity)=0;
-	virtual void update(float delta,CCObject* entity)=0;
+	virtual void enter(Ref* entity)=0;
+	virtual void exit(Ref* entity)=0;
+	virtual void update(Ref* entity)=0;
+	virtual void update(float delta,Ref* entity)=0;
 };
 
 NS_CC_YHGE_END

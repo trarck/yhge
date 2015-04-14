@@ -16,7 +16,7 @@ typedef struct _AnimationDataFlag
 
 } AnimationDataFlag;
 
-class Animation:public CCObject
+class Animation:public Ref
 {
 public:
     

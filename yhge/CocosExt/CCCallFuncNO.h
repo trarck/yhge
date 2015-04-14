@@ -6,7 +6,7 @@
 
 NS_CC_YHGE_BEGIN
 
-typedef void (CCObject::*SEL_CallFuncNO)(CCNode*, CCObject*);
+typedef void (Ref::*SEL_CallFuncNO)(CCNode*, Ref*);
 #define callfuncNO_selector(_SELECTOR) (SEL_CallFuncNO)(&_SELECTOR)
 
 /**
@@ -25,19 +25,19 @@ public:
     /** creates the action with the callback and the data to pass as an argument 
     @deprecated: This interface will be deprecated sooner or later.
     */
-    CC_DEPRECATED_ATTRIBUTE static CCCallFuncNO * actionWithTarget(CCObject* pSelectorTarget, SEL_CallFuncNO selector, CCObject* d);
+    CC_DEPRECATED_ATTRIBUTE static CCCallFuncNO * actionWithTarget(Ref* pSelectorTarget, SEL_CallFuncNO selector, Ref* d);
 
     /** creates the action with the callback and the data to pass as an argument */
-    static CCCallFuncNO * create(CCObject* pSelectorTarget, SEL_CallFuncNO selector, CCObject* d);
+    static CCCallFuncNO * create(Ref* pSelectorTarget, SEL_CallFuncNO selector, Ref* d);
 
     /** initializes the action with the callback and the data to pass as an argument */
-    virtual bool initWithTarget(CCObject* pSelectorTarget, SEL_CallFuncNO selector, CCObject* d);
+    virtual bool initWithTarget(Ref* pSelectorTarget, SEL_CallFuncNO selector, Ref* d);
     // super methods
-    virtual CCObject* copyWithZone(CCZone *pZone);
+    virtual Ref* copyWithZone(CCZone *pZone);
     virtual void execute();
 
 protected:
-    CCObject            *m_pData;
+    Ref            *m_pData;
 	SEL_CallFuncNO m_pCallFuncNO;
 };
 

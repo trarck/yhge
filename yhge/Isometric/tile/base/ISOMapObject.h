@@ -10,7 +10,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
  * 地图上要显示的对象
  * 是一个整体
  */
-class ISOMapObject : public CCObject{
+class ISOMapObject : public Ref{
 
 public:
     

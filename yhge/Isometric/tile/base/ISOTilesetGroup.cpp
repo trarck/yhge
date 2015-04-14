@@ -52,7 +52,7 @@ ISOTileset* ISOTilesetGroup::getTilesetByGid(unsigned int gid)
 {
    
     ISOTileset* tileset = NULL;
-    CCObject* pObj = NULL;
+    Ref* pObj = NULL;
     CCARRAY_FOREACH_REVERSE(m_pTilesets, pObj)
     {
         tileset = (ISOTileset*)pObj;

@@ -17,7 +17,7 @@ NS_CC_YHGE_BEGIN
 /**
  * 字节操作类
  */
-class Buffer:public CCObject
+class Buffer:public Ref
 {
 public:
     

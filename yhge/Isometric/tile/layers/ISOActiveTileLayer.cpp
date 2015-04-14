@@ -54,7 +54,7 @@ void ISOActiveTileLayer::setupObjects()
 {
     if (m_objectGroup) {
         CCArray* objects=m_objectGroup->getObjects();
-        CCObject* pObj=NULL;
+        Ref* pObj=NULL;
         ISOMapObject* mapObject=NULL;
         CCARRAY_FOREACH(objects, pObj){
             mapObject=static_cast<ISOMapObject*>(pObj);

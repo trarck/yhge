@@ -8,7 +8,7 @@
 
 NS_CC_YHGE_BEGIN
 
-class Engine:public CCObject
+class Engine:public Ref
 {
 public:
     

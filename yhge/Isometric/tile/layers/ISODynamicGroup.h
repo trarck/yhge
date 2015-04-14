@@ -11,7 +11,7 @@ class ISODynamicComponentUpdateDelegator;
 class ISODynamicComponentCreateDelegator;
 class ISOTileMap;
 
-class ISODynamicGroup : public CCObject {
+class ISODynamicGroup : public Ref {
 
 public:
 	

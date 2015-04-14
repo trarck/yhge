@@ -10,7 +10,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 /**
  * 组织管理tileset
  */
-class ISOTilesetGroup : public CCObject{
+class ISOTilesetGroup : public Ref{
 
 public:
     

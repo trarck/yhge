@@ -58,9 +58,9 @@ bool ISOTileset::init()
 //            int leftCount=m_pTiles->count()-imageTileCount;
 //            //还有独立的tile定义.剩下的放入新的tiles里
 //            CCArray* newTiles=new CCArray(leftCount);
-//            CCObject* pObj;
+//            Ref* pObj;
 //                                                            
-//            for(CCObject** arr = m_pTiles->data->arr+imageTileCount, **end = m_pTiles->data->arr + m_pTiles->data->num-1;
+//            for(Ref** arr = m_pTiles->data->arr+imageTileCount, **end = m_pTiles->data->arr + m_pTiles->data->num-1;
 //                arr <= end && ((pObj = *arr) != NULL/* || true*/);                                                
 //                arr++){
 //                newTiles->addObject(pObj);

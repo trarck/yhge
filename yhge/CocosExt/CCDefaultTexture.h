@@ -6,7 +6,7 @@
 
 NS_CC_YHGE_BEGIN
 
-class CCDefaultTexture : public CCObject
+class CCDefaultTexture : public Ref
 {
 public:
 

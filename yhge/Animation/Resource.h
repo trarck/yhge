@@ -6,7 +6,7 @@
 
 NS_CC_YHGE_BEGIN
 
-class Resource:public CCObject
+class Resource:public Ref
 {
     
 public:

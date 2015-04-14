@@ -8,7 +8,7 @@
 
 NS_CC_YHGE_BEGIN
 
-class FSMMachine:public CCObject
+class FSMMachine:public Ref
 {
 public:
 	FSMMachine(void);
@@ -16,7 +16,7 @@ public:
 	
 	virtual bool init();
     
-    virtual bool init(CCObject* owner);
+    virtual bool init(Ref* owner);
 
     virtual void addState(FSMState* state ,const std::string& key);
     virtual void addState(FSMState* state ,unsigned int key);
@@ -67,14 +67,14 @@ public:
         return m_lastState;
     }
 
-	inline void setOwner(CCObject* pOwner)
+	inline void setOwner(Ref* pOwner)
 	{
 //		CC_SAFE_RETAIN(pOwner);
 //		CC_SAFE_RELEASE(m_pOwner);
 		m_pOwner = pOwner;
 	}
 
-	inline CCObject* getOwner()
+	inline Ref* getOwner()
 	{
 		return m_pOwner;
 	}
@@ -100,7 +100,7 @@ protected:
     FSMState* m_lastState;
     
     //弱引用
-	CCObject* m_pOwner;
+	Ref* m_pOwner;
 	CCDictionary* m_pStates;
 
 };

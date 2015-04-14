@@ -32,7 +32,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
  x=x'/TileWidth+y'/TileHeight;
  z=-x'/TileWidth+y'/TileHeight;
  */
-class ISOStaticCoordinate:public CCObject
+class ISOStaticCoordinate:public Ref
 {
 public:
 

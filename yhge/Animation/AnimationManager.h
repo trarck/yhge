@@ -8,7 +8,7 @@
 
 NS_CC_YHGE_BEGIN
 
-class AnimationManager:public CCObject
+class AnimationManager:public Ref
 {
 public:
     AnimationManager();

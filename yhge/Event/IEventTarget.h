@@ -9,15 +9,15 @@ class IEventTarget
 {
 public:
 
-    virtual void addEventListener(const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle)=0;
+    virtual void addEventListener(const char* type,Ref* handleObject,yhge::SEL_EventHandle handle)=0;
     
-    virtual void removeEventListener(const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle) =0;
+    virtual void removeEventListener(const char* type,Ref* handleObject,yhge::SEL_EventHandle handle) =0;
 
     virtual CCArray* getEventListeners(const char*type)=0;
 
     virtual void dispatchEvent(yhge::Event event)=0;
 
-    virtual void trigger(const char*type,CCObject*data,bool bubbles)=0;
+    virtual void trigger(const char*type,Ref*data,bool bubbles)=0;
 };
 
 NS_CC_YHGE_END

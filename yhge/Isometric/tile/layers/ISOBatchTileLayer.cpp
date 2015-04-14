@@ -245,7 +245,7 @@ CCSprite * ISOBatchTileLayer::insertTileForGID(unsigned int gid, const CCPoint& 
     CCArray* pChildren=m_pSpriteBatchNode->getChildren();
     if (pChildren && pChildren->count()>0)
     {
-        CCObject* pObject = NULL;
+        Ref* pObject = NULL;
         CCARRAY_FOREACH(pChildren, pObject)
         {
             CCSprite* pChild = (CCSprite*) pObject;
@@ -346,7 +346,7 @@ void ISOBatchTileLayer::removeTileSpriteAt(const CCPoint& pos)
             CCArray* pChildren=m_pSpriteBatchNode->getChildren();
             if (pChildren && pChildren->count()>0)
             {
-                CCObject* pObject = NULL;
+                Ref* pObject = NULL;
                 CCARRAY_FOREACH(pChildren, pObject)
                 {
                     CCSprite* pChild = (CCSprite*) pObject;
@@ -495,7 +495,7 @@ void ISOBatchTileLayer::addSpriteWithoutQuad(CCSprite*child, unsigned int z, int
     
     CCArray* pobDescendants=m_pSpriteBatchNode->getDescendants();
     
-    CCObject* pObject = NULL;
+    Ref* pObject = NULL;
     CCARRAY_FOREACH(pobDescendants, pObject)
     {
         CCSprite* pChild = (CCSprite*) pObject;

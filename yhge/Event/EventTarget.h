@@ -5,15 +5,15 @@
 
 NS_CC_YHGE_BEGIN
 
-class EventTarget:public CCObject
+class EventTarget:public Ref
 {
 public:
 
-    inline void addEventListener(const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle) {
+    inline void addEventListener(const char* type,Ref* handleObject,yhge::SEL_EventHandle handle) {
         EventListenerManager::sharedEventListenerManager()->addEventListener(this,type,handleObject,handle);
     }
     
-    inline void removeEventListener(const char* type,CCObject* handleObject,yhge::SEL_EventHandle handle) {
+    inline void removeEventListener(const char* type,Ref* handleObject,yhge::SEL_EventHandle handle) {
         EventListenerManager::sharedEventListenerManager()->removeEventListener(this,type,handleObject,handle);
     }
 
@@ -25,7 +25,7 @@ public:
         EventListenerManager::sharedEventListenerManager()->dispatchEvent(this,event);
     }
 
-    inline void trigger(const char*type,CCObject*data,bool bubbles){
+    inline void trigger(const char*type,Ref*data,bool bubbles){
         EventListenerManager::sharedEventListenerManager()->trigger(this,type,data,bubbles);
     }
 };

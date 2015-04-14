@@ -137,12 +137,12 @@ protected:
 //    /**
 //     * @brief 绑定一个列值
 //     */
-//    void bindStatement(sqlite::Statement& stmt,const std::string& name,CCObject* val);
+//    void bindStatement(sqlite::Statement& stmt,const std::string& name,Ref* val);
 //    
 //    /**
 //     * @brief 绑定一个列值
 //     */
-//    void bindStatement(sqlite::Statement& stmt,int index,CCObject* val);
+//    void bindStatement(sqlite::Statement& stmt,int index,Ref* val);
     
     /**
      * @brief 绑定一个列值

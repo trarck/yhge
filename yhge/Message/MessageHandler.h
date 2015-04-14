@@ -13,10 +13,10 @@ NS_CC_YHGE_BEGIN
 class Message;
 
 //定义处理函数类型
-typedef void (CCObject::*SEL_MessageHandler)(Message*);
+typedef void (Ref::*SEL_MessageHandler)(Message*);
 #define message_selector(_SELECTOR) (SEL_MessageHandler)(&_SELECTOR)
 
-class MessageHandler : public CCObject {
+class MessageHandler : public Ref {
 public:
     
 	MessageHandler()
@@ -28,12 +28,12 @@ public:
 
     ~MessageHandler();
 
-	CCObject* getTarget()
+	Ref* getTarget()
 	{
 		return m_pTarget;
 	}
 
-	void setTarget(CCObject* pTarget)
+	void setTarget(Ref* pTarget)
 	{
 		CC_SAFE_RETAIN(pTarget);
 		CC_SAFE_RELEASE(m_pTarget);
@@ -50,7 +50,7 @@ public:
 		m_handle=handle;
 	}
 
-	bool initWithTarget(CCObject* pTarget,SEL_MessageHandler handle)
+	bool initWithTarget(Ref* pTarget,SEL_MessageHandler handle)
 	{
 		setTarget(pTarget);
 		m_handle=handle;
@@ -65,7 +65,7 @@ public:
 	}
 
 private:
-	CCObject* m_pTarget;
+	Ref* m_pTarget;
 	SEL_MessageHandler m_handle;
 };
 

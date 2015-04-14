@@ -11,10 +11,10 @@
 NS_CC_YHGE_BEGIN
 
 //瀹氫箟澶勭悊鍑芥暟绫诲瀷
-typedef void (CCObject::*SEL_EventHandleD)(yhge::Event* evt,CCObject* data);
+typedef void (Ref::*SEL_EventHandleD)(yhge::Event* evt,Ref* data);
 #define YH_EVENT_HANDLED_SELECTOR(_SELECTOR) (SEL_EventHandleD)(&_SELECTOR)
 
-class EventHandleWrap : public CCObject {
+class EventHandleWrap : public Ref {
 public:
     
 	inline EventHandleWrap()
@@ -33,12 +33,12 @@ public:
 	    }
     }
 
-    inline CCObject* getTarget()
+    inline Ref* getTarget()
 	{
 		return m_pTarget;
 	}
 
-	inline void setTarget(CCObject* pTarget)
+	inline void setTarget(Ref* pTarget)
 	{
 		CC_SAFE_RETAIN(pTarget);
 		CC_SAFE_RELEASE(m_pTarget);
@@ -55,7 +55,7 @@ public:
 		m_handle=handle;
 	}
 
-	inline bool initWithTarget(CCObject* pTarget,SEL_EventHandleD handle,CCObject* data)
+	inline bool initWithTarget(Ref* pTarget,SEL_EventHandleD handle,Ref* data)
 	{
 		setTarget(pTarget);
 		m_handle=handle;
@@ -63,22 +63,22 @@ public:
 		return true;
 	}
     
-    inline void setData(CCObject* data)
+    inline void setData(Ref* data)
     {
         CC_SAFE_RETAIN(data);
 		CC_SAFE_RELEASE(m_data);
         m_data=data;
     }
 
-    inline CCObject* getData()
+    inline Ref* getData()
     {
         return m_data;
     }
 
 protected:
-	CCObject* m_pTarget;
+	Ref* m_pTarget;
 	SEL_EventHandleD m_handle;
-    CCObject* m_data;
+    Ref* m_data;
 };
 
 NS_CC_YHGE_END

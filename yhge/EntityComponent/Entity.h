@@ -12,7 +12,7 @@ class Component;
 /**
  * 组件系统基类
  */
-class Entity : public CCObject
+class Entity : public Ref
 {
 public:
     

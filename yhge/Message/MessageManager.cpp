@@ -41,11 +41,11 @@ MessageManager* MessageManager::defaultManager(void)
 bool MessageManager::init()
 {
 	m_messages=new CCDictionary();
-	m_globalObject=new CCObject();
+	m_globalObject=new Ref();
 	return true;
 }
 
-bool MessageManager::registerReceiver(CCObject* receiver ,unsigned int type ,CCObject* sender,SEL_MessageHandler handle ,CCObject*  handleObject)
+bool MessageManager::registerReceiver(Ref* receiver ,unsigned int type ,Ref* sender,SEL_MessageHandler handle ,Ref*  handleObject)
 {
 	CCAssert(receiver!=NULL,"MessageManage:registerReceiver:receiver can't be null");
 	CCAssert(handle!=NULL,"MessageManage:registerReceiver:handle");
@@ -89,7 +89,7 @@ bool MessageManager::registerReceiver(CCObject* receiver ,unsigned int type ,CCO
 #else
 	//检查是否已经注册过
     bool isRegisted=false;
-    CCObject* pObject = NULL;
+    Ref* pObject = NULL;
     CCARRAY_FOREACH(handleList,pObject){
         MessageHandler* handler=(MessageHandler*) pObject;
         if (handler->getHandle()==handle && handler->getTarget()==handleObject) {
@@ -113,12 +113,12 @@ bool MessageManager::registerReceiver(CCObject* receiver ,unsigned int type ,CCO
 
 //使receiver可以接收sender发送过来的叫type的消息，并用handle来处理
 //关注的对象是receiver
-bool MessageManager::registerReceiver(CCObject* receiver ,unsigned int type ,CCObject* sender,SEL_MessageHandler handle)
+bool MessageManager::registerReceiver(Ref* receiver ,unsigned int type ,Ref* sender,SEL_MessageHandler handle)
 {
 	return registerReceiver(receiver,type ,sender  ,handle,receiver);
 }
 
-bool MessageManager::registerReceiver(CCObject* receiver ,unsigned int type ,CCObject* sender,MessageHandler* handler)
+bool MessageManager::registerReceiver(Ref* receiver ,unsigned int type ,Ref* sender,MessageHandler* handler)
 {
 	CCAssert(receiver!=NULL,"MessageManage:registerReceiver:receiver can't be null");
 	CCAssert(handler!=NULL,"MessageManage:registerReceiver:handle");
@@ -156,7 +156,7 @@ bool MessageManager::registerReceiver(CCObject* receiver ,unsigned int type ,CCO
 #else
 	//检查是否已经注册过
     bool isRegisted=false;
-    CCObject* pObject = NULL;
+    Ref* pObject = NULL;
     MessageHandler* handlerItem=NULL;
     CCARRAY_FOREACH(handleList,pObject){
         handlerItem=(MessageHandler*) pObject;
@@ -178,7 +178,7 @@ bool MessageManager::registerReceiver(CCObject* receiver ,unsigned int type ,CCO
 /**
  * 检查是否已经注册某个消息。
  */
-bool MessageManager::isRegisterReceiver(CCObject* receiver ,unsigned int type ,CCObject* sender,SEL_MessageHandler handle ,CCObject*  handleObject)
+bool MessageManager::isRegisterReceiver(Ref* receiver ,unsigned int type ,Ref* sender,SEL_MessageHandler handle ,Ref*  handleObject)
 {
 	CCAssert(receiver!=NULL,"MessageManage:registerReceiver:receiver can't be null");
 	CCAssert(handle!=NULL,"MessageManage:registerReceiver:handle");
@@ -206,7 +206,7 @@ bool MessageManager::isRegisterReceiver(CCObject* receiver ,unsigned int type ,C
 	}
 
 	bool isRegisted=false;
-    CCObject* pObject = NULL;
+    Ref* pObject = NULL;
     CCARRAY_FOREACH(handleList,pObject){
         MessageHandler* handler=(MessageHandler*) pObject;
         if (handler->getHandle()==handle && handler->getTarget()==handleObject) {
@@ -218,7 +218,7 @@ bool MessageManager::isRegisterReceiver(CCObject* receiver ,unsigned int type ,C
 	return isRegisted;
 }
 
-bool MessageManager::isRegisterReceiver(CCObject* receiver ,unsigned int type ,CCObject* sender,SEL_MessageHandler handle)
+bool MessageManager::isRegisterReceiver(Ref* receiver ,unsigned int type ,Ref* sender,SEL_MessageHandler handle)
 {
 	return isRegisterReceiver(receiver,type,sender,handle,receiver);
 }
@@ -227,7 +227,7 @@ bool MessageManager::isRegisterReceiver(CCObject* receiver ,unsigned int type ,C
  * 取消注册到接收者的处理对象的处理方法，该方法注册到发送者的某个消息。
  * 如果消息类型是AllMessage，则只取消对AllMessage注册的项
  */
-void MessageManager::removeReceiver(CCObject* receiver,unsigned int type ,CCObject* sender,SEL_MessageHandler handle,CCObject*  handleObject)
+void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender,SEL_MessageHandler handle,Ref*  handleObject)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 	CCAssert(handle!=NULL,"MessageManager:removeReceiver:handle can't be null!");
@@ -263,7 +263,7 @@ void MessageManager::removeReceiver(CCObject* receiver,unsigned int type ,CCObje
 /**
  * 取消接收者的处理方法，该方法注册到发送者的某个消息。
  */
-void MessageManager::removeReceiver(CCObject* receiver,unsigned int type ,CCObject* sender,SEL_MessageHandler handle)
+void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender,SEL_MessageHandler handle)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 	CCAssert(handle!=NULL,"MessageManager:removeReceiver:handle can't be null!");
@@ -298,7 +298,7 @@ void MessageManager::removeReceiver(CCObject* receiver,unsigned int type ,CCObje
 /**
  * 取消接收者注册到某个发送者的某个消息的所有处理方法。
  */
-void MessageManager::removeReceiver(CCObject* receiver,unsigned int type ,CCObject* sender)
+void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 
@@ -330,7 +330,7 @@ void MessageManager::removeReceiver(CCObject* receiver,unsigned int type ,CCObje
 /**
  * 取消接收者注册到某个消息的所有处理方法。
  */
-void MessageManager::removeReceiver(CCObject* receiver,unsigned int type)
+void MessageManager::removeReceiver(Ref* receiver,unsigned int type)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 
@@ -350,7 +350,7 @@ void MessageManager::removeReceiver(CCObject* receiver,unsigned int type)
 /**
  * 取消接收者的所以注册信息。
  */
-void MessageManager::removeReceiver(CCObject* receiver)
+void MessageManager::removeReceiver(Ref* receiver)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
     
@@ -370,7 +370,7 @@ void MessageManager::removeReceiver(CCObject* receiver)
     }
 }
 
-void MessageManager::removeReceiver(CCObject* receiver,unsigned int type ,SEL_MessageHandler handle)
+void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,SEL_MessageHandler handle)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 	CCAssert(handle!=NULL,"MessageManager:removeReceiver:handle can't be null!");
@@ -390,7 +390,7 @@ void MessageManager::removeReceiver(CCObject* receiver,unsigned int type ,SEL_Me
     }
 }
 
-void MessageManager::removeReceiver(CCObject* receiver,CCObject* sender,SEL_MessageHandler handle)
+void MessageManager::removeReceiver(Ref* receiver,Ref* sender,SEL_MessageHandler handle)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 	CCAssert(sender!=NULL,"MessageManager:removeReceiver:sender can't be null!");
@@ -422,7 +422,7 @@ void MessageManager::removeReceiver(CCObject* receiver,CCObject* sender,SEL_Mess
     }
 }
 
-void MessageManager::removeReceiver(CCObject* receiver,CCObject* sender)
+void MessageManager::removeReceiver(Ref* receiver,Ref* sender)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
     CCAssert(sender!=NULL,"MessageManager:removeReceiver:sender can't be null!");
@@ -452,7 +452,7 @@ void MessageManager::removeReceiver(CCObject* receiver,CCObject* sender)
     }
 }
 
-void MessageManager::removeReceiver(CCObject* receiver,SEL_MessageHandler handle)
+void MessageManager::removeReceiver(Ref* receiver,SEL_MessageHandler handle)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 	CCAssert(handle!=NULL,"MessageManager:removeReceiver:handle can't be null!");
@@ -479,7 +479,7 @@ void MessageManager::removeReceiver(CCObject* receiver,SEL_MessageHandler handle
 /**
  * 取消注册到接收者的处理对象的所有处理方法，该方法注册到发送者的某个消息。
  */
-void MessageManager::removeReceiverAllHanldes(CCObject* receiver,unsigned int type ,CCObject* sender,CCObject*  handleObject)
+void MessageManager::removeReceiverAllHanldes(Ref* receiver,unsigned int type ,Ref* sender,Ref*  handleObject)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
     CCAssert(handleObject!=NULL,"MessageManager:removeReceiver:handleObject can't be null!");
@@ -515,7 +515,7 @@ void MessageManager::removeReceiverAllHanldes(CCObject* receiver,unsigned int ty
 /**
  * 取消接收者处理某个消息的所有方法。
  */
-void MessageManager::removeReceiverAllHanldes(CCObject* receiver,unsigned int type ,CCObject*  handleObject)
+void MessageManager::removeReceiverAllHanldes(Ref* receiver,unsigned int type ,Ref*  handleObject)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
     CCAssert(handleObject!=NULL,"MessageManager:removeReceiver:handleObject can't be null!");
@@ -538,7 +538,7 @@ void MessageManager::removeReceiverAllHanldes(CCObject* receiver,unsigned int ty
 /**
  * 取消接收者注册到发送者的任意消息的所有处理方法。
  */
-void MessageManager::removeReceiverAllHanldes(CCObject* receiver,CCObject* sender,CCObject*  handleObject)
+void MessageManager::removeReceiverAllHanldes(Ref* receiver,Ref* sender,Ref*  handleObject)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 	CCAssert(sender!=NULL,"MessageManager:removeReceiver:sender can't be null!");
@@ -575,7 +575,7 @@ void MessageManager::removeReceiverAllHanldes(CCObject* receiver,CCObject* sende
 /**
  * 取消接收者注册到任意发送者任意消息的所有处理方法。
  */
-void MessageManager::removeReceiverAllHanldes(CCObject* receiver,CCObject*  handleObject)
+void MessageManager::removeReceiverAllHanldes(Ref* receiver,Ref*  handleObject)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 	CCAssert(handleObject!=NULL,"MessageManager:removeReceiver:handleObject can't be null!");
@@ -598,7 +598,7 @@ void MessageManager::removeReceiverAllHanldes(CCObject* receiver,CCObject*  hand
     }
 }
 
-void MessageManager::removeReceiverMap(CCDictionary* receiverMap,SEL_MessageHandler handle,CCObject* handleObject){
+void MessageManager::removeReceiverMap(CCDictionary* receiverMap,SEL_MessageHandler handle,Ref* handleObject){
 	CCAssert(receiverMap!=NULL,"MessageManager:removeReceiverMap:receiverMap can't be null!");
 
     CCDictElement* msgMapElement = NULL;
@@ -640,7 +640,7 @@ void MessageManager::removeReceiverMap(CCDictionary* receiverMap){
 /**
  * 删除接收者的注册列表。
  */
-void MessageManager::removeReceiverMapForTarget(CCDictionary* receiverMap,CCObject* handleObject)
+void MessageManager::removeReceiverMapForTarget(CCDictionary* receiverMap,Ref* handleObject)
 {
     CCAssert(receiverMap!=NULL,"MessageManager:removeReceiverMap:receiverMap can't be null!");
 
@@ -658,11 +658,11 @@ void MessageManager::removeReceiverMapForTarget(CCDictionary* receiverMap,CCObje
     }
 }
 
-void MessageManager::removeHandleList(CCArray* handleList,SEL_MessageHandler handle,CCObject* handleObject){
+void MessageManager::removeHandleList(CCArray* handleList,SEL_MessageHandler handle,Ref* handleObject){
 
     if (handleList && handleList->data->num > 0){
         int len=handleList->data->num;
-        CCObject** arr = handleList->data->arr;
+        Ref** arr = handleList->data->arr;
         for(int i=0;i<len;){
 		    MessageHandler* handler=(MessageHandler*)(*(arr+i));
 		    if (handler->getTarget()==handleObject && handler->getHandle()==handle) {
@@ -681,7 +681,7 @@ void MessageManager::removeHandleList(CCArray* handleList,SEL_MessageHandler han
 void MessageManager::removeHandleList(CCArray* handleList,SEL_MessageHandler handle){
 	if (handleList && handleList->data->num > 0){         
         int len=handleList->data->num;
-        CCObject** arr = handleList->data->arr;
+        Ref** arr = handleList->data->arr;
         for(int i=0;i<len;){
 		    MessageHandler* handler=(MessageHandler*)(*(arr+i));
 		    if (handler->getHandle()==handle) {
@@ -701,11 +701,11 @@ void MessageManager::removeHandleList(CCArray* handleList){
 /**
  * 删除接收者的处理方法列表的处理方法为参数指定的函数。
  */
-void MessageManager::removeHandleListForTarget(CCArray* handleList,CCObject* handleObject)
+void MessageManager::removeHandleListForTarget(CCArray* handleList,Ref* handleObject)
 {
     if (handleList && handleList->data->num > 0){         
         int len=handleList->data->num;
-        CCObject** arr = handleList->data->arr;
+        Ref** arr = handleList->data->arr;
         for(int i=0;i<len;){
 		    MessageHandler* handler=(MessageHandler*)(*(arr+i));
 		    if (handler->getTarget()==handleObject) {
@@ -742,7 +742,7 @@ void MessageManager::dispatchMessage(Message* message)
 
 
 //适应message中没有receiver的情况
-void MessageManager::dispatchMessage(Message* message ,CCObject*  receiver)
+void MessageManager::dispatchMessage(Message* message ,Ref*  receiver)
 {
 	CCAssert(message!=NULL,"MessageManager:dispatchMessage:message can't be null!");
 	CCAssert(receiver!=NULL,"MessageManager:dispatchMessage:receiver can't be null!");
@@ -751,7 +751,7 @@ void MessageManager::dispatchMessage(Message* message ,CCObject*  receiver)
 }
 
 
-void MessageManager::dispatchMessage(unsigned int type ,CCObject* sender ,CCObject* receiver,CCObject* data)
+void MessageManager::dispatchMessage(unsigned int type ,Ref* sender ,Ref* receiver,Ref* data)
 {
 	Message* message=new Message();
 	message->initWithType(type ,sender ,receiver ,data);
@@ -759,7 +759,7 @@ void MessageManager::dispatchMessage(unsigned int type ,CCObject* sender ,CCObje
 	message->release();
 }
 
-void MessageManager::dispatchMessage(unsigned int type ,CCObject* sender ,CCObject* receiver)
+void MessageManager::dispatchMessage(unsigned int type ,Ref* sender ,Ref* receiver)
 {
 	Message* message=new Message();
 	message->initWithType(type ,sender ,receiver);
@@ -770,8 +770,8 @@ void MessageManager::dispatchMessage(unsigned int type ,CCObject* sender ,CCObje
 void MessageManager::dispatchMessageMap(CCDictionary* msgMap,Message* message)
 {
     CCAssert(msgMap!=NULL,"MessageManager:dispatchMessageMap:msgMap can't be null!");
-    CCObject* receiver=message->getReceiver();
-    CCObject* sender=message->getSender();
+    Ref* receiver=message->getReceiver();
+    Ref* sender=message->getSender();
     if(receiver){
             CCDictionary* receiverMap=(CCDictionary *)msgMap->objectForKey(receiver->m_uID);
             if(receiverMap){
@@ -799,7 +799,7 @@ void MessageManager::dispatchMessageMap(CCDictionary* msgMap,Message* message)
     }
 }
 
-void MessageManager::dispathMessageToAllReceiverWithSender(Message* message,CCDictionary* msgMap,CCObject* sender)
+void MessageManager::dispathMessageToAllReceiverWithSender(Message* message,CCDictionary* msgMap,Ref* sender)
 {
     CCAssert(msgMap!=NULL,"MessageManager:dispatchMessageMap:msgMap can't be null!");
 
@@ -820,7 +820,7 @@ void MessageManager::dispathMessageToAllReceiverWithSender(Message* message,CCDi
 void MessageManager::execHandleList(CCArray* handleList ,Message* message)
 {
 	CCAssert(handleList!=NULL,"MessageManager:execHandleList:handleList can't be null!");
-	CCObject* pObject = NULL;
+	Ref* pObject = NULL;
 	//为了安全执行handler，需要一份handleList的复制。
 	//在执行handle的时间，有可能会调用反注册函数。
 	//如果反注册函数和当前handleList相关，则下面的执行会出错。
@@ -850,7 +850,7 @@ void MessageManager::execHandleList(CCArray* handleList ,Message* message)
 //
 //void MessageManager::execRegisterWithSenderMap(CCDictionary* senderMap,Message* message)
 //{
-//	CCObject* receiver=message->getReceiver();
+//	Ref* receiver=message->getReceiver();
 //	if (receiver) {
 //		//message for receiver
 //		CCArray* receiverList=(CCArray*)senderMap->objectForKey(receiver->m_uID);
@@ -861,7 +861,7 @@ void MessageManager::execHandleList(CCArray* handleList ,Message* message)
 //	}
 //}
 //
-//void MessageManager::execRegisterWithSenderMap(CCDictionary* senderMap,Message* message,CCObject*  receiver)
+//void MessageManager::execRegisterWithSenderMap(CCDictionary* senderMap,Message* message,Ref*  receiver)
 //{
 //	CCAssert(senderMap!=NULL,"MessageManager:execRegisterWithSenderMap:senderMap can't be null!");
 //	CCAssert(receiver!=NULL,"MessageManager:execRegisterWithSenderMap:receiver can't be null!");

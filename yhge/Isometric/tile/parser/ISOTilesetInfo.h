@@ -9,7 +9,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 /**
  * 块集合
  */
-class ISOTilesetInfo : public CCObject{
+class ISOTilesetInfo : public Ref{
 
 public:
     

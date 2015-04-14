@@ -111,7 +111,7 @@ CCArray* ZIndex::insertSort(ZIndexNode* node ,CCArray* rects)
 			CCArray *maxs=new CCArray(l/2);
 			CCArray *mins=new CCArray(l/2);
             
-            CCObject* pObject = NULL;
+            Ref* pObject = NULL;
 	        CCARRAY_FOREACH(rects,pObject){
 			    ZIndexNode*it=(ZIndexNode*)pObject;
 				src=it->getRect();
@@ -155,7 +155,7 @@ CCArray* ZIndex::sort()
 	CCArray* items=NULL;
 	
 	//sort dynamics
-    CCObject* pObject=NULL;
+    Ref* pObject=NULL;
     CCARRAY_FOREACH(m_pDynamics,pObject){
 	    ZIndexNode* it=(ZIndexNode*) pObject;
 		items=insertSort(it ,temps);
@@ -173,7 +173,7 @@ void ZIndex::update(float delta)
 	    CCArray* items=sort();
 		//NSLog(@"%@",m_pSortLayer);
 		int i=1;
-        CCObject* pObject=NULL;
+        Ref* pObject=NULL;
         CCARRAY_FOREACH(items,pObject){
 		    ZIndexNode* it=(ZIndexNode*)pObject;
             CCNode* node=(CCNode*)it->getEntity();
@@ -182,7 +182,7 @@ void ZIndex::update(float delta)
 		items->release();
 	}else if (m_bStaticDirty) {
 		int i=1;
-        CCObject* pObject=NULL;
+        Ref* pObject=NULL;
         CCARRAY_FOREACH(m_pStatics,pObject){
             ZIndexNode* it=(ZIndexNode*)pObject;
             CCNode* node=(CCNode*)it->getEntity();

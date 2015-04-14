@@ -9,7 +9,7 @@ NS_CC_YHGE_BEGIN
 /**
  * 组件系统基类
  */
-class IsometricProperty : public CCObject
+class IsometricProperty : public Ref
 {
 public:
     

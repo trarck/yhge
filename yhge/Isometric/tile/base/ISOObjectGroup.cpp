@@ -32,7 +32,7 @@ CCDictionary* ISOObjectGroup::objectNamed(const char *objectName)
 {
     if (m_pObjects && m_pObjects->count() > 0)
     {
-        CCObject* pObj = NULL;
+        Ref* pObj = NULL;
         CCARRAY_FOREACH(m_pObjects, pObj)
         {
             CCDictionary* pDict = (CCDictionary*)pObj;

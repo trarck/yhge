@@ -221,7 +221,7 @@ int CocosSqliteDAO::update(const std::string& table,CCDictionary* data,CCDiction
         }
         
         //绑定where数据
-        CCObject* pObj=NULL;
+        Ref* pObj=NULL;
         CCARRAY_FOREACH(whereData, pObj) {
             bindStatement(stmt,i++,static_cast<SimpleValue*>(pObj));
         }
@@ -245,7 +245,7 @@ int CocosSqliteDAO::remove(const std::string& table,CCDictionary* where)
     
     //绑定条件数据
     int i=1;
-    CCObject* pObj=NULL;
+    Ref* pObj=NULL;
     CCARRAY_FOREACH(whereData, pObj) {
         bindStatement(stmt,i++,static_cast<SimpleValue*>(pObj));
     }
@@ -427,7 +427,7 @@ void CocosSqliteDAO::setRecordValue(const sqlite::Column& col, CCDictionary* rec
     }
 }
 //
-//void CocosSqliteDAO::bindStatement(Statement& stmt,const std::string& name,CCObject* val)
+//void CocosSqliteDAO::bindStatement(Statement& stmt,const std::string& name,Ref* val)
 //{
 //    CCInteger* integerValue=dynamic_cast<CCInteger*>(val);
 //    if (integerValue) {
@@ -460,7 +460,7 @@ void CocosSqliteDAO::setRecordValue(const sqlite::Column& col, CCDictionary* rec
 //
 //}
 //
-//void CocosSqliteDAO::bindStatement(Statement& stmt,int index,CCObject* val)
+//void CocosSqliteDAO::bindStatement(Statement& stmt,int index,Ref* val)
 //{
 //    CCInteger* integerValue=dynamic_cast<CCInteger*>(val);
 //    if (integerValue) {

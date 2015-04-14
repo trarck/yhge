@@ -85,7 +85,7 @@ void Scheduler::update(float delta)
     
 }
 
-void Scheduler::registerUpdate(CCObject* target,SEL_SCHEDULE handle,int priority)
+void Scheduler::registerUpdate(Ref* target,SEL_SCHEDULE handle,int priority)
 {
     CCAssert(target!=NULL, "[Scheduler::scheduleUpdate] target must not be null");
     
@@ -114,7 +114,7 @@ void Scheduler::registerUpdate(CCObject* target,SEL_SCHEDULE handle,int priority
     m_registerMap[target->m_uID]=priority;
 }
 
-//void Scheduler::unregisterUpdate(CCObject* target,int priority)
+//void Scheduler::unregisterUpdate(Ref* target,int priority)
 //{
 //    if (priority==0) {
 //        //remove from zero list
@@ -128,7 +128,7 @@ void Scheduler::registerUpdate(CCObject* target,SEL_SCHEDULE handle,int priority
 //    }
 //}
 
-//void Scheduler::unregisterUpdate(CCObject* target,SEL_SCHEDULE handle,int priority)
+//void Scheduler::unregisterUpdate(Ref* target,SEL_SCHEDULE handle,int priority)
 //{
 //    if (priority==0) {
 //        //remove from zero list
@@ -142,7 +142,7 @@ void Scheduler::registerUpdate(CCObject* target,SEL_SCHEDULE handle,int priority
 //    }
 //}
 
-//void Scheduler::unregisterUpdate(CCObject* target,SEL_SCHEDULE handle)
+//void Scheduler::unregisterUpdate(Ref* target,SEL_SCHEDULE handle)
 //{
 //    std::map<int, int>::iterator registerIter=m_registerMap.find(target->m_uID);
 //    if (registerIter==m_registerMap.end()) {
@@ -164,7 +164,7 @@ void Scheduler::registerUpdate(CCObject* target,SEL_SCHEDULE handle,int priority
 //    }
 //}
 
-void Scheduler::unregisterUpdate(CCObject* target)
+void Scheduler::unregisterUpdate(Ref* target)
 {
     std::map<int, int>::iterator registerIter=m_registerMap.find(target->m_uID);
     if (registerIter==m_registerMap.end()) {
@@ -207,7 +207,7 @@ void Scheduler::insertToList(TaskList& list,SchedulerTask* task)
     
 }
 
-//void Scheduler::removeFromList(TaskList& list,CCObject* target,SEL_SCHEDULE handle)
+//void Scheduler::removeFromList(TaskList& list,Ref* target,SEL_SCHEDULE handle)
 //{
 //    CCAssert(target!=NULL, "[Scheduler::insertToList] target must not be null");
 //    
@@ -224,7 +224,7 @@ void Scheduler::insertToList(TaskList& list,SchedulerTask* task)
 //    }
 //}
 
-void Scheduler::removeFromList(TaskList& list,CCObject* target)
+void Scheduler::removeFromList(TaskList& list,Ref* target)
 {
     if (m_updating){
         markRemoveFromList(list, target);
@@ -233,7 +233,7 @@ void Scheduler::removeFromList(TaskList& list,CCObject* target)
     }
 }
 
-void Scheduler::directRemoveFromList(TaskList& list,CCObject* target)
+void Scheduler::directRemoveFromList(TaskList& list,Ref* target)
 {
     CCAssert(target!=NULL, "[Scheduler::insertToList] target must not be null");
     for (TaskList::iterator iter=list.begin(); iter!=list.end(); ++iter) {
@@ -252,7 +252,7 @@ void Scheduler::directRemoveFromList(TaskList& list,CCObject* target)
     }
 }
 
-void Scheduler::markRemoveFromList(TaskList& list,CCObject* target)
+void Scheduler::markRemoveFromList(TaskList& list,Ref* target)
 {
     CCAssert(target!=NULL, "[Scheduler::insertToList] target must not be null");
     for (TaskList::iterator iter=list.begin(); iter!=list.end(); ++iter) {

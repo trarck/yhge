@@ -9,7 +9,7 @@ NS_CC_YHGE_BEGIN
 /**
  * 组件系统基类
  */
-class Property : public CCObject
+class Property : public Ref
 {
 public:
     

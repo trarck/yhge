@@ -189,7 +189,7 @@ void Astar::setOpenSeqNode(AstarNode* node ,int g)
 	node->setF(node->getG()+node->getH());
     
 	int i=0;
-	CCObject* pObject = NULL;
+	Ref* pObject = NULL;
 	CCARRAY_FOREACH(m_openSeq,pObject){
 		AstarNode* it=(AstarNode*)pObject;
 		if(node->getF()<it->getF()) break;
@@ -207,7 +207,7 @@ void Astar::addToOpen(AstarNode* node)
 {
 	//CCLOG("addToOpen %d,%d",node->getX(),node->getY());
 	int i=0;
-	CCObject* pObject = NULL;
+	Ref* pObject = NULL;
 	CCARRAY_FOREACH(m_openSeq,pObject){
 		AstarNode* it=(AstarNode*)pObject;
 		if(node->getF()<it->getF()) break;

@@ -18,7 +18,7 @@ return value;\
 return NULL;\
 }
 
-class SimpleValue:public CCObject
+class SimpleValue:public Ref
 {
 public:
     static const SimpleValue Null;

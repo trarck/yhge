@@ -27,7 +27,7 @@ NS_CC_YHGE_DIMETRIC_BEGIN
  
  注意实际使用时，y和z要掉换一下。
  */
-class StaticTopViewCoordinateFormulae:public CCObject
+class StaticTopViewCoordinateFormulae:public Ref
 {
 public:
 

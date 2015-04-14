@@ -9,7 +9,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 /**
  * 层的信息
  */
-class ISOActiveLayerInfo : public CCObject{
+class ISOActiveLayerInfo : public Ref{
 
 public:
     

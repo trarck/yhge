@@ -12,10 +12,10 @@
 NS_CC_YHGE_BEGIN
 
 //定义处理函数类型
-typedef void (CCObject::*SEL_EventHandle)(yhge::Event*);
+typedef void (Ref::*SEL_EventHandle)(yhge::Event*);
 #define YH_EVENT_SELECTOR(_SELECTOR) (yhge::SEL_EventHandle)(&_SELECTOR)
 
-class EventHandle : public CCObject {
+class EventHandle : public Ref {
 public:
     
 	inline EventHandle()
@@ -27,12 +27,12 @@ public:
 
     virtual ~EventHandle();
 
-	inline CCObject* getTarget()
+	inline Ref* getTarget()
 	{
 		return m_pTarget;
 	}
 
-	inline void setTarget(CCObject* pTarget)
+	inline void setTarget(Ref* pTarget)
 	{
 		CC_SAFE_RETAIN(pTarget);
 		CC_SAFE_RELEASE(m_pTarget);
@@ -49,7 +49,7 @@ public:
 		m_handle=handle;
 	}
 
-	inline bool initWithTarget(CCObject* pTarget,SEL_EventHandle handle)
+	inline bool initWithTarget(Ref* pTarget,SEL_EventHandle handle)
 	{
 		setTarget(pTarget);
 		m_handle=handle;
@@ -67,7 +67,7 @@ public:
 	}
 
 protected:
-	CCObject* m_pTarget;
+	Ref* m_pTarget;
 	SEL_EventHandle m_handle;
 };
 
@@ -92,7 +92,7 @@ protected:
 //    
 //private:
 //
-//    CCObject* m_pData;
+//    Ref* m_pData;
 //
 //};
 

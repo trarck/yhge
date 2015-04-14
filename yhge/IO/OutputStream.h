@@ -9,7 +9,7 @@ NS_CC_YHGE_BEGIN
  * 字节流操作类
  * 这里使用和Buffer的组合，而没有使用继承，添加灵活性
  */
-class OutputStream:public CCObject
+class OutputStream:public Ref
 {
 public:
     

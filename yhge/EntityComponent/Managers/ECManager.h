@@ -11,7 +11,7 @@ class Engine;
 /**
  * base manager
  */
-class ECManager : public CCObject
+class ECManager : public Ref
 {
 public:
     

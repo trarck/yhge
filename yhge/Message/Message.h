@@ -12,7 +12,7 @@
 
 NS_CC_YHGE_BEGIN
 
-class Message : public CCObject {
+class Message : public Ref {
 
 public:
     Message()
@@ -28,7 +28,7 @@ public:
 
     ~Message(void);
     
-	bool initWithType(unsigned int type,CCObject* sender ,CCObject* receiver ,CCObject *data){
+	bool initWithType(unsigned int type,Ref* sender ,Ref* receiver ,Ref *data){
 		 m_type=type;
 		setSender(sender);
 		setReceiver(receiver);
@@ -36,14 +36,14 @@ public:
 		return true;
 	}
 
-    bool initWithType(unsigned int type,CCObject* sender ,CCObject* receiver){
+    bool initWithType(unsigned int type,Ref* sender ,Ref* receiver){
 		m_type=type;
 		setSender(sender);
 		setReceiver(receiver);
     	return true;
 	}
 
-    bool initWithType(unsigned int type,CCObject* sender){
+    bool initWithType(unsigned int type,Ref* sender){
 		m_type=type;
 		setSender(sender);
   		return true;
@@ -56,31 +56,31 @@ public:
 	    m_type=type;
 	}
 
-	CCObject* getSender(){
+	Ref* getSender(){
 		return m_sender;
 	}
 
-	void setSender(CCObject* sender){
+	void setSender(Ref* sender){
 		CC_SAFE_RETAIN(sender);
 		CC_SAFE_RELEASE(m_sender);
 		m_sender=sender;
 	}
 
-	CCObject* getReceiver(){
+	Ref* getReceiver(){
 		return m_receiver;
 	}
 
-	void setReceiver(CCObject* receiver){
+	void setReceiver(Ref* receiver){
 		CC_SAFE_RETAIN(receiver);
 		CC_SAFE_RELEASE(m_receiver);
 		m_receiver=receiver;
 	}
     
-	CCObject* getData(){
+	Ref* getData(){
 		return m_pData;
 	}
 
-    void setData(CCObject* data){
+    void setData(Ref* data){
 		CC_SAFE_RETAIN(data);
 		CC_SAFE_RELEASE(m_pData);
 		m_pData=data;
@@ -90,11 +90,11 @@ public:
 		 return (CCDictionary*) m_pData;
 	}
 
-	CCObject* getExtData(){
+	Ref* getExtData(){
 		return m_pExtData;
 	}
 
-    void setExtData(CCObject* ExtData){
+    void setExtData(Ref* ExtData){
 		CC_SAFE_RETAIN(ExtData);
 		CC_SAFE_RELEASE(m_pExtData);
 		m_pExtData=ExtData;
@@ -102,11 +102,11 @@ public:
 
 private:
     unsigned int m_type;//消息的类型或ID。
-    CCObject* m_sender;//消息的发送者
-	CCObject* m_receiver;//消息的接收者
+    Ref* m_sender;//消息的发送者
+	Ref* m_receiver;//消息的接收者
     float m_timeStamp;//发送时间
-    CCObject* m_pData;
-	CCObject* m_pExtData;//附加数据。
+    Ref* m_pData;
+	Ref* m_pExtData;//附加数据。
 };
 
 NS_CC_YHGE_END

@@ -1,5 +1,5 @@
 /****************************************************************************
-扩展CCPoint 对于2.1版之后的几何类取消继承CCObject
+扩展CCPoint 对于2.1版之后的几何类取消继承Ref
 ****************************************************************************/
 
 #ifndef YHGE_COCOSEXT_CCGEOMETRYVAULE_H_
@@ -16,7 +16,7 @@ NS_CC_YHGE_BEGIN
  * @{
  */
 
-class CCPointValue : public cocos2d::CCObject
+class CCPointValue : public cocos2d::Ref
 {
 public:
 	inline CCPointValue()
@@ -58,7 +58,7 @@ public:
         return m_tPoint;
     }
     
-    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone);
+    virtual cocos2d::Ref* copyWithZone(cocos2d::CCZone* pZone);
 	
 	inline static CCPointValue* create(const cocos2d::CCPoint& tPoint)
 	{
@@ -78,7 +78,7 @@ private:
 	cocos2d::CCPoint m_tPoint;
 };
 
-class CCSizeValue : public cocos2d::CCObject
+class CCSizeValue : public cocos2d::Ref
 {
 public:
     inline CCSizeValue()
@@ -119,7 +119,7 @@ public:
     {
 		return m_tSize;
 	}
-    virtual CCObject* copyWithZone(cocos2d::CCZone* pZone);
+    virtual Ref* copyWithZone(cocos2d::CCZone* pZone);
 	
 	inline static CCSizeValue* create(const cocos2d::CCSize& tSize)
 	{
@@ -139,7 +139,7 @@ private:
     cocos2d::CCSize m_tSize;
 };
 
-class CCRectValue : public cocos2d::CCObject
+class CCRectValue : public cocos2d::Ref
 {
     
 public:
@@ -187,7 +187,7 @@ public:
 		return m_tRect;
 	}
     
-    virtual CCObject* copyWithZone(cocos2d::CCZone* pZone);
+    virtual Ref* copyWithZone(cocos2d::CCZone* pZone);
     
     inline static CCRectValue* create(const cocos2d::CCRect& rect)
     {

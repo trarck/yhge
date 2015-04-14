@@ -13,12 +13,12 @@ CCCallFuncNO::~CCCallFuncNO()
 	CC_SAFE_RELEASE(m_pData);
 }
 
-CCCallFuncNO * CCCallFuncNO::actionWithTarget(CCObject* pSelectorTarget, SEL_CallFuncNO selector, CCObject* d) 
+CCCallFuncNO * CCCallFuncNO::actionWithTarget(Ref* pSelectorTarget, SEL_CallFuncNO selector, Ref* d) 
 {
     return CCCallFuncNO::create(pSelectorTarget, selector, d);
 }
 
-CCCallFuncNO * CCCallFuncNO::create(CCObject* pSelectorTarget, SEL_CallFuncNO selector, CCObject* d)
+CCCallFuncNO * CCCallFuncNO::create(Ref* pSelectorTarget, SEL_CallFuncNO selector, Ref* d)
 {
     CCCallFuncNO* pRet = new CCCallFuncNO();
 
@@ -31,8 +31,8 @@ CCCallFuncNO * CCCallFuncNO::create(CCObject* pSelectorTarget, SEL_CallFuncNO se
     return NULL;
 }
 
-bool CCCallFuncNO::initWithTarget(CCObject* pSelectorTarget,
-        SEL_CallFuncNO selector, CCObject* d) {
+bool CCCallFuncNO::initWithTarget(Ref* pSelectorTarget,
+        SEL_CallFuncNO selector, Ref* d) {
 
 	if (pSelectorTarget) 
     {
@@ -51,7 +51,7 @@ bool CCCallFuncNO::initWithTarget(CCObject* pSelectorTarget,
     return true;
 }
 
-CCObject * CCCallFuncNO::copyWithZone(CCZone* zone) {
+Ref * CCCallFuncNO::copyWithZone(CCZone* zone) {
     CCZone* pNewZone = NULL;
     CCCallFuncNO* pRet = NULL;
 

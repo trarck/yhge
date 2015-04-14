@@ -33,7 +33,7 @@ bool Entity::init(void)
  */
 Component* Entity::getComponent(const std::string& name)
 {
-    CCObject* pObj=NULL;
+    Ref* pObj=NULL;
     Component* component=NULL;
     CCARRAY_FOREACH(m_components, pObj){
         component=static_cast<Component*>(pObj);
@@ -51,7 +51,7 @@ CCArray* Entity::getComponents(const std::string& name)
 {
     CCArray* components=CCArray::create();
     
-    CCObject* pObj=NULL;
+    Ref* pObj=NULL;
     Component* component=NULL;
     
     CCARRAY_FOREACH(m_components, pObj){
@@ -88,7 +88,7 @@ void Entity::addComponent(Component* component,const std::string& name)
  */
 void Entity::removeComponent(const std::string& name)
 {
-    CCObject* pObj=NULL;
+    Ref* pObj=NULL;
     Component* component=NULL;
     CCARRAY_FOREACH_REVERSE(m_components, pObj){
         component=static_cast<Component*>(pObj);
@@ -122,7 +122,7 @@ void Entity::removeComponents()
  */
 void Entity::cleanupComponents()
 {
-    CCObject* pObj=NULL;
+    Ref* pObj=NULL;
     Component* component=NULL;
     CCARRAY_FOREACH_REVERSE(m_components, pObj){
         component=static_cast<Component*>(pObj);

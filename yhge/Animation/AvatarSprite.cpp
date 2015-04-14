@@ -162,7 +162,7 @@ void AvatarSprite::setAnimationFrame(Frame* frame)
     CCDictionary* frameElements=avatarFrame->getElements();
     
     //update components
-    CCObject* obj=NULL;
+    Ref* obj=NULL;
     AvatarComponent* component=NULL;
     FrameElement* frameElement=NULL;
     int characterId=0;
@@ -201,7 +201,7 @@ void AvatarSprite::updateCurrentAnimationFrame()
 
 void AvatarSprite::setupComponets(CCArray* characters)
 {
-    CCObject* obj=NULL;
+    Ref* obj=NULL;
     Character* character=NULL;
     Resource* res=NULL;
     

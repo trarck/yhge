@@ -35,7 +35,7 @@ enum {
 /**
  * 使用xml解析tmx
  */
-class ISOXMLParser : public CCObject, public CCSAXDelegator
+class ISOXMLParser : public Ref, public CCSAXDelegator
 {
 
 public:

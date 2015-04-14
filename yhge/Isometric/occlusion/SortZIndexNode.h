@@ -14,7 +14,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
  * 不使用二叉村，二叉树在表示相等的时候很麻烦
  * 使用多子树，当前结点的子结点都比当前结点小，相等的元素表示成兄弟结点。
  */
-class SortZIndexNode : public CCObject {
+class SortZIndexNode : public Ref {
 
 public:
     SortZIndexNode();
@@ -171,12 +171,12 @@ public:
         return m_rect;
     }
     
-    inline void setEntity(CCObject* entity)
+    inline void setEntity(Ref* entity)
     {
         m_entity=entity;
     }
     
-    inline CCObject* getEntity()
+    inline Ref* getEntity()
     {
         return m_entity;
     }
@@ -213,7 +213,7 @@ public:
 //    
     
 protected:
-    CCObject* m_entity;
+    Ref* m_entity;
     
     CCRect m_rect;
     

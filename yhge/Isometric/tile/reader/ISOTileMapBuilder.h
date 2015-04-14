@@ -24,7 +24,7 @@ class ISOTileMap;
  * tmx里tile layer是直接添加到显示子列表里，object layer做为属性，具体怎么用由游戏决定。
  * 这里都做为属性，具体怎么用由游戏来决定
  */
-class ISOTileMapBuilder : public CCObject{
+class ISOTileMapBuilder : public Ref{
 
 public:
 	

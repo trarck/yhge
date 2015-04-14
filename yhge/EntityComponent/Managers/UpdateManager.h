@@ -10,7 +10,7 @@
 
 NS_CC_YHGE_BEGIN
 
-class UpdateHandler:public CCObject
+class UpdateHandler:public Ref
 {
 public:
     UpdateHandler()
@@ -22,7 +22,7 @@ public:
         
     }
     
-    UpdateHandler(CCObject* target,SEL_SCHEDULE handle,int priority)
+    UpdateHandler(Ref* target,SEL_SCHEDULE handle,int priority)
     :m_target(target)
     ,m_handle(handle)
     ,m_priority(priority)
@@ -43,14 +43,14 @@ public:
     
 public:
     
-    inline void setTarget( CCObject* target)
+    inline void setTarget( Ref* target)
     {
         CC_SAFE_RETAIN(target);
         CC_SAFE_RELEASE(m_target);
         m_target = target;
     }
     
-    inline  CCObject* getTarget()
+    inline  Ref* getTarget()
     {
         return m_target;
     }
@@ -86,7 +86,7 @@ public:
     }
     
 protected:
-    CCObject* m_target;
+    Ref* m_target;
     SEL_SCHEDULE m_handle;
     int m_priority;
     bool m_markedForDeletion;
@@ -129,22 +129,22 @@ public:
     /**
      * @brief 添加一个更新器
      */
-    virtual void addUpdater(CCObject* target,SEL_SCHEDULE handle,int priority);
+    virtual void addUpdater(Ref* target,SEL_SCHEDULE handle,int priority);
 
     /**
      * @brief 移除一个更新器
      */
-    virtual void removeUpdater(CCObject* target);
+    virtual void removeUpdater(Ref* target);
     
     /**
      * @brief 移除一个更新器
      */
-    virtual void removeUpdater(CCObject* target,SEL_SCHEDULE handle);
+    virtual void removeUpdater(Ref* target,SEL_SCHEDULE handle);
     
     /**
      * @brief 移除一个更新器
      */
-    virtual void removeUpdater(CCObject* target,SEL_SCHEDULE handle,int priority);
+    virtual void removeUpdater(Ref* target,SEL_SCHEDULE handle,int priority);
     
     /**
      * @brief 按优先级移除一组更新器
@@ -169,12 +169,12 @@ public:
     /**
      * @brief 添加一个更新器到一个组里
      */
-    virtual void addUpdaterToGroup(int groupId,CCObject* target,SEL_SCHEDULE handle,int priority,int groupPriority=0);
+    virtual void addUpdaterToGroup(int groupId,Ref* target,SEL_SCHEDULE handle,int priority,int groupPriority=0);
     
     /**
      * @brief 从组里移除一个更新器
      */
-    virtual void removeUpdaterFromGroup(int groupId,CCObject* target);
+    virtual void removeUpdaterFromGroup(int groupId,Ref* target);
     
     /**
      * @brief 按优先级从组里移除一组更新器

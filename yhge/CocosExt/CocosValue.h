@@ -20,7 +20,7 @@ return cocosValue;\
 return NULL;\
 }
 
-class CocosValue:public CCObject
+class CocosValue:public Ref
 {
 public:
     static const CocosValue Null;

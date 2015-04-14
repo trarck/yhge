@@ -9,7 +9,7 @@
 
 NS_CC_YHGE_BEGIN
 
-class Astar : public CCObject {
+class Astar : public Ref {
 public:
 	
 	Astar();

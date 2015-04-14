@@ -9,7 +9,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 /**
  * 地图中对象组信息，和layer是同一级别
  */
-class ISOObjectGroupInfo : public CCObject{
+class ISOObjectGroupInfo : public Ref{
 
 public:
     

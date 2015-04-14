@@ -21,7 +21,7 @@ bool CallbackAstar::isWorkable(int x,int y)
 	return (m_checkWorkableTarget->*m_checkWorkableHandle)(x,y);
 }
 
-void  CallbackAstar::setCheckBarrierHandle(SEL_CheckWorkableHandler checkWorkableHandle,CCObject* target)
+void  CallbackAstar::setCheckBarrierHandle(SEL_CheckWorkableHandler checkWorkableHandle,Ref* target)
 {
 	m_checkWorkableHandle=checkWorkableHandle;
 	m_checkWorkableTarget=target;

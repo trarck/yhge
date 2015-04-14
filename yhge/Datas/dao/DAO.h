@@ -7,7 +7,7 @@
 NS_CC_YHGE_DATA_BEGIN
 
 
-class DAO:public CCObject
+class DAO:public Ref
 {
 public:
     

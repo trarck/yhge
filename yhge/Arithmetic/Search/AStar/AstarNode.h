@@ -10,7 +10,7 @@
 NS_CC_YHGE_BEGIN
 
 
-class AstarNode : public CCObject 
+class AstarNode : public Ref 
 {
 
 public:

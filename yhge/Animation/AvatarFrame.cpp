@@ -38,7 +38,7 @@ AvatarFrame::~AvatarFrame()
 //
 //void AvatarFrame::addElement(FrameElement* element)
 //{
-//    CCObject* pObj=NULL;
+//    Ref* pObj=NULL;
 //    FrameElement* iter=NULL;
 //    int index=0;
 //    CCARRAY_FOREACH(m_elements, pObj){
@@ -63,7 +63,7 @@ AvatarFrame::~AvatarFrame()
 //
 //void AvatarFrame::removeElementByZOrder(int zOrder)
 //{
-//    CCObject* pObj=NULL;
+//    Ref* pObj=NULL;
 //    FrameElement* iter=NULL;
 //    int index=0;
 //    CCARRAY_FOREACH(m_elements, pObj){

@@ -10,7 +10,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
  * 地图上要显示的对象
  * 如果对象大于一个格子，则要拆分成几个部分
  */
-class ISOTileObject : public CCObject{
+class ISOTileObject : public Ref{
 
 public:
     

@@ -42,7 +42,7 @@ public:
  * 分为二种：1.不处理缩放，缩放交给游戏世界处理
  *         2.处理绽放，并需要游戏世界配合。
  */
-class ISOCamera: public CCObject
+class ISOCamera: public Ref
 {
 public:
 	ISOCamera();

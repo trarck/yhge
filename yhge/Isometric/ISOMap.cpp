@@ -138,7 +138,7 @@ ISOLayer * ISOMap::layerNamed(const std::string& layerName)
     
     if (m_layers && m_layers->count()>0){
         
-        CCObject* pObj = NULL;
+        Ref* pObj = NULL;
         ISOLayer* layer =NULL;
         
         CCARRAY_FOREACH(m_layers, pObj)
@@ -167,7 +167,7 @@ void ISOMap::scrollLayer(const CCPoint& pos)
 {
 	CCPoint localPos=ccpMult(pos, 1/this->getScale());
 
-    CCObject* pObj=NULL;
+    Ref* pObj=NULL;
     ISOLayer* layer=NULL;
 
     CCARRAY_FOREACH(m_layers, pObj){

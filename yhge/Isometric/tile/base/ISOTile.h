@@ -12,7 +12,7 @@ class ISOTileset;
  * 地图的显示单元
  * 直接使用texure。如果使用sprite，则无法共用。
  */
-class ISOTile : public CCObject{
+class ISOTile : public Ref{
 
 public:
     ISOTile();
