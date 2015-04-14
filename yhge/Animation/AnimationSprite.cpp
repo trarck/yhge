@@ -3,14 +3,14 @@
 NS_CC_YHGE_BEGIN
 
 AnimationSprite::AnimationSprite()
-:m_animation(NULL)
+:_animation(NULL)
 {
 
 }
 
 AnimationSprite::~AnimationSprite()
 {
-    CC_SAFE_RELEASE_NULL(m_animation);
+    CC_SAFE_RELEASE_NULL(_animation);
 }
 
 void AnimationSprite::setAnimationFrame(Frame* frame)
@@ -21,7 +21,7 @@ void AnimationSprite::setAnimationFrame(Frame* frame)
         setDisplayFrame(displayProperty->getSpriteFrame());
     }
     
-    AnimationDataFlag flag=m_animation->getAnimationDataFlag();
+    AnimationDataFlag flag=_animation->getAnimationDataFlag();
 
     if(flag.haveTransform && displayProperty->haveTransform()){
         setAdditionalTransform(displayProperty->getTransform());
@@ -40,9 +40,9 @@ void AnimationSprite::setAnimationFrame(Frame* frame)
 void AnimationSprite::updateCurrentAnimationFrame()
 {
     //set current frame
-    if (m_animation)
+    if (_animation)
     {
-        Frame* frame=m_animation->getCurrentFrame();
+        Frame* frame=_animation->getCurrentFrame();
         if (frame)
         {
             setAnimationFrame(frame);

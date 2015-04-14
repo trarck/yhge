@@ -4,12 +4,12 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTile::ISOTile()
-:m_nId(0)
-,m_pTexture(NULL)
-,m_pAnimation(NULL)
-,m_tTextureRect(CCRectZero)
-,m_pProperties(NULL)
-,m_pTileset(NULL)
+:_nId(0)
+,_pTexture(NULL)
+,_pAnimation(NULL)
+,_tTextureRect(CCRectZero)
+,_pProperties(NULL)
+,_pTileset(NULL)
 {
     
 }
@@ -17,21 +17,21 @@ ISOTile::ISOTile()
 ISOTile::~ISOTile()
 {
     CCLOG("ISOTile destroy");
-    CC_SAFE_RELEASE(m_pProperties);
-    CC_SAFE_RELEASE(m_pTexture);
-    CC_SAFE_RELEASE_NULL(m_pAnimation);
+    CC_SAFE_RELEASE(_pProperties);
+    CC_SAFE_RELEASE(_pTexture);
+    CC_SAFE_RELEASE_NULL(_pAnimation);
 }
 
 bool ISOTile::init()
 {
-    m_pProperties=new CCDictionary();
+    _pProperties=new CCDictionary();
     return true;
 }
 
 bool ISOTile::init(int id,ISOTileset* tileset)
 {
     if(init()){
-        m_nId=id;
+        _nId=id;
         setTileset(tileset);
         return true;
     }
@@ -42,7 +42,7 @@ bool ISOTile::init(int id,ISOTileset* tileset,CCTexture2D* texture)
 {
     if(init(id,tileset)){
         setTexture(texture);
-        m_tTextureRect.size=texture->getContentSizeInPixels();
+        _tTextureRect.size=texture->getContentSizeInPixels();
         return true;
     }
     return false;
@@ -51,7 +51,7 @@ bool ISOTile::init(int id,ISOTileset* tileset,CCTexture2D* texture)
 bool ISOTile::init(int id,ISOTileset* tileset,CCTexture2D* texture,CCRect& textureRect)
 {
     if(init(id,tileset,texture)){
-        m_tTextureRect=textureRect;
+        _tTextureRect=textureRect;
         return true;
     }
     return false;
@@ -59,39 +59,39 @@ bool ISOTile::init(int id,ISOTileset* tileset,CCTexture2D* texture,CCRect& textu
 
 void ISOTile::setId(int nId)
 {
-    m_nId = nId;
+    _nId = nId;
 }
 
 int ISOTile::getId()
 {
-    return m_nId;
+    return _nId;
 }
 
 int ISOTile::getGId()
 {
-    return m_nId+m_pTileset->getFirstGid();
+    return _nId+_pTileset->getFirstGid();
 }
 
 void ISOTile::setTileset(ISOTileset* pTileset)
 {
-    m_pTileset = pTileset;
+    _pTileset = pTileset;
 }
 
 ISOTileset* ISOTile::getTileset()
 {
-    return m_pTileset;
+    return _pTileset;
 }
 
 void ISOTile::setProperties(CCDictionary* pProperties)
 {
     CC_SAFE_RETAIN(pProperties);
-    CC_SAFE_RELEASE(m_pProperties);
-    m_pProperties = pProperties;
+    CC_SAFE_RELEASE(_pProperties);
+    _pProperties = pProperties;
 }
 
 CCDictionary* ISOTile::getProperties()
 {
-    return m_pProperties;
+    return _pProperties;
 }
 
 NS_CC_YHGE_ISOMETRIC_END

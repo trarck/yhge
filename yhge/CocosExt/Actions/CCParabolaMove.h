@@ -12,7 +12,7 @@ class CCParabolaMove : public CCActionInterval
 {
 public:
     //负的表示向下
-    CCParabolaMove():m_fGravity(PARABOLA_GRAVITY_DEFAULT){}
+    CCParabolaMove():_fGravity(PARABOLA_GRAVITY_DEFAULT){}
     
     /** initializes the action */
     bool initWithDuration(float duration, const CCPoint& deltaPosition);
@@ -29,22 +29,22 @@ public:
     
     inline void setGravity(float fGravity)
     {
-        m_fGravity = fGravity;
+        _fGravity = fGravity;
     }
     
     inline float getGravity()
     {
-        return m_fGravity;
+        return _fGravity;
     }
     
 protected:
-    CCPoint m_positionDelta;
-    CCPoint m_startPosition;
-    CCPoint m_previousPosition;
+    CCPoint _positionDelta;
+    CCPoint _startPosition;
+    CCPoint _previousPosition;
     
-    CCPoint m_tSpeed;
+    CCPoint _tSpeed;
     
-    float m_fGravity;
+    float _fGravity;
 };
 
 
@@ -52,8 +52,8 @@ class CCParabolaMoveTo : public CCParabolaMove
 {
 public:
     CCParabolaMoveTo()
-    :m_fHeight(0.0f)
-    ,m_bUseHight(false)
+    :_fHeight(0.0f)
+    ,_bUseHight(false)
     {
         
     }
@@ -70,12 +70,12 @@ public:
     
     inline void setHeight(float fHeight)
     {
-        m_fHeight = fHeight;
+        _fHeight = fHeight;
     }
     
     inline float getHeight()
     {
-        return m_fHeight;
+        return _fHeight;
     }
     
 public:
@@ -84,9 +84,9 @@ public:
     static CCParabolaMoveTo* create(float duration,const CCPoint& position,float height);
     
 protected:
-    CCPoint m_endPosition;
-    float m_fHeight;;
-    bool m_bUseHight;
+    CCPoint _endPosition;
+    float _fHeight;;
+    bool _bUseHight;
 };
 
 

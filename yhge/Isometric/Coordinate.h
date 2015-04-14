@@ -40,8 +40,8 @@ public:
 	inline CCPoint isoViewToGame2F(float x,float y)
 	{
 		CCPoint p;
-		x=x/m_tileWidth;//x=x/64
-		y=y/m_tileHeight;//y=y/32
+		x=x/_tileWidth;//x=x/64
+		y=y/_tileHeight;//y=y/32
 		p.x=x+y;
 		p.y=y-x;
 		return p;
@@ -78,8 +78,8 @@ public:
 	{
 		double sx=x-y,sy=x+y;
 		CCPoint p;
-		p.x=sx*m_xUnit;//sx*32
-		p.y=sy*m_halfYUnit-z*m_zUnit;//sy*16-z*32
+		p.x=sx*_xUnit;//sx*32
+		p.y=sy*_halfYUnit-z*_zUnit;//sy*16-z*32
 		return p;
 	}
     
@@ -87,8 +87,8 @@ public:
 	{
 		double sx=x-y,sy=x+y;
 		CCPoint p;
-		p.x=sx*m_xUnit;//sx*32
-		p.y=sy*m_halfYUnit;//sy*16
+		p.x=sx*_xUnit;//sx*32
+		p.y=sy*_halfYUnit;//sy*16
 		return p;
 	}
     
@@ -101,8 +101,8 @@ public:
     
 	inline void isoViewToGame2FP(float x,float y,CCPoint* destPoint)
 	{
-		x=x/m_tileWidth;//x=x/64
-		y=y/m_tileHeight;//y=y/32
+		x=x/_tileWidth;//x=x/64
+		y=y/_tileHeight;//y=y/32
 		destPoint->x=x+y;
 		destPoint->y=y-x;
 	}
@@ -135,15 +135,15 @@ public:
 	inline void isoGameToView3FP(float x ,float y ,float z,CCPoint* destPoint)
 	{
 		double sx=x-y,sy=x+y;
-		destPoint->x=sx*m_xUnit;//sx*32
-		destPoint->y=sy*m_halfYUnit-z*m_zUnit;//sy*16-z*32
+		destPoint->x=sx*_xUnit;//sx*32
+		destPoint->y=sy*_halfYUnit-z*_zUnit;//sy*16-z*32
 	}
     
 	inline void isoGameToView2FP(float x, float y,CCPoint* destPoint)
 	{
 		double sx=x-y,sy=x+y;
-		destPoint->x=sx*m_xUnit;//sx*32
-		destPoint->y=sy*m_halfYUnit;//sy*16
+		destPoint->x=sx*_xUnit;//sx*32
+		destPoint->y=sy*_halfYUnit;//sy*16
 	}
     
 	inline void isoGameToViewPointP(const CCPoint&  point,CCPoint* destPoint)
@@ -164,13 +164,13 @@ public:
     CCPoint mapToScreenAnchor(int l ,int b ,int h);
     
 private:
-	float m_xUnit;
-	float m_yUnit;
-	float m_zUnit;
-	float m_halfYUnit;
+	float _xUnit;
+	float _yUnit;
+	float _zUnit;
+	float _halfYUnit;
 	
-	float m_tileWidth;
-	float m_tileHeight;
+	float _tileWidth;
+	float _tileHeight;
 };
 
 

@@ -18,86 +18,86 @@ public:
     
     inline void setName(const std::string& sName)
     {
-        m_sName = sName;
+        _sName = sName;
     }
     
     inline const std::string& getName()
     {
-        return m_sName;
+        return _sName;
     }
     
     inline void setLayerSize(CCSize& tLayerSize)
     {
-        m_tLayerSize = tLayerSize;
+        _tLayerSize = tLayerSize;
     }
     
     inline CCSize& getLayerSize()
     {
-        return m_tLayerSize;
+        return _tLayerSize;
     }
     
     inline void setVisible(bool bVisible)
     {
-        m_bVisible = bVisible;
+        _bVisible = bVisible;
     }
     
     inline bool getVisible()
     {
-        return m_bVisible;
+        return _bVisible;
     }
     
     inline void setOpacity(unsigned char cOpacity)
     {
-        m_cOpacity = cOpacity;
+        _cOpacity = cOpacity;
     }
     
     inline unsigned char getOpacity()
     {
-        return m_cOpacity;
+        return _cOpacity;
     }
     
     inline void setOffset(CCPoint& tOffset)
     {
-        m_tOffset = tOffset;
+        _tOffset = tOffset;
     }
     
     inline CCPoint& getOffset()
     {
-        return m_tOffset;
+        return _tOffset;
     }
     
     inline void setProperties(CCDictionary* pProperties)
     {
         CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(m_pProperties);
-        m_pProperties = pProperties;
+        CC_SAFE_RELEASE(_pProperties);
+        _pProperties = pProperties;
     }
     
     inline CCDictionary* getProperties()
     {
-        return m_pProperties;
+        return _pProperties;
     }
     
     inline void setRenderIndex(int renderIndex)
     {
-        m_renderIndex = renderIndex;
+        _renderIndex = renderIndex;
     }
     
     inline int getRenderIndex()
     {
-        return m_renderIndex;
+        return _renderIndex;
     }
     
     inline void setObjects(CCArray* objects)
     {
         CC_SAFE_RETAIN(objects);
-        CC_SAFE_RELEASE(m_objects);
-        m_objects = objects;
+        CC_SAFE_RELEASE(_objects);
+        _objects = objects;
     }
     
     inline CCArray* getObjects()
     {
-        return m_objects;
+        return _objects;
     }
 
 
@@ -105,43 +105,43 @@ protected:
     /**
      * 名称
      */
-    std::string         m_sName;
+    std::string         _sName;
     
     /**
      * 大小。格子数，不是像素大小
      */
-    CCSize              m_tLayerSize;
+    CCSize              _tLayerSize;
     
     /**
      * 是否可见
      */
-    bool                m_bVisible;
+    bool                _bVisible;
     
     /**
      * 透明度
      */
-    unsigned char m_cOpacity;
+    unsigned char _cOpacity;
     
     /**
      * 偏移量
      */
-    CCPoint             m_tOffset;
+    CCPoint             _tOffset;
     
     /**
      * 扩展属性
      */
-    CCDictionary* m_pProperties;
+    CCDictionary* _pProperties;
     
     /**
      * 在地图文件中出现的顺序。
      * 如果要显示Object，则要保证ObjectLayer和TileLayer之间的显示顺序正确
      */
-    int m_renderIndex;
+    int _renderIndex;
     
     /**
      * 包含的对象
      */
-    CCArray* m_objects;
+    CCArray* _objects;
 };
 
 

@@ -43,12 +43,12 @@ public:
         
     inline void setBackgroundColor(ccColor3B& tBackgroundColor)
     {
-        m_tBackgroundColor = tBackgroundColor;
+        _tBackgroundColor = tBackgroundColor;
     }
     
     inline ccColor3B& getBackgroundColor()
     {
-        return m_tBackgroundColor;
+        return _tBackgroundColor;
     }
     
 protected:
@@ -57,42 +57,42 @@ protected:
      * 表示map的方向。是斜45还是直角还是六边形。
      * 目录只支持斜45
      */
-    int m_nOrientation;
+    int _nOrientation;
     
     /**
      * 表示map的格子数。不是像素大小
      */
-    CCSize m_tMapSize;
+    CCSize _tMapSize;
     
     /**
      * 表示map的每个格子的像素大小
      */
-    CCSize m_tTileSize;
+    CCSize _tTileSize;
    
     /**
      * 表示map的的背景色
      */
-    ccColor3B m_tBackgroundColor;
+    ccColor3B _tBackgroundColor;
     
     /**
      * map的layer信息
      */
-    CCArray* m_pLayers;
+    CCArray* _pLayers;
     
     /**
      * map的tile set信息
      */
-    CCArray* m_pTilesets;
+    CCArray* _pTilesets;
     
     /**
      * map的object group信息
      */
-    CCArray* m_pObjectGroups;
+    CCArray* _pObjectGroups;
 
     /**
      * map的扩展属性
      */
-    CCDictionary* m_pProperties;
+    CCDictionary* _pProperties;
    
 };
 

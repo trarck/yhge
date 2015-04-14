@@ -82,119 +82,119 @@ public:
     //===================get set 属性====================//
 	inline void setLayerSize(const CCSize& tLayerSize)
 	{
-		m_tLayerSize = tLayerSize;
+		_tLayerSize = tLayerSize;
 	}
 
 	inline CCSize getLayerSize()
 	{
-		return m_tLayerSize;
+		return _tLayerSize;
 	}
 
 
 	inline void setOffset(const CCPoint& tOffset)
 	{
-		m_tOffset = tOffset;
+		_tOffset = tOffset;
 	}
 
 	inline void setOffset(float x,float y)
 	{
-		m_tOffset.x=x;
-		m_tOffset.y=y;
+		_tOffset.x=x;
+		_tOffset.y=y;
 	}
 
 	inline CCPoint getOffset()
 	{
-		return m_tOffset;
+		return _tOffset;
 	}
 
 	inline void setMapTileSize(float width,float height)
 	{
-		m_tMapTileSize.width=width;
-		m_tMapTileSize.height=height;
+		_tMapTileSize.width=width;
+		_tMapTileSize.height=height;
 	}
 
 	inline void setMapTileSize(const CCSize& tMapTileSize)
 	{
-		m_tMapTileSize = tMapTileSize;
+		_tMapTileSize = tMapTileSize;
 	}
 
 	inline const CCSize& getMapTileSize()
 	{
-		return m_tMapTileSize;
+		return _tMapTileSize;
 	}
 
 
 	inline void setLayerOrientation(unsigned int uLayerOrientation)
 	{
-		m_uLayerOrientation = uLayerOrientation;
+		_uLayerOrientation = uLayerOrientation;
 	}
 
 	inline unsigned int getLayerOrientation()
 	{
-		return m_uLayerOrientation;
+		return _uLayerOrientation;
 	}
 
 	inline void setProperties(CCDictionary* pProperties)
 	{
 		CC_SAFE_RETAIN(pProperties);
-		CC_SAFE_RELEASE(m_pProperties);
-		m_pProperties = pProperties;
+		CC_SAFE_RELEASE(_pProperties);
+		_pProperties = pProperties;
 	}
 
 	inline CCDictionary* getProperties()
 	{
-		return m_pProperties;
+		return _pProperties;
 	}
     
-    inline const std::string& getLayerName(){ return m_sLayerName; }
+    inline const std::string& getLayerName(){ return _sLayerName; }
     
-    inline void setLayerName(const std::string& layerName){ m_sLayerName = layerName; }
+    inline void setLayerName(const std::string& layerName){ _sLayerName = layerName; }
     
     inline void setOpacity(unsigned char cOpacity)
     {
-        m_cOpacity = cOpacity;
+        _cOpacity = cOpacity;
     }
     
     inline unsigned char getOpacity()
     {
-        return m_cOpacity;
+        return _cOpacity;
     }
     
     virtual void setMap(ISOMap* pMap);
     
     inline ISOMap* getMap()
     {
-        return m_pMap;
+        return _pMap;
     }
     
     inline void setLayerType(LayerType layerType)
     {
-        m_layerType = layerType;
+        _layerType = layerType;
     }
     
     inline LayerType getLayerType()
     {
-        return m_layerType;
+        return _layerType;
     }
     
     inline void setVertexZvalue(int vertexZvalue)
     {
-        m_vertexZvalue = vertexZvalue;
+        _vertexZvalue = vertexZvalue;
     }
     
     inline int getVertexZvalue()
     {
-        return m_vertexZvalue;
+        return _vertexZvalue;
     }
     
     inline void setUseAutomaticVertexZ(bool useAutomaticVertexZ)
     {
-        m_useAutomaticVertexZ = useAutomaticVertexZ;
+        _useAutomaticVertexZ = useAutomaticVertexZ;
     }
     
     inline bool isUseAutomaticVertexZ()
     {
-        return m_useAutomaticVertexZ;
+        return _useAutomaticVertexZ;
     }
     
 protected:
@@ -209,50 +209,50 @@ protected:
     /**
      * 层的名称
      */
-    std::string m_sLayerName;
+    std::string _sLayerName;
     
     /**
      * 层的地图大小
      */
-	CCSize m_tLayerSize;
+	CCSize _tLayerSize;
     
     /**
       地图的一个图块大小
      */
-    CCSize m_tMapTileSize;
+    CCSize _tMapTileSize;
     
     /**
      * 地图的偏移量。屏幕坐标
      * 可能层的原点和地图的原点不在一起。
      */
-	CCPoint m_tOffset;
+	CCPoint _tOffset;
         
     /**
      * 地图属性
      */
-    CCDictionary* m_pProperties;
+    CCDictionary* _pProperties;
        
     /**
      * 地图类型，斜视角，直角，六角。
      * 这里直接使用斜视角。所以用不到，保留将来或许有用。
      */
-    unsigned int m_uLayerOrientation;
+    unsigned int _uLayerOrientation;
     
     //! Layer supports opacity
-    unsigned char       m_cOpacity;
+    unsigned char       _cOpacity;
 
     //对地图文件的弱引用
-    ISOMap* m_pMap;
+    ISOMap* _pMap;
     
     //层的类型
-    LayerType m_layerType;
+    LayerType _layerType;
     
     
     //! Only used when vertexZ is used
-    int m_vertexZvalue;
+    int _vertexZvalue;
     
     //自动计算vertex值
-    bool m_useAutomaticVertexZ;
+    bool _useAutomaticVertexZ;
 };
 
 

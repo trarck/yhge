@@ -5,7 +5,7 @@ NS_CC_YHGE_BEGIN
 
 
 AstarFlexible::AstarFlexible(void)
-:m_delegate(NULL)
+:_delegate(NULL)
 {
 	
 }
@@ -18,7 +18,7 @@ AstarFlexible::~AstarFlexible(void)
 //本身是否可以通过
 bool AstarFlexible::isWorkable(int x,int y) 
 {
-	return m_delegate->isWorkable(x,y);
+	return _delegate->isWorkable(x,y);
 }
 
 NS_CC_YHGE_END

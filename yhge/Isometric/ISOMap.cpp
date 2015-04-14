@@ -6,24 +6,24 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 static const int kCoordLineZOrder=10000;
 
 ISOMap::ISOMap()
-:m_tMapSize(CCSizeZero)
-,m_visibleSize(CCSizeZero)
-,m_nIdentifier(0)
-,m_nMapOrientation(0)
-,m_pName("")
-,m_tTileSize(CCSizeZero)
-,m_pProperties(NULL)
-,m_layers(NULL)
-,m_activeLayer(NULL)
+:_tMapSize(CCSizeZero)
+,_visibleSize(CCSizeZero)
+,_nIdentifier(0)
+,_nMapOrientation(0)
+,_pName("")
+,_tTileSize(CCSizeZero)
+,_pProperties(NULL)
+,_layers(NULL)
+,_activeLayer(NULL)
 {
 	
 }
 
 ISOMap::~ISOMap()
 {
-    CC_SAFE_RELEASE_NULL(m_pProperties);
-    CC_SAFE_RELEASE_NULL(m_layers);
-    CC_SAFE_RELEASE_NULL(m_activeLayer);
+    CC_SAFE_RELEASE_NULL(_pProperties);
+    CC_SAFE_RELEASE_NULL(_layers);
+    CC_SAFE_RELEASE_NULL(_activeLayer);
 }
 
 ISOMap * ISOMap::createWithXMLFile(const char *xmlFile)
@@ -77,10 +77,10 @@ ISOMap* ISOMap::createWithJSON(const char* jsonString, const char* resourcePath)
 bool ISOMap::init()
 {
     
-    m_pProperties=new CCDictionary();
-    m_layers=new CCArray();
+    _pProperties=new CCDictionary();
+    _layers=new CCArray();
     
-    m_visibleSize=CCDirector::sharedDirector()->getWinSize();//CCSizeMake(480,320);
+    _visibleSize=CCDirector::sharedDirector()->getWinSize();//CCSizeMake(480,320);
 
 	return true;
 }
@@ -136,12 +136,12 @@ ISOLayer * ISOMap::layerNamed(const std::string& layerName)
 {
     CCAssert(layerName!="", "Invalid layer name!");
     
-    if (m_layers && m_layers->count()>0){
+    if (_layers && _layers->count()>0){
         
         Ref* pObj = NULL;
         ISOLayer* layer =NULL;
         
-        CCARRAY_FOREACH(m_layers, pObj)
+        CCARRAY_FOREACH(_layers, pObj)
         {
             layer = dynamic_cast<ISOLayer*>(pObj);
             if(layer)
@@ -160,7 +160,7 @@ ISOLayer * ISOMap::layerNamed(const std::string& layerName)
 
 CCString* ISOMap::propertyNamed(const std::string& propertyName)
 {
-    return (CCString*)m_pProperties->objectForKey(propertyName);
+    return (CCString*)_pProperties->objectForKey(propertyName);
 }
 
 void ISOMap::scrollLayer(const CCPoint& pos)
@@ -170,7 +170,7 @@ void ISOMap::scrollLayer(const CCPoint& pos)
     Ref* pObj=NULL;
     ISOLayer* layer=NULL;
 
-    CCARRAY_FOREACH(m_layers, pObj){
+    CCARRAY_FOREACH(_layers, pObj){
         layer=(ISOLayer*) pObj;
         layer->scroll(localPos);
     }
@@ -197,16 +197,16 @@ bool ISOMap::isWorkable(int x,int y)
 
 CCSize ISOMap::getVisibleSize()
 {
-    if(m_fScaleX==0 || m_fScaleY==0) return m_visibleSize;
+    if(_fScaleX==0 || _fScaleY==0) return _visibleSize;
     
-    return CCSizeMake(m_visibleSize.width/m_fScaleX, m_visibleSize.height/m_fScaleY);
+    return CCSizeMake(_visibleSize.width/_fScaleX, _visibleSize.height/_fScaleY);
 }
 
 void ISOMap::setActiveLayer(ISOLayer* activeLayer)
 {
     CC_SAFE_RETAIN(activeLayer);
-    CC_SAFE_RELEASE(m_activeLayer);
-    m_activeLayer = activeLayer;
+    CC_SAFE_RELEASE(_activeLayer);
+    _activeLayer = activeLayer;
 }
 
 NS_CC_YHGE_ISOMETRIC_END

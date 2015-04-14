@@ -14,31 +14,31 @@ class UpdateHandler:public Ref
 {
 public:
     UpdateHandler()
-    :m_target(NULL)
-    ,m_handle(NULL)
-    ,m_priority(0)
-    ,m_markedForDeletion(false)
+    :_target(NULL)
+    ,_handle(NULL)
+    ,_priority(0)
+    ,_markedForDeletion(false)
     {
         
     }
     
     UpdateHandler(Ref* target,SEL_SCHEDULE handle,int priority)
-    :m_target(target)
-    ,m_handle(handle)
-    ,m_priority(priority)
-    ,m_markedForDeletion(false)
+    :_target(target)
+    ,_handle(handle)
+    ,_priority(priority)
+    ,_markedForDeletion(false)
     {
         CC_SAFE_RETAIN(target);
     }
     
     ~UpdateHandler()
     {
-        CC_SAFE_RELEASE_NULL(m_target);
+        CC_SAFE_RELEASE_NULL(_target);
     }
     
     void update(float delta)
     {
-        (m_target->*m_handle)(delta);
+        (_target->*_handle)(delta);
     }
     
 public:
@@ -46,50 +46,50 @@ public:
     inline void setTarget( Ref* target)
     {
         CC_SAFE_RETAIN(target);
-        CC_SAFE_RELEASE(m_target);
-        m_target = target;
+        CC_SAFE_RELEASE(_target);
+        _target = target;
     }
     
     inline  Ref* getTarget()
     {
-        return m_target;
+        return _target;
     }
     
     inline void setHandle( SEL_SCHEDULE handle)
     {
-        m_handle = handle;
+        _handle = handle;
     }
     
     inline  SEL_SCHEDULE getHandle()
     {
-        return m_handle;
+        return _handle;
     }
     
     inline void setPriority( int priority)
     {
-        m_priority = priority;
+        _priority = priority;
     }
     
     inline  int getPriority()
     {
-        return m_priority;
+        return _priority;
     }
     
     inline void setMarkedForDeletion(bool markedForDeletion)
     {
-        m_markedForDeletion = markedForDeletion;
+        _markedForDeletion = markedForDeletion;
     }
     
     inline bool isMarkedForDeletion()
     {
-        return m_markedForDeletion;
+        return _markedForDeletion;
     }
     
 protected:
-    Ref* m_target;
-    SEL_SCHEDULE m_handle;
-    int m_priority;
-    bool m_markedForDeletion;
+    Ref* _target;
+    SEL_SCHEDULE _handle;
+    int _priority;
+    bool _markedForDeletion;
 };
 
 
@@ -116,12 +116,12 @@ public:
     
     inline bool empty()
     {
-        return m_updateList.empty();
+        return _updateList.empty();
     }
     
     inline size_t size()
     {
-        return m_updateList.size();
+        return _updateList.size();
     }
     
     virtual void update(float delta);
@@ -190,35 +190,35 @@ public:
     
     inline void setId(int id)
     {
-        m_id = id;
+        _id = id;
     }
     
     inline int getId()
     {
-        return m_id;
+        return _id;
     }
     
     inline void setPaused(bool paused)
     {
-        m_paused = paused;
+        _paused = paused;
     }
     
     inline bool isPaused()
     {
-        return m_paused;
+        return _paused;
     }
 
 protected:
     
-    int m_id;
+    int _id;
     
-    bool m_updating;
+    bool _updating;
     
-    UpdateList m_updateList;
+    UpdateList _updateList;
     
-    UpdateGroupMap m_updateGroup;
+    UpdateGroupMap _updateGroup;
     
-    bool m_paused;
+    bool _paused;
     
 };
 

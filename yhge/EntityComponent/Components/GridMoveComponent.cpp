@@ -42,46 +42,46 @@ static float MoveDurationMap[3][3]={
  */
 GridMoveComponent::GridMoveComponent()
 :Component("GridMoveComponent")
-,m_moveState(MoveIdle)
-,m_moveType(kMoveNone)
-,m_speed(0.0f)
-,m_speedX(0.0f)
-,m_speedY(0.0f)
-,m_fViewSpeedX(0.0f)
-,m_fViewSpeedY(0.0f)
-,m_directionX(0)
-,m_directionY(0)
-,m_lastDirectionX(0)
-,m_lastDirectionY(0)
-,m_nextDirectionX(0)
-,m_nextDirectionY(0)
-,m_bKeepMoveDirection(false)
-,m_movingDuration(0.0f)
-,m_movingDeltaTime(0.0f)
-,m_to(ccp(0.0f, 0.0f))
-,m_moving(false)
-,m_fromIndex(0)
-,m_pCurrentPaths(NULL)
-,m_pNextPaths(NULL)
-,m_pathIndex(0)
-,m_update(NULL)
-,m_moveableDelegate(NULL)
-,m_isoPositionComponent(NULL)
-//,m_rendererComponent(NULL)
+,_moveState(MoveIdle)
+,_moveType(kMoveNone)
+,_speed(0.0f)
+,_speedX(0.0f)
+,_speedY(0.0f)
+,_fViewSpeedX(0.0f)
+,_fViewSpeedY(0.0f)
+,_directionX(0)
+,_directionY(0)
+,_lastDirectionX(0)
+,_lastDirectionY(0)
+,_nextDirectionX(0)
+,_nextDirectionY(0)
+,_bKeepMoveDirection(false)
+,_movingDuration(0.0f)
+,_movingDeltaTime(0.0f)
+,_to(ccp(0.0f, 0.0f))
+,_moving(false)
+,_fromIndex(0)
+,_pCurrentPaths(NULL)
+,_pNextPaths(NULL)
+,_pathIndex(0)
+,_update(NULL)
+,_moveableDelegate(NULL)
+,_isoPositionComponent(NULL)
+//,_rendererComponent(NULL)
 {
 
 }
 
 GridMoveComponent::~GridMoveComponent()
 {
-	CC_SAFE_RELEASE(m_pCurrentPaths);
-	CC_SAFE_RELEASE(m_pNextPaths);
+	CC_SAFE_RELEASE(_pCurrentPaths);
+	CC_SAFE_RELEASE(_pNextPaths);
 }
 
 bool GridMoveComponent::init()
 {
 	if(Component::init()){
-		m_moveState=MoveStop;      
+		_moveState=MoveStop;      
 	}
     return true;
 	
@@ -90,7 +90,7 @@ bool GridMoveComponent::init()
 bool GridMoveComponent::init(float speed)
 {
 	if (init()) {
-		m_speed=speed;
+		_speed=speed;
 	}
 	return true;
 }
@@ -98,14 +98,14 @@ bool GridMoveComponent::init(float speed)
 void GridMoveComponent::setup()
 {
     Component::setup();
-    m_isoPositionComponent=static_cast<ISOPositionComponent*>(m_owner->getComponent("ISOPositionComponent"));
-//    m_rendererComponent=static_cast<RendererComponent*>(m_owner->getComponent("RendererComponent"));
+    _isoPositionComponent=static_cast<ISOPositionComponent*>(_owner->getComponent("ISOPositionComponent"));
+//    _rendererComponent=static_cast<RendererComponent*>(_owner->getComponent("RendererComponent"));
 }
 
 void GridMoveComponent::cleanup()
 {
-    m_isoPositionComponent=NULL;
-//    m_rendererComponent=NULL;
+    _isoPositionComponent=NULL;
+//    _rendererComponent=NULL;
     stopMoveUpdateSchedule();
     Component::cleanup();
 }
@@ -115,10 +115,10 @@ bool GridMoveComponent::registerMessages()
     if(Component::registerMessages()){
         MessageManager* messageManager=MessageManager::defaultManager();
         
-        messageManager->registerReceiver(m_owner, MSG_MOVE_DIRECTION, NULL, message_selector(GridMoveComponent::onMoveWithDirection),this);
-        messageManager->registerReceiver(m_owner, MSG_MOVE_PATH, NULL, message_selector(GridMoveComponent::onMoveWithPath),this);
-        messageManager->registerReceiver(m_owner, MSG_MOVE_PATH_FROM, NULL, message_selector(GridMoveComponent::onMoveWithPathFrom),this);
-        messageManager->registerReceiver(m_owner, MSG_MOVE_STOP, NULL, message_selector(GridMoveComponent::onMoveStop),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_DIRECTION, NULL, message_selector(GridMoveComponent::onMoveWithDirection),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_PATH, NULL, message_selector(GridMoveComponent::onMoveWithPath),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_PATH_FROM, NULL, message_selector(GridMoveComponent::onMoveWithPathFrom),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_STOP, NULL, message_selector(GridMoveComponent::onMoveStop),this);
         
         return true;
     }
@@ -130,10 +130,10 @@ void GridMoveComponent::cleanupMessages()
 {    
     MessageManager* messageManager=MessageManager::defaultManager();
     
-    messageManager->removeReceiver(m_owner, MSG_MOVE_DIRECTION);
-    messageManager->removeReceiver(m_owner, MSG_MOVE_PATH);
-    messageManager->removeReceiver(m_owner, MSG_MOVE_PATH_FROM);
-    messageManager->removeReceiver(m_owner, MSG_MOVE_STOP);
+    messageManager->removeReceiver(_owner, MSG_MOVE_DIRECTION);
+    messageManager->removeReceiver(_owner, MSG_MOVE_PATH);
+    messageManager->removeReceiver(_owner, MSG_MOVE_PATH_FROM);
+    messageManager->removeReceiver(_owner, MSG_MOVE_STOP);
     
     Component::cleanupMessages();
 }
@@ -144,7 +144,7 @@ void GridMoveComponent::cleanupMessages()
  */
 void GridMoveComponent::stop()
 {
-	m_moveState=MoveWillStop;
+	_moveState=MoveWillStop;
     stopMove();
 }
 
@@ -154,8 +154,8 @@ void GridMoveComponent::stop()
 
 bool GridMoveComponent::checkMoveable()
 {
-    if (m_moveableDelegate) {
-        return m_moveableDelegate->isWorkable(m_to.x,m_to.y);
+    if (_moveableDelegate) {
+        return _moveableDelegate->isWorkable(_to.x,_to.y);
     }
 	return true;
 }
@@ -165,11 +165,11 @@ bool GridMoveComponent::checkMoveable()
  */
 void GridMoveComponent::moveWithDirection(int directionX ,int directionY)
 {
-    //m_update=this->getUpdateDirectionHandle();
+    //_update=this->getUpdateDirectionHandle();
 
-	if (m_moveState==MoveStop) {
+	if (_moveState==MoveStop) {
         
-        m_moveType=kMoveDirection;
+        _moveType=kMoveDirection;
         
 		resetState();
 		prepareDirection(directionX, directionY);
@@ -188,9 +188,9 @@ void GridMoveComponent::moveWithDirection(int directionX ,int directionY)
  */
 void GridMoveComponent::continueMoveWithDirection(int directionX ,int directionY)
 {
-    CCAssert(m_moveType==kMoveDirection, "GridMoveComponent::continueMoveWithDirection before move type is not the same");
+    CCAssert(_moveType==kMoveDirection, "GridMoveComponent::continueMoveWithDirection before move type is not the same");
 	setNextDirection(directionX,directionY);
-	m_moveState=MoveContinue;
+	_moveState=MoveContinue;
 }
 
 /**
@@ -214,19 +214,19 @@ void GridMoveComponent::calcMoveDuration(int directionX,int directionY)
 	int j=directionY+1;
 	CCAssert(i>=0 && i<=2,"prepareDirection error the direction out of range");
 	CCAssert(j>=0 && j<=2,"prepareDirection error the direction out of range");
-	m_movingDuration=MoveDurationMap[i][j]/m_speed;
+	_movingDuration=MoveDurationMap[i][j]/_speed;
 
-	YHDEBUG("m_movingDuration:%f",m_movingDuration);
+	YHDEBUG("_movingDuration:%f",_movingDuration);
 	//float absDirX=abs(directionX);
 	//float absDirY=abs(directionY);
 
 	//if((absDirX<FLOAT_ZERO_FLAG&&absDirY>FLOAT_ZERO_FLAG)||(absDirX>FLOAT_ZERO_FLAG&&absDirY<FLOAT_ZERO_FLAG)){
-	//	m_movingDuration=AXIS_VECTOR*1000;//毫秒
+	//	_movingDuration=AXIS_VECTOR*1000;//毫秒
 	//}else{
 	//	if(abs(directionX)>FLOAT_ZERO_FLAG&&abs(directionY)>FLOAT_ZERO_FLAG){
-	//		m_movingDuration=BEVEL_VECTOR *1000;
+	//		_movingDuration=BEVEL_VECTOR *1000;
 	//	}else{
-	//		m_movingDuration=0;
+	//		_movingDuration=0;
 	//	}
 	//}
 	
@@ -242,22 +242,22 @@ void GridMoveComponent::calcSpeedVector(int directionX,int directionY)
 	int i=directionX;
 	int j=directionY;
 
-    //注意m_speed是地图坐标系的速度，即做iso投影前的速度
+    //注意_speed是地图坐标系的速度，即做iso投影前的速度
 	if(i==0||j==0){
-		//m_speedX,m_speedY其中一个为0或都为0
-		m_speedX=i*m_speed*AXIS_VECTOR;
-		m_speedY=j*m_speed*AXIS_VECTOR;
+		//_speedX,_speedY其中一个为0或都为0
+		_speedX=i*_speed*AXIS_VECTOR;
+		_speedY=j*_speed*AXIS_VECTOR;
 	}else{
-		//m_speedX,m_speedY都不为0，为speed的sqrt(2)/2
+		//_speedX,_speedY都不为0，为speed的sqrt(2)/2
 		//speed的大小不变，分量的是变化的。由于是45度地图，所以只有一种变化sqrt(2)/2
-		m_speedX=i*m_speed*BEVEL_VECTOR_HALF;
-		m_speedY=j*m_speed*BEVEL_VECTOR_HALF;
+		_speedX=i*_speed*BEVEL_VECTOR_HALF;
+		_speedY=j*_speed*BEVEL_VECTOR_HALF;
 	}
 
-	CCPoint viewSpeed=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(m_speedX,m_speedY));
-	m_fViewSpeedX=viewSpeed.x;
-	m_fViewSpeedY=viewSpeed.y;
-	YHDEBUG("m_speedX:%f,m_speedY:%f,viewSpeed:%f,%f",m_speedX,m_speedY,m_fViewSpeedX,m_fViewSpeedY);
+	CCPoint viewSpeed=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(_speedX,_speedY));
+	_fViewSpeedX=viewSpeed.x;
+	_fViewSpeedY=viewSpeed.y;
+	YHDEBUG("_speedX:%f,_speedY:%f,viewSpeed:%f,%f",_speedX,_speedY,_fViewSpeedX,_fViewSpeedY);
 }
 
 /**
@@ -266,9 +266,9 @@ void GridMoveComponent::calcSpeedVector(int directionX,int directionY)
  */
 void GridMoveComponent::calcTo()
 {
-    if (m_isoPositionComponent) {
-        m_to.x=m_isoPositionComponent->getX()+m_directionX;
-        m_to.y=m_isoPositionComponent->getY()+m_directionY;
+    if (_isoPositionComponent) {
+        _to.x=_isoPositionComponent->getX()+_directionX;
+        _to.y=_isoPositionComponent->getY()+_directionY;
     }
 }
 
@@ -278,11 +278,11 @@ void GridMoveComponent::calcTo()
  */
 void GridMoveComponent::calcDirection()
 {
-    CCAssert(m_isoPositionComponent!=NULL, "GridMoveComponent::calcDirection m_isoPositionComponent can't be null");
+    CCAssert(_isoPositionComponent!=NULL, "GridMoveComponent::calcDirection _isoPositionComponent can't be null");
     
-	float mx=m_isoPositionComponent->getX();
-	float my=m_isoPositionComponent->getY();
-	setDirection(m_to.x>mx?1:m_to.x<mx?-1:0,m_to.y>my?1:m_to.y<my?-1:0);
+	float mx=_isoPositionComponent->getX();
+	float my=_isoPositionComponent->getY();
+	setDirection(_to.x>mx?1:_to.x<mx?-1:0,_to.y>my?1:_to.y<my?-1:0);
 }
 
 /**
@@ -292,36 +292,36 @@ void GridMoveComponent::calcDirection()
  */
 void GridMoveComponent::updateDirection( float delta)
 {
-//    CCNode* renderer=m_rendererComponent->getRenderer();
+//    CCNode* renderer=_rendererComponent->getRenderer();
 //	CCPoint pos=renderer->getPosition();
-    CCPoint pos=m_isoPositionComponent->getRendererPosition();
+    CCPoint pos=_isoPositionComponent->getRendererPosition();
 
-	m_movingDeltaTime+=delta;
-	if(m_movingDeltaTime<m_movingDuration){
-		pos.x+=delta*m_fViewSpeedX;
-		pos.y+=delta*m_fViewSpeedY;
+	_movingDeltaTime+=delta;
+	if(_movingDeltaTime<_movingDuration){
+		pos.x+=delta*_fViewSpeedX;
+		pos.y+=delta*_fViewSpeedY;
 		//owner->setCoordinate(mx,my);
-		//CCLOGINFO("posx2:%f,posy:%f:%f,%f:%f",pos.x,pos.y,m_fViewSpeedX,m_fViewSpeedY,delta);
+		//CCLOGINFO("posx2:%f,posy:%f:%f,%f:%f",pos.x,pos.y,_fViewSpeedX,_fViewSpeedY,delta);
         
 //		renderer->setPosition(pos);
 //        renderer->setZOrder(-(int)pos.y);
-        //这里使用了虚函数，如果担心会影响性能，可以直接替换m_isoPositionComponent成一个没有虚函数的组件。
+        //这里使用了虚函数，如果担心会影响性能，可以直接替换_isoPositionComponent成一个没有虚函数的组件。
         //但是一般性能影响可以忽略。
-        m_isoPositionComponent->updateRendererPositionDirectly(pos);
+        _isoPositionComponent->updateRendererPositionDirectly(pos);
 	}else{
 		//一个路径结点移动完成,设置成终点所在的位置。使用时间计算出来的终点位置可能不准。
-//        pos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(m_to.x,m_to.y));
+//        pos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(_to.x,_to.y));
 ////		renderer->setPosition(pos);
 ////        renderer->setZOrder(-(int)pos.y);
-//        m_isoPositionComponent->updateRendererPositionDirectly(pos);
-        m_isoPositionComponent->updateRendererPosition();
-		if (m_moveState==MoveContinue) {
-			prepareDirection(m_nextDirectionX, m_nextDirectionY);
+//        _isoPositionComponent->updateRendererPositionDirectly(pos);
+        _isoPositionComponent->updateRendererPosition();
+		if (_moveState==MoveContinue) {
+			prepareDirection(_nextDirectionX, _nextDirectionY);
     		this->continueUpdate();
 		}else{
-			if(m_bKeepMoveDirection){
+			if(_bKeepMoveDirection){
 				if(checkMoveable()){
-					m_movingDeltaTime=0;
+					_movingDeltaTime=0;
 				}else{
 					stop();
 				}
@@ -342,14 +342,14 @@ void GridMoveComponent::moveWithPaths(CCArray* paths)
 
 void GridMoveComponent::moveWithPaths(CCArray* paths,int fromIndex)
 {
-	//m_update=this->getUpdatePathHandle();//schedule_selector(GridMoveComponent::updatePath);
+	//_update=this->getUpdatePathHandle();//schedule_selector(GridMoveComponent::updatePath);
 
-	if(m_moveState==MoveStop){
+	if(_moveState==MoveStop){
         
-        m_moveType=kMovePath;
+        _moveType=kMovePath;
         
 		resetState();
-		m_fromIndex=fromIndex;
+		_fromIndex=fromIndex;
 		this->setCurrentPaths(paths);
 		preparePath();
 		if (checkMoveable()) {
@@ -358,7 +358,7 @@ void GridMoveComponent::moveWithPaths(CCArray* paths,int fromIndex)
 			doDirectionChange();
 		}
 	}else{
-		m_fromIndex=fromIndex;
+		_fromIndex=fromIndex;
 		continueMoveWithPaths(paths);
 	}
 }
@@ -367,15 +367,15 @@ void GridMoveComponent::moveWithPaths(CCArray* paths,int fromIndex)
  */
 void GridMoveComponent::continueMoveWithPaths(CCArray* paths)
 {
-    CCAssert(m_moveType==kMovePath, "GridMoveComponent::continueMoveWithDirection before move type is not the same");
+    CCAssert(_moveType==kMovePath, "GridMoveComponent::continueMoveWithDirection before move type is not the same");
     
 	this->setNextPaths(paths);	
-	m_moveState=MoveContinue;
+	_moveState=MoveContinue;
 }
 
 void GridMoveComponent::restartMoveWithPaths()
 {
-	m_moveState=MoveStart;
+	_moveState=MoveStart;
 	preparePath();
 }
 
@@ -385,8 +385,8 @@ void GridMoveComponent::restartMoveWithPaths()
  */
 void GridMoveComponent::preparePath()
 {
-	m_pathIndex=getCurrentPathIndex();
-	preparePath(m_pathIndex);
+	_pathIndex=getCurrentPathIndex();
+	preparePath(_pathIndex);
 }
 
 /**
@@ -396,7 +396,7 @@ void  GridMoveComponent::preparePath(int pathIndex)
 {
 	CCAssert(pathIndex>=0,"paths length less 2");
 	YHDEBUG("preparePath.iPathIndex:%d",pathIndex);
-    m_to=  static_cast<CCPointValue*>(m_pCurrentPaths->objectAtIndex(pathIndex))->getPoint();
+    _to=  static_cast<CCPointValue*>(_pCurrentPaths->objectAtIndex(pathIndex))->getPoint();
 	calcDirection();
 }
 
@@ -404,7 +404,7 @@ void  GridMoveComponent::preparePath(int pathIndex)
  * 取得当前路径结点索引
  */
 int GridMoveComponent::getCurrentPathIndex(){
-	return m_pCurrentPaths->count()-1 -m_fromIndex;
+	return _pCurrentPaths->count()-1 -_fromIndex;
 }
 
 
@@ -414,45 +414,45 @@ int GridMoveComponent::getCurrentPathIndex(){
  */
 void GridMoveComponent::updatePath(float delta)
 {
-//    CCNode* renderer=m_rendererComponent->getRenderer();
+//    CCNode* renderer=_rendererComponent->getRenderer();
 //    
 //	CCPoint pos=renderer->getPosition();
     
-    CCPoint pos=m_isoPositionComponent->getRendererPosition();
+    CCPoint pos=_isoPositionComponent->getRendererPosition();
 	
-	m_movingDeltaTime+=delta;
+	_movingDeltaTime+=delta;
 	
-	//CCLOGINFO("upate:%f,%f,%f",delta,m_movingDeltaTime,m_movingDuration);
-	if(m_movingDeltaTime<m_movingDuration){
-		//CCLOGINFO("posx1:%f,posy:%f:%f,%f:%f",pos.x,pos.y,m_fViewSpeedX,m_fViewSpeedY,delta);
-		pos.x+=delta*m_fViewSpeedX;
-		pos.y+=delta*m_fViewSpeedY;
+	//CCLOGINFO("upate:%f,%f,%f",delta,_movingDeltaTime,_movingDuration);
+	if(_movingDeltaTime<_movingDuration){
+		//CCLOGINFO("posx1:%f,posy:%f:%f,%f:%f",pos.x,pos.y,_fViewSpeedX,_fViewSpeedY,delta);
+		pos.x+=delta*_fViewSpeedX;
+		pos.y+=delta*_fViewSpeedY;
 		//owner->setCoordinate(mx,my);
-		//CCLOGINFO("posx2:%f,posy:%f:%f,%f:%f",pos.x,pos.y,m_fViewSpeedX,m_fViewSpeedY,delta);
+		//CCLOGINFO("posx2:%f,posy:%f:%f,%f:%f",pos.x,pos.y,_fViewSpeedX,_fViewSpeedY,delta);
 //		renderer->setPosition(pos);
 //        renderer->setZOrder(-(int)pos.y);
-        //这里使用了虚函数，如果担心会影响性能，可以直接替换m_isoPositionComponent成一个没有虚函数的组件。
+        //这里使用了虚函数，如果担心会影响性能，可以直接替换_isoPositionComponent成一个没有虚函数的组件。
         //但是一般性能影响可以忽略。
-        m_isoPositionComponent->updateRendererPositionDirectly(pos);
+        _isoPositionComponent->updateRendererPositionDirectly(pos);
 	}else{
 		//一个路径结点移动完成,设置成终点所在的位置。使用时间计算出来的终点位置可能不准。
-//        pos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(m_to.x,m_to.y));
+//        pos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(_to.x,_to.y));
 ////		renderer->setPosition(pos);
 ////        renderer->setZOrder(-(int)pos.y);
-//        m_isoPositionComponent->updateRendererPositionDirectly(pos);
-        m_isoPositionComponent->updateRendererPosition();
+//        _isoPositionComponent->updateRendererPositionDirectly(pos);
+        _isoPositionComponent->updateRendererPosition();
         //设置地图坐标
-		if (m_moveState==MoveContinue) {
-			if (m_pNextPaths!=NULL) {
-				m_moveState=MoveStart;
-				this->setCurrentPaths(m_pNextPaths);
+		if (_moveState==MoveContinue) {
+			if (_pNextPaths!=NULL) {
+				_moveState=MoveStart;
+				this->setCurrentPaths(_pNextPaths);
 				preparePath();
 				this->continueUpdate();
 			}
-		}else if (--m_pathIndex>=0 && m_moveState==MoveStart) {
-			YHDEBUG("next cell %d",m_pathIndex);
+		}else if (--_pathIndex>=0 && _moveState==MoveStart) {
+			YHDEBUG("next cell %d",_pathIndex);
 			//进行下一个格子
-			preparePath(m_pathIndex);
+			preparePath(_pathIndex);
 			this->continueUpdate();
 		}else {
 			//stop move
@@ -468,19 +468,19 @@ void GridMoveComponent::updatePath(float delta)
  */
 void GridMoveComponent::doDirectionChange()
 {
-	if (m_moveState!=MoveStop && m_lastDirectionX==m_directionX && m_lastDirectionY==m_directionY) {
+	if (_moveState!=MoveStop && _lastDirectionX==_directionX && _lastDirectionY==_directionY) {
 		return;
 	}
-	int i=floor(m_directionX)+1;
-	int j=floor(m_directionY)+1;
+	int i=floor(_directionX)+1;
+	int j=floor(_directionY)+1;
 	int index=directionMapping[i][j];
-	//CCLOGINFO("index:%d,%d,%d,%f,%f",index,i,j,m_directionX,m_directionY);
+	//CCLOGINFO("index:%d,%d,%d,%f,%f",index,i,j,_directionX,_directionY);
 	if (index>-1) {
 		CCDictionary* data=new CCDictionary();
 		data->setObject(CCString::create("move"), COMPONENT_ANIMATION_CHANGE_PARAM_NAME);
 		data->setObject(CCInteger::create(index), COMPONENT_ANIMATION_CHANGE_PARAM_DIRECTION);
     
-		MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
+		MessageManager::defaultManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, _owner,data);
 	}
 }
 
@@ -502,9 +502,9 @@ void GridMoveComponent::doMoveStop()
     data->setObject(CCString::create("idle"), COMPONENT_ANIMATION_CHANGE_PARAM_NAME);
     data->setObject(CCInteger::create(0), COMPONENT_ANIMATION_CHANGE_PARAM_DIRECTION);
     
-    getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, this, m_owner,data);
+    getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, this, _owner,data);
 
-    getMessageManager()->dispatchMessage(MSG_MOVE_STOPED,this,m_owner);
+    getMessageManager()->dispatchMessage(MSG_MOVE_STOPED,this,_owner);
 }
 
 /**
@@ -547,10 +547,10 @@ void GridMoveComponent::onMoveStop(Message *message)
  */
 void GridMoveComponent::setDirection(int directionX,int directionY)
 {
-	m_lastDirectionX=m_directionX;
-	m_lastDirectionY=m_directionY;
-	m_directionX=directionX;
-	m_directionY=directionY;
+	_lastDirectionX=_directionX;
+	_lastDirectionY=_directionY;
+	_directionX=directionX;
+	_directionY=directionY;
 }
 
 /**
@@ -559,14 +559,14 @@ void GridMoveComponent::setDirection(int directionX,int directionY)
  */
 void GridMoveComponent::startMove()
 {
-	m_movingDeltaTime=0;
+	_movingDeltaTime=0;
 
-	m_moveState=MoveStart;
+	_moveState=MoveStart;
 
     startMoveUpdateSchedule();
     //CCDirector* director = CCDirector::sharedDirector();
     //CCScheduler* pScheduler = director->getScheduler();
-    //pScheduler->scheduleSelector(m_update,this, 0, false);
+    //pScheduler->scheduleSelector(_update,this, 0, false);
 
     doMoveStart();
 }
@@ -577,29 +577,29 @@ void GridMoveComponent::startMove()
  */
 void GridMoveComponent::stopMove()
 {
-	if(m_moveState==MoveStart){
-		m_moveState=MoveWillStop;
+	if(_moveState==MoveStart){
+		_moveState=MoveWillStop;
 	}else {
         //CCScheduler* pScheduler = CCDirector::sharedDirector()->getScheduler();
-        //pScheduler->unscheduleSelector(m_update, this);
+        //pScheduler->unscheduleSelector(_update, this);
         stopMoveUpdateSchedule();
-		m_moveState=MoveStop;
+		_moveState=MoveStop;
 		//NSLog(@"stop entity move schedule:update");
 		doMoveStop();
 	}
 }
 void GridMoveComponent::prepareMove()
 {
-	calcMoveDuration(m_directionX,m_directionY);
-	calcSpeedVector(m_directionX,m_directionY);
-    m_isoPositionComponent->setCoordinate(m_to);
+	calcMoveDuration(_directionX,_directionY);
+	calcSpeedVector(_directionX,_directionY);
+    _isoPositionComponent->setCoordinate(_to);
 }
 
 void GridMoveComponent::continueUpdate()
 {
 	if(checkMoveable()){
-		m_moveState=MoveStart;
-		m_movingDeltaTime=0;
+		_moveState=MoveStart;
+		_movingDeltaTime=0;
 		this->prepareMove();
 		doDirectionChange();
 	}else{
@@ -609,12 +609,12 @@ void GridMoveComponent::continueUpdate()
 
 void GridMoveComponent::resetState()
 {
-	m_directionX=0;
-	m_directionY=0;
-	m_lastDirectionX=0;
-	m_lastDirectionY=0;
-	m_nextDirectionX=0;
-    m_nextDirectionY=0;
+	_directionX=0;
+	_directionY=0;
+	_lastDirectionX=0;
+	_lastDirectionY=0;
+	_nextDirectionX=0;
+    _nextDirectionY=0;
 }
 
 void GridMoveComponent::completeMove()
@@ -622,31 +622,31 @@ void GridMoveComponent::completeMove()
     stop();
     
     //send move complete message
-    getMessageManager()->dispatchMessage(MSG_MOVE_COMPLETE,this,m_owner,CCPointValue::create(m_to));
+    getMessageManager()->dispatchMessage(MSG_MOVE_COMPLETE,this,_owner,CCPointValue::create(_to));
 
 }
 
 //开启更新定时器。为了使update不是虚函数，这里使用虚函数
 void GridMoveComponent::startMoveUpdateSchedule()
 {
-    switch (m_moveType)
+    switch (_moveType)
     {
     case kMoveDirection:
-        m_update=schedule_selector(GridMoveComponent::updateDirection);
+        _update=schedule_selector(GridMoveComponent::updateDirection);
         break;
     case kMovePath:
-        m_update=schedule_selector(GridMoveComponent::updatePath);
+        _update=schedule_selector(GridMoveComponent::updatePath);
         break;
     default:
         break;
     }
-    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(m_update,this, 0, false);
+    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(_update,this, 0, false);
 }
 
 void GridMoveComponent::stopMoveUpdateSchedule()
 {
-    CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(m_update,this);
-    m_update=NULL;
+    CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(_update,this);
+    _update=NULL;
 }
 
 SEL_SCHEDULE GridMoveComponent::getUpdateDirectionHandle()

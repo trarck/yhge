@@ -27,7 +27,7 @@ protected:
     
 protected:
     
-    CCSpriteBatchNode* m_pBatchNode;
+    CCSpriteBatchNode* _pBatchNode;
     
 };
 

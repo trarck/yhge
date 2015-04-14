@@ -16,28 +16,28 @@ NS_CC_YHGE_SQLITE_BEGIN
 
 // Begins the SQLite transaction
 Transaction::Transaction(SqliteDriver& driver) : // throw(SQLite::Exception)
-    m_driver(driver),
-    m_commited(false)
+    _driver(driver),
+    _commited(false)
 {
-    m_driver.execute("BEGIN");
+    _driver.execute("BEGIN");
 }
 
 // Safely rollback the transaction if it has not been committed.
 Transaction::~Transaction(void) throw() // nothrow
 {
-    if (false == m_commited)
+    if (false == _commited)
     {
-        m_driver.execute("ROLLBACK");
+        _driver.execute("ROLLBACK");
     }
 }
 
 // Commit the transaction.
 void Transaction::commit(void) // throw(SQLite::Exception)
 {
-    if (false == m_commited)
+    if (false == _commited)
     {
-        m_driver.execute("COMMIT");
-        m_commited = true;
+        _driver.execute("COMMIT");
+        _commited = true;
     }
     else
     {

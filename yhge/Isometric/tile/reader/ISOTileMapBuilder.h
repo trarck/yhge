@@ -120,51 +120,51 @@ public:
 public:
     
     inline void setMap(ISOTileMap* pMap){
-        m_pMap=pMap;
+        _pMap=pMap;
     }
     
     inline ISOTileMap* getMap(){
-        return m_pMap;
+        return _pMap;
     }
     
     inline void setMapLayerType(unsigned int uMapLayerType)
     {
-        m_uMapLayerType = uMapLayerType;
+        _uMapLayerType = uMapLayerType;
     }
     
     inline unsigned int getMapLayerType()
     {
-        return m_uMapLayerType;
+        return _uMapLayerType;
     }
     
     inline void setActiveLayerName(const std::string& activeLayerName)
     {
-        m_activeLayerName = activeLayerName;
+        _activeLayerName = activeLayerName;
     }
     
     inline const std::string& getActiveLayerName()
     {
-        return m_activeLayerName;
+        return _activeLayerName;
     }
     
     inline void setActiveLayerDefaultZOrder(int activeLayerDefaultZOrder)
     {
-        m_activeLayerDefaultZOrder = activeLayerDefaultZOrder;
+        _activeLayerDefaultZOrder = activeLayerDefaultZOrder;
     }
     
     inline int getActiveLayerDefaultZOrder()
     {
-        return m_activeLayerDefaultZOrder;
+        return _activeLayerDefaultZOrder;
     }
     
     inline void setBuildActiveLayer(bool buildActiveLayer)
     {
-        m_buildActiveLayer = buildActiveLayer;
+        _buildActiveLayer = buildActiveLayer;
     }
     
     inline bool isBuildActiveLayer()
     {
-        return m_buildActiveLayer;
+        return _buildActiveLayer;
     }
    
 public:
@@ -178,23 +178,23 @@ public:
     
 protected:
     
-    ISOTileMap* m_pMap;
+    ISOTileMap* _pMap;
     
-    unsigned int m_uMapLayerType;
+    unsigned int _uMapLayerType;
     
     /**
      * 活动层的名称
      */
-    std::string m_activeLayerName;
+    std::string _activeLayerName;
     
     /**
      * 活动层默认zorder
      * 当没有指定的active layer，创建的默认active layer使用该值
      */
-    int m_activeLayerDefaultZOrder;
+    int _activeLayerDefaultZOrder;
     
     //是否自动构建活动层
-    bool m_buildActiveLayer;
+    bool _buildActiveLayer;
 };
 
 

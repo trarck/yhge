@@ -3,12 +3,12 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOMapInfo::ISOMapInfo()
-:m_tMapSize(CCSizeZero)
-,m_tTileSize(CCSizeZero)
-,m_pLayers(NULL)
-,m_pTilesets(NULL)
-,m_pObjectGroups(NULL)
-,m_pProperties(NULL)
+:_tMapSize(CCSizeZero)
+,_tTileSize(CCSizeZero)
+,_pLayers(NULL)
+,_pTilesets(NULL)
+,_pObjectGroups(NULL)
+,_pProperties(NULL)
 {
 
 }
@@ -16,80 +16,80 @@ ISOMapInfo::ISOMapInfo()
 ISOMapInfo::~ISOMapInfo()
 {
     CCLOG("ISOMapInfo destroy");
-    CC_SAFE_RELEASE(m_pTilesets);
-    CC_SAFE_RELEASE(m_pLayers);
-    CC_SAFE_RELEASE(m_pProperties);
-    CC_SAFE_RELEASE(m_pObjectGroups);
+    CC_SAFE_RELEASE(_pTilesets);
+    CC_SAFE_RELEASE(_pLayers);
+    CC_SAFE_RELEASE(_pProperties);
+    CC_SAFE_RELEASE(_pObjectGroups);
 }
 
 bool ISOMapInfo::init()
 {
-    m_pTilesets = new CCArray();
-    m_pTilesets->init();
+    _pTilesets = new CCArray();
+    _pTilesets->init();
     
-    m_pLayers = new CCArray();
-    m_pLayers->init();
+    _pLayers = new CCArray();
+    _pLayers->init();
 
-    m_pObjectGroups = new CCArray();
-    m_pObjectGroups->initWithCapacity(4);
+    _pObjectGroups = new CCArray();
+    _pObjectGroups->initWithCapacity(4);
     
-    m_pProperties = new CCDictionary();
+    _pProperties = new CCDictionary();
 
     return true;
 }
 
 void ISOMapInfo::setOrientation(int nOrientation)
 {
-    m_nOrientation = nOrientation;
+    _nOrientation = nOrientation;
 }
 
 int ISOMapInfo::getOrientation()
 {
-    return m_nOrientation;
+    return _nOrientation;
 }
 
 void ISOMapInfo::setMapSize(const CCSize& tMapSize)
 {
-    m_tMapSize = tMapSize;
+    _tMapSize = tMapSize;
 }
 
 const CCSize& ISOMapInfo::getMapSize()
 {
-    return m_tMapSize;
+    return _tMapSize;
 }
 
 void ISOMapInfo::setTileSize(const CCSize& tTileSize)
 {
-    m_tTileSize = tTileSize;
+    _tTileSize = tTileSize;
 }
 
 const CCSize& ISOMapInfo::getTileSize()
 {
-    return m_tTileSize;
+    return _tTileSize;
 }
 
 void ISOMapInfo::setLayers(CCArray* pLayers)
 {
     CC_SAFE_RETAIN(pLayers);
-    CC_SAFE_RELEASE(m_pLayers);
-    m_pLayers = pLayers;
+    CC_SAFE_RELEASE(_pLayers);
+    _pLayers = pLayers;
 }
 
 CCArray* ISOMapInfo::getLayers()
 {
-    return m_pLayers;
+    return _pLayers;
 }
 
 void ISOMapInfo::setTilesets(CCArray* pTilesets)
 {
     CC_SAFE_RETAIN(pTilesets);
-    CC_SAFE_RELEASE(m_pTilesets);
-    m_pTilesets = pTilesets;
+    CC_SAFE_RELEASE(_pTilesets);
+    _pTilesets = pTilesets;
 }
 
 CCArray* ISOMapInfo::getTilesets()
 {
-    return m_pTilesets;
+    return _pTilesets;
 }
 
 /**
@@ -98,25 +98,25 @@ CCArray* ISOMapInfo::getTilesets()
 void ISOMapInfo::setObjectGroups(CCArray* pObjectGroups)
 {
     CC_SAFE_RETAIN(pObjectGroups);
-    CC_SAFE_RELEASE(m_pObjectGroups);
-    m_pObjectGroups = pObjectGroups;
+    CC_SAFE_RELEASE(_pObjectGroups);
+    _pObjectGroups = pObjectGroups;
 }
 
 CCArray* ISOMapInfo::getObjectGroups()
 {
-    return m_pObjectGroups;
+    return _pObjectGroups;
 }
 
 void ISOMapInfo::setProperties(CCDictionary* pProperties)
 {
     CC_SAFE_RETAIN(pProperties);
-    CC_SAFE_RELEASE(m_pProperties);
-    m_pProperties = pProperties;
+    CC_SAFE_RELEASE(_pProperties);
+    _pProperties = pProperties;
 }
 
 CCDictionary* ISOMapInfo::getProperties()
 {
-    return m_pProperties;
+    return _pProperties;
 }
 
 NS_CC_YHGE_ISOMETRIC_END

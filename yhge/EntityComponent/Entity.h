@@ -113,48 +113,48 @@ public:
 
     void setEntityId(int entityId)
     {
-        m_entityId = entityId;
+        _entityId = entityId;
     }
 
     int getEntityId()
     {
-        return m_entityId;
+        return _entityId;
     }
 
     inline void setComponents(CCArray* components)
     {
         CC_SAFE_RETAIN(components);
-        CC_SAFE_RELEASE(m_components);
-        m_components = components;
+        CC_SAFE_RELEASE(_components);
+        _components = components;
     }
     
     inline CCArray* getComponents()
     {
-        return m_components;
+        return _components;
     }
     
     inline void setProperties(CCDictionary* properties)
     {
         CC_SAFE_RETAIN(properties);
-        CC_SAFE_RELEASE(m_properties);
-        m_properties = properties;
+        CC_SAFE_RELEASE(_properties);
+        _properties = properties;
     }
     
     inline CCDictionary* getProperties()
     {
-        return m_properties;
+        return _properties;
     }
     
 protected:
 
     //entity的id
-    int m_entityId;
+    int _entityId;
     
     //entity所拥有的组件
-    CCArray* m_components;
+    CCArray* _components;
     
     //entity的属性
-    CCDictionary* m_properties;
+    CCDictionary* _properties;
 	
 };
 

@@ -11,15 +11,15 @@ static const char* kSqlNullValue="null";
 static const char* kSqlDefaultPrepareFlag=":";
 
 CocosSqliteDAO::CocosSqliteDAO()
-:m_driver(NULL)
-,m_prepareFlag(kSqlDefaultPrepareFlag)
+:_driver(NULL)
+,_prepareFlag(kSqlDefaultPrepareFlag)
 {
 
 }
 
 CocosSqliteDAO::~CocosSqliteDAO()
 {
-    CC_SAFE_RELEASE_NULL(m_driver);
+    CC_SAFE_RELEASE_NULL(_driver);
 }
 
 
@@ -27,7 +27,7 @@ bool CocosSqliteDAO::init()
 {
     sqlite::SqliteDriver* sqliteDriver=new sqlite::SqliteDriver();
     
-    m_driver=new CocosSqliteDriver(sqliteDriver);
+    _driver=new CocosSqliteDriver(sqliteDriver);
     
     return true;
 }
@@ -36,7 +36,7 @@ bool CocosSqliteDAO::init(const std::string& dbPath,int flag)
 {
     sqlite::SqliteDriver* sqliteDriver=new sqlite::SqliteDriver();
     
-    m_driver=new CocosSqliteDriver(sqliteDriver);
+    _driver=new CocosSqliteDriver(sqliteDriver);
     
     sqliteDriver->connect(dbPath,flag);
     
@@ -52,7 +52,7 @@ bool CocosSqliteDAO::init(CocosSqliteDriver* driver)
 
 int CocosSqliteDAO::fetchNumber(const std::string& querySql)
 {
-    Statement stmt(*(m_driver->getPtr()),querySql);
+    Statement stmt(*(_driver->getPtr()),querySql);
     
     if(stmt.execute()){
         
@@ -66,7 +66,7 @@ int CocosSqliteDAO::fetchNumber(const std::string& querySql)
 
 CCArray* CocosSqliteDAO::fetchAll(const std::string& querySql)
 {
-    Statement stmt(*(m_driver->getPtr()), querySql);
+    Statement stmt(*(_driver->getPtr()), querySql);
     
     int colCount=stmt.getColumnCount();
     
@@ -89,7 +89,7 @@ CCArray* CocosSqliteDAO::fetchAll(const std::string& querySql)
 
 CCDictionary* CocosSqliteDAO::fetchOne(const std::string& querySql)
 {
-    Statement stmt(*(m_driver->getPtr()), querySql);
+    Statement stmt(*(_driver->getPtr()), querySql);
     
     int colCount=stmt.getColumnCount();
     
@@ -106,17 +106,17 @@ CCDictionary* CocosSqliteDAO::fetchOne(const std::string& querySql)
 
 int CocosSqliteDAO::insert(const std::string& insertSql)
 {
-    return m_driver->getPtr()->execute(insertSql);
+    return _driver->getPtr()->execute(insertSql);
 }
 
 int CocosSqliteDAO::update(const std::string& updateSql)
 {
-    return m_driver->getPtr()->execute(updateSql);
+    return _driver->getPtr()->execute(updateSql);
 }
 
 int CocosSqliteDAO::remove(const std::string& deleteSql)
 {
-    return m_driver->getPtr()->execute(deleteSql);
+    return _driver->getPtr()->execute(deleteSql);
 }
 
 int CocosSqliteDAO::insert(const std::string& table,CCDictionary* data)
@@ -128,7 +128,7 @@ int CocosSqliteDAO::insert(const std::string& table,CCDictionary* data)
     
     insertSql+=";";
     
-    Statement stmt(*(m_driver->getPtr()), insertSql);
+    Statement stmt(*(_driver->getPtr()), insertSql);
     
     //绑定变量
     CCDictElement* pElem=NULL;
@@ -150,7 +150,7 @@ void CocosSqliteDAO::batchInsert(const std::string& table,CCArray* data)
     insertSql+=";";
     
     //只使用一个statement
-    Statement stmt(*(m_driver->getPtr()), insertSql);
+    Statement stmt(*(_driver->getPtr()), insertSql);
     
     
     int count=data->count();
@@ -186,7 +186,7 @@ int CocosSqliteDAO::update(const std::string& table,CCDictionary* data,CCDiction
         
         updateSql+=";";
         
-        Statement stmt(*(m_driver->getPtr()), updateSql);
+        Statement stmt(*(_driver->getPtr()), updateSql);
         
         //绑定更新数据
         CCDictElement* pElem=NULL;
@@ -207,7 +207,7 @@ int CocosSqliteDAO::update(const std::string& table,CCDictionary* data,CCDiction
         
         updateSql+=";";
         
-        Statement stmt(*(m_driver->getPtr()), updateSql);
+        Statement stmt(*(_driver->getPtr()), updateSql);
         
         //由于带标志符的也占用位置，所以问号表示的不是问号中的位置，而是整个参数中的位置。所以要跳过更新数据的变量。
         int i=1;
@@ -241,7 +241,7 @@ int CocosSqliteDAO::remove(const std::string& table,CCDictionary* where)
     
     deleteSql+=";";
     
-    Statement stmt(*(m_driver->getPtr()), deleteSql);
+    Statement stmt(*(_driver->getPtr()), deleteSql);
     
     //绑定条件数据
     int i=1;
@@ -292,7 +292,7 @@ std::string CocosSqliteDAO::formateToInsertPrepare(CCDictionary* data)
         fields+= kSqlFieldQuto+ std::string(pElem->getStrKey()) + kSqlFieldQuto;
         
         //:a
-        values+= m_prepareFlag + pElem->getStrKey();
+        values+= _prepareFlag + pElem->getStrKey();
     }
     
     fields+=")";
@@ -335,7 +335,7 @@ std::string CocosSqliteDAO::formateToEqualPrepare(CCDictionary* data)
         //`a`=:a
         prepareStr+= kSqlFieldQuto+ std::string(pElem->getStrKey()) + kSqlFieldQuto
         + "="
-        + m_prepareFlag + pElem->getStrKey();
+        + _prepareFlag + pElem->getStrKey();
     }
     
     return prepareStr;

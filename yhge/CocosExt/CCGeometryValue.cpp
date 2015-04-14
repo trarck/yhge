@@ -14,14 +14,14 @@ NS_CC_YHGE_BEGIN
 
 CCPointValue& CCPointValue::operator= (const CCPointValue& other)
 {
-     m_tPoint=other.getPoint();
+     _tPoint=other.getPoint();
     return *this;
 }
 
 cocos2d::Ref* CCPointValue::copyWithZone(cocos2d::CCZone* pZone)
 {
     CCPointValue* pRet = new CCPointValue();
-    pRet->setPoint(this->m_tPoint);
+    pRet->setPoint(this->_tPoint);
     return pRet;
 }
 
@@ -57,7 +57,7 @@ CCSizeValue& CCSizeValue::operator= (const CCSizeValue& other)
 cocos2d::Ref* CCSizeValue::copyWithZone(cocos2d::CCZone* pZone)
 {
     CCSizeValue* pRet = new CCSizeValue();
-    pRet->setSize(this->m_tSize);
+    pRet->setSize(this->_tSize);
     return pRet;
 }
 

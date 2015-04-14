@@ -14,32 +14,32 @@ static int defaultNears[][2]={
 };
 
 Astar::Astar(void)
-:m_minX(0)
-,m_minY(0)
-,m_maxX(0)
-,m_maxY(0)
-,m_start(NULL)
-,m_end(NULL)
-,m_current(NULL)
+:_minX(0)
+,_minY(0)
+,_maxX(0)
+,_maxY(0)
+,_start(NULL)
+,_end(NULL)
+,_current(NULL)
 {
 	
 }
 
 Astar::~Astar(void)
 {
-	CC_SAFE_RELEASE_NULL(m_opens);
-	CC_SAFE_RELEASE_NULL(m_closes);
-	CC_SAFE_RELEASE_NULL(m_openSeq);
-	CC_SAFE_RELEASE_NULL(m_start);
-	CC_SAFE_RELEASE_NULL(m_end);
+	CC_SAFE_RELEASE_NULL(_opens);
+	CC_SAFE_RELEASE_NULL(_closes);
+	CC_SAFE_RELEASE_NULL(_openSeq);
+	CC_SAFE_RELEASE_NULL(_start);
+	CC_SAFE_RELEASE_NULL(_end);
 	
 }
 
 bool Astar::init()
 {
-	m_openSeq=new CCArray(10);
-	m_opens=new CCDictionary();
-	m_closes=new CCDictionary();
+	_openSeq=new CCArray(10);
+	_opens=new CCDictionary();
+	_closes=new CCDictionary();
 	
 	return true;
 }
@@ -50,14 +50,14 @@ bool Astar::init()
  */
 void Astar::reset()
 {
-    CC_SAFE_RELEASE(m_opens);
-	CC_SAFE_RELEASE(m_closes);
-	CC_SAFE_RELEASE(m_openSeq);
+    CC_SAFE_RELEASE(_opens);
+	CC_SAFE_RELEASE(_closes);
+	CC_SAFE_RELEASE(_openSeq);
 
 
-	m_openSeq=new CCArray(10);
-	m_opens=new CCDictionary();
-	m_closes=new CCDictionary();
+	_openSeq=new CCArray(10);
+	_opens=new CCDictionary();
+	_closes=new CCDictionary();
 }
 
 /**
@@ -65,10 +65,10 @@ void Astar::reset()
  */
 void Astar::setBounding(int minX ,int minY,int maxX,int maxY)
 {
-	m_minX=minX;
-	m_minY=minY;
-	m_maxX=maxX;
-	m_maxY=maxY;
+	_minX=minX;
+	_minY=minY;
+	_maxX=maxX;
+	_maxY=maxY;
 }
 
 /**
@@ -76,10 +76,10 @@ void Astar::setBounding(int minX ,int minY,int maxX,int maxY)
  */
 void Astar::setStart(int x ,int y)
 {
-	CC_SAFE_RELEASE(m_start);
-	m_start=new AstarNode();
-	m_start->init(x,y);
-	addToOpen(m_start);
+	CC_SAFE_RELEASE(_start);
+	_start=new AstarNode();
+	_start->init(x,y);
+	addToOpen(_start);
 }
 
 /**
@@ -87,9 +87,9 @@ void Astar::setStart(int x ,int y)
  */
 void Astar::setEnd(int x ,int y)
 {
-	CC_SAFE_RELEASE(m_end);
-	m_end=new AstarNode();
-	m_end->init(x,y);	
+	CC_SAFE_RELEASE(_end);
+	_end=new AstarNode();
+	_end->init(x,y);	
 }
 
 /**
@@ -99,16 +99,16 @@ bool Astar::search()
 {
 	
 	//如果开始和结束点是同一点、终点超出范围,不必寻路。
-	if (isEnd(m_start->getX(),m_start->getY())|| isOut(m_end->getX(),m_end->getY())){
+	if (isEnd(_start->getX(),_start->getY())|| isOut(_end->getX(),_end->getY())){
 		return false;
 	}
 	
-	while (m_openSeq->count()) {
+	while (_openSeq->count()) {
 		//取得下一个搜索点 
 		getNext();
-		removeFromOpen(m_current);
+		removeFromOpen(_current);
 		//添加到closes
-		addToClose(m_current->getX(),m_current->getY());
+		addToClose(_current->getX(),_current->getY());
 		
 		//处理相邻结点
 		if(checkNearby()){
@@ -133,8 +133,8 @@ bool Astar::checkNearby()
 		i=defaultNears[k][0];
 		j=defaultNears[k][1];
 		
-		x=m_current->getX()+i;
-		y=m_current->getY()+j;
+		x=_current->getX()+i;
+		y=_current->getY()+j;
 		
 		//结束提前，可对目标是障碍物进行寻路。(例:人物要对某个建筑进行操作，比如攻击，要走到建筑旁边才可以)
 		if (isEnd(x,y ,i ,j)) {//如果是斜着寻路，则要对旁边是否有障碍物进行判断。
@@ -143,7 +143,7 @@ bool Astar::checkNearby()
 		
 		if(!isOut(x,y) && isWorkableWithCrossSide(x ,y ,i ,j)){
 			if(!isInClose(x ,y)){
-				g=m_current->getG()+(i==0||j==0?ASTAR_G_LINE:ASTAR_G_CROSS);
+				g=_current->getG()+(i==0||j==0?ASTAR_G_LINE:ASTAR_G_CROSS);
 				searchedNode=getFromOpen(x ,y);
 				if(searchedNode!=NULL){
 					//在开起列表中，比较G值
@@ -151,14 +151,14 @@ bool Astar::checkNearby()
 						//有最小F值，重新排序
 						setOpenSeqNode(searchedNode,g);
 						//重新指定路径
-						searchedNode->setParent(m_current);
+						searchedNode->setParent(_current);
 					}
 				}else {
 					//没有搜索过，直接添加到开起列表中
 					h=getH(x ,y);
 					AstarNode* astarNode=new AstarNode();
 					astarNode->init(x ,y,g,h);
-					astarNode->setParent(m_current);
+					astarNode->setParent(_current);
 					addToOpen(astarNode);
 					astarNode->release();
 				}
@@ -173,9 +173,9 @@ bool Astar::checkNearby()
  */
 void Astar::getNext()
 {
-	CC_SAFE_RELEASE(m_current);
-	m_current=(AstarNode*)m_openSeq->objectAtIndex(0);
-	m_current->retain();
+	CC_SAFE_RELEASE(_current);
+	_current=(AstarNode*)_openSeq->objectAtIndex(0);
+	_current->retain();
 }
 
 /**
@@ -184,19 +184,19 @@ void Astar::getNext()
 void Astar::setOpenSeqNode(AstarNode* node ,int g)
 {
 	node->retain();
-	m_openSeq->removeObject(node);
+	_openSeq->removeObject(node);
 	node->setG(g);
 	node->setF(node->getG()+node->getH());
     
 	int i=0;
 	Ref* pObject = NULL;
-	CCARRAY_FOREACH(m_openSeq,pObject){
+	CCARRAY_FOREACH(_openSeq,pObject){
 		AstarNode* it=(AstarNode*)pObject;
 		if(node->getF()<it->getF()) break;
 		i++;
 	}
     
-	m_openSeq->insertObject(node,i);
+	_openSeq->insertObject(node,i);
 	CC_SAFE_RELEASE(node);
 }
 
@@ -208,17 +208,17 @@ void Astar::addToOpen(AstarNode* node)
 	//CCLOG("addToOpen %d,%d",node->getX(),node->getY());
 	int i=0;
 	Ref* pObject = NULL;
-	CCARRAY_FOREACH(m_openSeq,pObject){
+	CCARRAY_FOREACH(_openSeq,pObject){
 		AstarNode* it=(AstarNode*)pObject;
 		if(node->getF()<it->getF()) break;
 		i++;
 	}
-	m_openSeq->insertObject(node,i);
+	_openSeq->insertObject(node,i);
 	
-	CCDictionary* ymd=(CCDictionary*)m_opens->objectForKey(node->getY());
+	CCDictionary* ymd=(CCDictionary*)_opens->objectForKey(node->getY());
 	if (ymd==NULL) {
 		ymd=new CCDictionary();
-		m_opens->setObject(ymd,node->getY());
+		_opens->setObject(ymd,node->getY());
 		CC_SAFE_RELEASE(ymd);
 	}
 	
@@ -230,9 +230,9 @@ void Astar::addToOpen(AstarNode* node)
  */
 void Astar::removeFromOpen(AstarNode* node)
 {
-	m_openSeq->removeObject(node);
+	_openSeq->removeObject(node);
 
-	CCDictionary* ymd=(CCDictionary*)m_opens->objectForKey(node->getY());
+	CCDictionary* ymd=(CCDictionary*)_opens->objectForKey(node->getY());
 	if (ymd!=NULL) {
 		ymd->removeObjectForKey(node->getX());
 	}
@@ -243,7 +243,7 @@ void Astar::removeFromOpen(AstarNode* node)
  */
 bool Astar::isInOpen(int x ,int y)
 {
-	CCDictionary* ymd=(CCDictionary*)m_opens->objectForKey(y);
+	CCDictionary* ymd=(CCDictionary*)_opens->objectForKey(y);
 
 	if(ymd==NULL) return false;
 
@@ -258,7 +258,7 @@ bool Astar::isInOpen(int x ,int y)
 AstarNode* Astar::getFromOpen(int x ,int y)
 {
 	//CCLOG("addToOpen %d,%d",x,y);
-	CCDictionary* ymd=(CCDictionary*)m_opens->objectForKey(y);
+	CCDictionary* ymd=(CCDictionary*)_opens->objectForKey(y);
 	if(ymd==NULL) return NULL;
 	
 	AstarNode* node=(AstarNode*)ymd->objectForKey(x);
@@ -272,10 +272,10 @@ AstarNode* Astar::getFromOpen(int x ,int y)
 void Astar::addToClose(int x,int y)
 {
 
-	CCDictionary* ymd=(CCDictionary*)m_closes->objectForKey(y);
+	CCDictionary* ymd=(CCDictionary*)_closes->objectForKey(y);
 	if (ymd==NULL) {
 		ymd=new CCDictionary();
-		m_closes->setObject(ymd,y);
+		_closes->setObject(ymd,y);
 		ymd->release();
 	}
 	
@@ -288,7 +288,7 @@ void Astar::addToClose(int x,int y)
  */
 bool Astar::isInClose(int x ,int y)
 {
-	CCDictionary* ymd=(CCDictionary*)m_closes->objectForKey(y);
+	CCDictionary* ymd=(CCDictionary*)_closes->objectForKey(y);
 	if(ymd==NULL) return false;
 	CCInteger* data=(CCInteger*)ymd->objectForKey(x);
 
@@ -300,7 +300,7 @@ bool Astar::isInClose(int x ,int y)
  */
 int Astar::getH(int x ,int y)
 {
-	return abs(m_end->getX()-x)*ASTAR_G_LINE+abs(m_end->getY()-y)*ASTAR_G_LINE;
+	return abs(_end->getX()-x)*ASTAR_G_LINE+abs(_end->getY()-y)*ASTAR_G_LINE;
 }
 
 /**
@@ -308,8 +308,8 @@ int Astar::getH(int x ,int y)
  */
 bool Astar::isOut(int x ,int y)
 {
-	//return y<m_minX||y>=m_maxY ||x<m_minX || x>=m_maxX;
-	return y<m_minY||y>m_maxY ||x<m_minX || x>m_maxX;
+	//return y<_minX||y>=_maxY ||x<_minX || x>=_maxX;
+	return y<_minY||y>_maxY ||x<_minX || x>_maxX;
 }
 
 /**
@@ -351,7 +351,7 @@ bool Astar::isCrossSideWorkable(int x ,int y ,int stepX ,int stepY)
  */
 bool Astar::isEnd(int x ,int y)
 {
-	return m_end->getX()==x && m_end->getY()==y;
+	return _end->getX()==x && _end->getY()==y;
 }
 
 /**
@@ -359,14 +359,14 @@ bool Astar::isEnd(int x ,int y)
  */
 bool Astar::isEnd(int x ,int y ,int stepX ,int stepY)
 {
-	return m_end->getX()==x && m_end->getY()==y && isCrossSideWorkable(x,y ,stepX ,stepY);
+	return _end->getX()==x && _end->getY()==y && isCrossSideWorkable(x,y ,stepX ,stepY);
 }
 
 //取得路径  路径是反向的，从终点指向起点，不包含终点和起点。
 CCArray* Astar::getPath()
 {
 	CCArray* paths=CCArray::create();
-	AstarNode* node=m_current;
+	AstarNode* node=_current;
 	
 	while (node && node->getParent()!=NULL) {
 		CCPointValue* p=new CCPointValue(node->getX(),node->getY());
@@ -381,7 +381,7 @@ CCArray* Astar::getPath()
 CCArray* Astar::getPathWithStart()
 {
 	CCArray* paths=CCArray::create();
-	AstarNode* node=m_current;
+	AstarNode* node=_current;
 	
 	while (node) {
 		CCPointValue* p=new CCPointValue(node->getX(),node->getY());
@@ -396,7 +396,7 @@ CCArray* Astar::getPathWithStart()
 CCArray* Astar::getPathWithEnd()
 {
 	CCArray* paths=getPath();
-	CCPointValue* p=new CCPointValue(m_end->getX(),m_end->getY());
+	CCPointValue* p=new CCPointValue(_end->getX(),_end->getY());
 	paths->insertObject(p,0);
 	p->release();
 	return paths;
@@ -406,7 +406,7 @@ CCArray* Astar::getPathWithEnd()
 CCArray* Astar::getPathWithStartEnd()
 {
 	CCArray* paths=getPathWithStart();
-	CCPointValue* p=new CCPointValue(m_end->getX(),m_end->getY());
+	CCPointValue* p=new CCPointValue(_end->getX(),_end->getY());
 	paths->insertObject(p,0);
 	p->release();
 	paths->insertObject(p,0);

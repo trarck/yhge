@@ -3,14 +3,14 @@
 NS_CC_YHGE_BEGIN
 
 CCCallFuncNO::CCCallFuncNO()
-:m_pData(NULL)
+:_pData(NULL)
 {
 
 }
 
 CCCallFuncNO::~CCCallFuncNO()
 {
-	CC_SAFE_RELEASE(m_pData);
+	CC_SAFE_RELEASE(_pData);
 }
 
 CCCallFuncNO * CCCallFuncNO::actionWithTarget(Ref* pSelectorTarget, SEL_CallFuncNO selector, Ref* d) 
@@ -39,15 +39,15 @@ bool CCCallFuncNO::initWithTarget(Ref* pSelectorTarget,
         pSelectorTarget->retain();
     }
 
-    if (m_pSelectorTarget) 
+    if (_pSelectorTarget) 
     {
-        m_pSelectorTarget->release();
+        _pSelectorTarget->release();
     }
 
-    m_pSelectorTarget = pSelectorTarget;
+    _pSelectorTarget = pSelectorTarget;
 
-    m_pData = d;
-    m_pCallFuncNO = selector;
+    _pData = d;
+    _pCallFuncNO = selector;
     return true;
 }
 
@@ -55,23 +55,23 @@ Ref * CCCallFuncNO::copyWithZone(CCZone* zone) {
     CCZone* pNewZone = NULL;
     CCCallFuncNO* pRet = NULL;
 
-    if (zone && zone->m_pCopyObject) {
+    if (zone && zone->_pCopyObject) {
         //in case of being called at sub class
-        pRet = (CCCallFuncNO*) (zone->m_pCopyObject);
+        pRet = (CCCallFuncNO*) (zone->_pCopyObject);
     } else {
         pRet = new CCCallFuncNO();
         zone = pNewZone = new CCZone(pRet);
     }
 
     CCCallFunc::copyWithZone(zone);
-    pRet->initWithTarget(m_pSelectorTarget, m_pCallFuncNO, m_pData);
+    pRet->initWithTarget(_pSelectorTarget, _pCallFuncNO, _pData);
     CC_SAFE_DELETE(pNewZone);
     return pRet;
 }
 
 void CCCallFuncNO::execute() {
-    if (m_pCallFuncNO) {
-        (m_pSelectorTarget->*m_pCallFuncNO)(m_pTarget, m_pData);
+    if (_pCallFuncNO) {
+        (_pSelectorTarget->*_pCallFuncNO)(_pTarget, _pData);
     }
 }
     

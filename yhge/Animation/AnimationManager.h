@@ -44,32 +44,32 @@ public:
     inline void setAnimations(CCArray* animations)
     {
         CC_SAFE_RETAIN(animations);
-        CC_SAFE_RELEASE(m_animations);
-        m_animations = animations;
+        CC_SAFE_RELEASE(_animations);
+        _animations = animations;
     }
     
     inline CCArray* getAnimations()
     {
-        return m_animations;
+        return _animations;
     }
 
     inline void setAnimationGroups(CCDictionary* animationGroups)
     {
         CC_SAFE_RETAIN(animationGroups);
-        CC_SAFE_RELEASE(m_animationGroups);
-        m_animationGroups = animationGroups;
+        CC_SAFE_RELEASE(_animationGroups);
+        _animationGroups = animationGroups;
     }
     
     inline CCDictionary* getAnimationGroups()
     {
-        return m_animationGroups;
+        return _animationGroups;
     }
     
 protected:
     
-    CCArray* m_animations;
+    CCArray* _animations;
     
-    CCDictionary* m_animationGroups;
+    CCDictionary* _animationGroups;
     
 };
 

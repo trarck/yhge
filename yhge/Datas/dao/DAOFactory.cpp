@@ -9,24 +9,24 @@ NS_CC_YHGE_DATA_BEGIN
 static DAOFactory* sDaoFactoryInstance=NULL;
 
 DAOFactory::DAOFactory()
-:m_jsonDaos(NULL)
-,m_cocosDaos(NULL)
-,m_openFlag(SQLITE_OPEN_READWRITE)
+:_jsonDaos(NULL)
+,_cocosDaos(NULL)
+,_openFlag(SQLITE_OPEN_READWRITE)
 {
     
 }
 
 DAOFactory::~DAOFactory()
 {
-    CC_SAFE_RELEASE_NULL(m_jsonDaos);
-    CC_SAFE_RELEASE_NULL(m_cocosDaos);
+    CC_SAFE_RELEASE_NULL(_jsonDaos);
+    CC_SAFE_RELEASE_NULL(_cocosDaos);
 }
 
 bool DAOFactory::init()
 {
-    m_jsonDaos=new CCDictionary();
+    _jsonDaos=new CCDictionary();
     
-    m_cocosDaos=new CCDictionary();
+    _cocosDaos=new CCDictionary();
     
     return true;
 }
@@ -43,13 +43,13 @@ DAOFactory* DAOFactory::getInstance()
 
 JSONSqliteDAO* DAOFactory::getJsonDao(const std::string& dbPath)
 {
-    JSONSqliteDAO* dao=static_cast<JSONSqliteDAO*>(m_jsonDaos->objectForKey(dbPath));
+    JSONSqliteDAO* dao=static_cast<JSONSqliteDAO*>(_jsonDaos->objectForKey(dbPath));
     
     if (!dao) {
         dao=new JSONSqliteDAO();
-        dao->init(dbPath, m_openFlag);
+        dao->init(dbPath, _openFlag);
         
-        m_jsonDaos->setObject(dao, dbPath);
+        _jsonDaos->setObject(dao, dbPath);
     }
     
     return dao;
@@ -57,13 +57,13 @@ JSONSqliteDAO* DAOFactory::getJsonDao(const std::string& dbPath)
 
 CocosSqliteDAO* DAOFactory::getCocosDao(const std::string& dbPath)
 {
-    CocosSqliteDAO* dao=static_cast<CocosSqliteDAO*>(m_cocosDaos->objectForKey(dbPath));
+    CocosSqliteDAO* dao=static_cast<CocosSqliteDAO*>(_cocosDaos->objectForKey(dbPath));
     
     if (!dao) {
         dao=new CocosSqliteDAO();
-        dao->init(dbPath, m_openFlag);
+        dao->init(dbPath, _openFlag);
         
-        m_cocosDaos->setObject(dao, dbPath);
+        _cocosDaos->setObject(dao, dbPath);
     }
     
     return dao;

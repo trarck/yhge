@@ -11,31 +11,31 @@ class SchedulerTask
 {
 public:
     SchedulerTask()
-    :m_target(NULL)
-    ,m_handle(NULL)
-    ,m_priority(0)
-    ,m_markedForDeletion(false)
+    :_target(NULL)
+    ,_handle(NULL)
+    ,_priority(0)
+    ,_markedForDeletion(false)
     {
         
     }
     
     SchedulerTask(Ref* target,SEL_SCHEDULE handle,int priority)
-    :m_target(target)
-    ,m_handle(handle)
-    ,m_priority(priority)
-    ,m_markedForDeletion(false)
+    :_target(target)
+    ,_handle(handle)
+    ,_priority(priority)
+    ,_markedForDeletion(false)
     {
         CC_SAFE_RETAIN(target);
     }
     
     ~SchedulerTask()
     {
-        CC_SAFE_RELEASE_NULL(m_target);
+        CC_SAFE_RELEASE_NULL(_target);
     }
     
     void update(float delta)
     {
-        (m_target->*m_handle)(delta);
+        (_target->*_handle)(delta);
     }
     
 public:
@@ -43,50 +43,50 @@ public:
     inline void setTarget( Ref* target)
     {
         CC_SAFE_RETAIN(target);
-        CC_SAFE_RELEASE(m_target);
-        m_target = target;
+        CC_SAFE_RELEASE(_target);
+        _target = target;
     }
     
     inline  Ref* getTarget()
     {
-        return m_target;
+        return _target;
     }
     
     inline void setHandle( SEL_SCHEDULE handle)
     {
-        m_handle = handle;
+        _handle = handle;
     }
     
     inline  SEL_SCHEDULE getHandle()
     {
-        return m_handle;
+        return _handle;
     }
     
     inline void setPriority( int priority)
     {
-        m_priority = priority;
+        _priority = priority;
     }
     
     inline  int getPriority()
     {
-        return m_priority;
+        return _priority;
     }
     
     inline void setMarkedForDeletion(bool markedForDeletion)
     {
-        m_markedForDeletion = markedForDeletion;
+        _markedForDeletion = markedForDeletion;
     }
     
     inline bool isMarkedForDeletion()
     {
-        return m_markedForDeletion;
+        return _markedForDeletion;
     }
     
 protected:
-    Ref* m_target;
-    SEL_SCHEDULE m_handle;
-    int m_priority;
-    bool m_markedForDeletion;
+    Ref* _target;
+    SEL_SCHEDULE _handle;
+    int _priority;
+    bool _markedForDeletion;
 };
 
 
@@ -159,14 +159,14 @@ protected:
     
 protected:
     
-    TaskList m_pUpdatesNegList;        // list of priority < 0
-    TaskList m_pUpdatesZeroList;          // list priority == 0
-    TaskList m_pUpdatesPosList;        // list priority > 0
+    TaskList _pUpdatesNegList;        // list of priority < 0
+    TaskList _pUpdatesZeroList;          // list priority == 0
+    TaskList _pUpdatesPosList;        // list priority > 0
     
     //标记只否则在某个更新内
-    bool m_updating;
+    bool _updating;
     
-    std::map<int, int> m_registerMap;
+    std::map<int, int> _registerMap;
     
 };
 

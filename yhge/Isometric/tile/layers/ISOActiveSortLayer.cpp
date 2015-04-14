@@ -17,36 +17,36 @@ enum ObjectType
 
 
 ISOActiveSortLayer::ISOActiveSortLayer()
-:m_occlusion(NULL)
-,m_staticRootNode(NULL)
-,m_dynamicObjects(NULL)
-,m_staticObjects(NULL)
-,m_dynamicNodes(NULL)
+:_occlusion(NULL)
+,_staticRootNode(NULL)
+,_dynamicObjects(NULL)
+,_staticObjects(NULL)
+,_dynamicNodes(NULL)
 {
 	
 }
 
 ISOActiveSortLayer::~ISOActiveSortLayer()
 {
-    CC_SAFE_RELEASE_NULL(m_occlusion);
-    CC_SAFE_RELEASE_NULL(m_staticRootNode);
-    CC_SAFE_RELEASE_NULL(m_staticObjects);
-    CC_SAFE_RELEASE_NULL(m_dynamicObjects);
-    CC_SAFE_RELEASE_NULL(m_dynamicNodes);
+    CC_SAFE_RELEASE_NULL(_occlusion);
+    CC_SAFE_RELEASE_NULL(_staticRootNode);
+    CC_SAFE_RELEASE_NULL(_staticObjects);
+    CC_SAFE_RELEASE_NULL(_dynamicObjects);
+    CC_SAFE_RELEASE_NULL(_dynamicNodes);
 }
 
 bool ISOActiveSortLayer::init()
 {
     if (ISOActiveLayer::init()) {
         
-        m_occlusion=new SortZIndex();
-        m_occlusion->init();
+        _occlusion=new SortZIndex();
+        _occlusion->init();
         
-        m_dynamicObjects=new CCArray();
+        _dynamicObjects=new CCArray();
         
-        m_staticObjects=new CCArray();
+        _staticObjects=new CCArray();
         
-        m_dynamicNodes=new CCArray();
+        _dynamicNodes=new CCArray();
         
         return true;
     }
@@ -82,10 +82,10 @@ void ISOActiveSortLayer::releaseLayer()
 
 void ISOActiveSortLayer::setupObjects()
 {
-    if (m_objects) {
+    if (_objects) {
         Ref* pObj=NULL;
         ISOObjectInfo* mapObject=NULL;
-        CCARRAY_FOREACH(m_objects, pObj){
+        CCARRAY_FOREACH(_objects, pObj){
             mapObject=static_cast<ISOObjectInfo*>(pObj);
             if (mapObject->getGid()!=0 && mapObject->getVisible()) {
                 
@@ -96,7 +96,7 @@ void ISOActiveSortLayer::setupObjects()
         }
         
         //保存当前的静态物体的遮挡关系树
-        setStaticRootNode(m_occlusion->getRootNode()->clone());
+        setStaticRootNode(_occlusion->getRootNode()->clone());
         
         //把动态元素也加入进去
         updateDynamicObjectsZOrder(false);
@@ -117,13 +117,13 @@ void ISOActiveSortLayer::addToOcclusion(CCNode* mapObject,ISOObjectInfo* mapObje
     //按对象类型处理元素
     switch (objectType) {
         case kObjectTypeStatic:
-            m_staticObjects->addObject(mapObject);
-            m_occlusion->insert(createSortZIndexNode(mapObject, mapObjectDef));
+            _staticObjects->addObject(mapObject);
+            _occlusion->insert(createSortZIndexNode(mapObject, mapObjectDef));
             break;
             
         case kObjectTypeDynamic:
-            m_dynamicObjects->addObject(mapObject);
-            m_dynamicNodes->addObject(createSortZIndexNode(mapObject, mapObjectDef));
+            _dynamicObjects->addObject(mapObject);
+            _dynamicNodes->addObject(createSortZIndexNode(mapObject, mapObjectDef));
             break;
         default:
             break;
@@ -149,7 +149,7 @@ void ISOActiveSortLayer::updateDynamicObjectsZOrder(bool updateNode)
     SortZIndexNode* node=NULL;
     CCNode* mapObject=NULL;
     
-    CCARRAY_FOREACH(m_dynamicNodes, pObj){
+    CCARRAY_FOREACH(_dynamicNodes, pObj){
         node=static_cast<SortZIndexNode*>(pObj);
         if (updateNode) {
             mapObject=static_cast<CCNode*>(node->getEntity());
@@ -162,7 +162,7 @@ void ISOActiveSortLayer::updateDynamicObjectsZOrder(bool updateNode)
             nodeRect.origin=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(mapObject->getPosition()));
             node->setRect(nodeRect);
         }
-        m_occlusion->insert(node);
+        _occlusion->insert(node);
     }
 }
 

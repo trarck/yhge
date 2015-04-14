@@ -44,38 +44,38 @@ public:
     
     inline void setPreferredSize(const CCSize& preferredSize)
     {
-        m_preferredSize = preferredSize;
-        m_havePreferredSize=true;
+        _preferredSize = preferredSize;
+        _havePreferredSize=true;
         
         //如果已经设置texture，则调整texture
-        if(m_pobTexture){
+        if(_pobTexture){
             adjustTextureRect();
         }
     }
     
     inline const CCSize& getPreferredSize()
     {
-        return m_preferredSize;
+        return _preferredSize;
     }
     
     inline void setUntrimmedSize(const CCSize& untrimmedSize)
     {
-        m_untrimmedSize = untrimmedSize;
+        _untrimmedSize = untrimmedSize;
     }
     
     inline const CCSize& getUntrimmedSize()
     {
-        return m_untrimmedSize;
+        return _untrimmedSize;
     }
     
     inline void setFillType(int fillType)
     {
-        m_fillType = fillType;
+        _fillType = fillType;
     }
     
     inline int getFillType()
     {
-        return m_fillType;
+        return _fillType;
     }
     
 protected:
@@ -88,15 +88,15 @@ protected:
     
 protected:
     
-    CCSize m_preferredSize;
+    CCSize _preferredSize;
     
-    bool m_havePreferredSize;
+    bool _havePreferredSize;
     
-    CCSize m_untrimmedSize;
+    CCSize _untrimmedSize;
     
-    int m_fillType;
+    int _fillType;
     
-    CCRect m_orignalRect;
+    CCRect _orignalRect;
 };
 
 

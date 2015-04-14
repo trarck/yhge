@@ -3,51 +3,51 @@
 NS_CC_YHGE_BEGIN
 
 Event::Event()
-:m_sType("")
-,m_iType(0)
-,m_pTarget(NULL)
-,m_pCurrentTarget(NULL)
-,m_nEventPhase(0)
-,m_bBubbles(true)
-,m_bCancelable(true)
-,m_nTimeStamp(0)
-,m_bDispatchStopped(false)
-,m_bNoDefault(false)
-,m_pData(NULL)
+:_sType("")
+,_iType(0)
+,_pTarget(NULL)
+,_pCurrentTarget(NULL)
+,_nEventPhase(0)
+,_bBubbles(true)
+,_bCancelable(true)
+,_nTimeStamp(0)
+,_bDispatchStopped(false)
+,_bNoDefault(false)
+,_pData(NULL)
 {
 
 }
 
 Event::~Event()
 {
-    CC_SAFE_RELEASE(m_pTarget);
-    CC_SAFE_RELEASE(m_pCurrentTarget);
+    CC_SAFE_RELEASE(_pTarget);
+    CC_SAFE_RELEASE(_pCurrentTarget);
 }
 
 bool Event::initEvent(const std::string &eventType, bool canBubble, bool cancelable)
 {
-    m_sType=eventType;
-    m_bBubbles=canBubble;
-    m_bCancelable=cancelable;
+    _sType=eventType;
+    _bBubbles=canBubble;
+    _bCancelable=cancelable;
     
-    m_nTimeStamp=0;
+    _nTimeStamp=0;
 
-    m_bDispatchStopped=false;
-    m_bNoDefault=false;
+    _bDispatchStopped=false;
+    _bNoDefault=false;
 
     return true;
 }
 
 bool Event::initEvent(int eventType, bool canBubble, bool cancelable)
 {
-    m_iType=eventType;
-    m_bBubbles=canBubble;
-    m_bCancelable=cancelable;
+    _iType=eventType;
+    _bBubbles=canBubble;
+    _bCancelable=cancelable;
     
-    m_nTimeStamp=0;
+    _nTimeStamp=0;
 
-    m_bDispatchStopped=false;
-    m_bNoDefault=false;
+    _bDispatchStopped=false;
+    _bNoDefault=false;
 
     return true;
 }

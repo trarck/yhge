@@ -5,59 +5,59 @@ NS_CC_YHGE_BEGIN
 static const AnimationDataFlag kDefaultFlag={false,false,false};
 
 Animation::Animation()
-:m_enable(true)
-,m_currentFrameIndex(0)
-,m_frameCount(0)
-//,m_totalDuration(0.0f)
-,m_duration(0.0f)
-,m_elapsed(0.0f)
-,m_frames(NULL)
-,m_animationSprite(NULL)
-,m_animationDataFlag(kDefaultFlag)
+:_enable(true)
+,_currentFrameIndex(0)
+,_frameCount(0)
+//,_totalDuration(0.0f)
+,_duration(0.0f)
+,_elapsed(0.0f)
+,_frames(NULL)
+,_animationSprite(NULL)
+,_animationDataFlag(kDefaultFlag)
 {
     
 }
 
 Animation::~Animation()
 {
-    CC_SAFE_RELEASE_NULL(m_frames);
+    CC_SAFE_RELEASE_NULL(_frames);
 }
 
 bool Animation::init()
 {
-    m_frames=new CCArray();
+    _frames=new CCArray();
     
     return true;
 }
 
 bool Animation::init(float duration)
 {
-    m_frames=new CCArray();
+    _frames=new CCArray();
     
-    m_duration=duration;
+    _duration=duration;
     
     return true;
 }
 
 void Animation::play()
 {
-    m_enable=true;
+    _enable=true;
 }
 
 void Animation::stop()
 {
-    m_enable=false;
+    _enable=false;
 }
 
 void Animation::nextFrame()
 {
-    m_currentFrameIndex=(m_currentFrameIndex+1)%m_frameCount;
+    _currentFrameIndex=(_currentFrameIndex+1)%_frameCount;
     stop();
 }
 
 void Animation::prevFrame()
 {
-    m_currentFrameIndex=m_currentFrameIndex==0?m_frameCount-1:m_currentFrameIndex-1;
+    _currentFrameIndex=_currentFrameIndex==0?_frameCount-1:_currentFrameIndex-1;
     stop();
 }
 
@@ -75,18 +75,18 @@ void Animation::gotoAndStop(int index)
 
 void Animation::appendFrame(Frame* frame)
 {
-    m_frames->addObject(frame);
-    ++m_frameCount;
+    _frames->addObject(frame);
+    ++_frameCount;
 }
 
 void Animation::insertFrame(Frame* frame,int index)
 {
-    m_frames->insertObject(frame, index);
+    _frames->insertObject(frame, index);
 }
 
 void Animation::removeFrame(Frame* frame)
 {
-    int index=m_frames->indexOfObject(frame);
+    int index=_frames->indexOfObject(frame);
     if (index!=CC_INVALID_INDEX) {
         removeFrameByIndex(index);
     }
@@ -94,33 +94,33 @@ void Animation::removeFrame(Frame* frame)
 
 void Animation::removeFrameByIndex(int index)
 {
-    if (index>=0 && index<m_frames->count()) {
-        m_frames->removeObjectAtIndex(index);
-        --m_frameCount;
+    if (index>=0 && index<_frames->count()) {
+        _frames->removeObjectAtIndex(index);
+        --_frameCount;
     }
 }
 
 Frame* Animation::getFrame(int index)
 {
-    return index>=0 && index<m_frames->count()?static_cast<Frame*>(m_frames->objectAtIndex(index)):NULL;
+    return index>=0 && index<_frames->count()?static_cast<Frame*>(_frames->objectAtIndex(index)):NULL;
 }
 
 Frame* Animation::getCurrentFrame()
 {
-    return m_frames->count()?static_cast<Frame*>(m_frames->objectAtIndex(m_currentFrameIndex)):NULL;
+    return _frames->count()?static_cast<Frame*>(_frames->objectAtIndex(_currentFrameIndex)):NULL;
 }
 
 void Animation::update(float delta)
 {
-    if (m_enable) {
-        m_elapsed+=delta;
-        int frameIndex=(int)floor(m_elapsed/m_duration)%m_frameCount;
+    if (_enable) {
+        _elapsed+=delta;
+        int frameIndex=(int)floor(_elapsed/_duration)%_frameCount;
 
-        if (m_currentFrameIndex!=frameIndex) {
-            m_currentFrameIndex=frameIndex;
-            if (m_animationSprite)
+        if (_currentFrameIndex!=frameIndex) {
+            _currentFrameIndex=frameIndex;
+            if (_animationSprite)
             {
-                m_animationSprite->setAnimationFrame(getCurrentFrame());
+                _animationSprite->setAnimationFrame(getCurrentFrame());
             }
         }
     }
@@ -129,10 +129,10 @@ void Animation::update(float delta)
 void Animation::update(float delta,int deltaFrame)
 {
     if (delta>0) {
-        m_currentFrameIndex=(m_currentFrameIndex+deltaFrame)%m_frameCount;
-        if (m_animationSprite)
+        _currentFrameIndex=(_currentFrameIndex+deltaFrame)%_frameCount;
+        if (_animationSprite)
         {
-            m_animationSprite->setAnimationFrame(getCurrentFrame());
+            _animationSprite->setAnimationFrame(getCurrentFrame());
         }
     }
 }

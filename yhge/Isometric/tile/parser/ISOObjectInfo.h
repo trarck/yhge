@@ -20,126 +20,126 @@ public:
     
     inline void setName(const char* sName)
     {
-        m_sName = sName;
+        _sName = sName;
     }
     
     inline const char* getName()
     {
-        return m_sName.c_str();
+        return _sName.c_str();
     }
     
     inline void setType(const char* sType)
     {
-        m_sType = sType;
+        _sType = sType;
     }
     
     inline const char* getType()
     {
-        return m_sType.c_str();
+        return _sType.c_str();
     }
     
     inline void setGid(unsigned int uGid)
     {
-        m_uGid = uGid;
+        _uGid = uGid;
     }
     
     inline unsigned int getGid()
     {
-        return m_uGid;
+        return _uGid;
     }
     
     inline void setPosition(const CCPoint& tPosition)
     {
-        m_tPosition = tPosition;
+        _tPosition = tPosition;
     }
     
     inline CCPoint& getPosition()
     {
-        return m_tPosition;
+        return _tPosition;
     }
     
     inline void setSize(CCSize& tSize)
     {
-        m_tSize = tSize;
+        _tSize = tSize;
     }
     
     inline CCSize& getSize()
     {
-        return m_tSize;
+        return _tSize;
     }
     
     inline void setRotation(float fRotation)
     {
-        m_fRotation = fRotation;
+        _fRotation = fRotation;
     }
     
     inline float getRotation()
     {
-        return m_fRotation;
+        return _fRotation;
     }
     
     inline void setVisible(bool bVisible)
     {
-        m_bVisible = bVisible;
+        _bVisible = bVisible;
     }
     
     inline bool getVisible()
     {
-        return m_bVisible;
+        return _bVisible;
     }
     
     inline void setProperties(CCDictionary* pProperties)
     {
         CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(m_pProperties);
-        m_pProperties = pProperties;
+        CC_SAFE_RELEASE(_pProperties);
+        _pProperties = pProperties;
     }
     
     inline CCDictionary* getProperties()
     {
-        return m_pProperties;
+        return _pProperties;
     }
     
 protected:
     /**
      * 对像名称
      */
-    std::string m_sName;
+    std::string _sName;
     
     /**
      * 对像类型
      */
-    std::string m_sType;
+    std::string _sType;
     
     /**
      * 对像全局id
      */
-    unsigned int m_uGid;
+    unsigned int _uGid;
     
     /**
      * 对像位置。像素坐标，不是格子坐标。
      */
-    CCPoint m_tPosition;
+    CCPoint _tPosition;
     
     /**
      * 对像大小
      */
-    CCSize m_tSize;
+    CCSize _tSize;
     
     /**
      * 对像角度
      */
-    float m_fRotation;
+    float _fRotation;
     
     /**
      * 对像是否可见
      */
-    bool m_bVisible;
+    bool _bVisible;
     
     /**
      * 对像扩展属性
      */
-    CCDictionary* m_pProperties;
+    CCDictionary* _pProperties;
     
 };
 

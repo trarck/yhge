@@ -3,26 +3,26 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOLayerInfo::ISOLayerInfo()
-:m_sName("")
-,m_pTiles(NULL)
-,m_tOffset(CCPointZero)
-,m_cOpacity(255)
-,m_bOwnTiles(true)
-,m_pProperties(NULL)
-,m_bVisible(true)
-,m_tLayerSize(CCSizeZero)
+:_sName("")
+,_pTiles(NULL)
+,_tOffset(CCPointZero)
+,_cOpacity(255)
+,_bOwnTiles(true)
+,_pProperties(NULL)
+,_bVisible(true)
+,_tLayerSize(CCSizeZero)
 {
-    m_pProperties=new CCDictionary();
+    _pProperties=new CCDictionary();
 }
 
 ISOLayerInfo::~ISOLayerInfo()
 {
     CCLOG("ISOLayerInfo destroy");
-    CC_SAFE_RELEASE(m_pProperties);
-    if(m_bOwnTiles && m_pTiles )
+    CC_SAFE_RELEASE(_pProperties);
+    if(_bOwnTiles && _pTiles )
     {
-        delete [] m_pTiles;
-        m_pTiles = NULL;
+        delete [] _pTiles;
+        _pTiles = NULL;
     }
 }
 

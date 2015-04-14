@@ -110,7 +110,7 @@ public:
      */
     inline int setBusyTimeout(int timeoutMs) // throw(); nothrow
     {
-        return sqlite3_busy_timeout(m_db, timeoutMs);
+        return sqlite3_busy_timeout(_db, timeoutMs);
     }
     
     /**
@@ -120,7 +120,7 @@ public:
      */
     inline sqlite3_int64 getLastInsertRowId(void) const // throw(); nothrow
     {
-        return sqlite3_last_insert_rowid(m_db);
+        return sqlite3_last_insert_rowid(_db);
     }
     
     /**
@@ -128,7 +128,7 @@ public:
      */
     inline const char* errmsg(void) const
     {
-        return sqlite3_errmsg(m_db);
+        return sqlite3_errmsg(_db);
     }
     
     /**
@@ -177,12 +177,12 @@ public:
      */
     inline const std::string& getDBPath()
     {
-        return m_dbPath;
+        return _dbPath;
     }
     
     inline sqlite3* getDB()
     {
-        return m_db;
+        return _db;
     }
     
 private:
@@ -199,10 +199,10 @@ private:
 private:
     
     //数据库指针
-    sqlite3* m_db;
+    sqlite3* _db;
     
     //数据库路径
-    std::string m_dbPath;
+    std::string _dbPath;
 };
 
 NS_CC_YHGE_SQLITE_END

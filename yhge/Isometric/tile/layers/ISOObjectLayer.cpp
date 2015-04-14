@@ -7,15 +7,15 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOObjectLayer::ISOObjectLayer()
-:m_tileMap(NULL)
-,m_objectGroup(NULL)
+:_tileMap(NULL)
+,_objectGroup(NULL)
 {
 	
 }
 
 ISOObjectLayer::~ISOObjectLayer()
 {
-    CC_SAFE_RELEASE_NULL(m_objectGroup);
+    CC_SAFE_RELEASE_NULL(_objectGroup);
 }
 
 ISOObjectLayer* ISOObjectLayer::create()
@@ -47,8 +47,8 @@ void ISOObjectLayer::releaseLayer()
 
 void ISOObjectLayer::setupObjects()
 {
-    if (m_objectGroup) {
-        CCArray* objects=m_objectGroup->getObjects();
+    if (_objectGroup) {
+        CCArray* objects=_objectGroup->getObjects();
         Ref* pObj=NULL;
         ISOMapObject* mapObject=NULL;
         CCARRAY_FOREACH(objects, pObj){
@@ -65,7 +65,7 @@ void ISOObjectLayer::setupObjects()
  */
 CCSprite* ISOObjectLayer::createObject(int gid,const CCPoint& coord)
 {
-    ISOTileset* tileset=m_tileMap->getTilesetGroup()->getTilesetByGid(gid);
+    ISOTileset* tileset=_tileMap->getTilesetGroup()->getTilesetByGid(gid);
     
     ISOTile* tile=tileset->tileForGid(gid);
     
@@ -75,7 +75,7 @@ CCSprite* ISOObjectLayer::createObject(int gid,const CCPoint& coord)
     //object 的对齐方式为底部居中
     tileSprite->setAnchorPoint(ccp(0.5f,0));
     tileSprite->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(coord)));
-    tileSprite->setOpacity(m_cOpacity);
+    tileSprite->setOpacity(_cOpacity);
     
     //屏幕的y方向作为zOrder，由于opengl的坐标和屏幕坐标反向，这里取反.
     //对于只占用一个格子的object来说，使用屏幕坐标的y方向来处理遮挡是可以的，如果大于一个格子，则会有问题。
@@ -102,7 +102,7 @@ void ISOObjectLayer::parseInternalProperties()
 
 void ISOObjectLayer::setMap(ISOMap* pMap)
 {
-    m_tileMap=static_cast<ISOTileMap*>(pMap);
+    _tileMap=static_cast<ISOTileMap*>(pMap);
 }
 
 NS_CC_YHGE_ISOMETRIC_END

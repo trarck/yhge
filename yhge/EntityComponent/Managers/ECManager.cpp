@@ -5,7 +5,7 @@
 NS_CC_YHGE_BEGIN
 
 ECManager::ECManager()
-:m_engine(NULL)
+:_engine(NULL)
 {
     YHDEBUG("ECManager create");
 }
@@ -23,12 +23,12 @@ bool ECManager::init(void)
 
 void ECManager::setEngine(Engine* engine)
 {
-    m_engine=engine;
+    _engine=engine;
 }
 
 Engine* ECManager::getEngine()
 {
-    return m_engine;
+    return _engine;
 }
 
 NS_CC_YHGE_END

@@ -69,62 +69,62 @@ public://==============属性===============//
 	
 	inline void setMapSize(CCSize tMapSize)
 	{
-		m_tMapSize = tMapSize;
+		_tMapSize = tMapSize;
 	}
 
 	inline CCSize getMapSize()
 	{
-		return m_tMapSize;
+		return _tMapSize;
 	}
 
 	inline void setTileSize(const CCSize& tTileSize)
 	{
-		m_tTileSize = tTileSize;
+		_tTileSize = tTileSize;
 	}
 
 	inline const CCSize& getTileSize()
 	{
-		return m_tTileSize;
+		return _tTileSize;
 	}
 
 	inline void setName(const char* pName)
 	{
-		m_pName = pName;
+		_pName = pName;
 	}
 
 	inline const std::string& getName()
 	{
-		return m_pName;
+		return _pName;
 	}
 
 	inline void setMapOrientation(int nMapOrientation)
 	{
-		m_nMapOrientation = nMapOrientation;
+		_nMapOrientation = nMapOrientation;
 	}
 
 	inline int getMapOrientation()
 	{
-		return m_nMapOrientation;
+		return _nMapOrientation;
 	}
 
 	inline void setIdentifier(int nIdentifier)
 	{
-		m_nIdentifier=nIdentifier;
+		_nIdentifier=nIdentifier;
 	}
 
 	inline int getIdentifier()
 	{
-		return m_nIdentifier;
+		return _nIdentifier;
 	}
     
     inline void setVisibleSize(const CCSize& visibleSize)
     {
-        m_visibleSize = visibleSize;
+        _visibleSize = visibleSize;
     }
     
     inline CCSize getOrignalVisibleSize()
     {
-        return m_visibleSize;
+        return _visibleSize;
     }
     
     virtual CCSize getVisibleSize();
@@ -132,74 +132,74 @@ public://==============属性===============//
 	inline void setProperties(CCDictionary* pProperties)
 	{
 		CC_SAFE_RETAIN(pProperties);
-		CC_SAFE_RELEASE(m_pProperties);
-		m_pProperties = pProperties;
+		CC_SAFE_RELEASE(_pProperties);
+		_pProperties = pProperties;
 	}
     
 	inline CCDictionary* getProperties()
 	{
-		return m_pProperties;
+		return _pProperties;
 	}
     
     inline void setLayers(CCArray* layers)
     {
         CC_SAFE_RETAIN(layers);
-        CC_SAFE_RELEASE(m_layers);
-        m_layers = layers;
+        CC_SAFE_RELEASE(_layers);
+        _layers = layers;
     }
     
     inline CCArray* getLayers()
     {
-        return m_layers;
+        return _layers;
     }
     
     virtual void setActiveLayer(ISOLayer* activeLayer);
     
     inline ISOLayer* getActiveLayer()
     {
-        return m_activeLayer;
+        return _activeLayer;
     }
     
 protected:
     /**
      * 地图大小，格子数，单位为格子。
      */
-	CCSize m_tMapSize;
+	CCSize _tMapSize;
     
     /**
      * 地图格子大小。
      */
-    CCSize m_tTileSize;
+    CCSize _tTileSize;
     
     /**
      * 地图名称
      */
-    std::string m_pName;
+    std::string _pName;
     
     /**
      * 地图编号
      */
-    int m_nIdentifier;
+    int _nIdentifier;
     
     /**
      * 地图类型
      */
-    int m_nMapOrientation;
+    int _nMapOrientation;
     
     /**
      * 地图的可视区域
      */
-    CCSize m_visibleSize;
+    CCSize _visibleSize;
     
     /**
      * 属性列表
      */
-    CCDictionary* m_pProperties;
+    CCDictionary* _pProperties;
 
     //地图中所有的层
-    CCArray* m_layers;
+    CCArray* _layers;
     
-    ISOLayer* m_activeLayer;
+    ISOLayer* _activeLayer;
     
 };
 

@@ -20,15 +20,15 @@ public:
     void setTexture(CCTexture2D* texture)
     {
         CC_SAFE_RETAIN(texture);
-        CC_SAFE_RELEASE(m_texture);
-        m_texture = texture;
+        CC_SAFE_RELEASE(_texture);
+        _texture = texture;
     }
 
     CCTexture2D* getTexture();
 
 private:
 
-    CCTexture2D* m_texture;
+    CCTexture2D* _texture;
 };
 
 

@@ -24,52 +24,52 @@ public:
     
     inline void setId(int id)
     {
-        m_id = id;
+        _id = id;
     }
     
     inline int getId()
     {
-        return m_id;
+        return _id;
     }
     
     inline void setPosition(const CCPoint& position)
     {
-        m_position = position;
+        _position = position;
     }
     
     inline const CCPoint& getPosition()
     {
-        return m_position;
+        return _position;
     }
     
     inline void setSize(const CCSize& size)
     {
-        m_size = size;
+        _size = size;
     }
     
     inline const CCSize& getSize()
     {
-        return m_size;
+        return _size;
     }
     
     inline void setObjectId(int objectId)
     {
-        m_objectId = objectId;
+        _objectId = objectId;
     }
     
     inline int getObjectId()
     {
-        return m_objectId;
+        return _objectId;
     }
     
     inline void setGid(int gid)
     {
-        m_gid = gid;
+        _gid = gid;
     }
     
     inline int getGid()
     {
-        return m_gid;
+        return _gid;
     }
     
 protected:
@@ -78,28 +78,28 @@ protected:
      * 对象组成部分的Id
      * 用于标识哪个部分
      */
-    int m_id;
+    int _id;
     
     /**
      * 对象组成部分的位置
      * 根据对象的渲染方式决定坐标系
      */
-    CCPoint m_position;
+    CCPoint _position;
     
     /**
      * 对象组成部分的大小
      */
-    CCSize m_size;
+    CCSize _size;
     
     /**
      * 所属对象的Id
      */
-    int m_objectId;
+    int _objectId;
    
     /**
      * 组成部分的全局gid
      */
-    int m_gid;
+    int _gid;
 
 };
 

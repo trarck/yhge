@@ -11,12 +11,12 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 SortZIndex::SortZIndex()
-:m_rootNode(NULL)
-,m_rootZOrder(0)
-//,m_pStatics(NULL)
-//,m_pDynamics(NULL)
-//,m_bIsWorking(true)
-//,m_bStaticDirty(true)
+:_rootNode(NULL)
+,_rootZOrder(0)
+//,_pStatics(NULL)
+//,_pDynamics(NULL)
+//,_bIsWorking(true)
+//,_bStaticDirty(true)
 
 {
     
@@ -24,15 +24,15 @@ SortZIndex::SortZIndex()
 
 SortZIndex::~SortZIndex()
 {
-//    CC_SAFE_RELEASE_NULL(m_pStatics);
-//    CC_SAFE_RELEASE_NULL(m_pDynamics);
-    CC_SAFE_RELEASE_NULL(m_rootNode);
+//    CC_SAFE_RELEASE_NULL(_pStatics);
+//    CC_SAFE_RELEASE_NULL(_pDynamics);
+    CC_SAFE_RELEASE_NULL(_rootNode);
 }
 
 bool SortZIndex::init()
 {
        
-    m_rootNode=new SortZIndexNode();
+    _rootNode=new SortZIndexNode();
 
 	return true;
 }
@@ -40,10 +40,10 @@ bool SortZIndex::init()
 void SortZIndex::insert(SortZIndexNode* node)
 {
     
-    bool addedFlag=parseNode(m_rootNode, node, 0);
+    bool addedFlag=parseNode(_rootNode, node, 0);
     
     if (!addedFlag) {
-        m_rootNode->addChild(node);
+        _rootNode->addChild(node);
     }
 }
 
@@ -116,9 +116,9 @@ void SortZIndex::updateZOrder_()
     
     int rootZOrder=0;
     
-    m_rootNode->setSortedDeep(rootZOrder);
+    _rootNode->setSortedDeep(rootZOrder);
     
-    nodes=m_rootNode->getChildren();
+    nodes=_rootNode->getChildren();
     
     SortZIndexNode* item=NULL;
     SortZIndexNode* parent=NULL;
@@ -171,12 +171,12 @@ void SortZIndex::updateZOrder()
     std::vector<SortZIndexNode*> emptyVector;
     deepNodes.push_back(emptyVector);
     
-    deepNodes[currentDeep].push_back(m_rootNode);
+    deepNodes[currentDeep].push_back(_rootNode);
     
     while (deepNodes[currentDeep].size()) {
         
         nextDeep=currentDeep+1;
-        deepZOrder=m_rootZOrder-currentDeep;
+        deepZOrder=_rootZOrder-currentDeep;
         
         std::vector<SortZIndexNode*> subEmptyVector;
         deepNodes.push_back(subEmptyVector);
@@ -224,7 +224,7 @@ void SortZIndex::showTest()
     int nextDeep=0;
     int deepZOrder=0;
     
-    deepNodes[currentDeep].push_back(m_rootNode);
+    deepNodes[currentDeep].push_back(_rootNode);
     
     while (deepNodes[currentDeep].size()) {
         
@@ -259,15 +259,15 @@ void SortZIndex::showTest()
 //    if (side<0) {
 //        //小于node
 //        
-//        m_stateStack.push_back(kParseStateSmall);
-//        m_parsingState=kParseStateSmall;
+//        _stateStack.push_back(kParseStateSmall);
+//        _parsingState=kParseStateSmall;
 //        
 //        parseSmallTree(currentNode, node, kParseStateSmall);
 //        
 ////        //由于是从父类过来的不用处理大于分支(大于分支是其父元素)。
 ////        //小于分支的元素都小于node
 ////        
-////        if (m_parseStack.size()==1) {
+////        if (_parseStack.size()==1) {
 ////            //调整node之间的关系。node是没有左右子树的
 ////            node->setLeftNode(currentNode);
 ////        }
@@ -327,7 +327,7 @@ void SortZIndex::showTest()
 ////        }
 //    }
 //    
-//    m_parseStack.pop_back();
+//    _parseStack.pop_back();
 //    
 //    return 0;
 //}
@@ -335,13 +335,13 @@ void SortZIndex::showTest()
 //int SortZIndex::parseEqualTree(SortZIndexNode* currentNode,SortZIndexNode* node,int flag)
 //{
 //
-//    int lastState=*(m_stateStack.end()-2);
+//    int lastState=*(_stateStack.end()-2);
 //    
-//    int state=m_stateStack.back();
+//    int state=_stateStack.back();
 //    
 //    
-//    if (m_parsingState!=kParseStateEqual) {
-//        m_parsingState=kParseStateEqual;
+//    if (_parsingState!=kParseStateEqual) {
+//        _parsingState=kParseStateEqual;
 //    }
 //    
 //    int subFlag=0;
@@ -352,7 +352,7 @@ void SortZIndex::showTest()
 //        int rightFlag=parseEqual(rightNode,node,1);
 //        subFlag=subFlag!=1?rightFlag:subFlag;
 //        
-//        int topParsingState=m_stateStack[1];
+//        int topParsingState=_stateStack[1];
 //        switch (topParsingState) {
 //            case kParseStateSmall:{
 //                if (subFlag!=1) {
@@ -388,7 +388,7 @@ void SortZIndex::showTest()
 //    
 //
 //    
-//    if (m_parsingNode==currentNode) {
+//    if (_parsingNode==currentNode) {
 //        if (subFlag!=1) {
 //            
 //            if (flag==-1) {
@@ -405,12 +405,12 @@ void SortZIndex::showTest()
 //
 //int SortZIndex::parseSmallTree(SortZIndexNode* currentNode,SortZIndexNode* node,int flag)
 //{
-//    int state=m_stateStack.back();
+//    int state=_stateStack.back();
 //    
 //    switch (state) {
 //        case kParseStateSmall:
 //            node->setLeftNode(currentNode);
-//            m_rootNode=node;
+//            _rootNode=node;
 //            break;
 //            
 //        default:
@@ -425,7 +425,7 @@ void SortZIndex::showTest()
 //        
 //        subFlag=parseSmall(rightNode,node,1);
 //        
-//        if (m_parseStack.size()==0){
+//        if (_parseStack.size()==0){
 //            
 //            if (subFlag==-1) {
 //                
@@ -439,7 +439,7 @@ void SortZIndex::showTest()
 ////        }
 //    }
 //    
-//    m_parseStack.pop_back();
+//    _parseStack.pop_back();
 //
 //    
 //    return subFlag;
@@ -449,7 +449,7 @@ void SortZIndex::showTest()
 //{
 //    
 //    //只要进入大于状态，则把之前的结点栈消除掉
-//    m_parsingNode=currentNode;
+//    _parsingNode=currentNode;
 //    
 //    int subFlag=1;
 //    
@@ -463,7 +463,7 @@ void SortZIndex::showTest()
 //        subFlag|=parseBig(rightNode,node,subFlag);
 //    }
 //    
-//    if (m_parsingNode==currentNode) {
+//    if (_parsingNode==currentNode) {
 //        
 //        currentNode->setLeftNode(node);
 //    }
@@ -479,9 +479,9 @@ void SortZIndex::showTest()
 //        int subFlag=0;
 //
 //        if (flag==1) {
-//            m_stateStack.push_back(kParseStateRightSmall);
+//            _stateStack.push_back(kParseStateRightSmall);
 //        }else if(flag==-1){
-//            m_stateStack.push_back(kParseStateLeftSmall);
+//            _stateStack.push_back(kParseStateLeftSmall);
 //        }
 //        
 //        subFlag=parseSmallTree(currentNode,node,-1);
@@ -500,7 +500,7 @@ void SortZIndex::showTest()
 //    }else{
 //        //把当前结点从父类中断开
 //        if (flag==1) {
-//            m_stateStack.push_back(kParseStateRightEqual);
+//            _stateStack.push_back(kParseStateRightEqual);
 //        }
 //        
 //        parseEqualTree(currentNode, node, -1);
@@ -522,9 +522,9 @@ void SortZIndex::showTest()
 //        return 1;
 //    }else{
 //        if (flag==1) {
-//            m_stateStack.push_back(kParseStateRightEqual);
+//            _stateStack.push_back(kParseStateRightEqual);
 //        }else{
-//            m_stateStack.push_back(kParseStateLeftEqual);
+//            _stateStack.push_back(kParseStateLeftEqual);
 //        }
 //        return parseEqualTree(currentNode, node, 0);
 //    }
@@ -539,7 +539,7 @@ void SortZIndex::showTest()
 //        if (flag==1) {
 //            node->setLeftNode(currentNode);
 //        }else{
-//            m_parsingNode->setLeftNode(node);
+//            _parsingNode->setLeftNode(node);
 //            node->setLeftNode(currentNode);
 //        }
 //        
@@ -553,7 +553,7 @@ void SortZIndex::showTest()
 //    }else{
 //        //等于node
 //        if (flag) {
-//            m_parsingNode->setLeftNode(node);
+//            _parsingNode->setLeftNode(node);
 //            node->setRightNode(currentNode);
 //        }
 //        

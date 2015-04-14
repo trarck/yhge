@@ -180,11 +180,11 @@ public:
     /// @brief Return UTF-8 encoded English language explanation of the most recent error.
     inline const char* errmsg(void) const
     {
-        return sqlite3_errmsg(m_stmtPtr);
+        return sqlite3_errmsg(_stmtPtr);
     }
 private:
-    Statement::Ptr  m_stmtPtr;   //!< Shared Pointer to the prepared SQLite Statement Object
-    int             m_index;     //!< Index of the column in the row of result
+    Statement::Ptr  _stmtPtr;   //!< Shared Pointer to the prepared SQLite Statement Object
+    int             _index;     //!< Index of the column in the row of result
 };
 
 /**

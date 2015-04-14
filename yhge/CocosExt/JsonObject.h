@@ -15,13 +15,13 @@ class JsonObject : public cocos2d::Ref
 {
 public:
 	inline JsonObject()
-    :m_value(Json::nullValue)
+    :_value(Json::nullValue)
 	{
 		
 	}
 	
     inline JsonObject(const Json::Value& value)
-    :m_value(value)
+    :_value(value)
     {
         
     }
@@ -33,12 +33,12 @@ public:
     
     
     inline void setValue(const Json::Value& value){
-        m_value=value;
+        _value=value;
     }
     
     inline const Json::Value& getValue()
     {
-        return m_value;
+        return _value;
     }
 	
     inline static JsonObject* create()
@@ -57,32 +57,32 @@ public:
        
     inline Json::Value &operator[]( Json::UInt index )
     {
-        return m_value[index];
+        return _value[index];
     }
 
     const Json::Value &operator[]( Json::UInt index ) const
     {
-        return m_value[index];
+        return _value[index];
     }
     
     Json::Value &operator[]( const char *key )
     {
-        return m_value[key];
+        return _value[key];
     }
 
     const Json::Value &operator[]( const char *key ) const
     {
-        return m_value[key];
+        return _value[key];
     }
 
     Json::Value &operator[]( const std::string &key )
     {
-        return m_value[key];
+        return _value[key];
     }
 
     const Json::Value &operator[]( const std::string &key ) const
     {
-        return m_value[key];
+        return _value[key];
     }
     
     
@@ -93,7 +93,7 @@ private:
     
 private:
     
-	Json::Value m_value;
+	Json::Value _value;
 };
 
 

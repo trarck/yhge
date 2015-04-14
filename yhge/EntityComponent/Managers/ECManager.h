@@ -26,7 +26,7 @@ public:
     
 protected:
     //weak refrence
-    Engine* m_engine;
+    Engine* _engine;
 };
 
 NS_CC_YHGE_END

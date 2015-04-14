@@ -11,20 +11,20 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ZIndex::ZIndex()
-:m_pStatics(NULL)
-,m_pDynamics(NULL)
-,m_pSortLayer(NULL)
-,m_bIsWorking(true)
-,m_bStaticDirty(true)
+:_pStatics(NULL)
+,_pDynamics(NULL)
+,_pSortLayer(NULL)
+,_bIsWorking(true)
+,_bStaticDirty(true)
 {
     
 }
 
 ZIndex::~ZIndex()
 {
-    CC_SAFE_RELEASE(m_pStatics);
-    CC_SAFE_RELEASE(m_pDynamics);
-    CC_SAFE_RELEASE(m_pSortLayer);
+    CC_SAFE_RELEASE(_pStatics);
+    CC_SAFE_RELEASE(_pDynamics);
+    CC_SAFE_RELEASE(_pSortLayer);
 }
 
 static ZIndex *s_pZIndex=NULL;
@@ -47,18 +47,18 @@ ZIndex* ZIndex::create(CCLayer* sortLayer)
 
 bool ZIndex::init()
 {
-    m_pStatics=new CCArray(20);
-    m_pDynamics=new CCArray(20);
-    m_bIsWorking=false;
+    _pStatics=new CCArray(20);
+    _pDynamics=new CCArray(20);
+    _bIsWorking=false;
 
-    m_pfnUpdate=schedule_selector(ZIndex::update);
+    _pfnUpdate=schedule_selector(ZIndex::update);
 	return true;
 }
 
 bool ZIndex::init(CCLayer* sortLayer)
 {
     init();
-    m_pSortLayer=sortLayer;
+    _pSortLayer=sortLayer;
 
 	return true;
 }
@@ -66,28 +66,28 @@ bool ZIndex::init(CCLayer* sortLayer)
 
 void ZIndex::insertStatic(ZIndexNode* node)
 {
-	//注意insertSort反回的数组已经是加1的，如果使用self.statics=[self insertSort:node data:m_pStatics]，
+	//注意insertSort反回的数组已经是加1的，如果使用self.statics=[self insertSort:node data:_pStatics]，
 	//则会使statics_的引用数为2，下一次再执行该函数时，则已以前的statics_无法释放。
-	CCArray * results=insertSort(node ,m_pStatics);
+	CCArray * results=insertSort(node ,_pStatics);
 
-    CC_SAFE_RELEASE(m_pStatics);
-	m_pStatics=results;
-	m_bStaticDirty=true;
+    CC_SAFE_RELEASE(_pStatics);
+	_pStatics=results;
+	_bStaticDirty=true;
 }
 
 void ZIndex::insertDynamic(ZIndexNode*  node)
 {
-	m_pDynamics->addObject(node);
+	_pDynamics->addObject(node);
 }
 
 void ZIndex::removeStatic(ZIndexNode* node)
 {
-	m_pStatics->removeObject(node);
+	_pStatics->removeObject(node);
 }
 
 void ZIndex::removeDynamic(ZIndexNode* node)
 {
-	m_pDynamics->removeObject(node);
+	_pDynamics->removeObject(node);
 }
 
 CCArray* ZIndex::insertSort(ZIndexNode* node ,CCArray* rects)
@@ -151,12 +151,12 @@ CCArray* ZIndex::insertSort(ZIndexNode* node ,CCArray* rects)
 CCArray* ZIndex::sort()
 {
 	CCArray* temps=new CCArray();
-	temps->initWithArray(m_pStatics);
+	temps->initWithArray(_pStatics);
 	CCArray* items=NULL;
 	
 	//sort dynamics
     Ref* pObject=NULL;
-    CCARRAY_FOREACH(m_pDynamics,pObject){
+    CCARRAY_FOREACH(_pDynamics,pObject){
 	    ZIndexNode* it=(ZIndexNode*) pObject;
 		items=insertSort(it ,temps);
 		temps->release();
@@ -169,41 +169,41 @@ void ZIndex::update(float delta)
 {
 	//update z-index
 
-	if (m_pDynamics->count()>0) {
+	if (_pDynamics->count()>0) {
 	    CCArray* items=sort();
-		//NSLog(@"%@",m_pSortLayer);
+		//NSLog(@"%@",_pSortLayer);
 		int i=1;
         Ref* pObject=NULL;
         CCARRAY_FOREACH(items,pObject){
 		    ZIndexNode* it=(ZIndexNode*)pObject;
             CCNode* node=(CCNode*)it->getEntity();
-			m_pSortLayer->reorderChild(node,i++);
+			_pSortLayer->reorderChild(node,i++);
 		}
 		items->release();
-	}else if (m_bStaticDirty) {
+	}else if (_bStaticDirty) {
 		int i=1;
         Ref* pObject=NULL;
-        CCARRAY_FOREACH(m_pStatics,pObject){
+        CCARRAY_FOREACH(_pStatics,pObject){
             ZIndexNode* it=(ZIndexNode*)pObject;
             CCNode* node=(CCNode*)it->getEntity();
-		    m_pSortLayer->reorderChild(node,i++);
+		    _pSortLayer->reorderChild(node,i++);
         }
-		m_bStaticDirty=false;
+		_bStaticDirty=false;
 	}
 }
 
 void ZIndex::start()
 {
-	if(m_bIsWorking) return;
-	m_bIsWorking=true;
-	CCDirector::sharedDirector()->getScheduler()->scheduleSelector(m_pfnUpdate,this,1,false);
+	if(_bIsWorking) return;
+	_bIsWorking=true;
+	CCDirector::sharedDirector()->getScheduler()->scheduleSelector(_pfnUpdate,this,1,false);
 }
 
 void ZIndex::stop()
 {
-	if (m_bIsWorking) {
-		CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(m_pfnUpdate,this);
-		m_bIsWorking=false;
+	if (_bIsWorking) {
+		CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(_pfnUpdate,this);
+		_bIsWorking=false;
 	}
 }
 
@@ -238,7 +238,7 @@ int ZIndex::caculateSideFrom(CCRect* pFrom ,CCRect* pTo)
 
 void ZIndex::setUpdate(SEL_SCHEDULE pfnUpdate)
 {
-    m_pfnUpdate=pfnUpdate;
+    _pfnUpdate=pfnUpdate;
 }
 
 NS_CC_YHGE_ISOMETRIC_END

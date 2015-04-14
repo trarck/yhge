@@ -7,26 +7,26 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 
 
 ISODynamicTileLayer::ISODynamicTileLayer()
-:m_pDynamicComponent(NULL)
-,m_iLastStartX(0)
-,m_iLastStartY(0)
+:_pDynamicComponent(NULL)
+,_iLastStartX(0)
+,_iLastStartY(0)
 {
 
 }
 
 ISODynamicTileLayer::~ISODynamicTileLayer()
 {
-	CC_SAFE_RELEASE(m_pDynamicComponent);
+	CC_SAFE_RELEASE(_pDynamicComponent);
 }
 
 bool ISODynamicTileLayer::init()
 {
     if(ISOTileLayer::init()){
         
-        m_pDynamicComponent=new ISODynamicComponent();
-        m_pDynamicComponent->init();
-        m_pDynamicComponent->setCreateDelegator(this);
-        m_pDynamicComponent->setTileLayer(this);
+        _pDynamicComponent=new ISODynamicComponent();
+        _pDynamicComponent->init();
+        _pDynamicComponent->setCreateDelegator(this);
+        _pDynamicComponent->setTileLayer(this);
         
         return true;
     }
@@ -38,7 +38,7 @@ bool ISODynamicTileLayer::init(CCSize& mapTileSize,CCPoint& offset)
     if(ISOTileLayer::init(mapTileSize, offset)){
         init();
         //setComponentColumnAndRow();
-        //m_pDynamicComponent->setupComponents(offset);
+        //_pDynamicComponent->setupComponents(offset);
         
         return true;
     }
@@ -48,26 +48,26 @@ bool ISODynamicTileLayer::init(CCSize& mapTileSize,CCPoint& offset)
 void ISODynamicTileLayer::setupTiles()
 {
     setComponentColumnAndRow();
-    m_pDynamicComponent->setupComponents(m_tOffset);
+    _pDynamicComponent->setupComponents(_tOffset);
 }
 
 void ISODynamicTileLayer::setComponentColumnAndRow()
 {
 
-    if(m_pDynamicComponent && m_tMapTileSize.height!=0 && m_tMapTileSize.width!=0){
+    if(_pDynamicComponent && _tMapTileSize.height!=0 && _tMapTileSize.width!=0){
         
-        CCSize visibleSize=m_tileMap->getVisibleSize();
+        CCSize visibleSize=_tileMap->getVisibleSize();
         int componentTileColumn=0;
         int componentTileRow=0;
 
-        ISOTileUtils::calcDynamicComponetSize(visibleSize,m_tMapTileSize,&componentTileColumn,&componentTileRow);
+        ISOTileUtils::calcDynamicComponetSize(visibleSize,_tMapTileSize,&componentTileColumn,&componentTileRow);
         ////参考Isometric.Game.Programming.with.DirectX.7的第421页。
         ////如果要显示全visibleSize的大小内的元素，则在除以块大小后，四个角要向外移动一格。所以最后大小要加2.
-        //int componentTileColumn=floor(visibleSize.width/m_tMapTileSize.width)+2;
-        //int componentTileRow=floor(visibleSize.height/m_tMapTileSize.height)+2;
+        //int componentTileColumn=floor(visibleSize.width/_tMapTileSize.width)+2;
+        //int componentTileRow=floor(visibleSize.height/_tMapTileSize.height)+2;
         
-        m_pDynamicComponent->setComponentTileColumn(componentTileColumn);
-        m_pDynamicComponent->setComponentTileRow(componentTileRow);
+        _pDynamicComponent->setComponentTileColumn(componentTileColumn);
+        _pDynamicComponent->setComponentTileRow(componentTileRow);
     }
 
 }
@@ -77,28 +77,28 @@ void ISODynamicTileLayer::draw()
 	
 	ccDrawColor4B(255,0,0,255);
     
-    CCSize visibleSize=m_tileMap->getVisibleSize();
+    CCSize visibleSize=_tileMap->getVisibleSize();
     
-    ccDrawRect(m_tOffset,ccp(m_tOffset.x+visibleSize.width,m_tOffset.y+visibleSize.height));
+    ccDrawRect(_tOffset,ccp(_tOffset.x+visibleSize.width,_tOffset.y+visibleSize.height));
 }
 
 
 void ISODynamicTileLayer::scroll(const CCPoint& tOffset)
 {
     this->setOffset(tOffset);
-	m_pDynamicComponent->scroll(tOffset);
+	_pDynamicComponent->scroll(tOffset);
 }
 
 void ISODynamicTileLayer::setDynamicComponent(ISODynamicComponent* pDynamicComponent)
 {
     CC_SAFE_RETAIN(pDynamicComponent);
-    CC_SAFE_RELEASE(m_pDynamicComponent);
-    m_pDynamicComponent = pDynamicComponent;
+    CC_SAFE_RELEASE(_pDynamicComponent);
+    _pDynamicComponent = pDynamicComponent;
 }
 
 ISODynamicComponent* ISODynamicTileLayer::getDynamicComponent()
 {
-    return m_pDynamicComponent;
+    return _pDynamicComponent;
 }
 
 CCSprite* ISODynamicTileLayer::createTile()

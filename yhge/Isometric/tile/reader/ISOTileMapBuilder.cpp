@@ -6,11 +6,11 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileMapBuilder::ISOTileMapBuilder()
-:m_pMap(NULL)
-,m_uMapLayerType(NormalLayerType)
-,m_activeLayerName("ActiveLayer")
-,m_activeLayerDefaultZOrder(99999)
-,m_buildActiveLayer(false)
+:_pMap(NULL)
+,_uMapLayerType(NormalLayerType)
+,_activeLayerName("ActiveLayer")
+,_activeLayerDefaultZOrder(99999)
+,_buildActiveLayer(false)
 {
 	
 }
@@ -27,22 +27,22 @@ bool ISOTileMapBuilder::init()
 
 bool ISOTileMapBuilder::init(ISOTileMap* pMap)
 {
-    m_pMap=pMap;
+    _pMap=pMap;
     return true;
 }
 
 void ISOTileMapBuilder::buildWithMapInfo(ISOMapInfo* mapInfo)
 {
-    CCAssert(m_pMap!=NULL, "buildWithMapInfo m_pMap can't be null");
-    m_pMap->setMapSize(mapInfo->getMapSize());
-    m_pMap->setTileSize(mapInfo->getTileSize());
-    m_pMap->setProperties(mapInfo->getProperties());
+    CCAssert(_pMap!=NULL, "buildWithMapInfo _pMap can't be null");
+    _pMap->setMapSize(mapInfo->getMapSize());
+    _pMap->setTileSize(mapInfo->getTileSize());
+    _pMap->setProperties(mapInfo->getProperties());
     
     this->buildMapTilesets(mapInfo);
     this->buildMapLayers(mapInfo);
     this->buildMapObjectGroups(mapInfo);
     
-    if (m_buildActiveLayer) {
+    if (_buildActiveLayer) {
         this->setupMapActiveLayer(mapInfo);
     }
 }
@@ -68,7 +68,7 @@ void ISOTileMapBuilder::buildMapTilesets(ISOMapInfo* mapInfo)
             }
         }
         
-        m_pMap->setTilesetGroup(tilesetGroup);
+        _pMap->setTilesetGroup(tilesetGroup);
         tilesetGroup->release();
     }
 }
@@ -160,7 +160,7 @@ void ISOTileMapBuilder::buildMapLayers(ISOMapInfo* mapInfo)
         CCARRAY_FOREACH(layerInfos, pObj)
         {
             layerInfo = (ISOLayerInfo*)pObj;
-            if (layerInfo && layerInfo->getVisible() && layerInfo->getName()!=m_activeLayerName)
+            if (layerInfo && layerInfo->getVisible() && layerInfo->getName()!=_activeLayerName)
             {
                 buildMapLayer(layerInfo,mapInfo);
                 idx++;
@@ -174,7 +174,7 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
     CCLOG("ISOTileMapBuilder::buildMapLayer:%s",layerInfo->getName().c_str());
     ISOTileLayer *layer = NULL;
     
-    switch (m_uMapLayerType) {
+    switch (_uMapLayerType) {
         case NormalLayerType:
             layer=new ISOGroundTileLayer();
             layer->init();
@@ -184,9 +184,9 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
             dynamicLayer->init();
 
 			//设置是否使用统一动态组件
-			if (m_pMap->isUseDynamicGroup())
+			if (_pMap->isUseDynamicGroup())
 			{
-				m_pMap->addDynamicComponent(dynamicLayer->getDynamicComponent());
+				_pMap->addDynamicComponent(dynamicLayer->getDynamicComponent());
 			}
 			layer=dynamicLayer;
             //layer->setPosition(ccp(100,50));
@@ -219,9 +219,9 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
             }
 
 			//设置是否使用统一动态组件
-			if (m_pMap->isUseDynamicGroup())
+			if (_pMap->isUseDynamicGroup())
 			{
-				m_pMap->addDynamicComponent(batchLayer->getDynamicComponent());
+				_pMap->addDynamicComponent(batchLayer->getDynamicComponent());
 			}
 
             layer=batchLayer;
@@ -235,24 +235,24 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
         
         setLayerAttribute(layer, layerInfo, mapInfo);
 
-        m_pMap->addChild(layer,layerInfo->getRenderIndex());
-        m_pMap->getLayers()->addObject(layer);
+        _pMap->addChild(layer,layerInfo->getRenderIndex());
+        _pMap->getLayers()->addObject(layer);
         layer->release();
     }
     
     // update content size with the max size
     //                const CCSize& childSize = layer->getContentSize();
-    //                CCSize currentSize = m_pMap->getContentSize();
+    //                CCSize currentSize = _pMap->getContentSize();
     //                currentSize.width = MAX( currentSize.width, childSize.width );
     //                currentSize.height = MAX( currentSize.height, childSize.height );
-    //                m_pMap->setContentSize(currentSize);
+    //                _pMap->setContentSize(currentSize);
 }
 
 void ISOTileMapBuilder::setLayerAttribute(ISOTileLayer* tileLayer,ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo)
 {
     
-    tileLayer->setMap(m_pMap);
-    tileLayer->setMapTileSize(m_pMap->getTileSize());
+    tileLayer->setMap(_pMap);
+    tileLayer->setMapTileSize(_pMap->getTileSize());
     tileLayer->setLayerName(layerInfo->getName());
     tileLayer->setLayerSize(layerInfo->getLayerSize());
     tileLayer->setOffset(layerInfo->getOffset());
@@ -266,7 +266,7 @@ void ISOTileMapBuilder::setLayerAttribute(ISOTileLayer* tileLayer,ISOLayerInfo *
 ISOTileset * ISOTileMapBuilder::tilesetForLayer(ISOLayerInfo *layerInfo)
 {
     CCSize size = layerInfo->getLayerSize();
-    CCArray* tilesets = m_pMap->getTilesetGroup()->getTilesets();
+    CCArray* tilesets = _pMap->getTilesetGroup()->getTilesets();
     if (tilesets && tilesets->count()>0)
     {
         ISOTileset* tileset = NULL;
@@ -383,10 +383,10 @@ void ISOTileMapBuilder::buildMapObjectGroups(ISOMapInfo* mapInfo)
                 
                 buildMapObjects(objectGroupInfo->getObjects(), objGroup);
                 
-                m_pMap->getObjectGroups()->addObject(objGroup);
+                _pMap->getObjectGroups()->addObject(objGroup);
                 objGroup->release();
 
-                if (objectGroupInfo->getName()!=m_activeLayerName) {
+                if (objectGroupInfo->getName()!=_activeLayerName) {
                     buildMapObjectLayer(objGroup);
                 }
             }
@@ -436,18 +436,18 @@ void ISOTileMapBuilder::buildMapObjectLayer(ISOObjectGroup* objectGroup)
 	ISOObjectLayer* objectLayer=new ISOObjectLayer();
 	objectLayer->init();
 
-	objectLayer->setMap(m_pMap);
+	objectLayer->setMap(_pMap);
 	objectLayer->setLayerName(objectGroup->getName());
-	objectLayer->setLayerOrientation(m_pMap->getMapOrientation());
+	objectLayer->setLayerOrientation(_pMap->getMapOrientation());
 	objectLayer->setProperties(objectGroup->getProperties());
 	objectLayer->setObjectGroup(objectGroup);
 	objectLayer->setupLayer();
     
     //fix object layer position
     //x方向向左移动半个地图大小
-//    objectLayer->setPosition(ccp(-m_pMap->getMapSize().width*m_pMap->getTileSize().width*0.5f,0));
+//    objectLayer->setPosition(ccp(-_pMap->getMapSize().width*_pMap->getTileSize().width*0.5f,0));
     
-	m_pMap->addChild(objectLayer);
+	_pMap->addChild(objectLayer);
 
 	objectLayer->release();
 }
@@ -470,18 +470,18 @@ void ISOTileMapBuilder::buildMapActiveLayer(const std::string& name,CCArray* obj
     ISOActiveLayer* activeLayer=new ISOActiveLayer();
 	activeLayer->init();
     
-	activeLayer->setMap(m_pMap);
+	activeLayer->setMap(_pMap);
 	activeLayer->setLayerName(name);
-	activeLayer->setLayerOrientation(m_pMap->getMapOrientation());
+	activeLayer->setLayerOrientation(_pMap->getMapOrientation());
     if (properties) {
         activeLayer->setProperties(properties);
     }
 	activeLayer->setObjects(objects);
 	activeLayer->setupLayer();
     
-	m_pMap->addChild(activeLayer,zOrder);
+	_pMap->addChild(activeLayer,zOrder);
     
-    m_pMap->setActiveLayer(activeLayer);
+    _pMap->setActiveLayer(activeLayer);
     
 	activeLayer->release();
 }
@@ -538,7 +538,7 @@ ISOActiveLayerInfo* ISOTileMapBuilder::getActiveLayerInfo(ISOMapInfo* mapInfo)
     
     bool haveActiveLayer=false;
     
-    //首先从object groups里检找是否叫m_activeLayerName设置的layer
+    //首先从object groups里检找是否叫_activeLayerName设置的layer
     CCArray* objectGroups = mapInfo->getObjectGroups();
     if (objectGroups && objectGroups->count()>0)
     {
@@ -547,7 +547,7 @@ ISOActiveLayerInfo* ISOTileMapBuilder::getActiveLayerInfo(ISOMapInfo* mapInfo)
         CCARRAY_FOREACH(objectGroups, pObj)
         {
             objectGroupInfo = (ISOObjectGroupInfo*)pObj;
-            if (objectGroupInfo && strcmp(objectGroupInfo->getName(), m_activeLayerName.c_str())==0)
+            if (objectGroupInfo && strcmp(objectGroupInfo->getName(), _activeLayerName.c_str())==0)
             {
                 activeLayerInfo->setName(objectGroupInfo->getName());
                 activeLayerInfo->setObjects(objectGroupInfo->getObjects());
@@ -569,7 +569,7 @@ ISOActiveLayerInfo* ISOTileMapBuilder::getActiveLayerInfo(ISOMapInfo* mapInfo)
         CCARRAY_FOREACH(layerInfos, pObj)
         {
             layerInfo = (ISOLayerInfo*)pObj;
-            if (layerInfo && layerInfo->getName()==m_activeLayerName)
+            if (layerInfo && layerInfo->getName()==_activeLayerName)
             {
                 activeLayerInfo->setName(layerInfo->getName());
                 activeLayerInfo->setProperties(layerInfo->getProperties());
@@ -587,9 +587,9 @@ ISOActiveLayerInfo* ISOTileMapBuilder::getActiveLayerInfo(ISOMapInfo* mapInfo)
     
     if (!haveActiveLayer) {
         //没有找到创建一个空的layer，默认放在最上层
-        activeLayerInfo->setName(m_activeLayerName.c_str());
+        activeLayerInfo->setName(_activeLayerName.c_str());
         activeLayerInfo->setObjects(NULL);
-        activeLayerInfo->setRenderIndex(m_activeLayerDefaultZOrder);
+        activeLayerInfo->setRenderIndex(_activeLayerDefaultZOrder);
     }
 
     activeLayerInfo->autorelease();

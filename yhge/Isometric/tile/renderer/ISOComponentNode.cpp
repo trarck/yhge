@@ -4,10 +4,10 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOComponentNode::ISOComponentNode()
-:m_iColumn(0)
-,m_iRow(0)
-,m_iMapCellX(0)
-,m_iMapCellY(0)
+:_iColumn(0)
+,_iRow(0)
+,_iMapCellX(0)
+,_iMapCellY(0)
 {
 
 }
@@ -28,15 +28,15 @@ bool ISOComponentNode::init()
 
 void ISOComponentNode::updateMapCoordinate(float mapX,float mapY)
 {
-    m_fMapX=mapX;
-    m_fMapY=mapY;
+    _fMapX=mapX;
+    _fMapY=mapY;
 }
 
 //void ISOComponentNode::draw()
 //{
 //	CCSprite::draw();
 //	ccDrawColor4B(0,0,255,255);
-//	ccDrawRect(ccp(0,0),ccp(m_obContentSize.width,m_obContentSize.height));
+//	ccDrawRect(ccp(0,0),ccp(_obContentSize.width,_obContentSize.height));
 //}
 
 NS_CC_YHGE_ISOMETRIC_END

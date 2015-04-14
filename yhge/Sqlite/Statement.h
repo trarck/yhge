@@ -320,27 +320,27 @@ public:
     /// @brief Return the UTF-8 SQL Query.
     inline const std::string& getQuery(void) const
     {
-        return m_query;
+        return _query;
     }
     /// @brief Return the number of columns in the result set returned by the prepared statement
     inline int getColumnCount(void) const
     {
-        return m_columnCount;
+        return _columnCount;
     }
     /// @brief true when a row has been fetched with executeStep()
     inline bool isOk(void) const
     {
-        return m_ok;
+        return _ok;
     }
     /// @brief true when the last executeStep() had no more row to fetch
     inline bool isDone(void) const
     {
-        return m_done;
+        return _done;
     }
     /// @brief Return UTF-8 encoded English language explanation of the most recent error.
     inline const char* errmsg(void) const
     {
-        return sqlite3_errmsg(m_stmtPtr);
+        return sqlite3_errmsg(_stmtPtr);
     }
 
 public:
@@ -364,13 +364,13 @@ public:
         /// @brief Inline cast operator returning the pointer to SQLite Database Connection Handle
         inline operator sqlite3*() const
         {
-            return m_db;
+            return _db;
         }
 
         /// @brief Inline cast operator returning the pointer to SQLite Statement Object
         inline operator sqlite3_stmt*() const
         {
-            return m_stmt;
+            return _stmt;
         }
 
     private:
@@ -379,9 +379,9 @@ public:
         /// @}
 
     private:
-        sqlite3*        m_db;   //!< Pointer to SQLite Database Connection Handle
-        sqlite3_stmt*   m_stmt;     //!< Pointer to SQLite Statement Object
-        unsigned int*   m_refCount; //!< Pointer to the heap allocated reference counter of the sqlite3_stmt (to share it with Column objects)
+        sqlite3*        _db;   //!< Pointer to SQLite Database Connection Handle
+        sqlite3_stmt*   _stmt;     //!< Pointer to SQLite Statement Object
+        unsigned int*   _refCount; //!< Pointer to the heap allocated reference counter of the sqlite3_stmt (to share it with Column objects)
     };
 
 private:
@@ -398,11 +398,11 @@ private:
     void check(const int aRet) const; // throw(SQLite::Exception);
 
 private:
-    std::string     m_query;         //!< UTF-8 SQL Query
-    Ptr             m_stmtPtr;       //!< Shared Pointer to the prepared SQLite Statement Object
-    int             m_columnCount;   //!< Number of columns in the result of the prepared statement
-    bool            m_ok;           //!< true when a row has been fetched with executeStep()
-    bool            m_done;         //!< true when the last executeStep() had no more row to fetch
+    std::string     _query;         //!< UTF-8 SQL Query
+    Ptr             _stmtPtr;       //!< Shared Pointer to the prepared SQLite Statement Object
+    int             _columnCount;   //!< Number of columns in the result of the prepared statement
+    bool            _ok;           //!< true when a row has been fetched with executeStep()
+    bool            _done;         //!< true when the last executeStep() had no more row to fetch
 };
 
 NS_CC_YHGE_SQLITE_END

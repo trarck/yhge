@@ -150,15 +150,15 @@ protected:
     
 protected:
     
-    unsigned int* m_pTiles;
+    unsigned int* _pTiles;
 
     /**
      * 偏移量的地图坐标
      */
-	int m_startX;
-	int m_startY;
+	int _startX;
+	int _startY;
     
-    ISOTileMap* m_tileMap;
+    ISOTileMap* _tileMap;
 
 };
 

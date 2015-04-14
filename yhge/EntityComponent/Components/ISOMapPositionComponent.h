@@ -55,8 +55,8 @@ public:
      */
     inline void setCoordinate(float x,float y)
     {
-        m_x=x;
-        m_y=y;
+        _x=x;
+        _y=y;
     }
     
     /**
@@ -64,16 +64,16 @@ public:
      */
     inline void setCoordinate(const CCPoint& coord)
     {
-        m_x=coord.x;
-        m_y=coord.y;
+        _x=coord.x;
+        _y=coord.y;
     }
     
     
     inline void setCoordinate(float x,float y,float z)
     {
-        m_x=x;
-        m_y=y;
-        m_z=z;
+        _x=x;
+        _y=y;
+        _z=z;
     }
     
     /**
@@ -81,8 +81,8 @@ public:
      */
     inline void setCoordinateAndUpdate(float x,float y)
     {
-        m_x=x;
-        m_y=y;
+        _x=x;
+        _y=y;
         updateRendererPosition();
     }
     
@@ -91,59 +91,59 @@ public:
      */
     inline void setCoordinateAndUpdate(const CCPoint& coord)
     {
-        m_x=coord.x;
-        m_y=coord.y;
+        _x=coord.x;
+        _y=coord.y;
         updateRendererPosition();
     }
     
     
     inline void setCoordinateAndUpdate(float x,float y,float z)
     {
-        m_x=x;
-        m_y=y;
-        m_z=z;
+        _x=x;
+        _y=y;
+        _z=z;
         updateRendererPosition();
     }
 
     inline void setX(float x)
     {
-        m_x = x;
+        _x = x;
     }
     
     inline float getX()
     {
-        return m_x;
+        return _x;
     }
     
     inline void setY(float y)
     {
-        m_y = y;
+        _y = y;
     }
     
     inline float getY()
     {
-        return m_y;
+        return _y;
     }
     
     inline void setZ(float z)
     {
-        m_z = z;
+        _z = z;
     }
     
     inline float getZ()
     {
-        return m_z;
+        return _z;
     }
 
 protected:
     
-    float m_x;
-    float m_y;
-    float m_z;
+    float _x;
+    float _y;
+    float _z;
     
-    RendererComponent* m_rendererComponent;
+    RendererComponent* _rendererComponent;
     
-    bool m_dirty;
+    bool _dirty;
     
 };
 

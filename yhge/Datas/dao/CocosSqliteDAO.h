@@ -158,31 +158,31 @@ public:
     
     inline CocosSqliteDriver* getDriver()
     {
-        return m_driver;
+        return _driver;
     }
     
     inline void setDriver(CocosSqliteDriver* driver)
     {
         CC_SAFE_RETAIN(driver);
-        CC_SAFE_RELEASE(m_driver);
-        m_driver = driver;
+        CC_SAFE_RELEASE(_driver);
+        _driver = driver;
     }
     
     inline void setPrepareFlag(const std::string& prepareFlag)
     {
-        m_prepareFlag = prepareFlag;
+        _prepareFlag = prepareFlag;
     }
     
     inline const std::string& getPrepareFlag()
     {
-        return m_prepareFlag;
+        return _prepareFlag;
     }
     
 protected:
     
-    CocosSqliteDriver* m_driver;
+    CocosSqliteDriver* _driver;
     
-    std::string m_prepareFlag;  
+    std::string _prepareFlag;  
     
 
 };

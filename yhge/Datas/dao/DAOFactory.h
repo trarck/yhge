@@ -28,21 +28,21 @@ public:
     
     inline void setOpenFlag(unsigned int openFlag)
     {
-        m_openFlag = openFlag;
+        _openFlag = openFlag;
     }
     
     inline unsigned int getOpenFlag()
     {
-        return m_openFlag;
+        return _openFlag;
     }
     
 protected:
     
-    unsigned int m_openFlag;
+    unsigned int _openFlag;
     
-    CCDictionary* m_jsonDaos;
+    CCDictionary* _jsonDaos;
     
-    CCDictionary* m_cocosDaos;
+    CCDictionary* _cocosDaos;
     
 };
 

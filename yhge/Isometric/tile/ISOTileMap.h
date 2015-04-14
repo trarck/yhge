@@ -113,56 +113,56 @@ public://==============属性===============//
 	inline void setObjectGroups(CCArray* pObjectGroups)
 	{
 		CC_SAFE_RETAIN(pObjectGroups);
-		CC_SAFE_RELEASE(m_pObjectGroups);
-		m_pObjectGroups = pObjectGroups;
+		CC_SAFE_RELEASE(_pObjectGroups);
+		_pObjectGroups = pObjectGroups;
 	}
 
 	inline CCArray* getObjectGroups()
 	{
-		return m_pObjectGroups;
+		return _pObjectGroups;
 	}
 
 	inline void setTilesetGroup(ISOTilesetGroup* pTilesetGroup)
 	{
 		CC_SAFE_RETAIN(pTilesetGroup);
-		CC_SAFE_RELEASE(m_pTilesetGroup);
-		m_pTilesetGroup = pTilesetGroup;
+		CC_SAFE_RELEASE(_pTilesetGroup);
+		_pTilesetGroup = pTilesetGroup;
 	}
 
 	inline ISOTilesetGroup* getTilesetGroup()
 	{
-		return m_pTilesetGroup;
+		return _pTilesetGroup;
 	}
 
 	void setDynamicGroup(ISODynamicGroup* dynamicGroup)
 	{
 		CC_SAFE_RETAIN(dynamicGroup);
-		CC_SAFE_RELEASE(m_pDynamicGroup);
-		m_pDynamicGroup = dynamicGroup;
+		CC_SAFE_RELEASE(_pDynamicGroup);
+		_pDynamicGroup = dynamicGroup;
 	}
 
 	ISODynamicGroup* getDynamicGroup()
 	{
-		return m_pDynamicGroup;
+		return _pDynamicGroup;
 	}
 
 	void setUseDynamicGroup(bool useDynamicGroup);
 
 	bool isUseDynamicGroup()
 	{
-		return m_useDynamicGroup;
+		return _useDynamicGroup;
 	}
 
 	void setDynamicComponents(CCArray* dynamicComponents)
 	{
 		CC_SAFE_RETAIN(dynamicComponents);
-		CC_SAFE_RELEASE(m_dynamicComponents);
-		m_dynamicComponents = dynamicComponents;
+		CC_SAFE_RELEASE(_dynamicComponents);
+		_dynamicComponents = dynamicComponents;
 	}
 
 	CCArray* getDynamicComponents()
 	{
-		return m_dynamicComponents;
+		return _dynamicComponents;
 	}
     
 protected:
@@ -183,25 +183,25 @@ protected:
     /**
      * 图块合集
      */
-    ISOTilesetGroup* m_pTilesetGroup;
+    ISOTilesetGroup* _pTilesetGroup;
     
     /**
      * 对像分组
      */
-    CCArray* m_pObjectGroups;
+    CCArray* _pObjectGroups;
     
     /**
      * 管理动态层的组件
 	 * 如果有多个动态层，统一管理会减少计算量。如果层数少，则性能发变不是很明显
      */
-    ISODynamicGroup* m_pDynamicGroup;
+    ISODynamicGroup* _pDynamicGroup;
    
-	bool m_useDynamicGroup;
+	bool _useDynamicGroup;
 
 	/**
      * 需要集中管理的DynamicComponent
      */
-    CCArray* m_dynamicComponents;
+    CCArray* _dynamicComponents;
 //    
 //    /**
 //     * 活动层。
@@ -209,7 +209,7 @@ protected:
 //     * 提供场景内活动元素的层
 //     * 通常是在map的显示子结点
 //     */
-//    ISOActiveLayer* m_activeLayer;
+//    ISOActiveLayer* _activeLayer;
 };
 
 

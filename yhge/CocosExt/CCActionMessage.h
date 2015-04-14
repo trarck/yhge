@@ -26,18 +26,18 @@ public:
     inline void setMessage(Message* message)
     {
         CC_SAFE_RETAIN(message);
-        CC_SAFE_RELEASE(m_message);
-        m_message = message;
+        CC_SAFE_RELEASE(_message);
+        _message = message;
     }
     
     inline Message* getMessage()
     {
-        return m_message;
+        return _message;
     }
     
 protected:
     
-    Message* m_message;
+    Message* _message;
 };
 
 

@@ -35,32 +35,32 @@ public:
 
     void setCamera(isometric::ISOCamera* camera)
     {
-        m_camera = camera;
+        _camera = camera;
     }
 
     isometric::ISOCamera* getCamera()
     {
-        return m_camera;
+        return _camera;
     }
     
     inline void setInnerOrigin(CCPoint innerOrigin)
     {
-        m_innerOrigin = innerOrigin;
+        _innerOrigin = innerOrigin;
     }
     
     inline CCPoint getInnerOrigin()
     {
-        return m_innerOrigin;
+        return _innerOrigin;
     }
     
     inline void setInnerOffset(CCSize innerOffset)
     {
-        m_innerOffset = innerOffset;
+        _innerOffset = innerOffset;
     }
     
     inline CCSize getInnerOffset()
     {
-        return m_innerOffset;
+        return _innerOffset;
     }
 
 protected:
@@ -82,20 +82,20 @@ protected:
 protected:
     
     //相机，弱引用
-    isometric::ISOCamera* m_camera;
+    isometric::ISOCamera* _camera;
 
     //相机的上次位置
-    CCPoint m_lastCameraPosition;
+    CCPoint _lastCameraPosition;
     
     //相机移动时的偏移参数点。通常是屏幕的中心点。
-    CCPoint m_innerOrigin;
+    CCPoint _innerOrigin;
     
-    //当人物的距m_innerOrigin的距离，达到m_innerOffset时，相机开始移动
+    //当人物的距_innerOrigin的距离，达到_innerOffset时，相机开始移动
     //注意是距离值，不是范围大小。
-    CCSize m_innerOffset;
+    CCSize _innerOffset;
     
     //标记相机是否需要移动
-    bool m_needMoveCamera;
+    bool _needMoveCamera;
 };
 
 NS_CC_YHGE_END

@@ -4,17 +4,17 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileInfo::ISOTileInfo()
-:m_uId(0)
-,m_sImageSource("")
-,m_tImageSize(CCSizeZero)
+:_uId(0)
+,_sImageSource("")
+,_tImageSize(CCSizeZero)
 {
-    m_pProperties=new CCDictionary();
+    _pProperties=new CCDictionary();
 }
 
 ISOTileInfo::~ISOTileInfo()
 {
     CCLOG("ISOTileInfo destroy");
-    CC_SAFE_RELEASE(m_pProperties);
+    CC_SAFE_RELEASE(_pProperties);
 }
 
 NS_CC_YHGE_ISOMETRIC_END

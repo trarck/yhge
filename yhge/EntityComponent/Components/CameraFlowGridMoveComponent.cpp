@@ -18,13 +18,13 @@ static const CCSize kDefaultInnerOffset=CCSizeMake(64.0f, 32.0f);
  * 原始数据使用地图坐标，移动过程(动画)使用屏幕坐标
  */
 CameraFlowGridMoveComponent::CameraFlowGridMoveComponent()
-:m_camera(NULL)
-,m_lastCameraPosition(CCPointZero)
-,m_innerOrigin(CCPointZero)
-,m_innerOffset(kDefaultInnerOffset)
-,m_needMoveCamera(false)
+:_camera(NULL)
+,_lastCameraPosition(CCPointZero)
+,_innerOrigin(CCPointZero)
+,_innerOffset(kDefaultInnerOffset)
+,_needMoveCamera(false)
 {
-	m_name="GridMoveComponent";
+	_name="GridMoveComponent";
 }
 
 CameraFlowGridMoveComponent::~CameraFlowGridMoveComponent()
@@ -39,7 +39,7 @@ CameraFlowGridMoveComponent::~CameraFlowGridMoveComponent()
  */
 void CameraFlowGridMoveComponent::updateDirection( float delta)
 {
-    if (m_needMoveCamera)
+    if (_needMoveCamera)
     {
         this->moveCamera(delta);
     }
@@ -52,17 +52,17 @@ void CameraFlowGridMoveComponent::updateDirection( float delta)
  */
 void CameraFlowGridMoveComponent::updatePath(float delta)
 {
-//    CCPoint scenePos=m_camera->getLocationInScene(m_rendererComponent->getRenderer()->getPosition());
+//    CCPoint scenePos=_camera->getLocationInScene(_rendererComponent->getRenderer()->getPosition());
     //CCLOG("scene:%f,%f",scenePos.x,scenePos.y);
 
-//    CCLOG("dd %f,%f",m_camera->getWorldPosition().x,m_camera->getWorldPosition().y);
+//    CCLOG("dd %f,%f",_camera->getWorldPosition().x,_camera->getWorldPosition().y);
     
-    if (m_needMoveCamera)
+    if (_needMoveCamera)
     {
         this->moveCamera(delta);
     }
 
-    //update 放在后面，否则一些状态会改变如m_movingDeltaTime，m_movingDeltaTime，m_fViewSpeedX
+    //update 放在后面，否则一些状态会改变如_movingDeltaTime，_movingDeltaTime，_fViewSpeedX
     GridMoveComponent::updatePath(delta);
 }
 
@@ -70,61 +70,61 @@ void CameraFlowGridMoveComponent::prepareMove()
 {
     GridMoveComponent::prepareMove();
     if(this->checkNeedMoveCamera()){
-        m_lastCameraPosition=m_camera->getWorldPosition();
-//        CCLOG("cc %f,%f",m_lastCameraPosition.x,m_lastCameraPosition.y);
+        _lastCameraPosition=_camera->getWorldPosition();
+//        CCLOG("cc %f,%f",_lastCameraPosition.x,_lastCameraPosition.y);
     }
 }
 
 //开启更新定时器。为了使update不是虚函数，这里使用虚函数
 void CameraFlowGridMoveComponent::startMoveUpdateSchedule()
 {
-    switch (m_moveType)
+    switch (_moveType)
     {
     case kMoveDirection:
-        m_update=schedule_selector(CameraFlowGridMoveComponent::updateDirection);
+        _update=schedule_selector(CameraFlowGridMoveComponent::updateDirection);
         break;
     case kMovePath:
-        m_update=schedule_selector(CameraFlowGridMoveComponent::updatePath);
+        _update=schedule_selector(CameraFlowGridMoveComponent::updatePath);
         break;
     default:
         break;
     }
-    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(m_update,this, 0, false);
+    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(_update,this, 0, false);
 }
 
 //void CameraFlowGridMoveComponent::stopMoveUpdateSchedule()
 //{
-//    CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(m_update,this);
-//    m_update=NULL;
+//    CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(_update,this);
+//    _update=NULL;
 //}
 
 bool CameraFlowGridMoveComponent::checkNeedMoveCamera()
 {
-//    CCPoint scenePos=m_camera->getLocationInScene(m_rendererComponent->getRenderer()->getPosition());
-     CCPoint scenePos=m_camera->getLocationInScene(m_isoPositionComponent->getRendererPosition());
+//    CCPoint scenePos=_camera->getLocationInScene(_rendererComponent->getRenderer()->getPosition());
+     CCPoint scenePos=_camera->getLocationInScene(_isoPositionComponent->getRendererPosition());
     
     bool needMoveCamera=false;
     
-    float offsetX=scenePos.x-m_innerOrigin.x;
+    float offsetX=scenePos.x-_innerOrigin.x;
     
-    if (m_fViewSpeedX>0){
-        needMoveCamera=offsetX>=m_innerOffset.width;
-    }else if (m_fViewSpeedX<0){
-        needMoveCamera=offsetX<=-m_innerOffset.width;
+    if (_fViewSpeedX>0){
+        needMoveCamera=offsetX>=_innerOffset.width;
+    }else if (_fViewSpeedX<0){
+        needMoveCamera=offsetX<=-_innerOffset.width;
     }
     
     if (!needMoveCamera)
     {
-        float offsetY=scenePos.y-m_innerOrigin.y;
+        float offsetY=scenePos.y-_innerOrigin.y;
         
-        if (m_fViewSpeedY>0){
-            needMoveCamera=offsetY>=m_innerOffset.height;
-        }else if (m_fViewSpeedY<0){
-            needMoveCamera=offsetY<=-m_innerOffset.height;
+        if (_fViewSpeedY>0){
+            needMoveCamera=offsetY>=_innerOffset.height;
+        }else if (_fViewSpeedY<0){
+            needMoveCamera=offsetY<=-_innerOffset.height;
         }
     }
     
-    m_needMoveCamera=needMoveCamera;
+    _needMoveCamera=needMoveCamera;
 
     return needMoveCamera;
 }
@@ -134,30 +134,30 @@ bool CameraFlowGridMoveComponent::checkNeedMoveCamera()
  */
 void CameraFlowGridMoveComponent::moveCamera(float delta)
 {
-    //CCLOG("needMoveCamera:%f,%f:%f,%f",scenePos.x,scenePos.y,m_rendererComponent->getRenderer()->getPosition().x,m_rendererComponent->getRenderer()->getPosition().y);
+    //CCLOG("needMoveCamera:%f,%f:%f,%f",scenePos.x,scenePos.y,_rendererComponent->getRenderer()->getPosition().x,_rendererComponent->getRenderer()->getPosition().y);
     
-    float duration=m_movingDuration;
-    float movingDelta=m_movingDeltaTime+delta;
+    float duration=_movingDuration;
+    float movingDelta=_movingDeltaTime+delta;
     
     if(movingDelta<duration){
-        float scale=m_camera->getScale();
-        m_camera->move(scale*delta*m_fViewSpeedX,scale*delta*m_fViewSpeedY);
-        //CCLOG("aa %f,%f",m_camera->getWorldPosition().x,m_camera->getWorldPosition().y);
+        float scale=_camera->getScale();
+        _camera->move(scale*delta*_fViewSpeedX,scale*delta*_fViewSpeedY);
+        //CCLOG("aa %f,%f",_camera->getWorldPosition().x,_camera->getWorldPosition().y);
     }else{
-        float scale=m_camera->getScale();
-        float endX=m_lastCameraPosition.x+scale*duration*m_fViewSpeedX;
-        float endY=m_lastCameraPosition.y+scale*duration*m_fViewSpeedY;
+        float scale=_camera->getScale();
+        float endX=_lastCameraPosition.x+scale*duration*_fViewSpeedX;
+        float endY=_lastCameraPosition.y+scale*duration*_fViewSpeedY;
         
-//        float dx=endX-m_lastCameraPosition.x;
-//        float dy=endY-m_lastCameraPosition.y;
+//        float dx=endX-_lastCameraPosition.x;
+//        float dy=endY-_lastCameraPosition.y;
         
-        m_lastCameraPosition.x=endX;
-        m_lastCameraPosition.y=endY;
+        _lastCameraPosition.x=endX;
+        _lastCameraPosition.y=endY;
 
         //不能使用delta，好象有问题。
         
-//        m_camera->move(dx, dy);
-        m_camera->moveTo(endX,endY);
+//        _camera->move(dx, dy);
+        _camera->moveTo(endX,endY);
         //CCLOG("bb %f,%f",endX,endY);
     }
 }

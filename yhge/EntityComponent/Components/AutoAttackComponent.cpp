@@ -9,14 +9,14 @@ USING_NS_CC;
 NS_CC_YHGE_BEGIN
 
 AutoAttackComponent::AutoAttackComponent()
-:m_attackSpeed(2)
+:_attackSpeed(2)
 {
-    m_name="AutoAttackComponent";
+    _name="AutoAttackComponent";
 }
 
 AutoAttackComponent::~AutoAttackComponent()
 {
-    CC_SAFE_RELEASE(m_target);
+    CC_SAFE_RELEASE(_target);
 }
 
 bool AutoAttackComponent::init()
@@ -28,7 +28,7 @@ bool AutoAttackComponent::registerMessages()
 {
 
     if(AttackComponent::registerMessages()){
-        this->getMessageManager()->registerReceiver(m_owner, MSG_AUTO_ATTACK, NULL, message_selector(AutoAttackComponent::onAutoAttack));
+        this->getMessageManager()->registerReceiver(_owner, MSG_AUTO_ATTACK, NULL, message_selector(AutoAttackComponent::onAutoAttack));
         return true;
     }
     
@@ -37,7 +37,7 @@ bool AutoAttackComponent::registerMessages()
 
 void AutoAttackComponent::cleanupMessages()
 {
-    this->getMessageManager()->removeReceiver(m_owner, MSG_AUTO_ATTACK);
+    this->getMessageManager()->removeReceiver(_owner, MSG_AUTO_ATTACK);
     
     AttackComponent::cleanupMessages();
 }
@@ -46,9 +46,9 @@ void AutoAttackComponent::cleanupMessages()
 void AutoAttackComponent::startAttack()
 {
     YHINFO("AutoAttackComponent::startAttack");
-	if (m_target) {
+	if (_target) {
         CCScheduler* pScheduler = CCDirector::sharedDirector()->getScheduler();
-        pScheduler->scheduleSelector(schedule_selector(AutoAttackComponent::updateAttack),this, m_attackSpeed, false);
+        pScheduler->scheduleSelector(schedule_selector(AutoAttackComponent::updateAttack),this, _attackSpeed, false);
 	}
 }
 
@@ -68,11 +68,11 @@ void AutoAttackComponent::updateAttack(float delta)
 	 2.if use skill, mp less then the skill requirement
 	 */
     //TODO get target hp
-//	int targetHp=10;//m_target->getHealth();
+//	int targetHp=10;//_target->getHealth();
 //    YHINFO("current target hp %d after attack %d",targetHp,targetHp-1);
     
     //TODO set target hp
-//    m_target->setHealth(targetHp-1);
+//    _target->setHealth(targetHp-1);
 }
 
 void AutoAttackComponent::didTargetDie()

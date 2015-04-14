@@ -137,45 +137,45 @@ public:
     
 	inline void setName(const std::string& name)
 	{
-		m_name = name;
+		_name = name;
 	}
     
 	inline const std::string& getName()
 	{
-		return m_name;
+		return _name;
 	}
     
     //弱连接
 	inline void setOwner(Entity* owner)
 	{
-		m_owner = owner;
+		_owner = owner;
 	}
 
 	inline Entity* getOwner()
 	{
-		return m_owner;
+		return _owner;
 	}
     
     inline void setType(int type)
     {
-        m_type = type;
+        _type = type;
     }
     
     inline int getType()
     {
-        return m_type;
+        return _type;
     }
     
 protected:
     
     //名称
-    std::string m_name;
+    std::string _name;
     
     //弱引用
-    Entity* m_owner;
+    Entity* _owner;
     
     //类型。用于标识组件。有的时候只使用名子无法定位具体类型，通常使用type来辅助确定。其值由具体游戏定义。
-    int m_type;
+    int _type;
     
 	
 };

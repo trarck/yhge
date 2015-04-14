@@ -17,28 +17,28 @@ public:
     inline void setView( cocos2d::CCNode* view)
     {
         CC_SAFE_RETAIN(view);
-        CC_SAFE_RELEASE(m_pView);
-        m_pView = view;
+        CC_SAFE_RELEASE(_pView);
+        _pView = view;
     }
 
     inline  cocos2d::CCNode* getView()
     {
-        return m_pView;
+        return _pView;
     }
 
     inline void setDetail(long detail)
     {
-        m_lDetail = detail;
+        _lDetail = detail;
     }
 
     inline long getDetail()
     {
-        return m_lDetail;
+        return _lDetail;
     }
 
 private:
-    cocos2d::CCNode* m_pView;
-    long m_lDetail;
+    cocos2d::CCNode* _pView;
+    long _lDetail;
 
 };
 NS_CC_YHGE_END

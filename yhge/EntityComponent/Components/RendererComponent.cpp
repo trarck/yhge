@@ -9,21 +9,21 @@ NS_CC_YHGE_BEGIN
 
 RendererComponent::RendererComponent()
 :Component("RendererComponent")
-,m_renderer(NULL)
+,_renderer(NULL)
 {
 
 }
 
 RendererComponent::~RendererComponent()
 {
-    CC_SAFE_RELEASE_NULL(m_renderer);
+    CC_SAFE_RELEASE_NULL(_renderer);
 }
 
 bool RendererComponent::init()
 {
     if (Component::init()) {
         
-        m_renderer=new CCNode();
+        _renderer=new CCNode();
         
         return true;
     }
@@ -33,8 +33,8 @@ bool RendererComponent::init()
 
 void RendererComponent::cleanup(void)
 {
-    if (m_renderer) {
-        m_renderer->stopAllActions();
+    if (_renderer) {
+        _renderer->stopAllActions();
     }
     Component::cleanup();
 }
@@ -45,12 +45,12 @@ bool RendererComponent::registerMessages()
 
         MessageManager* messageManager=this->getMessageManager();
         
-        messageManager->registerReceiver(m_owner,MSG_RUN_ACTION, NULL ,message_selector(RendererComponent::onRunAction),this);
-        messageManager->registerReceiver(m_owner,MSG_STOP_ACTION, NULL ,message_selector(RendererComponent::onStopAction),this);
-        messageManager->registerReceiver(m_owner,MSG_STOP_ACTION_BY_TAG, NULL ,message_selector(RendererComponent::onStopActionByTag),this);
-//        messageManager->registerReceiver(m_owner,MSG_RUN_ANIMATE, NULL ,message_selector(RendererComponent::onRunAnimate),this);
-//        messageManager->registerReceiver(m_owner,MSG_STOP_ANIMATE, NULL ,message_selector(RendererComponent::onStopAnimate),this);
-//        messageManager->registerReceiver(m_owner,MSG_STOP_ANIMATE_BY_TAG, NULL ,message_selector(RendererComponent::onStopAnimateByTag),this);
+        messageManager->registerReceiver(_owner,MSG_RUN_ACTION, NULL ,message_selector(RendererComponent::onRunAction),this);
+        messageManager->registerReceiver(_owner,MSG_STOP_ACTION, NULL ,message_selector(RendererComponent::onStopAction),this);
+        messageManager->registerReceiver(_owner,MSG_STOP_ACTION_BY_TAG, NULL ,message_selector(RendererComponent::onStopActionByTag),this);
+//        messageManager->registerReceiver(_owner,MSG_RUN_ANIMATE, NULL ,message_selector(RendererComponent::onRunAnimate),this);
+//        messageManager->registerReceiver(_owner,MSG_STOP_ANIMATE, NULL ,message_selector(RendererComponent::onStopAnimate),this);
+//        messageManager->registerReceiver(_owner,MSG_STOP_ANIMATE_BY_TAG, NULL ,message_selector(RendererComponent::onStopAnimateByTag),this);
         
         return true;
     }
@@ -60,12 +60,12 @@ bool RendererComponent::registerMessages()
 void RendererComponent::cleanupMessages()
 {
     MessageManager* messageManager=this->getMessageManager();
-    messageManager->removeReceiver(m_owner,MSG_RUN_ACTION);
-    messageManager->removeReceiver(m_owner,MSG_STOP_ACTION);
-    messageManager->removeReceiver(m_owner,MSG_STOP_ACTION_BY_TAG);
-//    messageManager->removeReceiver(m_owner,MSG_RUN_ANIMATE);
-//    messageManager->removeReceiver(m_owner,MSG_STOP_ANIMATE);
-//    messageManager->removeReceiver(m_owner,MSG_STOP_ANIMATE_BY_TAG);
+    messageManager->removeReceiver(_owner,MSG_RUN_ACTION);
+    messageManager->removeReceiver(_owner,MSG_STOP_ACTION);
+    messageManager->removeReceiver(_owner,MSG_STOP_ACTION_BY_TAG);
+//    messageManager->removeReceiver(_owner,MSG_RUN_ANIMATE);
+//    messageManager->removeReceiver(_owner,MSG_STOP_ANIMATE);
+//    messageManager->removeReceiver(_owner,MSG_STOP_ANIMATE_BY_TAG);
     
     Component::cleanupMessages();
 }
@@ -73,13 +73,13 @@ void RendererComponent::cleanupMessages()
 void RendererComponent::setRenderer(CCNode* renderer)
 {
     CC_SAFE_RETAIN(renderer);
-    CC_SAFE_RELEASE(m_renderer);
-    m_renderer = renderer;
+    CC_SAFE_RELEASE(_renderer);
+    _renderer = renderer;
 }
 
 CCNode* RendererComponent::getRenderer()
 {
-    return m_renderer;
+    return _renderer;
 }
 
 /**
@@ -89,9 +89,9 @@ void RendererComponent::runAction(CCAction* action)
 {
     //如果有标记,则消除源来的动画
     if (action->getTag()) {
-        m_renderer->stopActionByTag(action->getTag());
+        _renderer->stopActionByTag(action->getTag());
     }
-    m_renderer->runAction(action);
+    _renderer->runAction(action);
 }
 
 /**
@@ -99,7 +99,7 @@ void RendererComponent::runAction(CCAction* action)
  */
 void RendererComponent::stopAction(CCAction* action)
 {
-    m_renderer->stopAction(action);
+    _renderer->stopAction(action);
 }
 
 /**
@@ -107,7 +107,7 @@ void RendererComponent::stopAction(CCAction* action)
  */
 void RendererComponent::stopActionByTag(int tag)
 {
-    m_renderer->stopActionByTag(tag);
+    _renderer->stopActionByTag(tag);
 }
 
 /**
@@ -119,9 +119,9 @@ void RendererComponent::onRunAction(Message* message)
     
     //如果有标记,则消除源来的动画
     if (action->getTag()) {
-        m_renderer->stopActionByTag(action->getTag());
+        _renderer->stopActionByTag(action->getTag());
     }
-    m_renderer->runAction(action);
+    _renderer->runAction(action);
 }
 
 /**
@@ -130,7 +130,7 @@ void RendererComponent::onRunAction(Message* message)
 void RendererComponent::onStopAction(Message* message)
 {
     CCAction* action=static_cast<CCAction*>(message->getData());
-    m_renderer->stopAction(action);
+    _renderer->stopAction(action);
 }
 
 /**
@@ -140,7 +140,7 @@ void RendererComponent::onStopActionByTag(Message* message)
 {
     CCInteger* tagValue=static_cast<CCInteger*>(message->getData());
     if (tagValue) {
-        m_renderer->stopActionByTag(tagValue->getValue());
+        _renderer->stopActionByTag(tagValue->getValue());
     }
 }
 

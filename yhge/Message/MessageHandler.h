@@ -20,8 +20,8 @@ class MessageHandler : public Ref {
 public:
     
 	MessageHandler()
-		:m_pTarget(NULL),
-		 m_handle(NULL)
+		:_pTarget(NULL),
+		 _handle(NULL)
 	{
 		//CCLOG("MessageHandler create");
 	}
@@ -30,43 +30,43 @@ public:
 
 	Ref* getTarget()
 	{
-		return m_pTarget;
+		return _pTarget;
 	}
 
 	void setTarget(Ref* pTarget)
 	{
 		CC_SAFE_RETAIN(pTarget);
-		CC_SAFE_RELEASE(m_pTarget);
-		m_pTarget=pTarget;
+		CC_SAFE_RELEASE(_pTarget);
+		_pTarget=pTarget;
 	}
 
 	SEL_MessageHandler getHandle()
 	{
-		return m_handle;
+		return _handle;
 	}
 
 	void setHandle(SEL_MessageHandler handle)
 	{
-		m_handle=handle;
+		_handle=handle;
 	}
 
 	bool initWithTarget(Ref* pTarget,SEL_MessageHandler handle)
 	{
 		setTarget(pTarget);
-		m_handle=handle;
+		_handle=handle;
 		return true;
 	}
 
 	void execute(Message *msg)
 	{
-		if(m_handle){
-			(m_pTarget->*m_handle)(msg);
+		if(_handle){
+			(_pTarget->*_handle)(msg);
 		}
 	}
 
 private:
-	Ref* m_pTarget;
-	SEL_MessageHandler m_handle;
+	Ref* _pTarget;
+	SEL_MessageHandler _handle;
 };
 
 

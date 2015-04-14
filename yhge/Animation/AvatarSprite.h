@@ -81,14 +81,14 @@ public:
     {
         CC_SAFE_RETAIN(animation);
 
-        if (m_animation)
+        if (_animation)
         {
-            m_animation->setAnimationSprite(NULL);
+            _animation->setAnimationSprite(NULL);
         }
 
-        CC_SAFE_RELEASE(m_animation);
+        CC_SAFE_RELEASE(_animation);
 
-        m_animation = animation;
+        _animation = animation;
 
         if (animation)
         {
@@ -99,14 +99,14 @@ public:
 
     Animation* getAnimation()
     {
-        return m_animation;
+        return _animation;
     }
 
 protected:
 
-    Animation* m_animation;
+    Animation* _animation;
     
-    CCArray* m_components;
+    CCArray* _components;
 
 };
 

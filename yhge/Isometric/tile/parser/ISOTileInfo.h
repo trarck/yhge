@@ -22,66 +22,66 @@ public:
            
     inline void setId(unsigned int uId)
     {
-        m_uId = uId;
+        _uId = uId;
     }
     
     inline unsigned int getId()
     {
-        return m_uId;
+        return _uId;
     }
 
     inline void setImageSource(const char * pImageSource)
     {
-        m_sImageSource = pImageSource;
+        _sImageSource = pImageSource;
     }
     
     inline const char * getImageSource()
     {
-        return m_sImageSource.c_str();
+        return _sImageSource.c_str();
     }
     
     inline void setImageSize(CCSize& tImageSize)
     {
-        m_tImageSize = tImageSize;
+        _tImageSize = tImageSize;
     }
     
     inline CCSize& getImageSize()
     {
-        return m_tImageSize;
+        return _tImageSize;
     }
     
     inline void setProperties(CCDictionary* pProperties)
     {
         CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(m_pProperties);
-        m_pProperties = pProperties;
+        CC_SAFE_RELEASE(_pProperties);
+        _pProperties = pProperties;
     }
     
     inline CCDictionary* getProperties()
     {
-        return m_pProperties;
+        return _pProperties;
     }
     
 protected:
     /**
      * 格子id
      */
-    unsigned int m_uId;
+    unsigned int _uId;
     
     /**
      * 图像路径
      */
-    std::string m_sImageSource;
+    std::string _sImageSource;
     
     /**
      * 图像大小。像素大小
      */
-    CCSize m_tImageSize;
+    CCSize _tImageSize;
     
     /**
      * 格子扩展属性
      */
-    CCDictionary* m_pProperties;
+    CCDictionary* _pProperties;
     
 
 };

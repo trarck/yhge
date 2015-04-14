@@ -14,24 +14,24 @@ NS_CC_YHGE_BEGIN
 
 AnimationComponent::AnimationComponent()
 :Component("AnimationComponent")
-,m_animations(NULL)
-,m_lastAnimation(NULL)
-,m_lastAction(NULL)
-,m_rendererComponent(NULL)
+,_animations(NULL)
+,_lastAnimation(NULL)
+,_lastAction(NULL)
+,_rendererComponent(NULL)
 {
 
 }
 
 AnimationComponent::~AnimationComponent()
 {
-	CC_SAFE_RELEASE_NULL(m_animations);
-    CC_SAFE_RELEASE_NULL(m_lastAction);
+	CC_SAFE_RELEASE_NULL(_animations);
+    CC_SAFE_RELEASE_NULL(_lastAction);
 }
 
 bool AnimationComponent::init()
 {
     if (Component::init()) {
-        m_animations=new CCDictionary();
+        _animations=new CCDictionary();
         return true;
     }
     return false;
@@ -58,17 +58,17 @@ bool AnimationComponent::init(CCDictionary* data)
 void AnimationComponent::setup()
 {
     Component::setup();
-    m_rendererComponent=static_cast<SpriteRendererComponent*>(m_owner->getComponent("RendererComponent"));
+    _rendererComponent=static_cast<SpriteRendererComponent*>(_owner->getComponent("RendererComponent"));
 }
 
 void AnimationComponent::cleanup()
 {
-    if (m_lastAction)
+    if (_lastAction)
     {
-        m_rendererComponent->getSpriteRenderer()->stopAction(m_lastAction);
+        _rendererComponent->getSpriteRenderer()->stopAction(_lastAction);
     }
     
-    m_rendererComponent=NULL;
+    _rendererComponent=NULL;
 
     Component::cleanup();
 }
@@ -77,7 +77,7 @@ bool AnimationComponent::registerMessages()
 {
     Component::registerMessages();
     
-    this->getMessageManager()->registerReceiver(m_owner,MSG_CHANGE_ANIMATION, NULL ,message_selector(AnimationComponent::onChangeAnimation),this);
+    this->getMessageManager()->registerReceiver(_owner,MSG_CHANGE_ANIMATION, NULL ,message_selector(AnimationComponent::onChangeAnimation),this);
     
     return true;
 }
@@ -85,7 +85,7 @@ bool AnimationComponent::registerMessages()
 
 void AnimationComponent::cleanupMessages()
 {
-    this->getMessageManager()->removeReceiver(m_owner,MSG_CHANGE_ANIMATION);
+    this->getMessageManager()->removeReceiver(_owner,MSG_CHANGE_ANIMATION);
     Component::cleanupMessages();
 }
 
@@ -95,17 +95,17 @@ void AnimationComponent::cleanupMessages()
  */
 CCAnimation* AnimationComponent::animationForName(const std::string& name)
 {
-	return (CCAnimation*) m_animations->objectForKey(name);
+	return (CCAnimation*) _animations->objectForKey(name);
 }
 
 CCAnimation* AnimationComponent::animationForName(const std::string& name ,int index)
 {
-	return (CCAnimation*)((CCArray*)(m_animations->objectForKey(name)))->objectAtIndex(index);
+	return (CCAnimation*)((CCArray*)(_animations->objectForKey(name)))->objectAtIndex(index);
 }
 
 CCAnimation* AnimationComponent::animationForName(const std::string& name ,const std::string& key)
 {
-	return (CCAnimation*)((CCDictionary*)(m_animations->objectForKey(name)))->objectForKey(key);
+	return (CCAnimation*)((CCDictionary*)(_animations->objectForKey(name)))->objectForKey(key);
 }
 
 /**
@@ -113,7 +113,7 @@ CCAnimation* AnimationComponent::animationForName(const std::string& name ,const
  */
 CCArray* AnimationComponent::animationListForName(const std::string& name)
 {
-	return (CCArray*)(m_animations->objectForKey(name));
+	return (CCArray*)(_animations->objectForKey(name));
 }
 
 /**
@@ -121,7 +121,7 @@ CCArray* AnimationComponent::animationListForName(const std::string& name)
  */
 CCDictionary* AnimationComponent::animationMapForName(const std::string& name)
 {
-	return (CCDictionary*)m_animations->objectForKey(name);
+	return (CCDictionary*)_animations->objectForKey(name);
 }
 
 /**
@@ -129,7 +129,7 @@ CCDictionary* AnimationComponent::animationMapForName(const std::string& name)
  */
 void AnimationComponent::addAnimation(CCAnimation* animation,const std::string&  name)
 {
-	m_animations->setObject(animation ,name);
+	_animations->setObject(animation ,name);
 }
 
 /**
@@ -137,7 +137,7 @@ void AnimationComponent::addAnimation(CCAnimation* animation,const std::string& 
  */
 void AnimationComponent::addAnimationList(CCArray* animationList ,const std::string& name)
 {
-	m_animations->setObject(animationList ,name);
+	_animations->setObject(animationList ,name);
 }
 
 /**
@@ -145,7 +145,7 @@ void AnimationComponent::addAnimationList(CCArray* animationList ,const std::str
  */
 void AnimationComponent::addAnimationMap(CCDictionary* animationMap ,const std::string& name)
 {
-	m_animations->setObject(animationMap ,name);
+	_animations->setObject(animationMap ,name);
 }
 
 /**
@@ -153,7 +153,7 @@ void AnimationComponent::addAnimationMap(CCDictionary* animationMap ,const std::
  */
 void AnimationComponent::removeAnimationNamed(const std::string& name)
 {
-	m_animations->removeObjectForKey(name);
+	_animations->removeObjectForKey(name);
 }
 
 /**
@@ -161,19 +161,19 @@ void AnimationComponent::removeAnimationNamed(const std::string& name)
  */
 void AnimationComponent::runAnimation(CCAnimation* animation,bool needCompleteAction)
 {
-    if(animation && m_lastAnimation!=animation){
+    if(animation && _lastAnimation!=animation){
         CCAction* action=createActionFromAnimation(animation,needCompleteAction);
 
         //停止上一个action
-        if (m_lastAction)
+        if (_lastAction)
         {
-            m_rendererComponent->getSpriteRenderer()->stopAction(m_lastAction);
+            _rendererComponent->getSpriteRenderer()->stopAction(_lastAction);
         }
         
         //如果性能比较低，可以直接调用renderer component的相关函数
         //通知render run action
         //由于runAction要到下一帧才设置成具体的元素,如果此时取得的元素大小是之前的，不是动画的大小。
-        m_rendererComponent->getSpriteRenderer()->runAction(action);
+        _rendererComponent->getSpriteRenderer()->runAction(action);
         
         setLastAction(action);
         setLastAnimation(animation);
@@ -186,7 +186,7 @@ void AnimationComponent::displayAnimationFrame(CCAnimation* animation,int frameI
     
     CCAssert(frame, "AnimationComponent#displayAnimationFrame. Invalid frame");
     
-    m_rendererComponent->getSpriteRenderer()->setDisplayFrame(frame->getSpriteFrame());
+    _rendererComponent->getSpriteRenderer()->setDisplayFrame(frame->getSpriteFrame());
 }
 
 void AnimationComponent::onChangeAnimation(Message *message)
@@ -230,7 +230,7 @@ void AnimationComponent::onAnimationComplete()
     //消除上次action
     setLastAction(NULL);
     //发送动画播放完成
-    getMessageManager()->dispatchMessage(MSG_ANIMATION_COMPLETE, this, m_owner);
+    getMessageManager()->dispatchMessage(MSG_ANIMATION_COMPLETE, this, _owner);
 }
 
 /**

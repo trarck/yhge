@@ -27,88 +27,88 @@ public:
     
     inline void setElapsed(float elapsed)
     {
-        m_elapsed = elapsed;
+        _elapsed = elapsed;
     }
     
     inline float getElapsed()
     {
-        return m_elapsed;
+        return _elapsed;
     }
     
     inline void setDuration(float duration)
     {
-        m_duration = duration;
+        _duration = duration;
     }
     
     inline float getDuration()
     {
-        return m_duration;
+        return _duration;
     }
     
     inline void setFrameIndex(int frameIndex)
     {
-        m_frameIndex = frameIndex;
+        _frameIndex = frameIndex;
     }
     
     inline int getFrameIndex()
     {
-        return m_frameIndex;
+        return _frameIndex;
     }
     
 //    inline void setNextFrameIndex(int nextFrameIndex)
 //    {
-//        m_nextFrameIndex = nextFrameIndex;
+//        _nextFrameIndex = nextFrameIndex;
 //    }
 //    
 //    inline int getNextFrameIndex()
 //    {
-//        return m_nextFrameIndex;
+//        return _nextFrameIndex;
 //    }
     
     inline void setSkipAble(bool skipAble)
     {
-        m_skipAble = skipAble;
+        _skipAble = skipAble;
     }
     
     inline bool isSkipAble()
     {
-        return m_skipAble;
+        return _skipAble;
     }
     
     inline void setAnimations(CCArray* animations)
     {
         CC_SAFE_RETAIN(animations);
-        CC_SAFE_RELEASE(m_animations);
-        m_animations = animations;
+        CC_SAFE_RELEASE(_animations);
+        _animations = animations;
     }
     
     inline CCArray* getAnimations()
     {
-        return m_animations;
+        return _animations;
     }
     
     inline void setMaxDelta(float maxDelta)
     {
-        m_maxDelta = maxDelta;
+        _maxDelta = maxDelta;
     }
     
     inline float getMaxDelta()
     {
-        return m_maxDelta;
+        return _maxDelta;
     }
     
 protected:
     
-    float m_elapsed;
-    float m_duration;
-    int m_frameIndex;
-//    int m_nextFrameIndex;
-    bool m_skipAble;
+    float _elapsed;
+    float _duration;
+    int _frameIndex;
+//    int _nextFrameIndex;
+    bool _skipAble;
     
-    CCArray* m_animations;
+    CCArray* _animations;
     
     //最大跳帧值
-    float m_maxDelta;
+    float _maxDelta;
 };
 
 NS_CC_YHGE_END

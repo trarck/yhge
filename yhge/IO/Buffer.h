@@ -63,21 +63,21 @@ public:
      */
     inline size_t readBytesUnSafe(size_t position,void* buf,size_t size)
     {
-        CCAssert(position+size<=m_size,"Buffer::readBytesSafe out index");
+        CCAssert(position+size<=_size,"Buffer::readBytesSafe out index");
         
-        //    if (position+size>m_size) {
-        //        size=m_size-position;
+        //    if (position+size>_size) {
+        //        size=_size-position;
         //    }
         
-        memcpy(buf,m_data+position,size);
+        memcpy(buf,_data+position,size);
         
         return size;
     }
     
     inline unsigned char readByte(size_t position)
     {
-        CCAssert(position<m_size, "Buffer::readByte out index");
-        return *(m_data+position);
+        CCAssert(position<_size, "Buffer::readByte out index");
+        return *(_data+position);
     }
 
     ////////////////////////////////////////////////////////////////
@@ -93,8 +93,8 @@ public:
      */
     inline uint8_t readUInt8(size_t position)
     {
-        CCAssert(position<m_size,"Buffer::readUInt8 out index");
-        return *(m_data+position);
+        CCAssert(position<_size,"Buffer::readUInt8 out index");
+        return *(_data+position);
     }
     
     /**
@@ -107,8 +107,8 @@ public:
      */
     inline uint16_t readUInt16LE(size_t position)
     {
-        CCAssert(position+_BUFFER_SHORT_SIZE<=m_size,"Buffer::readUInt16LE out index");
-        return (*(m_data+position+1) << 8) | *(m_data+position);
+        CCAssert(position+_BUFFER_SHORT_SIZE<=_size,"Buffer::readUInt16LE out index");
+        return (*(_data+position+1) << 8) | *(_data+position);
     }
 
     /**
@@ -121,8 +121,8 @@ public:
      */
     inline uint16_t readUInt16BE(size_t position)
     {
-        CCAssert(position+_BUFFER_SHORT_SIZE<=m_size,"Buffer::readUInt16BE out index");
-        return (*(m_data+position) << 8) | *(m_data+position+1);
+        CCAssert(position+_BUFFER_SHORT_SIZE<=_size,"Buffer::readUInt16BE out index");
+        return (*(_data+position) << 8) | *(_data+position+1);
     }
 
     /**
@@ -135,9 +135,9 @@ public:
      */
     inline uint32_t readUInt32LE(size_t position)
     {
-        CCAssert(position+_BUFFER_INT_SIZE<=m_size,"Buffer::readUInt32LE out index");
+        CCAssert(position+_BUFFER_INT_SIZE<=_size,"Buffer::readUInt32LE out index");
 
-        unsigned char* start=m_data+position;
+        unsigned char* start=_data+position;
 
         uint32_t val = (uint32_t)*(start+3) << 24;
         val |= (uint32_t)*(start+2) << 16;
@@ -151,7 +151,7 @@ public:
     //所以还是直接使用数值运算快
     inline uint32_t readUInt32LE2(size_t position)
     {
-        CCAssert(position+_BUFFER_INT_SIZE<=m_size,"Buffer::readUInt32BE out index");
+        CCAssert(position+_BUFFER_INT_SIZE<=_size,"Buffer::readUInt32BE out index");
         
         unsigned char buf[4];
         
@@ -170,9 +170,9 @@ public:
      */
     inline uint32_t readUInt32BE(size_t position)
     {
-        CCAssert(position+_BUFFER_INT_SIZE<=m_size,"Buffer::readUInt32BE out index");
+        CCAssert(position+_BUFFER_INT_SIZE<=_size,"Buffer::readUInt32BE out index");
                 
-        unsigned char* start=m_data+position;
+        unsigned char* start=_data+position;
 
         uint32_t val = (uint32_t)*(start) << 24;
         val |= (uint32_t)*(start+1) << 16;
@@ -215,9 +215,9 @@ public:
      */
     inline int8_t readInt8(size_t position)
     {
-        CCAssert(position<m_size,"Buffer::readInt8 out index");
+        CCAssert(position<_size,"Buffer::readInt8 out index");
         
-        return (int8_t)(*(m_data+position));
+        return (int8_t)(*(_data+position));
 //        uint8_t val=readUInt8(position);
 //        return (val & 0x80)?val:(0xff-val+1)*-1;
     }
@@ -233,7 +233,7 @@ public:
      */
     inline int16_t readInt16LE(size_t position)
     {
-        CCAssert(position+_BUFFER_SHORT_SIZE<=m_size,"Buffer::readInt16 out index");
+        CCAssert(position+_BUFFER_SHORT_SIZE<=_size,"Buffer::readInt16 out index");
         
         return (int16_t)readUInt16LE(position);
     }
@@ -249,7 +249,7 @@ public:
      */
     inline int16_t readInt16BE(size_t position)
     {
-        CCAssert(position+_BUFFER_SHORT_SIZE<=m_size,"Buffer::readInt16BE out index");
+        CCAssert(position+_BUFFER_SHORT_SIZE<=_size,"Buffer::readInt16BE out index");
         
         return (int16_t)readUInt16BE(position);
     }
@@ -265,7 +265,7 @@ public:
      */
     inline int32_t readInt32LE(size_t position)
     {
-        CCAssert(position+_BUFFER_INT_SIZE<=m_size,"Buffer::readInt32 out index");
+        CCAssert(position+_BUFFER_INT_SIZE<=_size,"Buffer::readInt32 out index");
         
         return (int32_t)readUInt32LE(position);
     }
@@ -281,7 +281,7 @@ public:
      */
     inline int32_t readInt32BE(size_t position)
     {
-        CCAssert(position+_BUFFER_INT_SIZE<=m_size,"Buffer::readInt32 out index");
+        CCAssert(position+_BUFFER_INT_SIZE<=_size,"Buffer::readInt32 out index");
         
         return (int32_t)readUInt32BE(position);
     }
@@ -297,7 +297,7 @@ public:
      */
     inline int64_t readInt64LE(size_t position)
     {
-        CCAssert(position+_BUFFER_LONG_SIZE<=m_size,"Buffer::readInt64 out index");
+        CCAssert(position+_BUFFER_LONG_SIZE<=_size,"Buffer::readInt64 out index");
         
         return (int64_t)readUInt64LE(position);
     }
@@ -313,7 +313,7 @@ public:
      */
     inline int64_t readInt64BE(size_t position)
     {
-        CCAssert(position+_BUFFER_LONG_SIZE<=m_size,"Buffer::readInt64 out index");
+        CCAssert(position+_BUFFER_LONG_SIZE<=_size,"Buffer::readInt64 out index");
         
         return (int64_t)readUInt64BE(position);
     }
@@ -332,7 +332,7 @@ public:
      */
     inline float readFloat16LE(size_t position)
     {
-        CCAssert(position+_BUFFER_SHORT_SIZE<=m_size,"Buffer::readFloat16LE out index");
+        CCAssert(position+_BUFFER_SHORT_SIZE<=_size,"Buffer::readFloat16LE out index");
 //        uint16_t halfInt=readUInt16LE(position);
 //        
 //        uint32_t singleInt=0;
@@ -362,7 +362,7 @@ public:
      */
     inline float readFloat16BE(size_t position)
     {
-        CCAssert(position+_BUFFER_SHORT_SIZE<=m_size,"Buffer::readFloat16BE out index");
+        CCAssert(position+_BUFFER_SHORT_SIZE<=_size,"Buffer::readFloat16BE out index");
 //        uint16_t halfInt=readUInt16BE(position);
 //        
 //        uint32_t singleInt=0;
@@ -392,8 +392,8 @@ public:
      */
     inline float readFloatLE(size_t position)
     {
-        CCAssert(position+_BUFFER_INT_SIZE<=m_size,"Buffer::readFloatLE out index");
-        return byteToFloat<float,kLittleEndian>(m_data+position);
+        CCAssert(position+_BUFFER_INT_SIZE<=_size,"Buffer::readFloatLE out index");
+        return byteToFloat<float,kLittleEndian>(_data+position);
     }
     
     /**
@@ -406,8 +406,8 @@ public:
      */
     inline float readFloatBE(size_t position)
     {
-        CCAssert(position+_BUFFER_INT_SIZE<=m_size,"Buffer::readFloatBE out index");
-        return byteToFloat<float,kBigEndian>(m_data+position);
+        CCAssert(position+_BUFFER_INT_SIZE<=_size,"Buffer::readFloatBE out index");
+        return byteToFloat<float,kBigEndian>(_data+position);
     }
     
     /**
@@ -420,8 +420,8 @@ public:
      */
     inline float readDoubleLE(size_t position)
     {
-        CCAssert(position+8<=m_size,"Buffer::readDoubleLE out index");
-        return byteToFloat<double,kLittleEndian>(m_data+position);
+        CCAssert(position+8<=_size,"Buffer::readDoubleLE out index");
+        return byteToFloat<double,kLittleEndian>(_data+position);
     }
     
     /**
@@ -434,8 +434,8 @@ public:
      */
     inline float readDoubleBE(size_t position)
     {
-        CCAssert(position+8<=m_size,"Buffer::readDoubleBE out index");
-        return byteToFloat<double,kBigEndian>(m_data+position);
+        CCAssert(position+8<=_size,"Buffer::readDoubleBE out index");
+        return byteToFloat<double,kBigEndian>(_data+position);
     }
     
     ////////////////////////////////////////////////////////////////
@@ -563,9 +563,9 @@ public:
      */
     inline size_t writeByte(unsigned char value,size_t position)
     {
-        CCAssert(position<m_size,"Buffer::writeByte out index");
+        CCAssert(position<_size,"Buffer::writeByte out index");
         
-        *(m_data+position)=value;
+        *(_data+position)=value;
         
         return _BUFFER_BYTE_SIZE;
     }
@@ -579,9 +579,9 @@ public:
      */
     inline size_t writeUInt8(uint8_t value,size_t position)
     {
-        CCAssert(position<m_size,"Buffer::writeUInt8 out index");
+        CCAssert(position<_size,"Buffer::writeUInt8 out index");
         
-        *(m_data+position)=value;
+        *(_data+position)=value;
         
         return _BUFFER_BYTE_SIZE;
     }
@@ -596,9 +596,9 @@ public:
      */
     inline size_t writeUInt16LE(uint16_t value,size_t position)
     {
-        CCAssert(position+_BUFFER_SHORT_SIZE<=m_size,"Buffer::writeUInt16LE out index");
+        CCAssert(position+_BUFFER_SHORT_SIZE<=_size,"Buffer::writeUInt16LE out index");
         
-        unsigned char* start=m_data+position;
+        unsigned char* start=_data+position;
         
         *(start) = value & 0x00FF;
         *(start+1) = (value & 0xFF00) >> 8;
@@ -616,9 +616,9 @@ public:
      */
     inline size_t writeUInt16BE(uint16_t value,size_t position)
     {
-        CCAssert(position+_BUFFER_SHORT_SIZE<=m_size,"Buffer::writeUInt16BE out index");
+        CCAssert(position+_BUFFER_SHORT_SIZE<=_size,"Buffer::writeUInt16BE out index");
         
-        unsigned char* start=m_data+position;
+        unsigned char* start=_data+position;
         
         *(start) = (value & 0xFF00) >> 8;
         *(start+1) = value & 0x00FF;
@@ -636,9 +636,9 @@ public:
      */
     inline size_t writeUInt32LE(uint32_t value,size_t position)
     {
-        CCAssert(position+_BUFFER_INT_SIZE<=m_size,"Buffer::writeUInt32LE out index");
+        CCAssert(position+_BUFFER_INT_SIZE<=_size,"Buffer::writeUInt32LE out index");
         
-        unsigned char* start=m_data+position;
+        unsigned char* start=_data+position;
         
         *(start) = value & 0xFF;
         *(start+1) = (value >> 8 ) & 0xFF;
@@ -658,9 +658,9 @@ public:
      */
     inline size_t writeUInt32BE(uint32_t value,size_t position)
     {
-        CCAssert(position+_BUFFER_INT_SIZE<=m_size,"Buffer::writeUInt32BE out index");
+        CCAssert(position+_BUFFER_INT_SIZE<=_size,"Buffer::writeUInt32BE out index");
         
-        unsigned char* start=m_data+position;
+        unsigned char* start=_data+position;
         
         *(start) = (value >> 24 ) & 0xFF;
         *(start+1) = (value >> 16 ) & 0xFF;
@@ -951,12 +951,12 @@ public:
     
     inline void fill(unsigned char value,size_t start)
     {
-        fill(value, start, m_size);
+        fill(value, start, _size);
     }
     
     inline void fill(unsigned char value)
     {
-        fill(value, 0, m_size);
+        fill(value, 0, _size);
     }
     
     /**
@@ -984,41 +984,41 @@ public:
     
     inline void setSize(size_t size)
     {
-        m_size = size;
+        _size = size;
     }
     
     inline size_t getSize()
     {
-        return m_size;
+        return _size;
     }
     
     inline unsigned char* getData()
     {
-        return m_data;
+        return _data;
     }
     
     inline void setData(unsigned char* data)
     {
-        m_data=data;
+        _data=data;
     }
     
     inline void setDataOwner(bool dataOwner)
     {
-        m_dataOwner = dataOwner;
+        _dataOwner = dataOwner;
     }
     
     inline bool isDataOwner()
     {
-        return m_dataOwner;
+        return _dataOwner;
     }
     
 protected:
     
-    size_t m_size;
+    size_t _size;
     
-    unsigned char* m_data;
+    unsigned char* _data;
     
-    bool m_dataOwner;
+    bool _dataOwner;
 };
 
 NS_CC_YHGE_END

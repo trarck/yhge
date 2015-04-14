@@ -28,61 +28,61 @@ public:
     
     inline void setId(int id)
     {
-        m_id = id;
+        _id = id;
     }
     
     inline int getId()
     {
-        return m_id;
+        return _id;
     }
     
     inline void setType(int type)
     {
-        m_type = type;
+        _type = type;
     }
     
     inline int getType()
     {
-        return m_type;
+        return _type;
     }
     
     inline void setSpriteFrame(CCSpriteFrame* spriteFrame)
     {
         CC_SAFE_RETAIN(spriteFrame);
-        CC_SAFE_RELEASE(m_spriteFrame);
-        m_spriteFrame = spriteFrame;
+        CC_SAFE_RELEASE(_spriteFrame);
+        _spriteFrame = spriteFrame;
     }
     
     inline CCSpriteFrame* getSpriteFrame()
     {
-        return m_spriteFrame;
+        return _spriteFrame;
     }
     
     inline void setTexture(CCTexture2D* texture)
     {
         CC_SAFE_RETAIN(texture);
-        CC_SAFE_RELEASE(m_texture);
-        m_texture = texture;
+        CC_SAFE_RELEASE(_texture);
+        _texture = texture;
     }
     
     inline CCTexture2D* getTexture()
     {
-        return m_texture;
+        return _texture;
     }
     
 protected:
    
     //唯一标识符
-    int m_id;
+    int _id;
     
     //类型。一种是使用图块，一种是直接使用图片
-    int m_type;
+    int _type;
     
     //类型为图块的定义
-    CCSpriteFrame* m_spriteFrame;
+    CCSpriteFrame* _spriteFrame;
     
     //类型为图片的定义
-    CCTexture2D* m_texture;
+    CCTexture2D* _texture;
     
 };
 

@@ -21,77 +21,77 @@ public:
 	//void draw();
 
     inline void changeZOrder(int z){
-        m_nZOrder=z;
+        _nZOrder=z;
     }
     
 	inline void setColumn(int iColumn)
 	{
-		m_iColumn = iColumn;
+		_iColumn = iColumn;
 	};
 
 	inline int getColumn()
 	{
-		return m_iColumn;
+		return _iColumn;
 	};
 
 	inline void setRow(int iRow)
 	{
-		m_iRow = iRow;
+		_iRow = iRow;
 	};
 
 	inline int getRow()
 	{
-		return m_iRow;
+		return _iRow;
 	};
     
     inline void setMapX(float fMapX)
     {
-        m_fMapX = fMapX;
+        _fMapX = fMapX;
     };
     
     inline float getMapX()
     {
-        return m_fMapX;
+        return _fMapX;
     };
     
     inline void setMapY(float fMapY)
     {
-        m_fMapY = fMapY;
+        _fMapY = fMapY;
     };
     
     inline float getMapY()
     {
-        return m_fMapY;
+        return _fMapY;
     };
         
     inline void setMapCellX(int iMapCellX)
     {
-        m_iMapCellX = iMapCellX;
+        _iMapCellX = iMapCellX;
     };
     
     inline int getMapCellX()
     {
-        return m_iMapCellX;
+        return _iMapCellX;
     };
     
     inline void setMapCellY(int iMapCellY)
     {
-        m_iMapCellY = iMapCellY;
+        _iMapCellY = iMapCellY;
     };
     
     inline int getMapCellY()
     {
-        return m_iMapCellY;
+        return _iMapCellY;
     };
 
 private:
-	int m_iColumn;
-	int m_iRow;
-    float m_fMapX;
-    float m_fMapY;
+	int _iColumn;
+	int _iRow;
+    float _fMapX;
+    float _fMapY;
     
-    int m_iMapCellX;
-    int m_iMapCellY;
+    int _iMapCellX;
+    int _iMapCellY;
     
 };
 

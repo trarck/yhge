@@ -140,7 +140,7 @@ public:
 
 	inline Ref* getGlobalObject()
 	{
-		return m_globalObject;
+		return _globalObject;
 	}
 
 protected:
@@ -217,17 +217,17 @@ protected:
 	/**
 	 * 消息表
 	 */
-    CCDictionary* m_messages;
+    CCDictionary* _messages;
 
 	/**
 	 * 消息的全局对像
 	 */
-	Ref* m_globalObject;
+	Ref* _globalObject;
 
 	///**
 	// * 消息的注册表
 	// */
-	//CCDictionary* m_regiesterMap;
+	//CCDictionary* _regiesterMap;
 };
 
 NS_CC_YHGE_END

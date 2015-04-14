@@ -22,8 +22,8 @@ public:
     
 public:
     
-    inline const char* getName(){ return m_sName.c_str(); }
-    inline void setName(const char *name){ m_sName = name; }
+    inline const char* getName(){ return _sName.c_str(); }
+    inline void setName(const char *name){ _sName = name; }
     
     virtual void setType(const char *pType);
     virtual std::string& getType();
@@ -43,13 +43,13 @@ public:
     inline void setParts(CCArray* pParts)
     {
         CC_SAFE_RETAIN(pParts);
-        CC_SAFE_RELEASE(m_pParts);
-        m_pParts = pParts;
+        CC_SAFE_RELEASE(_pParts);
+        _pParts = pParts;
     }
     
     inline CCArray* getParts()
     {
-        return m_pParts;
+        return _pParts;
     }
     
     virtual void setProperties(CCDictionary* pProperties);
@@ -60,43 +60,43 @@ protected:
     /**
      * 对象的名称
      */
-    std::string m_sName;
+    std::string _sName;
     
     /**
      * 对象的类型
      */
-    std::string m_sType;
+    std::string _sType;
     
     /**
      * 对象的位置
      * 格子坐标
      */
-    CCPoint m_tPosition;
+    CCPoint _tPosition;
     
     /**
      * 对象的大小
      */
-    CCSize m_tSize;
+    CCSize _tSize;
     
     /**
      * 对象的gid
      */
-    unsigned int m_uGid;
+    unsigned int _uGid;
     
     /**
      * 对象是否可见
      */
-    bool m_bVisible;
+    bool _bVisible;
     
     /**
      * 组成部分
      */
-    CCArray* m_pParts;
+    CCArray* _pParts;
 
     /**
      * 属性
      */
-    CCDictionary* m_pProperties;
+    CCDictionary* _pProperties;
 };
 
 

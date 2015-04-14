@@ -46,62 +46,62 @@ public:
 	inline void setCurrentState(FSMState* pCurrentState)
 	{
 //		CC_SAFE_RETAIN(pCurrentState);
-//		CC_SAFE_RELEASE(m_pCurrentState);
-		m_pCurrentState = pCurrentState;
+//		CC_SAFE_RELEASE(_pCurrentState);
+		_pCurrentState = pCurrentState;
 	}
 
 	inline FSMState* getCurrentState()
 	{
-		return m_pCurrentState;
+		return _pCurrentState;
 	}
     
     inline void setLastState(FSMState* lastState)
     {
 //        CC_SAFE_RETAIN(lastState);
-//        CC_SAFE_RELEASE(m_lastState);
-        m_lastState = lastState;
+//        CC_SAFE_RELEASE(_lastState);
+        _lastState = lastState;
     }
     
     inline FSMState* getLastState()
     {
-        return m_lastState;
+        return _lastState;
     }
 
 	inline void setOwner(Ref* pOwner)
 	{
 //		CC_SAFE_RETAIN(pOwner);
-//		CC_SAFE_RELEASE(m_pOwner);
-		m_pOwner = pOwner;
+//		CC_SAFE_RELEASE(_pOwner);
+		_pOwner = pOwner;
 	}
 
 	inline Ref* getOwner()
 	{
-		return m_pOwner;
+		return _pOwner;
 	}
 
 	inline void setStates(CCDictionary* pStates)
 	{
 		CC_SAFE_RETAIN(pStates);
-		CC_SAFE_RELEASE(m_pStates);
-		m_pStates = pStates;
+		CC_SAFE_RELEASE(_pStates);
+		_pStates = pStates;
 	}
 
 	inline CCDictionary* getStates()
 	{
-		return m_pStates;
+		return _pStates;
 	}
 
 protected:
 
     //由于state通常都是在状态表里的，这里就弱引用
-	FSMState* m_pCurrentState;
+	FSMState* _pCurrentState;
     
     //由于state通常都是在状态表里的，这里就弱引用
-    FSMState* m_lastState;
+    FSMState* _lastState;
     
     //弱引用
-	Ref* m_pOwner;
-	CCDictionary* m_pStates;
+	Ref* _pOwner;
+	CCDictionary* _pStates;
 
 };
 

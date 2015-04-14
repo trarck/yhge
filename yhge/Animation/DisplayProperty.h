@@ -23,134 +23,134 @@ public:
    
     inline bool haveCharacter()
     {
-        return m_haveCharacter;
+        return _haveCharacter;
     }
     
     inline void setHaveCharacter(bool value)
     {
-        m_haveCharacter=value;
+        _haveCharacter=value;
     }
     
     inline void setSpriteFrame(CCSpriteFrame* spriteFrame)
     {
         CC_SAFE_RETAIN(spriteFrame);
-        CC_SAFE_RELEASE(m_spriteFrame);
-        m_spriteFrame = spriteFrame;
+        CC_SAFE_RELEASE(_spriteFrame);
+        _spriteFrame = spriteFrame;
         
-        m_haveCharacter=true;
+        _haveCharacter=true;
     }
 
     inline CCSpriteFrame* getSpriteFrame()
     {
-        return m_spriteFrame;
+        return _spriteFrame;
     }
 
     inline bool haveTransform()
     {
-        return m_haveTransform;
+        return _haveTransform;
     }
     
     inline void setHaveTransform(bool value)
     {
-        m_haveTransform=value;
+        _haveTransform=value;
     }
 
     inline void setTransform(const CCAffineTransform& transform)
     {
-        m_transform = transform;
+        _transform = transform;
         
-        m_haveTransform=true;
+        _haveTransform=true;
     }
 
     inline const CCAffineTransform& getTransform()
     {
-        return m_transform;
+        return _transform;
     }
     
     inline bool haveColor()
     {
-        return m_haveColor;
+        return _haveColor;
     }
     
     inline void setHaveColor(bool value)
     {
-        m_haveColor=value;
+        _haveColor=value;
     }
 
     inline void setColor(const ccColor3B& color)
     {
-        m_color = color;
-        m_haveColor=true;
+        _color = color;
+        _haveColor=true;
     }
 
     inline const ccColor3B& getColor()
     {
-        return m_color;
+        return _color;
     }
     
     inline bool haveOpacity()
     {
-        return m_haveOpacity;
+        return _haveOpacity;
     }
     
     inline void setHaveOpacity(bool value)
     {
-        m_haveOpacity=value;
+        _haveOpacity=value;
     }
 
     inline void setOpacity(unsigned char opacity)
     {
-        m_opacity = opacity;
-        m_haveOpacity=true;
+        _opacity = opacity;
+        _haveOpacity=true;
     }
 
     inline unsigned char getOpacity()
     {
-        return m_opacity;
+        return _opacity;
     }
     
     inline void setHaveZOrder(bool haveZOrder)
     {
-        m_haveZOrder = haveZOrder;
+        _haveZOrder = haveZOrder;
     }
     
     inline bool haveZOrder()
     {
-        return m_haveZOrder;
+        return _haveZOrder;
     }
     
     inline void setZOrder( int zOrder)
     {
-        m_zOrder = zOrder;
-        m_haveZOrder=true;
+        _zOrder = zOrder;
+        _haveZOrder=true;
     }
     
     inline  int getZOrder()
     {
-        return m_zOrder;
+        return _zOrder;
     }
 
 protected:
 
-    bool m_haveCharacter;
+    bool _haveCharacter;
     
-    CCSpriteFrame* m_spriteFrame;
+    CCSpriteFrame* _spriteFrame;
 
-    bool m_haveTransform;
+    bool _haveTransform;
     
-    CCAffineTransform m_transform;
+    CCAffineTransform _transform;
 
-    bool m_haveColor;
+    bool _haveColor;
     
-    ccColor3B m_color;
+    ccColor3B _color;
     
-    bool m_haveOpacity;
+    bool _haveOpacity;
     
-    unsigned char m_opacity;
+    unsigned char _opacity;
     
-    bool m_haveZOrder;
+    bool _haveZOrder;
     
-    int m_zOrder;
+    int _zOrder;
 };
 
 NS_CC_YHGE_END

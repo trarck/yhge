@@ -60,86 +60,86 @@ public:
     
     inline void setLayerName(const std::string& layerName)
     {
-        m_layerName = layerName;
+        _layerName = layerName;
     }
     
     inline const std::string& getLayerName()
     {
-        return m_layerName;
+        return _layerName;
     }
     
     inline void setOffset(const CCPoint& offset)
     {
-        m_offset = offset;
+        _offset = offset;
     }
     
     inline const CCPoint& getOffset()
     {
-        return m_offset;
+        return _offset;
     }
     
     inline void setProperties(CCDictionary* properties)
     {
         CC_SAFE_RETAIN(properties);
-        CC_SAFE_RELEASE(m_properties);
-        m_properties = properties;
+        CC_SAFE_RELEASE(_properties);
+        _properties = properties;
     }
     
     inline CCDictionary* getProperties()
     {
-        return m_properties;
+        return _properties;
     }
     
     inline void setLayerOrientation(unsigned int layerOrientation)
     {
-        m_layerOrientation = layerOrientation;
+        _layerOrientation = layerOrientation;
     }
     
     inline unsigned int getLayerOrientation()
     {
-        return m_layerOrientation;
+        return _layerOrientation;
     }
     
     inline void setOpacity(unsigned char opacity)
     {
-        m_opacity = opacity;
+        _opacity = opacity;
     }
     
     inline unsigned char getOpacity()
     {
-        return m_opacity;
+        return _opacity;
     }
     
     inline void setVertexZvalue(int vertexZvalue)
     {
-        m_vertexZvalue = vertexZvalue;
+        _vertexZvalue = vertexZvalue;
     }
     
     inline int getVertexZvalue()
     {
-        return m_vertexZvalue;
+        return _vertexZvalue;
     }
     
     inline void setMap(ISOTileMap* map)
     {
-        m_map = map;
+        _map = map;
     }
     
     inline ISOTileMap* getMap()
     {
-        return m_map;
+        return _map;
     }
     
     inline void setObjectGroup(ISOObjectGroup* objectGroup)
     {
         CC_SAFE_RETAIN(objectGroup);
-        CC_SAFE_RELEASE(m_objectGroup);
-        m_objectGroup = objectGroup;
+        CC_SAFE_RELEASE(_objectGroup);
+        _objectGroup = objectGroup;
     }
     
     inline ISOObjectGroup* getObjectGroup()
     {
-        return m_objectGroup;
+        return _objectGroup;
     }
     
 protected:
@@ -158,40 +158,40 @@ protected:
     /**
      * 层的名称
      */
-    std::string m_layerName;
+    std::string _layerName;
     
     /**
      * 地图的偏移量。屏幕坐标
      * 可能层的原点和地图的原点不在一起。
      */
-    CCPoint m_offset;
+    CCPoint _offset;
     
     /**
      * 属性
      */
-    CCDictionary* m_properties;
+    CCDictionary* _properties;
     
     /**
      * 地图类型，斜视角，直角，六角。
      * 这里直接使用斜视角。所以用不到，保留将来或许有用。
      */
-    unsigned int m_layerOrientation;
+    unsigned int _layerOrientation;
     
     /**
      * 透明度。
      */
-    unsigned char m_opacity;
+    unsigned char _opacity;
     
     //! Only used when vertexZ is used
-    int m_vertexZvalue;
+    int _vertexZvalue;
     
     //对地图的引用。
-    ISOTileMap* m_map;
+    ISOTileMap* _map;
 
     /**
      * 使用object group
      */
-    ISOObjectGroup* m_objectGroup;
+    ISOObjectGroup* _objectGroup;
 };
 
 

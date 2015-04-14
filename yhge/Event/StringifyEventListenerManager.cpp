@@ -5,19 +5,19 @@ NS_CC_YHGE_BEGIN
 static StringifyEventListenerManager* s_sharedStringifyEventListenerManager=NULL;
 
 StringifyEventListenerManager::StringifyEventListenerManager()
-:m_pListeners(NULL)
+:_pListeners(NULL)
 {
 
 }
 
 StringifyEventListenerManager::~StringifyEventListenerManager()
 {
-	CC_SAFE_RELEASE(m_pListeners);
+	CC_SAFE_RELEASE(_pListeners);
 }
 
 bool StringifyEventListenerManager::init()
 {
-	m_pListeners=new CCDictionary();
+	_pListeners=new CCDictionary();
     return true;
 }
 
@@ -33,12 +33,12 @@ StringifyEventListenerManager* StringifyEventListenerManager::sharedStringifyEve
 void StringifyEventListenerManager::addEventListener(Ref* target,const char* type,Ref* handleObject,yhge::SEL_EventHandle handle)
 {
 
-    unsigned int targetId=target->m_uID;
+    unsigned int targetId=target->_uID;
 
-	CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(targetId));
+	CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(targetId));
 	if(targetListeners==NULL){
 		targetListeners=new CCDictionary();
-		m_pListeners->setObject(targetListeners,targetId);
+		_pListeners->setObject(targetListeners,targetId);
         targetListeners->release();
 	}
 
@@ -66,12 +66,12 @@ void StringifyEventListenerManager::addEventListener(Ref* target,const char* typ
 
 void StringifyEventListenerManager::addEventListener(Ref* target,const char* type,EventHandle* handler)
 {
-    unsigned int targetId=target->m_uID;
+    unsigned int targetId=target->_uID;
 
-	CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(targetId));
+	CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(targetId));
 	if(targetListeners==NULL){
 		targetListeners=new CCDictionary();
-		m_pListeners->setObject(targetListeners,targetId);
+		_pListeners->setObject(targetListeners,targetId);
         targetListeners->release();
 	}
 
@@ -98,7 +98,7 @@ void StringifyEventListenerManager::removeEventListener(Ref* target,const char* 
     CCAssert(target!=NULL,"StringifyEventListenerManager::removeEventListener target is null.");
     CCAssert(handleObject!=NULL,"StringifyEventListenerManager::removeEventListener handleObject is null.");
 
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
+    CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
     if(targetListeners) {
         if(type) {
             //移除对应的type事件
@@ -133,14 +133,14 @@ void StringifyEventListenerManager::removeEventListener(Ref* target,const char* 
 {
     CCAssert(target!=NULL,"StringifyEventListenerManager::removeEventListener target is null.");
     CCAssert(type!=NULL,"StringifyEventListenerManager::removeEventListener type is null.");
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
+    CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
     targetListeners->removeObjectForKey(type);
 }
 
 void StringifyEventListenerManager::removeEventListener(Ref* target)
 {
     CCAssert(target!=NULL,"StringifyEventListenerManager::removeEventListener target is null.");
-    m_pListeners->removeObjectForKey(target->m_uID);
+    _pListeners->removeObjectForKey(target->_uID);
 }
 
 void StringifyEventListenerManager::removeEventListenerForHandle(Ref* target,const char* type,yhge::SEL_EventHandle handle)
@@ -148,7 +148,7 @@ void StringifyEventListenerManager::removeEventListenerForHandle(Ref* target,con
 	CCAssert(target!=NULL,"StringifyEventListenerManager::removeEventListener target is null.");
     CCAssert(handle!=NULL,"StringifyEventListenerManager::removeEventListener handle is null.");
 
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
+    CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
     if(targetListeners) {
         if(type) {
             //移除对应的type事件
@@ -261,7 +261,7 @@ void StringifyEventListenerManager::removeListenerMapForHandle(CCDictionary* lis
 
 void StringifyEventListenerManager::handleEvent(Ref* target,Event* evt)
 {
-	CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
+	CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
     if(targetListeners) {
 		std::string type=evt->getType();
 		if(type!="") {
@@ -350,7 +350,7 @@ bool StringifyEventListenerManager::isListened(CCArray* listeners,yhge::SEL_Even
 
 CCArray* StringifyEventListenerManager::getEventListeners(Ref* target,const char* type)
 {
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
+    CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
     if(targetListeners && type) {
 		//对应的type事件
         return static_cast<CCArray*>(targetListeners->objectForKey(type));

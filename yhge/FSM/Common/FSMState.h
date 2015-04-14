@@ -39,8 +39,8 @@ class FSMState:public Ref
 public:
     
     FSMState()
-    :m_fSMMachine(NULL)
-    ,m_type(0)
+    :_fSMMachine(NULL)
+    ,_type(0)
     {
         
     }
@@ -61,29 +61,29 @@ public:
     
     inline void setFSMMachine(FSMMachine* fSMMachine)
     {
-        m_fSMMachine = fSMMachine;
+        _fSMMachine = fSMMachine;
     }
     
     inline FSMMachine* getFSMMachine()
     {
-        return m_fSMMachine;
+        return _fSMMachine;
     }
     
     inline void setType(int type)
     {
-        m_type = type;
+        _type = type;
     }
     
     inline int getType()
     {
-        return m_type;
+        return _type;
     }
     
 protected:
     //如果state使用单例，则不要设置该值
-    FSMMachine* m_fSMMachine;
+    FSMMachine* _fSMMachine;
     
-    int m_type;
+    int _type;
 };
 
 NS_CC_YHGE_END

@@ -11,14 +11,14 @@ NS_CC_YHGE_BEGIN
 
 AttackComponent::AttackComponent()
 :Component("AttackComponent")
-,m_target(NULL)
+,_target(NULL)
 {
 
 }
 
 AttackComponent::~AttackComponent()
 {
-    CC_SAFE_RELEASE_NULL(m_target);
+    CC_SAFE_RELEASE_NULL(_target);
 }
 
 bool AttackComponent::init()
@@ -32,11 +32,11 @@ bool AttackComponent::registerMessages()
     
         yhge::MessageManager* messageManager=this->getMessageManager();
         
-        messageManager->registerReceiver(m_owner, MSG_SET_ATTACK_TARGET, NULL, message_selector(AttackComponent::onSetAttackTarget),this);
+        messageManager->registerReceiver(_owner, MSG_SET_ATTACK_TARGET, NULL, message_selector(AttackComponent::onSetAttackTarget),this);
         
-        messageManager->registerReceiver(m_owner, MSG_ATTACK, NULL, message_selector(AttackComponent::onAttack),this);
+        messageManager->registerReceiver(_owner, MSG_ATTACK, NULL, message_selector(AttackComponent::onAttack),this);
         
-        messageManager->registerReceiver(m_owner, MSG_SKILL_ATTACK, NULL, message_selector(AttackComponent::onSkillAttack),this);
+        messageManager->registerReceiver(_owner, MSG_SKILL_ATTACK, NULL, message_selector(AttackComponent::onSkillAttack),this);
         
         return true;
     }
@@ -47,9 +47,9 @@ void AttackComponent::cleanupMessages()
 {    
     yhge::MessageManager* messageManager=this->getMessageManager();
     
-    messageManager->removeReceiver(m_owner, MSG_SET_ATTACK_TARGET);
-    messageManager->removeReceiver(m_owner, MSG_ATTACK);
-    messageManager->removeReceiver(m_owner, MSG_SKILL_ATTACK);
+    messageManager->removeReceiver(_owner, MSG_SET_ATTACK_TARGET);
+    messageManager->removeReceiver(_owner, MSG_ATTACK);
+    messageManager->removeReceiver(_owner, MSG_SKILL_ATTACK);
     messageManager->removeReceiver(messageManager->getGlobalObject(), MSG_ENTITY_DIE);
     
     Component::cleanupMessages();
@@ -60,11 +60,11 @@ void AttackComponent::attack()
 {
     
     CCAssert(false, "don't call AttackComponent::attack function");
-//    if(m_target){
+//    if(_target){
 //        CCLOG("AttackComponent::startAttack");
-//        int targetHp=10;//m_target->getHealth();
+//        int targetHp=10;//_target->getHealth();
 //        CCLOG("current target hp %d after attack %d",targetHp,targetHp-1);
-////        m_target->setHealth(targetHp-1);
+////        _target->setHealth(targetHp-1);
 //    }else {
 //        CCLOG("AttackComponent::startAttack no target");
 //    }
@@ -74,7 +74,7 @@ void AttackComponent::attack()
 
 void AttackComponent::attackWithSkillId(int skillId)
 {
-	//if (m_target!=nil) {
+	//if (_target!=nil) {
 	//		//攻击动作
 	//		//攻击效果
 	//	}
@@ -117,9 +117,9 @@ void AttackComponent::onSetAttackTarget(Message *message)
 {
     Entity* target= static_cast<Entity*>(message->getData());
     
-    this->getMessageManager()->removeReceiver(this->getMessageManager()->getGlobalObject(), MSG_ENTITY_DIE, m_target, message_selector(AttackComponent::onTargetDie));
+    this->getMessageManager()->removeReceiver(this->getMessageManager()->getGlobalObject(), MSG_ENTITY_DIE, _target, message_selector(AttackComponent::onTargetDie));
     setTarget(target);
-    this->getMessageManager()->registerReceiver(this->getMessageManager()->getGlobalObject(), MSG_ENTITY_DIE, m_target, message_selector(AttackComponent::onTargetDie),this);
+    this->getMessageManager()->registerReceiver(this->getMessageManager()->getGlobalObject(), MSG_ENTITY_DIE, _target, message_selector(AttackComponent::onTargetDie),this);
 }
 
 /**
@@ -128,16 +128,16 @@ void AttackComponent::onSetAttackTarget(Message *message)
 void AttackComponent::onTargetDie(Message *message)
 {
     YHINFO("target is die");
-    this->getMessageManager()->removeReceiver(this->getMessageManager()->getGlobalObject(), MSG_ENTITY_DIE, m_target, message_selector(AttackComponent::onTargetDie));
-    CC_SAFE_RELEASE(m_target);
-    m_target=NULL;
+    this->getMessageManager()->removeReceiver(this->getMessageManager()->getGlobalObject(), MSG_ENTITY_DIE, _target, message_selector(AttackComponent::onTargetDie));
+    CC_SAFE_RELEASE(_target);
+    _target=NULL;
 }
 
 void AttackComponent::setTarget(Entity* target)
 {
     CC_SAFE_RETAIN(target);
-    CC_SAFE_RELEASE(m_target);
-    m_target = target;
+    CC_SAFE_RELEASE(_target);
+    _target = target;
 }
 
 NS_CC_YHGE_END

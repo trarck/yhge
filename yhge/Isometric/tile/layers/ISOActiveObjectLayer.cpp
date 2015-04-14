@@ -7,27 +7,27 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOActiveObjectLayer::ISOActiveObjectLayer()
-:m_layerName("")
-,m_layerOrientation(0)
-,m_opacity(255)
-,m_offset(CCPointZero)
-,m_properties(NULL)
-,m_map(NULL)
-,m_vertexZvalue(0)
-,m_objectGroup(NULL)
+:_layerName("")
+,_layerOrientation(0)
+,_opacity(255)
+,_offset(CCPointZero)
+,_properties(NULL)
+,_map(NULL)
+,_vertexZvalue(0)
+,_objectGroup(NULL)
 {
 	
 }
 
 ISOActiveObjectLayer::~ISOActiveObjectLayer()
 {
-    CC_SAFE_RELEASE_NULL(m_properties);
-    CC_SAFE_RELEASE_NULL(m_objectGroup);
+    CC_SAFE_RELEASE_NULL(_properties);
+    CC_SAFE_RELEASE_NULL(_objectGroup);
 }
 
 bool ISOActiveObjectLayer::init()
 {
-    m_properties=new CCDictionary();
+    _properties=new CCDictionary();
     
 	return true;
 }
@@ -52,8 +52,8 @@ void ISOActiveObjectLayer::releaseLayer()
 
 void ISOActiveObjectLayer::setupObjects()
 {
-    if (m_objectGroup) {
-        CCArray* objects=m_objectGroup->getObjects();
+    if (_objectGroup) {
+        CCArray* objects=_objectGroup->getObjects();
         Ref* pObj=NULL;
         ISOMapObject* mapObject=NULL;
         CCARRAY_FOREACH(objects, pObj){
@@ -70,7 +70,7 @@ void ISOActiveObjectLayer::setupObjects()
  */
 CCSprite* ISOActiveObjectLayer::createObject(int gid,const CCPoint& position)
 {
-    ISOTileset* tileset=m_map->getTilesetGroup()->getTilesetByGid(gid);
+    ISOTileset* tileset=_map->getTilesetGroup()->getTilesetByGid(gid);
     
     ISOTile* tile=tileset->tileForGid(gid);
     
@@ -78,7 +78,7 @@ CCSprite* ISOActiveObjectLayer::createObject(int gid,const CCPoint& position)
     //object 的对齐方式为底部居中
     tileSprite->setAnchorPoint(ccp(0.5f,0));
     tileSprite->setPosition(isoGameToViewPoint(position));
-    tileSprite->setOpacity(m_opacity);
+    tileSprite->setOpacity(_opacity);
     
     this->addChild(tileSprite,-position.y);
     
@@ -103,7 +103,7 @@ void ISOActiveObjectLayer::parseInternalProperties()
 
 CCString* ISOActiveObjectLayer::propertyNamed(const char *propertyName)
 {
-    return (CCString*)m_properties->objectForKey(propertyName);
+    return (CCString*)_properties->objectForKey(propertyName);
 }
 
 NS_CC_YHGE_ISOMETRIC_END

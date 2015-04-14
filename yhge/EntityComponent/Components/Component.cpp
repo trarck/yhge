@@ -5,53 +5,53 @@
 NS_CC_YHGE_BEGIN
 
 Component::Component()
-:m_name("")
-,m_owner(NULL)
-,m_type(0)
+:_name("")
+,_owner(NULL)
+,_type(0)
 {
     YHDEBUG("Component[0x%lx] create",(unsigned long)this);
 }
 
 Component::Component(const std::string& name)
-:m_name(name)
-,m_owner(NULL)
+:_name(name)
+,_owner(NULL)
 {
-    YHDEBUG("Component[0x%lx](%s) create",(unsigned long)this,m_name.c_str());
+    YHDEBUG("Component[0x%lx](%s) create",(unsigned long)this,_name.c_str());
 }
 
 Component::~Component()
 {
-    YHDEBUG("Component[0x%lx](%s) destroy",(unsigned long)this,m_name.c_str());
+    YHDEBUG("Component[0x%lx](%s) destroy",(unsigned long)this,_name.c_str());
 }
 
 bool Component::init(void)
 {
-    YHDEBUG("Component[0x%lx](%s) init",(unsigned long)this,m_name.c_str());
+    YHDEBUG("Component[0x%lx](%s) init",(unsigned long)this,_name.c_str());
     return true;
 }
 
 void Component::setup(void)
 {
-    YHDEBUG("Component[0x%lx](%s)::setup",(unsigned long)this,m_name.c_str());
+    YHDEBUG("Component[0x%lx](%s)::setup",(unsigned long)this,_name.c_str());
     this->registerMessages();
 }
 
 void Component::cleanup(void)
 {
-    YHDEBUG("Component[0x%lx](%s)::cleanup",(unsigned long)this,m_name.c_str());
+    YHDEBUG("Component[0x%lx](%s)::cleanup",(unsigned long)this,_name.c_str());
     this->cleanupMessages();
 }
 
 bool Component::registerMessages()
 {
-    YHDEBUG("Component[0x%lx](%s)::registerMessages",(unsigned long)this,m_name.c_str());
+    YHDEBUG("Component[0x%lx](%s)::registerMessages",(unsigned long)this,_name.c_str());
     
     return true;
 }
 
 void Component::cleanupMessages()
 {
-    YHDEBUG("Component[0x%lx](%s)::cleanupMessages",(unsigned long)this,m_name.c_str());
+    YHDEBUG("Component[0x%lx](%s)::cleanupMessages",(unsigned long)this,_name.c_str());
 }
 
 /**

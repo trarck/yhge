@@ -14,11 +14,11 @@ NS_CC_YHGE_BEGIN
 Message::~Message(void)
 {
     //CCLOG("Message destroy begin");
-    CC_SAFE_RELEASE_NULL(m_sender);
-    CC_SAFE_RELEASE_NULL(m_receiver);
-//    CC_SAFE_RELEASE(m_dData);
-    CC_SAFE_RELEASE_NULL(m_pData);
-	CC_SAFE_RELEASE_NULL(m_pExtData);
+    CC_SAFE_RELEASE_NULL(_sender);
+    CC_SAFE_RELEASE_NULL(_receiver);
+//    CC_SAFE_RELEASE(_dData);
+    CC_SAFE_RELEASE_NULL(_pData);
+	CC_SAFE_RELEASE_NULL(_pExtData);
     //CCLOG("Message destroy end");
 }
 

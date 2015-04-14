@@ -36,18 +36,18 @@ public:
 
     inline void setSpriteRenderer(CCSprite* spriteRenderer)
     {
-        m_spriteRenderer = spriteRenderer;
+        _spriteRenderer = spriteRenderer;
         setRenderer(spriteRenderer);
     }
     
     inline CCSprite* getSpriteRenderer()
     {
-        return m_spriteRenderer;
+        return _spriteRenderer;
     }
     
 protected:
     
-    CCSprite* m_spriteRenderer;
+    CCSprite* _spriteRenderer;
     
 };
 

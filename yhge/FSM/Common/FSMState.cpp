@@ -9,14 +9,14 @@ bool FSMState::init()
 
 bool FSMState::init(FSMMachine* fsmMachine)
 {
-    m_fSMMachine=fsmMachine;
+    _fSMMachine=fsmMachine;
     return true;
 }
 
 bool FSMState::init(FSMMachine* fsmMachine,int type)
 {
-    m_fSMMachine=fsmMachine;
-    m_type=type;
+    _fSMMachine=fsmMachine;
+    _type=type;
     return true;
 }
 

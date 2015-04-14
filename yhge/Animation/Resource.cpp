@@ -4,18 +4,18 @@
 NS_CC_YHGE_BEGIN
 
 Resource::Resource()
-:m_id(0)
-,m_type(kNoneTexture)
-,m_spriteFrame(NULL)
-,m_texture(NULL)
+:_id(0)
+,_type(kNoneTexture)
+,_spriteFrame(NULL)
+,_texture(NULL)
 {
 
 }
     
 Resource::~Resource()
 {
-    CC_SAFE_RELEASE_NULL(m_spriteFrame);
-    CC_SAFE_RELEASE_NULL(m_texture);
+    CC_SAFE_RELEASE_NULL(_spriteFrame);
+    CC_SAFE_RELEASE_NULL(_texture);
 }
 
 bool Resource::init()
@@ -26,12 +26,12 @@ bool Resource::init()
 CCSize Resource::getSize()
 {
     CCSize size;
-    switch (m_type) {
+    switch (_type) {
         case kPackTexture:
-            size=m_spriteFrame->getOriginalSize();
+            size=_spriteFrame->getOriginalSize();
             break;
         case kFileTexture:
-            size=m_texture->getContentSize();
+            size=_texture->getContentSize();
             break;
         default:
             size=CCSizeZero;

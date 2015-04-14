@@ -8,21 +8,21 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 static const int kCoordLineZOrder=10000;
 
 ISOTileMap::ISOTileMap()
-:m_pObjectGroups(NULL)
-,m_pDynamicGroup(NULL)
-,m_pTilesetGroup(NULL)
-,m_useDynamicGroup(false)
-,m_dynamicComponents(NULL)
+:_pObjectGroups(NULL)
+,_pDynamicGroup(NULL)
+,_pTilesetGroup(NULL)
+,_useDynamicGroup(false)
+,_dynamicComponents(NULL)
 {
 	
 }
 
 ISOTileMap::~ISOTileMap()
 {
-    CC_SAFE_RELEASE_NULL(m_pTilesetGroup);
-    CC_SAFE_RELEASE_NULL(m_pObjectGroups);
-    CC_SAFE_RELEASE_NULL(m_pDynamicGroup);
-	CC_SAFE_RELEASE_NULL(m_dynamicComponents);
+    CC_SAFE_RELEASE_NULL(_pTilesetGroup);
+    CC_SAFE_RELEASE_NULL(_pObjectGroups);
+    CC_SAFE_RELEASE_NULL(_pDynamicGroup);
+	CC_SAFE_RELEASE_NULL(_dynamicComponents);
 }
 
 ISOTileMap * ISOTileMap::createWithXMLFile(const char *xmlFile)
@@ -77,9 +77,9 @@ bool ISOTileMap::init()
 {
 
     if (ISOMap::init()) {
-        m_pObjectGroups=new CCArray();
+        _pObjectGroups=new CCArray();
         
-        m_dynamicComponents=new CCArray();
+        _dynamicComponents=new CCArray();
         
         return true;
     }
@@ -96,7 +96,7 @@ bool ISOTileMap::init()
 //    //ISOTileLayer *layer = ISOTileLayer::create(tileset, layerInfo, mapInfo);
 //    //
 //    //// tell the layerinfo to release the ownership of the tiles map.
-//    //layerInfo->m_bOwnTiles = false;
+//    //layerInfo->_bOwnTiles = false;
 //    //layer->setupTiles();
 //    //
 //    //return layer;
@@ -105,7 +105,7 @@ bool ISOTileMap::init()
 //
 //ISOTilesetInfo * ISOTileMap::tilesetForLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo)
 //{
-//    CCSize size = layerInfo->m_tLayerSize;
+//    CCSize size = layerInfo->_tLayerSize;
 //    CCArray* tilesets = mapInfo->getTilesets();
 //    if (tilesets && tilesets->count()>0)
 //    {
@@ -121,7 +121,7 @@ bool ISOTileMap::init()
 //                    for( unsigned int x=0; x < size.width; x++ )
 //                    {
 //                        unsigned int pos = (unsigned int)(x + size.width * y);
-//                        unsigned int gid = layerInfo->m_pTiles[ pos ];
+//                        unsigned int gid = layerInfo->_pTiles[ pos ];
 //                        
 //                        // gid are stored in little endian.
 //                        // if host is big endian, then swap
@@ -134,7 +134,7 @@ bool ISOTileMap::init()
 //                        {
 //                            // Optimization: quick return
 //                            // if the layer is invalid (more than 1 tileset per layer) an CCAssert will be thrown later
-//                            if( (gid & kCCFlippedMask) >= tileset->m_uFirstGid )
+//                            if( (gid & kCCFlippedMask) >= tileset->_uFirstGid )
 //                                return tileset;
 //                        }
 //                    }
@@ -144,15 +144,15 @@ bool ISOTileMap::init()
 //    }
 //    
 //    // If all the tiles are 0, return empty tileset
-//    CCLOG("cocos2d: Warning: ISO Layer '%s' has no tiles", layerInfo->m_sName.c_str());
+//    CCLOG("cocos2d: Warning: ISO Layer '%s' has no tiles", layerInfo->_sName.c_str());
 //    return NULL;
 //}
 //
 //void ISOTileMap::buildWithMapInfo(ISOMapInfo* mapInfo)
 //{
-//    m_tMapSize = mapInfo->getMapSize();
-//    m_tTileSize = mapInfo->getTileSize();
-//    m_nMapOrientation = mapInfo->getOrientation();
+//    _tMapSize = mapInfo->getMapSize();
+//    _tTileSize = mapInfo->getTileSize();
+//    _nMapOrientation = mapInfo->getOrientation();
 //    
 //    this->setTileLayers(mapInfo->getLayers());
 //    this->setObjectGroups( mapInfo->getObjectGroups());
@@ -174,7 +174,7 @@ bool ISOTileMap::init()
 //        CCARRAY_FOREACH(layers, pObj)
 //        {
 //            layerInfo = (ISOLayerInfo*)pObj;
-//            if (layerInfo && layerInfo->m_bVisible)
+//            if (layerInfo && layerInfo->_bVisible)
 //            {
 //                ISOTileLayer *child = parseLayer(layerInfo, mapInfo);
 //                addChild((CCNode*)child, idx, idx);
@@ -198,8 +198,8 @@ ISOTileset* ISOTileMap::tilesetNamed(const std::string& tilesetName)
 {
     CCAssert(tilesetName!="", "Invalid tileset name!");
     
-    if (m_pTilesetGroup && m_pTilesetGroup->tilesetCount()>0){
-        CCArray* pTilesets=m_pTilesetGroup->getTilesets();
+    if (_pTilesetGroup && _pTilesetGroup->tilesetCount()>0){
+        CCArray* pTilesets=_pTilesetGroup->getTilesets();
         Ref* pObj = NULL;
         ISOTileset* tileset =NULL;
         
@@ -223,12 +223,12 @@ ISOObjectGroup * ISOTileMap::objectGroupNamed(const std::string& objectGroupName
 {
     CCAssert(objectGroupName != "", "Invalid object group name!");
     
-    if (m_pObjectGroups && m_pObjectGroups->count()>0)
+    if (_pObjectGroups && _pObjectGroups->count()>0)
     {
         ISOObjectGroup* objectGroup = NULL;
         Ref* pObj = NULL;
         
-        CCARRAY_FOREACH(m_pObjectGroups, pObj)
+        CCARRAY_FOREACH(_pObjectGroups, pObj)
         {
             objectGroup = dynamic_cast<ISOObjectGroup*>(pObj);
             if(objectGroup)
@@ -249,16 +249,16 @@ void ISOTileMap::scrollLayer(const CCPoint& pos)
 {
 	CCPoint localPos=ccpMult(pos, 1/this->getScale());
 
-	if (m_useDynamicGroup){
+	if (_useDynamicGroup){
 		//如果使用动态组，则只更新动态组	
-		m_pDynamicGroup->scroll(localPos);
+		_pDynamicGroup->scroll(localPos);
 
 	}else{
 
 		Ref* pObj=NULL;
 		ISOLayer* layer;
 
-		CCARRAY_FOREACH(m_layers, pObj){
+		CCARRAY_FOREACH(_layers, pObj){
 			layer=(ISOLayer*) pObj;
 			layer->scroll(localPos);
 		}
@@ -271,8 +271,8 @@ void ISOTileMap::scrollLayer(const CCPoint& pos)
 void ISOTileMap::showCoordLine()
 {
 	ISOCoordinateLayer* coordLayer=ISOCoordinateLayer::create();
-	coordLayer->setMapWidth((int)m_tMapSize.width);
-	coordLayer->setMapHeight((int)m_tMapSize.height);
+	coordLayer->setMapWidth((int)_tMapSize.width);
+	coordLayer->setMapHeight((int)_tMapSize.height);
 	this->addChild(coordLayer,kCoordLineZOrder);
 }
 
@@ -294,7 +294,7 @@ bool ISOTileMap::isWorkable(float x,float y)
 */
 void ISOTileMap::addDynamicComponent(ISODynamicComponent* dynamicComponent)
 {
-	m_dynamicComponents->addObject(dynamicComponent);
+	_dynamicComponents->addObject(dynamicComponent);
 }
 
 /**
@@ -302,7 +302,7 @@ void ISOTileMap::addDynamicComponent(ISODynamicComponent* dynamicComponent)
  */
 void ISOTileMap::setupDynamicGroup()
 {
-    if (m_useDynamicGroup) {
+    if (_useDynamicGroup) {
         ISODynamicGroup* dynamicGroup=new ISODynamicGroup();
         dynamicGroup->init();
         
@@ -312,7 +312,7 @@ void ISOTileMap::setupDynamicGroup()
         int componentTileColumn=0;
         int componentTileRow=0;
         
-        ISOTileUtils::calcDynamicComponetSize(visibleSize,m_tTileSize,&componentTileColumn,&componentTileRow);
+        ISOTileUtils::calcDynamicComponetSize(visibleSize,_tTileSize,&componentTileColumn,&componentTileRow);
         
         dynamicGroup->setComponentTileColumn(componentTileColumn);
         dynamicGroup->setComponentTileRow(componentTileRow);
@@ -328,7 +328,7 @@ void ISOTileMap::setupDynamicGroup()
  */
 void ISOTileMap::setupDynamicGroup(ISODynamicGroup* dynamicGroup,const CCPoint& offset)
 {
-    if (m_useDynamicGroup) {
+    if (_useDynamicGroup) {
         //TODO 检查每个组件是不是一样的设置，主要是它们的组件的行列值
         setDynamicGroup(dynamicGroup);
 
@@ -339,7 +339,7 @@ void ISOTileMap::setupDynamicGroup(ISODynamicGroup* dynamicGroup,const CCPoint& 
         Ref* pObj=NULL;
         ISODynamicComponent* dynamicComponent=NULL;
 
-        CCARRAY_FOREACH(m_dynamicComponents,pObj){
+        CCARRAY_FOREACH(_dynamicComponents,pObj){
             dynamicComponent=static_cast<ISODynamicComponent*>(pObj);
             dynamicGroup->addDynamicComponent(dynamicComponent);
         }
@@ -351,25 +351,25 @@ void ISOTileMap::setupDynamicGroup(ISODynamicGroup* dynamicGroup,const CCPoint& 
  */
 void ISOTileMap::setupDynamicGroups()
 {
-    if (m_useDynamicGroup) {
+    if (_useDynamicGroup) {
         //TODO
     }
 }
 
 void ISOTileMap::setUseDynamicGroup(bool useDynamicGroup)
 {
-    m_useDynamicGroup = useDynamicGroup;
+    _useDynamicGroup = useDynamicGroup;
 
-	//if (m_useDynamicGroup!=useDynamicGroup)
+	//if (_useDynamicGroup!=useDynamicGroup)
 	//{
-	//	m_useDynamicGroup = useDynamicGroup;
+	//	_useDynamicGroup = useDynamicGroup;
 
-	//	if (m_useDynamicGroup)
+	//	if (_useDynamicGroup)
 	//	{
-	//		if (m_pDynamicGroup==NULL)
+	//		if (_pDynamicGroup==NULL)
 	//		{
-	//			m_pDynamicGroup=new ISODynamicGroup();
-	//			m_pDynamicGroup->init();
+	//			_pDynamicGroup=new ISODynamicGroup();
+	//			_pDynamicGroup->init();
 	//		}
 	//	}else{
 	//		setDynamicGroup(NULL);

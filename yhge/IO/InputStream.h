@@ -62,43 +62,43 @@ public:
     inline void setBuffer(Buffer* buffer)
     {
         CC_SAFE_RETAIN(buffer);
-        CC_SAFE_RELEASE(m_buffer);
-        m_buffer = buffer;
+        CC_SAFE_RELEASE(_buffer);
+        _buffer = buffer;
     }
     
     inline Buffer* getBuffer()
     {
-        return m_buffer;
+        return _buffer;
     }
     
     inline void setPos(size_t pos)
     {
-        m_pos = pos;
+        _pos = pos;
     }
     
     inline size_t getPos()
     {
-        return m_pos;
+        return _pos;
     }
     
     inline void setEndianness(Endianness endianness)
     {
-        m_endianness = endianness;
+        _endianness = endianness;
     }
     
     inline Endianness getEndianness()
     {
-        return m_endianness;
+        return _endianness;
     }
     
 protected:
     
-    Buffer* m_buffer;
+    Buffer* _buffer;
     
-    size_t m_pos;
+    size_t _pos;
     
     //字节流使用的顺序
-    Endianness m_endianness;
+    Endianness _endianness;
     
 };
 

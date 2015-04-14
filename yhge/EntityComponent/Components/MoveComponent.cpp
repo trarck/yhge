@@ -21,38 +21,38 @@ static int kDirectionMapping[8]={
 
 MoveComponent::MoveComponent()
 :Component("MoveComponent")
-,m_moveState(MoveIdle)
-,m_moveType(kMoveNone)
-,m_speed(0.0f)
-,m_speedX(0.0f)
-,m_speedY(0.0f)
-,m_direction(0.0f)
-,m_directionX(0)
-,m_directionY(0)
-,m_directionFlagX(0)
-,m_directionFlagY(0)
-,m_to(CCPointZero)
-,m_moving(false)
-,m_fromIndex(0)
-,m_hasEndPosition(false)
-,m_pCurrentPaths(NULL)
-,m_pNextPaths(NULL)
-,m_pathIndex(0)
-,m_update(NULL)
+,_moveState(MoveIdle)
+,_moveType(kMoveNone)
+,_speed(0.0f)
+,_speedX(0.0f)
+,_speedY(0.0f)
+,_direction(0.0f)
+,_directionX(0)
+,_directionY(0)
+,_directionFlagX(0)
+,_directionFlagY(0)
+,_to(CCPointZero)
+,_moving(false)
+,_fromIndex(0)
+,_hasEndPosition(false)
+,_pCurrentPaths(NULL)
+,_pNextPaths(NULL)
+,_pathIndex(0)
+,_update(NULL)
 {
 
 }
 
 MoveComponent::~MoveComponent()
 {
-	CC_SAFE_RELEASE(m_pCurrentPaths);
-	CC_SAFE_RELEASE(m_pNextPaths);
+	CC_SAFE_RELEASE(_pCurrentPaths);
+	CC_SAFE_RELEASE(_pNextPaths);
 }
 
 bool MoveComponent::init()
 {
 	if(Component::init()){
-		m_moveState=MoveStop;      
+		_moveState=MoveStop;      
 	}
     return true;
 }
@@ -60,7 +60,7 @@ bool MoveComponent::init()
 bool MoveComponent::init(float speed)
 {
 	if (init()) {
-		m_speed=speed;
+		_speed=speed;
 	}
 	return true;
 }
@@ -68,14 +68,14 @@ bool MoveComponent::init(float speed)
 void MoveComponent::setup()
 {
     Component::setup();
-    m_isoPositionComponent=static_cast<ISOPositionComponent*>(m_owner->getComponent("ISOPositionComponent"));
-    m_rendererComponent=static_cast<RendererComponent*>(m_owner->getComponent("RendererComponent"));
+    _isoPositionComponent=static_cast<ISOPositionComponent*>(_owner->getComponent("ISOPositionComponent"));
+    _rendererComponent=static_cast<RendererComponent*>(_owner->getComponent("RendererComponent"));
 }
 
 void MoveComponent::cleanup()
 {
-    m_isoPositionComponent=NULL;
-    m_rendererComponent=NULL;
+    _isoPositionComponent=NULL;
+    _rendererComponent=NULL;
     Component::cleanup();
 }
 
@@ -84,9 +84,9 @@ bool MoveComponent::registerMessages()
     if(Component::registerMessages()){
         MessageManager* messageManager=MessageManager::defaultManager();
         
-        messageManager->registerReceiver(m_owner, MSG_MOVE_DIRECTION, NULL, message_selector(MoveComponent::onMoveDirection),this);
-        messageManager->registerReceiver(m_owner, MSG_MOVE_STOP, NULL, message_selector(MoveComponent::onMoveStop),this);
-        messageManager->registerReceiver(m_owner, MSG_MOVE_TO, NULL, message_selector(MoveComponent::onMoveTo),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_DIRECTION, NULL, message_selector(MoveComponent::onMoveDirection),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_STOP, NULL, message_selector(MoveComponent::onMoveStop),this);
+        messageManager->registerReceiver(_owner, MSG_MOVE_TO, NULL, message_selector(MoveComponent::onMoveTo),this);
         
         return true;
     }
@@ -97,9 +97,9 @@ bool MoveComponent::registerMessages()
 
 void MoveComponent::cleanupMessages()
 {
-    this->getMessageManager()->removeReceiver(m_owner, MSG_MOVE_DIRECTION);
-    this->getMessageManager()->removeReceiver(m_owner, MSG_MOVE_DIRECTION_STOP);
-    this->getMessageManager()->removeReceiver(m_owner, MSG_MOVE_TO);
+    this->getMessageManager()->removeReceiver(_owner, MSG_MOVE_DIRECTION);
+    this->getMessageManager()->removeReceiver(_owner, MSG_MOVE_DIRECTION_STOP);
+    this->getMessageManager()->removeReceiver(_owner, MSG_MOVE_TO);
     
     Component::cleanupMessages();
 }
@@ -119,7 +119,7 @@ bool MoveComponent::checkMoveable()
  */
 void MoveComponent::startMove()
 {
-	m_moveState=MoveStart;
+	_moveState=MoveStart;
     startMoveUpdateSchedule();
     doMoveStart();
 }
@@ -131,17 +131,17 @@ void MoveComponent::startMove()
 void MoveComponent::stopMove()
 {
     stopMoveUpdateSchedule();
-    m_moveState=MoveStop;
+    _moveState=MoveStop;
     doMoveStop();
 }
 
 void MoveComponent::moveTo(const CCPoint& to)
 {
-    if (m_moveState==MoveStop) {
+    if (_moveState==MoveStop) {
         
-        m_moveType=kMoveTo;
+        _moveType=kMoveTo;
         
-        CCPoint from=m_rendererComponent->getRenderer()->getPosition();
+        CCPoint from=_rendererComponent->getRenderer()->getPosition();
         if(prepareTo(to, from)){
             if(checkMoveable()){
                 prepareMove();
@@ -155,9 +155,9 @@ void MoveComponent::moveTo(const CCPoint& to)
 
 void MoveComponent::continueMoveTo(const CCPoint& to)
 {
-    CCAssert(m_moveType==kMoveTo, "MoveComponent::continueMoveTo before move type is not the same");
+    CCAssert(_moveType==kMoveTo, "MoveComponent::continueMoveTo before move type is not the same");
     
-    CCPoint from=m_rendererComponent->getRenderer()->getPosition();
+    CCPoint from=_rendererComponent->getRenderer()->getPosition();
     
     if(prepareTo(to, from)){
         if (checkMoveable()) {
@@ -182,9 +182,9 @@ void MoveComponent::moveWithDirection(float direction,bool hasTo)
 {
     YHINFO("moveWithDirection:%f",direction);
     
-    if (m_moveState==MoveStop) {
+    if (_moveState==MoveStop) {
         
-        m_moveType=kMoveDirection;
+        _moveType=kMoveDirection;
         
         prepareDirection(direction);
 
@@ -210,9 +210,9 @@ void MoveComponent::moveWithDirection(float directionX ,float directionY)
  */
 void MoveComponent::moveWithDirection(float directionX ,float directionY,bool hasTo)
 {
-    if (m_moveState==MoveStop) {
+    if (_moveState==MoveStop) {
         
-        m_moveType=kMoveDirection;
+        _moveType=kMoveDirection;
         
         prepareDirection(directionX,directionY);
         
@@ -229,7 +229,7 @@ void MoveComponent::moveWithDirection(float directionX ,float directionY,bool ha
  */
 void MoveComponent::continueMoveWithDirection(float direction)
 {
-    CCAssert(m_moveType==kMoveDirection, "MoveComponent::continueMoveWithDirection before move type is not the same");
+    CCAssert(_moveType==kMoveDirection, "MoveComponent::continueMoveWithDirection before move type is not the same");
 	prepareDirection(direction);
     if (checkMoveable()) {
         prepareMove();
@@ -243,7 +243,7 @@ void MoveComponent::continueMoveWithDirection(float direction)
  */
 void MoveComponent::continueMoveWithDirection(float directionX ,float directionY)
 {
-    CCAssert(m_moveType==kMoveDirection, "MoveComponent::continueMoveWithDirection before move type is not the same");
+    CCAssert(_moveType==kMoveDirection, "MoveComponent::continueMoveWithDirection before move type is not the same");
 	prepareDirection(directionX,directionY);
     if (checkMoveable()) {
         prepareMove();
@@ -262,11 +262,11 @@ void MoveComponent::moveWithPaths(CCArray* paths)
 
 void MoveComponent::moveWithPaths(CCArray* paths,int fromIndex)
 {
-	if (m_moveState==MoveStop) {
+	if (_moveState==MoveStop) {
         
-        m_moveType=kMovePath;
+        _moveType=kMovePath;
         
-		m_fromIndex=fromIndex;
+		_fromIndex=fromIndex;
 		this->setCurrentPaths(paths);
 		preparePath();
 		if (checkMoveable()) {
@@ -274,7 +274,7 @@ void MoveComponent::moveWithPaths(CCArray* paths,int fromIndex)
 			startMove();
 		}
 	}else{
-		m_fromIndex=fromIndex;
+		_fromIndex=fromIndex;
 		continueMoveWithPaths(paths);
 	}
 }
@@ -283,7 +283,7 @@ void MoveComponent::moveWithPaths(CCArray* paths,int fromIndex)
  */
 void MoveComponent::continueMoveWithPaths(CCArray* paths)
 {
-    CCAssert(m_moveType==kMovePath, "MoveComponent::continueMoveWithPaths before move type is not the same");
+    CCAssert(_moveType==kMovePath, "MoveComponent::continueMoveWithPaths before move type is not the same");
 	this->setNextPaths(paths);
     preparePath();
     if (checkMoveable()) {
@@ -291,7 +291,7 @@ void MoveComponent::continueMoveWithPaths(CCArray* paths)
     }else{
         stopMove();
     }
-//	m_moveState=MoveContinue;
+//	_moveState=MoveContinue;
 }
 
 /**
@@ -308,7 +308,7 @@ bool MoveComponent::beforeMovePath()
 
 void MoveComponent::restartMoveWithPaths()
 {
-	m_moveState=MoveStart;
+	_moveState=MoveStart;
 	preparePath();
 	beforeMovePath();
 }
@@ -317,7 +317,7 @@ void MoveComponent::restartMoveWithPaths()
  * 取得当前路径结点索引
  */
 int MoveComponent::getCurrentPathIndex(){
-	return m_pCurrentPaths->count()-2-m_fromIndex;
+	return _pCurrentPaths->count()-2-_fromIndex;
 }
 
 /**
@@ -326,17 +326,17 @@ int MoveComponent::getCurrentPathIndex(){
  */
 void MoveComponent::calcDirection()
 {
-	CCPoint pos=m_rendererComponent->getRenderer()->getPosition();
-	m_directionX=m_to.x>pos.x?1:m_to.x<pos.y?-1:0;
-	m_directionY=m_to.y>pos.y?1:m_to.y<pos.y?-1:0;
+	CCPoint pos=_rendererComponent->getRenderer()->getPosition();
+	_directionX=_to.x>pos.x?1:_to.x<pos.y?-1:0;
+	_directionY=_to.y>pos.y?1:_to.y<pos.y?-1:0;
 }
 
 /**
  * 计算速度分量
  */
 void MoveComponent::calcSpeedVector(){
-    m_speedX=m_speed*m_directionX;
-    m_speedY=m_speed*m_directionY;
+    _speedX=_speed*_directionX;
+    _speedY=_speed*_directionY;
 }
 
 /**
@@ -345,18 +345,18 @@ void MoveComponent::calcSpeedVector(){
  */
 void MoveComponent::updateTo( float delta)
 {
-    CCNode* renderer=m_rendererComponent->getRenderer();
+    CCNode* renderer=_rendererComponent->getRenderer();
     
     CCPoint pos=renderer->getPosition();
 	//根据速度计算移动距离
-	pos.x+=delta*m_speedX;
-	pos.y+=delta*m_speedY;
+	pos.x+=delta*_speedX;
+	pos.y+=delta*_speedY;
     
     //    CCLOG("x:%f,y:%f",pos.x,pos.y);
 	//判断是否结束
-	if ((m_directionFlagX * pos.x>m_directionFlagX*m_to.x  || fabs(pos.x-m_to.x)<0.00001) &&  (m_directionFlagY*pos.y> m_directionFlagY* m_to.y|| fabs(pos.y-m_to.y)<0.00001)) {
-		pos.x=m_to.x;
-		pos.y=m_to.y;
+	if ((_directionFlagX * pos.x>_directionFlagX*_to.x  || fabs(pos.x-_to.x)<0.00001) &&  (_directionFlagY*pos.y> _directionFlagY* _to.y|| fabs(pos.y-_to.y)<0.00001)) {
+		pos.x=_to.x;
+		pos.y=_to.y;
 		stopMove();
 	}
     
@@ -369,13 +369,13 @@ void MoveComponent::updateTo( float delta)
  */
 void MoveComponent::updateDirection( float delta)
 {
-    CCNode* renderer=m_rendererComponent->getRenderer();
+    CCNode* renderer=_rendererComponent->getRenderer();
     
     CCPoint pos=renderer->getPosition();
     
 	//根据速度计算移动距离
-	pos.x+=delta*m_speedX;
-	pos.y+=delta*m_speedY;
+	pos.x+=delta*_speedX;
+	pos.y+=delta*_speedY;
     
     renderer->setPosition(pos);
     
@@ -389,22 +389,22 @@ void MoveComponent::updateDirection( float delta)
  */
 void MoveComponent::updatePath(float delta)
 {
-    CCNode* renderer=m_rendererComponent->getRenderer();
+    CCNode* renderer=_rendererComponent->getRenderer();
     
     CCPoint pos=renderer->getPosition();
 	//根据速度计算移动距离
-	pos.x+=delta*m_speedX;
-	pos.y+=delta*m_speedY;
+	pos.x+=delta*_speedX;
+	pos.y+=delta*_speedY;
     
 //    CCLOG("x:%f,y:%f",pos.x,pos.y);
 	//判断是否结束	
-	if ((m_directionFlagX * pos.x>m_directionFlagX*m_to.x  || fabs(pos.x-m_to.x)<0.00001) &&  (m_directionFlagY*pos.y> m_directionFlagY* m_to.y|| fabs(pos.y-m_to.y)<0.00001)) {
-		pos.x=m_to.x;
-		pos.y=m_to.y;
+	if ((_directionFlagX * pos.x>_directionFlagX*_to.x  || fabs(pos.x-_to.x)<0.00001) &&  (_directionFlagY*pos.y> _directionFlagY* _to.y|| fabs(pos.y-_to.y)<0.00001)) {
+		pos.x=_to.x;
+		pos.y=_to.y;
 
-        if (--m_pathIndex>=0 && m_moveState==MoveStart) {
+        if (--_pathIndex>=0 && _moveState==MoveStart) {
 			//进行下一个格子
-            preparePath(m_pathIndex);
+            preparePath(_pathIndex);
             if (checkMoveable()) {
                 prepareMove();
             }else{
@@ -429,14 +429,14 @@ void MoveComponent::doDirectionChange()
 	//根据方向来确定8方向。
     //一种方法是根据角度值来确定8方向
     //一种是直接根据公式来映射
-	int index=kDirectionMapping[this->hadap(m_direction)];
+	int index=kDirectionMapping[this->hadap(_direction)];
 
 	if (index>-1) {
 		CCDictionary* data=new CCDictionary();
 		data->setObject(CCString::create("move"), "name");
 		data->setObject(CCInteger::create(index), "direction");
     
-		this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, this, m_owner,data);
+		this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, this, _owner,data);
 	}
 }
 
@@ -459,7 +459,7 @@ void MoveComponent::doMoveStop()
     data->setObject(CCString::create("idle"), "name");
     data->setObject(CCInteger::create(0), "direction");
     
-    this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, m_owner,data);
+    this->getMessageManager()->dispatchMessage(MSG_CHANGE_ANIMATION, NULL, _owner,data);
 
 }
 
@@ -520,11 +520,11 @@ bool MoveComponent::prepareTo(const CCPoint& to,const CCPoint& from)
  */
 void MoveComponent::prepareDirection(float direction)
 {
-    m_directionX=cosf(direction);
-    m_directionY=sinf(direction);
-    m_direction=direction;
-    m_directionFlagX=m_directionX>0?1:m_directionX<0?-1:0;
-    m_directionFlagY=m_directionX>0?1:m_directionX<0?-1:0;
+    _directionX=cosf(direction);
+    _directionY=sinf(direction);
+    _direction=direction;
+    _directionFlagX=_directionX>0?1:_directionX<0?-1:0;
+    _directionFlagY=_directionX>0?1:_directionX<0?-1:0;
 }
 
 /**
@@ -532,11 +532,11 @@ void MoveComponent::prepareDirection(float direction)
  */
 void MoveComponent::prepareDirection(float directionX,float directionY)
 {
-    m_directionX=directionX;
-    m_directionY=directionY;
-    m_direction=atan2f(directionY, directionX);
-    m_directionFlagX=m_directionX>0?1:m_directionX<0?-1:0;
-    m_directionFlagY=m_directionX>0?1:m_directionX<0?-1:0;
+    _directionX=directionX;
+    _directionY=directionY;
+    _direction=atan2f(directionY, directionX);
+    _directionFlagX=_directionX>0?1:_directionX<0?-1:0;
+    _directionFlagY=_directionX>0?1:_directionX<0?-1:0;
 }
 
 /**
@@ -544,16 +544,16 @@ void MoveComponent::prepareDirection(float directionX,float directionY)
  */
 void MoveComponent::preparePath()
 {
-	m_pathIndex=getCurrentPathIndex();
-	preparePath(m_pathIndex);
+	_pathIndex=getCurrentPathIndex();
+	preparePath(_pathIndex);
 }
 
 void MoveComponent::preparePath(int pathIndex)
 {
     CCAssert(pathIndex>=0,"paths length less 2");
 	YHINFO("preparePath.PathIndex:%d",pathIndex);
-    CCPoint to= static_cast<CCPointValue*>(m_pCurrentPaths->objectAtIndex(pathIndex))->getPoint();
-    CCPoint from=m_rendererComponent->getRenderer()->getPosition();
+    CCPoint to= static_cast<CCPointValue*>(_pCurrentPaths->objectAtIndex(pathIndex))->getPoint();
+    CCPoint from=_rendererComponent->getRenderer()->getPosition();
     prepareTo(to, from);
 }
 
@@ -568,24 +568,24 @@ void MoveComponent::prepareMove()
 //开启更新定时器。为了使update不是虚函数，这里使用虚函数
 void MoveComponent::startMoveUpdateSchedule()
 {
-    switch (m_moveType)
+    switch (_moveType)
     {
         case kMoveDirection:
-            m_update=schedule_selector(MoveComponent::updateDirection);
+            _update=schedule_selector(MoveComponent::updateDirection);
             break;
         case kMovePath:
-            m_update=schedule_selector(MoveComponent::updatePath);
+            _update=schedule_selector(MoveComponent::updatePath);
             break;
         default:
             break;
     }
-    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(m_update,this, 0, false);
+    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(_update,this, 0, false);
 }
 
 void MoveComponent::stopMoveUpdateSchedule()
 {
-    CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(m_update,this);
-    m_update=NULL;
+    CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(_update,this);
+    _update=NULL;
 }
 
 NS_CC_YHGE_END

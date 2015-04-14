@@ -32,8 +32,8 @@ public:
 protected:
 	
 	//检查是否可通过的具体对像和方法。都是若引用
-	SEL_CheckWorkableHandler m_checkWorkableHandle;
-	Ref* m_checkWorkableTarget;
+	SEL_CheckWorkableHandler _checkWorkableHandle;
+	Ref* _checkWorkableTarget;
 };
 
 NS_CC_YHGE_END

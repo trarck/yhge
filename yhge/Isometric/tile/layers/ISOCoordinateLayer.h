@@ -25,9 +25,9 @@ public:
 	virtual void setMapHeight(int iMapHeight);
 	virtual int getMapHeight();
 private:
-	int m_iMapWidth;
-	int m_iMapHeight;
-	bool m_bIsShow;
+	int _iMapWidth;
+	int _iMapHeight;
+	bool _bIsShow;
 };
 
 NS_CC_YHGE_ISOMETRIC_END

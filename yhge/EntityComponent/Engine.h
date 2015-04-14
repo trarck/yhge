@@ -32,12 +32,12 @@ public:
     
     inline yhge::Scheduler* getScheduler()
     {
-        return m_scheduler;
+        return _scheduler;
     }
     
     inline UpdateManager* getUpdateManager()
     {
-        return m_updateManager;
+        return _updateManager;
     }
     
 //protected:
@@ -45,15 +45,15 @@ public:
 //    inline void setScheduler(yhge::Scheduler* scheduler)
 //    {
 //        CC_SAFE_RETAIN(scheduler);
-//        CC_SAFE_RELEASE(m_scheduler);
-//        m_scheduler = scheduler;
+//        CC_SAFE_RELEASE(_scheduler);
+//        _scheduler = scheduler;
 //    }
     
 protected:
     
-    yhge::Scheduler* m_scheduler;
+    yhge::Scheduler* _scheduler;
     
-    UpdateManager* m_updateManager;
+    UpdateManager* _updateManager;
     
 };
 

@@ -5,11 +5,11 @@ NS_CC_YHGE_BEGIN
 
 
 UpdateManager::UpdateManager()
-:m_id(0)
-,m_updateList()
-,m_updateGroup()
-,m_paused(false)
-,m_updating(false)
+:_id(0)
+,_updateList()
+,_updateGroup()
+,_paused(false)
+,_updating(false)
 {
     YHDEBUG("UpdateManager create");
 }
@@ -17,7 +17,7 @@ UpdateManager::UpdateManager()
 UpdateManager::~UpdateManager()
 {
     YHDEBUG("UpdateManager destroy");
-    m_updateList.clear();
+    _updateList.clear();
     clearGroup();
 }
 
@@ -29,29 +29,29 @@ bool UpdateManager::init(void)
 
 bool UpdateManager::init(int managerId)
 {
-    m_id=managerId;
+    _id=managerId;
     return true;
 }
 
 void UpdateManager::update(float delta)
 {
-    if (m_paused) {
+    if (_paused) {
         return;
     }
     
-    m_updating=true;
-    for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+    _updating=true;
+    for (UpdateList::iterator iter=_updateList.begin(); iter!=_updateList.end(); ++iter) {
         if(!(*iter)->isMarkedForDeletion()){
             (*iter)->update(delta);
         }
     }
-    m_updating=false;
+    _updating=false;
     
     //remove mark delete
     
-    for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+    for (UpdateList::iterator iter=_updateList.begin(); iter!=_updateList.end(); ++iter) {
         if((*iter)->isMarkedForDeletion()){
-            iter=m_updateList.erase(iter)-1;
+            iter=_updateList.erase(iter)-1;
         }
     }
 }
@@ -60,14 +60,14 @@ void UpdateManager::addUpdater(Ref* target,SEL_SCHEDULE handle,int priority)
 {
     UpdateHandler* updateHandler=new UpdateHandler(target,handle,priority);
     
-    if (m_updateList.size()==0) {
-        m_updateList.pushBack(updateHandler);
+    if (_updateList.size()==0) {
+        _updateList.pushBack(updateHandler);
     }else{
         bool insered=false;
-        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+        for (UpdateList::iterator iter=_updateList.begin(); iter!=_updateList.end(); ++iter) {
             if (priority<(*iter)->getPriority()) {
                 //insert here
-                m_updateList.insert(iter, updateHandler);
+                _updateList.insert(iter, updateHandler);
 
                 insered=true;
                 
@@ -76,7 +76,7 @@ void UpdateManager::addUpdater(Ref* target,SEL_SCHEDULE handle,int priority)
         }
         
         if (!insered) {
-            m_updateList.pushBack(updateHandler);
+            _updateList.pushBack(updateHandler);
         }
     }
     
@@ -85,16 +85,16 @@ void UpdateManager::addUpdater(Ref* target,SEL_SCHEDULE handle,int priority)
 
 void UpdateManager::removeUpdater(Ref* target)
 {
-    if (m_updating) {
-        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+    if (_updating) {
+        for (UpdateList::iterator iter=_updateList.begin(); iter!=_updateList.end(); ++iter) {
             if (target==(*iter)->getTarget()) {
                 (*iter)->setMarkedForDeletion(true);
             }
         }
     }else{
-        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+        for (UpdateList::iterator iter=_updateList.begin(); iter!=_updateList.end(); ++iter) {
             if (target==(*iter)->getTarget()) {
-                iter=m_updateList.erase(iter)-1;
+                iter=_updateList.erase(iter)-1;
             }
         }
     }
@@ -102,16 +102,16 @@ void UpdateManager::removeUpdater(Ref* target)
 
 void UpdateManager::removeUpdater(Ref* target,SEL_SCHEDULE handle)
 {
-    if (m_updating) {
-        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+    if (_updating) {
+        for (UpdateList::iterator iter=_updateList.begin(); iter!=_updateList.end(); ++iter) {
             if (target==(*iter)->getTarget() && handle==(*iter)->getHandle()) {
                 (*iter)->setMarkedForDeletion(true);
             }
         }
     }else{
-        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+        for (UpdateList::iterator iter=_updateList.begin(); iter!=_updateList.end(); ++iter) {
             if (target==(*iter)->getTarget() && handle==(*iter)->getHandle()) {
-                iter=m_updateList.erase(iter)-1;
+                iter=_updateList.erase(iter)-1;
             }
         }
     }
@@ -119,17 +119,17 @@ void UpdateManager::removeUpdater(Ref* target,SEL_SCHEDULE handle)
 
 void UpdateManager::removeUpdater(Ref* target,SEL_SCHEDULE handle,int priority)
 {
-    if (m_updating) {
-        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+    if (_updating) {
+        for (UpdateList::iterator iter=_updateList.begin(); iter!=_updateList.end(); ++iter) {
             if (target==(*iter)->getTarget() && handle==(*iter)->getHandle() && priority==(*iter)->getPriority()) {
                 (*iter)->setMarkedForDeletion(true);
                 break;
             }
         }
     }else{
-        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+        for (UpdateList::iterator iter=_updateList.begin(); iter!=_updateList.end(); ++iter) {
             if (target==(*iter)->getTarget() && handle==(*iter)->getHandle() && priority==(*iter)->getPriority()) {
-                m_updateList.erase(iter);
+                _updateList.erase(iter);
                 break;
             }
         }
@@ -138,16 +138,16 @@ void UpdateManager::removeUpdater(Ref* target,SEL_SCHEDULE handle,int priority)
 
 void UpdateManager::removeUpdaterByPriority(int priority)
 {
-    if (m_updating) {
-        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+    if (_updating) {
+        for (UpdateList::iterator iter=_updateList.begin(); iter!=_updateList.end(); ++iter) {
             if (priority==(*iter)->getPriority()) {
                 (*iter)->setMarkedForDeletion(true);
             }
         }
     }else{
-        for (UpdateList::iterator iter=m_updateList.begin(); iter!=m_updateList.end(); ++iter) {
+        for (UpdateList::iterator iter=_updateList.begin(); iter!=_updateList.end(); ++iter) {
             if (priority==(*iter)->getPriority()) {
-                iter=m_updateList.erase(iter)-1;
+                iter=_updateList.erase(iter)-1;
             }
         }
     }
@@ -157,8 +157,8 @@ UpdateManager* UpdateManager::createGroup(int groupId,int priority)
 {
     UpdateManager* group=new UpdateManager();
     group->init(groupId);
-    m_updateGroup[groupId]=group;
-    //m_updateGroup should retain .
+    _updateGroup[groupId]=group;
+    //_updateGroup should retain .
     
     //add to update list
     
@@ -173,8 +173,8 @@ UpdateManager* UpdateManager::getGroup(int groupId)
 {
     UpdateManager* group=NULL;
     
-    UpdateGroupMap::iterator iter=m_updateGroup.find(groupId);
-    if (iter!=m_updateGroup.end()) {
+    UpdateGroupMap::iterator iter=_updateGroup.find(groupId);
+    if (iter!=_updateGroup.end()) {
         group=iter->second;
     }
     
@@ -183,12 +183,12 @@ UpdateManager* UpdateManager::getGroup(int groupId)
 
 void UpdateManager::removeGroup(int groupId)
 {
-    UpdateGroupMap::iterator iter=m_updateGroup.find(groupId);
-    if (iter!=m_updateGroup.end()) {
+    UpdateGroupMap::iterator iter=_updateGroup.find(groupId);
+    if (iter!=_updateGroup.end()) {
         //remove from updater
         removeUpdater(iter->second);
         iter->second->release();
-        m_updateGroup.erase(iter);
+        _updateGroup.erase(iter);
     }
 }
 
@@ -231,11 +231,11 @@ void UpdateManager::removeUpdaterFromGroupByPriority(int groupId,int priority)
 
 void UpdateManager::clearGroup()
 {
-    for (UpdateGroupMap::iterator iter=m_updateGroup.begin(); iter!=m_updateGroup.end(); ++iter) {
+    for (UpdateGroupMap::iterator iter=_updateGroup.begin(); iter!=_updateGroup.end(); ++iter) {
         removeUpdater(iter->second);
         iter->second->release();
     }
-    m_updateGroup.clear();
+    _updateGroup.clear();
 }
 
 NS_CC_YHGE_END

@@ -48,61 +48,61 @@ public:
     inline void setOcclusion(SortZIndex* occlusion)
     {
         CC_SAFE_RETAIN(occlusion);
-        CC_SAFE_RELEASE(m_occlusion);
-        m_occlusion = occlusion;
+        CC_SAFE_RELEASE(_occlusion);
+        _occlusion = occlusion;
     }
     
     inline SortZIndex* getOcclusion()
     {
-        return m_occlusion;
+        return _occlusion;
     }
     
     inline void setStaticObjects(CCArray* staticObjects)
     {
         CC_SAFE_RETAIN(staticObjects);
-        CC_SAFE_RELEASE(m_staticObjects);
-        m_staticObjects = staticObjects;
+        CC_SAFE_RELEASE(_staticObjects);
+        _staticObjects = staticObjects;
     }
     
     inline CCArray* getStaticObjects()
     {
-        return m_staticObjects;
+        return _staticObjects;
     }
     
     inline void setDynamicObjects(CCArray* dynamicObjects)
     {
         CC_SAFE_RETAIN(dynamicObjects);
-        CC_SAFE_RELEASE(m_dynamicObjects);
-        m_dynamicObjects = dynamicObjects;
+        CC_SAFE_RELEASE(_dynamicObjects);
+        _dynamicObjects = dynamicObjects;
     }
     
     inline CCArray* getDynamicObjects()
     {
-        return m_dynamicObjects;
+        return _dynamicObjects;
     }
     
     inline void setStaticRootNode(SortZIndexNode* staticRootNode)
     {
         CC_SAFE_RETAIN(staticRootNode);
-        CC_SAFE_RELEASE(m_staticRootNode);
-        m_staticRootNode = staticRootNode;
+        CC_SAFE_RELEASE(_staticRootNode);
+        _staticRootNode = staticRootNode;
     }
     
     inline SortZIndexNode* getStaticRootNode()
     {
-        return m_staticRootNode;
+        return _staticRootNode;
     }
     
     inline void setDynamicNodes(CCArray* dynamicNodes)
     {
         CC_SAFE_RETAIN(dynamicNodes);
-        CC_SAFE_RELEASE(m_dynamicNodes);
-        m_dynamicNodes = dynamicNodes;
+        CC_SAFE_RELEASE(_dynamicNodes);
+        _dynamicNodes = dynamicNodes;
     }
     
     inline CCArray* getDynamicNodes()
     {
-        return m_dynamicNodes;
+        return _dynamicNodes;
     }
     
 protected:
@@ -119,19 +119,19 @@ protected:
 protected:
 
     //遮挡处理
-    SortZIndex* m_occlusion;
+    SortZIndex* _occlusion;
     
     //所有静态物体的遮挡关系树
-    SortZIndexNode* m_staticRootNode;
+    SortZIndexNode* _staticRootNode;
     
     //静态物体
-    CCArray* m_staticObjects;
+    CCArray* _staticObjects;
     
     //动态物体
-    CCArray* m_dynamicObjects;
+    CCArray* _dynamicObjects;
     
     //动态元素结点
-    CCArray* m_dynamicNodes;
+    CCArray* _dynamicNodes;
 };
 
 

@@ -96,7 +96,7 @@ protected:
 	void removeListenerMapForHandle(CCDictionary* listenerMap,yhge::SEL_EventHandle handle);
 
 protected:
-	CCDictionary* m_pListeners;
+	CCDictionary* _pListeners;
 };
 NS_CC_YHGE_END
 #endif  // YHGE_EVENT_EVENTLISTENERMANAGER_H_

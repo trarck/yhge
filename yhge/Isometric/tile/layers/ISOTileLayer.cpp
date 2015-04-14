@@ -7,26 +7,26 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileLayer::ISOTileLayer()
-:m_startX(0)
-,m_startY(0)
-,m_pTiles(NULL)
-,m_tileMap(NULL)
+:_startX(0)
+,_startY(0)
+,_pTiles(NULL)
+,_tileMap(NULL)
 {
 	
 }
 
 ISOTileLayer::~ISOTileLayer()
 {
-    if(m_pTiles )
+    if(_pTiles )
     {
-        delete [] m_pTiles;
-        m_pTiles = NULL;
+        delete [] _pTiles;
+        _pTiles = NULL;
     }
 }
 //
 //bool ISOTileLayer::init()
 //{
-//    m_pProperties=new CCDictionary();
+//    _pProperties=new CCDictionary();
 //    
 //	return true;
 //}
@@ -34,7 +34,7 @@ ISOTileLayer::~ISOTileLayer()
 //bool ISOTileLayer::init(CCSize& mapTileSize)
 //{
 //    if(init()){
-//        m_tMapTileSize=mapTileSize;
+//        _tMapTileSize=mapTileSize;
 //        return true;
 //    }
 //    return false;
@@ -43,7 +43,7 @@ ISOTileLayer::~ISOTileLayer()
 //bool ISOTileLayer::init(CCSize& mapTileSize,CCPoint& offset)
 //{
 //    if(init(mapTileSize)){
-//        m_tOffset=offset;
+//        _tOffset=offset;
 //        return true;
 //    }
 //    return false;
@@ -55,8 +55,8 @@ void ISOTileLayer::initOffset(const CCPoint& tOffset)
 //    this->setPosition(tOffset);
 	this->setOffset(tOffset);
 	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(tOffset));
-	m_startX=(int)startMapCoord.x;
-	m_startY=(int)startMapCoord.y;
+	_startX=(int)startMapCoord.x;
+	_startY=(int)startMapCoord.y;
 }
 
 void ISOTileLayer::initOffset(float x,float y)
@@ -87,10 +87,10 @@ void ISOTileLayer::setupLayer()
 
 void ISOTileLayer::releaseLayer()
 {
-    if (m_pTiles)
+    if (_pTiles)
     {
-        delete [] m_pTiles;
-        m_pTiles = NULL;
+        delete [] _pTiles;
+        _pTiles = NULL;
     }
 }
 
@@ -124,7 +124,7 @@ ISOTile* ISOTileLayer::tileAt(const CCPoint& pos)
     unsigned int gid=tileGIDAt(pos);
     
     if(gid>0){
-        ISOTileset* tileset=m_tileMap->getTilesetGroup()->getTilesetByGid(gid);
+        ISOTileset* tileset=_tileMap->getTilesetGroup()->getTilesetByGid(gid);
         tile=tileset->tileForGid(gid);
     }
     
@@ -138,10 +138,10 @@ void ISOTileLayer::removeTileAt(float x,float y)
 
 void ISOTileLayer::removeTileAt(const CCPoint& pos)
 {
-    CCAssert(pos.x < m_tLayerSize.width && pos.y < m_tLayerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer::removeTileAt: invalid position");
+    CCAssert(pos.x < _tLayerSize.width && pos.y < _tLayerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer::removeTileAt: invalid position");
     
-    int idx = (int)(pos.x + pos.y * m_tLayerSize.width);
-    m_pTiles[idx]=0;
+    int idx = (int)(pos.x + pos.y * _tLayerSize.width);
+    _pTiles[idx]=0;
 }
 
 unsigned int ISOTileLayer::tileGIDAt(float x,float y)
@@ -151,9 +151,9 @@ unsigned int ISOTileLayer::tileGIDAt(float x,float y)
 
 unsigned int ISOTileLayer::tileGIDAt(const CCPoint& pos)
 {
-    if(pos.x < m_tLayerSize.width && pos.y < m_tLayerSize.height && pos.x >=0 && pos.y >=0){
-        int idx = (int)(pos.x + pos.y * m_tLayerSize.width);
-        unsigned int gid = m_pTiles[idx];
+    if(pos.x < _tLayerSize.width && pos.y < _tLayerSize.height && pos.x >=0 && pos.y >=0){
+        int idx = (int)(pos.x + pos.y * _tLayerSize.width);
+        unsigned int gid = _pTiles[idx];
         
         return gid;
     }
@@ -164,9 +164,9 @@ unsigned int ISOTileLayer::tileGIDAt(const CCPoint& pos)
 //TODO 
 void ISOTileLayer::setTileGID(unsigned int gid, const CCPoint& pos)
 {
-    CCAssert(pos.x < m_tLayerSize.width && pos.y < m_tLayerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer::setTileGID: invalid position");
-    int idx = (int)(pos.x + pos.y * m_tLayerSize.width);
-    m_pTiles[idx]=gid;
+    CCAssert(pos.x < _tLayerSize.width && pos.y < _tLayerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer::setTileGID: invalid position");
+    int idx = (int)(pos.x + pos.y * _tLayerSize.width);
+    _pTiles[idx]=gid;
 }
 
 void ISOTileLayer::setTileGID(unsigned int gid, float x,float y)
@@ -201,9 +201,9 @@ void ISOTileLayer::parseInternalProperties()
     if (vertexz)
     {
         // If "automatic" is on, then parse the "cc_alpha_func" too
-        if (vertexz->m_sString == "automatic")
+        if (vertexz->_sString == "automatic")
         {
-            m_useAutomaticVertexZ = true;
+            _useAutomaticVertexZ = true;
             CCString *alphaFuncVal = propertyNamed("cc_alpha_func");
             float alphaFuncValue = 0.0f;
             if (alphaFuncVal != NULL)
@@ -219,30 +219,30 @@ void ISOTileLayer::parseInternalProperties()
         }
         else
         {
-            m_vertexZvalue = vertexz->intValue();
+            _vertexZvalue = vertexz->intValue();
         }
     }
 }
 
 unsigned int  ISOTileLayer::indexForPos(const CCPoint& pos)
 {
-    unsigned int index=(unsigned int)(pos.x + pos.y * m_tLayerSize.width);
+    unsigned int index=(unsigned int)(pos.x + pos.y * _tLayerSize.width);
     return index;
 }
 
 unsigned int ISOTileLayer::zOrderToIndex(int z)
 {
-	return (unsigned int)(m_tLayerSize.width*m_tLayerSize.height-z);
+	return (unsigned int)(_tLayerSize.width*_tLayerSize.height-z);
 }
 
 void ISOTileLayer::setTiles(unsigned int* pTiles)
 {
-    m_pTiles = pTiles;
+    _pTiles = pTiles;
 }
 
 unsigned int* ISOTileLayer::getTiles()
 {
-    return m_pTiles;
+    return _pTiles;
 }
 
 //===============tile sprite===============
@@ -282,6 +282,6 @@ void ISOTileLayer::removeTileSpriteAt(const CCPoint& pos)
 
 void ISOTileLayer::setMap(ISOMap* pMap)
 {
-    m_tileMap=static_cast<ISOTileMap*>(pMap);
+    _tileMap=static_cast<ISOTileMap*>(pMap);
 }
 NS_CC_YHGE_ISOMETRIC_END

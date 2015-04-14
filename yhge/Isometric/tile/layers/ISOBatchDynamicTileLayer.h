@@ -28,17 +28,17 @@ public:
     inline void setTileset(ISOTileset* pTileset)
 	{
 		CC_SAFE_RETAIN(pTileset);
-		CC_SAFE_RELEASE(m_pTileset);
-		m_pTileset = pTileset;
+		CC_SAFE_RELEASE(_pTileset);
+		_pTileset = pTileset;
 	}
 
 	inline ISOTileset* getTileset()
 	{
-		return m_pTileset;
+		return _pTileset;
 	}
 protected:
 
-    ISOTileset* m_pTileset;
+    ISOTileset* _pTileset;
 };
 
 

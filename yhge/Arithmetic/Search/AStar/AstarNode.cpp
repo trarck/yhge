@@ -9,24 +9,24 @@
 NS_CC_YHGE_BEGIN
 
 AstarNode::AstarNode()
-:m_parent(NULL)
+:_parent(NULL)
 {
 	
 }
 
 AstarNode::~AstarNode()
 {
-	CC_SAFE_RELEASE(m_parent);
+	CC_SAFE_RELEASE(_parent);
 }
 
 bool AstarNode::init()
 {
 
-	m_x=0;
-	m_y=0;
-	m_g=0;
-	m_h=0;
-	m_f=0;
+	_x=0;
+	_y=0;
+	_g=0;
+	_h=0;
+	_f=0;
 
 	return true;
 }
@@ -34,11 +34,11 @@ bool AstarNode::init()
 bool AstarNode::init(int x ,int y ,int g ,int h)
 {
 	
-	m_x=x;
-	m_y=y;
-	m_g=g;
-	m_h=h;
-	m_f=g+h;
+	_x=x;
+	_y=y;
+	_g=g;
+	_h=h;
+	_f=g+h;
 
 	return true;
 }
@@ -50,64 +50,64 @@ bool AstarNode::init(int x ,int y)
 
 void AstarNode::setX(int x)
 {
-    m_x = x;
+    _x = x;
 }
 
 int AstarNode::getX()
 {
-    return m_x;
+    return _x;
 }
 
 void AstarNode::setY(int y)
 {
-    m_y = y;
+    _y = y;
 }
 
 int AstarNode::getY()
 {
-    return m_y;
+    return _y;
 }
 
 void AstarNode::setG(int g)
 {
-    m_g = g;
+    _g = g;
 }
 
 int AstarNode::getG()
 {
-    return m_g;
+    return _g;
 }
 
 void AstarNode::setH(int h)
 {
-    m_h = h;
+    _h = h;
 }
 
 int AstarNode::getH()
 {
-    return m_h;
+    return _h;
 }
 
 void AstarNode::setF(int f)
 {
-    m_f = f;
+    _f = f;
 }
 
 int AstarNode::getF()
 {
-    return m_f;
+    return _f;
 }
 
 void AstarNode::setParent(AstarNode* parent)
 {
     CC_SAFE_RETAIN(parent);
-    CC_SAFE_RELEASE(m_parent);
-    m_parent = parent;
+    CC_SAFE_RELEASE(_parent);
+    _parent = parent;
 }
 
 AstarNode* AstarNode::getParent()
 {
-    return m_parent;
+    return _parent;
 }
 
 NS_CC_YHGE_END

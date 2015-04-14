@@ -5,9 +5,9 @@
 NS_CC_YHGE_BEGIN
 
 Entity::Entity()
-:m_entityId(0)
-,m_components(NULL)
-,m_properties(NULL)
+:_entityId(0)
+,_components(NULL)
+,_properties(NULL)
 {
     YHDEBUG("Entity create");
 }
@@ -15,15 +15,15 @@ Entity::Entity()
 Entity::~Entity()
 {
     YHDEBUG("Entity destroy");
-    CC_SAFE_RELEASE_NULL(m_components);
-    CC_SAFE_RELEASE_NULL(m_properties);
+    CC_SAFE_RELEASE_NULL(_components);
+    CC_SAFE_RELEASE_NULL(_properties);
 }
 
 bool Entity::init(void)
 {
     YHDEBUG("Entity init");
-    m_components=new CCArray();
-    m_properties=new CCDictionary();
+    _components=new CCArray();
+    _properties=new CCDictionary();
     return true;
 }
 
@@ -35,7 +35,7 @@ Component* Entity::getComponent(const std::string& name)
 {
     Ref* pObj=NULL;
     Component* component=NULL;
-    CCARRAY_FOREACH(m_components, pObj){
+    CCARRAY_FOREACH(_components, pObj){
         component=static_cast<Component*>(pObj);
         if (component->getName()==name) {
             return component;
@@ -54,7 +54,7 @@ CCArray* Entity::getComponents(const std::string& name)
     Ref* pObj=NULL;
     Component* component=NULL;
     
-    CCARRAY_FOREACH(m_components, pObj){
+    CCARRAY_FOREACH(_components, pObj){
         component=static_cast<Component*>(pObj);
         if (component->getName()==name) {
             components->addObject(component);
@@ -71,7 +71,7 @@ void Entity::addComponent(Component* component)
 {
     component->setOwner(this);
     component->setup();
-    m_components->addObject(component);
+    _components->addObject(component);
 }
 
 /**
@@ -90,7 +90,7 @@ void Entity::removeComponent(const std::string& name)
 {
     Ref* pObj=NULL;
     Component* component=NULL;
-    CCARRAY_FOREACH_REVERSE(m_components, pObj){
+    CCARRAY_FOREACH_REVERSE(_components, pObj){
         component=static_cast<Component*>(pObj);
         if (component->getName()==name) {
             this->removeComponent(component);
@@ -105,7 +105,7 @@ void Entity::removeComponent(Component* component)
 {
     component->cleanup();
     component->setOwner(NULL);
-    m_components->removeObject(component);
+    _components->removeObject(component);
 }
 
 /**
@@ -114,7 +114,7 @@ void Entity::removeComponent(Component* component)
 void Entity::removeComponents()
 {
     cleanupComponents();
-    m_components->removeAllObjects();
+    _components->removeAllObjects();
 }
 
 /**
@@ -124,7 +124,7 @@ void Entity::cleanupComponents()
 {
     Ref* pObj=NULL;
     Component* component=NULL;
-    CCARRAY_FOREACH_REVERSE(m_components, pObj){
+    CCARRAY_FOREACH_REVERSE(_components, pObj){
         component=static_cast<Component*>(pObj);
         component->cleanup();
         component->setOwner(NULL);
@@ -136,7 +136,7 @@ void Entity::cleanupComponents()
  */
 void Entity::addComponentOnly(Component* component)
 {
-    m_components->addObject(component);
+    _components->addObject(component);
 }
 
 /**
@@ -144,7 +144,7 @@ void Entity::addComponentOnly(Component* component)
  */
 void Entity::removeComponentOnly(Component* component)
 {
-    m_components->removeObject(component);
+    _components->removeObject(component);
 }
 
 //==========================属性操作====================//
@@ -153,7 +153,7 @@ void Entity::removeComponentOnly(Component* component)
  */
 Property* Entity::getProperty(const std::string& name)
 {
-    return static_cast<Property*>(m_properties->objectForKey(name));
+    return static_cast<Property*>(_properties->objectForKey(name));
 }
 
 /**
@@ -161,7 +161,7 @@ Property* Entity::getProperty(const std::string& name)
  */
 void Entity::addProperty(Property* property,const std::string& name)
 {
-    m_properties->setObject(property, name);
+    _properties->setObject(property, name);
 }
 
 /**
@@ -169,7 +169,7 @@ void Entity::addProperty(Property* property,const std::string& name)
  */
 void Entity::removeProperty(const std::string& name)
 {
-    m_properties->removeObjectForKey(name);
+    _properties->removeObjectForKey(name);
 }
 
 /**
@@ -179,9 +179,9 @@ void Entity::removeProperty(Property* property)
 {
     CCDictElement* pElem=NULL;
 
-    CCDICT_FOREACH(m_properties, pElem){
+    CCDICT_FOREACH(_properties, pElem){
         if (pElem->getObject()==property) {
-            m_properties->removeObjectForKey(pElem->getStrKey());
+            _properties->removeObjectForKey(pElem->getStrKey());
         }
     }
 }
@@ -191,7 +191,7 @@ void Entity::removeProperty(Property* property)
  */
 void Entity::removeProperties()
 {
-    m_properties->removeAllObjects();
+    _properties->removeAllObjects();
 }
 
 void Entity::cleanup()

@@ -9,12 +9,12 @@ NS_CC_YHGE_BEGIN
 
 ManualAttackComponent::ManualAttackComponent()
 {
-    m_name="ManualAttackComponent";
+    _name="ManualAttackComponent";
 }
 
 ManualAttackComponent::~ManualAttackComponent()
 {
-    CC_SAFE_RELEASE(m_target);
+    CC_SAFE_RELEASE(_target);
 }
 
 bool ManualAttackComponent::init()

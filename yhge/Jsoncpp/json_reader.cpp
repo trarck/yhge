@@ -137,8 +137,8 @@ Reader::parse( std::istream& sin,
                Value &root,
                bool collectComments )
 {
-   //std::istream_iterator<char> begin(sin);
-   //std::istream_iterator<char> end;
+   //std::istrea_iterator<char> begin(sin);
+   //std::istrea_iterator<char> end;
    // Those would allow streamed input from a file, if parse() were a
    // template function.
 

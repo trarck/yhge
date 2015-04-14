@@ -85,12 +85,12 @@ public:
      */
     inline SortZIndexNodeIterator beginChild()
     {
-        return m_children.begin();
+        return _children.begin();
     }
     
     inline SortZIndexNodeConstIterator beginChild() const
     {
-        return m_children.begin();
+        return _children.begin();
     }
     
     /**
@@ -98,12 +98,12 @@ public:
      */
     inline SortZIndexNodeIterator endChild()
     {
-        return m_children.end();
+        return _children.end();
     }
     
     inline SortZIndexNodeConstIterator endChild() const
     {
-        return m_children.end();
+        return _children.end();
     }
     
     /**
@@ -111,12 +111,12 @@ public:
      */
     inline SortZIndexNodeReverseIterator rbeginChild()
     {
-        return m_children.rbegin();
+        return _children.rbegin();
     }
     
     inline SortZIndexNodeConstReverseIterator rbeginChild() const
     {
-        return m_children.rbegin();
+        return _children.rbegin();
     }
     
     /**
@@ -124,12 +124,12 @@ public:
      */
     inline SortZIndexNodeConstReverseIterator rendChild()
     {
-        return m_children.rend();
+        return _children.rend();
     }
     
     inline SortZIndexNodeConstReverseIterator rendChild() const
     {
-        return m_children.rend();
+        return _children.rend();
     }
     
 public:
@@ -137,105 +137,105 @@ public:
     //get set
     inline void setChildren(const std::vector<SortZIndexNode*>& children)
     {
-        m_children = children;
+        _children = children;
     }
     
     inline const std::vector<SortZIndexNode*>& getChildren()
     {
-        return m_children;
+        return _children;
     }
     
     inline SortZIndexNode* getParent()
     {
-        return m_parent;
+        return _parent;
     }
     
     inline void setSortedDeep(int sortedDeep)
     {
-        m_sortedDeep = sortedDeep;
+        _sortedDeep = sortedDeep;
     }
     
     inline int getSortedDeep()
     {
-        return m_sortedDeep;
+        return _sortedDeep;
     }
     
     
     inline void setRect(const CCRect& rect)
     {
-        m_rect=rect;
+        _rect=rect;
     }
     
     inline const CCRect& getRect()
     {
-        return m_rect;
+        return _rect;
     }
     
     inline void setEntity(Ref* entity)
     {
-        m_entity=entity;
+        _entity=entity;
     }
     
     inline Ref* getEntity()
     {
-        return m_entity;
+        return _entity;
     }
     
 ////    inline void setLeftNode(SortZIndexNode* leftNode)
 ////    {
-////        m_leftNode = leftNode;
+////        _leftNode = leftNode;
 ////    }
 ////    
 ////    inline SortZIndexNode* getLeftNode()
 ////    {
-////        return m_leftNode;
+////        return _leftNode;
 ////    }
 ////    
 ////    inline void setRightNode(SortZIndexNode* rightNode)
 ////    {
-////        m_rightNode = rightNode;
+////        _rightNode = rightNode;
 ////    }
 ////    
 ////    inline SortZIndexNode* getRightNode()
 ////    {
-////        return m_rightNode;
+////        return _rightNode;
 ////    }
 //    
 //    inline void setParentNode(SortZIndexNode* parentNode)
 //    {
-//        m_parentNode = parentNode;
+//        _parentNode = parentNode;
 //    }
 //    
 //    inline SortZIndexNode* getParentNode()
 //    {
-//        return m_parentNode;
+//        return _parentNode;
 //    }
 //    
     
 protected:
-    Ref* m_entity;
+    Ref* _entity;
     
-    CCRect m_rect;
+    CCRect _rect;
     
     //保存所有比自己ZOrder值小的元素。要占用一个引用计数
-    std::vector<SortZIndexNode*> m_children;
+    std::vector<SortZIndexNode*> _children;
     
     //父结点。弱引用
-    SortZIndexNode* m_parent;
+    SortZIndexNode* _parent;
     
     //排过序的深度值
-    int m_sortedDeep;
+    int _sortedDeep;
     
 //    /**
 //     * 左子树。表示小于
 //     */
-//    SortZIndexNode* m_leftNode;
+//    SortZIndexNode* _leftNode;
 //    
 //    //右子树。表示等于
-//    SortZIndexNode* m_rightNode;
+//    SortZIndexNode* _rightNode;
 //    
 //    //父类结点
-//    SortZIndexNode* m_parentNode;
+//    SortZIndexNode* _parentNode;
     
 };
 

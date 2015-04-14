@@ -90,7 +90,7 @@ public:
     
 protected:
     
-    CCNode* m_renderer;
+    CCNode* _renderer;
     
 };
 

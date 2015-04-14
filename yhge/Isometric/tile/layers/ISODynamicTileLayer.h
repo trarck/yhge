@@ -26,7 +26,7 @@ public:
 
     virtual void setupTiles();
 
-    //设置m_pDynamicComponent的column and row
+    //设置_pDynamicComponent的column and row
     void setComponentColumnAndRow();
     /**
      * 更新前检查
@@ -64,18 +64,18 @@ public:
     
 protected:
 
-    ISODynamicComponent* m_pDynamicComponent;
+    ISODynamicComponent* _pDynamicComponent;
     
     /**
      * 上次移动的地图位置
      */
-    int m_iLastStartX;
-    int m_iLastStartY;
+    int _iLastStartX;
+    int _iLastStartY;
     
-//	CCPoint m_tLastStartPoint;
+//	CCPoint _tLastStartPoint;
     
-//	int m_iStartX;
-//	int m_iStartY;
+//	int _iStartX;
+//	int _iStartY;
 };
 
 

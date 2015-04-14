@@ -3,11 +3,11 @@
 NS_CC_YHGE_BEGIN
 
 CCAdaptSprite::CCAdaptSprite()
-:m_fillType(kNormal)
-,m_preferredSize(CCSizeZero)
-,m_havePreferredSize(false)
-,m_untrimmedSize(CCSizeZero)
-,m_orignalRect(CCRectZero)
+:_fillType(kNormal)
+,_preferredSize(CCSizeZero)
+,_havePreferredSize(false)
+,_untrimmedSize(CCSizeZero)
+,_orignalRect(CCRectZero)
 {
     
 }
@@ -105,11 +105,11 @@ void CCAdaptSprite::setTextureRect(const CCRect& rect)
 
 void CCAdaptSprite::setTextureRect(const CCRect& rect, bool rotated, const CCSize& untrimmedSize)
 {
-    m_orignalRect=rect;
-    m_bRectRotated=rotated;
+    _orignalRect=rect;
+    _bRectRotated=rotated;
     setUntrimmedSize(untrimmedSize);
     
-    if (!m_havePreferredSize) {
+    if (!_havePreferredSize) {
         CCSprite::setTextureRect(rect, rotated, untrimmedSize);
     }else{
         adjustTextureRect();
@@ -118,7 +118,7 @@ void CCAdaptSprite::setTextureRect(const CCRect& rect, bool rotated, const CCSiz
 
 void CCAdaptSprite::adjustTextureRect()
 {
-    switch (m_fillType) {
+    switch (_fillType) {
         case kScale:
             adjustTextureByScale();
             break;
@@ -127,45 +127,45 @@ void CCAdaptSprite::adjustTextureRect()
             break;
         case kNormal:
         default:
-            //            CCSprite::setTextureRect(m_orignalRect, m_bRectRotated, m_untrimmedSize);
+            //            CCSprite::setTextureRect(_orignalRect, _bRectRotated, _untrimmedSize);
             break;
     }
 }
 
 void CCAdaptSprite::adjustTextureByScale()
 {
-    setContentSize(m_preferredSize);
+    setContentSize(_preferredSize);
     
-    setTextureCoords(m_orignalRect);
+    setTextureCoords(_orignalRect);
     
-    float scaleX=m_preferredSize.width/m_untrimmedSize.width;
-    float scaleY=m_preferredSize.height/m_untrimmedSize.height;
+    float scaleX=_preferredSize.width/_untrimmedSize.width;
+    float scaleY=_preferredSize.height/_untrimmedSize.height;
     
-    CCRect vertexRect=m_orignalRect;
+    CCRect vertexRect=_orignalRect;
     vertexRect.size.width*=scaleX;
     vertexRect.size.height*=scaleY;
     setVertexRect(vertexRect);
     
-    CCPoint relativeOffset = m_obUnflippedOffsetPositionFromCenter;
+    CCPoint relativeOffset = _obUnflippedOffsetPositionFromCenter;
     
     // issue #732
-    if (m_bFlipX)
+    if (_bFlipX)
     {
         relativeOffset.x = -relativeOffset.x;
     }
-    if (m_bFlipY)
+    if (_bFlipY)
     {
         relativeOffset.y = -relativeOffset.y;
     }
     
-    m_obOffsetPosition.x = relativeOffset.x + (m_untrimmedSize.width - m_orignalRect.size.width) / 2;
-    m_obOffsetPosition.y = relativeOffset.y + (m_untrimmedSize.height - m_orignalRect.size.height) / 2;
+    _obOffsetPosition.x = relativeOffset.x + (_untrimmedSize.width - _orignalRect.size.width) / 2;
+    _obOffsetPosition.y = relativeOffset.y + (_untrimmedSize.height - _orignalRect.size.height) / 2;
     
-    m_obOffsetPosition.x*=scaleX;
-    m_obOffsetPosition.y*=scaleY;
+    _obOffsetPosition.x*=scaleX;
+    _obOffsetPosition.y*=scaleY;
     
     // rendering using batch node
-    if (m_pobBatchNode)
+    if (_pobBatchNode)
     {
         // update dirty_, don't update recursiveDirty_
         setDirty(true);
@@ -175,53 +175,53 @@ void CCAdaptSprite::adjustTextureByScale()
         // self rendering
         
         // Atlas: Vertex
-        float x1 = 0 + m_obOffsetPosition.x;
-        float y1 = 0 + m_obOffsetPosition.y;
-        float x2 = x1 + m_obRect.size.width;
-        float y2 = y1 + m_obRect.size.height;
+        float x1 = 0 + _obOffsetPosition.x;
+        float y1 = 0 + _obOffsetPosition.y;
+        float x2 = x1 + _obRect.size.width;
+        float y2 = y1 + _obRect.size.height;
         
         // Don't update Z.
-        m_sQuad.bl.vertices = vertex3(x1, y1, 0);
-        m_sQuad.br.vertices = vertex3(x2, y1, 0);
-        m_sQuad.tl.vertices = vertex3(x1, y2, 0);
-        m_sQuad.tr.vertices = vertex3(x2, y2, 0);
+        _sQuad.bl.vertices = vertex3(x1, y1, 0);
+        _sQuad.br.vertices = vertex3(x2, y1, 0);
+        _sQuad.tl.vertices = vertex3(x1, y2, 0);
+        _sQuad.tr.vertices = vertex3(x2, y2, 0);
     }
 }
 
 void CCAdaptSprite::adjustTextureByClip()
 {
     
-    setContentSize(m_preferredSize);
+    setContentSize(_preferredSize);
     
-    CCRect textureRect=m_orignalRect;
-    textureRect.size.width=MIN(textureRect.size.width, m_preferredSize.width);
-    textureRect.size.height=MIN(textureRect.size.height, m_preferredSize.height);
+    CCRect textureRect=_orignalRect;
+    textureRect.size.width=MIN(textureRect.size.width, _preferredSize.width);
+    textureRect.size.height=MIN(textureRect.size.height, _preferredSize.height);
     setTextureCoords(textureRect);
     
-    CCPoint relativeOffset = m_obUnflippedOffsetPositionFromCenter;
+    CCPoint relativeOffset = _obUnflippedOffsetPositionFromCenter;
     
     // issue #732
-    if (m_bFlipX)
+    if (_bFlipX)
     {
         relativeOffset.x = -relativeOffset.x;
     }
-    if (m_bFlipY)
+    if (_bFlipY)
     {
         relativeOffset.y = -relativeOffset.y;
     }
     
-    m_obOffsetPosition.x = relativeOffset.x + (m_untrimmedSize.width - m_orignalRect.size.width) / 2;
+    _obOffsetPosition.x = relativeOffset.x + (_untrimmedSize.width - _orignalRect.size.width) / 2;
     
-    m_obOffsetPosition.y = relativeOffset.y + (m_untrimmedSize.height - m_orignalRect.size.height) / 2;
+    _obOffsetPosition.y = relativeOffset.y + (_untrimmedSize.height - _orignalRect.size.height) / 2;
     
     //设置要渲染的大小
-    CCRect vertexRect=m_orignalRect;
-    float vertexWidth=m_preferredSize.width-m_obOffsetPosition.x;
-    float vertexHeight=m_preferredSize.height-m_obOffsetPosition.y;
+    CCRect vertexRect=_orignalRect;
+    float vertexWidth=_preferredSize.width-_obOffsetPosition.x;
+    float vertexHeight=_preferredSize.height-_obOffsetPosition.y;
     
     //保证在0和rect.size之间
-    vertexWidth=MAX(0, MIN(vertexWidth, m_orignalRect.size.width));
-    vertexHeight=MAX(0, MIN(vertexWidth, m_orignalRect.size.height));
+    vertexWidth=MAX(0, MIN(vertexWidth, _orignalRect.size.width));
+    vertexHeight=MAX(0, MIN(vertexWidth, _orignalRect.size.height));
     
     vertexRect.size.width=vertexWidth;
     vertexRect.size.height=vertexHeight;
@@ -229,7 +229,7 @@ void CCAdaptSprite::adjustTextureByClip()
     setVertexRect(vertexRect);
     
     // rendering using batch node
-    if (m_pobBatchNode)
+    if (_pobBatchNode)
     {
         // update dirty_, don't update recursiveDirty_
         setDirty(true);
@@ -239,16 +239,16 @@ void CCAdaptSprite::adjustTextureByClip()
         // self rendering
         
         // Atlas: Vertex
-        float x1 = 0 + m_obOffsetPosition.x;
-        float y1 = 0 + m_obOffsetPosition.y;
-        float x2 = x1 + m_obRect.size.width;
-        float y2 = y1 + m_obRect.size.height;
+        float x1 = 0 + _obOffsetPosition.x;
+        float y1 = 0 + _obOffsetPosition.y;
+        float x2 = x1 + _obRect.size.width;
+        float y2 = y1 + _obRect.size.height;
         
         // Don't update Z.
-        m_sQuad.bl.vertices = vertex3(x1, y1, 0);
-        m_sQuad.br.vertices = vertex3(x2, y1, 0);
-        m_sQuad.tl.vertices = vertex3(x1, y2, 0);
-        m_sQuad.tr.vertices = vertex3(x2, y2, 0);
+        _sQuad.bl.vertices = vertex3(x1, y1, 0);
+        _sQuad.br.vertices = vertex3(x2, y1, 0);
+        _sQuad.tl.vertices = vertex3(x1, y2, 0);
+        _sQuad.tr.vertices = vertex3(x2, y2, 0);
     }
 }
 

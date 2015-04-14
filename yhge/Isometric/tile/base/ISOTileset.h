@@ -28,9 +28,9 @@ public:
     
     bool init();
 
-    bool isExternal() const { return !m_sFileName.empty(); }
+    bool isExternal() const { return !_sFileName.empty(); }
     
-    int tileCount() const { return m_pTiles->count(); }
+    int tileCount() const { return _pTiles->count(); }
     
     /**
      * 删除image tile
@@ -84,8 +84,8 @@ public:
     
 public:
     
-    inline const char* getName(){ return m_sName.c_str(); }
-    inline void setName(const char *name){ m_sName = name; }
+    inline const char* getName(){ return _sName.c_str(); }
+    inline void setName(const char *name){ _sName = name; }
     
     virtual void setFileName(const char* pFileName);
     virtual std::string& getFileName();
@@ -97,12 +97,12 @@ public:
     virtual int getTileHeight();
     
     virtual void setTileSize(CCSize& tTileSize){
-        m_nTileWidth=(int)tTileSize.width;
-        m_nTileHeight=(int)tTileSize.height;
+        _nTileWidth=(int)tTileSize.width;
+        _nTileHeight=(int)tTileSize.height;
     }
     
     virtual CCSize getTileSize(){
-        return CCSizeMake(m_nTileWidth, m_nTileHeight);
+        return CCSizeMake(_nTileWidth, _nTileHeight);
     }
     
     virtual void setTileSpacing(int nTileSpacing);
@@ -125,12 +125,12 @@ public:
     
     inline void setImageSize(CCSize& tImageSize)
     {
-        m_tImageSize = tImageSize;
+        _tImageSize = tImageSize;
     }
     
     inline CCSize& getImageSize()
     {
-        return m_tImageSize;
+        return _tImageSize;
     }
 
 
@@ -150,23 +150,23 @@ public:
     inline void setTexture(CCTexture2D* pTexture)
     {
         CC_SAFE_RETAIN(pTexture);
-        CC_SAFE_RELEASE(m_pTexture);
-        m_pTexture = pTexture;
+        CC_SAFE_RELEASE(_pTexture);
+        _pTexture = pTexture;
     }
     
     inline CCTexture2D* getTexture()
     {
-        return m_pTexture;
+        return _pTexture;
     }
     
     inline void setComposeType(unsigned int uComposeType)
     {
-        m_uComposeType = uComposeType;
+        _uComposeType = uComposeType;
     }
     
     inline unsigned int getComposeType()
     {
-        return m_uComposeType;
+        return _uComposeType;
     }
     
     
@@ -183,91 +183,91 @@ protected:
     /**
      * 名称
      */
-    std::string m_sName;
+    std::string _sName;
     
     /**
      * 单独定义的文件名
      */
-    std::string m_sFileName;
+    std::string _sFileName;
     
     /**
      * 每个tile的宽
      */
-    int m_nTileWidth;
+    int _nTileWidth;
     
     /**
      * 每个tile的高
      */
-    int m_nTileHeight;
+    int _nTileHeight;
     
     /**
      * 在tile图片里每个tile的内部空白
      */
-    int m_nTileSpacing;
+    int _nTileSpacing;
     
     /**
      * 整个tile图片边框的空白
      */
-    int m_nMargin;
+    int _nMargin;
     
     /**
      * 整个tile图片的偏移
      */
-    CCPoint m_tTileOffset;
+    CCPoint _tTileOffset;
     
     /**
      * tile拼成的图片名
      */
-    std::string m_sImageSource;
+    std::string _sImageSource;
     
 //    /**
 //     * tile拼成的图片宽
 //     */
-//    int m_nImageWidth;
+//    int _nImageWidth;
 //    
 //    /**
 //     * tile拼成的图片高
 //     */
-//    int m_nImageHeight;
+//    int _nImageHeight;
     
-    CCSize m_tImageSize;
+    CCSize _tImageSize;
     
     /**
      * tile拼成的图片
      */
-    CCTexture2D* m_pTexture;
+    CCTexture2D* _pTexture;
     
     /**
      * 图片的格子栏数
      */
-    int m_nColumnCount;
+    int _nColumnCount;
     
     /**
      * 所有小格子
      */
-    CCArray* m_pTiles;
+    CCArray* _pTiles;
     
     /**
      * 开始的gid
      */
-    unsigned int m_uFirstGid;
+    unsigned int _uFirstGid;
     
     /**
      * 结束的gid
      */
-    unsigned int m_uLastGid;
+    unsigned int _uLastGid;
     
     /**
      * 属性
      */
-    CCDictionary* m_pProperties;
+    CCDictionary* _pProperties;
     
     /**
      * tile的属性
      */
-    CCDictionary* m_pTileProperties;
+    CCDictionary* _pTileProperties;
     
-    unsigned int m_uComposeType;
+    unsigned int _uComposeType;
     
 };
 

@@ -15,11 +15,11 @@ NS_CC_YHGE_BEGIN
  */
 void ISOAutoZOrderPositionComponent::updateRendererPosition()
 {
-    CCPoint viewPos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(m_x, m_y));
-    CCNode* renderer=m_rendererComponent->getRenderer();
+    CCPoint viewPos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(_x, _y));
+    CCNode* renderer=_rendererComponent->getRenderer();
     renderer->setPosition(viewPos);
     //发送位置改变消息
-    this->getMessageManager()->dispatchMessage(MSG_POSITION_CHANGE, this, m_owner);
+    this->getMessageManager()->dispatchMessage(MSG_POSITION_CHANGE, this, _owner);
 }
 
 /**
@@ -30,10 +30,10 @@ void ISOAutoZOrderPositionComponent::updateRendererPosition()
  */
 void ISOAutoZOrderPositionComponent::updateRendererPositionDirectly(const CCPoint& pos)
 {
-    CCNode* renderer=m_rendererComponent->getRenderer();
+    CCNode* renderer=_rendererComponent->getRenderer();
     renderer->setPosition(pos);
 //    //发送位置改变消息
-//    this->getMessageManager()->dispatchMessage(MSG_POSITION_CHANGE, this, m_owner);
+//    this->getMessageManager()->dispatchMessage(MSG_POSITION_CHANGE, this, _owner);
 }
 
 NS_CC_YHGE_END

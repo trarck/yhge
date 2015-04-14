@@ -18,7 +18,7 @@ bool CCParabolaMove::initWithDuration(float duration, const CCPoint& speed)
 {
     if (CCActionInterval::initWithDuration(duration))
     {
-        m_tSpeed= speed;
+        _tSpeed= speed;
         return true;
     }
     
@@ -29,10 +29,10 @@ Ref* CCParabolaMove::copyWithZone(CCZone *pZone)
 {
     CCZone* pNewZone = NULL;
     CCParabolaMove* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject)
+    if(pZone && pZone->_pCopyObject)
     {
         //in case of being called at sub class
-        pCopy = (CCParabolaMove*)(pZone->m_pCopyObject);
+        pCopy = (CCParabolaMove*)(pZone->_pCopyObject);
     }
     else
     {
@@ -42,7 +42,7 @@ Ref* CCParabolaMove::copyWithZone(CCZone *pZone)
     
     CCActionInterval::copyWithZone(pZone);
     
-    pCopy->initWithDuration(m_fDuration, m_tSpeed);
+    pCopy->initWithDuration(_fDuration, _tSpeed);
     
     CC_SAFE_DELETE(pNewZone);
     return pCopy;
@@ -51,24 +51,24 @@ Ref* CCParabolaMove::copyWithZone(CCZone *pZone)
 void CCParabolaMove::startWithTarget(CCNode *pTarget)
 {
     CCActionInterval::startWithTarget(pTarget);
-    m_previousPosition = m_startPosition = pTarget->getPosition();
+    _previousPosition = _startPosition = pTarget->getPosition();
 }
 
 CCActionInterval* CCParabolaMove::reverse(void)
 {
-    return CCParabolaMove::create(m_fDuration, ccp( -m_tSpeed.x, -m_tSpeed.y));
+    return CCParabolaMove::create(_fDuration, ccp( -_tSpeed.x, -_tSpeed.y));
 }
 
 void CCParabolaMove::step(float delta)
 {
-    if (m_bFirstTick)
+    if (_bFirstTick)
     {
-        m_bFirstTick = false;
-        m_elapsed = 0;
+        _bFirstTick = false;
+        _elapsed = 0;
     }
     else
     {
-        m_elapsed += delta;
+        _elapsed += delta;
     }
 
     this->update(delta);
@@ -76,15 +76,15 @@ void CCParabolaMove::step(float delta)
 
 void CCParabolaMove::update(float t)
 {
-    if (m_pTarget)
+    if (_pTarget)
     {
-        float sx=m_tSpeed.x*m_elapsed;
-        float sy=m_tSpeed.y*m_elapsed+0.5*m_fGravity*m_elapsed*m_elapsed;
+        float sx=_tSpeed.x*_elapsed;
+        float sy=_tSpeed.y*_elapsed+0.5*_fGravity*_elapsed*_elapsed;
 
-        CCPoint newPos=ccp(m_startPosition.x+sx,m_startPosition.y+sy);
+        CCPoint newPos=ccp(_startPosition.x+sx,_startPosition.y+sy);
 
-        m_pTarget->setPosition(newPos);
-        m_previousPosition = newPos;
+        _pTarget->setPosition(newPos);
+        _previousPosition = newPos;
 
     }
 }
@@ -109,8 +109,8 @@ bool CCParabolaMoveTo::initWithDuration(float duration, const CCPoint& position)
 {
     if (CCActionInterval::initWithDuration(duration))
     {
-        m_endPosition= position;
-        m_bUseHight=false;
+        _endPosition= position;
+        _bUseHight=false;
         return true;
     }
     
@@ -121,9 +121,9 @@ bool CCParabolaMoveTo::initWithDuration(float duration, const CCPoint& position,
 {
     if (CCActionInterval::initWithDuration(duration))
     {
-        m_endPosition= position;
-        m_bUseHight=true;
-        m_fHeight=height;
+        _endPosition= position;
+        _bUseHight=true;
+        _fHeight=height;
         return true;
     }
     
@@ -134,10 +134,10 @@ Ref* CCParabolaMoveTo::copyWithZone(CCZone *pZone)
 {
     CCZone* pNewZone = NULL;
     CCParabolaMoveTo* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject)
+    if(pZone && pZone->_pCopyObject)
     {
         //in case of being called at sub class
-        pCopy = (CCParabolaMoveTo*)(pZone->m_pCopyObject);
+        pCopy = (CCParabolaMoveTo*)(pZone->_pCopyObject);
     }
     else
     {
@@ -147,7 +147,7 @@ Ref* CCParabolaMoveTo::copyWithZone(CCZone *pZone)
     
     CCParabolaMove::copyWithZone(pZone);
     
-    pCopy->initWithDuration(m_fDuration, m_endPosition);
+    pCopy->initWithDuration(_fDuration, _endPosition);
     
     CC_SAFE_DELETE(pNewZone);
     return pCopy;
@@ -158,21 +158,21 @@ void CCParabolaMoveTo::startWithTarget(CCNode *pTarget)
     
     
     CCParabolaMove::startWithTarget(pTarget);
-    float sy=m_endPosition.y-m_startPosition.y;
-    float sx=m_endPosition.x-m_startPosition.x;
+    float sy=_endPosition.y-_startPosition.y;
+    float sx=_endPosition.x-_startPosition.x;
     
-    if(m_bUseHight){
-        m_fGravity=-2*m_fHeight/(m_fDuration*m_fDuration);
+    if(_bUseHight){
+        _fGravity=-2*_fHeight/(_fDuration*_fDuration);
     }
 
-    m_tSpeed.y=sy/m_fDuration-0.5*m_fDuration*m_fGravity;
-    m_tSpeed.x= sx/m_fDuration;
+    _tSpeed.y=sy/_fDuration-0.5*_fDuration*_fGravity;
+    _tSpeed.x= sx/_fDuration;
 
 }
 
 void CCParabolaMoveTo::stop()
 {
-    m_pTarget->setPosition(m_endPosition);
+    _pTarget->setPosition(_endPosition);
     CCParabolaMove::stop();
 }
 

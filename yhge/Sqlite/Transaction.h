@@ -59,8 +59,8 @@ private:
     /// @}
 
 private:
-    SqliteDriver&   m_driver;  //!< Reference to the SQLite Database Connection
-    bool        m_commited; //!< True when commit has been called
+    SqliteDriver&   _driver;  //!< Reference to the SQLite Database Connection
+    bool        _commited; //!< True when commit has been called
 };
 
 NS_CC_YHGE_SQLITE_END

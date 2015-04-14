@@ -4,24 +4,24 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOObjectGroupInfo::ISOObjectGroupInfo()
-:m_sName("")
-,m_tColor(ccWHITE)
-,m_cOpacity(255)
-,m_bVisible(true)
-,m_tPositionOffset(CCPointZero)
-,m_pObjects(NULL)
-,m_pProperties(NULL)
+:_sName("")
+,_tColor(ccWHITE)
+,_cOpacity(255)
+,_bVisible(true)
+,_tPositionOffset(CCPointZero)
+,_pObjects(NULL)
+,_pProperties(NULL)
 {
-    m_pProperties=new CCDictionary();
-    m_pObjects=new CCArray();
-    m_pObjects->init();
+    _pProperties=new CCDictionary();
+    _pObjects=new CCArray();
+    _pObjects->init();
 }
 
 ISOObjectGroupInfo::~ISOObjectGroupInfo()
 {
     CCLOG("ISOObjectGroupInfo destroy");
-    CC_SAFE_RELEASE(m_pProperties);
-    CC_SAFE_RELEASE(m_pObjects);
+    CC_SAFE_RELEASE(_pProperties);
+    CC_SAFE_RELEASE(_pObjects);
 }
 
 NS_CC_YHGE_ISOMETRIC_END

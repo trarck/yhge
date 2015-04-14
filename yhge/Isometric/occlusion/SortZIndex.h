@@ -48,23 +48,23 @@ public:
     inline void setRootNode(SortZIndexNode* rootNode)
     {
         CC_SAFE_RETAIN(rootNode);
-        CC_SAFE_RELEASE(m_rootNode);
-        m_rootNode = rootNode;
+        CC_SAFE_RELEASE(_rootNode);
+        _rootNode = rootNode;
     }
     
     inline SortZIndexNode* getRootNode()
     {
-        return m_rootNode;
+        return _rootNode;
     }
     
     inline void setRootZOrder(int rootZOrder)
     {
-        m_rootZOrder = rootZOrder;
+        _rootZOrder = rootZOrder;
     }
     
     inline int getRootZOrder()
     {
-        return m_rootZOrder;
+        return _rootZOrder;
     }
     
 protected:
@@ -88,18 +88,18 @@ protected:
     int caculateSide(const CCRect& pFrom ,const CCRect& pTo);
     
 protected:
-//	CCArray *m_pStatics;
-//	CCArray *m_pDynamics;
-//	bool m_bIsWorking;
-//	bool m_bStaticDirty;
+//	CCArray *_pStatics;
+//	CCArray *_pDynamics;
+//	bool _bIsWorking;
+//	bool _bStaticDirty;
 
-    SortZIndexNode* m_rootNode;
+    SortZIndexNode* _rootNode;
     
-//    std::vector<int> m_stateStack;
-//    int m_parsingState;
+//    std::vector<int> _stateStack;
+//    int _parsingState;
     
     //根结点的zOrder值
-    int m_rootZOrder;
+    int _rootZOrder;
 };
 
 

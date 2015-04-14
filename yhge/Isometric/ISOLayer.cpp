@@ -4,29 +4,29 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOLayer::ISOLayer()
-:m_sLayerName("")
-,m_tLayerSize(CCSizeZero)
-,m_tMapTileSize(CCSizeZero)
-,m_tOffset(CCPointZero)
-,m_pProperties(NULL)
-,m_cOpacity(255)
-,m_pMap(NULL)
-,m_uLayerOrientation(0)
-,m_layerType(kEmptyLayer)
-,m_vertexZvalue(0)
-,m_useAutomaticVertexZ(false)
+:_sLayerName("")
+,_tLayerSize(CCSizeZero)
+,_tMapTileSize(CCSizeZero)
+,_tOffset(CCPointZero)
+,_pProperties(NULL)
+,_cOpacity(255)
+,_pMap(NULL)
+,_uLayerOrientation(0)
+,_layerType(kEmptyLayer)
+,_vertexZvalue(0)
+,_useAutomaticVertexZ(false)
 {
 	
 }
 
 ISOLayer::~ISOLayer()
 {
-    CC_SAFE_RELEASE_NULL(m_pProperties);
+    CC_SAFE_RELEASE_NULL(_pProperties);
 }
 
 bool ISOLayer::init()
 {
-    m_pProperties=new CCDictionary();
+    _pProperties=new CCDictionary();
     
 	return true;
 }
@@ -34,7 +34,7 @@ bool ISOLayer::init()
 bool ISOLayer::init(CCSize& mapTileSize)
 {
     if(init()){
-        m_tMapTileSize=mapTileSize;
+        _tMapTileSize=mapTileSize;
         return true;
     }
     return false;
@@ -43,7 +43,7 @@ bool ISOLayer::init(CCSize& mapTileSize)
 bool ISOLayer::init(CCSize& mapTileSize,CCPoint& offset)
 {
     if(init(mapTileSize)){
-        m_tOffset=offset;
+        _tOffset=offset;
         return true;
     }
     return false;
@@ -91,21 +91,21 @@ void ISOLayer::onMapScaleChange(float orignalScale,float newScale)
 
 int  ISOLayer::zOrderForPos(const CCPoint& pos)
 {
-    return (int)(m_tLayerSize.width*m_tLayerSize.height -(pos.x + pos.y * m_tLayerSize.width));
+    return (int)(_tLayerSize.width*_tLayerSize.height -(pos.x + pos.y * _tLayerSize.width));
 }
 
 int ISOLayer::vertexZForPos(const CCPoint& pos)
 {
     int ret = 0;
     unsigned int maxVal = 0;
-    if (m_useAutomaticVertexZ)
+    if (_useAutomaticVertexZ)
     {
-        maxVal = (unsigned int)(m_tLayerSize.width + m_tLayerSize.height);
+        maxVal = (unsigned int)(_tLayerSize.width + _tLayerSize.height);
         ret = (int)(-(maxVal - (pos.x + pos.y)));
     }
     else
     {
-        ret = m_vertexZvalue;
+        ret = _vertexZvalue;
     }
     
     return ret;
@@ -116,7 +116,7 @@ int ISOLayer::vertexZForPos(const CCPoint& pos)
  */
 CCString* ISOLayer::propertyNamed(const char *propertyName)
 {
-    return (CCString*)m_pProperties->objectForKey(propertyName);
+    return (CCString*)_pProperties->objectForKey(propertyName);
 }
 
 void ISOLayer::parseInternalProperties()
@@ -126,7 +126,7 @@ void ISOLayer::parseInternalProperties()
 
 void ISOLayer::setMap(ISOMap* pMap)
 {
-    m_pMap = pMap;
+    _pMap = pMap;
 }
 
 NS_CC_YHGE_ISOMETRIC_END

@@ -32,152 +32,152 @@ public:
     }
     
     inline void stopPropagation() {
-        m_bDispatchStopped=true;
+        _bDispatchStopped=true;
     }
 
     inline void preventDefault(){
-       m_bNoDefault=true;
+       _bNoDefault=true;
     }
 
     inline bool isDispatchStopped() {
-       return !m_bBubbles || (m_bBubbles & m_bDispatchStopped);
+       return !_bBubbles || (_bBubbles & _bDispatchStopped);
     }
 
     inline bool getPreventDefault() {
-        return m_bCancelable && m_bNoDefault;
+        return _bCancelable && _bNoDefault;
     }
 
     inline void setType(const std::string& type)
     {
-        m_sType=type;
+        _sType=type;
     }
 
     inline const std::string& getType()
     {
-        return m_sType;
+        return _sType;
     }
 	
     inline const std::string& getStrType()
     {
-        return m_sType;
+        return _sType;
     }
 	
     inline void setType(int type)
     {
-        m_iType=type;
+        _iType=type;
     }
 
     inline int getIntType()
     {
-        return m_iType;
+        return _iType;
     }
 
     inline void setTarget(CCNode* pTarget)
     {
         CC_SAFE_RETAIN(pTarget);
-        CC_SAFE_RELEASE(m_pTarget);
-        m_pTarget = pTarget;
+        CC_SAFE_RELEASE(_pTarget);
+        _pTarget = pTarget;
     }
 
     inline CCNode* getTarget()
     {
-        return m_pTarget;
+        return _pTarget;
     }
 
     inline void setCurrentTarget(CCNode* pCurrentTarget)
     {
         CC_SAFE_RETAIN(pCurrentTarget);
-        CC_SAFE_RELEASE(m_pCurrentTarget);
-        m_pCurrentTarget = pCurrentTarget;
+        CC_SAFE_RELEASE(_pCurrentTarget);
+        _pCurrentTarget = pCurrentTarget;
     }
 
     inline CCNode* getCurrentTarget()
     {
-        return m_pCurrentTarget;
+        return _pCurrentTarget;
     }
 
     inline void setEventPhase(int nEventPhase)
     {
-        m_nEventPhase = nEventPhase;
+        _nEventPhase = nEventPhase;
     }
 
     inline int getEventPhase()
     {
-        return m_nEventPhase;
+        return _nEventPhase;
     }
 
     inline void setBubbles(bool bBubbles)
     {
-        m_bBubbles = bBubbles;
+        _bBubbles = bBubbles;
     }
 
     inline bool getBubbles()
     {
-        return m_bBubbles;
+        return _bBubbles;
     }
 
     inline void setCancelable(bool bCancelable)
     {
-        m_bCancelable = bCancelable;
+        _bCancelable = bCancelable;
     }
 
     inline bool getCancelable()
     {
-        return m_bCancelable;
+        return _bCancelable;
     }
 
     inline void setTimeStamp(int nTimeStamp)
     {
-        m_nTimeStamp = nTimeStamp;
+        _nTimeStamp = nTimeStamp;
     }
 
     inline int getTimeStamp()
     {
-        return m_nTimeStamp;
+        return _nTimeStamp;
     }
 
 	void setData(Ref* data)
     {
         CC_SAFE_RETAIN(data);
-		CC_SAFE_RELEASE(m_pData);
-        m_pData=data;
+		CC_SAFE_RELEASE(_pData);
+        _pData=data;
     }
 
     inline Ref* getData()
     {
-        return m_pData;
+        return _pData;
     }
 
 protected:
     /**event string 类型*/
-    std::string m_sType;
+    std::string _sType;
 	
     /**event int 类型*/
-    int m_iType;
+    int _iType;
 	
     /**event目标*/
-    CCNode* m_pTarget;
+    CCNode* _pTarget;
     /**event 当前处理目标*/
-    CCNode* m_pCurrentTarget;
+    CCNode* _pCurrentTarget;
     /**
      * event 处理的阶段
      */
-    int m_nEventPhase;
+    int _nEventPhase;
     /**event允许冒泡*/
-    bool m_bBubbles;
+    bool _bBubbles;
     /**event是否可以取消，用于取消默认操作的执行*/
-    bool m_bCancelable;
+    bool _bCancelable;
     /**event时间戳。精确到毫秒*/
-    int m_nTimeStamp;
+    int _nTimeStamp;
 
     /**是否停止冒泡*/
-    bool m_bDispatchStopped;
+    bool _bDispatchStopped;
 
     /**是否执行默认方法*/
-    bool m_bNoDefault;
+    bool _bNoDefault;
 
     /**event数据*/
-	Ref* m_pData;
+	Ref* _pData;
 };
 
 typedef yhge::Event YHEvent;

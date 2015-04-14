@@ -11,7 +11,7 @@ NS_CC_YHGE_BEGIN
 static const int kEightDirectionAction=1001;
 
 SpriteRendererComponent::SpriteRendererComponent()
-:m_spriteRenderer(NULL)
+:_spriteRenderer(NULL)
 {
 
 }
@@ -24,18 +24,18 @@ SpriteRendererComponent::~SpriteRendererComponent()
 bool SpriteRendererComponent::init()
 {
     if (RendererComponent::init()) {
-        m_spriteRenderer=new CCSprite();
-        m_spriteRenderer->initWithTexture(CCDefaultTexture::getInstance()->getTexture());
-        m_spriteRenderer->setAnchorPoint(ccp(0.5,0));
+        _spriteRenderer=new CCSprite();
+        _spriteRenderer->initWithTexture(CCDefaultTexture::getInstance()->getTexture());
+        _spriteRenderer->setAnchorPoint(ccp(0.5,0));
 
-//        setRenderer(m_spriteRenderer);
-        m_renderer->addChild(m_spriteRenderer);
+//        setRenderer(_spriteRenderer);
+        _renderer->addChild(_spriteRenderer);
         
 //        CCLayer* test=CCLayerColor::create(ccc4(128, 0, 0, 128), 100, 200);
 //        
-//        m_renderer->addChild(test);
+//        _renderer->addChild(test);
         
-        m_spriteRenderer->release();
+        _spriteRenderer->release();
     }
     return true;
 }
@@ -46,9 +46,9 @@ bool SpriteRendererComponent::init()
 //void SpriteRendererComponent::runAnimate(CCAction* animate)
 //{
 //    if (animate->getTag()) {
-//        m_spriteRenderer->stopActionByTag(animate->getTag());
+//        _spriteRenderer->stopActionByTag(animate->getTag());
 //    }
-//    m_spriteRenderer->runAction(animate);
+//    _spriteRenderer->runAction(animate);
 //    
 //}
 //
@@ -57,7 +57,7 @@ bool SpriteRendererComponent::init()
 // */
 //void SpriteRendererComponent::stopAnimate(CCAction* animate)
 //{
-//    m_spriteRenderer->stopAction(animate);
+//    _spriteRenderer->stopAction(animate);
 //}
 //
 ///**
@@ -65,7 +65,7 @@ bool SpriteRendererComponent::init()
 // */
 //void SpriteRendererComponent::stopAnimateByTag(int tag)
 //{
-//    m_spriteRenderer->stopActionByTag(tag);
+//    _spriteRenderer->stopActionByTag(tag);
 //}
 
 NS_CC_YHGE_END

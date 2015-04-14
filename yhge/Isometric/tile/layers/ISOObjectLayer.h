@@ -54,13 +54,13 @@ public:
     inline void setObjectGroup(ISOObjectGroup* objectGroup)
     {
         CC_SAFE_RETAIN(objectGroup);
-        CC_SAFE_RELEASE(m_objectGroup);
-        m_objectGroup = objectGroup;
+        CC_SAFE_RELEASE(_objectGroup);
+        _objectGroup = objectGroup;
     }
     
     inline ISOObjectGroup* getObjectGroup()
     {
-        return m_objectGroup;
+        return _objectGroup;
     }
     
 protected:
@@ -78,12 +78,12 @@ protected:
 protected:
     
     //对地图的引用。
-    ISOTileMap* m_tileMap;
+    ISOTileMap* _tileMap;
 
     /**
      * 使用object group
      */
-    ISOObjectGroup* m_objectGroup;
+    ISOObjectGroup* _objectGroup;
 };
 
 

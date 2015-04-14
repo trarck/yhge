@@ -39,12 +39,12 @@ public:
 	
 
 protected:
-	AstarNode* m_parent;
-	int m_x;
-	int m_y;
-	int m_g;
-	int m_h;
-	int m_f;
+	AstarNode* _parent;
+	int _x;
+	int _y;
+	int _g;
+	int _h;
+	int _f;
 };
 
 NS_CC_YHGE_END

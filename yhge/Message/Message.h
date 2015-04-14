@@ -16,12 +16,12 @@ class Message : public Ref {
 
 public:
     Message()
-	:m_type(0)
-	,m_sender(NULL)
-	,m_receiver(NULL)
-	,m_pData(NULL)
-	,m_timeStamp(0.0f)
-	,m_pExtData(NULL)
+	:_type(0)
+	,_sender(NULL)
+	,_receiver(NULL)
+	,_pData(NULL)
+	,_timeStamp(0.0f)
+	,_pExtData(NULL)
 	{
 		
 	}
@@ -29,7 +29,7 @@ public:
     ~Message(void);
     
 	bool initWithType(unsigned int type,Ref* sender ,Ref* receiver ,Ref *data){
-		 m_type=type;
+		 _type=type;
 		setSender(sender);
 		setReceiver(receiver);
 		setData(data);
@@ -37,76 +37,76 @@ public:
 	}
 
     bool initWithType(unsigned int type,Ref* sender ,Ref* receiver){
-		m_type=type;
+		_type=type;
 		setSender(sender);
 		setReceiver(receiver);
     	return true;
 	}
 
     bool initWithType(unsigned int type,Ref* sender){
-		m_type=type;
+		_type=type;
 		setSender(sender);
   		return true;
 	}
 
 	unsigned int getType(){
-		return m_type;
+		return _type;
 	}
 	void setType(unsigned int type){
-	    m_type=type;
+	    _type=type;
 	}
 
 	Ref* getSender(){
-		return m_sender;
+		return _sender;
 	}
 
 	void setSender(Ref* sender){
 		CC_SAFE_RETAIN(sender);
-		CC_SAFE_RELEASE(m_sender);
-		m_sender=sender;
+		CC_SAFE_RELEASE(_sender);
+		_sender=sender;
 	}
 
 	Ref* getReceiver(){
-		return m_receiver;
+		return _receiver;
 	}
 
 	void setReceiver(Ref* receiver){
 		CC_SAFE_RETAIN(receiver);
-		CC_SAFE_RELEASE(m_receiver);
-		m_receiver=receiver;
+		CC_SAFE_RELEASE(_receiver);
+		_receiver=receiver;
 	}
     
 	Ref* getData(){
-		return m_pData;
+		return _pData;
 	}
 
     void setData(Ref* data){
 		CC_SAFE_RETAIN(data);
-		CC_SAFE_RELEASE(m_pData);
-		m_pData=data;
+		CC_SAFE_RELEASE(_pData);
+		_pData=data;
 	}
 
     CCDictionary* getDictionary(){
-		 return (CCDictionary*) m_pData;
+		 return (CCDictionary*) _pData;
 	}
 
 	Ref* getExtData(){
-		return m_pExtData;
+		return _pExtData;
 	}
 
     void setExtData(Ref* ExtData){
 		CC_SAFE_RETAIN(ExtData);
-		CC_SAFE_RELEASE(m_pExtData);
-		m_pExtData=ExtData;
+		CC_SAFE_RELEASE(_pExtData);
+		_pExtData=ExtData;
 	}
 
 private:
-    unsigned int m_type;//消息的类型或ID。
-    Ref* m_sender;//消息的发送者
-	Ref* m_receiver;//消息的接收者
-    float m_timeStamp;//发送时间
-    Ref* m_pData;
-	Ref* m_pExtData;//附加数据。
+    unsigned int _type;//消息的类型或ID。
+    Ref* _sender;//消息的发送者
+	Ref* _receiver;//消息的接收者
+    float _timeStamp;//发送时间
+    Ref* _pData;
+	Ref* _pExtData;//附加数据。
 };
 
 NS_CC_YHGE_END

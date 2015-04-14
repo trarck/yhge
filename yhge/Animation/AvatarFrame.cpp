@@ -3,32 +3,32 @@
 NS_CC_YHGE_BEGIN
 
  FrameElement::FrameElement()
- :m_displayProperty(NULL)
- ,m_characterId(0)
+ :_displayProperty(NULL)
+ ,_characterId(0)
 {
 
 }
  FrameElement::~FrameElement()
  {
-     CC_SAFE_RELEASE_NULL(m_displayProperty);
+     CC_SAFE_RELEASE_NULL(_displayProperty);
  }
 
 AvatarFrame::AvatarFrame()
-:m_elements(NULL)
+:_elements(NULL)
 {
     
 }
 
 AvatarFrame::~AvatarFrame()
 {
-    CC_SAFE_RELEASE_NULL(m_elements);
+    CC_SAFE_RELEASE_NULL(_elements);
 }
 //
 //bool AvatarFrame::init()
 //{
 //    if (Frame::init()) {
 //        
-//        m_elements=new CCArray();
+//        _elements=new CCArray();
 //        
 //        return true;
 //    }
@@ -41,11 +41,11 @@ AvatarFrame::~AvatarFrame()
 //    Ref* pObj=NULL;
 //    FrameElement* iter=NULL;
 //    int index=0;
-//    CCARRAY_FOREACH(m_elements, pObj){
+//    CCARRAY_FOREACH(_elements, pObj){
 //        iter=static_cast<FrameElement*>(pObj);
 //        if (element->getZOrder()<iter->getZOrder()) {
 //            
-//            m_elements->insertObject(element, index);
+//            _elements->insertObject(element, index);
 //            
 //            return;
 //        }
@@ -53,12 +53,12 @@ AvatarFrame::~AvatarFrame()
 //        ++index;
 //    }
 //    
-//    m_elements->addObject(element);
+//    _elements->addObject(element);
 //}
 //
 //void AvatarFrame::removeElement(FrameElement* element)
 //{
-//    m_elements->removeObject(element);
+//    _elements->removeObject(element);
 //}
 //
 //void AvatarFrame::removeElementByZOrder(int zOrder)
@@ -66,10 +66,10 @@ AvatarFrame::~AvatarFrame()
 //    Ref* pObj=NULL;
 //    FrameElement* iter=NULL;
 //    int index=0;
-//    CCARRAY_FOREACH(m_elements, pObj){
+//    CCARRAY_FOREACH(_elements, pObj){
 //        iter=static_cast<FrameElement*>(pObj);
 //        if (zOrder==iter->getZOrder()) {
-//            m_elements->removeObjectAtIndex(index);
+//            _elements->removeObjectAtIndex(index);
 //            break;
 //        }
 //        ++index;
@@ -81,7 +81,7 @@ bool AvatarFrame::init()
 {
     if (Frame::init()) {
         
-        m_elements=new CCDictionary();
+        _elements=new CCDictionary();
         
         return true;
     }
@@ -91,12 +91,12 @@ bool AvatarFrame::init()
 
 void AvatarFrame::addElement(FrameElement* element)
 {
-    m_elements->setObject(element, element->getCharacterId());
+    _elements->setObject(element, element->getCharacterId());
 }
 
 void AvatarFrame::removeElement(FrameElement* element)
 {
-    m_elements->removeObjectForKey(element->getCharacterId());
+    _elements->removeObjectForKey(element->getCharacterId());
 }
 
 void AvatarFrame::removeElementByZOrder(int zOrder)
@@ -104,10 +104,10 @@ void AvatarFrame::removeElementByZOrder(int zOrder)
     CCDictElement* elem=NULL;
     FrameElement* iter=NULL;
     int index=0;
-    CCDICT_FOREACH(m_elements, elem){
+    CCDICT_FOREACH(_elements, elem){
         iter=static_cast<FrameElement*>(elem->getObject());
         if (zOrder==iter->getZOrder()) {
-            m_elements->removeObjectForElememt(elem);
+            _elements->removeObjectForElememt(elem);
             break;
         }
         ++index;

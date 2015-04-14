@@ -14,8 +14,8 @@ const int kNullObjectId=0;
 static MessageManager* s_sharedMessageManagerInstance=NULL;
 
 MessageManager::MessageManager()
-:m_messages(NULL)
-,m_globalObject(NULL)
+:_messages(NULL)
+,_globalObject(NULL)
 {
 	//CCLOG("MessageManager create");
 }
@@ -23,9 +23,9 @@ MessageManager::MessageManager()
 MessageManager::~MessageManager()
 {
 	//CCLOG("MessageManager destroy begin");
-	CC_SAFE_RELEASE_NULL(m_messages);
-	CC_SAFE_RELEASE_NULL(m_globalObject);
-	//CC_SAFE_RELEASE(m_regiesterMap);
+	CC_SAFE_RELEASE_NULL(_messages);
+	CC_SAFE_RELEASE_NULL(_globalObject);
+	//CC_SAFE_RELEASE(_regiesterMap);
 	//CCLOG("MessageManager destroy end");
 }
 
@@ -40,8 +40,8 @@ MessageManager* MessageManager::defaultManager(void)
 
 bool MessageManager::init()
 {
-	m_messages=new CCDictionary();
-	m_globalObject=new Ref();
+	_messages=new CCDictionary();
+	_globalObject=new Ref();
 	return true;
 }
 
@@ -53,14 +53,14 @@ bool MessageManager::registerReceiver(Ref* receiver ,unsigned int type ,Ref* sen
 
 	//type等于0，则所有消息都会发送
 	//register for type
-	CCDictionary *msgMap=(CCDictionary*) m_messages->objectForKey(type);
+	CCDictionary *msgMap=(CCDictionary*) _messages->objectForKey(type);
 	if (msgMap==NULL) {
 		msgMap=new CCDictionary();
-		m_messages->setObject(msgMap,type);
+		_messages->setObject(msgMap,type);
 		msgMap->release();
 	}
     //register for receiver
-	unsigned int receiverKey=receiver->m_uID;
+	unsigned int receiverKey=receiver->_uID;
     CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiverKey);
 	if (!receiverMap) {
 		receiverMap=new CCDictionary();
@@ -70,7 +70,7 @@ bool MessageManager::registerReceiver(Ref* receiver ,unsigned int type ,Ref* sen
 
 	//register for sender
 	//sender 为空，则注册到全局对象上
-	unsigned int senderKey=sender==NULL?kNullObjectId:sender->m_uID;
+	unsigned int senderKey=sender==NULL?kNullObjectId:sender->_uID;
 	CCArray *handleList=(CCArray*)receiverMap->objectForKey(senderKey);
 	if (!handleList) {
         handleList=new CCArray();
@@ -125,14 +125,14 @@ bool MessageManager::registerReceiver(Ref* receiver ,unsigned int type ,Ref* sen
 
 	//type等于0，则所有消息都会发送
 	//register for type
-	CCDictionary *msgMap=(CCDictionary*) m_messages->objectForKey(type);
+	CCDictionary *msgMap=(CCDictionary*) _messages->objectForKey(type);
 	if (msgMap==NULL) {
 		msgMap=new CCDictionary();
-		m_messages->setObject(msgMap,type);
+		_messages->setObject(msgMap,type);
 		msgMap->release();
 	}
     //register for receiver
-	unsigned int receiverKey=receiver->m_uID;
+	unsigned int receiverKey=receiver->_uID;
     CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiverKey);
 	if (!receiverMap) {
 		receiverMap=new CCDictionary();
@@ -142,7 +142,7 @@ bool MessageManager::registerReceiver(Ref* receiver ,unsigned int type ,Ref* sen
 
 	//register for sender
 	//sender 为空，则注册到全局对象上
-	unsigned int senderKey=sender==NULL?kNullObjectId:sender->m_uID;
+	unsigned int senderKey=sender==NULL?kNullObjectId:sender->_uID;
 	CCArray *handleList=(CCArray*)receiverMap->objectForKey(senderKey);
 	if (!handleList) {
         handleList=new CCArray();
@@ -186,12 +186,12 @@ bool MessageManager::isRegisterReceiver(Ref* receiver ,unsigned int type ,Ref* s
 
 	//type等于0，则所有消息都会发送
 	//register for type
-	CCDictionary *msgMap=(CCDictionary*) m_messages->objectForKey(type);
+	CCDictionary *msgMap=(CCDictionary*) _messages->objectForKey(type);
 	if (msgMap==NULL) {
 		return false;
 	}
     //register for receiver
-	unsigned int receiverKey=receiver->m_uID;
+	unsigned int receiverKey=receiver->_uID;
     CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiverKey);
 	if (!receiverMap) {
 		return false;
@@ -199,7 +199,7 @@ bool MessageManager::isRegisterReceiver(Ref* receiver ,unsigned int type ,Ref* s
 
 	//register for sender
 	//sender 为空，则注册到全局对象上
-	unsigned int senderKey=sender==NULL?kNullObjectId:sender->m_uID;
+	unsigned int senderKey=sender==NULL?kNullObjectId:sender->_uID;
 	CCArray *handleList=(CCArray*)receiverMap->objectForKey(senderKey);
 	if (!handleList) {
        return false;
@@ -233,19 +233,19 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender
 	CCAssert(handle!=NULL,"MessageManager:removeReceiver:handle can't be null!");
     CCAssert(handleObject!=NULL,"MessageManager:removeReceiver:handleObject can't be null!");
     
-    CCDictionary *msgMap=(CCDictionary*) m_messages->objectForKey(type);
+    CCDictionary *msgMap=(CCDictionary*) _messages->objectForKey(type);
 
     if(msgMap){
-        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->m_uID);
+        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->_uID);
         if(receiverMap){
             if(sender){
                 //移除注册到sender的记录
-                CCArray* handleList=(CCArray*)receiverMap->objectForKey(sender->m_uID);
+                CCArray* handleList=(CCArray*)receiverMap->objectForKey(sender->_uID);
                 if(handleList){
                     removeHandleList(handleList, handle,handleObject);
 					//删除没有数据的记录
 					if(handleList->count()==0){
-						receiverMap->removeObjectForKey(sender->m_uID);
+						receiverMap->removeObjectForKey(sender->_uID);
 					}
                 }
             }else{
@@ -254,7 +254,7 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender
             }
 			//删除没有数据的记录
 			if(receiverMap->count()==0){
-				msgMap->removeObjectForKey(receiver->m_uID);
+				msgMap->removeObjectForKey(receiver->_uID);
 			}
         }
     }
@@ -268,19 +268,19 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 	CCAssert(handle!=NULL,"MessageManager:removeReceiver:handle can't be null!");
 
-    CCDictionary *msgMap=(CCDictionary*) m_messages->objectForKey(type);
+    CCDictionary *msgMap=(CCDictionary*) _messages->objectForKey(type);
 
     if(msgMap){
-        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->m_uID);
+        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->_uID);
         if(receiverMap){
             if(sender){
                 //移除注册到sender的记录
-                CCArray* handleList=(CCArray*)receiverMap->objectForKey(sender->m_uID);
+                CCArray* handleList=(CCArray*)receiverMap->objectForKey(sender->_uID);
                 if(handleList){
                     removeHandleList(handleList, handle);
 					//删除没有数据的记录
 					if(handleList->count()==0){
-						receiverMap->removeObjectForKey(sender->m_uID);
+						receiverMap->removeObjectForKey(sender->_uID);
 					}
                 }
             }else{
@@ -289,7 +289,7 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender
             }
 			//删除没有数据的记录
 			if(receiverMap->count()==0){
-				msgMap->removeObjectForKey(receiver->m_uID);
+				msgMap->removeObjectForKey(receiver->_uID);
 			}
         }
     }
@@ -302,18 +302,18 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 
-    CCDictionary *msgMap=(CCDictionary*) m_messages->objectForKey(type);
+    CCDictionary *msgMap=(CCDictionary*) _messages->objectForKey(type);
 
     if(msgMap){
-        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->m_uID);
+        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->_uID);
         if(receiverMap){
             if(sender){
                 //移除注册到sender的记录
-                CCArray* handleList=(CCArray*)receiverMap->objectForKey(sender->m_uID);
+                CCArray* handleList=(CCArray*)receiverMap->objectForKey(sender->_uID);
                 if(handleList){
                      removeHandleList(handleList);
 					 //删除没有数据的记录
-					 receiverMap->removeObjectForKey(sender->m_uID);
+					 receiverMap->removeObjectForKey(sender->_uID);
                 }
 	        }else{
                 //移除所有receiver记录
@@ -321,7 +321,7 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender
             }
 			//删除没有数据的记录
 			if(receiverMap->count()==0){
-				msgMap->removeObjectForKey(receiver->m_uID);
+				msgMap->removeObjectForKey(receiver->_uID);
 			}
         }
     }
@@ -334,15 +334,15 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type)
 {
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 
-	 CCDictionary *msgMap=(CCDictionary*) m_messages->objectForKey(type);
+	 CCDictionary *msgMap=(CCDictionary*) _messages->objectForKey(type);
 
     if(msgMap){
-        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->m_uID);
+        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->_uID);
         if(receiverMap){
             //移除所有receiver记录
             removeReceiverMap(receiverMap);
 			//删除没有数据的记录
-			msgMap->removeObjectForKey(receiver->m_uID);
+			msgMap->removeObjectForKey(receiver->_uID);
         }
     }
 }
@@ -358,14 +358,14 @@ void MessageManager::removeReceiver(Ref* receiver)
     CCDictionary* msgMap=NULL;
 	CCDictionary* receiverMap=NULL;
     
-    CCDICT_FOREACH(m_messages,msgMapElement){
+    CCDICT_FOREACH(_messages,msgMapElement){
         msgMap=(CCDictionary*) msgMapElement->getObject();
-        receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->m_uID);
+        receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->_uID);
         if(receiverMap){
             //移除所有receiver记录
             removeReceiverMap(receiverMap);
 			//删除没有数据的记录
-			msgMap->removeObjectForKey(receiver->m_uID);
+			msgMap->removeObjectForKey(receiver->_uID);
         }
     }
 }
@@ -375,16 +375,16 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,SEL_Message
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 	CCAssert(handle!=NULL,"MessageManager:removeReceiver:handle can't be null!");
     
-    CCDictionary *msgMap=(CCDictionary*) m_messages->objectForKey(type);
+    CCDictionary *msgMap=(CCDictionary*) _messages->objectForKey(type);
 
     if(msgMap){
-        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->m_uID);
+        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->_uID);
         if(receiverMap){
             //移除所有receiver记录
             removeReceiverMap(receiverMap,handle);
 			//删除没有数据的记录
 			if(receiverMap->count()==0){
-				msgMap->removeObjectForKey(receiver->m_uID);
+				msgMap->removeObjectForKey(receiver->_uID);
 			}
         }
     }
@@ -401,22 +401,22 @@ void MessageManager::removeReceiver(Ref* receiver,Ref* sender,SEL_MessageHandler
 	CCDictionary* receiverMap=NULL;
     CCArray* handleList=NULL;
 
-    CCDICT_FOREACH(m_messages,msgMapElement){
+    CCDICT_FOREACH(_messages,msgMapElement){
         msgMap=(CCDictionary*) msgMapElement->getObject();
-        receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->m_uID);
+        receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->_uID);
         if(receiverMap){
-            handleList=(CCArray*)receiverMap->objectForKey(sender->m_uID);
+            handleList=(CCArray*)receiverMap->objectForKey(sender->_uID);
             if(handleList){
                 //移除所有receiver记录
                 removeHandleList(handleList,handle);
 				//删除没有数据的记录
 				if(handleList->count()==0){
-					receiverMap->removeObjectForKey(sender->m_uID);
+					receiverMap->removeObjectForKey(sender->_uID);
 				}
             }
 			//删除没有数据的记录
 			if(receiverMap->count()==0){
-				msgMap->removeObjectForKey(receiver->m_uID);
+				msgMap->removeObjectForKey(receiver->_uID);
 			}
         }
     }
@@ -432,21 +432,21 @@ void MessageManager::removeReceiver(Ref* receiver,Ref* sender)
 	CCDictionary* receiverMap=NULL;
     CCArray* handleList=NULL;
 
-    CCDICT_FOREACH(m_messages,msgMapElement){
+    CCDICT_FOREACH(_messages,msgMapElement){
         msgMap=(CCDictionary*) msgMapElement->getObject();
-        receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->m_uID);
+        receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->_uID);
         if(receiverMap){
-            handleList=(CCArray*)receiverMap->objectForKey(sender->m_uID);
+            handleList=(CCArray*)receiverMap->objectForKey(sender->_uID);
             if(handleList){
                 //移除所有receiver记录
                 removeHandleList(handleList);
 				//删除没有数据的记录
-				receiverMap->removeObjectForKey(sender->m_uID);
+				receiverMap->removeObjectForKey(sender->_uID);
 			}
 
 			//删除没有数据的记录
 			if(receiverMap->count()==0){
-				msgMap->removeObjectForKey(receiver->m_uID);
+				msgMap->removeObjectForKey(receiver->_uID);
 			}
         }
     }
@@ -461,16 +461,16 @@ void MessageManager::removeReceiver(Ref* receiver,SEL_MessageHandler handle)
     CCDictionary* msgMap=NULL;
 	CCDictionary* receiverMap=NULL;
 
-    CCDICT_FOREACH(m_messages,msgMapElement){
+    CCDICT_FOREACH(_messages,msgMapElement){
         msgMap=(CCDictionary*) msgMapElement->getObject();
-        receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->m_uID);
+        receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->_uID);
         if(receiverMap){
              //移除所有receiver记录
              removeReceiverMap(receiverMap,handle);
 
 			//删除没有数据的记录
 			if(receiverMap->count()==0){
-				msgMap->removeObjectForKey(receiver->m_uID);
+				msgMap->removeObjectForKey(receiver->_uID);
 			}
         }
     }
@@ -484,19 +484,19 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,unsigned int type ,R
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
     CCAssert(handleObject!=NULL,"MessageManager:removeReceiver:handleObject can't be null!");
 
-    CCDictionary *msgMap=(CCDictionary*) m_messages->objectForKey(type);
+    CCDictionary *msgMap=(CCDictionary*) _messages->objectForKey(type);
 
     if(msgMap){
-        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->m_uID);
+        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->_uID);
         if(receiverMap){
             if(sender){
                 //移除注册到sender的记录
-                CCArray* handleList=(CCArray*)receiverMap->objectForKey(sender->m_uID);
+                CCArray* handleList=(CCArray*)receiverMap->objectForKey(sender->_uID);
                 if(handleList){
                     removeHandleListForTarget(handleList, handleObject);
 					//删除没有数据的记录
 					if(handleList->count()==0){
-						receiverMap->removeObjectForKey(sender->m_uID);
+						receiverMap->removeObjectForKey(sender->_uID);
 					}
                 }
             }else{
@@ -506,7 +506,7 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,unsigned int type ,R
 
 			//删除没有数据的记录
 			if(receiverMap->count()==0){
-				msgMap->removeObjectForKey(receiver->m_uID);
+				msgMap->removeObjectForKey(receiver->_uID);
 			}
         }
     }
@@ -520,16 +520,16 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,unsigned int type ,R
     CCAssert(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
     CCAssert(handleObject!=NULL,"MessageManager:removeReceiver:handleObject can't be null!");
 
-    CCDictionary *msgMap=(CCDictionary*) m_messages->objectForKey(type);
+    CCDictionary *msgMap=(CCDictionary*) _messages->objectForKey(type);
 
     if(msgMap){
-        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->m_uID);
+        CCDictionary *receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->_uID);
         if(receiverMap){
             //移除所有receiver记录
             removeReceiverMapForTarget(receiverMap,handleObject);
 			//删除没有数据的记录
 			if(receiverMap->count()==0){
-				msgMap->removeObjectForKey(receiver->m_uID);
+				msgMap->removeObjectForKey(receiver->_uID);
 			}
         }
     }
@@ -549,24 +549,24 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,Ref* sender,Ref*  ha
 	CCDictionary* receiverMap=NULL;
     CCArray* handleList=NULL;
 
-    CCDICT_FOREACH(m_messages,msgMapElement){
+    CCDICT_FOREACH(_messages,msgMapElement){
         msgMap=(CCDictionary*) msgMapElement->getObject();
-        receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->m_uID);
+        receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->_uID);
         if(receiverMap){
-            handleList=(CCArray*)receiverMap->objectForKey(sender->m_uID);
+            handleList=(CCArray*)receiverMap->objectForKey(sender->_uID);
             if(handleList){
                 //移除所有receiver记录
                 removeHandleListForTarget(handleList,handleObject);
 
 				//删除没有数据的记录
 				if(handleList->count()==0){
-					receiverMap->removeObjectForKey(sender->m_uID);
+					receiverMap->removeObjectForKey(sender->_uID);
 				}
             }
 
 			//删除没有数据的记录
 			if(receiverMap->count()==0){
-				msgMap->removeObjectForKey(receiver->m_uID);
+				msgMap->removeObjectForKey(receiver->_uID);
 			}
         }
     }
@@ -584,15 +584,15 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,Ref*  handleObject)
     CCDictionary* msgMap=NULL;
 	CCDictionary* receiverMap=NULL;
 
-    CCDICT_FOREACH(m_messages,msgMapElement){
+    CCDICT_FOREACH(_messages,msgMapElement){
         msgMap=(CCDictionary*) msgMapElement->getObject();
-        receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->m_uID);
+        receiverMap=(CCDictionary*)msgMap->objectForKey(receiver->_uID);
         if(receiverMap){
              //移除所有receiver记录
              removeReceiverMapForTarget(receiverMap,handleObject);
 			 //删除没有数据的记录
 			if(receiverMap->count()==0){
-				msgMap->removeObjectForKey(receiver->m_uID);
+				msgMap->removeObjectForKey(receiver->_uID);
 			}
         }
     }
@@ -727,14 +727,14 @@ void MessageManager::dispatchMessage(Message* message)
 	//如果message的type不为0，则需要执行一个type为global的所有消息
 	if (message->getType()!=GlobalMessageType) {
 		//message for global
-		CCDictionary* msgMap=(CCDictionary*)m_messages->objectForKey(GlobalMessageType);
+		CCDictionary* msgMap=(CCDictionary*)_messages->objectForKey(GlobalMessageType);
 		if (msgMap) {
             dispatchMessageMap(msgMap,message);
 		}
 	}
 	
 	//message for type
-	CCDictionary* msgMap= (CCDictionary*)m_messages->objectForKey(message->getType());
+	CCDictionary* msgMap= (CCDictionary*)_messages->objectForKey(message->getType());
 	if (msgMap) {
 		dispatchMessageMap(msgMap,message);
 	}
@@ -773,12 +773,12 @@ void MessageManager::dispatchMessageMap(CCDictionary* msgMap,Message* message)
     Ref* receiver=message->getReceiver();
     Ref* sender=message->getSender();
     if(receiver){
-            CCDictionary* receiverMap=(CCDictionary *)msgMap->objectForKey(receiver->m_uID);
+            CCDictionary* receiverMap=(CCDictionary *)msgMap->objectForKey(receiver->_uID);
             if(receiverMap){
                 CCArray* handleList=NULL;
                 if(sender){
                     //执行注册到送送者为sender的消息的处理方法
-                    handleList=(CCArray *)receiverMap->objectForKey(sender->m_uID);
+                    handleList=(CCArray *)receiverMap->objectForKey(sender->_uID);
                     if(handleList)
                         execHandleList(handleList,message);
 //                        //执行注册到送送者为null的消息的处理方法
@@ -803,7 +803,7 @@ void MessageManager::dispathMessageToAllReceiverWithSender(Message* message,CCDi
 {
     CCAssert(msgMap!=NULL,"MessageManager:dispatchMessageMap:msgMap can't be null!");
 
-    int senderKey=sender==NULL?kNullObjectId:sender->m_uID;
+    int senderKey=sender==NULL?kNullObjectId:sender->_uID;
 
     CCDictElement* pElement = NULL;
     CCDictionary* receiverMap=NULL;
@@ -853,7 +853,7 @@ void MessageManager::execHandleList(CCArray* handleList ,Message* message)
 //	Ref* receiver=message->getReceiver();
 //	if (receiver) {
 //		//message for receiver
-//		CCArray* receiverList=(CCArray*)senderMap->objectForKey(receiver->m_uID);
+//		CCArray* receiverList=(CCArray*)senderMap->objectForKey(receiver->_uID);
 //		if(receiverList) execRegisterReceiverList(receiverList,message);
 //	}else {
 //		//send to all receiver
@@ -865,7 +865,7 @@ void MessageManager::execHandleList(CCArray* handleList ,Message* message)
 //{
 //	CCAssert(senderMap!=NULL,"MessageManager:execRegisterWithSenderMap:senderMap can't be null!");
 //	CCAssert(receiver!=NULL,"MessageManager:execRegisterWithSenderMap:receiver can't be null!");
-//	CCArray* receiverList=(CCArray*)senderMap->objectForKey(receiver->m_uID);
+//	CCArray* receiverList=(CCArray*)senderMap->objectForKey(receiver->_uID);
 //	if(receiverList) 
 //		execRegisterReceiverList(receiverList,message);
 //}

@@ -55,70 +55,70 @@ public:
 
 	inline void setComponentTileColumn(int iComponentTileColumn)
 	{
-		m_iComponentTileColumn = iComponentTileColumn;
+		_iComponentTileColumn = iComponentTileColumn;
 	}
 
 	inline int getComponentTileColumn()
 	{
-		return m_iComponentTileColumn;
+		return _iComponentTileColumn;
 	}
 
 	inline void setComponentTileRow(int iComponentTileRow)
 	{
-		m_iComponentTileRow = iComponentTileRow;
+		_iComponentTileRow = iComponentTileRow;
 	}
 
 	inline int getComponentTileRow()
 	{
-		return m_iComponentTileRow;
+		return _iComponentTileRow;
 	}
 
 	inline void setComponentTileExtendCount(int iComponentNodeExtendCount)
 	{
-		m_iComponentNodeExtendCount = iComponentNodeExtendCount;
+		_iComponentNodeExtendCount = iComponentNodeExtendCount;
 	}
 
 	inline int getComponentTileExtendCount()
 	{
-		return m_iComponentNodeExtendCount;
+		return _iComponentNodeExtendCount;
 	}
 
     inline void setOffset(const CCPoint& tOffset)
 	{
-		m_tOffset = tOffset;
+		_tOffset = tOffset;
 	}
 
 	inline void setOffset(float x,float y)
 	{
-		m_tOffset.x=x;
-		m_tOffset.y=y;
+		_tOffset.x=x;
+		_tOffset.y=y;
 	}
 
 	inline CCPoint getOffset()
 	{
-		return m_tOffset;
+		return _tOffset;
 	}
 
 	void setDynamiceComponentList(CCArray* dynamiceComponentList)
 	{
 		CC_SAFE_RETAIN(dynamiceComponentList);
-		CC_SAFE_RELEASE(m_pDynamiceComponentList);
-		m_pDynamiceComponentList = dynamiceComponentList;
+		CC_SAFE_RELEASE(_pDynamiceComponentList);
+		_pDynamiceComponentList = dynamiceComponentList;
 	}
 
 	CCArray* getDynamiceComponentList()
 	{
-		return m_pDynamiceComponentList;
+		return _pDynamiceComponentList;
 	}
 
 	void setTileMap(ISOTileMap* tileMap)
 	{
-		m_tileMap = tileMap;
+		_tileMap = tileMap;
 	}
 
 	ISOTileMap* getTileMap()
 	{
-		return m_tileMap;
+		return _tileMap;
 	}
     
 protected:
@@ -132,54 +132,54 @@ protected:
     /**
      * 所用到的组件的行列数
      */
-    int m_iComponentTileColumn;
-    int m_iComponentTileRow;
+    int _iComponentTileColumn;
+    int _iComponentTileRow;
     
 	/**
      * 总的行列数
 	 * 总的行列数是行列数的2倍。斜45度地图格子之间是有交错的。
      */
-    int m_iComponentTileTotalColumn;
-    int m_iComponentTileTotalRow;
+    int _iComponentTileTotalColumn;
+    int _iComponentTileTotalRow;
 
     //x,y增加相同的格子数
-    int m_iComponentNodeExtendCount;
+    int _iComponentNodeExtendCount;
     
 	//需要更新的动态组件组
-	CCArray* m_pDynamiceComponentList;
+	CCArray* _pDynamiceComponentList;
     
     /**
      * 地图的偏移量。屏幕坐标。
 	 * 也可以理解为相机在地图上的位置
      */
-	CCPoint m_tOffset;
+	CCPoint _tOffset;
     
     /**
      * 偏移量的地图坐标
      */
-	int m_iStartX;
-	int m_iStartY;
+	int _iStartX;
+	int _iStartY;
 
     /**
 	 * 上次偏移量的地图坐标
 	 */
-    int m_iLastStartX;
-    int m_iLastStartY;
+    int _iLastStartX;
+    int _iLastStartY;
         
 	/**
 	 * 组件结点索引
 	 */
-    int m_iComponentIndexX;
-    int m_iComponentIndexY;
+    int _iComponentIndexX;
+    int _iComponentIndexY;
  
 	/**
 	 * 事件代理
 	 */
-    ISODynamicComponentUpdateDelegator* m_pUpdateDelegator;
-    ISODynamicComponentCreateDelegator* m_pCreateDelegator;
+    ISODynamicComponentUpdateDelegator* _pUpdateDelegator;
+    ISODynamicComponentCreateDelegator* _pCreateDelegator;
 
     //tileMap保持弱引用
-    ISOTileMap* m_tileMap;
+    ISOTileMap* _tileMap;
 };
 
 

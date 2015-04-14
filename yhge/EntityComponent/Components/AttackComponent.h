@@ -54,14 +54,14 @@ public:
     
     inline Entity* getTarget()
     {
-        return m_target;
+        return _target;
     }
     
 protected:
     
     //攻击目标。对于目标的持有，由具体子类决定。
     //攻击完成后是否消除目标，根据实际需求来设置
-    Entity* m_target;
+    Entity* _target;
 };
 
 NS_CC_YHGE_END

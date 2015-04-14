@@ -5,8 +5,8 @@ NS_CC_YHGE_BEGIN
 static Engine* s_engineInstance=NULL;
 
 Engine::Engine()
-:m_scheduler(NULL)
-,m_updateManager(NULL)
+:_scheduler(NULL)
+,_updateManager(NULL)
 {
    
     
@@ -14,8 +14,8 @@ Engine::Engine()
 
 Engine::~Engine()
 {
-    CC_SAFE_RELEASE_NULL(m_scheduler);
-    CC_SAFE_RELEASE_NULL(m_updateManager);
+    CC_SAFE_RELEASE_NULL(_scheduler);
+    CC_SAFE_RELEASE_NULL(_updateManager);
 }
 
 Engine* Engine::getInstance()
@@ -38,14 +38,14 @@ void Engine::destroyInstance()
 
 bool Engine::init()
 {
-    m_scheduler=new yhge::Scheduler();
-    m_scheduler->init();
+    _scheduler=new yhge::Scheduler();
+    _scheduler->init();
     
-    m_updateManager=new UpdateManager();
-    m_updateManager->init();
+    _updateManager=new UpdateManager();
+    _updateManager->init();
     
     //add update manager to scheduler
-    m_scheduler->registerUpdate(m_updateManager, schedule_selector(UpdateManager::update), 0);
+    _scheduler->registerUpdate(_updateManager, schedule_selector(UpdateManager::update), 0);
     
     return true;
 }
@@ -53,19 +53,19 @@ bool Engine::init()
 void Engine::setup()
 {
     //add game scheduler to main loop
-    if(m_scheduler)
-        CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(m_scheduler,0,false);
+    if(_scheduler)
+        CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(_scheduler,0,false);
 }
 
 void Engine::cleanup()
 {
-    if(m_scheduler)
-        CCDirector::sharedDirector()->getScheduler()->unscheduleAllForTarget(m_scheduler);
+    if(_scheduler)
+        CCDirector::sharedDirector()->getScheduler()->unscheduleAllForTarget(_scheduler);
 }
 
 void Engine::update(float delta)
 {
-//    m_scheduler->update(delta);
+//    _scheduler->update(delta);
     //do noting
 }
 

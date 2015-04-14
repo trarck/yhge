@@ -11,29 +11,29 @@ static const int kComponentExtendCount=2;
 //const CCSize testSize=CCSizeMake(256,160);
 
 ISODynamicComponent::ISODynamicComponent()
-:m_pComponents(NULL)
-,m_iStartX(0)
-,m_iStartY(0)
-,m_iLastStartX(-999999)
-,m_iLastStartY(-999999)
-,m_iComponentIndexX(0)
-,m_iComponentIndexY(0)
-,m_iComponentNodeExtendCount(kComponentExtendCount)
-,m_pUpdateDelegator(NULL)
-,m_pCreateDelegator(NULL)
-,m_tOffset(CCPointZero)
-,m_iComponentTileTotalRow(0)
-,m_iComponentTileTotalColumn(0)
-,m_iComponentTileColumn(0)
-,m_iComponentTileRow(0)
-,m_pTileLayer(NULL)
+:_pComponents(NULL)
+,_iStartX(0)
+,_iStartY(0)
+,_iLastStartX(-999999)
+,_iLastStartY(-999999)
+,_iComponentIndexX(0)
+,_iComponentIndexY(0)
+,_iComponentNodeExtendCount(kComponentExtendCount)
+,_pUpdateDelegator(NULL)
+,_pCreateDelegator(NULL)
+,_tOffset(CCPointZero)
+,_iComponentTileTotalRow(0)
+,_iComponentTileTotalColumn(0)
+,_iComponentTileColumn(0)
+,_iComponentTileRow(0)
+,_pTileLayer(NULL)
 {
 	
 }
 
 ISODynamicComponent::~ISODynamicComponent()
 {
-	CC_SAFE_RELEASE_NULL(m_pComponents);
+	CC_SAFE_RELEASE_NULL(_pComponents);
 }
 
 bool ISODynamicComponent::init()
@@ -43,9 +43,9 @@ bool ISODynamicComponent::init()
 
 void ISODynamicComponent::createComponents()
 {
-	int totalColumn=2*m_iComponentTileColumn;
-	int totalRow=2*m_iComponentTileRow;
-	m_pComponents=new CCArray(totalColumn*totalRow);
+	int totalColumn=2*_iComponentTileColumn;
+	int totalRow=2*_iComponentTileRow;
+	_pComponents=new CCArray(totalColumn*totalRow);
     
 	//使用数组在win32下第二次加载地图过程会变更很慢.
     //由于在sprite初始化的时候会设置默认texture.而这个texture的获取要调用CCFileUtils里的fullPathForFilename，
@@ -55,33 +55,33 @@ void ISODynamicComponent::createComponents()
     CCTexture2D* defaultTexture=CCDefaultTexture::getInstance()->getTexture();
 	ISOComponentNode* node=NULL;
     for(int j=0;j<totalRow;j++){
-		for(int i=0;i<m_iComponentTileColumn;i++){
+		for(int i=0;i<_iComponentTileColumn;i++){
             //CCLOG("cc:%d,%d",i,j);
 			node=new ISOComponentNode();
             node->initWithTexture(defaultTexture);
 			node->setColumn(i*2+(j&1));
 			node->setRow(j);
 			node->setAnchorPoint(ccp(0.5f,0.0f));
-            m_pComponents->addObject(node);
-            m_pTileLayer->addChild(node);
+            _pComponents->addObject(node);
+            _pTileLayer->addChild(node);
 			node->release();
 		}
 		//if(j&1){
 		//	//奇
-		//	for(int i=0;i<m_iComponentTileColumn;i++){
+		//	for(int i=0;i<_iComponentTileColumn;i++){
 		//		node=new ISOComponentNode();
 		//		node->setColumn(i*2+1);
 		//		node->setRow(j);
-		//		m_pComponents->addObject(node);
+		//		_pComponents->addObject(node);
 		//		node->release();
 		//	}
 		//}else{
 		//	//偶
-		//	for(int i=0;i<m_iComponentTileColumn;i++){
+		//	for(int i=0;i<_iComponentTileColumn;i++){
 		//		node=new ISOComponentNode();
 		//		node->setColumn(i*2);
 		//		node->setRow(j);
-		//		m_pComponents->addObject(node);
+		//		_pComponents->addObject(node);
 		//		node->release();
 		//	}
 		//}
@@ -90,22 +90,22 @@ void ISODynamicComponent::createComponents()
 
 void ISODynamicComponent::initComponents()
 {
-    int totalRow=2*m_iComponentTileRow;
+    int totalRow=2*_iComponentTileRow;
     
     
-    int startX=m_iStartX-m_iComponentNodeExtendCount-1;
-    int startY=m_iStartY;
+    int startX=_iStartX-_iComponentNodeExtendCount-1;
+    int startY=_iStartY;
     CCLOG("initComponents start:%d,%d",startX,startY);
 	ISOComponentNode* node;
     int row=0,col=0,index=0;
     int mx=0,my=0;
     for(int j=0;j<totalRow;j++){
-		for(int i=0;i<m_iComponentTileColumn;i++){
+		for(int i=0;i<_iComponentTileColumn;i++){
             col=(i*2+(j&1));
             row=j;
-            index=j*m_iComponentTileColumn+col/2;
+            index=j*_iComponentTileColumn+col/2;
             
-			node=(ISOComponentNode*)m_pComponents->objectAtIndex(j*m_iComponentTileColumn+col/2);
+			node=(ISOComponentNode*)_pComponents->objectAtIndex(j*_iComponentTileColumn+col/2);
             mx=startX+i;
             my=startY-i;
             updateNode(node, mx, my);
@@ -131,21 +131,21 @@ bool ISODynamicComponent::beforeUpdateContent()
 	//屏幕的四个点。使用gl坐标系统，地图坐标x正方向右上，y正方向左上。初始点为屏幕左下角。也就是gl坐标的原点
 	//CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGame2F(0,0));
 	//only for test
-	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(m_tOffset));
-	m_iStartX=(int)startMapCoord.x;
-	m_iStartY=(int)startMapCoord.y;
-    //CCLOG("start:%d,%d %f,%f",m_iStartX,m_iStartY,m_tPosition.x,m_tPosition.y);
-	return m_iStartX!=m_iLastStartX || m_iStartY!=m_iLastStartY;
+	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(_tOffset));
+	_iStartX=(int)startMapCoord.x;
+	_iStartY=(int)startMapCoord.y;
+    //CCLOG("start:%d,%d %f,%f",_iStartX,_iStartY,_tPosition.x,_tPosition.y);
+	return _iStartX!=_iLastStartX || _iStartY!=_iLastStartY;
 }
 
 void ISODynamicComponent::doUpdateComponents()
 {
     
-    int totalRow=2*m_iComponentTileRow;
-    int totalColumn=2*m_iComponentTileColumn;
+    int totalRow=2*_iComponentTileRow;
+    int totalColumn=2*_iComponentTileColumn;
     
-    int dx=m_iStartX-m_iLastStartX;
-    int dy=m_iStartY-m_iLastStartY;
+    int dx=_iStartX-_iLastStartX;
+    int dy=_iStartY-_iLastStartY;
     
     int dirX=dx>0?1:dx<0?-1:0;
     int dirY=dy>0?1:dy<0?-1:0;
@@ -165,46 +165,46 @@ void ISODynamicComponent::doUpdateComponents()
         for(int k=0;k<loopX;k++){
             //横向移动 移动列
             if(dirX>0){
-                moveComponentIndexX=m_iComponentIndexX;
-                m_iComponentIndexX=(m_iComponentIndexX+dirX)%totalColumn;
+                moveComponentIndexX=_iComponentIndexX;
+                _iComponentIndexX=(_iComponentIndexX+dirX)%totalColumn;
             }else if(dirX<0){
-                m_iComponentIndexX=(m_iComponentIndexX+dirX+totalColumn)%totalColumn;
-                moveComponentIndexX=m_iComponentIndexX;
+                _iComponentIndexX=(_iComponentIndexX+dirX+totalColumn)%totalColumn;
+                moveComponentIndexX=_iComponentIndexX;
             }
             
-            for(int j=0;j<m_iComponentTileRow;j++){
+            for(int j=0;j<_iComponentTileRow;j++){
                 //如果行列的奇偶性一至，则从当前位置开始。如果互为奇奇偶，则要把行加1，变为奇或偶。
-                row=(j*2+m_iComponentIndexY+((m_iComponentIndexY&1)^(moveComponentIndexX&1)))%totalRow;
-                index=row*m_iComponentTileColumn+moveComponentIndexX/2;
+                row=(j*2+_iComponentIndexY+((_iComponentIndexY&1)^(moveComponentIndexX&1)))%totalRow;
+                index=row*_iComponentTileColumn+moveComponentIndexX/2;
                 //CCLOG("updateComponents x:%d,%d,%d",index,moveComponentIndexX,row);
-                this->updateMapCoordinate(index, dirX*m_iComponentTileColumn, -dirX*m_iComponentTileColumn);
+                this->updateMapCoordinate(index, dirX*_iComponentTileColumn, -dirX*_iComponentTileColumn);
 
-//                node=(ISOComponentNode*) m_pComponents->objectAtIndex(index);
+//                node=(ISOComponentNode*) _pComponents->objectAtIndex(index);
 //                mx=node->getMapX();
 //                my=node->getMapY();
-//                node->updateMapCoordinate(mx+dirX*m_iComponentTileColumn, my-dirX*m_iComponentTileColumn);
+//                node->updateMapCoordinate(mx+dirX*_iComponentTileColumn, my-dirX*_iComponentTileColumn);
             }
                     
             //纵向移动 移动行
             if(dirX>0){
-                moveComponentIndexY=m_iComponentIndexY;
-                m_iComponentIndexY=(m_iComponentIndexY+dirX)%totalRow;
+                moveComponentIndexY=_iComponentIndexY;
+                _iComponentIndexY=(_iComponentIndexY+dirX)%totalRow;
                 
             }else if(dirX<0){
-                m_iComponentIndexY=(m_iComponentIndexY+dirX+totalRow)%totalRow;
-                moveComponentIndexY=m_iComponentIndexY;
+                _iComponentIndexY=(_iComponentIndexY+dirX+totalRow)%totalRow;
+                moveComponentIndexY=_iComponentIndexY;
             }
             
-            for(int i=0;i<m_iComponentTileColumn;i++){
+            for(int i=0;i<_iComponentTileColumn;i++){
                 //如果行列的奇偶性一至，则从当前位置开始。如果互为奇奇偶，则要把行加1，变为奇或偶。
-                col=(i*2+m_iComponentIndexX+((m_iComponentIndexX & 1)^(moveComponentIndexY & 1)))%totalColumn;
-                index=moveComponentIndexY*m_iComponentTileColumn+col/2;
+                col=(i*2+_iComponentIndexX+((_iComponentIndexX & 1)^(moveComponentIndexY & 1)))%totalColumn;
+                index=moveComponentIndexY*_iComponentTileColumn+col/2;
 //                CCLOG("updateComponents y:%d,%d,%d",index,col,moveComponentIndexY);
-                this->updateMapCoordinate(index, dirX*m_iComponentTileRow, dirX*m_iComponentTileRow);
-//                node=(ISOComponentNode*) m_pComponents->objectAtIndex(index);
+                this->updateMapCoordinate(index, dirX*_iComponentTileRow, dirX*_iComponentTileRow);
+//                node=(ISOComponentNode*) _pComponents->objectAtIndex(index);
 //                mx=node->getMapX();
 //                my=node->getMapY();
-//                node->updateMapCoordinate(mx+dirX*m_iComponentTileRow, my+dirX*m_iComponentTileRow);
+//                node->updateMapCoordinate(mx+dirX*_iComponentTileRow, my+dirX*_iComponentTileRow);
             }
         }
     }
@@ -213,43 +213,43 @@ void ISODynamicComponent::doUpdateComponents()
         for(int k=0;k<loopY;k++){
             //横向移动
             if(dirY>0){
-                m_iComponentIndexX=(m_iComponentIndexX-1+totalColumn)%totalColumn;
-                moveComponentIndexX=m_iComponentIndexX;
+                _iComponentIndexX=(_iComponentIndexX-1+totalColumn)%totalColumn;
+                moveComponentIndexX=_iComponentIndexX;
             }else if(dirY<0){
-                moveComponentIndexX=m_iComponentIndexX;
-                m_iComponentIndexX=(m_iComponentIndexX+1)%totalColumn;
+                moveComponentIndexX=_iComponentIndexX;
+                _iComponentIndexX=(_iComponentIndexX+1)%totalColumn;
             }
 
             
-            for(int j=0;j<m_iComponentTileRow;j++){
-                row=(j*2+m_iComponentIndexY+((m_iComponentIndexY&1)^(moveComponentIndexX&1)))%totalRow;
-                index=row*m_iComponentTileColumn+moveComponentIndexX/2;
+            for(int j=0;j<_iComponentTileRow;j++){
+                row=(j*2+_iComponentIndexY+((_iComponentIndexY&1)^(moveComponentIndexX&1)))%totalRow;
+                index=row*_iComponentTileColumn+moveComponentIndexX/2;
 //                CCLOG("updateComponents x:%d,%d,%d",index,moveComponentIndexX,row);
-                this->updateMapCoordinate(index, -dirY*m_iComponentTileColumn, dirY*m_iComponentTileColumn);
-//                node=(ISOComponentNode*) m_pComponents->objectAtIndex(index);
+                this->updateMapCoordinate(index, -dirY*_iComponentTileColumn, dirY*_iComponentTileColumn);
+//                node=(ISOComponentNode*) _pComponents->objectAtIndex(index);
 //                mx=node->getMapX();
 //                my=node->getMapY();
-//                node->updateMapCoordinate(mx-dirY*m_iComponentTileColumn, my+dirY*m_iComponentTileColumn);
+//                node->updateMapCoordinate(mx-dirY*_iComponentTileColumn, my+dirY*_iComponentTileColumn);
             }
             
             if(dirY>0){
-                moveComponentIndexY=m_iComponentIndexY;
-                m_iComponentIndexY=(m_iComponentIndexY+1)%totalRow;
+                moveComponentIndexY=_iComponentIndexY;
+                _iComponentIndexY=(_iComponentIndexY+1)%totalRow;
             }else if(dirY<0){
-                m_iComponentIndexY=(m_iComponentIndexY-1+totalRow)%totalRow;
-                moveComponentIndexY=m_iComponentIndexY;
+                _iComponentIndexY=(_iComponentIndexY-1+totalRow)%totalRow;
+                moveComponentIndexY=_iComponentIndexY;
             }
             //纵向移动
             
-            for(int i=0;i<m_iComponentTileColumn;i++){
-                col=(i*2+m_iComponentIndexX+((m_iComponentIndexX & 1)^(moveComponentIndexY & 1)))%totalColumn;
-                index=moveComponentIndexY*m_iComponentTileColumn+col/2;
+            for(int i=0;i<_iComponentTileColumn;i++){
+                col=(i*2+_iComponentIndexX+((_iComponentIndexX & 1)^(moveComponentIndexY & 1)))%totalColumn;
+                index=moveComponentIndexY*_iComponentTileColumn+col/2;
 //                CCLOG("updateComponents y:%d,%d,%d",index,col,moveComponentIndexY);
-                this->updateMapCoordinate(index,dirY*m_iComponentTileRow, dirY*m_iComponentTileRow);
-//                node=(ISOComponentNode*) m_pComponents->objectAtIndex(index);
+                this->updateMapCoordinate(index,dirY*_iComponentTileRow, dirY*_iComponentTileRow);
+//                node=(ISOComponentNode*) _pComponents->objectAtIndex(index);
 //                mx=node->getMapX();
 //                my=node->getMapY();
-//                node->updateMapCoordinate(mx+dirY*m_iComponentTileRow, my+dirY*m_iComponentTileRow);
+//                node->updateMapCoordinate(mx+dirY*_iComponentTileRow, my+dirY*_iComponentTileRow);
             }
         }
     }
@@ -257,14 +257,14 @@ void ISODynamicComponent::doUpdateComponents()
 
 void ISODynamicComponent::updateMapCoordinate(unsigned int nodeIndex,float deltaMapX,float deltaMapY)
 {
-    //if(m_pUpdateDelegator) m_pUpdateDelegator->onUpdateComponentMapCoordinate(nodeIndex, deltaMapX, deltaMapY);
+    //if(_pUpdateDelegator) _pUpdateDelegator->onUpdateComponentMapCoordinate(nodeIndex, deltaMapX, deltaMapY);
     
     updateNodeBy(nodeIndex,deltaMapX,deltaMapY);
 }
 
 void ISODynamicComponent::updateNodeBy(unsigned int nodeIndex,float deltaMapX,float deltaMapY)
 {
-	ISOComponentNode* node=(ISOComponentNode*) m_pComponents->objectAtIndex(nodeIndex);
+	ISOComponentNode* node=(ISOComponentNode*) _pComponents->objectAtIndex(nodeIndex);
     float mx=node->getMapX();
     float my=node->getMapY();
     float newMx=mx+deltaMapX;
@@ -281,7 +281,7 @@ void ISODynamicComponent::updateNode(ISOComponentNode* node,float mx,float my)
     //更新位置属性
     node->updateMapCoordinate(mx, my);
        
-    ISOTile* tile=m_pTileLayer->tileAt(pos);
+    ISOTile* tile=_pTileLayer->tileAt(pos);
     
     // if GID == 0, then no tile is present
     if (tile)
@@ -289,8 +289,8 @@ void ISODynamicComponent::updateNode(ISOComponentNode* node,float mx,float my)
         //更新位置
         node->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(mx, my)));
         
-        m_pTileLayer->reorderChild(node,m_pTileLayer->zOrderForPos(pos));
-//        node->reorderChild(m_pTileLayer->zOrderForPos(pos));
+        _pTileLayer->reorderChild(node,_pTileLayer->zOrderForPos(pos));
+//        node->reorderChild(_pTileLayer->zOrderForPos(pos));
         
         //更新显示内容
         node->setVisible(true);
@@ -304,11 +304,11 @@ void ISODynamicComponent::updateNode(ISOComponentNode* node,float mx,float my)
 
 void ISODynamicComponent::calcComponentsCount()
 {    
-    m_iComponentTileColumn+=m_iComponentNodeExtendCount;
-    m_iComponentTileRow+=m_iComponentNodeExtendCount;
-    m_iComponentTileTotalColumn=2*m_iComponentTileColumn;
-    m_iComponentTileTotalRow=2*m_iComponentTileRow;
-	CCLOG("calcComponentsCount:%d,%d",m_iComponentTileColumn,m_iComponentTileRow);
+    _iComponentTileColumn+=_iComponentNodeExtendCount;
+    _iComponentTileRow+=_iComponentNodeExtendCount;
+    _iComponentTileTotalColumn=2*_iComponentTileColumn;
+    _iComponentTileTotalRow=2*_iComponentTileRow;
+	CCLOG("calcComponentsCount:%d,%d",_iComponentTileColumn,_iComponentTileRow);
 }
 
 void ISODynamicComponent::setupComponents()
@@ -350,47 +350,47 @@ void ISODynamicComponent::setupComponents(const CCPoint& position)
 
 
 CCArray* ISODynamicComponent::getComponents(){
-    return m_pComponents;
+    return _pComponents;
 }
 
 void ISODynamicComponent::setComponentTileColumn(int iComponentTileColumn)
 {
-    m_iComponentTileColumn = iComponentTileColumn;
+    _iComponentTileColumn = iComponentTileColumn;
 }
 
 int ISODynamicComponent::getComponentTileColumn()
 {
-    return m_iComponentTileColumn;
+    return _iComponentTileColumn;
 }
 
 void ISODynamicComponent::setComponentTileRow(int iComponentTileRow)
 {
-    m_iComponentTileRow = iComponentTileRow;
+    _iComponentTileRow = iComponentTileRow;
 }
 
 int ISODynamicComponent::getComponentTileRow()
 {
-    return m_iComponentTileRow;
+    return _iComponentTileRow;
 }
 
 void ISODynamicComponent::setComponentTileExtendCount(int iComponentNodeExtendCount)
 {
-    m_iComponentNodeExtendCount = iComponentNodeExtendCount;
+    _iComponentNodeExtendCount = iComponentNodeExtendCount;
 }
 
 int ISODynamicComponent::getComponentTileExtendCount()
 {
-    return m_iComponentNodeExtendCount;
+    return _iComponentNodeExtendCount;
 }
 
 void ISODynamicComponent::initOffset(const CCPoint& tOffset)
 {
     this->setOffset(tOffset);
 	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(tOffset));
-	m_iStartX=(int)startMapCoord.x;
-	m_iStartY=(int)startMapCoord.y;
-	m_iLastStartX=m_iStartX;
-	m_iLastStartY=m_iStartY;
+	_iStartX=(int)startMapCoord.x;
+	_iStartY=(int)startMapCoord.y;
+	_iLastStartX=_iStartX;
+	_iLastStartY=_iStartY;
 }
 
 void ISODynamicComponent::initOffset(float x,float y)
@@ -406,8 +406,8 @@ void ISODynamicComponent::scroll(const CCPoint& tOffset)
 		//this->removeAllChildrenWithCleanup(true);
 		//this->doUpdateContent();
 		this->doUpdateComponents();
-        m_iLastStartX=m_iStartX;
-		m_iLastStartY=m_iStartY;
+        _iLastStartX=_iStartX;
+		_iLastStartY=_iStartY;
 
 	}
 }
@@ -421,38 +421,38 @@ void ISODynamicComponent::scroll(float x,float y)
 
 void ISODynamicComponent::setOffset(const CCPoint& tOffset)
 {
-    m_tOffset = tOffset;
+    _tOffset = tOffset;
 }
 
 void ISODynamicComponent::setOffset(float x,float y)
 {
-    m_tOffset.x=x;
-	m_tOffset.y=y;
+    _tOffset.x=x;
+	_tOffset.y=y;
 }
 
 CCPoint ISODynamicComponent::getOffset()
 {
-    return m_tOffset;
+    return _tOffset;
 }
 
 void ISODynamicComponent::setUpdateDelegator(ISODynamicComponentUpdateDelegator* pUpdateDelegator)
 {
-    m_pUpdateDelegator=pUpdateDelegator;
+    _pUpdateDelegator=pUpdateDelegator;
 }
 
 void ISODynamicComponent::setCreateDelegator(ISODynamicComponentCreateDelegator* pCreateDelegator)
 {
-    m_pCreateDelegator=pCreateDelegator;
+    _pCreateDelegator=pCreateDelegator;
 }
 
 void ISODynamicComponent::setTileLayer(ISOTileLayer* pTileLayer)
 {
-    m_pTileLayer = pTileLayer;
+    _pTileLayer = pTileLayer;
 }
 
 ISOTileLayer* ISODynamicComponent::getTileLayer()
 {
-    return m_pTileLayer;
+    return _pTileLayer;
 }
 
 NS_CC_YHGE_ISOMETRIC_END

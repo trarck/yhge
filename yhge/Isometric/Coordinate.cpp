@@ -13,12 +13,12 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 static Coordinate* l_coordinate=NULL;
 
 Coordinate::Coordinate()
-:m_xUnit(0)
-,m_yUnit(0)
-,m_zUnit(0)
-,m_halfYUnit(0)
-,m_tileWidth(0)
-,m_tileHeight(0)
+:_xUnit(0)
+,_yUnit(0)
+,_zUnit(0)
+,_halfYUnit(0)
+,_tileWidth(0)
+,_tileHeight(0)
 {
     
 }
@@ -79,24 +79,24 @@ Coordinate* Coordinate::create(float xUnit,float yUnit,float zUnit)
 
 void Coordinate::setTileSize(float width ,float height)
 {
-	m_tileWidth=width;
-	m_tileHeight=height;
+	_tileWidth=width;
+	_tileHeight=height;
 	
-	m_xUnit=width/2;
-	m_yUnit=height;
-	m_zUnit=height;
-    m_halfYUnit=m_yUnit/2;
+	_xUnit=width/2;
+	_yUnit=height;
+	_zUnit=height;
+    _halfYUnit=_yUnit/2;
 }
 
 void Coordinate::setCoordinateUnit(float xUnit ,float yUnit ,float zUnit)
 {
-	m_xUnit=xUnit;
-	m_yUnit=yUnit;
-	m_zUnit=zUnit;
-    m_halfYUnit=m_yUnit/2;
+	_xUnit=xUnit;
+	_yUnit=yUnit;
+	_zUnit=zUnit;
+    _halfYUnit=_yUnit/2;
 	
-	m_tileWidth=xUnit+yUnit;
-	m_tileHeight=m_tileWidth/2;//(xUnit+yUnit)/2
+	_tileWidth=xUnit+yUnit;
+	_tileHeight=_tileWidth/2;//(xUnit+yUnit)/2
 }
 
 CCSize Coordinate::mapToScreenSize(int l ,int b ,int h)
@@ -106,8 +106,8 @@ CCSize Coordinate::mapToScreenSize(int l ,int b ,int h)
 	CCSize size;
 	
 	s=l+b;
-	width=s*m_xUnit;
-	height=s*m_halfYUnit+h*m_zUnit;
+	width=s*_xUnit;
+	height=s*_halfYUnit+h*_zUnit;
 	size.width=width;
 	size.height=height;
 	return size;
@@ -116,8 +116,8 @@ CCSize Coordinate::mapToScreenSize(int l ,int b ,int h)
 CCPoint Coordinate::mapToScreenAnchor(int l ,int b ,int h)
 {
 	CCPoint p;
-	p.x=b*m_xUnit;
-	p.y=h*m_zUnit;
+	p.x=b*_xUnit;
+	p.y=h*_zUnit;
 	return p;
 }
 

@@ -4,16 +4,16 @@
 NS_CC_YHGE_BEGIN
 
 OutputStream::OutputStream()
-:m_pos(0)
-,m_buffer(NULL)
-,m_endianness(kLittleEndian)
+:_pos(0)
+,_buffer(NULL)
+,_endianness(kLittleEndian)
 {
     
 }
 
 OutputStream::~OutputStream()
 {
-    CC_SAFE_RELEASE_NULL(m_buffer);
+    CC_SAFE_RELEASE_NULL(_buffer);
 }
 
 bool OutputStream::init()
@@ -39,131 +39,131 @@ bool OutputStream::initWithStream(OutputStream* stream)
 
 void OutputStream::writeBytes(void* buf,size_t size)
 {
-    m_pos+=m_buffer->writeBytes(m_pos, buf, size);
+    _pos+=_buffer->writeBytes(_pos, buf, size);
 }
 
 void OutputStream::writeByte(unsigned char value)
 {
-    m_pos+=m_buffer->writeByte(value,m_pos);
+    _pos+=_buffer->writeByte(value,_pos);
 }
 
 void OutputStream::writeUInt8(uint8_t value)
 {
-    m_pos+=m_buffer->writeUInt8(value,m_pos);
+    _pos+=_buffer->writeUInt8(value,_pos);
 }
 
 void OutputStream::writeUInt16(uint16_t value)
 {
-    if (m_endianness==kLittleEndian) {
-        m_pos+=m_buffer->writeUInt16LE(value,m_pos);
+    if (_endianness==kLittleEndian) {
+        _pos+=_buffer->writeUInt16LE(value,_pos);
     }else{
-        m_pos+=m_buffer->writeUInt16BE(value,m_pos);
+        _pos+=_buffer->writeUInt16BE(value,_pos);
     }
 }
 
 void OutputStream::writeUInt32(uint32_t value)
 {
-    if (m_endianness==kLittleEndian) {
-        m_pos+=m_buffer->writeUInt32LE(value,m_pos);
+    if (_endianness==kLittleEndian) {
+        _pos+=_buffer->writeUInt32LE(value,_pos);
     }else{
-        m_pos+=m_buffer->writeUInt32BE(value,m_pos);
+        _pos+=_buffer->writeUInt32BE(value,_pos);
     }
 }
 
 void OutputStream::writeUInt64(uint64_t value)
 {
-    if (m_endianness==kLittleEndian) {
-        m_pos+=m_buffer->writeUInt64LE(value,m_pos);
+    if (_endianness==kLittleEndian) {
+        _pos+=_buffer->writeUInt64LE(value,_pos);
     }else{
-        m_pos+=m_buffer->writeUInt64BE(value,m_pos);
+        _pos+=_buffer->writeUInt64BE(value,_pos);
     }
 }
 
 void OutputStream::writeInt8(int8_t value)
 {
-    m_pos+=m_buffer->writeInt8(value,m_pos);
+    _pos+=_buffer->writeInt8(value,_pos);
 }
 
 void OutputStream::writeInt16(int16_t value)
 {
-    if (m_endianness==kLittleEndian) {
-        m_pos+=m_buffer->writeInt16LE(value,m_pos);
+    if (_endianness==kLittleEndian) {
+        _pos+=_buffer->writeInt16LE(value,_pos);
     }else{
-        m_pos+=m_buffer->writeInt16BE(value,m_pos);
+        _pos+=_buffer->writeInt16BE(value,_pos);
     }
 }
 
 void OutputStream::writeInt32(int32_t value)
 {
-    if (m_endianness==kLittleEndian) {
-        m_pos+=m_buffer->writeInt32LE(value,m_pos);
+    if (_endianness==kLittleEndian) {
+        _pos+=_buffer->writeInt32LE(value,_pos);
     }else{
-        m_pos+=m_buffer->writeInt32BE(value,m_pos);
+        _pos+=_buffer->writeInt32BE(value,_pos);
     }
 }
 
 void OutputStream::writeInt64(int64_t value)
 {
-    if (m_endianness==kLittleEndian) {
-        m_pos+=m_buffer->writeInt64LE(value,m_pos);
+    if (_endianness==kLittleEndian) {
+        _pos+=_buffer->writeInt64LE(value,_pos);
     }else{
-        m_pos+=m_buffer->writeInt64BE(value,m_pos);
+        _pos+=_buffer->writeInt64BE(value,_pos);
     }
 }
 
 void OutputStream::writeHalfFloat(float value)
 {
-    if (m_endianness==kLittleEndian) {
-        m_pos+=m_buffer->writeFloat16LE(value,m_pos);
+    if (_endianness==kLittleEndian) {
+        _pos+=_buffer->writeFloat16LE(value,_pos);
     }else{
-        m_pos+=m_buffer->writeFloat16BE(value,m_pos);
+        _pos+=_buffer->writeFloat16BE(value,_pos);
     }
 }
 
 void OutputStream::writeFloat(float value)
 {
-    if (m_endianness==kLittleEndian) {
-        m_pos+=m_buffer->writeFloatLE(value,m_pos);
+    if (_endianness==kLittleEndian) {
+        _pos+=_buffer->writeFloatLE(value,_pos);
     }else{
-        m_pos+=m_buffer->writeFloatBE(value,m_pos);
+        _pos+=_buffer->writeFloatBE(value,_pos);
     }
 }
 
 void OutputStream::writeDouble(double value)
 {
-    if (m_endianness==kLittleEndian) {
-        m_pos+=m_buffer->writeDoubleLE(value,m_pos);
+    if (_endianness==kLittleEndian) {
+        _pos+=_buffer->writeDoubleLE(value,_pos);
     }else{
-        m_pos+=m_buffer->writeDoubleBE(value,m_pos);
+        _pos+=_buffer->writeDoubleBE(value,_pos);
     }
 }
 
 void OutputStream::writeHalfFixed(float value)
 {
-    if (m_endianness==kLittleEndian) {
-        m_pos+=m_buffer->writeFixed8LE(value,m_pos);
+    if (_endianness==kLittleEndian) {
+        _pos+=_buffer->writeFixed8LE(value,_pos);
     }else{
-        m_pos+=m_buffer->writeFixed8BE(value,m_pos);
+        _pos+=_buffer->writeFixed8BE(value,_pos);
     }
 }
 
 void OutputStream::writeFixed(float value)
 {
-    if (m_endianness==kLittleEndian) {
-        m_pos+=m_buffer->writeFixedLE(value,m_pos);
+    if (_endianness==kLittleEndian) {
+        _pos+=_buffer->writeFixedLE(value,_pos);
     }else{
-        m_pos+=m_buffer->writeFixedBE(value,m_pos);
+        _pos+=_buffer->writeFixedBE(value,_pos);
     }
 }
 
 void OutputStream::seek(size_t lenght)
 {
-    m_pos+=lenght;
+    _pos+=lenght;
 }
 
 bool OutputStream::eof()
 {
-    return m_pos>=m_buffer->getSize();
+    return _pos>=_buffer->getSize();
 }
 
 NS_CC_YHGE_END

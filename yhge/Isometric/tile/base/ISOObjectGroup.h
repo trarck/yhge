@@ -22,8 +22,8 @@ public:
 
     bool init();
     
-    inline const char* getName(){ return m_sName.c_str(); }
-    inline void setName(const char *name){ m_sName = name; }
+    inline const char* getName(){ return _sName.c_str(); }
+    inline void setName(const char *name){ _sName = name; }
 
     /** return the value for the specific property name */
     CCString *propertyNamed(const char* propertyName);
@@ -48,29 +48,29 @@ public:
     
     inline void setRenderIndex(int renderIndex)
     {
-        m_renderIndex = renderIndex;
+        _renderIndex = renderIndex;
     }
     
     inline int getRenderIndex()
     {
-        return m_renderIndex;
+        return _renderIndex;
     }
     
 protected:    
     /** name of the group */
-    std::string m_sName;
+    std::string _sName;
     
-    CCPoint m_tOffset;
+    CCPoint _tOffset;
     
-    CCDictionary* m_pProperties;
+    CCDictionary* _pProperties;
     
-    CCArray* m_pObjects;
+    CCArray* _pObjects;
     
     /**
      * 在地图文件中出现的顺序。
      * 如果要显示Object，则要保证ObjectLayer和TileLayer之间的显示顺序正确
      */
-    int m_renderIndex;
+    int _renderIndex;
 
 };
 

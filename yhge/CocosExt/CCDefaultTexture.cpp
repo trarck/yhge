@@ -17,14 +17,14 @@ static unsigned char cc_2x2_white_image[] = {
 static CCDefaultTexture* s_defaultTexture=NULL;
 
 CCDefaultTexture::CCDefaultTexture()
-    :m_texture(NULL)
+    :_texture(NULL)
 {
 
 }
 
 CCDefaultTexture::~CCDefaultTexture()
 {
-    CC_SAFE_RELEASE_NULL(m_texture);
+    CC_SAFE_RELEASE_NULL(_texture);
 }
 
 CCDefaultTexture* CCDefaultTexture::getInstance()
@@ -38,7 +38,7 @@ CCDefaultTexture* CCDefaultTexture::getInstance()
 
 CCTexture2D* CCDefaultTexture::createDefaultTexture()
 {
-    if (!m_texture)
+    if (!_texture)
     {
         CCImage* image = new CCImage();
         bool isOK = image->initWithImageData(cc_2x2_white_image, sizeof(cc_2x2_white_image), CCImage::kFmtRawData, 2, 2, 8);
@@ -49,12 +49,12 @@ CCTexture2D* CCDefaultTexture::createDefaultTexture()
         setTexture(texture);
     }
 
-    return m_texture;
+    return _texture;
 }
 
 CCTexture2D* CCDefaultTexture::getTexture()
 {
-    return m_texture?m_texture:this->createDefaultTexture();
+    return _texture?_texture:this->createDefaultTexture();
 }
 
 

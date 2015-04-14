@@ -18,114 +18,114 @@ public:
     
     inline void setName(const std::string& sName)
     {
-        m_sName = sName;
+        _sName = sName;
     }
     
     inline const std::string& getName()
     {
-        return m_sName;
+        return _sName;
     }
     
     inline void setLayerSize(CCSize& tLayerSize)
     {
-        m_tLayerSize = tLayerSize;
+        _tLayerSize = tLayerSize;
     }
     
     inline CCSize& getLayerSize()
     {
-        return m_tLayerSize;
+        return _tLayerSize;
     }
     
     inline void setTiles(unsigned int* pTiles)
     {
-        m_pTiles = pTiles;
+        _pTiles = pTiles;
     }
     
     inline unsigned int* getTiles()
     {
-        return m_pTiles;
+        return _pTiles;
     }
     
     inline void setVisible(bool bVisible)
     {
-        m_bVisible = bVisible;
+        _bVisible = bVisible;
     }
     
     inline bool getVisible()
     {
-        return m_bVisible;
+        return _bVisible;
     }
     
     inline void setOpacity(unsigned char cOpacity)
     {
-        m_cOpacity = cOpacity;
+        _cOpacity = cOpacity;
     }
     
     inline unsigned char getOpacity()
     {
-        return m_cOpacity;
+        return _cOpacity;
     }
     
     inline void setOwnTiles(bool bOwnTiles)
     {
-        m_bOwnTiles = bOwnTiles;
+        _bOwnTiles = bOwnTiles;
     }
     
     inline bool getOwnTiles()
     {
-        return m_bOwnTiles;
+        return _bOwnTiles;
     }
 //
 //    inline void setMinGID( unsigned int  MinGID)
 //    {
-//        m_ MinGID =  MinGID;
+//        _ MinGID =  MinGID;
 //    }
 //    
 //    inline  unsigned int getMinGID()
 //    {
-//        return m_ MinGID;
+//        return _ MinGID;
 //    }
 //    
 //    inline void setMaxGID(unsigned int uMaxGID)
 //    {
-//        m_uMaxGID = uMaxGID;
+//        _uMaxGID = uMaxGID;
 //    }
 //    
 //    inline unsigned int getMaxGID()
 //    {
-//        return m_uMaxGID;
+//        return _uMaxGID;
 //    }
     
     inline void setOffset(CCPoint& tOffset)
     {
-        m_tOffset = tOffset;
+        _tOffset = tOffset;
     }
     
     inline CCPoint& getOffset()
     {
-        return m_tOffset;
+        return _tOffset;
     }
     
     inline void setProperties(CCDictionary* pProperties)
     {
         CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(m_pProperties);
-        m_pProperties = pProperties;
+        CC_SAFE_RELEASE(_pProperties);
+        _pProperties = pProperties;
     }
     
     inline CCDictionary* getProperties()
     {
-        return m_pProperties;
+        return _pProperties;
     }
     
     inline void setRenderIndex(int renderIndex)
     {
-        m_renderIndex = renderIndex;
+        _renderIndex = renderIndex;
     }
     
     inline int getRenderIndex()
     {
-        return m_renderIndex;
+        return _renderIndex;
     }
 
 
@@ -133,48 +133,48 @@ protected:
     /**
      * layer的名称
      */
-    std::string         m_sName;
+    std::string         _sName;
     
     /**
      * layer的大小。格子数，不是像素大小
      */
-    CCSize              m_tLayerSize;
+    CCSize              _tLayerSize;
     
     /**
      * layer是否可见
      */
-    bool                m_bVisible;
+    bool                _bVisible;
     
     /**
      * layer的透明度
      */
-    unsigned char m_cOpacity;
+    unsigned char _cOpacity;
     
-    bool                m_bOwnTiles;
+    bool                _bOwnTiles;
     
-//    unsigned int        m_uMinGID;
-//    unsigned int        m_uMaxGID;
+//    unsigned int        _uMinGID;
+//    unsigned int        _uMaxGID;
     
     /**
      * layer的偏移量
      */
-    CCPoint             m_tOffset;
+    CCPoint             _tOffset;
 
     /**
      * layer的每个格子的信息。主要是tile id
      */
-    unsigned int*       m_pTiles;
+    unsigned int*       _pTiles;
     
     /**
      * layer的扩展属性
      */
-    CCDictionary* m_pProperties;
+    CCDictionary* _pProperties;
     
     /**
      * 在地图文件中出现的顺序。
      * 如果要显示Object，则要保证ObjectLayer和TileLayer之间的显示顺序正确
      */
-    int m_renderIndex;
+    int _renderIndex;
 };
 
 

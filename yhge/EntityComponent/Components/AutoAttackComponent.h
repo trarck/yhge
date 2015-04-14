@@ -40,15 +40,15 @@ public:
     
     float getAttackSpeed()
     {
-        return m_attackSpeed;
+        return _attackSpeed;
     }
     
     void setAttackSpeed(float attackSpeed)
     {
-        m_attackSpeed=attackSpeed;
+        _attackSpeed=attackSpeed;
     }
 protected:
-    float m_attackSpeed;
+    float _attackSpeed;
 };
 
 NS_CC_YHGE_END

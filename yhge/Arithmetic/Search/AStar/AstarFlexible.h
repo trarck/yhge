@@ -33,7 +33,7 @@ public:
 protected:	
     
     //弱引用
-	AstarDelegate* m_delegate;
+	AstarDelegate* _delegate;
 };
 
 NS_CC_YHGE_END

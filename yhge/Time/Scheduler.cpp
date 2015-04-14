@@ -5,7 +5,7 @@ NS_CC_YHGE_BEGIN
 
 
 Scheduler::Scheduler()
-:m_updating(false)
+:_updating(false)
 {
     YHDEBUG("Scheduler create");
 }
@@ -31,57 +31,57 @@ void Scheduler::clear()
     //remove node
     TaskList::iterator iter;
 
-    for (iter=m_pUpdatesNegList.begin(); iter!=m_pUpdatesNegList.end(); ++iter) {
+    for (iter=_pUpdatesNegList.begin(); iter!=_pUpdatesNegList.end(); ++iter) {
         delete *iter;
     }
     
-    for (iter=m_pUpdatesZeroList.begin(); iter!=m_pUpdatesZeroList.end(); ++iter) {
+    for (iter=_pUpdatesZeroList.begin(); iter!=_pUpdatesZeroList.end(); ++iter) {
         delete *iter;
     }
     
-    for (iter=m_pUpdatesPosList.begin(); iter!=m_pUpdatesPosList.end(); ++iter) {
+    for (iter=_pUpdatesPosList.begin(); iter!=_pUpdatesPosList.end(); ++iter) {
         delete *iter;
     }
     
-    m_pUpdatesNegList.clear();
-    m_pUpdatesPosList.clear();
-    m_pUpdatesZeroList.clear();
+    _pUpdatesNegList.clear();
+    _pUpdatesPosList.clear();
+    _pUpdatesZeroList.clear();
 }
 
 void Scheduler::update(float delta)
 {
-    m_updating=true;
+    _updating=true;
     
     TaskList::iterator iter;
     SchedulerTask* task=NULL;
 
-    for (iter=m_pUpdatesNegList.begin(); iter!=m_pUpdatesNegList.end(); ++iter) {
+    for (iter=_pUpdatesNegList.begin(); iter!=_pUpdatesNegList.end(); ++iter) {
         task=*iter;
         if (!task->isMarkedForDeletion()) {
             (*iter)->update(delta);
         }
     }
     
-    for (iter=m_pUpdatesZeroList.begin(); iter!=m_pUpdatesZeroList.end(); ++iter) {
+    for (iter=_pUpdatesZeroList.begin(); iter!=_pUpdatesZeroList.end(); ++iter) {
         task=*iter;
         if (!task->isMarkedForDeletion()) {
             (*iter)->update(delta);
         }
     }
     
-    for (iter=m_pUpdatesPosList.begin(); iter!=m_pUpdatesPosList.end(); ++iter) {
+    for (iter=_pUpdatesPosList.begin(); iter!=_pUpdatesPosList.end(); ++iter) {
         task=*iter;
         if (!task->isMarkedForDeletion()) {
             (*iter)->update(delta);
         }
     }
     
-    m_updating=false;
+    _updating=false;
     
     //remove marked for delete
-    removeMarkedList(m_pUpdatesNegList);
-    removeMarkedList(m_pUpdatesZeroList);
-    removeMarkedList(m_pUpdatesPosList);
+    removeMarkedList(_pUpdatesNegList);
+    removeMarkedList(_pUpdatesZeroList);
+    removeMarkedList(_pUpdatesPosList);
     
 }
 
@@ -90,7 +90,7 @@ void Scheduler::registerUpdate(Ref* target,SEL_SCHEDULE handle,int priority)
     CCAssert(target!=NULL, "[Scheduler::scheduleUpdate] target must not be null");
     
     //check target is registered
-    if (m_registerMap.find(target->m_uID)!=m_registerMap.end()) {
+    if (_registerMap.find(target->_uID)!=_registerMap.end()) {
         //is registered do nothing
         return;
     }
@@ -100,31 +100,31 @@ void Scheduler::registerUpdate(Ref* target,SEL_SCHEDULE handle,int priority)
     if (priority==0) {
         //append to zero list
         
-        m_pUpdatesZeroList.push_back(task);
+        _pUpdatesZeroList.push_back(task);
         
     }else if (priority>0){
         //insert to pos list
-        insertToList(m_pUpdatesPosList,task);
+        insertToList(_pUpdatesPosList,task);
     }else{
         //insert to neg list
-        insertToList(m_pUpdatesNegList, task);
+        insertToList(_pUpdatesNegList, task);
     }
     
     //record register priority
-    m_registerMap[target->m_uID]=priority;
+    _registerMap[target->_uID]=priority;
 }
 
 //void Scheduler::unregisterUpdate(Ref* target,int priority)
 //{
 //    if (priority==0) {
 //        //remove from zero list
-//        removeFromList(m_pUpdatesZeroList, target);
+//        removeFromList(_pUpdatesZeroList, target);
 //    }else if (priority>0){
 //        //remove from pos list
-//        removeFromList(m_pUpdatesPosList, target);
+//        removeFromList(_pUpdatesPosList, target);
 //    }else{
 //        //remove from neg list
-//        removeFromList(m_pUpdatesNegList, target);
+//        removeFromList(_pUpdatesNegList, target);
 //    }
 //}
 
@@ -132,20 +132,20 @@ void Scheduler::registerUpdate(Ref* target,SEL_SCHEDULE handle,int priority)
 //{
 //    if (priority==0) {
 //        //remove from zero list
-//        removeFromList(m_pUpdatesZeroList, target, handle);
+//        removeFromList(_pUpdatesZeroList, target, handle);
 //    }else if (priority>0){
 //        //remove from pos list
-//        removeFromList(m_pUpdatesPosList, target, handle);
+//        removeFromList(_pUpdatesPosList, target, handle);
 //    }else{
 //        //remove from neg list
-//        removeFromList(m_pUpdatesNegList, target, handle);
+//        removeFromList(_pUpdatesNegList, target, handle);
 //    }
 //}
 
 //void Scheduler::unregisterUpdate(Ref* target,SEL_SCHEDULE handle)
 //{
-//    std::map<int, int>::iterator registerIter=m_registerMap.find(target->m_uID);
-//    if (registerIter==m_registerMap.end()) {
+//    std::map<int, int>::iterator registerIter=_registerMap.find(target->_uID);
+//    if (registerIter==_registerMap.end()) {
 //        //not register do nothing
 //        return;
 //    }
@@ -154,20 +154,20 @@ void Scheduler::registerUpdate(Ref* target,SEL_SCHEDULE handle,int priority)
 //    
 //    if (priority==0) {
 //        //remove from zero list
-//        removeFromList(m_pUpdatesZeroList, target, handle);
+//        removeFromList(_pUpdatesZeroList, target, handle);
 //    }else if (priority>0){
 //        //remove from pos list
-//        removeFromList(m_pUpdatesPosList, target, handle);
+//        removeFromList(_pUpdatesPosList, target, handle);
 //    }else{
 //        //remove from neg list
-//        removeFromList(m_pUpdatesNegList, target, handle);
+//        removeFromList(_pUpdatesNegList, target, handle);
 //    }
 //}
 
 void Scheduler::unregisterUpdate(Ref* target)
 {
-    std::map<int, int>::iterator registerIter=m_registerMap.find(target->m_uID);
-    if (registerIter==m_registerMap.end()) {
+    std::map<int, int>::iterator registerIter=_registerMap.find(target->_uID);
+    if (registerIter==_registerMap.end()) {
         //not register do nothing
         return;
     }
@@ -176,13 +176,13 @@ void Scheduler::unregisterUpdate(Ref* target)
     
     if (priority==0) {
         //remove from zero list
-        removeFromList(m_pUpdatesZeroList, target);
+        removeFromList(_pUpdatesZeroList, target);
     }else if (priority>0){
         //remove from pos list
-        removeFromList(m_pUpdatesPosList, target);
+        removeFromList(_pUpdatesPosList, target);
     }else{
         //remove from neg list
-        removeFromList(m_pUpdatesNegList, target);
+        removeFromList(_pUpdatesNegList, target);
     }
 }
 
@@ -226,7 +226,7 @@ void Scheduler::insertToList(TaskList& list,SchedulerTask* task)
 
 void Scheduler::removeFromList(TaskList& list,Ref* target)
 {
-    if (m_updating){
+    if (_updating){
         markRemoveFromList(list, target);
     }else{
         directRemoveFromList(list, target);
@@ -269,7 +269,7 @@ void Scheduler::markRemoveFromList(TaskList& list,Ref* target)
 
 void Scheduler::removeMarkedList(TaskList& list)
 {
-    for (TaskList::iterator iter=m_pUpdatesNegList.begin(); iter!=m_pUpdatesNegList.end(); ++iter) {
+    for (TaskList::iterator iter=_pUpdatesNegList.begin(); iter!=_pUpdatesNegList.end(); ++iter) {
         if ((*iter)->isMarkedForDeletion()) {
             iter=list.erase(iter)-1;
         }

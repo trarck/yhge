@@ -22,80 +22,80 @@ public:
     
 public:
     
-    inline const char* getName(){ return m_sName.c_str(); }
-    inline void setName(const char *name){ m_sName = name; }
+    inline const char* getName(){ return _sName.c_str(); }
+    inline void setName(const char *name){ _sName = name; }
     
     inline void setType(const char * pType)
     {
-        m_sType = pType;
+        _sType = pType;
     }
     
     inline std::string& getType()
     {
-        return m_sType;
+        return _sType;
     }
     
     inline void setPosition(CCPoint tPosition)
     {
-        m_tPosition = tPosition;
+        _tPosition = tPosition;
     }
     
     inline CCPoint getPosition()
     {
-        return m_tPosition;
+        return _tPosition;
     }
     
     inline void setSize(CCSize tSize)
     {
-        m_tSize = tSize;
+        _tSize = tSize;
     }
     
     inline CCSize getSize()
     {
-        return m_tSize;
+        return _tSize;
     }
     
     inline void setGid(unsigned int uGid)
     {
-        m_uGid = uGid;
+        _uGid = uGid;
     }
     
     inline unsigned int getGid()
     {
-        return m_uGid;
+        return _uGid;
     }
     
     inline void setVisible(bool bVisible)
     {
-        m_bVisible = bVisible;
+        _bVisible = bVisible;
     }
     
     inline bool getVisible()
     {
-        return m_bVisible;
+        return _bVisible;
     }
     
     inline void setProperties(CCDictionary* pProperties)
     {
         CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(m_pProperties);
-        m_pProperties=pProperties;
+        CC_SAFE_RELEASE(_pProperties);
+        _pProperties=pProperties;
         
     }
     
     inline CCDictionary* getProperties()
     {
-        return m_pProperties;
+        return _pProperties;
     }
     
     inline void setRotation(float rotation)
     {
-        m_rotation = rotation;
+        _rotation = rotation;
     }
     
     inline float getRotation()
     {
-        return m_rotation;
+        return _rotation;
     }
     
 protected:
@@ -103,44 +103,44 @@ protected:
     /**
      * 对象的名称
      */
-    std::string m_sName;
+    std::string _sName;
     
     /**
      * 对象的类型
      */
-    std::string m_sType;
+    std::string _sType;
     
     /**
      * 对象的位置
      * 是像素坐标
      */
-    CCPoint m_tPosition;
+    CCPoint _tPosition;
     
     /**
      * 对象的大小
      * 不同的对象类型，对应的单位不同。
      */
-    CCSize m_tSize;
+    CCSize _tSize;
     
     /**
      * 对象的gid
      */
-    unsigned int m_uGid;
+    unsigned int _uGid;
     
     /**
      * 旋转角度
      */
-    float m_rotation;
+    float _rotation;
     
     /**
      * 对象是否可见
      */
-    bool m_bVisible;
+    bool _bVisible;
 
     /**
      * 属性
      */
-    CCDictionary* m_pProperties;
+    CCDictionary* _pProperties;
 };
 
 

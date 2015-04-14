@@ -4,54 +4,54 @@
 NS_CC_YHGE_BEGIN
 
 Buffer::Buffer()
-:m_size(0)
-,m_data(NULL)
-,m_dataOwner(false)
+:_size(0)
+,_data(NULL)
+,_dataOwner(false)
 {
     
 }
 
 Buffer::Buffer(size_t size)
-:m_size(size)
-,m_data(NULL)
-,m_dataOwner(true)
+:_size(size)
+,_data(NULL)
+,_dataOwner(true)
 {
-    m_data=(unsigned char*) malloc( size * sizeof(unsigned char));
+    _data=(unsigned char*) malloc( size * sizeof(unsigned char));
 }
 
 Buffer::Buffer(unsigned char* data,size_t size)
-:m_size(size)
-,m_data(data)
-,m_dataOwner(true)
+:_size(size)
+,_data(data)
+,_dataOwner(true)
 {
-    m_data=(unsigned char*) malloc(size);
-    memcpy(m_data, data, size);
+    _data=(unsigned char*) malloc(size);
+    memcpy(_data, data, size);
 }
 
 Buffer::Buffer(unsigned char* data,size_t size,bool dataOwner)
-:m_size(size)
-,m_data(data)
-,m_dataOwner(dataOwner)
+:_size(size)
+,_data(data)
+,_dataOwner(dataOwner)
 {
     
 }
 
 Buffer::Buffer(unsigned char* data,size_t size,MemType type)
-:m_size(size)
+:_size(size)
 {
     switch (type) {
         case kCopy:
-            m_data=(unsigned char*) malloc(size);
-            memcpy(m_data, data, size);
-            m_dataOwner=true;
+            _data=(unsigned char*) malloc(size);
+            memcpy(_data, data, size);
+            _dataOwner=true;
             break;
         case kOwner:
-            m_data=data;
-            m_dataOwner=true;
+            _data=data;
+            _dataOwner=true;
             break;
         case kWeak:
-            m_data=data;
-            m_dataOwner=false;
+            _data=data;
+            _dataOwner=false;
             break;
         default:
             break;
@@ -60,20 +60,20 @@ Buffer::Buffer(unsigned char* data,size_t size,MemType type)
 
 Buffer::~Buffer()
 {
-    if (m_data && m_dataOwner) {
-        free(m_data);
+    if (_data && _dataOwner) {
+        free(_data);
     }
 }
 
 size_t Buffer::readBytes(size_t position,void* buf,size_t size)
 {
-    CCAssert(position<m_size,"Buffer::readBytes out index");
+    CCAssert(position<_size,"Buffer::readBytes out index");
     
-    if (position+size>m_size) {
-        size=m_size-position;
+    if (position+size>_size) {
+        size=_size-position;
     }
     
-    memmove(buf,m_data+position,size);
+    memmove(buf,_data+position,size);
     
     return size;
 }
@@ -81,22 +81,22 @@ size_t Buffer::readBytes(size_t position,void* buf,size_t size)
 
 //size_t Buffer::readBytesUnSafe(size_t position,void* buf,size_t size)
 //{
-//    CCAssert(position+size<=m_size,"Buffer::readBytesSafe out index");
+//    CCAssert(position+size<=_size,"Buffer::readBytesSafe out index");
 //    
-////    if (position+size>m_size) {
-////        size=m_size-position;
+////    if (position+size>_size) {
+////        size=_size-position;
 ////    }
 //    
-//    memcpy(buf,m_data+position,size);
+//    memcpy(buf,_data+position,size);
 //    
 //    return size;
 //}
 
 uint64_t Buffer::readUInt64LE(size_t position)
 {
-    CCAssert(position+8<=m_size,"Buffer::readUInt64LE out 64 index");
+    CCAssert(position+8<=_size,"Buffer::readUInt64LE out 64 index");
 
-    unsigned char* start=m_data+position;
+    unsigned char* start=_data+position;
 
     uint64_t val=0;
 
@@ -110,9 +110,9 @@ uint64_t Buffer::readUInt64LE(size_t position)
 
 uint64_t Buffer::readUInt64BE(size_t position)
 {
-    CCAssert(position+8<=m_size,"Buffer::readUInt64BE out index");
+    CCAssert(position+8<=_size,"Buffer::readUInt64BE out index");
                 
-    unsigned char* start=m_data+position+7;
+    unsigned char* start=_data+position+7;
 
     uint64_t val=0;
 
@@ -126,36 +126,36 @@ uint64_t Buffer::readUInt64BE(size_t position)
 
 size_t Buffer::writeBytes(size_t position,void* buf,size_t size)
 {
-    CCAssert(position<m_size,"Buffer::writeBytes out index");
+    CCAssert(position<_size,"Buffer::writeBytes out index");
     
-    if (position+size>m_size) {
-        size=m_size-position;
+    if (position+size>_size) {
+        size=_size-position;
     }
     
-    memmove(m_data+position,buf,size);
+    memmove(_data+position,buf,size);
     
     return size;
 }
 
 size_t Buffer::writeBytesUnSafe(size_t position,void* buf,size_t size)
 {
-    CCAssert(position+size<=m_size,"Buffer::writeBytes out index");
+    CCAssert(position+size<=_size,"Buffer::writeBytes out index");
     
-//    if (position+size>m_size) {
-//        size=m_size-position;
+//    if (position+size>_size) {
+//        size=_size-position;
 //    }
     
-    memcpy(m_data+position,buf,size);
+    memcpy(_data+position,buf,size);
     
     return size;
 }
 
 size_t Buffer::writeUInt64LE(uint64_t value,size_t position)
 {
-    CCAssert(position+_BUFFER_LONG_SIZE<=m_size,"Buffer::writeUInt64LE out index");
+    CCAssert(position+_BUFFER_LONG_SIZE<=_size,"Buffer::writeUInt64LE out index");
     
     
-    unsigned char* start=m_data+position;
+    unsigned char* start=_data+position;
     
     for (int i = 0; i < _BUFFER_LONG_SIZE; i++)
     {
@@ -167,9 +167,9 @@ size_t Buffer::writeUInt64LE(uint64_t value,size_t position)
 
 size_t Buffer::writeUInt64BE(uint64_t value,size_t position)
 {
-    CCAssert(position+_BUFFER_LONG_SIZE<=m_size,"Buffer::writeUInt64LE out index");
+    CCAssert(position+_BUFFER_LONG_SIZE<=_size,"Buffer::writeUInt64LE out index");
     
-    unsigned char* start=m_data+position+7;
+    unsigned char* start=_data+position+7;
     
     for (int i = 0; i < _BUFFER_LONG_SIZE; i++)
     {
@@ -181,16 +181,16 @@ size_t Buffer::writeUInt64BE(uint64_t value,size_t position)
 
 void Buffer::fill(unsigned char value,size_t start,size_t end)
 {
-    if (start<m_size) {
+    if (start<_size) {
         
-        if (end>m_size) {
-            end=m_size;
+        if (end>_size) {
+            end=_size;
         }
         
         size_t len=end-start;
         
         if (len>0) {
-            memset(m_data+start, value, len);
+            memset(_data+start, value, len);
         }
     }
 }
@@ -204,7 +204,7 @@ void Buffer::copy(Buffer* target,size_t targetStart,size_t sourceStart,size_t so
         return;
     }
     
-    if (sourceStart > m_size){
+    if (sourceStart > _size){
         CCLOG("Buffer::copy out of range index");
         return;
     }
@@ -215,20 +215,20 @@ void Buffer::copy(Buffer* target,size_t targetStart,size_t sourceStart,size_t so
     
     size_t to_copy = MIN(MIN(sourceEnd - sourceStart,
                                targetLength - targetStart),
-                           m_size - sourceStart);
+                           _size - sourceStart);
     
-    memmove(target->getData()+targetStart, m_data+sourceStart, to_copy);
+    memmove(target->getData()+targetStart, _data+sourceStart, to_copy);
 }
 
 unsigned char* Buffer::slice(size_t start,size_t* size)
 {
-    CCAssert(start<m_size, "Buffer::slice out of range index");
+    CCAssert(start<_size, "Buffer::slice out of range index");
     
-    if (start+(*size)>m_size) {
-        *size=m_size-start;
+    if (start+(*size)>_size) {
+        *size=_size-start;
     }
     
-    return m_data+start;
+    return _data+start;
 }
 
 NS_CC_YHGE_END

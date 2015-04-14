@@ -4,28 +4,28 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTilesetInfo::ISOTilesetInfo()
-:m_sName("")
-,m_uFirstGid(0)
-,m_sSourceFile("")
-,m_tTileSize(CCSizeZero)
-,m_uSpacing(0)
-,m_uMargin(0)
-,m_tTileOffset(CCPointZero)
-,m_sImageSource("")
-,m_tImageSize(CCSizeZero)
-,m_pProperties(NULL)
-,m_pTiles(NULL)
+:_sName("")
+,_uFirstGid(0)
+,_sSourceFile("")
+,_tTileSize(CCSizeZero)
+,_uSpacing(0)
+,_uMargin(0)
+,_tTileOffset(CCPointZero)
+,_sImageSource("")
+,_tImageSize(CCSizeZero)
+,_pProperties(NULL)
+,_pTiles(NULL)
 {
-    m_pProperties=new CCDictionary();
-    m_pTiles=new CCArray();
-    m_pTiles->init();
+    _pProperties=new CCDictionary();
+    _pTiles=new CCArray();
+    _pTiles->init();
 }
 
 ISOTilesetInfo::~ISOTilesetInfo()
 {
     CCLOG("ISOTilesetInfo destroy");
-    CC_SAFE_RELEASE(m_pProperties);
-    CC_SAFE_RELEASE(m_pTiles);
+    CC_SAFE_RELEASE(_pProperties);
+    CC_SAFE_RELEASE(_pTiles);
 }
 
 NS_CC_YHGE_ISOMETRIC_END

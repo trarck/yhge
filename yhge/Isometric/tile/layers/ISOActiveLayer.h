@@ -53,13 +53,13 @@ public:
     inline void setObjects(CCArray* objects)
     {
         CC_SAFE_RETAIN(objects);
-        CC_SAFE_RELEASE(m_objects);
-        m_objects = objects;
+        CC_SAFE_RELEASE(_objects);
+        _objects = objects;
     }
     
     inline CCArray* getObjects()
     {
-        return m_objects;
+        return _objects;
     }
     
 protected:
@@ -78,12 +78,12 @@ protected:
 protected:
     
     //对地图的引用。
-    ISOTileMap* m_tileMap;
+    ISOTileMap* _tileMap;
     
     /**
      * 所有对象
      */
-    CCArray* m_objects;
+    CCArray* _objects;
 };
 
 

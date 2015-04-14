@@ -44,13 +44,13 @@ public:
     } ZIndexType;
     
 protected:
-	CCArray *m_pStatics;
-	CCArray *m_pDynamics;
-	CCLayer *m_pSortLayer;
-	bool m_bIsWorking;
-	bool m_bStaticDirty;
+	CCArray *_pStatics;
+	CCArray *_pDynamics;
+	CCLayer *_pSortLayer;
+	bool _bIsWorking;
+	bool _bStaticDirty;
     //弱引用
-    SEL_SCHEDULE m_pfnUpdate;
+    SEL_SCHEDULE _pfnUpdate;
 };
 
 

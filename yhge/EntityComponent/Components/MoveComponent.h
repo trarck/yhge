@@ -244,86 +244,86 @@ public:
     
     inline bool isMoving()
     {
-        return m_moving;
+        return _moving;
     }
     
     inline MoveState getMoveState()
     {
-        return m_moveState;
+        return _moveState;
     }
     
     void setMoveType(MoveType moveType)
     {
-        m_moveType = moveType;
+        _moveType = moveType;
     }
     
     MoveType getMoveType()
     {
-        return m_moveType;
+        return _moveType;
     }
     
     inline float getSpeed()
     {
-        return m_speed;
+        return _speed;
     }
     
     inline void setSpeed(float speed)
     {
-        m_speed=speed;
+        _speed=speed;
     }
     
     inline void setDirection(float direction)
     {
-        m_direction=direction;
+        _direction=direction;
     }
     
     inline float getDirection()
     {
-        return m_direction;
+        return _direction;
     }
     
     inline CCPoint getTo()
     {
-        return m_to;
+        return _to;
     }
     
     inline void setTo(CCPoint to)
     {
-        m_to=to;
+        _to=to;
     }
     
     inline void setCurrentPaths(CCArray* pCurrentPaths)
     {
         CC_SAFE_RETAIN(pCurrentPaths);
-        CC_SAFE_RELEASE(m_pCurrentPaths);
-        m_pCurrentPaths = pCurrentPaths;
+        CC_SAFE_RELEASE(_pCurrentPaths);
+        _pCurrentPaths = pCurrentPaths;
     }
     
     inline CCArray* getCurrentPaths()
     {
-        return m_pCurrentPaths;
+        return _pCurrentPaths;
     }
     
     inline void setNextPaths(CCArray* pNextPaths)
     {
         CC_SAFE_RETAIN(pNextPaths);
-        CC_SAFE_RELEASE(m_pNextPaths);
-        m_pNextPaths = pNextPaths;
+        CC_SAFE_RELEASE(_pNextPaths);
+        _pNextPaths = pNextPaths;
     }
     
     inline CCArray* getNextPaths()
     {
-        return m_pNextPaths;
+        return _pNextPaths;
     }
 
 	inline void setPathIndex(int pathIndex)
     {
-        m_pathIndex = pathIndex;
+        _pathIndex = pathIndex;
     }
     
     inline int getPathIndex()
     {
-        return m_pathIndex;
+        return _pathIndex;
     }
     
 protected:
@@ -361,52 +361,52 @@ protected:
 
 protected:
     //移动状态
-	MoveState m_moveState;
+	MoveState _moveState;
     
     //移动类型
-    MoveType m_moveType;
+    MoveType _moveType;
     
 	//移动速度，地图坐标速度。
-	float m_speed;
+	float _speed;
     
     //速度分量
-    float m_speedX;
-    float m_speedY;
+    float _speedX;
+    float _speedY;
     
     //移动方向。角度
-	float m_direction;
+	float _direction;
     
     //移动方向的分量
-    float m_directionX;//vector
-    float m_directionY;
+    float _directionX;//vector
+    float _directionY;
     
 //    //下个移动方向
-//    float m_nextDirection;
+//    float _nextDirection;
 
     //移动方向标记
-    int m_directionFlagX;
-    int m_directionFlagY;
+    int _directionFlagX;
+    int _directionFlagY;
     
     //移动到的位置
-    CCPoint m_to;
+    CCPoint _to;
     
     //是否正在移动
-	bool m_moving;
+	bool _moving;
     
     //更新函数
-    SEL_SCHEDULE m_update;
+    SEL_SCHEDULE _update;
     
     //是否需要检查移动结束。有时候是一直移动下去
-    bool m_hasEndPosition;
+    bool _hasEndPosition;
     
     
-	int m_fromIndex;
-	CCArray* m_pCurrentPaths;
-	CCArray* m_pNextPaths;
-	int m_pathIndex;
+	int _fromIndex;
+	CCArray* _pCurrentPaths;
+	CCArray* _pNextPaths;
+	int _pathIndex;
     
-    ISOPositionComponent* m_isoPositionComponent;
-    RendererComponent* m_rendererComponent;
+    ISOPositionComponent* _isoPositionComponent;
+    RendererComponent* _rendererComponent;
 };
 
 NS_CC_YHGE_END

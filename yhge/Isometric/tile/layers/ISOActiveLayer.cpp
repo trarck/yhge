@@ -8,21 +8,21 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOActiveLayer::ISOActiveLayer()
-:m_objects(NULL)
-,m_tileMap(NULL)
+:_objects(NULL)
+,_tileMap(NULL)
 {
 	
 }
 
 ISOActiveLayer::~ISOActiveLayer()
 {
-    CC_SAFE_RELEASE_NULL(m_objects);
+    CC_SAFE_RELEASE_NULL(_objects);
 }
 
 bool ISOActiveLayer::init()
 {
     if (ISOLayer::init()) {
-        m_objects=new CCArray();
+        _objects=new CCArray();
         return true;
     }
 	return false;
@@ -58,10 +58,10 @@ void ISOActiveLayer::releaseLayer()
 
 void ISOActiveLayer::setupObjects()
 {
-    if (m_objects) {
+    if (_objects) {
         Ref* pObj=NULL;
         ISOObjectInfo* objInfo=NULL;
-        CCARRAY_FOREACH(m_objects, pObj){
+        CCARRAY_FOREACH(_objects, pObj){
             objInfo=static_cast<ISOObjectInfo*>(pObj);
             if (objInfo->getGid()!=0 && objInfo->getVisible()) {
                 createObject(objInfo->getGid(), objInfo->getPosition());
@@ -75,7 +75,7 @@ void ISOActiveLayer::setupObjects()
  */
 CCSprite* ISOActiveLayer::createObject(int gid,const CCPoint& coord)
 {
-    ISOTileset* tileset=m_tileMap->getTilesetGroup()->getTilesetByGid(gid);
+    ISOTileset* tileset=_tileMap->getTilesetGroup()->getTilesetByGid(gid);
     
     ISOTile* tile=tileset->tileForGid(gid);
     
@@ -85,7 +85,7 @@ CCSprite* ISOActiveLayer::createObject(int gid,const CCPoint& coord)
     //object 的对齐方式为底部居中
     tileSprite->setAnchorPoint(ccp(0.5f,0));
     tileSprite->setPosition(pos);
-    tileSprite->setOpacity(m_cOpacity);
+    tileSprite->setOpacity(_cOpacity);
     
     //屏幕的y方向作为zOrder，由于opengl的坐标和屏幕坐标反向，这里取反。
     //对于只占用一个格子的object来说，使用屏幕坐标的y方向来处理遮挡是可以的，如果大于一个格子，则会有问题。
@@ -102,7 +102,7 @@ void ISOActiveLayer::scroll(const CCPoint& tOffset)
 void ISOActiveLayer::setMap(ISOMap* pMap)
 {
     ISOLayer::setMap(pMap);
-    m_tileMap=static_cast<ISOTileMap*>(pMap);
+    _tileMap=static_cast<ISOTileMap*>(pMap);
 }
 
 void ISOActiveLayer::parseInternalProperties()

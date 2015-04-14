@@ -211,7 +211,7 @@ public:
      */
     inline bool isMoving()
     {
-        return m_moving;
+        return _moving;
     }
     
     /**
@@ -219,129 +219,129 @@ public:
      */
     inline MoveState getMoveState()
     {
-        return m_moveState;
+        return _moveState;
     }
 	
     void setMoveType(MoveType moveType)
     {
-        m_moveType = moveType;
+        _moveType = moveType;
     }
 
     MoveType getMoveType()
     {
-        return m_moveType;
+        return _moveType;
     }
 
     inline float getSpeed()
     {
-        return m_speed;
+        return _speed;
     }
     
     inline void setSpeed(float speed)
     {
-        m_speed=speed;
+        _speed=speed;
     }
 	   
     inline void setDirectionX(int directionX)
     {
-        m_lastDirectionX=m_directionX;
-        m_directionX = directionX;
+        _lastDirectionX=_directionX;
+        _directionX = directionX;
     }
 	
     inline int getDirectionX()
     {
-        return m_directionX;
+        return _directionX;
     }
 	
     inline void setDirectionY(int directionY)
     {
-        m_lastDirectionY=m_directionY;
-        m_directionY = directionY;
+        _lastDirectionY=_directionY;
+        _directionY = directionY;
     }
     
     inline int getDirectionY()
     {
-        return m_directionY;
+        return _directionY;
     }
 
 	inline void setNextDirection(int directionX,int directionY)
     {
-        m_nextDirectionX=directionX;
-        m_nextDirectionY=directionY;
+        _nextDirectionX=directionX;
+        _nextDirectionY=directionY;
     }
 
     inline void setNextDirectionX(int nextDirectionX)
     {
-        m_nextDirectionX = nextDirectionX;
+        _nextDirectionX = nextDirectionX;
     }
     
     inline int getNextDirectionX()
     {
-        return m_nextDirectionX;
+        return _nextDirectionX;
     }
     
     inline void setNextDirectionY(int nextDirectionY)
     {
-        m_nextDirectionY = nextDirectionY;
+        _nextDirectionY = nextDirectionY;
     }
     
     inline int getNextDirectionY()
     {
-        return m_nextDirectionY;
+        return _nextDirectionY;
     }
 
     inline void setKeepMoveDirection(bool bKeepMoveDirection)
     {
-        m_bKeepMoveDirection = bKeepMoveDirection;
+        _bKeepMoveDirection = bKeepMoveDirection;
     }
     
     inline bool isKeepMoveDirection()
     {
-        return m_bKeepMoveDirection;
+        return _bKeepMoveDirection;
     }
     
     inline CCPoint getTo()
     {
-        return m_to;
+        return _to;
     }
     
     inline void setTo(CCPoint to)
     {
-        m_to=to;
+        _to=to;
     }
 
     inline void setCurrentPaths(CCArray* pCurrentPaths)
     {
         CC_SAFE_RETAIN(pCurrentPaths);
-        CC_SAFE_RELEASE(m_pCurrentPaths);
-        m_pCurrentPaths = pCurrentPaths;
+        CC_SAFE_RELEASE(_pCurrentPaths);
+        _pCurrentPaths = pCurrentPaths;
     }
     
     inline CCArray* getCurrentPaths()
     {
-        return m_pCurrentPaths;
+        return _pCurrentPaths;
     }
     
     inline void setNextPaths(CCArray* pNextPaths)
     {
         CC_SAFE_RETAIN(pNextPaths);
-        CC_SAFE_RELEASE(m_pNextPaths);
-        m_pNextPaths = pNextPaths;
+        CC_SAFE_RELEASE(_pNextPaths);
+        _pNextPaths = pNextPaths;
     }
     
     inline CCArray* getNextPaths()
     {
-        return m_pNextPaths;
+        return _pNextPaths;
     }
     
     inline void setMoveableDelegate(GirdMoveableDelegate* moveableDelegate)
     {
-        m_moveableDelegate = moveableDelegate;
+        _moveableDelegate = moveableDelegate;
     }
     
     inline GirdMoveableDelegate* getMoveableDelegate()
     {
-        return m_moveableDelegate;
+        return _moveableDelegate;
     }
     
 protected:
@@ -380,66 +380,66 @@ protected:
 
 protected:
     //移动状态
-	MoveState m_moveState;
+	MoveState _moveState;
 
     //移动类型
-    MoveType m_moveType;
+    MoveType _moveType;
 
 	//地图坐标系的速度
-	float m_speed;
+	float _speed;
     
     //速度分量
-    float m_speedX;
-    float m_speedY;
+    float _speedX;
+    float _speedY;
     
     //屏幕坐标系移动速度，由地图坐标系转换而来
-	float m_fViewSpeedX;
-    float m_fViewSpeedY;
+	float _fViewSpeedX;
+    float _fViewSpeedY;
     
     //地图坐标里的移动方向
-    int m_directionX;//vector
-    int m_directionY;
+    int _directionX;//vector
+    int _directionY;
     
     //地图坐标里的上次移动方向
-	int m_lastDirectionX;
-	int m_lastDirectionY;
+	int _lastDirectionX;
+	int _lastDirectionY;
     
 	//只保留最后一个move direction。
 	//如果一个格子没有移动完成，接收移动消息是无效的，但是为了保持连贯性，
 	//把下一个移动消息保存起来。
-	int m_nextDirectionX;//vector
-    int m_nextDirectionY;
+	int _nextDirectionX;//vector
+    int _nextDirectionY;
     
     //direction移动结束后，是否接着原来的方向继续移动。
-	bool m_bKeepMoveDirection;
+	bool _bKeepMoveDirection;
 
 	//一次移动的时间
-	float m_movingDuration;
+	float _movingDuration;
 	//一次移动中的移动时间累计
-	float m_movingDeltaTime;
+	float _movingDeltaTime;
 
     //移动到地图的哪个格子。地图坐标
-    CCPoint m_to;
+    CCPoint _to;
     
     //是不是正在移动
-	bool m_moving;
+	bool _moving;
     
     //按路径移动时，路径数组的开始索引
-	int m_fromIndex;
+	int _fromIndex;
     //当前移动路径
-	CCArray* m_pCurrentPaths;
+	CCArray* _pCurrentPaths;
     //下一个移动路径
-	CCArray* m_pNextPaths;
+	CCArray* _pNextPaths;
     //当前移动路径进行的位置
-	int m_pathIndex;
+	int _pathIndex;
     
-    GirdMoveableDelegate* m_moveableDelegate;
+    GirdMoveableDelegate* _moveableDelegate;
     
     //定时器函数
-    SEL_SCHEDULE m_update;
+    SEL_SCHEDULE _update;
     
-    ISOPositionComponent* m_isoPositionComponent;
-//    RendererComponent* m_rendererComponent;
+    ISOPositionComponent* _isoPositionComponent;
+//    RendererComponent* _rendererComponent;
 };
 
 NS_CC_YHGE_END

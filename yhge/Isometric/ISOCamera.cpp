@@ -9,18 +9,18 @@ static const float kVisibleMax=3.402823466e+28F;
 static const float kVisibleMin=-kVisibleMax;
 
 ISOCamera::ISOCamera()
-:m_tWorldPosition(CCPointZero)
-,m_bSmoothMove(NULL)
-,m_scaleX(1.0f)
-,m_scaleY(1.0f)
-,m_delegate(NULL)
-,m_lastScaleX(1.0f)
-,m_lastScaleY(1.0f)
-,m_needCheckPositionRane(true)
-,m_minX(kVisibleMin)
-,m_maxX(kVisibleMax)
-,m_minY(kVisibleMin)
-,m_maxY(kVisibleMax)
+:_tWorldPosition(CCPointZero)
+,_bSmoothMove(NULL)
+,_scaleX(1.0f)
+,_scaleY(1.0f)
+,_delegate(NULL)
+,_lastScaleX(1.0f)
+,_lastScaleY(1.0f)
+,_needCheckPositionRane(true)
+,_minX(kVisibleMin)
+,_maxX(kVisibleMax)
+,_minY(kVisibleMin)
+,_maxY(kVisibleMax)
 {
     
 }
@@ -41,16 +41,16 @@ bool ISOCamera::init()
  */
 void  ISOCamera::move(float deltaX,float deltaY)
 {
-    m_tWorldPosition.x+=deltaX;
-    m_tWorldPosition.y+=deltaY;
+    _tWorldPosition.x+=deltaX;
+    _tWorldPosition.y+=deltaY;
 
     this->updatePosition();
 }
 
 void ISOCamera::move(const CCPoint& delta)
 {
-    m_tWorldPosition.x+=delta.x;
-    m_tWorldPosition.y+=delta.y;
+    _tWorldPosition.x+=delta.x;
+    _tWorldPosition.y+=delta.y;
     
     this->updatePosition();
 }
@@ -61,8 +61,8 @@ void ISOCamera::move(const CCPoint& delta)
  */
 void  ISOCamera::moveTo(float x,float y)
 {
-    m_tWorldPosition.x=x;
-    m_tWorldPosition.y=y;
+    _tWorldPosition.x=x;
+    _tWorldPosition.y=y;
 
     this->updatePosition();
 
@@ -70,8 +70,8 @@ void  ISOCamera::moveTo(float x,float y)
 
 void ISOCamera::moveTo(const CCPoint& position)
 {
-    m_tWorldPosition.x=position.x;
-    m_tWorldPosition.y=position.y;
+    _tWorldPosition.x=position.x;
+    _tWorldPosition.y=position.y;
     
     this->updatePosition();
 }
@@ -83,16 +83,16 @@ void ISOCamera::moveTo(const CCPoint& position)
  */
 void  ISOCamera::moveOpposite(float deltaX,float deltaY)
 {
-    m_tWorldPosition.x-=deltaX;
-    m_tWorldPosition.y-=deltaY;
+    _tWorldPosition.x-=deltaX;
+    _tWorldPosition.y-=deltaY;
 
     this->updatePosition();
 }
 
 void ISOCamera::moveOpposite(const CCPoint& delta)
 {
-    m_tWorldPosition.x-=delta.x;
-    m_tWorldPosition.y-=delta.y;
+    _tWorldPosition.x-=delta.x;
+    _tWorldPosition.y-=delta.y;
     
     this->updatePosition();
 }
@@ -105,16 +105,16 @@ void ISOCamera::updatePosition()
     //如果超出范围，修正前后的值是不一样的，没有超出，则值是一致的。
     //如果超出范围，则相机可能不会移动，所以不需要更新。
     //相机里不做判断，则由具体的delegate做判断
-    if (m_needCheckPositionRane)
+    if (_needCheckPositionRane)
     {
         this->modifyWorldPositionInRange();
     }
 
-    if (m_delegate) {
-        m_delegate->onCameraMove(m_tWorldPosition);
+    if (_delegate) {
+        _delegate->onCameraMove(_tWorldPosition);
     }
-//    m_pGameWorld->setPosition(m_tWorldPosition);
-//    m_pGameWorld->updateMapPosition(ccp(-m_tWorldPosition.x,-m_tWorldPosition.y));
+//    _pGameWorld->setPosition(_tWorldPosition);
+//    _pGameWorld->updateMapPosition(ccp(-_tWorldPosition.x,-_tWorldPosition.y));
 }
 
 /**
@@ -130,11 +130,11 @@ void ISOCamera::scaleBy(float scale)
  */
 void ISOCamera::scaleBy(float scaleX,float scaleY)
 {
-    m_lastScaleX=m_scaleX;
-    m_lastScaleY=m_scaleY;
+    _lastScaleX=_scaleX;
+    _lastScaleY=_scaleY;
     
-    m_scaleX+=scaleX;
-    m_scaleY+=scaleY;
+    _scaleX+=scaleX;
+    _scaleY+=scaleY;
 
     this->updateScale();
 }
@@ -152,11 +152,11 @@ void ISOCamera::scaleTo(float scale)
  */
 void ISOCamera::scaleTo(float scaleX,float scaleY)
 {
-    m_lastScaleX=m_scaleX;
-    m_lastScaleY=m_scaleY;
+    _lastScaleX=_scaleX;
+    _lastScaleY=_scaleY;
     
-    m_scaleX=scaleX;
-    m_scaleY=scaleY;
+    _scaleX=scaleX;
+    _scaleY=scaleY;
     
     this->updateScale();
 }
@@ -167,30 +167,30 @@ void ISOCamera::scaleTo(float scaleX,float scaleY)
 void ISOCamera::updateScale()
 {
     //update position.新的缩放模式下的位置
-    CCAssert(m_lastScaleX!=0 && m_lastScaleY!=0, "ISOCamera::updateScale neg is zero");
+    CCAssert(_lastScaleX!=0 && _lastScaleY!=0, "ISOCamera::updateScale neg is zero");
     
-    float rate=m_scaleX/m_lastScaleY;
+    float rate=_scaleX/_lastScaleY;
 
-    m_tWorldPosition.x*=rate;
-    m_tWorldPosition.y*=rate;
+    _tWorldPosition.x*=rate;
+    _tWorldPosition.y*=rate;
 
     //重新设置移动范围的大小
-    if (m_needCheckPositionRane)
+    if (_needCheckPositionRane)
     {
-        m_minX*=rate;
-        m_minY*=rate;
-        m_maxX*=rate;
-        m_maxY*=rate;
+        _minX*=rate;
+        _minY*=rate;
+        _maxX*=rate;
+        _maxY*=rate;
     }
     
-    if (m_needCheckPositionRane)
+    if (_needCheckPositionRane)
     {
         this->modifyWorldPositionInRange();
     }
 
-    if (m_delegate) {
-        m_delegate->onCameraScale(m_scaleX,m_scaleY);
-        m_delegate->onCameraMove(m_tWorldPosition);
+    if (_delegate) {
+        _delegate->onCameraScale(_scaleX,_scaleY);
+        _delegate->onCameraMove(_tWorldPosition);
     }
 }
 
@@ -199,13 +199,13 @@ void ISOCamera::updateScale()
  */
 CCPoint ISOCamera::getLocationInWorld(const CCPoint& position)
 {
-    CCAssert(m_scaleX!=0 && m_scaleY!=0, "ISOCamera::updateScale neg is zero");
+    CCAssert(_scaleX!=0 && _scaleY!=0, "ISOCamera::updateScale neg is zero");
     
-    float x=m_tWorldPosition.x+position.x;
-    float y=m_tWorldPosition.y+position.y;
+    float x=_tWorldPosition.x+position.x;
+    float y=_tWorldPosition.y+position.y;
 
-    x/=m_scaleX;
-    y/=m_scaleY;
+    x/=_scaleX;
+    y/=_scaleY;
 
     return ccp(x,y);
 }
@@ -215,11 +215,11 @@ CCPoint ISOCamera::getLocationInWorld(const CCPoint& position)
  */
 CCPoint ISOCamera::getLocationInScene(const CCPoint& position)
 {
-    float x=position.x*m_scaleX-m_tWorldPosition.x;
-    float y=position.y*m_scaleY-m_tWorldPosition.y;
+    float x=position.x*_scaleX-_tWorldPosition.x;
+    float y=position.y*_scaleY-_tWorldPosition.y;
 
-    //x*=m_scaleX;
-    //y*=m_scaleY;
+    //x*=_scaleX;
+    //y*=_scaleY;
 
     return ccp(x,y);
 }
@@ -231,10 +231,10 @@ CCPoint ISOCamera::getLocationInScene(const CCPoint& position)
  */
 void ISOCamera::setMoveRange(const CCRect& rect)
 {
-    m_minX=rect.getMinX();
-    m_minY=rect.getMinY();
-    m_maxX=rect.getMaxX();
-    m_maxY=rect.getMaxY();
+    _minX=rect.getMinX();
+    _minY=rect.getMinY();
+    _maxX=rect.getMaxX();
+    _maxY=rect.getMaxY();
 }
 
 /**
@@ -243,8 +243,8 @@ void ISOCamera::setMoveRange(const CCRect& rect)
 CCPoint ISOCamera::modifyPositionInRange(const CCPoint& position)
 {
     CCPoint newPos=position;
-    newPos.x=newPos.x<m_minX?m_minX:(newPos.x>m_maxX?m_maxX:newPos.x);
-    newPos.y=newPos.y<m_minY?m_minY:(newPos.y>m_maxY?m_maxY:newPos.y);
+    newPos.x=newPos.x<_minX?_minX:(newPos.x>_maxX?_maxX:newPos.x);
+    newPos.y=newPos.y<_minY?_minY:(newPos.y>_maxY?_maxY:newPos.y);
     return newPos;
 }
 

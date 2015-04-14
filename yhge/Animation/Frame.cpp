@@ -4,19 +4,19 @@
 NS_CC_YHGE_BEGIN
 
 Frame::Frame()
-//:m_spriteFrame(NULL)
-//,m_haveTransform(false)
-//,m_transform(CCAffineTransformMakeIdentity())
-//,m_color(ccWHITE)
-//,m_opacity(255)
-:m_displayProperty(NULL)
+//:_spriteFrame(NULL)
+//,_haveTransform(false)
+//,_transform(CCAffineTransformMakeIdentity())
+//,_color(ccWHITE)
+//,_opacity(255)
+:_displayProperty(NULL)
 {
 
 }
     
 Frame::~Frame()
 {
-    CC_SAFE_RELEASE_NULL(m_displayProperty);
+    CC_SAFE_RELEASE_NULL(_displayProperty);
 }
 
 bool Frame::init()

@@ -117,7 +117,7 @@ public:
     
     /**
      * 更新缩放
-     * 由于m_tWorldPosition记录的是旧的缩放下相机所在世界的位置。为了保持显示的一致性，要把m_tWorldPosition进行缩放修正。
+     * 由于_tWorldPosition记录的是旧的缩放下相机所在世界的位置。为了保持显示的一致性，要把_tWorldPosition进行缩放修正。
      * 在新的缩放模式下，相机的移动是相对新的缩放模式的。
      */
     void updateScale();
@@ -142,10 +142,10 @@ public:
 
     inline void setMoveRange(float minX,float minY,float maxX,float maxY)
     {
-        m_minX=minX;
-        m_minY=minY;
-        m_maxX=maxX;
-        m_maxY=maxY;
+        _minX=minX;
+        _minY=minY;
+        _maxX=maxX;
+        _maxY=maxY;
     }
 
     /**
@@ -159,149 +159,149 @@ public:
      */
     inline void modifyWorldPositionInRange()
     {
-        m_tWorldPosition.x=m_tWorldPosition.x<m_minX
-            ?m_minX:(m_tWorldPosition.x>m_maxX?m_maxX:m_tWorldPosition.x);
-        m_tWorldPosition.y=m_tWorldPosition.y<m_minY
-            ?m_minY:(m_tWorldPosition.y>m_maxY?m_maxY:m_tWorldPosition.y);
+        _tWorldPosition.x=_tWorldPosition.x<_minX
+            ?_minX:(_tWorldPosition.x>_maxX?_maxX:_tWorldPosition.x);
+        _tWorldPosition.y=_tWorldPosition.y<_minY
+            ?_minY:(_tWorldPosition.y>_maxY?_maxY:_tWorldPosition.y);
     }
 
     inline const CCPoint& getWorldPosition()
     {
-        return m_tWorldPosition;
+        return _tWorldPosition;
     }
 
     inline void setSmoothMove(bool bSmoothMove)
     {
-        m_bSmoothMove = bSmoothMove;
+        _bSmoothMove = bSmoothMove;
     }
     
     inline bool isSmoothMove()
     {
-        return m_bSmoothMove;
+        return _bSmoothMove;
     }
     
     inline void setMoveDelegate(ISOCameraDelegate* moveDelegate)
     {
-        m_delegate = moveDelegate;
+        _delegate = moveDelegate;
     }
     
     inline ISOCameraDelegate* getMoveDelegate()
     {
-        return m_delegate;
+        return _delegate;
     }
     
     inline float getScale()
     {
-        CCAssert(m_scaleX==m_scaleX, "m_scaleX and m_scaleX is not the same");
-        return m_scaleX;
+        CCAssert(_scaleX==_scaleX, "_scaleX and _scaleX is not the same");
+        return _scaleX;
     }
     
     inline void setScaleX(float scaleX)
     {
-        m_scaleX = scaleX;
+        _scaleX = scaleX;
     }
     
     inline float getScaleX()
     {
-        return m_scaleX;
+        return _scaleX;
     }
     
     inline void setScaleY(float scaleY)
     {
-        m_scaleY = scaleY;
+        _scaleY = scaleY;
     }
     
     inline float getScaleY()
     {
-        return m_scaleY;
+        return _scaleY;
     }
     
     inline void setLastScaleX(float lastScaleX)
     {
-        m_lastScaleX = lastScaleX;
+        _lastScaleX = lastScaleX;
     }
     
     inline float getLastScaleX()
     {
-        return m_lastScaleX;
+        return _lastScaleX;
     }
     
     inline void setLastScaleY(float lastScaleY)
     {
-        m_lastScaleY = lastScaleY;
+        _lastScaleY = lastScaleY;
     }
     
     inline float getLastScaleY()
     {
-        return m_lastScaleY;
+        return _lastScaleY;
     }
 
     void setNeedCheckPositionRane(bool needCheckPositionRane)
     {
-        m_needCheckPositionRane = needCheckPositionRane;
+        _needCheckPositionRane = needCheckPositionRane;
     }
 
     bool isNeedCheckPositionRane()
     {
-        return m_needCheckPositionRane;
+        return _needCheckPositionRane;
     }
 
     void setMinX(float minX)
     {
-        m_minX = minX;
+        _minX = minX;
     }
 
     float getMinX()
     {
-        return m_minX;
+        return _minX;
     }
 
     void setMaxX(float maxX)
     {
-        m_maxX = maxX;
+        _maxX = maxX;
     }
 
     float getMaxX()
     {
-        return m_maxX;
+        return _maxX;
     }
 
     void setMinY(float minY)
     {
-        m_minY = minY;
+        _minY = minY;
     }
 
     float getMinY()
     {
-        return m_minY;
+        return _minY;
     }
 
     void setMaxY(float maxY)
     {
-        m_maxY = maxY;
+        _maxY = maxY;
     }
 
     float getMaxY()
     {
-        return m_maxY;
+        return _maxY;
     }
 protected:
     /**
      * 平滑移动
      */
-    bool m_bSmoothMove;
+    bool _bSmoothMove;
     
     /**
      * 相机所在游戏世界位置
      * 移动相机，其实在反向移动游戏世界.所以在设置游戏世界位置时，坐标值都取反
      */
-    CCPoint m_tWorldPosition;
+    CCPoint _tWorldPosition;
     
     /**
      * 相机移动事件代理
      * weak reference
      */
-    ISOCameraDelegate* m_delegate;
+    ISOCameraDelegate* _delegate;
 
     /**
      * 相机的缩放参数
@@ -309,20 +309,20 @@ protected:
      * 相机放大，game world在放大。
      * 相机缩小，game world在缩小。
      */
-    float m_scaleX;
-    float m_scaleY;
+    float _scaleX;
+    float _scaleY;
     
     //旧的缩放
-    float m_lastScaleX;
-    float m_lastScaleY;
+    float _lastScaleX;
+    float _lastScaleY;
 
     //是否需要对位置做范围检查
-    bool m_needCheckPositionRane;
+    bool _needCheckPositionRane;
     //相机的可视范围
-    float m_minX;
-    float m_maxX;
-    float m_minY;
-    float m_maxY;
+    float _minX;
+    float _maxX;
+    float _minY;
+    float _maxY;
 };
 
 NS_CC_YHGE_ISOMETRIC_END

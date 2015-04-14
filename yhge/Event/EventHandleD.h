@@ -20,8 +20,8 @@ class EventHandleD : public EventHandle {
 public:
     
 	inline EventHandleD()
-		 :m_handleD(NULL)
-        ,m_data(NULL)
+		 :_handleD(NULL)
+        ,_data(NULL)
 	{
 
 	}
@@ -30,18 +30,18 @@ public:
 
 	inline SEL_EventHandleD getHandleD()
 	{
-		return m_handleD;
+		return _handleD;
 	}
 
 	inline void setHandle(SEL_EventHandleD handle)
 	{
-		m_handleD=handle;
+		_handleD=handle;
 	}
 
 	inline bool initWithTarget(Ref* pTarget,SEL_EventHandleD handle,Ref* data)
 	{
 		setTarget(pTarget);
-		m_handleD=handle;
+		_handleD=handle;
         setData(data);
 		return true;
 	}
@@ -49,20 +49,20 @@ public:
     inline void setData(Ref* data)
     {
         CC_SAFE_RETAIN(data);
-        CC_SAFE_RELEASE(m_data);
-        m_data=data;
+        CC_SAFE_RELEASE(_data);
+        _data=data;
     }
 
     inline Ref* getData()
     {
-        return m_data;
+        return _data;
     }
 
 	virtual void execute(Event *event);
 
 protected:
-	SEL_EventHandleD m_handleD;
-    Ref* m_data;
+	SEL_EventHandleD _handleD;
+    Ref* _data;
 };
 
 NS_CC_YHGE_END

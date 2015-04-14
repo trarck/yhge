@@ -20,13 +20,13 @@ class CCPointValue : public cocos2d::Ref
 {
 public:
 	inline CCPointValue()
-    :m_tPoint(cocos2d::CCPointZero)
+    :_tPoint(cocos2d::CCPointZero)
 	{
 		
 	}
 	
     inline CCPointValue(const cocos2d::CCPoint& tPoint)
-    :m_tPoint(tPoint)
+    :_tPoint(tPoint)
     {
     }
     
@@ -44,18 +44,18 @@ public:
     
     inline void setPoint(float x, float y)
     {
-        m_tPoint.x = x;
-        m_tPoint.y = y;
+        _tPoint.x = x;
+        _tPoint.y = y;
     }
     
 	inline void setPoint(const cocos2d::CCPoint &tPoint)
     {
-        m_tPoint=tPoint;
+        _tPoint=tPoint;
     }
     
 	inline const cocos2d::CCPoint& getPoint() const
     {
-        return m_tPoint;
+        return _tPoint;
     }
     
     virtual cocos2d::Ref* copyWithZone(cocos2d::CCZone* pZone);
@@ -75,32 +75,32 @@ public:
 	}
     
 private:
-	cocos2d::CCPoint m_tPoint;
+	cocos2d::CCPoint _tPoint;
 };
 
 class CCSizeValue : public cocos2d::Ref
 {
 public:
     inline CCSizeValue()
-    :m_tSize(cocos2d::CCSizeZero)
+    :_tSize(cocos2d::CCSizeZero)
 	{
 		
 	}
 	
     inline CCSizeValue(float width, float height)
-    :m_tSize(width,height)
+    :_tSize(width,height)
 	{
 		
 	}
 	
 	inline CCSizeValue(const cocos2d::CCSize& tSize)
-    :m_tSize(tSize)
+    :_tSize(tSize)
 	{
 		
 	}
 	
     inline CCSizeValue(const CCSizeValue& other)
-    :m_tSize(other.getSize())
+    :_tSize(other.getSize())
 	{
 		
 	}
@@ -108,16 +108,16 @@ public:
     CCSizeValue& operator= (const CCSizeValue& other);
     
 	inline void setSize(float width, float height){
-    	m_tSize.width=width;
-		m_tSize.height=height;
+    	_tSize.width=width;
+		_tSize.height=height;
     }
 	inline void setSize(const cocos2d::CCSize& tSize){
-		m_tSize=tSize;
+		_tSize=tSize;
 	}
     
 	inline const cocos2d::CCSize& getSize() const
     {
-		return m_tSize;
+		return _tSize;
 	}
     virtual Ref* copyWithZone(cocos2d::CCZone* pZone);
 	
@@ -136,7 +136,7 @@ public:
 	}
     
 private:
-    cocos2d::CCSize m_tSize;
+    cocos2d::CCSize _tSize;
 };
 
 class CCRectValue : public cocos2d::Ref
@@ -144,25 +144,25 @@ class CCRectValue : public cocos2d::Ref
     
 public:
     inline CCRectValue()
-    :m_tRect(cocos2d::CCRectZero)
+    :_tRect(cocos2d::CCRectZero)
     {
         
     }
     
     inline CCRectValue(float x, float y, float width, float height)
-    :m_tRect(x,y,width,height)
+    :_tRect(x,y,width,height)
     {
         
     }
     
 	inline CCRectValue(const cocos2d::CCRect& tRect)
-    :m_tRect(tRect)
+    :_tRect(tRect)
     {
         
     }
     
     inline CCRectValue(const CCRectValue& other)
-    :m_tRect(other.getRect())
+    :_tRect(other.getRect())
     {
         
     }
@@ -171,20 +171,20 @@ public:
 	
     inline void setRect(float x, float y, float width, float height)
 	{
-		m_tRect.origin.x=x;
-		m_tRect.origin.y=y;
-		m_tRect.size.width=width;
-		m_tRect.size.height=height;
+		_tRect.origin.x=x;
+		_tRect.origin.y=y;
+		_tRect.size.width=width;
+		_tRect.size.height=height;
 	}
     
     inline void setRect(const cocos2d::CCRect &tRect)
 	{
-		m_tRect=tRect;
+		_tRect=tRect;
 	}
 	
 	inline const cocos2d::CCRect& getRect() const
     {
-		return m_tRect;
+		return _tRect;
 	}
     
     virtual Ref* copyWithZone(cocos2d::CCZone* pZone);
@@ -204,7 +204,7 @@ public:
     }
     
 private:
-    cocos2d::CCRect m_tRect;
+    cocos2d::CCRect _tRect;
 };
 
 NS_CC_YHGE_END

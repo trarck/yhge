@@ -6,22 +6,22 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 
 
 ISOBatchDynamicTileLayer::ISOBatchDynamicTileLayer()
-:m_pTileset(NULL)
+:_pTileset(NULL)
 {
 
 }
 
 ISOBatchDynamicTileLayer::~ISOBatchDynamicTileLayer()
 {
-	CC_SAFE_RELEASE(m_pTileset);
+	CC_SAFE_RELEASE(_pTileset);
 }
 
 bool ISOBatchDynamicTileLayer::init()
 {
     if(ISOTileLayer::init()){
         
-        m_pDynamicComponent=new ISOBatchDynamicComponent();
-        m_pDynamicComponent->setTileLayer(this);
+        _pDynamicComponent=new ISOBatchDynamicComponent();
+        _pDynamicComponent->setTileLayer(this);
         
         return true;
     }

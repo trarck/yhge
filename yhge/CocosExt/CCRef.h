@@ -27,31 +27,31 @@ class CCRef : public cocos2d::Ref
 {
 public:
 	inline CCRef()
-    :m_ptr(NULL)
+    :_ptr(NULL)
 	{
 		
 	}
 	
     inline CCRef(T* ptr)
-    :m_ptr(ptr)
+    :_ptr(ptr)
     {
         
     }
     
     ~CCRef(){
-        if (m_ptr) {
-            Deallocater::deallocate(m_ptr);
-            m_ptr=NULL;
+        if (_ptr) {
+            Deallocater::deallocate(_ptr);
+            _ptr=NULL;
         }
     }
     
     inline void setPtr(T* ptr){
-        m_ptr=ptr;
+        _ptr=ptr;
     }
     
     T* getPtr()
     {
-        return m_ptr;
+        return _ptr;
     }
 	
 	inline static CCRef* create(T* ptr)
@@ -67,7 +67,7 @@ private:
     
     CCRef& operator= (const CCRef& other);
     
-	T* m_ptr;
+	T* _ptr;
 };
 
 

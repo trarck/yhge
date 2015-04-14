@@ -23,44 +23,44 @@ public:
     
     inline void setId(int id)
     {
-        m_id = id;
+        _id = id;
     }
     
     inline int getId()
     {
-        return m_id;
+        return _id;
     }
     
     inline void setResource(Resource* resource)
     {
         CC_SAFE_RETAIN(resource);
-        CC_SAFE_RELEASE(m_resource);
-        m_resource = resource;
+        CC_SAFE_RELEASE(_resource);
+        _resource = resource;
     }
     
     inline Resource* getResource()
     {
-        return m_resource;
+        return _resource;
     }
     
     inline void setAnchor(CCPoint anchor)
     {
-        m_anchor = anchor;
+        _anchor = anchor;
     }
     
     inline CCPoint getAnchor()
     {
-        return m_anchor;
+        return _anchor;
     }
 
     
 protected:
    
-    int m_id;
+    int _id;
     
-    Resource* m_resource;
+    Resource* _resource;
     
-    CCPoint m_anchor;
+    CCPoint _anchor;
     
 };
 

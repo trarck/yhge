@@ -4,11 +4,11 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileObjectPart::ISOTileObjectPart()
-:m_id(0)
-,m_position(CCPointZero)
-,m_size(CCSizeZero)
-,m_objectId(0)
-,m_gid(0)
+:_id(0)
+,_position(CCPointZero)
+,_size(CCSizeZero)
+,_objectId(0)
+,_gid(0)
 {
 
 }

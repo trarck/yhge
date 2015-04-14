@@ -10,35 +10,35 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 static const int kComponentExtendCount=2;
 
 ISODynamicGroup::ISODynamicGroup()
-:m_pDynamiceComponentList(NULL)
-,m_iStartX(0)
-,m_iStartY(0)
-,m_iLastStartX(-999999)
-,m_iLastStartY(-999999)
-,m_iComponentIndexX(0)
-,m_iComponentIndexY(0)
-,m_pUpdateDelegator(NULL)
-,m_pCreateDelegator(NULL)
-,m_iComponentNodeExtendCount(kComponentExtendCount)
-,m_iComponentTileColumn(0)
-,m_iComponentTileRow(0)
-,m_iComponentTileTotalColumn(0)
-,m_iComponentTileTotalRow(0)
-,m_tileMap(NULL)
-,m_tOffset(CCPointZero)
+:_pDynamiceComponentList(NULL)
+,_iStartX(0)
+,_iStartY(0)
+,_iLastStartX(-999999)
+,_iLastStartY(-999999)
+,_iComponentIndexX(0)
+,_iComponentIndexY(0)
+,_pUpdateDelegator(NULL)
+,_pCreateDelegator(NULL)
+,_iComponentNodeExtendCount(kComponentExtendCount)
+,_iComponentTileColumn(0)
+,_iComponentTileRow(0)
+,_iComponentTileTotalColumn(0)
+,_iComponentTileTotalRow(0)
+,_tileMap(NULL)
+,_tOffset(CCPointZero)
 {
 	
 }
 
 ISODynamicGroup::~ISODynamicGroup()
 {
-	CC_SAFE_RELEASE_NULL(m_pDynamiceComponentList);
+	CC_SAFE_RELEASE_NULL(_pDynamiceComponentList);
 }
 
 bool ISODynamicGroup::init()
 {
-	m_pDynamiceComponentList=new CCArray();
-	m_pDynamiceComponentList->init();
+	_pDynamiceComponentList=new CCArray();
+	_pDynamiceComponentList->init();
 	return true;
 }
 
@@ -60,22 +60,22 @@ bool ISODynamicGroup::beforeUpdateContent()
 	//屏幕的四个点。使用gl坐标系统，地图坐标x正方向右上，y正方向左上。初始点为屏幕左下角。也就是gl坐标的原点
 	//CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGame2F(0,0));
 	//only for test
-	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(m_tOffset));
-	m_iStartX=(int)startMapCoord.x;
-	m_iStartY=(int)startMapCoord.y;
-    //CCLOG("start:%d,%d %f,%f",m_iStartX,m_iStartY,m_tPosition.x,m_tPosition.y);
-	return m_iStartX!=m_iLastStartX || m_iStartY!=m_iLastStartY;
+	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(_tOffset));
+	_iStartX=(int)startMapCoord.x;
+	_iStartY=(int)startMapCoord.y;
+    //CCLOG("start:%d,%d %f,%f",_iStartX,_iStartY,_tPosition.x,_tPosition.y);
+	return _iStartX!=_iLastStartX || _iStartY!=_iLastStartY;
 }
 
 void ISODynamicGroup::doUpdateComponents()
 {
     //用到的组件的总列数和总行数
-    int totalRow=2*m_iComponentTileRow;
-    int totalColumn=2*m_iComponentTileColumn;
+    int totalRow=2*_iComponentTileRow;
+    int totalColumn=2*_iComponentTileColumn;
     
 	//移动的行列数
-    int dx=m_iStartX-m_iLastStartX;
-    int dy=m_iStartY-m_iLastStartY;
+    int dx=_iStartX-_iLastStartX;
+    int dy=_iStartY-_iLastStartY;
     
 	//移动方向
     int dirX=dx>0?1:dx<0?-1:0;
@@ -99,38 +99,38 @@ void ISODynamicGroup::doUpdateComponents()
         for(int k=0;k<loopX;k++){
             //横向移动 移动列。把左边的列移动到右边或把右边移动到左边
             if(dirX>0){
-                moveComponentIndexX=m_iComponentIndexX;
-                m_iComponentIndexX=(m_iComponentIndexX+dirX)%totalColumn;
+                moveComponentIndexX=_iComponentIndexX;
+                _iComponentIndexX=(_iComponentIndexX+dirX)%totalColumn;
             }else if(dirX<0){
-                m_iComponentIndexX=(m_iComponentIndexX+dirX+totalColumn)%totalColumn;
-                moveComponentIndexX=m_iComponentIndexX;
+                _iComponentIndexX=(_iComponentIndexX+dirX+totalColumn)%totalColumn;
+                moveComponentIndexX=_iComponentIndexX;
             }
             
-            for(int j=0;j<m_iComponentTileRow;j++){
+            for(int j=0;j<_iComponentTileRow;j++){
                 //如果行列的奇偶性一至，则从当前位置开始。如果互为奇奇偶，则要把行加1，变为奇或偶。
-                row=(j*2+m_iComponentIndexY+((m_iComponentIndexY&1)^(moveComponentIndexX&1)))%totalRow;
-                index=row*m_iComponentTileColumn+moveComponentIndexX/2;
+                row=(j*2+_iComponentIndexY+((_iComponentIndexY&1)^(moveComponentIndexX&1)))%totalRow;
+                index=row*_iComponentTileColumn+moveComponentIndexX/2;
                 //CCLOG("updateComponents x:%d,%d,%d",index,moveComponentIndexX,row);
 				//更新组件坐标
-                this->updateMapCoordinate(index, dirX*m_iComponentTileColumn, -dirX*m_iComponentTileColumn);
+                this->updateMapCoordinate(index, dirX*_iComponentTileColumn, -dirX*_iComponentTileColumn);
             }
                     
             //纵向移动 移动行。上面移动到下边或下边移动到上边。
             if(dirX>0){
-                moveComponentIndexY=m_iComponentIndexY;
-                m_iComponentIndexY=(m_iComponentIndexY+dirX)%totalRow;
+                moveComponentIndexY=_iComponentIndexY;
+                _iComponentIndexY=(_iComponentIndexY+dirX)%totalRow;
                 
             }else if(dirX<0){
-                m_iComponentIndexY=(m_iComponentIndexY+dirX+totalRow)%totalRow;
-                moveComponentIndexY=m_iComponentIndexY;
+                _iComponentIndexY=(_iComponentIndexY+dirX+totalRow)%totalRow;
+                moveComponentIndexY=_iComponentIndexY;
             }
             
-            for(int i=0;i<m_iComponentTileColumn;i++){
+            for(int i=0;i<_iComponentTileColumn;i++){
                 //如果行列的奇偶性一至，则从当前位置开始。如果互为奇奇偶，则要把行加1，变为奇或偶。
-                col=(i*2+m_iComponentIndexX+((m_iComponentIndexX & 1)^(moveComponentIndexY & 1)))%totalColumn;
-                index=moveComponentIndexY*m_iComponentTileColumn+col/2;
+                col=(i*2+_iComponentIndexX+((_iComponentIndexX & 1)^(moveComponentIndexY & 1)))%totalColumn;
+                index=moveComponentIndexY*_iComponentTileColumn+col/2;
 //                CCLOG("updateComponents y:%d,%d,%d",index,col,moveComponentIndexY);
-                this->updateMapCoordinate(index, dirX*m_iComponentTileRow, dirX*m_iComponentTileRow);
+                this->updateMapCoordinate(index, dirX*_iComponentTileRow, dirX*_iComponentTileRow);
             }
         }
     }
@@ -139,39 +139,39 @@ void ISODynamicGroup::doUpdateComponents()
         for(int k=0;k<loopY;k++){
             //横向移动
             if(dirY>0){
-                m_iComponentIndexX=(m_iComponentIndexX-1+totalColumn)%totalColumn;
-                moveComponentIndexX=m_iComponentIndexX;
+                _iComponentIndexX=(_iComponentIndexX-1+totalColumn)%totalColumn;
+                moveComponentIndexX=_iComponentIndexX;
             }else if(dirY<0){
-                moveComponentIndexX=m_iComponentIndexX;
-                m_iComponentIndexX=(m_iComponentIndexX+1)%totalColumn;
+                moveComponentIndexX=_iComponentIndexX;
+                _iComponentIndexX=(_iComponentIndexX+1)%totalColumn;
             }
 
             
-            for(int j=0;j<m_iComponentTileRow;j++){
-                row=(j*2+m_iComponentIndexY+((m_iComponentIndexY&1)^(moveComponentIndexX&1)))%totalRow;
-                index=row*m_iComponentTileColumn+moveComponentIndexX/2;
+            for(int j=0;j<_iComponentTileRow;j++){
+                row=(j*2+_iComponentIndexY+((_iComponentIndexY&1)^(moveComponentIndexX&1)))%totalRow;
+                index=row*_iComponentTileColumn+moveComponentIndexX/2;
 //                CCLOG("updateComponents x:%d,%d,%d",index,moveComponentIndexX,row);
-                this->updateMapCoordinate(index, -dirY*m_iComponentTileColumn, dirY*m_iComponentTileColumn);
+                this->updateMapCoordinate(index, -dirY*_iComponentTileColumn, dirY*_iComponentTileColumn);
             }
             
             //纵向移动
             if(dirY>0){
-                moveComponentIndexY=m_iComponentIndexY;
-                m_iComponentIndexY=(m_iComponentIndexY+1)%totalRow;
+                moveComponentIndexY=_iComponentIndexY;
+                _iComponentIndexY=(_iComponentIndexY+1)%totalRow;
             }else if(dirY<0){
-                m_iComponentIndexY=(m_iComponentIndexY-1+totalRow)%totalRow;
-                moveComponentIndexY=m_iComponentIndexY;
+                _iComponentIndexY=(_iComponentIndexY-1+totalRow)%totalRow;
+                moveComponentIndexY=_iComponentIndexY;
             }
             
-            for(int i=0;i<m_iComponentTileColumn;i++){
-                col=(i*2+m_iComponentIndexX+((m_iComponentIndexX & 1)^(moveComponentIndexY & 1)))%totalColumn;
-                index=moveComponentIndexY*m_iComponentTileColumn+col/2;
+            for(int i=0;i<_iComponentTileColumn;i++){
+                col=(i*2+_iComponentIndexX+((_iComponentIndexX & 1)^(moveComponentIndexY & 1)))%totalColumn;
+                index=moveComponentIndexY*_iComponentTileColumn+col/2;
 //                CCLOG("updateComponents y:%d,%d,%d",index,col,moveComponentIndexY);
-                this->updateMapCoordinate(index,dirY*m_iComponentTileRow, dirY*m_iComponentTileRow);
-//                node=(ISOComponentNode*) m_pComponents->objectAtIndex(index);
+                this->updateMapCoordinate(index,dirY*_iComponentTileRow, dirY*_iComponentTileRow);
+//                node=(ISOComponentNode*) _pComponents->objectAtIndex(index);
 //                mx=node->getMapX();
 //                my=node->getMapY();
-//                node->updateMapCoordinate(mx+dirY*m_iComponentTileRow, my+dirY*m_iComponentTileRow);
+//                node->updateMapCoordinate(mx+dirY*_iComponentTileRow, my+dirY*_iComponentTileRow);
             }
         }
     }
@@ -179,12 +179,12 @@ void ISODynamicGroup::doUpdateComponents()
 
 void ISODynamicGroup::updateMapCoordinate(unsigned int nodeIndex,float deltaMapX,float deltaMapY)
 {
-    if(m_pUpdateDelegator) m_pUpdateDelegator->onUpdateComponentMapCoordinate(nodeIndex, deltaMapX, deltaMapY);
+    if(_pUpdateDelegator) _pUpdateDelegator->onUpdateComponentMapCoordinate(nodeIndex, deltaMapX, deltaMapY);
     
 	//更新组内的元素
 	Ref* pObj=NULL;
 	ISODynamicComponent* dynamicComponent=NULL;
-	CCARRAY_FOREACH(m_pDynamiceComponentList,pObj){
+	CCARRAY_FOREACH(_pDynamiceComponentList,pObj){
 		dynamicComponent=static_cast<ISODynamicComponent*>(pObj);
 		dynamicComponent->updateNodeBy(nodeIndex,deltaMapX,deltaMapY);
 	}
@@ -195,21 +195,21 @@ void ISODynamicGroup::updateMapCoordinate(unsigned int nodeIndex,float deltaMapX
 
 void ISODynamicGroup::calcComponentsCount()
 {    
-    m_iComponentTileColumn+=m_iComponentNodeExtendCount;
-    m_iComponentTileRow+=m_iComponentNodeExtendCount;
-    m_iComponentTileTotalColumn=2*m_iComponentTileColumn;
-    m_iComponentTileTotalRow=2*m_iComponentTileRow;
-	CCLOG("calcComponentsCount:%d,%d",m_iComponentTileColumn,m_iComponentTileRow);
+    _iComponentTileColumn+=_iComponentNodeExtendCount;
+    _iComponentTileRow+=_iComponentNodeExtendCount;
+    _iComponentTileTotalColumn=2*_iComponentTileColumn;
+    _iComponentTileTotalRow=2*_iComponentTileRow;
+	CCLOG("calcComponentsCount:%d,%d",_iComponentTileColumn,_iComponentTileRow);
 }
 
 void ISODynamicGroup::initOffset(const CCPoint& tOffset)
 {
     this->setOffset(tOffset);
 	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(tOffset));
-	m_iStartX=(int)startMapCoord.x;
-	m_iStartY=(int)startMapCoord.y;
-	m_iLastStartX=m_iStartX;
-	m_iLastStartY=m_iStartY;
+	_iStartX=(int)startMapCoord.x;
+	_iStartY=(int)startMapCoord.y;
+	_iLastStartX=_iStartX;
+	_iLastStartY=_iStartY;
 }
 
 void ISODynamicGroup::initOffset(float x,float y)
@@ -225,8 +225,8 @@ void ISODynamicGroup::scroll(const CCPoint& tOffset)
 		//this->removeAllChildrenWithCleanup(true);
 		//this->doUpdateContent();
 		this->doUpdateComponents();
-        m_iLastStartX=m_iStartX;
-		m_iLastStartY=m_iStartY;
+        _iLastStartX=_iStartX;
+		_iLastStartY=_iStartY;
 
 	}
 }
@@ -238,22 +238,22 @@ void ISODynamicGroup::scroll(float x,float y)
 
 void ISODynamicGroup::setUpdateDelegator(ISODynamicComponentUpdateDelegator* pUpdateDelegator)
 {
-    m_pUpdateDelegator=pUpdateDelegator;
+    _pUpdateDelegator=pUpdateDelegator;
 }
 
 void ISODynamicGroup::setCreateDelegator(ISODynamicComponentCreateDelegator* pCreateDelegator)
 {
-    m_pCreateDelegator=pCreateDelegator;
+    _pCreateDelegator=pCreateDelegator;
 }
 
 void ISODynamicGroup::addDynamicComponent(ISODynamicComponent* dynamicComponent)
 {
-	m_pDynamiceComponentList->addObject(dynamicComponent);
+	_pDynamiceComponentList->addObject(dynamicComponent);
 }
 
 void ISODynamicGroup::removeDynamicComponent(ISODynamicComponent* dynamicComponent)
 {
-	m_pDynamiceComponentList->removeObject(dynamicComponent);
+	_pDynamiceComponentList->removeObject(dynamicComponent);
 }
 
 NS_CC_YHGE_ISOMETRIC_END

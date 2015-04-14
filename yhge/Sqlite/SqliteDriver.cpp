@@ -10,8 +10,8 @@ USING_NS_CC;
 NS_CC_YHGE_SQLITE_BEGIN
 
 SqliteDriver::SqliteDriver()
-:m_db(NULL)
-,m_dbPath("")
+:_db(NULL)
+,_dbPath("")
 {
     
 }
@@ -29,34 +29,34 @@ bool SqliteDriver::init()
 
 void SqliteDriver::connect(const std::string& dbPath,const int flag)
 {
-    int ret = sqlite3_open_v2(dbPath.c_str(), &m_db, flag, NULL);
+    int ret = sqlite3_open_v2(dbPath.c_str(), &_db, flag, NULL);
     if (SQLITE_OK != ret)
     {
-        std::string strerr = sqlite3_errmsg(m_db);
-        sqlite3_close(m_db); // close is required even in case of error on opening
+        std::string strerr = sqlite3_errmsg(_db);
+        sqlite3_close(_db); // close is required even in case of error on opening
         CCLOGERROR("SqliteDriver::open %s err:%s",dbPath.c_str(),strerr.c_str());
 //        throw SQLite::Exception(strerr);
     }
-    m_dbPath=dbPath;
+    _dbPath=dbPath;
 }
 
 void SqliteDriver::close()
 {
-    if (m_db) {
-        int ret = sqlite3_close(m_db);
-        CCAssert(SQLITE_OK==ret, sqlite3_errmsg(m_db));  // See SQLITECPP_ENABLE_ASSERT_HANDLER
-        m_db=NULL;
+    if (_db) {
+        int ret = sqlite3_close(_db);
+        CCAssert(SQLITE_OK==ret, sqlite3_errmsg(_db));  // See SQLITECPP_ENABLE_ASSERT_HANDLER
+        _db=NULL;
     }
 }
 
 int SqliteDriver::execute(const char* query)
 {
-    int ret = sqlite3_exec(m_db, query, NULL, NULL, NULL);
+    int ret = sqlite3_exec(_db, query, NULL, NULL, NULL);
     
     check(ret);
     
     // Return the number of rows modified by those SQL statements (INSERT, UPDATE or DELETE)
-    return sqlite3_changes(m_db);
+    return sqlite3_changes(_db);
 }
 
 Column SqliteDriver::fetchFirstColumn(const char* sqlStr)
@@ -79,7 +79,7 @@ void SqliteDriver::check(const int ret) const
 {
     if (SQLITE_OK != ret)
     {
-        CCLOGERROR("SqliteDriver::check err:%s",sqlite3_errmsg(m_db));
+        CCLOGERROR("SqliteDriver::check err:%s",sqlite3_errmsg(_db));
     }
 }
 
@@ -98,7 +98,7 @@ void SqliteDriver::createFunction(const char*    funcName,
         TextRep = TextRep|SQLITE_DETERMINISTIC;
     }
     
-    int ret = sqlite3_create_function_v2(m_db, funcName, arg, TextRep,
+    int ret = sqlite3_create_function_v2(_db, funcName, arg, TextRep,
                                          app, func, step, final, destroy);
     
     check(ret);

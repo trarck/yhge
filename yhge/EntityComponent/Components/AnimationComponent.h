@@ -162,48 +162,48 @@ public:
     inline void setAnimations(CCDictionary* animations)
     {
         CC_SAFE_RETAIN(animations);
-        CC_SAFE_RELEASE(m_animations);
-        m_animations = animations;
+        CC_SAFE_RELEASE(_animations);
+        _animations = animations;
     }
     
     inline CCDictionary* getAnimations()
     {
-        return m_animations;
+        return _animations;
     }
     
     inline void setLastAnimation(CCAnimation* lastAnimation)
     {
 //        CC_SAFE_RETAIN(lastAnimation);
-//        CC_SAFE_RELEASE(m_lastAnimation);
-        m_lastAnimation = lastAnimation;
+//        CC_SAFE_RELEASE(_lastAnimation);
+        _lastAnimation = lastAnimation;
     }
     
     inline CCAnimation* getLastAnimation()
     {
-        return m_lastAnimation;
+        return _lastAnimation;
     }
     
     inline void setLastAction(CCAction* lastAction)
     {
         CC_SAFE_RETAIN(lastAction);
-        CC_SAFE_RELEASE(m_lastAction);
-        m_lastAction = lastAction;
+        CC_SAFE_RELEASE(_lastAction);
+        _lastAction = lastAction;
     }
     
     inline CCAction* getLastAction()
     {
-        return m_lastAction;
+        return _lastAction;
     }
     
 protected:
     
-	CCDictionary* m_animations;
+	CCDictionary* _animations;
     
-    CCAnimation* m_lastAnimation;
+    CCAnimation* _lastAnimation;
     
-    CCAction* m_lastAction;
+    CCAction* _lastAction;
 
-    SpriteRendererComponent* m_rendererComponent;
+    SpriteRendererComponent* _rendererComponent;
 };
 
 NS_CC_YHGE_END

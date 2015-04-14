@@ -25,124 +25,124 @@ public:
     inline void setDisplayProperty(DisplayProperty* displayProperty)
     {
         CC_SAFE_RETAIN(displayProperty);
-        CC_SAFE_RELEASE(m_displayProperty);
-        m_displayProperty = displayProperty;
+        CC_SAFE_RELEASE(_displayProperty);
+        _displayProperty = displayProperty;
     }
     
     inline DisplayProperty* getDisplayProperty()
     {
-        return m_displayProperty;
+        return _displayProperty;
     }
     
     /*inline void setSize(const CCSize & size)
     {
-        m_size = size;
+        _size = size;
     }
     
     inline const CCSize & getSize()
     {
-        return m_size;
+        return _size;
     }
     
     inline void setOffset(const CCPoint & offset)
     {
-        m_offset = offset;
+        _offset = offset;
     }
     
     inline const CCPoint & getOffset()
     {
-        return m_offset;
+        return _offset;
     }
     
     inline void setRect(const CCRect& rect)
     {
-        m_rect = rect;
+        _rect = rect;
     }
     
     inline const CCRect& getRect()
     {
-        return m_rect;
+        return _rect;
     }
     
     inline void setTexture(CCTexture2D* texture)
     {
         CC_SAFE_RETAIN(texture);
-        CC_SAFE_RELEASE(m_texture);
-        m_texture = texture;
+        CC_SAFE_RELEASE(_texture);
+        _texture = texture;
     }
     
     inline CCTexture2D* getTexture()
     {
-        return m_texture;
+        return _texture;
     }*/
 //    void setSpriteFrame(CCSpriteFrame* spriteFrame)
 //    {
 //        CC_SAFE_RETAIN(spriteFrame);
-//        CC_SAFE_RELEASE(m_spriteFrame);
-//        m_spriteFrame = spriteFrame;
+//        CC_SAFE_RELEASE(_spriteFrame);
+//        _spriteFrame = spriteFrame;
 //    }
 //
 //    CCSpriteFrame* getSpriteFrame()
 //    {
-//        return m_spriteFrame;
+//        return _spriteFrame;
 //    }
 //
 //    bool haveTransform()
 //    {
-//        return m_haveTransform;
+//        return _haveTransform;
 //    }
 //
 //    void setTransform(const CCAffineTransform& transform)
 //    {
-//        m_transform = transform;
+//        _transform = transform;
 //    }
 //
 //    const CCAffineTransform& getTransform()
 //    {
-//        return m_transform;
+//        return _transform;
 //    }
 //
 //    void setColor(const ccColor3B& color)
 //    {
-//        m_color = color;
+//        _color = color;
 //    }
 //
 //    const ccColor3B& getColor()
 //    {
-//        return m_color;
+//        return _color;
 //    }
 //
 //    void setOpacity(GLubyte opacity)
 //    {
-//        m_opacity = opacity;
+//        _opacity = opacity;
 //    }
 //
 //    GLubyte getOpacity()
 //    {
-//        return m_opacity;
+//        return _opacity;
 //    }
 
 protected:
     ////需要显示的大小
-    //CCSize m_size;
+    //CCSize _size;
     //
     ////显示的偏移量
-    //CCPoint m_offset;
+    //CCPoint _offset;
     //
     ////在texture中的位置
-    //CCRect m_rect;
+    //CCRect _rect;
     //
-    //CCTexture2D* m_texture;
+    //CCTexture2D* _texture;
 
-//    CCSpriteFrame* m_spriteFrame;
+//    CCSpriteFrame* _spriteFrame;
 //
-//    bool m_haveTransform;
-//    CCAffineTransform m_transform;
+//    bool _haveTransform;
+//    CCAffineTransform _transform;
 //
-//    ccColor3B m_color;
-//    GLubyte m_opacity;
+//    ccColor3B _color;
+//    GLubyte _opacity;
     
-    DisplayProperty* m_displayProperty;
+    DisplayProperty* _displayProperty;
 };
 
 

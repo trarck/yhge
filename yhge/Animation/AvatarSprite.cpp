@@ -99,28 +99,28 @@ AvatarComponent* AvatarComponent::createWithSpriteFrameName(const char *pszSprit
 
  void AvatarComponent::setTransform(const CCAffineTransform& transform)
 {
-    m_sTransform=transform;
-    m_bTransformDirty=false;
+    _sTransform=transform;
+    _bTransformDirty=false;
 }
 
 AvatarSprite::AvatarSprite()
-:m_animation(NULL)
-,m_components(NULL)
+:_animation(NULL)
+,_components(NULL)
 {
     
 }
 
 AvatarSprite::~AvatarSprite()
 {
-    CC_SAFE_RELEASE_NULL(m_animation);
-    CC_SAFE_RELEASE_NULL(m_components);
+    CC_SAFE_RELEASE_NULL(_animation);
+    CC_SAFE_RELEASE_NULL(_components);
 }
 
 bool AvatarSprite::init()
 {
     if (CCSpriteBatchNode::init()) {
         
-        m_components=new CCArray();
+        _components=new CCArray();
         
         return true;
     }
@@ -132,7 +132,7 @@ bool AvatarSprite::initWithTexture(CCTexture2D *tex, unsigned int capacity)
 {
     if (CCSpriteBatchNode::initWithTexture(tex, capacity)) {
         
-        m_components=new CCArray();
+        _components=new CCArray();
         
         return true;
     }
@@ -144,7 +144,7 @@ bool AvatarSprite::initWithFile(const char* fileImage, unsigned int capacity)
 {
     if (CCSpriteBatchNode::initWithFile(fileImage, capacity)) {
         
-        m_components=new CCArray();
+        _components=new CCArray();
         
         return true;
     }
@@ -155,7 +155,7 @@ bool AvatarSprite::initWithFile(const char* fileImage, unsigned int capacity)
 void AvatarSprite::setAnimationFrame(Frame* frame)
 {
     
-//    CCLOG("frame:%d",m_animation->getCurrentFrameIndex());
+//    CCLOG("frame:%d",_animation->getCurrentFrameIndex());
     
     AvatarFrame* avatarFrame=static_cast<AvatarFrame*>(frame);
     
@@ -167,7 +167,7 @@ void AvatarSprite::setAnimationFrame(Frame* frame)
     FrameElement* frameElement=NULL;
     int characterId=0;
     
-    CCARRAY_FOREACH(m_components, obj){
+    CCARRAY_FOREACH(_components, obj){
         component=static_cast<AvatarComponent*>(obj);
         
         characterId=component->getTag();
@@ -189,9 +189,9 @@ void AvatarSprite::setAnimationFrame(Frame* frame)
 void AvatarSprite::updateCurrentAnimationFrame()
 {
     //set current frame
-    if (m_animation)
+    if (_animation)
     {
-        Frame* frame=m_animation->getCurrentFrame();
+        Frame* frame=_animation->getCurrentFrame();
         if (frame)
         {
             setAnimationFrame(frame);
@@ -225,7 +225,7 @@ void AvatarSprite::setupComponets(CCArray* characters)
         component->setTag(character->getId());
         component->setAnchorPoint(character->getAnchor());
         
-        m_components->addObject(component);
+        _components->addObject(component);
         
         addChild(component);
     }
@@ -235,7 +235,7 @@ void AvatarSprite::clearComponents()
 {
     removeAllChildren();
     
-    m_components->removeAllObjects();
+    _components->removeAllObjects();
 }
 
 
@@ -246,7 +246,7 @@ void AvatarSprite::updateDisplayElement(AvatarComponent* component,DisplayProper
         component->setDisplayFrame(property->getSpriteFrame());
     }
     
-    AnimationDataFlag flag=m_animation->getAnimationDataFlag();
+    AnimationDataFlag flag=_animation->getAnimationDataFlag();
     
     if(flag.haveTransform && property->haveTransform()){
         component->setTransform(property->getTransform());

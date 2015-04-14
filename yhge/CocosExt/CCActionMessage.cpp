@@ -4,14 +4,14 @@
 NS_CC_YHGE_BEGIN
 
 CCActionMessage::CCActionMessage()
-:m_message(NULL)
+:_message(NULL)
 {
     
 }
 
 CCActionMessage::~CCActionMessage()
 {
-    CC_SAFE_RELEASE_NULL(m_message);
+    CC_SAFE_RELEASE_NULL(_message);
 }
 
 bool CCActionMessage::init(CCFiniteTimeAction* innerAction,Message* message)
@@ -30,7 +30,7 @@ bool CCActionMessage::init(CCFiniteTimeAction* innerAction,Message* message)
 
 void CCActionMessage::callback()
 {
-    MessageManager::defaultManager()->dispatchMessage(m_message);
+    MessageManager::defaultManager()->dispatchMessage(_message);
 }
 
 NS_CC_YHGE_END

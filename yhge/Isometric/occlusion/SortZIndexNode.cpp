@@ -6,10 +6,10 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 SortZIndexNode::SortZIndexNode()
-:m_entity(NULL)
-,m_rect(CCRectZero)
-,m_parent(NULL)
-,m_sortedDeep(0)
+:_entity(NULL)
+,_rect(CCRectZero)
+,_parent(NULL)
+,_sortedDeep(0)
 {
     
 }
@@ -26,7 +26,7 @@ SortZIndexNode::~SortZIndexNode()
 void SortZIndexNode::addChild(SortZIndexNode* child)
 {
     child->retain();
-    m_children.push_back(child);
+    _children.push_back(child);
     child->setParent(this);
 }
 
@@ -35,9 +35,9 @@ void SortZIndexNode::addChild(SortZIndexNode* child)
  */
 void SortZIndexNode::removeChild(SortZIndexNode* child)
 {
-    SortZIndexNodeIterator iter=std::find(m_children.begin(), m_children.end(), child);
-    if (iter!=m_children.end()) {
-        m_children.erase(iter);
+    SortZIndexNodeIterator iter=std::find(_children.begin(), _children.end(), child);
+    if (iter!=_children.end()) {
+        _children.erase(iter);
         child->release();
     }
 }
@@ -47,10 +47,10 @@ void SortZIndexNode::removeChild(SortZIndexNode* child)
  */
 void SortZIndexNode::setParent(SortZIndexNode* parent)
 {
-    if (m_parent) {
-        m_parent->removeChild(this);
+    if (_parent) {
+        _parent->removeChild(this);
     }
-    m_parent = parent;
+    _parent = parent;
 }
 
 /**
@@ -60,7 +60,7 @@ int SortZIndexNode::getDeep()
 {
     int deep=0;
     
-    SortZIndexNode* parent=m_parent;
+    SortZIndexNode* parent=_parent;
     
     while (parent) {
         ++deep;
@@ -75,8 +75,8 @@ int SortZIndexNode::getDeep()
  */
 void SortZIndexNode::updateZOrder(int zOrder)
 {
-    if (m_entity) {
-        static_cast<CCNode*>(m_entity)->setZOrder(zOrder);
+    if (_entity) {
+        static_cast<CCNode*>(_entity)->setZOrder(zOrder);
     }
 }
 
@@ -85,11 +85,11 @@ void SortZIndexNode::updateZOrder(int zOrder)
  */
 void SortZIndexNode::clearChildren()
 {
-    for (SortZIndexNodeIterator iter=m_children.begin(); iter!=m_children.end(); ++iter) {
+    for (SortZIndexNodeIterator iter=_children.begin(); iter!=_children.end(); ++iter) {
         (*iter)->release();
     }
     
-    m_children.clear();
+    _children.clear();
 }
 
 /**
@@ -99,8 +99,8 @@ void SortZIndexNode::reset()
 {
     clearChildren();
     
-    m_rect=CCRectZero;
-    m_sortedDeep=0;
+    _rect=CCRectZero;
+    _sortedDeep=0;
     
     setEntity(NULL);
     
@@ -126,13 +126,13 @@ SortZIndexNode* SortZIndexNode::clone()
     SortZIndexNode* node=new SortZIndexNode();
     node->init();
     
-    node->setEntity(m_entity);
-    node->setRect(m_rect);
+    node->setEntity(_entity);
+    node->setRect(_rect);
     
     //不用设置parent，在clone child的时候会设置
     
     //clone children
-    for (SortZIndexNodeIterator iter=m_children.begin(); iter!=m_children.end(); ++iter) {
+    for (SortZIndexNodeIterator iter=_children.begin(); iter!=_children.end(); ++iter) {
         node->addChild((*iter)->clone());
     }
     

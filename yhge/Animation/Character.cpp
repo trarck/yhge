@@ -4,16 +4,16 @@
 NS_CC_YHGE_BEGIN
 
 Character::Character()
-:m_id(0)
-,m_resource(NULL)
-,m_anchor(CCPointZero)
+:_id(0)
+,_resource(NULL)
+,_anchor(CCPointZero)
 {
 
 }
     
 Character::~Character()
 {
-    CC_SAFE_RELEASE_NULL(m_resource);
+    CC_SAFE_RELEASE_NULL(_resource);
 }
 
 bool Character::init()

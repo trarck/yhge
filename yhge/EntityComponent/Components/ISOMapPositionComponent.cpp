@@ -11,10 +11,10 @@ NS_CC_YHGE_BEGIN
 
 ISOMapPositionComponent::ISOMapPositionComponent()
 :Component("ISOMapPositionComponent")
-,m_x(0.0f)
-,m_y(0.0f)
-,m_z(0.0f)
-,m_rendererComponent(NULL)
+,_x(0.0f)
+,_y(0.0f)
+,_z(0.0f)
+,_rendererComponent(NULL)
 {
 
 }
@@ -27,12 +27,12 @@ ISOMapPositionComponent::~ISOMapPositionComponent()
 void ISOMapPositionComponent::setup()
 {
     Component::setup();
-    m_rendererComponent=static_cast<RendererComponent*>(m_owner->getComponent("RendererComponent"));
+    _rendererComponent=static_cast<RendererComponent*>(_owner->getComponent("RendererComponent"));
 }
 
 void ISOMapPositionComponent::cleanup()
 {
-    m_rendererComponent=NULL;
+    _rendererComponent=NULL;
     Component::cleanup();
 }
 
@@ -55,8 +55,8 @@ void ISOMapPositionComponent::cleanupMessages()
  */
 void ISOMapPositionComponent::updateRendererPosition()
 {
-    CCPoint viewPos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(m_x, m_y));
-    CCNode* renderer=m_rendererComponent->getRenderer();
+    CCPoint viewPos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(_x, _y));
+    CCNode* renderer=_rendererComponent->getRenderer();
     renderer->setPosition(viewPos);
     renderer->setZOrder(-(int)(viewPos.y));
 }
@@ -67,7 +67,7 @@ void ISOMapPositionComponent::updateRendererPosition()
 void ISOMapPositionComponent::updateRendererZOrder()
 {
     //直接使用渲染Y坐标值，作为排序值。适用于没有使用z值和没有大物体(不包含拆分成小部件的大物体)。
-    CCNode* renderer=m_rendererComponent->getRenderer();
+    CCNode* renderer=_rendererComponent->getRenderer();
     renderer->setZOrder(-(int)(renderer->getPositionY()));
 }
 
@@ -76,7 +76,7 @@ void ISOMapPositionComponent::updateRendererZOrder()
  */
 CCPoint ISOMapPositionComponent::getSceenPosition()
 {
-    return YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(m_x, m_y));
+    return YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(_x, _y));
 }
 
 NS_CC_YHGE_END

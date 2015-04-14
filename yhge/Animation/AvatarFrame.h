@@ -19,42 +19,42 @@ public:
     inline void setDisplayProperty(DisplayProperty* displayProperty)
     {
         CC_SAFE_RETAIN(displayProperty);
-        CC_SAFE_RELEASE(m_displayProperty);
-        m_displayProperty = displayProperty;
+        CC_SAFE_RELEASE(_displayProperty);
+        _displayProperty = displayProperty;
     }
     
     inline DisplayProperty* getDisplayProperty()
     {
-        return m_displayProperty;
+        return _displayProperty;
     }
     
     inline void setCharacterId(int characterId)
     {
-        m_characterId = characterId;
+        _characterId = characterId;
     }
     
     inline int getCharacterId()
     {
-        return m_characterId;
+        return _characterId;
     }
     
     inline void setZOrder(int zOrder)
     {
-        m_zOrder = zOrder;
+        _zOrder = zOrder;
     }
     
     inline int getZOrder()
     {
-        return m_zOrder;
+        return _zOrder;
     }
 
 protected:
     
-    DisplayProperty* m_displayProperty;
+    DisplayProperty* _displayProperty;
     
-    int m_characterId;
+    int _characterId;
     
-    int m_zOrder;
+    int _zOrder;
 };
 
 
@@ -79,19 +79,19 @@ protected:
 //    inline void setElements(CCArray* elements)
 //    {
 //        CC_SAFE_RETAIN(elements);
-//        CC_SAFE_RELEASE(m_elements);
-//        m_elements = elements;
+//        CC_SAFE_RELEASE(_elements);
+//        _elements = elements;
 //    }
 //    
 //    inline CCArray* getElements()
 //    {
-//        return m_elements;
+//        return _elements;
 //    }
 //    
 //protected:
 //
 //    //sort by zorder
-//    CCArray* m_elements;
+//    CCArray* _elements;
 //};
 
 /**
@@ -118,18 +118,18 @@ public:
     inline void setElements(CCDictionary* elements)
     {
         CC_SAFE_RETAIN(elements);
-        CC_SAFE_RELEASE(m_elements);
-        m_elements = elements;
+        CC_SAFE_RELEASE(_elements);
+        _elements = elements;
     }
     
     inline CCDictionary* getElements()
     {
-        return m_elements;
+        return _elements;
     }
     
 protected:
     
-    CCDictionary* m_elements;
+    CCDictionary* _elements;
 };
 
 NS_CC_YHGE_END

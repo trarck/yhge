@@ -103,167 +103,167 @@ public:
     
     inline void setEnable(bool enable)
     {
-        m_enable = enable;
+        _enable = enable;
     }
     
     inline bool isEnable()
     {
-        return m_enable;
+        return _enable;
     }
     
     inline void setCurrentFrameIndex(int currentFrameIndex)
     {
-        m_currentFrameIndex = currentFrameIndex<0?0:(currentFrameIndex>=m_frameCount?m_frameCount-1:currentFrameIndex);
+        _currentFrameIndex = currentFrameIndex<0?0:(currentFrameIndex>=_frameCount?_frameCount-1:currentFrameIndex);
     }
     
     inline int getCurrentFrameIndex()
     {
-        return m_currentFrameIndex;
+        return _currentFrameIndex;
     }
     
     inline void setFrameCount(int frameCount)
     {
-        m_frameCount = frameCount;
+        _frameCount = frameCount;
     }
     
     inline int getFrameCount()
     {
-        return m_frameCount;
+        return _frameCount;
     }
     
 //    inline void setTotalDuration(float totalDuration)
 //    {
-//        m_totalDuration = totalDuration;
+//        _totalDuration = totalDuration;
 //    }
     
     inline float getTotalDuration()
     {
-        return m_frames?m_frames->count()*m_duration:0;
+        return _frames?_frames->count()*_duration:0;
     }
     
     inline void setDuration(float duration)
     {
-        m_duration = duration;
+        _duration = duration;
     }
     
     inline float getDuration()
     {
-        return m_duration;
+        return _duration;
     }
     
     inline void setElapsed(float elapsed)
     {
-        m_elapsed = elapsed;
+        _elapsed = elapsed;
     }
     
     inline float getElapsed()
     {
-        return m_elapsed;
+        return _elapsed;
     }
     
     inline void setFrames(CCArray* frames)
     {
         CC_SAFE_RETAIN(frames);
-        CC_SAFE_RELEASE(m_frames);
-        m_frames = frames;
+        CC_SAFE_RELEASE(_frames);
+        _frames = frames;
         
         setFrameInfo();
     }
     
     inline CCArray* getFrames()
     {
-        return m_frames;
+        return _frames;
     }
 
     inline AnimationDataFlag getAnimationDataFlag()
     {
-        return m_animationDataFlag;
+        return _animationDataFlag;
     }
     
     inline void setAnimationDataFlag(AnimationDataFlag animationDataFlag)
     {
-        m_animationDataFlag=animationDataFlag;
+        _animationDataFlag=animationDataFlag;
     }
 
     inline bool haveTransform()
     {
-        return m_animationDataFlag.haveTransform;
+        return _animationDataFlag.haveTransform;
     }
     
     inline void setHaveTransform(bool value)
     {
-        m_animationDataFlag.haveTransform=value;
+        _animationDataFlag.haveTransform=value;
     }
 
     inline bool haveColor()
     {
-        return m_animationDataFlag.haveColor;
+        return _animationDataFlag.haveColor;
     }
     
     inline void setHaveColor(bool value)
     {
-        m_animationDataFlag.haveColor=value;
+        _animationDataFlag.haveColor=value;
     }
 
     inline bool haveOpacity()
     {
-        return m_animationDataFlag.haveOpacity;
+        return _animationDataFlag.haveOpacity;
     }
     
     inline void setHaveOpacity(bool value)
     {
-        m_animationDataFlag.haveOpacity=value;
+        _animationDataFlag.haveOpacity=value;
     }
 
     void setAnimationSprite(IAnimationSprite* animationSprite)
     {
-        m_animationSprite = animationSprite;
+        _animationSprite = animationSprite;
     }
 
     IAnimationSprite* getAnimationSprite()
     {
-        return m_animationSprite;
+        return _animationSprite;
     }
 
 protected:
     
     inline void setFrameInfo()
     {
-        if (m_frames) {
-            m_frameCount=m_frames->count();
-//            m_totalDuration=m_duration* m_frameCount;
+        if (_frames) {
+            _frameCount=_frames->count();
+//            _totalDuration=_duration* _frameCount;
         }else{
-            m_frameCount=0;
+            _frameCount=0;
         }
     }
 
 protected:
     
     //动画是否可用
-    bool m_enable;
+    bool _enable;
     
     //当前帧索引
-    int m_currentFrameIndex;
+    int _currentFrameIndex;
     
     //总的帧数
-    int m_frameCount;
+    int _frameCount;
     
 //    //总的时间
-//    float m_totalDuration;
+//    float _totalDuration;
     
     //每帧时间
-    float m_duration;
+    float _duration;
     
     //计时
-    float m_elapsed;
+    float _elapsed;
     
     //帧对象。frame使用对象。因为动画中的相同帧，可以使用同一个对象，节省空间。
-    CCArray* m_frames;
+    CCArray* _frames;
     
     //frame中使用的数据标志。一个animation的所有frame使用统一的标志，所以放在animation里，而不是Frame中。
-    AnimationDataFlag m_animationDataFlag;
+    AnimationDataFlag _animationDataFlag;
 
-    IAnimationSprite* m_animationSprite;
+    IAnimationSprite* _animationSprite;
 };
 
 

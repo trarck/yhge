@@ -22,7 +22,7 @@ void JSONDataDAO::loadFromFile(const std::string& file)
     unsigned char *end = pBytes + size;
     
     Json::Reader reader;
-    reader.parse((const char*)pBytes, (const char*)end, m_data);
+    reader.parse((const char*)pBytes, (const char*)end, _data);
     
     CC_SAFE_DELETE_ARRAY(pBytes);
 }
@@ -30,7 +30,7 @@ void JSONDataDAO::loadFromFile(const std::string& file)
 void JSONDataDAO::loadFromContentString(const std::string& content)
 {
     Json::Reader reader;
-    reader.parse(content, m_data);
+    reader.parse(content, _data);
 }
 
 void JSONDataDAO::loadFromUrl(const std::string& url)
@@ -40,7 +40,7 @@ void JSONDataDAO::loadFromUrl(const std::string& url)
 
 void JSONDataDAO::unload()
 {
-    m_data=Json::Value::null;
+    _data=Json::Value::null;
 }
 
 NS_CC_YHGE_DATA_END

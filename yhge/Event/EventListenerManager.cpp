@@ -5,19 +5,19 @@ NS_CC_YHGE_BEGIN
 static EventListenerManager* s_sharedEventListenerManager=NULL;
 
 EventListenerManager::EventListenerManager()
-:m_pListeners(NULL)
+:_pListeners(NULL)
 {
 
 }
 
 EventListenerManager::~EventListenerManager()
 {
-	CC_SAFE_RELEASE(m_pListeners);
+	CC_SAFE_RELEASE(_pListeners);
 }
 
 bool EventListenerManager::init()
 {
-	m_pListeners=new CCDictionary();
+	_pListeners=new CCDictionary();
     return true;
 }
 
@@ -33,12 +33,12 @@ EventListenerManager* EventListenerManager::sharedEventListenerManager()
 void EventListenerManager::addEventListener(Ref* target,int type,Ref* handleObject,yhge::SEL_EventHandle handle)
 {
 
-    unsigned int targetId=target->m_uID;
+    unsigned int targetId=target->_uID;
 
-	CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(targetId));
+	CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(targetId));
 	if(targetListeners==NULL){
 		targetListeners=new CCDictionary();
-		m_pListeners->setObject(targetListeners,targetId);
+		_pListeners->setObject(targetListeners,targetId);
         targetListeners->release();
 	}
 
@@ -65,12 +65,12 @@ void EventListenerManager::addEventListener(Ref* target,int type,Ref* handleObje
 
 void EventListenerManager::addEventListener(Ref* target,int type,EventHandle* handler)
 {
-    unsigned int targetId=target->m_uID;
+    unsigned int targetId=target->_uID;
 
-	CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(targetId));
+	CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(targetId));
 	if(targetListeners==NULL){
 		targetListeners=new CCDictionary();
-		m_pListeners->setObject(targetListeners,targetId);
+		_pListeners->setObject(targetListeners,targetId);
         targetListeners->release();
 	}
 
@@ -97,7 +97,7 @@ void EventListenerManager::removeEventListener(Ref* target,int type,Ref* handleO
     CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
     CCAssert(handleObject!=NULL,"EventListenerManager::removeEventListener handleObject is null.");
 
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
+    CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
     if(targetListeners) {
         if(type) {
             //移除对应的type事件
@@ -131,14 +131,14 @@ void EventListenerManager::removeEventListener(Ref* target,int type,Ref* handleO
 void EventListenerManager::removeEventListener(Ref* target,int type)
 {
     CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
+    CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
     targetListeners->removeObjectForKey(type);
 }
 
 void EventListenerManager::removeEventListener(Ref* target)
 {
     CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
-    m_pListeners->removeObjectForKey(target->m_uID);
+    _pListeners->removeObjectForKey(target->_uID);
 }
 
 void EventListenerManager::removeEventListenerForHandle(Ref* target,int type,yhge::SEL_EventHandle handle)
@@ -146,7 +146,7 @@ void EventListenerManager::removeEventListenerForHandle(Ref* target,int type,yhg
 	CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
     CCAssert(handle!=NULL,"EventListenerManager::removeEventListener handle is null.");
 
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
+    CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
     if(targetListeners) {
         if(type) {
             //移除对应的type事件
@@ -259,7 +259,7 @@ void EventListenerManager::removeListenerMapForHandle(CCDictionary* listenerMap,
 
 void EventListenerManager::handleEvent(Ref* target,Event* evt)
 {
-	CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
+	CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
     if(targetListeners) {
 		int type=evt->getIntType();
 		if(type!=0) {
@@ -348,7 +348,7 @@ bool EventListenerManager::isListened(CCArray* listeners,yhge::SEL_EventHandle h
 
 CCArray* EventListenerManager::getEventListeners(Ref* target,int type)
 {
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(m_pListeners->objectForKey(target->m_uID));
+    CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
     if(targetListeners && type) {
 		//对应的type事件
         return static_cast<CCArray*>(targetListeners->objectForKey(type));
