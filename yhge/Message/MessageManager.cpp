@@ -9,6 +9,12 @@
 
 NS_CC_YHGE_BEGIN
 
+#if CC_ENABLE_SCRIPT_BINDING
+	#define MESSAGE_GETOBJECT_ID(obj) obj->_ID
+#else
+	#define MESSAGE_GETOBJECT_ID(obj) (intptr_t)(obj)
+#endif
+
 const int kNullObjectId=0;
 
 class MessageGlobalObject:public Ref
