@@ -1,4 +1,4 @@
-#include "MessageManager.h"
+﻿#include "MessageManager.h"
 #include "MessageTarget.h"
 
 NS_CC_YHGE_BEGIN

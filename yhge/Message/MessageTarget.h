@@ -1,4 +1,4 @@
-//
+﻿//
 //
 //
 #ifndef YHGE_MESSAGE_MESSAGETARGET_H_

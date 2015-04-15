@@ -1,4 +1,4 @@
-//
+﻿//
 //  
 //  消息是基于投递的，不存在父子关系。一个消息对应消息的处理函数（一个或多个），不存捕捉和冒泡。可以延迟发关。可以设置优先级。
 //  注意和事件的区别，事件要复杂些。消息通常和简单发送执行，所以性能要高一些。
@@ -84,10 +84,6 @@ public:
 		CC_SAFE_RETAIN(data);
 		CC_SAFE_RELEASE(_data);
 		_data=data;
-	}
-
-    CCDictionary* getDictionary(){
-		 return (CCDictionary*) _data;
 	}
 
 	Ref* getExtData(){

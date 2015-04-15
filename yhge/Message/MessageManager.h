@@ -1,4 +1,4 @@
-//
+﻿//
 //  TODO:对消息优先级的支持
 //
 
@@ -20,6 +20,11 @@ NS_CC_YHGE_BEGIN
 class MessageManager : public Ref {
 
 public:
+
+	typedef Vector<MessageHandler*> HandleList;
+	typedef std::unordered_map<Ref*,HandleList> SenderMap;
+	typedef std::unordered_map<Ref*,SenderMap> ReceiverMap;
+	typedef std::unordered_map<unsigned int,ReceiverMap> MessageMap;
 
     MessageManager();
 
@@ -69,7 +74,7 @@ public:
     void removeReceiver(Ref* receiver,unsigned int type);
 
 	/**
-	 * 取消接收者的所以注册信息。
+	 * 取消接收者的所有注册信息。
 	 */
     void removeReceiver(Ref* receiver);
     
@@ -148,52 +153,52 @@ protected:
 	// * 添加接收者的注册表。
 	// */
 	//void addReceiverMap(Ref* receiver,SEL_MessageHandler handle ,unsigned int type ,Ref* sender ,Ref*  handleObject);
-    void dispathMessageToAllReceiverWithSender(Message* message,CCDictionary* msgMap,Ref* sender);
-    void dispatchMessageMap(CCDictionary* msgMap,Message* message);
+    void dispathMessageToAllReceiverWithSender(Message* message,ReceiverMap& msgMap,Ref* sender);
+    void dispatchMessageMap(ReceiverMap& msgMap,Message* message);
 
     /**
 	 * 删除接收者的注册列表。
 	 */
-	void removeReceiverMap(CCDictionary* receiverMap,SEL_MessageHandler handle,Ref* handleObject);
+	void removeReceiverMap(SenderMap& receiverMap,SEL_MessageHandler handle,Ref* handleObject);
 
     /**
 	 * 删除接收者的注册列表。
 	 */
-	void removeReceiverMap(CCDictionary* receiverMap,SEL_MessageHandler handle);
+	void removeReceiverMap(SenderMap& receiverMap,SEL_MessageHandler handle);
 
 	/**
 	 * 删除接收者的注册列表。
 	 */
-	void removeReceiverMap(CCDictionary* receiverMap);
+	void removeReceiverMap(SenderMap& receiverMap);
 
     /**
 	 * 删除接收者的注册列表。
 	 */
-	void removeReceiverMapForTarget(CCDictionary* receiverMap,Ref* handleObject);
+	void removeReceiverMapForTarget(SenderMap& receiverMap,Ref* handleObject);
 
     /**
 	 * 删除接收者的处理方法列表的处理方法为参数指定的函数。
 	 */
-	void removeHandleList(CCArray* handleList,SEL_MessageHandler handle,Ref* handleObject);
+	void removeHandleList(HandleList& handleList,SEL_MessageHandler handle,Ref* handleObject);
 	/**
 	 * 删除接收者的处理方法列表的处理方法为参数指定的函数。
 	 */
-	void removeHandleList(CCArray* handleList,SEL_MessageHandler handle);
+	void removeHandleList(HandleList& handleList,SEL_MessageHandler handle);
 
 	/**
 	 * 删除接收者的处理方法列表。
 	 */
-	void removeHandleList(CCArray* handleList);
+	void removeHandleList(HandleList& handleList);
 
     /**
 	 * 删除接收者的处理方法列表的处理方法为参数指定的函数。
 	 */
-	void removeHandleListForTarget(CCArray* handleList,Ref* handleObject);
+	void removeHandleListForTarget(HandleList& handleList,Ref* handleObject);
 
 	/**
 	 * 执行接收者的处理列表的所有处理方法。
 	 */
-	void execHandleList(CCArray* handleList ,Message* message);
+	void execHandleList(HandleList& handleList ,Message* message);
     
 //	/**
 //	 * 按发送者表执行消息处理函数。
@@ -217,12 +222,17 @@ protected:
 	/**
 	 * 消息表
 	 */
-    CCDictionary* _messages;
+    MessageMap _messages;
 
 	/**
 	 * 消息的全局对像
 	 */
 	Ref* _globalObject;
+
+	/**
+	 * 空对像，用作key
+	 */
+	Ref* _nullObject;
 
 	///**
 	// * 消息的注册表
