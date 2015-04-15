@@ -154,28 +154,28 @@ protected:
 	// * 添加接收者的注册表。
 	// */
 	//void addReceiverMap(Ref* receiver,SEL_MessageHandler handle ,unsigned int type ,Ref* sender ,Ref*  handleObject);
-    void dispathMessageToAllReceiverWithSender(Message* message,ReceiverMap& msgMap,Ref* sender);
-    void dispatchMessageMap(ReceiverMap& msgMap,Message* message);
+    void dispathMessageToAllReceiverWithSender(Message* message,ReceiverMap& msgData,Ref* sender);
+    void dispatchMessageMap(ReceiverMap& msgData,Message* message);
 
     /**
 	 * 删除接收者的注册列表。
 	 */
-	void removeReceiverMap(SenderMap& receiverMap,SEL_MessageHandler handle,Ref* handleObject);
+	void removeReceiverData(SenderMap& receiverMap,SEL_MessageHandler handle,Ref* handleObject);
 
     /**
 	 * 删除接收者的注册列表。
 	 */
-	void removeReceiverMap(SenderMap& receiverMap,SEL_MessageHandler handle);
+	void removeReceiverData(SenderMap& receiverMap,SEL_MessageHandler handle);
 
 	/**
 	 * 删除接收者的注册列表。
 	 */
-	void removeReceiverMap(SenderMap& receiverMap);
+	void removeReceiverData(SenderMap& receiverMap);
 
     /**
 	 * 删除接收者的注册列表。
 	 */
-	void removeReceiverMapForTarget(SenderMap& receiverMap,Ref* handleObject);
+	void removeReceiverDataForTarget(SenderMap& receiverMap,Ref* handleObject);
 
     /**
 	 * 删除接收者的处理方法列表的处理方法为参数指定的函数。

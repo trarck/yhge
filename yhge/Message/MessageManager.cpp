@@ -243,7 +243,7 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender
                 }
             }else{
                 //移除所有receiver记录
-                removeReceiverMap(receiverIter->second, handle,handleObject);
+                removeReceiverData(receiverIter->second, handle,handleObject);
             }
 
 			//删除没有数据的记录
@@ -281,7 +281,7 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender
                 }
             }else{
                 //移除所有receiver记录
-                removeReceiverMap(receiverIter->second, handle);
+                removeReceiverData(receiverIter->second, handle);
             }
 
 			//删除没有数据的记录
@@ -315,7 +315,7 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender
 				}       
             }else{
                 //移除所有receiver记录
-                removeReceiverMap(receiverIter->second);
+                removeReceiverData(receiverIter->second);
             }
 
 			//删除没有数据的记录
@@ -340,7 +340,7 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type)
 
         if(receiverIter!=msgIter->second.end()){
             //移除所有receiver记录
-            removeReceiverMap(receiverIter->second);
+            removeReceiverData(receiverIter->second);
 			//删除没有数据的记录
 			msgIter->second.erase(receiverIter);
         }
@@ -359,7 +359,7 @@ void MessageManager::removeReceiver(Ref* receiver)
 		ReceiverMap::iterator receiverIter=msgIter->second.find(receiver);
 		if(receiverIter!=msgIter->second.end()){
 			//移除所有receiver记录
-            removeReceiverMap(receiverIter->second);
+            removeReceiverData(receiverIter->second);
 			//删除没有数据的记录
 			msgIter->second.erase(receiverIter);
 		}
@@ -377,7 +377,7 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,SEL_Message
         ReceiverMap::iterator receiverIter=msgIter->second.find(receiver);
 		if(receiverIter!=msgIter->second.end()){
             //移除所有receiver记录
-            removeReceiverMap(receiverIter->second,handle);
+            removeReceiverData(receiverIter->second,handle);
 			//删除没有数据的记录
 			if(receiverIter->second.empty()){
 				msgIter->second.erase(receiverIter);
@@ -450,7 +450,7 @@ void MessageManager::removeReceiver(Ref* receiver,SEL_MessageHandler handle)
 		ReceiverMap::iterator receiverIter=msgIter->second.find(receiver);
 		if(receiverIter!=msgIter->second.end()){
 			//移除所有receiver记录
-			removeReceiverMap(receiverIter->second,handle);
+			removeReceiverData(receiverIter->second,handle);
 
 			//删除没有数据的记录
 			if(receiverIter->second.empty()){
@@ -487,7 +487,7 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,unsigned int type ,R
 				}       
             }else{
                 //移除所有receiver记录
-                removeReceiverMapForTarget(receiverIter->second, handleObject);
+                removeReceiverDataForTarget(receiverIter->second, handleObject);
             }
 
 			//删除没有数据的记录
@@ -512,7 +512,7 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,unsigned int type ,R
         ReceiverMap::iterator receiverIter=msgIter->second.find(receiver);
 		if(receiverIter!=msgIter->second.end()){
             //移除所有receiver记录
-            removeReceiverMapForTarget(receiverIter->second,handleObject);
+            removeReceiverDataForTarget(receiverIter->second,handleObject);
 			//删除没有数据的记录
 			if(receiverIter->second.empty()){
 				msgIter->second.erase(receiverIter);
@@ -566,7 +566,7 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,Ref*  handleObject)
 		ReceiverMap::iterator receiverIter=msgIter->second.find(receiver);
 		if(receiverIter!=msgIter->second.end()){
 			//移除所有receiver记录
-            removeReceiverMapForTarget(receiverIter->second,handleObject);
+            removeReceiverDataForTarget(receiverIter->second,handleObject);
 
 			//删除没有数据的记录
 			if(receiverIter->second.empty()){
@@ -577,7 +577,7 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,Ref*  handleObject)
 	}
 }
 
-void MessageManager::removeReceiverMap(SenderMap& senderMap,SEL_MessageHandler handle,Ref* handleObject){
+void MessageManager::removeReceiverData(SenderMap& senderMap,SEL_MessageHandler handle,Ref* handleObject){
 
 	for(SenderMap::iterator senderIter=senderMap.begin();senderIter!=senderMap.end();++senderIter){
 		//移除所有receiver记录
@@ -589,7 +589,7 @@ void MessageManager::removeReceiverMap(SenderMap& senderMap,SEL_MessageHandler h
 	}
 }
 
-void MessageManager::removeReceiverMap(SenderMap& senderMap,SEL_MessageHandler handle){
+void MessageManager::removeReceiverData(SenderMap& senderMap,SEL_MessageHandler handle){
 
 	for(SenderMap::iterator senderIter=senderMap.begin();senderIter!=senderMap.end();++senderIter){
 		//移除所有receiver记录
@@ -601,14 +601,14 @@ void MessageManager::removeReceiverMap(SenderMap& senderMap,SEL_MessageHandler h
 	}
 }
 
-void MessageManager::removeReceiverMap(SenderMap& senderMap){
+void MessageManager::removeReceiverData(SenderMap& senderMap){
 	senderMap.clear();
 }
 
 /**
  * 删除接收者的注册列表。
  */
-void MessageManager::removeReceiverMapForTarget(SenderMap& senderMap,Ref* handleObject)
+void MessageManager::removeReceiverDataForTarget(SenderMap& senderMap,Ref* handleObject)
 {
 
 	for(SenderMap::iterator senderIter=senderMap.begin();senderIter!=senderMap.end();++senderIter){
