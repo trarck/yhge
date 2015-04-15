@@ -30,7 +30,8 @@ public:
 
     ~MessageManager();
 
-    static MessageManager* defaultManager();
+	static MessageManager* getInstance();
+	static void destroyInstance();
 
     bool init();
     

@@ -52,13 +52,18 @@ MessageManager::~MessageManager()
 	//CCLOG("MessageManager destroy end");
 }
 
-MessageManager* MessageManager::defaultManager(void)
+MessageManager* MessageManager::getInstance(void)
 {
 	if (!s_sharedMessageManagerInstance) {
 		s_sharedMessageManagerInstance=new MessageManager();
 		s_sharedMessageManagerInstance->init();
 	}
 	return s_sharedMessageManagerInstance;
+}
+
+void MessageManager::destroyInstance()
+{
+	CC_SAFE_RELEASE_NULL(s_sharedMessageManagerInstance);
 }
 
 bool MessageManager::init()

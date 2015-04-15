@@ -6,6 +6,7 @@
 #define YHGE_MESSAGE_MESSAGEHANDLER_H_
 
 #include "cocos2d.h"
+#include <functional>
 #include <yhge/YHGEMacros.h>
 
 NS_CC_YHGE_BEGIN
@@ -21,7 +22,8 @@ public:
     
 	MessageHandler()
 		:_target(NULL),
-		 _handle(NULL)
+		 _handle(NULL),
+		 _function(nullptr)
 	{
 		//CCLOG("MessageHandler create");
 	}
@@ -57,16 +59,26 @@ public:
 		return true;
 	}
 
+	bool initWithFunction(const std::function<void()> &func)
+	{
+		_function=func;
+		return true;
+	}
+
 	void execute(Message *msg)
 	{
 		if(_handle){
 			(_target->*_handle)(msg);
+		}else if (_function){
+			_function();
 		}
 	}
 
 private:
 	Ref* _target;
 	SEL_MessageHandler _handle;
+
+	std::function<void()> _function;
 };
 
 
