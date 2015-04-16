@@ -250,6 +250,11 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender
 			if(receiverIter->second.empty()){
 				msgIter->second.erase(receiverIter);
 			}
+
+			//删除整个type为空的记录
+			if (msgIter->second.empty()){
+				_messages.erase(msgIter);
+			}
         }
     }
 }
@@ -288,6 +293,11 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender
 			if(receiverIter->second.empty()){
 				msgIter->second.erase(receiverIter);
 			}
+
+			//删除整个type为空的记录
+			if (msgIter->second.empty()){
+				_messages.erase(msgIter);
+			}
         }
     }
 }
@@ -322,6 +332,11 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,Ref* sender
 			if(receiverIter->second.empty()){
 				msgIter->second.erase(receiverIter);
 			}
+
+			//删除整个type为空的记录
+			if (msgIter->second.empty()){
+				_messages.erase(msgIter);
+			}
         }
     }
 }
@@ -343,6 +358,11 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type)
             removeReceiverData(receiverIter->second);
 			//删除没有数据的记录
 			msgIter->second.erase(receiverIter);
+
+			//删除整个type为空的记录
+			if (msgIter->second.empty()){
+				_messages.erase(msgIter);
+			}
         }
     }
 }
@@ -355,13 +375,23 @@ void MessageManager::removeReceiver(Ref* receiver)
     CCASSERT(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
     
 
-	for(MessageMap::iterator msgIter=_messages.begin();msgIter!=_messages.end();++msgIter){
+	for(MessageMap::iterator msgIter=_messages.begin();msgIter!=_messages.end();){
 		ReceiverMap::iterator receiverIter=msgIter->second.find(receiver);
+
 		if(receiverIter!=msgIter->second.end()){
 			//移除所有receiver记录
             removeReceiverData(receiverIter->second);
 			//删除没有数据的记录
 			msgIter->second.erase(receiverIter);
+
+			//删除整个type为空的记录
+			if (msgIter->second.empty()){
+				msgIter=_messages.erase(msgIter);
+			}else{
+				++msgIter;
+			}
+		}else{
+			++msgIter;
 		}
 	}
 }
@@ -382,6 +412,11 @@ void MessageManager::removeReceiver(Ref* receiver,unsigned int type ,SEL_Message
 			if(receiverIter->second.empty()){
 				msgIter->second.erase(receiverIter);
 			}
+
+			//删除整个type为空的记录
+			if (msgIter->second.empty()){
+				_messages.erase(msgIter);
+			}
         }
     }
 }
@@ -392,7 +427,7 @@ void MessageManager::removeReceiver(Ref* receiver,Ref* sender,SEL_MessageHandler
 	CCASSERT(sender!=NULL,"MessageManager:removeReceiver:sender can't be null!");
 	CCASSERT(handle!=NULL,"MessageManager:removeReceiver:handle can't be null!");
 
-	for(MessageMap::iterator msgIter=_messages.begin();msgIter!=_messages.end();++msgIter){
+	for(MessageMap::iterator msgIter=_messages.begin();msgIter!=_messages.end();){
 		ReceiverMap::iterator receiverIter=msgIter->second.find(receiver);
 		if(receiverIter!=msgIter->second.end()){
 			SenderMap::iterator senderIter=receiverIter->second.find(sender);
@@ -410,6 +445,14 @@ void MessageManager::removeReceiver(Ref* receiver,Ref* sender,SEL_MessageHandler
 				msgIter->second.erase(receiverIter);
 			}
 
+			//删除整个type为空的记录
+			if (msgIter->second.empty()){
+				msgIter=_messages.erase(msgIter);
+			}else{
+				++msgIter;
+			}
+		}else{
+			++msgIter;
 		}
 	}
 }
@@ -419,7 +462,7 @@ void MessageManager::removeReceiver(Ref* receiver,Ref* sender)
     CCASSERT(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
     CCASSERT(sender!=NULL,"MessageManager:removeReceiver:sender can't be null!");
 
-	for(MessageMap::iterator msgIter=_messages.begin();msgIter!=_messages.end();++msgIter){
+	for(MessageMap::iterator msgIter=_messages.begin();msgIter!=_messages.end();){
 		ReceiverMap::iterator receiverIter=msgIter->second.find(receiver);
 		if(receiverIter!=msgIter->second.end()){
 			SenderMap::iterator senderIter=receiverIter->second.find(sender);
@@ -437,6 +480,14 @@ void MessageManager::removeReceiver(Ref* receiver,Ref* sender)
 				msgIter->second.erase(receiverIter);
 			}
 
+			//删除整个type为空的记录
+			if (msgIter->second.empty()){
+				msgIter = _messages.erase(msgIter);
+			}else{
+				++msgIter;
+			}
+		}else{
+			++msgIter;
 		}
 	}
 }
@@ -446,7 +497,7 @@ void MessageManager::removeReceiver(Ref* receiver,SEL_MessageHandler handle)
     CCASSERT(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 	CCASSERT(handle!=NULL,"MessageManager:removeReceiver:handle can't be null!");
 
-	for(MessageMap::iterator msgIter=_messages.begin();msgIter!=_messages.end();++msgIter){
+	for(MessageMap::iterator msgIter=_messages.begin();msgIter!=_messages.end();){
 		ReceiverMap::iterator receiverIter=msgIter->second.find(receiver);
 		if(receiverIter!=msgIter->second.end()){
 			//移除所有receiver记录
@@ -457,6 +508,14 @@ void MessageManager::removeReceiver(Ref* receiver,SEL_MessageHandler handle)
 				msgIter->second.erase(receiverIter);
 			}
 
+			//删除整个type为空的记录
+			if (msgIter->second.empty()){
+				msgIter = _messages.erase(msgIter);
+			}else{
+				++msgIter;
+			}
+		}else{
+			++msgIter;
 		}
 	}
 }
@@ -494,6 +553,11 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,unsigned int type ,R
 			if(receiverIter->second.empty()){
 				msgIter->second.erase(receiverIter);
 			}
+
+			//删除整个type为空的记录
+			if (msgIter->second.empty()){
+				_messages.erase(msgIter);
+			}
         }
     }
 }
@@ -517,6 +581,11 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,unsigned int type ,R
 			if(receiverIter->second.empty()){
 				msgIter->second.erase(receiverIter);
 			}
+
+			//删除整个type为空的记录
+			if (msgIter->second.empty()){
+				_messages.erase(msgIter);
+			}
         }
     }
 }
@@ -530,7 +599,7 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,Ref* sender,Ref*  ha
 	CCASSERT(sender!=NULL,"MessageManager:removeReceiver:sender can't be null!");
 	CCASSERT(handleObject!=NULL,"MessageManager:removeReceiver:handleObject can't be null!");
 
-	for(MessageMap::iterator msgIter=_messages.begin();msgIter!=_messages.end();++msgIter){
+	for(MessageMap::iterator msgIter=_messages.begin();msgIter!=_messages.end();){
 		ReceiverMap::iterator receiverIter=msgIter->second.find(receiver);
 		if(receiverIter!=msgIter->second.end()){
 			SenderMap::iterator senderIter=receiverIter->second.find(sender);
@@ -550,6 +619,14 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,Ref* sender,Ref*  ha
 				msgIter->second.erase(receiverIter);
 			}
 
+			//删除整个type为空的记录
+			if (msgIter->second.empty()){
+				msgIter = _messages.erase(msgIter);
+			}else{
+				++msgIter;
+			}
+		}else{
+			++msgIter;
 		}
 	}
 }
@@ -562,7 +639,7 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,Ref*  handleObject)
     CCASSERT(receiver!=NULL,"MessageManager:removeReceiver:receiver can't be null!");
 	CCASSERT(handleObject!=NULL,"MessageManager:removeReceiver:handleObject can't be null!");
 
-	for(MessageMap::iterator msgIter=_messages.begin();msgIter!=_messages.end();++msgIter){
+	for(MessageMap::iterator msgIter=_messages.begin();msgIter!=_messages.end();){
 		ReceiverMap::iterator receiverIter=msgIter->second.find(receiver);
 		if(receiverIter!=msgIter->second.end()){
 			//移除所有receiver记录
@@ -573,6 +650,14 @@ void MessageManager::removeReceiverAllHanldes(Ref* receiver,Ref*  handleObject)
 				msgIter->second.erase(receiverIter);
 			}
 
+			//删除整个type为空的记录
+			if (msgIter->second.empty()){
+				msgIter = _messages.erase(msgIter);
+			}else{
+				++msgIter;
+			}
+		}else{
+			++msgIter;
 		}
 	}
 }
@@ -784,6 +869,25 @@ void MessageManager::execHandleList(HandleList& handleList ,Message* message)
 	}
 
 	copyList.clear();
+}
+
+void MessageManager::reset()
+{
+	//CCLOG("message size:%d", _messages.size());
+	//int n = 0;
+	//for (MessageMap::iterator iter = _messages.begin(); iter != _messages.end();++iter)
+	//{
+	//	++n;
+	//	for (ReceiverMap::iterator ite = iter->second.begin(); ite != iter->second.end(); ++ite){
+	//		++n;
+	//		for (SenderMap::iterator it = ite->second.begin(); it != ite->second.end(); ++it){
+	//			n += it->second.size();
+	//		}
+	//	}
+	//}
+	//CCLOG("n=%d", n);
+
+	_messages.clear();
 }
 
 NS_CC_YHGE_END

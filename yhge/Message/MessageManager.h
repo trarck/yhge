@@ -140,6 +140,8 @@ public:
 	 */
     void dispatchMessage(unsigned int type ,Ref* sender ,Ref* receiver);
          
+	void reset();
+
 	enum{
 		GlobalMessageType=0
 	};
