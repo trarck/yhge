@@ -1,4 +1,4 @@
-#include "SqliteDriver.h"
+﻿#include "SqliteDriver.h"
 #include "Statement.h"
 
 #ifndef SQLITE_DETERMINISTIC

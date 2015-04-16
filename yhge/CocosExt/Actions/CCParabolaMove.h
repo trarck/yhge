@@ -18,7 +18,7 @@ public:
     bool initWithDuration(float duration, const CCPoint& deltaPosition);
     
     virtual Ref* copyWithZone(CCZone* pZone);
-    virtual void startWithTarget(CCNode *pTarget);
+    virtual void startWithTarget(Node *pTarget);
     virtual CCActionInterval* reverse(void);
     virtual void step(float delta);
     virtual void update(float time);
@@ -63,7 +63,7 @@ public:
     bool initWithDuration(float duration, const CCPoint& position,float height);
         
     virtual Ref* copyWithZone(CCZone* pZone);
-    virtual void startWithTarget(CCNode *pTarget);
+    virtual void startWithTarget(Node *pTarget);
     
     
     void stop();

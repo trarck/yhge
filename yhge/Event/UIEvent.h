@@ -12,16 +12,16 @@ public:
 
     ~UIEvent();
 
-    bool initUIEvent(const std::string& type, bool canBubble, bool cancelable,cocos2d::CCNode* view, long detail);
+    bool initUIEvent(const std::string& type, bool canBubble, bool cancelable,cocos2d::Node* view, long detail);
 
-    inline void setView( cocos2d::CCNode* view)
+    inline void setView( cocos2d::Node* view)
     {
         CC_SAFE_RETAIN(view);
         CC_SAFE_RELEASE(_pView);
         _pView = view;
     }
 
-    inline  cocos2d::CCNode* getView()
+    inline  cocos2d::Node* getView()
     {
         return _pView;
     }
@@ -37,7 +37,7 @@ public:
     }
 
 private:
-    cocos2d::CCNode* _pView;
+    cocos2d::Node* _pView;
     long _lDetail;
 
 };

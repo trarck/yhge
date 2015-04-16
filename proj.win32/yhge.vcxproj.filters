@@ -111,6 +111,93 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\AstarFlexible.h">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\AstarNode.h">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.h">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CCCallFuncNO.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CCGeometryValue.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CCSelectorWrap.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\Actions\CCParabolaMove.h">
+      <Filter>CocosExt\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Event\Event.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Event\EventHandle.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Event\EventHandleD.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Event\EventHandleWrap.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Event\EventListenerManager.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Event\EventTarget.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Event\IEventTarget.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Event\UIEvent.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\FSM\Common\FSMDelegateState.h">
+      <Filter>FSM\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\FSM\Common\FSMMachine.h">
+      <Filter>FSM\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\FSM\Common\FSMMachineInterface.h">
+      <Filter>FSM\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\FSM\Common\FSMParameterState.h">
+      <Filter>FSM\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\FSM\Common\FSMState.h">
+      <Filter>FSM\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\FSM\Common\FSMStateInterface.h">
+      <Filter>FSM\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\isometric.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\message.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\yhge.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\YHGEMacros.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\Coordinate.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Math\MersenneTwister.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Math\RandomMT.h">
+      <Filter>Math</Filter>
+    </ClInclude>
     <ClInclude Include="..\yhge\Message\Message.h">
       <Filter>Message</Filter>
     </ClInclude>
@@ -123,8 +210,479 @@
     <ClInclude Include="..\yhge\Message\MessageTarget.h">
       <Filter>Message</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOMapObject.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOObjectGroup.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTile.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTileObject.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTileObjectPart.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTileset.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTilesetGroup.h">
+      <Filter>Isometric\tile\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicComponent.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicTileLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOObjectLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOTileLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\renderer\ISOComponentNode.h">
+      <Filter>Isometric\tile\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\reader\ISOTileMapBuilder.h">
+      <Filter>Isometric\tile\reader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOLayerInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOMapInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOObjectGroupInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOObjectInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOTileInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOTilesetInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOXMLParser.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\ISOBases.h">
+      <Filter>Isometric\tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\ISOInfos.h">
+      <Filter>Isometric\tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\ISOLayers.h">
+      <Filter>Isometric\tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\ISOTileMap.h">
+      <Filter>Isometric\tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\Support\base64.h">
+      <Filter>CocosExt\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\Support\ccCArray.h">
+      <Filter>CocosExt\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicGroup.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\ISOTileInterfaces.h">
+      <Filter>Isometric\tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\IsoTileUtils.h">
+      <Filter>Isometric\tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CCDefaultTexture.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\ISOCamera.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Entity.h">
+      <Filter>EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\AnimationComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\AttackComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\AutoAttackComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\Component.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\ComponentMessageDefine.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\GridMoveComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\ISOPositionComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\ManualAttackComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\MoveComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\RendererComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\SpriteRendererComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Properties\IsometricProperty.h">
+      <Filter>EntityComponent\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\entity_component.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\ISOStaticCoordinate.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\CameraFlowGridMoveComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveObjectLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\ISOLayer.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\ISOMap.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\occlusion\SortZIndex.h">
+      <Filter>Isometric\occlusion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\occlusion\SortZIndexNode.h">
+      <Filter>Isometric\occlusion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\occlusion\ZIndex.h">
+      <Filter>Isometric\occlusion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\occlusion\ZIndexNode.h">
+      <Filter>Isometric\occlusion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOActiveLayerInfo.h">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveSortLayer.h">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\ISOAutoZOrderPositionComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\ISOMapPositionComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\SceenCoordMoveComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\Support\CCMap.h">
+      <Filter>CocosExt\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\Support\CCVector.h">
+      <Filter>CocosExt\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Arithmetic\Formula\DamageFormula.h">
+      <Filter>Arithmetic\Formula</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Properties\Property.h">
+      <Filter>EntityComponent\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Sqlite\Column.h">
+      <Filter>Sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Sqlite\SqliteMacros.h">
+      <Filter>Sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Sqlite\Statement.h">
+      <Filter>Sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Sqlite\Transaction.h">
+      <Filter>Sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\Support\CCValue.h">
+      <Filter>CocosExt\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\autolink.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\config.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\features.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\forwards.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\json.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\json_batchallocator.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\reader.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\value.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Jsoncpp\writer.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\ISOStaticCoordinateFormulae.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\IsometricMacros.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Event\StringifyEventListenerManager.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CCAdaptSprite.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CCActionMessage.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CCRef.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CCSimpleValue.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\CocosValue.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\JsonObject.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Dimetric\DimetricMacros.h">
+      <Filter>Dimetric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Dimetric\StaticSideViewCoordinateFormulae.h">
+      <Filter>Dimetric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Dimetric\StaticTopViewCoordinateFormulae.h">
+      <Filter>Dimetric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\CoordinateFormulae.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\ISOMacroCoordinate.h">
+      <Filter>Isometric</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Sqlite\SqliteDriver.h">
+      <Filter>Sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Components\EightDirectionAnimationComponent.h">
+      <Filter>EntityComponent\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\DataStructure\DataStructureMacros.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\DataStructure\Iterator.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\DataStructure\Iterator-implement.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\DataStructure\LinkedList.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\DataStructure\LinkedList-implement.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Time\Scheduler.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Managers\UpdateManager.h">
+      <Filter>EntityComponent\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Engine.h">
+      <Filter>EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\ActionAnimation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\ActionFrame.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\Animation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\AnimationGroup.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\AnimationManager.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\AvatarSprite.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\Frame.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\LoopAnimation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\LoopAnimationVariable.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\TransformFrame.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\VariableAnimation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\AnimationSprite.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\AnimationInterface.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\AvatarFrame.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\DisplayProperty.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\Character.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Animation\Resource.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\IO\Buffer.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\IO\IeeeHalfPrecision.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\IO\InputStream.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\IO\IOMacros.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\IO\OutputStream.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\EntityComponent\Managers\ECManager.h">
+      <Filter>EntityComponent\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\dao\CocosDataDAO.h">
+      <Filter>Datas\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\dao\CocosSqliteDAO.h">
+      <Filter>Datas\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\dao\DAO.h">
+      <Filter>Datas\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\dao\DAOFactory.h">
+      <Filter>Datas\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\dao\JSONDataDAO.h">
+      <Filter>Datas\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\dao\JSONSqliteDAO.h">
+      <Filter>Datas\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Datas\DataMacros.h">
+      <Filter>Datas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarFlexible.cpp">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarNode.cpp">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.cpp">
+      <Filter>Arithmetic\Search\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CCCallFuncNO.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CCGeometryValue.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CCSelectorWrap.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\Actions\CCParabolaMove.cpp">
+      <Filter>CocosExt\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Event\Event.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Event\EventHandle.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Event\EventHandleD.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Event\EventHandleWrap.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Event\EventListenerManager.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Event\UIEvent.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\FSM\Common\FSMMachine.cpp">
+      <Filter>FSM\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\FSM\Common\FSMState.cpp">
+      <Filter>FSM\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\Coordinate.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Math\MersenneTwister.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Math\RandomMT.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
     <ClCompile Include="..\yhge\Message\Message.cpp">
       <Filter>Message</Filter>
     </ClCompile>
@@ -136,6 +694,339 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Message\MessageTarget.cpp">
       <Filter>Message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOMapObject.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOObjectGroup.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTile.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTileObject.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTileObjectPart.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTileset.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTilesetGroup.cpp">
+      <Filter>Isometric\tile\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicComponent.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicTileLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOObjectLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOTileLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\renderer\ISOComponentNode.cpp">
+      <Filter>Isometric\tile\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\reader\ISOTileMapBuilder.cpp">
+      <Filter>Isometric\tile\reader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOLayerInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOMapInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOObjectGroupInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOObjectInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOTileInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOTilesetInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOXMLParser.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\ISOTileMap.cpp">
+      <Filter>Isometric\tile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\Support\base64.cpp">
+      <Filter>CocosExt\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\Support\ccCArray.cpp">
+      <Filter>CocosExt\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicGroup.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\IsoTileUtils.cpp">
+      <Filter>Isometric\tile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CCDefaultTexture.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\ISOCamera.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Entity.cpp">
+      <Filter>EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\AnimationComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\AttackComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\AutoAttackComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\Component.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\GridMoveComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\ISOPositionComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\ManualAttackComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\MoveComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\RendererComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\SpriteRendererComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Properties\IsometricProperty.cpp">
+      <Filter>EntityComponent\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinate.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\CameraFlowGridMoveComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveObjectLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\ISOLayer.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\ISOMap.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\occlusion\SortZIndex.cpp">
+      <Filter>Isometric\occlusion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\occlusion\SortZIndexNode.cpp">
+      <Filter>Isometric\occlusion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\occlusion\ZIndex.cpp">
+      <Filter>Isometric\occlusion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\occlusion\ZIndexNode.cpp">
+      <Filter>Isometric\occlusion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOActiveLayerInfo.cpp">
+      <Filter>Isometric\tile\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveSortLayer.cpp">
+      <Filter>Isometric\tile\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\ISOAutoZOrderPositionComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\ISOMapPositionComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\SceenCoordMoveComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Arithmetic\Formula\DamageFormula.cpp">
+      <Filter>Arithmetic\Formula</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Properties\Property.cpp">
+      <Filter>EntityComponent\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Sqlite\Column.cpp">
+      <Filter>Sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Sqlite\Statement.cpp">
+      <Filter>Sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Sqlite\Transaction.cpp">
+      <Filter>Sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\Support\CCValue.cpp">
+      <Filter>CocosExt\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Jsoncpp\json_reader.cpp">
+      <Filter>Jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Jsoncpp\json_value.cpp">
+      <Filter>Jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Jsoncpp\json_writer.cpp">
+      <Filter>Jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinateFormulae.cpp">
+      <Filter>Isometric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Event\StringifyEventListenerManager.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CCAdaptSprite.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CCActionMessage.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CCRef.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CCSimpleValue.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\CocosValue.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\JsonObject.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Dimetric\StaticSideViewCoordinateFormulae.cpp">
+      <Filter>Dimetric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Dimetric\StaticTopViewCoordinateFormulae.cpp">
+      <Filter>Dimetric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Sqlite\SqliteDriver.cpp">
+      <Filter>Sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Components\EightDirectionAnimationComponent.cpp">
+      <Filter>EntityComponent\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Time\Scheduler.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Managers\UpdateManager.cpp">
+      <Filter>EntityComponent\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Engine.cpp">
+      <Filter>EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\ActionAnimation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\ActionFrame.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\Animation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\AnimationGroup.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\AnimationManager.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\AvatarSprite.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\Frame.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\LoopAnimation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\LoopAnimationVariable.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\TransformFrame.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\VariableAnimation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\AnimationSprite.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\AvatarFrame.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\DisplayProperty.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\Character.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Animation\Resource.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\IO\Buffer.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\IO\IeeeHalfPrecision.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\IO\InputStream.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\IO\OutputStream.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\EntityComponent\Managers\ECManager.cpp">
+      <Filter>EntityComponent\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\dao\CocosDataDAO.cpp">
+      <Filter>Datas\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\dao\CocosSqliteDAO.cpp">
+      <Filter>Datas\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\dao\DAO.cpp">
+      <Filter>Datas\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\dao\DAOFactory.cpp">
+      <Filter>Datas\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\dao\JSONDataDAO.cpp">
+      <Filter>Datas\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\Datas\dao\JSONSqliteDAO.cpp">
+      <Filter>Datas\dao</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

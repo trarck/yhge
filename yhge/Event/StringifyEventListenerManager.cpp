@@ -279,7 +279,7 @@ void StringifyEventListenerManager::handleEvent(Ref* target,Event* evt)
 	}
 }
 
-void StringifyEventListenerManager::dispatchEvent(CCNode* target,yhge::Event* evt)
+void StringifyEventListenerManager::dispatchEvent(Node* target,yhge::Event* evt)
 {
     // Capture no
     
@@ -287,7 +287,7 @@ void StringifyEventListenerManager::dispatchEvent(CCNode* target,yhge::Event* ev
     //event.currentTarget=obj;
     handleEvent(target,evt);
     // Bubble
-	CCNode* parent=target->getParent();
+	Node* parent=target->getParent();
     while(parent && !evt->isDispatchStopped()){
         //event.currentTarget=parent;
         handleEvent(parent,evt);
@@ -296,7 +296,7 @@ void StringifyEventListenerManager::dispatchEvent(CCNode* target,yhge::Event* ev
 }
 
 //把new EventObject和dispatchEvent和起来，提供简便方法
-void StringifyEventListenerManager::trigger(CCNode* target,const char* type,Ref* data,bool bubbles)
+void StringifyEventListenerManager::trigger(Node* target,const char* type,Ref* data,bool bubbles)
 {    
     yhge::Event* e=new yhge::Event();
 	e->initEvent(type,bubbles,true);

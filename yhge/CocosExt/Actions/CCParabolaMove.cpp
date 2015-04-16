@@ -48,7 +48,7 @@ Ref* CCParabolaMove::copyWithZone(CCZone *pZone)
     return pCopy;
 }
 
-void CCParabolaMove::startWithTarget(CCNode *pTarget)
+void CCParabolaMove::startWithTarget(Node *pTarget)
 {
     CCActionInterval::startWithTarget(pTarget);
     _previousPosition = _startPosition = pTarget->getPosition();
@@ -153,7 +153,7 @@ Ref* CCParabolaMoveTo::copyWithZone(CCZone *pZone)
     return pCopy;
 }
 
-void CCParabolaMoveTo::startWithTarget(CCNode *pTarget)
+void CCParabolaMoveTo::startWithTarget(Node *pTarget)
 {   
     
     

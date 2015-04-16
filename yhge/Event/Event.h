@@ -72,26 +72,26 @@ public:
         return _iType;
     }
 
-    inline void setTarget(CCNode* pTarget)
+    inline void setTarget(Node* pTarget)
     {
         CC_SAFE_RETAIN(pTarget);
         CC_SAFE_RELEASE(_target);
         _target = pTarget;
     }
 
-    inline CCNode* getTarget()
+    inline Node* getTarget()
     {
         return _target;
     }
 
-    inline void setCurrentTarget(CCNode* pCurrentTarget)
+    inline void setCurrentTarget(Node* pCurrentTarget)
     {
         CC_SAFE_RETAIN(pCurrentTarget);
         CC_SAFE_RELEASE(_pCurrentTarget);
         _pCurrentTarget = pCurrentTarget;
     }
 
-    inline CCNode* getCurrentTarget()
+    inline Node* getCurrentTarget()
     {
         return _pCurrentTarget;
     }
@@ -156,9 +156,9 @@ protected:
     int _iType;
 	
     /**event目标*/
-    CCNode* _target;
+    Node* _target;
     /**event 当前处理目标*/
-    CCNode* _pCurrentTarget;
+    Node* _pCurrentTarget;
     /**
      * event 处理的阶段
      */

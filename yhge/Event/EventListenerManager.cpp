@@ -5,19 +5,16 @@ NS_CC_YHGE_BEGIN
 static EventListenerManager* s_sharedEventListenerManager=NULL;
 
 EventListenerManager::EventListenerManager()
-:_pListeners(NULL)
 {
 
 }
 
 EventListenerManager::~EventListenerManager()
 {
-	CC_SAFE_RELEASE(_pListeners);
 }
 
 bool EventListenerManager::init()
 {
-	_pListeners=new CCDictionary();
     return true;
 }
 
@@ -33,22 +30,8 @@ EventListenerManager* EventListenerManager::sharedEventListenerManager()
 void EventListenerManager::addEventListener(Ref* target,int type,Ref* handleObject,yhge::SEL_EventHandle handle)
 {
 
-    unsigned int targetId=target->_uID;
-
-	CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(targetId));
-	if(targetListeners==NULL){
-		targetListeners=new CCDictionary();
-		_pListeners->setObject(targetListeners,targetId);
-        targetListeners->release();
-	}
-
-    CCArray* eventListeners=static_cast<CCArray*>(targetListeners->objectForKey(type));
-    if(eventListeners==NULL){
-		eventListeners=new CCArray();
-		eventListeners->init();
-		targetListeners->setObject(eventListeners,type);
-        eventListeners->release();
-	}
+    EventHandleList eventListeners=_listeners[target][type];
+  
 
     //is listened. one type event only have a  handle ,have multi-processor function
     //一个事件只有一个触发点，但有很多处理该事件的函数
@@ -56,46 +39,31 @@ void EventListenerManager::addEventListener(Ref* target,int type,Ref* handleObje
     if(!isListened(eventListeners,handle,handleObject)) {
         EventHandle* eventHandle=new EventHandle();
 	    eventHandle->initWithTarget(handleObject,handle);
-        eventListeners->addObject(eventHandle);
+		_listeners[target][type].pushBack(eventHandle);
         eventHandle->release();
     }else{
-        CCAssert(0,"EventListenerManager:Handle has register");
+        CCASSERT(0,"EventListenerManager:Handle has register");
     }
 }
 
 void EventListenerManager::addEventListener(Ref* target,int type,EventHandle* handler)
 {
-    unsigned int targetId=target->_uID;
 
-	CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(targetId));
-	if(targetListeners==NULL){
-		targetListeners=new CCDictionary();
-		_pListeners->setObject(targetListeners,targetId);
-        targetListeners->release();
-	}
-
-    CCArray* eventListeners=static_cast<CCArray*>(targetListeners->objectForKey(type));
-    if(eventListeners==NULL){
-		eventListeners=new CCArray();
-		eventListeners->init();
-		targetListeners->setObject(eventListeners,type);
-        eventListeners->release();
-	}
-
+	EventHandleList eventListeners = _listeners[target][type];
     //is listened. one type event only have a  handle ,have multi-processor function
     //一个事件只有一个触发点，但有很多处理该事件的函数
 
     if(!isListened(eventListeners,handler->getHandle(),handler->getTarget())) {
-        eventListeners->addObject(handler);
+		_listeners[target][type]->addObject(handler);
     }else{
-        CCAssert(0,"EventListenerManager:Handle has register");
+        CCASSERT(0,"EventListenerManager:Handle has register");
     }
 }
 
 void EventListenerManager::removeEventListener(Ref* target,int type,Ref* handleObject,yhge::SEL_EventHandle handle)
 {
-    CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
-    CCAssert(handleObject!=NULL,"EventListenerManager::removeEventListener handleObject is null.");
+    CCASSERT(target!=NULL,"EventListenerManager::removeEventListener target is null.");
+    CCASSERT(handleObject!=NULL,"EventListenerManager::removeEventListener handleObject is null.");
 
     CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
     if(targetListeners) {
@@ -130,21 +98,21 @@ void EventListenerManager::removeEventListener(Ref* target,int type,Ref* handleO
 
 void EventListenerManager::removeEventListener(Ref* target,int type)
 {
-    CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
+    CCASSERT(target!=NULL,"EventListenerManager::removeEventListener target is null.");
     CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
     targetListeners->removeObjectForKey(type);
 }
 
 void EventListenerManager::removeEventListener(Ref* target)
 {
-    CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
+    CCASSERT(target!=NULL,"EventListenerManager::removeEventListener target is null.");
     _pListeners->removeObjectForKey(target->_uID);
 }
 
 void EventListenerManager::removeEventListenerForHandle(Ref* target,int type,yhge::SEL_EventHandle handle)
 {
-	CCAssert(target!=NULL,"EventListenerManager::removeEventListener target is null.");
-    CCAssert(handle!=NULL,"EventListenerManager::removeEventListener handle is null.");
+	CCASSERT(target!=NULL,"EventListenerManager::removeEventListener target is null.");
+    CCASSERT(handle!=NULL,"EventListenerManager::removeEventListener handle is null.");
 
     CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
     if(targetListeners) {
@@ -277,7 +245,7 @@ void EventListenerManager::handleEvent(Ref* target,Event* evt)
 	}
 }
 
-void EventListenerManager::dispatchEvent(CCNode* target,yhge::Event* evt)
+void EventListenerManager::dispatchEvent(Node* target,yhge::Event* evt)
 {
     // Capture no
     
@@ -285,7 +253,7 @@ void EventListenerManager::dispatchEvent(CCNode* target,yhge::Event* evt)
     //event.currentTarget=obj;
     handleEvent(target,evt);
     // Bubble
-	CCNode* parent=target->getParent();
+	Node* parent=target->getParent();
     while(parent && !evt->isDispatchStopped()){
         //event.currentTarget=parent;
         handleEvent(parent,evt);
@@ -294,7 +262,7 @@ void EventListenerManager::dispatchEvent(CCNode* target,yhge::Event* evt)
 }
 
 //把new EventObject和dispatchEvent和起来，提供简便方法
-void EventListenerManager::trigger(CCNode* target,int type,Ref* data,bool bubbles)
+void EventListenerManager::trigger(Node* target,int type,Ref* data,bool bubbles)
 {    
     yhge::Event* e=new yhge::Event();
 	e->initEvent(type,bubbles,true);
@@ -332,28 +300,23 @@ void EventListenerManager::triggerWithObject(Ref* target,int type,Ref* data,bool
 	e->release();
 }
 
-bool EventListenerManager::isListened(CCArray* listeners,yhge::SEL_EventHandle handle,Ref* handleObject)
+bool EventListenerManager::isListened(EventHandleList& listeners, yhge::SEL_EventHandle handle, Ref* handleObject)
 {
-    Ref* pObj=NULL;
-    EventHandle* eventHandle=NULL;
+	EventHandle* eventHandle = NULL;
 
-    CCARRAY_FOREACH(listeners,pObj){
-        eventHandle=(EventHandle*) pObj;
-        if (eventHandle->getHandle()==handle && eventHandle->getTarget()==handleObject) {
+	for (EventHandleList::iterator iter = listeners.begin(); iter != listeners.end(); ++iter){
+		eventHandle = *iter;
+		if (eventHandle->getHandle() == handle && eventHandle->getTarget() == handleObject) {
 			return true;
 		}
-    }
+	}
+
     return false;
 }
 
-CCArray* EventListenerManager::getEventListeners(Ref* target,int type)
+EventHandleList& EventListenerManager::getEventListeners(Ref* target, int type)
 {
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
-    if(targetListeners && type) {
-		//对应的type事件
-        return static_cast<CCArray*>(targetListeners->objectForKey(type));
-	}
-	return NULL;
+	return _listeners[target][type];
 }
 
 NS_CC_YHGE_END

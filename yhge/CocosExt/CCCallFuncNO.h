@@ -6,7 +6,7 @@
 
 NS_CC_YHGE_BEGIN
 
-typedef void (Ref::*SEL_CallFuncNO)(CCNode*, Ref*);
+typedef void (Ref::*SEL_CallFuncNO)(Node*, Ref*);
 #define callfuncNO_selector(_SELECTOR) (SEL_CallFuncNO)(&_SELECTOR)
 
 /**

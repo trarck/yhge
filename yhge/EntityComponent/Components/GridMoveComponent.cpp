@@ -292,7 +292,7 @@ void GridMoveComponent::calcDirection()
  */
 void GridMoveComponent::updateDirection( float delta)
 {
-//    CCNode* renderer=_rendererComponent->getRenderer();
+//    Node* renderer=_rendererComponent->getRenderer();
 //	CCPoint pos=renderer->getPosition();
     CCPoint pos=_isoPositionComponent->getRendererPosition();
 

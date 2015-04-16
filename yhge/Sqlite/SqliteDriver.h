@@ -1,4 +1,4 @@
-#ifndef YHGE_SQLITE_SQLITEDRIVER_H_
+﻿#ifndef YHGE_SQLITE_SQLITEDRIVER_H_
 #define YHGE_SQLITE_SQLITEDRIVER_H_
 
 #include "cocos2d.h"

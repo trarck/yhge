@@ -12,6 +12,10 @@ NS_CC_YHGE_BEGIN
 class EventListenerManager:public Ref
 {
 public:
+	typedef Vector<EventHandle*> EventHandleList;
+	typedef std::unordered_map<int, EventHandleList> EventTypeMap;
+	typedef std::unordered_map<Ref*, EventTypeMap> EventListenerMap;
+
     EventListenerManager();
 
     ~EventListenerManager();
@@ -54,16 +58,16 @@ public:
 
 	/**
 	 * 触发事件
-	 * 由于事件需要传递，必需是CCNode
+	 * 由于事件需要传递，必需是Node
 	 */
-    void dispatchEvent(CCNode* target,yhge::Event* evt);
+    void dispatchEvent(Node* target,yhge::Event* evt);
 
 	/**
 	 * 触发事件
 	 * 把new EventObject和dispatchEvent和起来，提供简便方法
-	 * 由于事件需要传递，必需是CCNode
+	 * 由于事件需要传递，必需是Node
 	 */
-    void trigger(CCNode* target,int type,Ref* data,bool bubbles);
+    void trigger(Node* target,int type,Ref* data,bool bubbles);
 
 	
 	/**
@@ -79,9 +83,9 @@ public:
 	 */
     void triggerWithObject(Ref* target,int type,Ref* data,bool bubbles);
 
-    bool isListened(CCArray* listeners,yhge::SEL_EventHandle handle,Ref* handleObject) ;
+    bool isListened(EventHandleList& listeners,yhge::SEL_EventHandle handle,Ref* handleObject) ;
 
-    CCArray* getEventListeners(Ref* target,int type);
+	EventHandleList& getEventListeners(Ref* target, int type);
     
 
   
@@ -96,7 +100,8 @@ protected:
 	void removeListenerMapForHandle(CCDictionary* listenerMap,yhge::SEL_EventHandle handle);
 
 protected:
-	CCDictionary* _pListeners;
+
+	EventListenerMap _listeners;
 };
 NS_CC_YHGE_END
 #endif  // YHGE_EVENT_EVENTLISTENERMANAGER_H_

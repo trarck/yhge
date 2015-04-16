@@ -14,7 +14,7 @@ class Event;
 
 //定义处理函数类型
 typedef void (Ref::*SEL_EventHandleD)(Event*,Ref* data);
-#define yh_event_selectorD(_SELECTOR) (SEL_EventHandleD)(&_SELECTOR)
+#define YH_EVENT_SELECTORD(_SELECTOR) (SEL_EventHandleD)(&_SELECTOR)
 
 class EventHandleD : public EventHandle {
 public:

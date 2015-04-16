@@ -14,7 +14,7 @@ UIEvent:: ~UIEvent()
     CC_SAFE_RELEASE(_pView);
 }
 
-bool UIEvent::initUIEvent(const std::string& type, bool canBubble, bool cancelable,cocos2d::CCNode* view, long detail)
+bool UIEvent::initUIEvent(const std::string& type, bool canBubble, bool cancelable,cocos2d::Node* view, long detail)
 {
     if(!Event::initEvent(type,canBubble,cancelable)){
         return false;

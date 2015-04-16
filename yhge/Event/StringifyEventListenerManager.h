@@ -54,16 +54,16 @@ public:
 
 	/**
 	 * 触发事件
-	 * 由于事件需要传递，必需是CCNode
+	 * 由于事件需要传递，必需是Node
 	 */
-    void dispatchEvent(CCNode* target,yhge::Event* evt);
+    void dispatchEvent(Node* target,yhge::Event* evt);
 
 	/**
 	 * 触发事件
 	 * 把new EventObject和dispatchEvent和起来，提供简便方法
-	 * 由于事件需要传递，必需是CCNode
+	 * 由于事件需要传递，必需是Node
 	 */
-    void trigger(CCNode* target,const char* type,Ref* data,bool bubbles);
+    void trigger(Node* target,const char* type,Ref* data,bool bubbles);
 
 	
 	/**

@@ -1,4 +1,4 @@
-#ifndef COCOS_YHGE_SQLITE_SQLITEMACROS_H_
+﻿#ifndef COCOS_YHGE_SQLITE_SQLITEMACROS_H_
 #define COCOS_YHGE_SQLITE_SQLITEMACROS_H_
 
 #define NS_CC_YHGE_SQLITE_BEGIN                     namespace cocos2d { namespace yhge { namespace sqlite {
