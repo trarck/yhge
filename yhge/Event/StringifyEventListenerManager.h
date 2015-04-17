@@ -1,4 +1,4 @@
-
+﻿
 #ifndef YHGE_EVENT_STRINGIFYEVENTLISTENERMANAGER_H_
 #define YHGE_EVENT_STRINGIFYEVENTLISTENERMANAGER_H_
 
@@ -12,39 +12,45 @@ NS_CC_YHGE_BEGIN
 class StringifyEventListenerManager:public Ref
 {
 public:
+	typedef Vector<EventHandle*> EventHandleList;
+	typedef std::unordered_map<std::string, EventHandleList> EventTypeMap;
+	typedef std::unordered_map<Ref*, EventTypeMap> EventListenerMap;
+
     StringifyEventListenerManager();
 
     ~StringifyEventListenerManager();
 
     bool init();
 
-    static StringifyEventListenerManager* sharedStringifyEventListenerManager();
+    static StringifyEventListenerManager* getInstance();
+
+	static void destroyInstance();
 
 	/**
 	 * 添加一个事件监听
 	 * 由于只需要目标的id,只要是Object对像就行
 	 */
-    void addEventListener(Ref* target,const char* type,Ref* handleObject,yhge::SEL_EventHandle handle);
+    void addEventListener(Ref* target,const std::string& type,Ref* handleObject,yhge::SEL_EventHandle handle);
     
     /**
 	 * 添加一个事件监听
 	 * 由于只需要目标的id,只要是Object对像就行
 	 */
-    void addEventListener(Ref* target,const char* type,EventHandle* handler);
+    void addEventListener(Ref* target,const std::string& type,EventHandle* handler);
     
 	/**
 	 * 移除一个事件监听
 	 * 由于只需要目标的id,只要是Object对像就行
 	 */
-    void removeEventListener(Ref* target,const char* type,Ref* handleObject,yhge::SEL_EventHandle handle);
+    void removeEventListener(Ref* target,const std::string& type,Ref* handleObject,yhge::SEL_EventHandle handle);
     
-    void removeEventListener(Ref* target,const char* type,Ref* handleObject);
+    void removeEventListener(Ref* target,const std::string& type,Ref* handleObject);
     
-    void removeEventListener(Ref* target,const char* type);
+    void removeEventListener(Ref* target,const std::string& type);
     
     void removeEventListener(Ref* target);
 
-	void removeEventListenerForHandle(Ref* target,const char* type,yhge::SEL_EventHandle handle);
+	void removeEventListenerForHandle(Ref* target,const std::string& type,yhge::SEL_EventHandle handle);
     
 	/**
 	 * 处理事件
@@ -63,7 +69,7 @@ public:
 	 * 把new EventObject和dispatchEvent和起来，提供简便方法
 	 * 由于事件需要传递，必需是Node
 	 */
-    void trigger(Node* target,const char* type,Ref* data,bool bubbles);
+    void trigger(Node* target,const std::string& type,Ref* data,bool bubbles);
 
 	
 	/**
@@ -77,26 +83,24 @@ public:
 	 * 把new EventObject和dispatchEvent和起来，提供简便方法
 	 * 普通版，不需要事件传递
 	 */
-    void triggerWithObject(Ref* target,const char* type,Ref* data,bool bubbles);
+    void triggerWithObject(Ref* target,const std::string& type,Ref* data,bool bubbles);
 
-    bool isListened(CCArray* listeners,yhge::SEL_EventHandle handle,Ref* handleObject) ;
+    bool isListened(EventHandleList& listeners,yhge::SEL_EventHandle handle,Ref* handleObject) ;
 
-    CCArray* getEventListeners(Ref* target,const char* type);
-    
-
-  
-protected:
-
-    void removeListeners(CCArray* listeners,Ref* handleObject);
-    void removeListeners(CCArray* listeners,Ref* handleObject,yhge::SEL_EventHandle handle);
-	void removeListenersForHandle(CCArray* listeners,yhge::SEL_EventHandle handle);
-
-	void removeListenerMap(CCDictionary* listenerMap,Ref* handleObject);
-	void removeListenerMap(CCDictionary* listenerMap,Ref* handleObject,yhge::SEL_EventHandle handle);
-	void removeListenerMapForHandle(CCDictionary* listenerMap,yhge::SEL_EventHandle handle);
+    EventHandleList& getEventListeners(Ref* target,const std::string& type);
 
 protected:
-	CCDictionary* _pListeners;
+
+    void removeListeners(EventHandleList& listeners,Ref* handleObject);
+    void removeListeners(EventHandleList& listeners,Ref* handleObject,yhge::SEL_EventHandle handle);
+	void removeListenersForHandle(EventHandleList& listeners,yhge::SEL_EventHandle handle);
+
+	void removeListenerMap(EventTypeMap& listenerMap,Ref* handleObject);
+	void removeListenerMap(EventTypeMap& listenerMap,Ref* handleObject,yhge::SEL_EventHandle handle);
+	void removeListenerMapForHandle(EventTypeMap& listenerMap,yhge::SEL_EventHandle handle);
+
+protected:
+	EventListenerMap _listeners;
 };
 NS_CC_YHGE_END
 #endif  // YHGE_EVENT_STRINGIFYEVENTLISTENERMANAGER_H_

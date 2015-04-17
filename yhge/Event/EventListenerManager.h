@@ -1,4 +1,4 @@
-
+﻿
 #ifndef YHGE_EVENT_EVENTLISTENERMANAGER_H_
 #define YHGE_EVENT_EVENTLISTENERMANAGER_H_
 
@@ -22,7 +22,9 @@ public:
 
     bool init();
 
-    static EventListenerManager* sharedEventListenerManager();
+    static EventListenerManager* getInstance();
+
+	static void destroyInstance();
 
 	/**
 	 * 添加一个事件监听
@@ -86,18 +88,21 @@ public:
     bool isListened(EventHandleList& listeners,yhge::SEL_EventHandle handle,Ref* handleObject) ;
 
 	EventHandleList& getEventListeners(Ref* target, int type);
-    
-
   
 protected:
+	/**
+	 * 移除目标的某个事件的监听者
+	 */
+    void removeListeners(EventHandleList& listeners,Ref* handleObject);
+    void removeListeners(EventHandleList& listeners,Ref* handleObject,yhge::SEL_EventHandle handle);
+	void removeListenersForHandle(EventHandleList& listeners,yhge::SEL_EventHandle handle);
 
-    void removeListeners(CCArray* listeners,Ref* handleObject);
-    void removeListeners(CCArray* listeners,Ref* handleObject,yhge::SEL_EventHandle handle);
-	void removeListenersForHandle(CCArray* listeners,yhge::SEL_EventHandle handle);
-
-	void removeListenerMap(CCDictionary* listenerMap,Ref* handleObject);
-	void removeListenerMap(CCDictionary* listenerMap,Ref* handleObject,yhge::SEL_EventHandle handle);
-	void removeListenerMapForHandle(CCDictionary* listenerMap,yhge::SEL_EventHandle handle);
+	/**
+	 * 移除目标的所有事件监听者
+	 */
+	void removeListenerMap(EventTypeMap& listenerMap,Ref* handleObject);
+	void removeListenerMap(EventTypeMap& listenerMap,Ref* handleObject,yhge::SEL_EventHandle handle);
+	void removeListenerMapForHandle(EventTypeMap& listenerMap,yhge::SEL_EventHandle handle);
 
 protected:
 

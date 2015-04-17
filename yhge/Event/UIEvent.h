@@ -1,4 +1,4 @@
-#ifndef YHGE_EVENT_UIEVENT_H_
+﻿#ifndef YHGE_EVENT_UIEVENT_H_
 #define YHGE_EVENT_UIEVENT_H_
 
 #include "Event.h"

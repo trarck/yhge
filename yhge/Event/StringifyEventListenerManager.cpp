@@ -5,23 +5,21 @@ NS_CC_YHGE_BEGIN
 static StringifyEventListenerManager* s_sharedStringifyEventListenerManager=NULL;
 
 StringifyEventListenerManager::StringifyEventListenerManager()
-:_pListeners(NULL)
 {
 
 }
 
 StringifyEventListenerManager::~StringifyEventListenerManager()
 {
-	CC_SAFE_RELEASE(_pListeners);
+
 }
 
 bool StringifyEventListenerManager::init()
 {
-	_pListeners=new CCDictionary();
     return true;
 }
 
-StringifyEventListenerManager* StringifyEventListenerManager::sharedStringifyEventListenerManager()
+StringifyEventListenerManager* StringifyEventListenerManager::getInstance()
 {
     if(!s_sharedStringifyEventListenerManager){
         s_sharedStringifyEventListenerManager=new StringifyEventListenerManager();
@@ -30,25 +28,16 @@ StringifyEventListenerManager* StringifyEventListenerManager::sharedStringifyEve
     return s_sharedStringifyEventListenerManager;
 }
 
-void StringifyEventListenerManager::addEventListener(Ref* target,const char* type,Ref* handleObject,yhge::SEL_EventHandle handle)
+void StringifyEventListenerManager::destroyInstance()
+{
+	CC_SAFE_RELEASE_NULL(s_sharedStringifyEventListenerManager);
+}
+
+void StringifyEventListenerManager::addEventListener(Ref* target,const std::string& type,Ref* handleObject,yhge::SEL_EventHandle handle)
 {
 
-    unsigned int targetId=target->_uID;
-
-	CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(targetId));
-	if(targetListeners==NULL){
-		targetListeners=new CCDictionary();
-		_pListeners->setObject(targetListeners,targetId);
-        targetListeners->release();
-	}
-
-    CCArray* eventListeners=static_cast<CCArray*>(targetListeners->objectForKey(type));
-    if(eventListeners==NULL){
-		eventListeners=new CCArray();
-		eventListeners->init();
-		targetListeners->setObject(eventListeners,type);
-        eventListeners->release();
-	}
+     EventHandleList eventListeners=_listeners[target][type];
+  
 
     //is listened. one type event only have a  handle ,have multi-processor function
     //一个事件只有一个触发点，但有很多处理该事件的函数
@@ -56,223 +45,211 @@ void StringifyEventListenerManager::addEventListener(Ref* target,const char* typ
     if(!isListened(eventListeners,handle,handleObject)) {
         EventHandle* eventHandle=new EventHandle();
 	    eventHandle->initWithTarget(handleObject,handle);
-        eventListeners->addObject(eventHandle);
+		_listeners[target][type].pushBack(eventHandle);
         eventHandle->release();
     }else{
-        CCAssert(0,"StringifyEventListenerManager:Handle has register");
+        CCASSERT(0,"EventListenerManager:Handle has register");
     }
 
 }
 
-void StringifyEventListenerManager::addEventListener(Ref* target,const char* type,EventHandle* handler)
+void StringifyEventListenerManager::addEventListener(Ref* target,const std::string& type,EventHandle* handler)
 {
-    unsigned int targetId=target->_uID;
-
-	CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(targetId));
-	if(targetListeners==NULL){
-		targetListeners=new CCDictionary();
-		_pListeners->setObject(targetListeners,targetId);
-        targetListeners->release();
-	}
-
-    CCArray* eventListeners=static_cast<CCArray*>(targetListeners->objectForKey(type));
-    if(eventListeners==NULL){
-		eventListeners=new CCArray();
-		eventListeners->init();
-		targetListeners->setObject(eventListeners,type);
-        eventListeners->release();
-	}
+	EventHandleList eventListeners = _listeners[target][type];
 
     //is listened. one type event only have a  handle ,have multi-processor function
     //一个事件只有一个触发点，但有很多处理该事件的函数
-
+	
     if(!isListened(eventListeners,handler->getHandle(),handler->getTarget())) {
-        eventListeners->addObject(handler);
+		_listeners[target][type].pushBack(handler);
     }else{
-        CCAssert(0,"StringifyEventListenerManager:Handle has register");
+        CCASSERT(0,"EventListenerManager:Handle has register");
     }
 }
 
-void StringifyEventListenerManager::removeEventListener(Ref* target,const char* type,Ref* handleObject,yhge::SEL_EventHandle handle)
+void StringifyEventListenerManager::removeEventListener(Ref* target,const std::string& type,Ref* handleObject,yhge::SEL_EventHandle handle)
 {
     CCAssert(target!=NULL,"StringifyEventListenerManager::removeEventListener target is null.");
     CCAssert(handleObject!=NULL,"StringifyEventListenerManager::removeEventListener handleObject is null.");
 
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
-    if(targetListeners) {
-        if(type) {
+    EventListenerMap::iterator targetListenersIter=_listeners.find(target);
+
+    if(targetListenersIter!=_listeners.end()) {
+        if(!type.empty()) {
             //移除对应的type事件
-            CCArray* eventListeners=static_cast<CCArray*>(targetListeners->objectForKey(type));
-            if(eventListeners) {
+			EventTypeMap::iterator eventListenersItor=targetListenersIter->second.find(type);
+
+            if(eventListenersItor!=targetListenersIter->second.end()) {
                 //某事件有处理函数
                 if(handle) {
                     //删除事件中的handler
-                    removeListeners(eventListeners,handleObject,handle);
+                    removeListeners(eventListenersItor->second,handleObject,handle);
                 } else {
                     //删除事件中的处理对象为handleObject的注册项
-                    removeListeners(eventListeners,handleObject);
+                    removeListeners(eventListenersItor->second,handleObject);
                 }
+
+				if(eventListenersItor->second.empty()){
+					targetListenersIter->second.erase(eventListenersItor);
+				}
             }
         } else {
            //删除target的所有监听者
 			if(handle) {
-				removeListenerMap(targetListeners,handleObject,handle);
+				removeListenerMap(targetListenersIter->second,handleObject,handle);
 			}else{
-				removeListenerMap(targetListeners,handleObject);
+				removeListenerMap(targetListenersIter->second,handleObject);
 			}
         }
+
+		
+		if(targetListenersIter->second.empty()){
+			_listeners.erase(targetListenersIter);
+		}
     }
 }
 
-void StringifyEventListenerManager::removeEventListener(Ref* target,const char* type,Ref* handleObject)
+void StringifyEventListenerManager::removeEventListener(Ref* target,const std::string& type,Ref* handleObject)
 {
 	removeEventListener(target,type,handleObject,NULL);
 }
 
-void StringifyEventListenerManager::removeEventListener(Ref* target,const char* type)
+void StringifyEventListenerManager::removeEventListener(Ref* target,const std::string& type)
 {
     CCAssert(target!=NULL,"StringifyEventListenerManager::removeEventListener target is null.");
-    CCAssert(type!=NULL,"StringifyEventListenerManager::removeEventListener type is null.");
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
-    targetListeners->removeObjectForKey(type);
+		
+	EventListenerMap::iterator targetListenersIter=_listeners.find(target);
+
+	if(targetListenersIter!=_listeners.end()){
+		EventTypeMap::iterator eventListenersItor=targetListenersIter->second.find(type);
+		if(eventListenersItor!=targetListenersIter->second.end()) {
+			targetListenersIter->second.erase(eventListenersItor);
+		}
+
+		if(targetListenersIter->second.empty()){
+			_listeners.erase(targetListenersIter);
+		}
+	}
 }
 
 void StringifyEventListenerManager::removeEventListener(Ref* target)
 {
     CCAssert(target!=NULL,"StringifyEventListenerManager::removeEventListener target is null.");
-    _pListeners->removeObjectForKey(target->_uID);
+    EventListenerMap::iterator targetListenersIter=_listeners.find(target);
+
+	if(targetListenersIter!=_listeners.end()){
+		_listeners.erase(targetListenersIter);
+	}
 }
 
-void StringifyEventListenerManager::removeEventListenerForHandle(Ref* target,const char* type,yhge::SEL_EventHandle handle)
+void StringifyEventListenerManager::removeEventListenerForHandle(Ref* target,const std::string& type,yhge::SEL_EventHandle handle)
 {
 	CCAssert(target!=NULL,"StringifyEventListenerManager::removeEventListener target is null.");
     CCAssert(handle!=NULL,"StringifyEventListenerManager::removeEventListener handle is null.");
 
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
-    if(targetListeners) {
-        if(type) {
+    EventListenerMap::iterator targetListenersIter=_listeners.find(target);
+
+    if(targetListenersIter!=_listeners.end()) {
+        if(!type.empty()) {
             //移除对应的type事件
-            CCArray* eventListeners=static_cast<CCArray*>(targetListeners->objectForKey(type));
-            if(eventListeners) {
+            EventTypeMap::iterator eventListenersItor=targetListenersIter->second.find(type);
+
+            if(eventListenersItor!=targetListenersIter->second.end()) {
                 //删除事件中的handler
-                removeListenersForHandle(eventListeners,handle);
+                removeListenersForHandle(eventListenersItor->second,handle);
+
+				if(eventListenersItor->second.empty()){
+					targetListenersIter->second.erase(eventListenersItor);
+				}
             }
         } else {
            //删除target的所有监听者
-		   removeListenerMapForHandle(targetListeners,handle);
+		   removeListenerMapForHandle(targetListenersIter->second,handle);
         }
+
+		if(targetListenersIter->second.empty()){
+			_listeners.erase(targetListenersIter);
+		}
     }
 }
 
 
-void StringifyEventListenerManager::removeListeners(CCArray* listeners,Ref* handleObject)
+void StringifyEventListenerManager::removeListeners(EventHandleList& listeners,Ref* handleObject)
 {
     //使用index删除，效率会高些。但要注意删除后的空位置.
     //如果使用object删除，则效率会低些，但不会有空位引发的问题。
-    
-    if (listeners && listeners->data->num > 0){
-        int len=listeners->data->num;
-        Ref** arr = listeners->data->arr;
-        for(int i=0;i<len;){
-		    EventHandle* eventHandle=(EventHandle*)(*(arr+i));
-		    if (eventHandle->getTarget()==handleObject) {
-			    listeners->removeObjectAtIndex(i);
-                --len;
-		    }else{
-                ++i;
-            }
-	    }
-    }
+    for(EventHandleList::iterator iter=listeners.begin();iter!=listeners.end();){
+		if ((*iter)->getTarget()==handleObject) {
+			iter=listeners.erase(iter);
+		}else{
+            ++iter;
+        }
+	}
 }
 
-void StringifyEventListenerManager::removeListeners(CCArray* listeners,Ref* handleObject,SEL_EventHandle handle)
+void StringifyEventListenerManager::removeListeners(EventHandleList& listeners,Ref* handleObject,SEL_EventHandle handle)
 {
     //使用index删除，效率会高些。但要注意删除后的空位置.
     //如果使用object删除，则效率会低些，但不会有空位引发的问题。
 
-    if (listeners && listeners->data->num > 0){
-        int len=listeners->data->num;
-        Ref** arr = listeners->data->arr;
-        for(int i=0;i<len;){
-		    EventHandle* eventHandle=(EventHandle*)(*(arr+i));
-		    if (eventHandle->getTarget()==handleObject && eventHandle->getHandle()==handle) {
-			    listeners->removeObjectAtIndex(i);
-                --len;
-		    }else{
-                ++i;
-            }
-	    }
-    }
+    for(EventHandleList::iterator iter=listeners.begin();iter!=listeners.end();){
+		if ((*iter)->getTarget()==handleObject && (*iter)->getHandle()==handle) {
+			iter=listeners.erase(iter);
+		}else{
+            ++iter;
+        }
+	}
 }
 
-void StringifyEventListenerManager::removeListenersForHandle(CCArray* listeners,yhge::SEL_EventHandle handle)
+void StringifyEventListenerManager::removeListenersForHandle(EventHandleList& listeners,yhge::SEL_EventHandle handle)
 {
-    if (listeners && listeners->data->num > 0){         
-        int len=listeners->data->num;
-        Ref** arr = listeners->data->arr;
-        for(int i=0;i<len;){
-		    EventHandle* eventHandle=(EventHandle*)(*(arr+i));
-		    if (eventHandle->getHandle()==handle) {
-			    listeners->removeObjectAtIndex(i);
-                --len;
-		    }else{
-                ++i;
-            }
-	    }
-    }
+    for(EventHandleList::iterator iter=listeners.begin();iter!=listeners.end();){
+		if ((*iter)->getHandle()==handle) {
+			iter=listeners.erase(iter);
+		}else{
+            ++iter;
+        }
+	}
 }
 
-void StringifyEventListenerManager::removeListenerMap(CCDictionary* listenerMap,Ref* handleObject)
+void StringifyEventListenerManager::removeListenerMap(EventTypeMap& listenerMap,Ref* handleObject)
 {
-	CCDictElement* element = NULL;
-    CCArray* listeners=NULL;
-    
-    CCDICT_FOREACH(listenerMap,element){
-        listeners=(CCArray*) element->getObject();
-		if(listeners!=NULL)
-			removeListeners(listeners,handleObject);
-    }
+	for(EventTypeMap::iterator iter=listenerMap.begin();iter!=listenerMap.end();++iter){
+		removeListeners(iter->second,handleObject);
+	}
 }
 
-void StringifyEventListenerManager::removeListenerMap(CCDictionary* listenerMap,Ref* handleObject,yhge::SEL_EventHandle handle)
+void StringifyEventListenerManager::removeListenerMap(EventTypeMap& listenerMap,Ref* handleObject,yhge::SEL_EventHandle handle)
 {
-	CCDictElement* element = NULL;
-    CCArray* listeners=NULL;
-    
-    CCDICT_FOREACH(listenerMap,element){
-        listeners=(CCArray*) element->getObject();
-		if(listeners!=NULL)
-			removeListeners(listeners,handleObject,handle);
-    }
+	for(EventTypeMap::iterator iter=listenerMap.begin();iter!=listenerMap.end();++iter){
+		removeListeners(iter->second,handleObject,handle);
+	}
 }
 
-void StringifyEventListenerManager::removeListenerMapForHandle(CCDictionary* listenerMap,yhge::SEL_EventHandle handle)
+void StringifyEventListenerManager::removeListenerMapForHandle(EventTypeMap& listenerMap,yhge::SEL_EventHandle handle)
 {
-	CCDictElement* element = NULL;
-    CCArray* listeners=NULL;
-    
-    CCDICT_FOREACH(listenerMap,element){
-        listeners=(CCArray*) element->getObject();
-		if(listeners!=NULL)
-			removeListenersForHandle(listeners,handle);
-    }
+	for(EventTypeMap::iterator iter=listenerMap.begin();iter!=listenerMap.end();++iter){
+		removeListenersForHandle(iter->second,handle);
+	}
 }
 
 
 void StringifyEventListenerManager::handleEvent(Ref* target,Event* evt)
 {
-	CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
-    if(targetListeners) {
-		std::string type=evt->getType();
-		if(type!="") {
+	EventListenerMap::iterator targetListenersIter=_listeners.find(target);
+
+    if(targetListenersIter!=_listeners.end()) {
+		std::string type=evt->getStrType();
+		if(!type.empty()) {
 			//执行对应的type事件
-            CCArray* eventListeners=static_cast<CCArray*>(targetListeners->objectForKey(type));
-            if(eventListeners) {
-				Ref* pObj=NULL;
-				EventHandle* eventHandle=NULL;
-                CCARRAY_FOREACH(eventListeners,pObj){
-					eventHandle=static_cast<EventHandle*>(pObj);
-					eventHandle->execute(evt);
+            EventTypeMap::iterator eventListenersItor=targetListenersIter->second.find(type);
+
+            if(eventListenersItor!=targetListenersIter->second.end()) {
+				//copy listener list
+				EventHandleList eventListeners=eventListenersItor->second;
+
+				for(EventHandleList::iterator iter=eventListeners.begin();iter!=eventListeners.end();++iter){
+					(*iter)->execute(evt);
 				}
             }
 		}
@@ -296,7 +273,7 @@ void StringifyEventListenerManager::dispatchEvent(Node* target,yhge::Event* evt)
 }
 
 //把new EventObject和dispatchEvent和起来，提供简便方法
-void StringifyEventListenerManager::trigger(Node* target,const char* type,Ref* data,bool bubbles)
+void StringifyEventListenerManager::trigger(Node* target,const std::string& type,Ref* data,bool bubbles)
 {    
     yhge::Event* e=new yhge::Event();
 	e->initEvent(type,bubbles,true);
@@ -322,7 +299,7 @@ void StringifyEventListenerManager::dispatchEventWithObject(Ref* target,yhge::Ev
 	* 把new EventObject和dispatchEvent和起来，提供简便方法
 	* 普通版，不需要事件传递
 	*/
-void StringifyEventListenerManager::triggerWithObject(Ref* target,const char* type,Ref* data,bool bubbles)
+void StringifyEventListenerManager::triggerWithObject(Ref* target,const std::string& type,Ref* data,bool bubbles)
 {
 	yhge::Event* e=new yhge::Event();
 	e->initEvent(type,bubbles,true);
@@ -334,30 +311,22 @@ void StringifyEventListenerManager::triggerWithObject(Ref* target,const char* ty
 	e->release();
 }
 
-bool StringifyEventListenerManager::isListened(CCArray* listeners,yhge::SEL_EventHandle handle,Ref* handleObject)
+bool StringifyEventListenerManager::isListened(EventHandleList& listeners,yhge::SEL_EventHandle handle,Ref* handleObject)
 {
-    Ref* pObj=NULL;
-    EventHandle* eventHandle=NULL;
+    EventHandle* eventHandle = NULL;
 
-    CCARRAY_FOREACH(listeners,pObj){
-        eventHandle=(EventHandle*) pObj;
-        if (eventHandle->getHandle()==handle && eventHandle->getTarget()==handleObject) {
+	for (EventHandleList::iterator iter = listeners.begin(); iter != listeners.end(); ++iter){
+		eventHandle = *iter;
+		if (eventHandle->getHandle() == handle && eventHandle->getTarget() == handleObject) {
 			return true;
 		}
-    }
+	}
     return false;
 }
 
-CCArray* StringifyEventListenerManager::getEventListeners(Ref* target,const char* type)
+StringifyEventListenerManager::EventHandleList& StringifyEventListenerManager::getEventListeners(Ref* target,const std::string& type)
 {
-    CCDictionary* targetListeners=static_cast<CCDictionary*>(_pListeners->objectForKey(target->_uID));
-    if(targetListeners && type) {
-		//对应的type事件
-        return static_cast<CCArray*>(targetListeners->objectForKey(type));
-	}
-	return NULL;
+    return _listeners[target][type];
 }
-
-
 
 NS_CC_YHGE_END

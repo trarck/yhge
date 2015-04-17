@@ -1,4 +1,4 @@
-#ifndef YHGE_EVENT_EVENTTARGET_H_
+﻿#ifndef YHGE_EVENT_EVENTTARGET_H_
 #define YHGE_EVENT_EVENTTARGET_H_
 
 #include "EventListenerManager.h"

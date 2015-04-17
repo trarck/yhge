@@ -1,4 +1,4 @@
-#ifndef YHGE_EVENT_EVENT_H_
+﻿#ifndef YHGE_EVENT_EVENT_H_
 #define YHGE_EVENT_EVENT_H_
 
 #include "cocos2d.h"
