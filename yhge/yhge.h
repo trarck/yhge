@@ -33,14 +33,14 @@
 
 //message
 #include "message.h"
-//
-////event
-//#include "Event/Event.h"
-//#include "Event/UIEvent.h"
-//#include "Event/EventHandle.h"
-//#include "Event/EventHandleWrap.h"
-//#include "Event/EventListenerManager.h"
-//#include "Event/StringifyEventListenerManager.h"
+
+//event
+#include "Event/Event.h"
+#include "Event/UIEvent.h"
+#include "Event/EventHandle.h"
+#include "Event/EventHandleWrap.h"
+#include "Event/EventListenerManager.h"
+#include "Event/StringifyEventListenerManager.h"
 //
 ////math
 //#include "Math/MersenneTwister.h"
