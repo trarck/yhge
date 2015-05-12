@@ -90,7 +90,7 @@ void Scheduler::registerUpdate(Ref* target,SEL_SCHEDULE handle,int priority)
     CCAssert(target!=NULL, "[Scheduler::scheduleUpdate] target must not be null");
     
     //check target is registered
-    if (_registerMap.find(target->_uID)!=_registerMap.end()) {
+    if (_registerMap.find(target)!=_registerMap.end()) {
         //is registered do nothing
         return;
     }
@@ -111,7 +111,7 @@ void Scheduler::registerUpdate(Ref* target,SEL_SCHEDULE handle,int priority)
     }
     
     //record register priority
-    _registerMap[target->_uID]=priority;
+    _registerMap[target]=priority;
 }
 
 //void Scheduler::unregisterUpdate(Ref* target,int priority)
@@ -166,7 +166,7 @@ void Scheduler::registerUpdate(Ref* target,SEL_SCHEDULE handle,int priority)
 
 void Scheduler::unregisterUpdate(Ref* target)
 {
-    std::map<int, int>::iterator registerIter=_registerMap.find(target->_uID);
+	PriorityMap::iterator registerIter = _registerMap.find(target);
     if (registerIter==_registerMap.end()) {
         //not register do nothing
         return;

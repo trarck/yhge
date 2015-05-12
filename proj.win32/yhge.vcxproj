@@ -466,9 +466,7 @@
     <ClInclude Include="..\yhge\Sqlite\SqliteMacros.h" />
     <ClInclude Include="..\yhge\Sqlite\Statement.h" />
     <ClInclude Include="..\yhge\Sqlite\Transaction.h" />
-    <ClInclude Include="..\yhge\Time\Scheduler.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="..\yhge\Time\Scheduler.h" />
     <ClInclude Include="..\yhge\yhge.h" />
     <ClInclude Include="..\yhge\YHGEMacros.h" />
   </ItemGroup>
@@ -853,9 +851,7 @@
     <ClCompile Include="..\yhge\Sqlite\SqliteDriver.cpp" />
     <ClCompile Include="..\yhge\Sqlite\Statement.cpp" />
     <ClCompile Include="..\yhge\Sqlite\Transaction.cpp" />
-    <ClCompile Include="..\yhge\Time\Scheduler.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\yhge\Time\Scheduler.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B6E7DF28-5B18-455D-8A4A-03386E12BD8B}</ProjectGuid>

@@ -1,4 +1,4 @@
-#ifndef YHGE_TIME_SCHEDULER_H_
+﻿#ifndef YHGE_TIME_SCHEDULER_H_
 #define YHGE_TIME_SCHEDULER_H_
 
 #include "cocos2d.h"
@@ -101,6 +101,7 @@ class Scheduler : public Ref
 public:
 
     typedef ds::LinkedList<SchedulerTask*> TaskList;
+	typedef std::unordered_map<Ref*, int> PriorityMap;
     
     Scheduler();
     
@@ -166,7 +167,7 @@ protected:
     //标记只否则在某个更新内
     bool _updating;
     
-    std::map<int, int> _registerMap;
+	PriorityMap _registerMap;
     
 };
 
