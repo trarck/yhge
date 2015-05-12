@@ -1,4 +1,4 @@
-#ifndef YHGE_BASE_LOG_H_
+﻿#ifndef YHGE_BASE_LOG_H_
 #define YHGE_BASE_LOG_H_
 
 #include "../YHGEMacros.h"

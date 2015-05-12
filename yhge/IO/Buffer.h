@@ -1,4 +1,4 @@
-#ifndef YHGE_IO_BUFFER_H_
+﻿#ifndef YHGE_IO_BUFFER_H_
 #define YHGE_IO_BUFFER_H_
 
 #include "cocos2d.h"

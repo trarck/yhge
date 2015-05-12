@@ -1,4 +1,4 @@
-#ifndef YHGE_IO_IEEEHALFPRECISION_H_
+﻿#ifndef YHGE_IO_IEEEHALFPRECISION_H_
 #define YHGE_IO_IEEEHALFPRECISION_H_
 
 #include "../YHGEMacros.h"

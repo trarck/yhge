@@ -1,4 +1,4 @@
-#include "Buffer.h"
+﻿#include "Buffer.h"
 #include <string>
 
 NS_CC_YHGE_BEGIN

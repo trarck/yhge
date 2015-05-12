@@ -1,4 +1,4 @@
-#ifndef YHGE_IO_INPUTSTREAM_H_
+﻿#ifndef YHGE_IO_INPUTSTREAM_H_
 #define YHGE_IO_INPUTSTREAM_H_
 
 #include "Buffer.h"

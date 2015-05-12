@@ -109,6 +109,9 @@
     <Filter Include="Datas\dao">
       <UniqueIdentifier>{af3eb7b1-7fe2-4e09-b41d-7f3f6d4245ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{8baabf4c-5628-4667-9bdf-8f829ad9556c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h">
@@ -623,6 +626,15 @@
     </ClInclude>
     <ClInclude Include="..\yhge\Datas\DataMacros.h">
       <Filter>Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Base\Internals.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Base\Log.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\Base\RefCount.h">
+      <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

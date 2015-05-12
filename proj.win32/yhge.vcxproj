@@ -77,6 +77,9 @@
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="..\yhge\Base\Internals.h" />
+    <ClInclude Include="..\yhge\Base\Log.h" />
+    <ClInclude Include="..\yhge\Base\RefCount.h" />
     <ClInclude Include="..\yhge\CocosExt\Actions\CCParabolaMove.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
@@ -279,21 +282,11 @@
     <ClInclude Include="..\yhge\FSM\Common\FSMStateInterface.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\yhge\IO\Buffer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\IO\IeeeHalfPrecision.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\IO\InputStream.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\IO\IOMacros.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\IO\OutputStream.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="..\yhge\IO\Buffer.h" />
+    <ClInclude Include="..\yhge\IO\IeeeHalfPrecision.h" />
+    <ClInclude Include="..\yhge\IO\InputStream.h" />
+    <ClInclude Include="..\yhge\IO\IOMacros.h" />
+    <ClInclude Include="..\yhge\IO\OutputStream.h" />
     <ClInclude Include="..\yhge\isometric.h" />
     <ClInclude Include="..\yhge\Isometric\Coordinate.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -697,18 +690,10 @@
     <ClCompile Include="..\yhge\FSM\Common\FSMState.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\yhge\IO\Buffer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\IO\IeeeHalfPrecision.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\IO\InputStream.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\IO\OutputStream.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\yhge\IO\Buffer.cpp" />
+    <ClCompile Include="..\yhge\IO\IeeeHalfPrecision.cpp" />
+    <ClCompile Include="..\yhge\IO\InputStream.cpp" />
+    <ClCompile Include="..\yhge\IO\OutputStream.cpp" />
     <ClCompile Include="..\yhge\Isometric\Coordinate.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>

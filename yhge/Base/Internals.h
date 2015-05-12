@@ -1,4 +1,4 @@
-#ifndef YH_BASE_INTERNALS_H_
+﻿#ifndef YH_BASE_INTERNALS_H_
 #define YH_BASE_INTERNALS_H_
 
 #include "cocos2d.h"

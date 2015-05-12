@@ -1,4 +1,4 @@
-#include "OutputStream.h"
+﻿#include "OutputStream.h"
 #include <string>
 
 NS_CC_YHGE_BEGIN

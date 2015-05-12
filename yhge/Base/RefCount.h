@@ -1,4 +1,4 @@
-#ifndef YHGE_BASE_REFCOUNT_H_
+﻿#ifndef YHGE_BASE_REFCOUNT_H_
 #define YHGE_BASE_REFCOUNT_H_
 
 #include <stddef.h>
