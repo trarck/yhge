@@ -1,4 +1,4 @@
-#ifndef YHGE_FSM_COMMON_CCFSMMACHINE_H_
+﻿#ifndef YHGE_FSM_COMMON_CCFSMMACHINE_H_
 #define YHGE_FSM_COMMON_CCFSMMACHINE_H_
 
 #include "cocos2d.h"

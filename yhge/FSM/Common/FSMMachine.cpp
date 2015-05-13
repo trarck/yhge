@@ -1,13 +1,12 @@
-
+﻿
 #include "FSMMachine.h"
 
 NS_CC_YHGE_BEGIN
 
 FSMMachine::FSMMachine(void)
-:_pCurrentState(NULL)
+:_currentState(NULL)
 ,_lastState(NULL)
-,_pStates(NULL)
-,_pOwner(NULL)
+,_owner(NULL)
 
 {
     CCLOG("FSMMachine create");
@@ -19,12 +18,10 @@ FSMMachine::~FSMMachine(void)
     CCLOG("FSMMachine destroy");
 //	CC_SAFE_RELEASE_NULL(_pCurrentState);
 //    CC_SAFE_RELEASE_NULL(_lastState);
-	CC_SAFE_RELEASE_NULL(_pStates);
 }
 
 bool FSMMachine::init()
 {
-	_pStates=new CCDictionary();
 	return true;
 }
 
@@ -35,43 +32,28 @@ bool FSMMachine::init(Ref* owner)
     return init();
 }
 
-void FSMMachine::addState(FSMState* state ,const std::string& key)
-{
-	_pStates->setObject(state,key);
-}
-
 void FSMMachine::addState(FSMState* state ,unsigned int key)
 {
-	_pStates->setObject(state,key);
-}
-
-void FSMMachine::removeState(const std::string& key)
-{
-	_pStates->removeObjectForKey(key);
+	_iStates.insert(key, state);
 }
 
 void FSMMachine::removeState(unsigned int key)
 {
-	_pStates->removeObjectForKey(key);
-}
-
-FSMState* FSMMachine::getState(const std::string& key)
-{
-	return static_cast<FSMState*>(_pStates->objectForKey(key));
+	_iStates.erase(key);
 }
 
 FSMState* FSMMachine::getState(unsigned int key)
 {
-	return static_cast<FSMState*>(_pStates->objectForKey(key));
+	return _iStates.at(key);
 }
 
 void FSMMachine::changeState(FSMState* state)
 {
-    if (_pCurrentState!=state) {
+    if (_currentState!=state) {
         
-        setLastState(_pCurrentState);
+        setLastState(_currentState);
         
-        if(_pCurrentState) _pCurrentState->exit();
+        if(_currentState) _currentState->exit();
         
         setCurrentState(state);
         
@@ -84,11 +66,6 @@ void FSMMachine::changeState(unsigned int key)
     changeState(getState(key));
 }
 
-void FSMMachine::changeState(const std::string& key)
-{
-    changeState(getState(key));
-}
-
 void FSMMachine::changeToLastState()
 {
     changeState(_lastState);
@@ -96,17 +73,38 @@ void FSMMachine::changeToLastState()
 
 void FSMMachine::update()
 {
-	_pCurrentState->update();
+	_currentState->update();
 }
 
 void FSMMachine::update(float delta)
 {
-	_pCurrentState->update(delta);
+	_currentState->update(delta);
 }
 
 void FSMMachine::handleMessage(Message* message)
 {
-	_pCurrentState->onMessage(message);
+	_currentState->onMessage(message);
 }
+
+
+//void FSMMachine::addState(FSMState* state, const std::string& key)
+//{
+//	_sStates.insert(key, state);
+//}
+//
+//void FSMMachine::removeState(const std::string& key)
+//{
+//	_sStates.erase(key);
+//}
+//
+//FSMState* FSMMachine::getState(const std::string& key)
+//{
+//	return _sStates.at(key);
+//}
+//
+//void FSMMachine::changeState(const std::string& key)
+//{
+//	changeState(getState(key));
+//}
 
 NS_CC_YHGE_END

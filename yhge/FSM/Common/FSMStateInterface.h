@@ -1,4 +1,4 @@
-//
+﻿//
 //  FSMStateInterface
 //  做为 state的基类，具体功能由实现决定	
 //  enter exit update是基础可以保障设计的灵活

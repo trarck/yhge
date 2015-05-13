@@ -264,24 +264,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\yhge\FSM\Common\FSMDelegateState.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\FSM\Common\FSMMachine.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\FSM\Common\FSMMachineInterface.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\FSM\Common\FSMParameterState.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\FSM\Common\FSMState.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\FSM\Common\FSMStateInterface.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="..\yhge\FSM\Common\FSMDelegateState.h" />
+    <ClInclude Include="..\yhge\FSM\Common\FSMMachine.h" />
+    <ClInclude Include="..\yhge\FSM\Common\FSMMachineInterface.h" />
+    <ClInclude Include="..\yhge\FSM\Common\FSMParameterState.h" />
+    <ClInclude Include="..\yhge\FSM\Common\FSMState.h" />
+    <ClInclude Include="..\yhge\FSM\Common\FSMStateInterface.h" />
     <ClInclude Include="..\yhge\IO\Buffer.h" />
     <ClInclude Include="..\yhge\IO\IeeeHalfPrecision.h" />
     <ClInclude Include="..\yhge\IO\InputStream.h" />
@@ -684,12 +672,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\yhge\FSM\Common\FSMMachine.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\FSM\Common\FSMState.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\yhge\FSM\Common\FSMMachine.cpp" />
+    <ClCompile Include="..\yhge\FSM\Common\FSMState.cpp" />
     <ClCompile Include="..\yhge\IO\Buffer.cpp" />
     <ClCompile Include="..\yhge\IO\IeeeHalfPrecision.cpp" />
     <ClCompile Include="..\yhge\IO\InputStream.cpp" />

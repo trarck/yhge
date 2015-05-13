@@ -1,4 +1,4 @@
-#ifndef YHGE_FSM_COMMON_CCFSMMACHINE_H_
+﻿#ifndef YHGE_FSM_COMMON_CCFSMMACHINE_H_
 #define YHGE_FSM_COMMON_CCFSMMACHINE_H_
 
 #include "cocos2d.h"
@@ -18,21 +18,16 @@ public:
     
     virtual bool init(Ref* owner);
 
-    virtual void addState(FSMState* state ,const std::string& key);
     virtual void addState(FSMState* state ,unsigned int key);
-    
-    virtual void removeState(const std::string& key);
-    virtual void removeState(unsigned int key);
-    
-    virtual FSMState* getState(const std::string& key);
-    virtual FSMState* getState(unsigned int key);
 
+    virtual void removeState(unsigned int key);
+        
+    virtual FSMState* getState(unsigned int key);
+	    
 	virtual void changeState(FSMState* state);
-    
+
     virtual void changeState(unsigned int key);
-    
-    virtual void changeState(const std::string& key);
-    
+
     virtual void changeToLastState();
 
     virtual void update();
@@ -40,19 +35,25 @@ public:
 	virtual void update(float delta);
 
     virtual void handleMessage(Message* message);
- 
+
+
+	//virtual void addState(FSMState* state, const std::string& key);
+	//virtual void removeState(const std::string& key);
+	//virtual FSMState* getState(const std::string& key);
+	//virtual void changeState(const std::string& key);
+
 public:
 
-	inline void setCurrentState(FSMState* pCurrentState)
+	inline void setCurrentState(FSMState* currentState)
 	{
 //		CC_SAFE_RETAIN(pCurrentState);
 //		CC_SAFE_RELEASE(_pCurrentState);
-		_pCurrentState = pCurrentState;
+		_currentState = currentState;
 	}
 
 	inline FSMState* getCurrentState()
 	{
-		return _pCurrentState;
+		return _currentState;
 	}
     
     inline void setLastState(FSMState* lastState)
@@ -71,37 +72,49 @@ public:
 	{
 //		CC_SAFE_RETAIN(pOwner);
 //		CC_SAFE_RELEASE(_pOwner);
-		_pOwner = pOwner;
+		_owner = pOwner;
 	}
 
 	inline Ref* getOwner()
 	{
-		return _pOwner;
+		return _owner;
 	}
 
-	inline void setStates(CCDictionary* pStates)
+	inline void setStates(const Map<intptr_t, FSMState*>& states)
 	{
-		CC_SAFE_RETAIN(pStates);
-		CC_SAFE_RELEASE(_pStates);
-		_pStates = pStates;
+		_iStates = states;
 	}
 
-	inline CCDictionary* getStates()
+	inline Map<intptr_t, FSMState*>& getStates()
 	{
-		return _pStates;
+		return _iStates;
 	}
+
+
+	//inline void setStates(const Map<std::string, FSMState*>& states)
+	//{
+	//	_sStates = states;
+	//}
+
+	//inline Map<std::string, FSMState*>& getStrKeyStates()
+	//{
+	//	return _sStates;
+	//}
 
 protected:
 
     //由于state通常都是在状态表里的，这里就弱引用
-	FSMState* _pCurrentState;
+	FSMState* _currentState;
     
     //由于state通常都是在状态表里的，这里就弱引用
     FSMState* _lastState;
     
     //弱引用
-	Ref* _pOwner;
-	CCDictionary* _pStates;
+	Ref* _owner;
+
+	Map<intptr_t, FSMState*> _iStates;
+
+	//Map<std::string, FSMState*> _sStates;
 
 };
 
