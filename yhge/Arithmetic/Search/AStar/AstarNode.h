@@ -1,4 +1,4 @@
-//
+﻿//
 //  AstarNode.h
 //
 #ifndef YHGE_ARITHMETIC_SEARCH_ASTAR_AstarNode_H_

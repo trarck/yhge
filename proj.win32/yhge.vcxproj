@@ -62,21 +62,11 @@
     <ClInclude Include="..\yhge\Animation\VariableAnimation.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\yhge\Arithmetic\Formula\DamageFormula.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\AstarFlexible.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\AstarNode.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="..\yhge\Arithmetic\Formula\DamageFormula.h" />
+    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\Astar.h" />
+    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\AstarFlexible.h" />
+    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\AstarNode.h" />
+    <ClInclude Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.h" />
     <ClInclude Include="..\yhge\Base\Internals.h" />
     <ClInclude Include="..\yhge\Base\Log.h" />
     <ClInclude Include="..\yhge\Base\RefCount.h" />
@@ -500,21 +490,11 @@
     <ClCompile Include="..\yhge\Animation\VariableAnimation.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\yhge\Arithmetic\Formula\DamageFormula.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarFlexible.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarNode.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\yhge\Arithmetic\Formula\DamageFormula.cpp" />
+    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp" />
+    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarFlexible.cpp" />
+    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarNode.cpp" />
+    <ClCompile Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.cpp" />
     <ClCompile Include="..\yhge\CocosExt\Actions\CCParabolaMove.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>

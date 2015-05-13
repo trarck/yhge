@@ -1,5 +1,4 @@
-#include "Astar.h"
-#include <yhge/CocosExt/CCGeometryValue.h>
+﻿#include "Astar.h"
 
 NS_CC_YHGE_BEGIN
 
@@ -27,20 +26,12 @@ Astar::Astar(void)
 
 Astar::~Astar(void)
 {
-	CC_SAFE_RELEASE_NULL(_opens);
-	CC_SAFE_RELEASE_NULL(_closes);
-	CC_SAFE_RELEASE_NULL(_openSeq);
 	CC_SAFE_RELEASE_NULL(_start);
 	CC_SAFE_RELEASE_NULL(_end);
-	
 }
 
 bool Astar::init()
 {
-	_openSeq=new CCArray(10);
-	_opens=new CCDictionary();
-	_closes=new CCDictionary();
-	
 	return true;
 }
 
@@ -50,14 +41,9 @@ bool Astar::init()
  */
 void Astar::reset()
 {
-    CC_SAFE_RELEASE(_opens);
-	CC_SAFE_RELEASE(_closes);
-	CC_SAFE_RELEASE(_openSeq);
-
-
-	_openSeq=new CCArray(10);
-	_opens=new CCDictionary();
-	_closes=new CCDictionary();
+	_opens.clear();
+	_closes.clear();
+	_openSeq.clear();
 }
 
 /**
@@ -103,7 +89,7 @@ bool Astar::search()
 		return false;
 	}
 	
-	while (_openSeq->count()) {
+	while (_openSeq.size()) {
 		//取得下一个搜索点 
 		getNext();
 		removeFromOpen(_current);
@@ -174,8 +160,11 @@ bool Astar::checkNearby()
 void Astar::getNext()
 {
 	CC_SAFE_RELEASE(_current);
-	_current=(AstarNode*)_openSeq->objectAtIndex(0);
+	AstarOpenSeq::iterator begin = _openSeq.begin();
+	_current=*begin;
 	_current->retain();
+
+	_openSeq.erase(begin);
 }
 
 /**
@@ -184,19 +173,17 @@ void Astar::getNext()
 void Astar::setOpenSeqNode(AstarNode* node ,int g)
 {
 	node->retain();
-	_openSeq->removeObject(node);
+	_openSeq.eraseObject(node);
 	node->setG(g);
 	node->setF(node->getG()+node->getH());
     
 	int i=0;
-	Ref* pObject = NULL;
-	CCARRAY_FOREACH(_openSeq,pObject){
-		AstarNode* it=(AstarNode*)pObject;
-		if(node->getF()<it->getF()) break;
+	for (AstarOpenSeq::iterator iter = _openSeq.begin(); iter != _openSeq.end();++iter){
+		if (node->getF()<(*iter)->getF()) break;
 		i++;
 	}
     
-	_openSeq->insertObject(node,i);
+	_openSeq.insert(i,node);
 	CC_SAFE_RELEASE(node);
 }
 
@@ -207,22 +194,20 @@ void Astar::addToOpen(AstarNode* node)
 {
 	//CCLOG("addToOpen %d,%d",node->getX(),node->getY());
 	int i=0;
-	Ref* pObject = NULL;
-	CCARRAY_FOREACH(_openSeq,pObject){
-		AstarNode* it=(AstarNode*)pObject;
-		if(node->getF()<it->getF()) break;
+	for (AstarOpenSeq::iterator iter = _openSeq.begin(); iter != _openSeq.end(); ++iter){
+		if (node->getF()<(*iter)->getF()) break;
 		i++;
 	}
-	_openSeq->insertObject(node,i);
+	_openSeq.insert(i, node);
 	
-	CCDictionary* ymd=(CCDictionary*)_opens->objectForKey(node->getY());
-	if (ymd==NULL) {
-		ymd=new CCDictionary();
-		_opens->setObject(ymd,node->getY());
-		CC_SAFE_RELEASE(ymd);
+	int y = node->getY();
+
+	AstarOpenMap::iterator iter = _opens.find(y);
+	if (iter == _opens.end()){
+		_opens[y] = OneMap();
 	}
-	
-	ymd->setObject(node,node->getX());
+
+	_opens[y].insert(node->getX(),node);
 }
 
 /**
@@ -230,11 +215,12 @@ void Astar::addToOpen(AstarNode* node)
  */
 void Astar::removeFromOpen(AstarNode* node)
 {
-	_openSeq->removeObject(node);
+	_openSeq.eraseObject(node);
 
-	CCDictionary* ymd=(CCDictionary*)_opens->objectForKey(node->getY());
-	if (ymd!=NULL) {
-		ymd->removeObjectForKey(node->getX());
+	int y = node->getY();
+	AstarOpenMap::iterator iter = _opens.find(y);
+	if (iter != _opens.end()){
+		_opens[y].erase(node->getX());
 	}
 }
 
@@ -243,13 +229,13 @@ void Astar::removeFromOpen(AstarNode* node)
  */
 bool Astar::isInOpen(int x ,int y)
 {
-	CCDictionary* ymd=(CCDictionary*)_opens->objectForKey(y);
 
-	if(ymd==NULL) return false;
+	AstarOpenMap::iterator iter = _opens.find(y);
+	if (iter == _opens.end()){
+		return false;
+	}
 
-	AstarNode* node=(AstarNode*)ymd->objectForKey(x);
-
-	return node!=NULL;
+	return _opens[y].at(x) != nullptr;
 }
 
 /**
@@ -257,13 +243,12 @@ bool Astar::isInOpen(int x ,int y)
  */
 AstarNode* Astar::getFromOpen(int x ,int y)
 {
-	//CCLOG("addToOpen %d,%d",x,y);
-	CCDictionary* ymd=(CCDictionary*)_opens->objectForKey(y);
-	if(ymd==NULL) return NULL;
-	
-	AstarNode* node=(AstarNode*)ymd->objectForKey(x);
+	AstarOpenMap::iterator iter = _opens.find(y);
+	if (iter == _opens.end()){
+		return nullptr;
+	}
 
-	return node;
+	return _opens[y].at(x);
 }
 
 /**
@@ -272,15 +257,12 @@ AstarNode* Astar::getFromOpen(int x ,int y)
 void Astar::addToClose(int x,int y)
 {
 
-	CCDictionary* ymd=(CCDictionary*)_closes->objectForKey(y);
-	if (ymd==NULL) {
-		ymd=new CCDictionary();
-		_closes->setObject(ymd,y);
-		ymd->release();
+	AstarCloseMap::iterator iter = _closes.find(y);
+	if (iter == _closes.end()){
+		_closes[y] = std::unordered_map<int, int>();
 	}
-	
-	CCInteger* data=CCInteger::create(1);
-	ymd->setObject(data,x);
+
+	_closes[y][x] = 1;
 }
 
 /**
@@ -288,11 +270,13 @@ void Astar::addToClose(int x,int y)
  */
 bool Astar::isInClose(int x ,int y)
 {
-	CCDictionary* ymd=(CCDictionary*)_closes->objectForKey(y);
-	if(ymd==NULL) return false;
-	CCInteger* data=(CCInteger*)ymd->objectForKey(x);
 
-	return data!=NULL;
+	AstarCloseMap::iterator iter = _closes.find(y);
+	if (iter == _closes.end()){
+		return false;
+	}
+
+	return _closes[y][x];
 }
 
 /**
@@ -363,53 +347,44 @@ bool Astar::isEnd(int x ,int y ,int stepX ,int stepY)
 }
 
 //取得路径  路径是反向的，从终点指向起点，不包含终点和起点。
-CCArray* Astar::getPath()
+Astar::AstarPointVector Astar::getPath()
 {
-	CCArray* paths=CCArray::create();
+	AstarPointVector paths;
 	AstarNode* node=_current;
 	
 	while (node && node->getParent()!=NULL) {
-		CCPointValue* p=new CCPointValue(node->getX(),node->getY());
-		paths->addObject(p);
-		p->release();
+		paths.push_back(Point(node->getX(), node->getY()));
 		node=node->getParent();
 	}
 	return paths;
 }
 
 //取得路径  路径是反向的，从终点指向起点，包含起点，不包含终点。
-CCArray* Astar::getPathWithStart()
+Astar::AstarPointVector Astar::getPathWithStart()
 {
-	CCArray* paths=CCArray::create();
+	AstarPointVector paths;
 	AstarNode* node=_current;
 	
 	while (node) {
-		CCPointValue* p=new CCPointValue(node->getX(),node->getY());
-		paths->addObject(p);
-		p->release();
+		paths.push_back(Point(node->getX(), node->getY()));
 		node=node->getParent();
 	}
 	return paths;
 }
 
 //取得路径  路径是反向的，从终点指向起点，包含终点，不包含起点。
-CCArray* Astar::getPathWithEnd()
+Astar::AstarPointVector Astar::getPathWithEnd()
 {
-	CCArray* paths=getPath();
-	CCPointValue* p=new CCPointValue(_end->getX(),_end->getY());
-	paths->insertObject(p,0);
-	p->release();
+	AstarPointVector paths = getPath();
+	paths.insert(paths.begin(), Point(_end->getX(), _end->getY()));
 	return paths;
 }
 
 //取得路径  路径是反向的，从终点指向起点，包含终点和起点。
-CCArray* Astar::getPathWithStartEnd()
+Astar::AstarPointVector Astar::getPathWithStartEnd()
 {
-	CCArray* paths=getPathWithStart();
-	CCPointValue* p=new CCPointValue(_end->getX(),_end->getY());
-	paths->insertObject(p,0);
-	p->release();
-	paths->insertObject(p,0);
+	AstarPointVector paths = getPathWithStart();
+	paths.insert(paths.begin(), Point(_end->getX(), _end->getY()));
 	return paths;
 }
 
