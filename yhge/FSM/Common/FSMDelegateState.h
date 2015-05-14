@@ -19,7 +19,7 @@ public:
     //状态的拥有者，状态机或实体对象
     virtual void setOwner(Ref* owner)=0;
     virtual Ref* getOwner()=0;
-}
+};
 
 NS_CC_YHGE_END
 
