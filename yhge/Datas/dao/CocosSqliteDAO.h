@@ -125,7 +125,7 @@ public:
      *
      * @return where的条件
      */
-	std::string formateToConditionPrepare(const ValueMap& data, const ValueMap& whereData, const std::string& separator = "AND");
+	std::string formateToConditionPrepare(const ValueMap& data, ValueVector& whereData, const std::string& separator = "AND");
     
 protected:
     

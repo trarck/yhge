@@ -178,24 +178,22 @@ int CocosSqliteDAO::update(const std::string& table, const ValueMap& data, const
     updateSql+=formateToEqualPrepare(data);
     
     //检查有没有更新条件
-    if (where==NULL) {
+	if (where == ValueMapNull) {
         
         updateSql+=";";
         
         Statement stmt(*(_driver->getPtr()), updateSql);
         
         //绑定更新数据
-        CCDictElement* pElem=NULL;
-        
-        CCDICT_FOREACH(data, pElem) {
-            bindStatement(stmt,pElem->getStrKey(),static_cast<SimpleValue*>(pElem->getObject()));
-        }
+		for (ValueMap::const_iterator iter = data.begin(); iter != data.end(); ++iter){
+			bindStatement(stmt, iter->first, iter->second);
+		}
         
         return stmt.execute();
         
     }else{
         //生成where语句
-        CCArray* whereData=CCArray::create();
+        ValueVector whereData;
         
         std::string whereSql=formateToConditionPrepare(where, whereData);
         
@@ -209,29 +207,26 @@ int CocosSqliteDAO::update(const std::string& table, const ValueMap& data, const
         int i=1;
         
         //绑定更新数据
-        CCDictElement* pElem=NULL;
-        
-        CCDICT_FOREACH(data, pElem) {
-            bindStatement(stmt,pElem->getStrKey(),static_cast<SimpleValue*>(pElem->getObject()));
-            ++i;
-        }
-        
+		for (ValueMap::const_iterator iter = data.begin(); iter != data.end(); ++iter){
+			bindStatement(stmt, iter->first, iter->second);
+			++i;
+		}
+
         //绑定where数据
-        Ref* pObj=NULL;
-        CCARRAY_FOREACH(whereData, pObj) {
-            bindStatement(stmt,i++,static_cast<SimpleValue*>(pObj));
-        }
+		for (ValueVector::iterator iter = whereData.begin(); iter != whereData.end(); ++iter){
+			bindStatement(stmt, i++, *iter);
+		}
         
         return stmt.execute();
     }
 }
 
-int CocosSqliteDAO::remove(const std::string& table,CCDictionary* where)
+int CocosSqliteDAO::remove(const std::string& table, const ValueMap& where)
 {
     //生成sql
     std::string deleteSql = "DELETE FROM "+table+" WHERE ";
     
-    CCArray* whereData=CCArray::create();
+    ValueVector whereData;
     
     deleteSql+=formateToConditionPrepare(where,whereData);
     
@@ -241,9 +236,8 @@ int CocosSqliteDAO::remove(const std::string& table,CCDictionary* where)
     
     //绑定条件数据
     int i=1;
-    Ref* pObj=NULL;
-    CCARRAY_FOREACH(whereData, pObj) {
-        bindStatement(stmt,i++,static_cast<SimpleValue*>(pObj));
+	for (ValueVector::iterator iter = whereData.begin(); iter != whereData.end(); ++iter){
+        bindStatement(stmt,i++,*iter);
     }
     
     return stmt.execute();
@@ -264,7 +258,7 @@ int CocosSqliteDAO::remove(const std::string& table,CCDictionary* where)
  
  
  */
-std::string CocosSqliteDAO::formateToInsertPrepare(CCDictionary* data)
+std::string CocosSqliteDAO::formateToInsertPrepare(const ValueMap& data)
 {
     
     
@@ -273,9 +267,7 @@ std::string CocosSqliteDAO::formateToInsertPrepare(CCDictionary* data)
     
     bool isFirst=true;
     
-    CCDictElement* pElem=NULL;
-    
-    CCDICT_FOREACH(data, pElem) {
+	for (ValueMap::const_iterator iter = data.begin(); iter != data.end(); ++iter){
         
         //如果不是第一项，则加入分割符
         if (isFirst) {
@@ -285,10 +277,10 @@ std::string CocosSqliteDAO::formateToInsertPrepare(CCDictionary* data)
             values+=kSqlSeprate;
         }
         //`a`
-        fields+= kSqlFieldQuto+ std::string(pElem->getStrKey()) + kSqlFieldQuto;
+        fields+= kSqlFieldQuto+ iter->first + kSqlFieldQuto;
         
         //:a
-        values+= _prepareFlag + pElem->getStrKey();
+        values+= _prepareFlag + iter->first;
     }
     
     fields+=")";
@@ -311,15 +303,13 @@ std::string CocosSqliteDAO::formateToInsertPrepare(CCDictionary* data)
  `a`=:a,`b`=:b,`c`=:c
  
  */
-std::string CocosSqliteDAO::formateToEqualPrepare(CCDictionary* data)
+std::string CocosSqliteDAO::formateToEqualPrepare(const ValueMap& data)
 {
     std::string prepareStr="";
     
     bool isFirst=true;
     
-    CCDictElement* pElem=NULL;
-    
-    CCDICT_FOREACH(data, pElem) {
+	for (ValueMap::const_iterator iter = data.begin(); iter != data.end(); ++iter){
         
         //如果不是第一项，则加入分割符
         if (isFirst) {
@@ -329,9 +319,9 @@ std::string CocosSqliteDAO::formateToEqualPrepare(CCDictionary* data)
         }
         
         //`a`=:a
-        prepareStr+= kSqlFieldQuto+ std::string(pElem->getStrKey()) + kSqlFieldQuto
+		prepareStr += kSqlFieldQuto + iter->first + kSqlFieldQuto
         + "="
-        + _prepareFlag + pElem->getStrKey();
+		+ _prepareFlag + iter->first;
     }
     
     return prepareStr;
@@ -363,18 +353,16 @@ std::string CocosSqliteDAO::formateToEqualPrepare(CCDictionary* data)
  `a`=? AND (`b`=? OR `c`=?)
  
  */
-std::string CocosSqliteDAO::formateToConditionPrepare(CCDictionary* data,CCArray* whereData,const std::string& separator)
+std::string CocosSqliteDAO::formateToConditionPrepare(const ValueMap& data, ValueVector& whereData, const std::string& separator)
 {
     
     std::string prepareStr="";
     
     bool isFirst=true;
     
-    CCDictElement* pElem=NULL;
-    
-    CCDICT_FOREACH(data, pElem) {
+	for (ValueMap::const_iterator iter = data.begin(); iter != data.end(); ++iter){
         
-        std::string key=pElem->getStrKey();
+        std::string key=iter->first;
         
         if (isFirst) {
             isFirst=false;
@@ -384,10 +372,10 @@ std::string CocosSqliteDAO::formateToConditionPrepare(CCDictionary* data,CCArray
         
         if (key=="AND" || key=="OR") {
             
-            prepareStr+= "("+formateToConditionPrepare(static_cast<CCDictionary*>(pElem->getObject()),whereData,key)+")";
+            prepareStr+= "("+formateToConditionPrepare(iter->second.asValueMap(),whereData,key)+")";
             
         }else{
-            whereData->addObject(pElem->getObject());
+            whereData.push_back(iter->second);
             
             //`a`=?
             prepareStr+= kSqlFieldQuto+ key + kSqlFieldQuto + "= ?";
@@ -397,26 +385,26 @@ std::string CocosSqliteDAO::formateToConditionPrepare(CCDictionary* data,CCArray
     return prepareStr;
 }
 
-void CocosSqliteDAO::setRecordValue(const sqlite::Column& col, CCDictionary* record)
+void CocosSqliteDAO::setRecordValue(const sqlite::Column& col, ValueMap& record)
 {
     switch (col.getType()) {
         case SQLITE_INTEGER:
-            record->setObject(SimpleValue::create(col.getInt()), col.getName());
+			record[col.getName()] = col.getInt();
             break;
-        case SQLITE_FLOAT:
-            record->setObject(SimpleValue::create(col.getDouble()), col.getName());
+		case SQLITE_FLOAT:
+			record[col.getName()] = col.getDouble();
             break;
         case SQLITE_BLOB:{
             char* blobBegin=(char*)col.getBlob();
             std::string str(blobBegin,col.getBytes());
-            record->setObject(SimpleValue::create(str), col.getName());
+			record[col.getName()] = str;
             break;
         }
         case SQLITE_NULL:
-            record->setObject(SimpleValue::create(), col.getName());
+			record[col.getName()] = Value :: Null;
             break;
         case SQLITE_TEXT:
-            record->setObject(SimpleValue::create(col.getText()), col.getName());
+			record[col.getName()] = col.getText();
             break;
         default:
             break;
@@ -489,29 +477,29 @@ void CocosSqliteDAO::setRecordValue(const sqlite::Column& col, CCDictionary* rec
 //}
 
 
-void CocosSqliteDAO::bindStatement(Statement& stmt,const std::string& name,SimpleValue* val)
+void CocosSqliteDAO::bindStatement(Statement& stmt,const std::string& name,const Value& val)
 {
     
-    switch (val->getType()) {
-        case SimpleValue::INTEGER:
-            stmt.bind(name, val->asByte());
+    switch (val.getType()) {
+		case Value::Type::INTEGER:
+            stmt.bind(name, val.asByte());
             break;
-        case SimpleValue::BYTE:
-            stmt.bind(name, val->asInt());
+		case Value::Type::BYTE:
+            stmt.bind(name, val.asInt());
             break;
-        case SimpleValue::STRING:
-            stmt.bind(name, val->asString());
+		case Value::Type::STRING:
+            stmt.bind(name, val.asString());
             break;
-        case SimpleValue::FLOAT:
-            stmt.bind(name, val->asFloat());
+		case Value::Type::FLOAT:
+            stmt.bind(name, val.asFloat());
             break;
-        case SimpleValue::DOUBLE:
-            stmt.bind(name, val->asDouble());
+		case Value::Type::DOUBLE:
+            stmt.bind(name, val.asDouble());
             break;
-        case SimpleValue::BOOLEAN:
-            stmt.bind(name, val->asBool()?1:0);
+		case Value::Type::BOOLEAN:
+            stmt.bind(name, val.asBool()?1:0);
             break;
-        case SimpleValue::NONE:
+		case Value::Type::NONE:
             stmt.bind(name,kSqlNullValue);
             break;
         default:
@@ -519,29 +507,29 @@ void CocosSqliteDAO::bindStatement(Statement& stmt,const std::string& name,Simpl
     }
 }
 
-void CocosSqliteDAO::bindStatement(Statement& stmt,int index,SimpleValue* val)
+void CocosSqliteDAO::bindStatement(Statement& stmt,int index,const Value& val)
 {
     
-    switch (val->getType()) {
-        case SimpleValue::INTEGER:
-            stmt.bind(index, val->asByte());
+    switch (val.getType()) {
+		case Value::Type::INTEGER:
+            stmt.bind(index, val.asByte());
             break;
-        case SimpleValue::BYTE:
-            stmt.bind(index, val->asInt());
+		case Value::Type::BYTE:
+            stmt.bind(index, val.asInt());
             break;
-        case SimpleValue::STRING:
-            stmt.bind(index, val->asString());
+		case Value::Type::STRING:
+            stmt.bind(index, val.asString());
             break;
-        case SimpleValue::FLOAT:
-            stmt.bind(index, val->asFloat());
+		case Value::Type::FLOAT:
+            stmt.bind(index, val.asFloat());
             break;
-        case SimpleValue::DOUBLE:
-            stmt.bind(index, val->asDouble());
+		case Value::Type::DOUBLE:
+            stmt.bind(index, val.asDouble());
             break;
-        case SimpleValue::BOOLEAN:
-            stmt.bind(index, val->asBool()?1:0);
+		case Value::Type::BOOLEAN:
+            stmt.bind(index, val.asBool()?1:0);
             break;
-        case SimpleValue::NONE:
+		case Value::Type::NONE:
             stmt.bind(index,kSqlNullValue);
             break;
         default:
