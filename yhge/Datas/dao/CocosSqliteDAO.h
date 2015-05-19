@@ -37,14 +37,14 @@ public:
      *
      * @return json的数组
      */
-    CCArray* fetchAll(const std::string& querySql);
+    ValueVector fetchAll(const std::string& querySql);
     
     /**
      * @brief 取得第一条查询结果
      *
      * @return json的对象
      */
-    CCDictionary* fetchOne(const std::string& querySql);
+    ValueMap fetchOne(const std::string& querySql);
     
     /**
      * @brief 执行sql语句
@@ -80,7 +80,7 @@ public:
      *
      * @return 影响的行数
      */
-    int insert(const std::string& table,CCDictionary* data);
+    int insert(const std::string& table,const ValueMap& data);
     
     /**
      * @brief 批量像一个表里插入数据
@@ -88,21 +88,21 @@ public:
      *
      * @return 影响的行数
      */
-    void batchInsert(const std::string& table,CCArray* data);
+    void batchInsert(const std::string& table,const ValueVector& data);
     
     /**
      * @brief 更新一个表里数据
      *
      * @return 影响的行数
      */
-    int update(const std::string& table,CCDictionary* data,CCDictionary* where);
+	int update(const std::string& table, const ValueMap& data, const ValueMap& where);
     
     /**
      * @brief 删除一个表里数据
      *
      * @return 影响的行数
      */
-    int remove(const std::string& table,CCDictionary* where);
+	int remove(const std::string& table, const ValueMap& where);
     
     
     /**
@@ -110,14 +110,14 @@ public:
      *
      * @return insert的values
      */
-    std::string formateToInsertPrepare(CCDictionary* data);
+	std::string formateToInsertPrepare(const ValueMap& data);
     
     /**
      * @brief 格式化数据成赋值方便使用的语句
      *
      * @return update的set
      */
-    std::string formateToEqualPrepare(CCDictionary* data);
+	std::string formateToEqualPrepare(const ValueMap& data);
     
     
     /**
@@ -125,14 +125,14 @@ public:
      *
      * @return where的条件
      */
-    std::string formateToConditionPrepare(CCDictionary* data,CCArray* whereData,const std::string& separator="AND");
+	std::string formateToConditionPrepare(const ValueMap& data, const ValueMap& whereData, const std::string& separator = "AND");
     
 protected:
     
     /**
      * @brief 设置一个记录的列值
      */
-    void setRecordValue(const sqlite::Column& col, CCDictionary* record);
+	void setRecordValue(const sqlite::Column& col, ValueMap& record);
     
 //    /**
 //     * @brief 绑定一个列值
@@ -147,12 +147,12 @@ protected:
     /**
      * @brief 绑定一个列值
      */
-    void bindStatement(sqlite::Statement& stmt,const std::string& name,SimpleValue* val);
+    void bindStatement(sqlite::Statement& stmt,const std::string& name,const Value& val);
     
     /**
      * @brief 绑定一个列值
      */
-    void bindStatement(sqlite::Statement& stmt,int index,SimpleValue* val);
+    void bindStatement(sqlite::Statement& stmt,int index,const Value& val);
     
 public:
     

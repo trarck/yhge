@@ -64,36 +64,36 @@ int CocosSqliteDAO::fetchNumber(const std::string& querySql)
     return 0;
 }
 
-CCArray* CocosSqliteDAO::fetchAll(const std::string& querySql)
+ValueVector CocosSqliteDAO::fetchAll(const std::string& querySql)
 {
     Statement stmt(*(_driver->getPtr()), querySql);
     
     int colCount=stmt.getColumnCount();
     
-    CCArray* result=CCArray::create();
+	ValueVector result ;
     
     while (stmt.executeStep()) {
         
-        CCDictionary* record=CCDictionary::create();
+        ValueMap record;
         
         for (int i=0; i<colCount; i++) {
             setRecordValue(stmt.getColumn(i),record);
         }
         
-        result->addObject(record);
+        result.push_back(Value(record));
     }
     
     return result;
     
 }
 
-CCDictionary* CocosSqliteDAO::fetchOne(const std::string& querySql)
+ValueMap CocosSqliteDAO::fetchOne(const std::string& querySql)
 {
     Statement stmt(*(_driver->getPtr()), querySql);
     
     int colCount=stmt.getColumnCount();
     
-    CCDictionary* result=CCDictionary::create();
+	ValueMap result;
     
     if (stmt.executeStep()) {
         for (int i=0; i<colCount; i++) {
@@ -119,7 +119,7 @@ int CocosSqliteDAO::remove(const std::string& deleteSql)
     return _driver->getPtr()->execute(deleteSql);
 }
 
-int CocosSqliteDAO::insert(const std::string& table,CCDictionary* data)
+int CocosSqliteDAO::insert(const std::string& table,const ValueMap& data)
 {
     //生成sql
     std::string insertSql = "INSERT INTO "+table+" ";
@@ -130,22 +130,20 @@ int CocosSqliteDAO::insert(const std::string& table,CCDictionary* data)
     
     Statement stmt(*(_driver->getPtr()), insertSql);
     
-    //绑定变量
-    CCDictElement* pElem=NULL;
-    
-    CCDICT_FOREACH(data, pElem) {
-        bindStatement(stmt,pElem->getStrKey(),static_cast<SimpleValue*>(pElem->getObject()));
-    }
-    
+	//绑定变量
+	for (ValueMap::const_iterator iter = data.begin(); iter != data.end();++iter){
+		bindStatement(stmt,iter->first, iter->second);
+	}
+
     return stmt.execute();
 }
 
-void CocosSqliteDAO::batchInsert(const std::string& table,CCArray* data)
+void CocosSqliteDAO::batchInsert(const std::string& table,const ValueVector& data)
 {
     //准备sql
     std::string insertSql = "INSERT INTO "+table+" ";
     
-    insertSql+=formateToInsertPrepare(static_cast<CCDictionary*>(data->objectAtIndex(0)));
+    insertSql+=formateToInsertPrepare(data.front().asValueMap());
     
     insertSql+=";";
     
@@ -153,7 +151,7 @@ void CocosSqliteDAO::batchInsert(const std::string& table,CCArray* data)
     Statement stmt(*(_driver->getPtr()), insertSql);
     
     
-    int count=data->count();
+    int count=data.size();
     
     for(unsigned int i=0;i<count;++i){
         
@@ -163,18 +161,16 @@ void CocosSqliteDAO::batchInsert(const std::string& table,CCArray* data)
         }
         
         //分别绑定每一条记录
-        CCDictionary* record=static_cast<CCDictionary*>(data->objectAtIndex(i));
-        
-        CCDictElement* pElem=NULL;
-        
-        CCDICT_FOREACH(record, pElem) {
-            bindStatement(stmt,pElem->getStrKey(),static_cast<SimpleValue*>(pElem->getObject()));
-        }
+		ValueMap record = data.at(i).asValueMap();
+		for (ValueMap::const_iterator iter = record.begin(); iter != record.end(); ++iter){
+			bindStatement(stmt, iter->first, iter->second);
+		}
+
         stmt.execute();
     }
 }
 
-int CocosSqliteDAO::update(const std::string& table,CCDictionary* data,CCDictionary* where)
+int CocosSqliteDAO::update(const std::string& table, const ValueMap& data, const ValueMap& where)
 {
     //生成sql
     std::string updateSql = "UPDATE "+table+" SET ";

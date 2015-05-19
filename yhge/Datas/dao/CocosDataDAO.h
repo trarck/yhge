@@ -23,80 +23,49 @@ public:
     
     virtual void unload();
     
-    inline CCDictionary* getValue(const std::string& key)
+    inline Value getValue(const std::string& key)
     {
-        return static_cast<CCDictionary*>(_data->objectForKey(key));
+		return _data[key];
     }
     
     inline void setValue(const std::string& key,int value)
     {
-        _data->setObject(CCInteger::create(value), key);
+		_data[key] = Value(value);
     }
     
     inline void setValue(const std::string& key,float value)
     {
-        _data->setObject(CCFloat::create(value), key);
+		_data[key] = Value(value);
     }
     
     inline void setValue(const std::string& key,double value)
     {
-        _data->setObject(CCDouble::create(value), key);
+		_data[key] = Value(value);
     }
     
     inline void setValue(const std::string& key,const std::string& value)
     {
-        _data->setObject(CCString::create(value), key);
+		_data[key] = Value(value);
     }
     
-    inline void setValue(const std::string& key,CCArray* value)
+    inline void setValue(const std::string& key,const ValueVector& value)
     {
-        _data->setObject(value, key);
-    }
-    
-    inline void setValue(const std::string& key,CCDictionary* value)
-    {
-        _data->setObject(value, key);
-    }
-    
-    
-    inline CCDictionary* getValue(int key)
-    {
-        return static_cast<CCDictionary*>(_data->objectForKey(key));
-    }
-    
-    inline void setValue(int key,int value)
-    {
-        _data->setObject(CCInteger::create(value), key);
-    }
-    
-    inline void setValue(int key,float value)
-    {
-        _data->setObject(CCFloat::create(value), key);
-    }
-    
-    inline void setValue(int key,double value)
-    {
-        _data->setObject(CCDouble::create(value), key);
-    }
-    
-    inline void setValue(int key,const std::string& value)
-    {
-        _data->setObject(CCString::create(value), key);
-    }
-    
-    inline void setValue(int key,CCArray* value)
-    {
-        _data->setObject(value, key);
-    }
-    
-    inline void setValue(int key,CCDictionary* value)
-    {
-        _data->setObject(value, key);
+		_data[key] = value;
     }
 
+	inline void setValue(const std::string& key, const ValueMap& value)
+	{
+		_data[key] = value;
+	}
+
 protected:
-    
-    CCDictionary* _data;
+	//union
+	//{
+	//	StringKeyDataMap* strKeyData;
+	//	IntKeyDataMap* intKeyData;
+	//} _data;
+
+	ValueMap _data;
     
 };
 
