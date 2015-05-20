@@ -1,4 +1,4 @@
-#include "CocosDataDAO.h"
+﻿#include "CocosDataDAO.h"
 
 USING_NS_CC;
 
@@ -39,7 +39,7 @@ void CocosDataDAO::loadFromUrl(const std::string& url)
 
 void CocosDataDAO::unload()
 {
-    CC_SAFE_RELEASE_NULL(_data);
+	_data.clear();
 }
 
 NS_CC_YHGE_DATA_END

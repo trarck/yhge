@@ -1,4 +1,4 @@
-#include "JSONDataDAO.h"
+﻿#include "JSONDataDAO.h"
 
 USING_NS_CC;
 
@@ -16,7 +16,7 @@ JSONDataDAO::~JSONDataDAO()
 
 void JSONDataDAO::loadFromFile(const std::string& file)
 {
-    unsigned long size = 0;
+	ssize_t size = 0;
     
     unsigned char * pBytes = CCFileUtils::sharedFileUtils()->getFileData(file.c_str(), "rb", &size);
     unsigned char *end = pBytes + size;

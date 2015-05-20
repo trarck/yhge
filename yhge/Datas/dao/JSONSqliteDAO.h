@@ -1,4 +1,4 @@
-#ifndef YHGE_DATA_DAO_JSONSQLITEDAO_H_
+﻿#ifndef YHGE_DATA_DAO_JSONSQLITEDAO_H_
 #define YHGE_DATA_DAO_JSONSQLITEDAO_H_
 
 #include "cocos2d.h"

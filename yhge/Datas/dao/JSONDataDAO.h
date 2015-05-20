@@ -1,4 +1,4 @@
-#ifndef YHGE_DATAS_DAO_JSONDATADAO_H_
+﻿#ifndef YHGE_DATAS_DAO_JSONDATADAO_H_
 #define YHGE_DATAS_DAO_JSONDATADAO_H_
 
 #include <yhge/Jsoncpp/json.h>

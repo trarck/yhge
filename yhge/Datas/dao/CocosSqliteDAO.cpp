@@ -1,4 +1,4 @@
-#include "CocosSqliteDAO.h"
+﻿#include "CocosSqliteDAO.h"
 
 USING_NS_CC;
 USING_NS_CC_YHGE_SQLITE;

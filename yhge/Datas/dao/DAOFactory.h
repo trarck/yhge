@@ -1,4 +1,4 @@
-#ifndef YHGE_DATA_DAO_DAOFactory_H_
+﻿#ifndef YHGE_DATA_DAO_DAOFactory_H_
 #define YHGE_DATA_DAO_DAOFactory_H_
 
 #include "cocos2d.h"
@@ -11,6 +11,8 @@ NS_CC_YHGE_DATA_BEGIN
 class DAOFactory:public Ref
 {
 public:
+
+	typedef Map<std::string, DAO*> DaoMap;
     
 	DAOFactory();
     
@@ -40,9 +42,9 @@ protected:
     
     unsigned int _openFlag;
     
-    CCDictionary* _jsonDaos;
+	DaoMap _jsonDaos;
     
-    CCDictionary* _cocosDaos;
+	DaoMap _cocosDaos;
     
 };
 
