@@ -1,4 +1,4 @@
-
+﻿
 #include "StaticSideViewCoordinateFormulae.h"
 
 NS_CC_YHGE_DIMETRIC_BEGIN

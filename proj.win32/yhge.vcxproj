@@ -130,15 +130,9 @@
     <ClInclude Include="..\yhge\Datas\dao\JSONDataDAO.h" />
     <ClInclude Include="..\yhge\Datas\dao\JSONSqliteDAO.h" />
     <ClInclude Include="..\yhge\Datas\DataMacros.h" />
-    <ClInclude Include="..\yhge\Dimetric\DimetricMacros.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Dimetric\StaticSideViewCoordinateFormulae.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Dimetric\StaticTopViewCoordinateFormulae.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="..\yhge\Dimetric\DimetricMacros.h" />
+    <ClInclude Include="..\yhge\Dimetric\StaticSideViewCoordinateFormulae.h" />
+    <ClInclude Include="..\yhge\Dimetric\StaticTopViewCoordinateFormulae.h" />
     <ClInclude Include="..\yhge\EntityComponent\Components\AnimationComponent.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
@@ -531,12 +525,8 @@
     <ClCompile Include="..\yhge\Datas\dao\DAOFactory.cpp" />
     <ClCompile Include="..\yhge\Datas\dao\JSONDataDAO.cpp" />
     <ClCompile Include="..\yhge\Datas\dao\JSONSqliteDAO.cpp" />
-    <ClCompile Include="..\yhge\Dimetric\StaticSideViewCoordinateFormulae.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Dimetric\StaticTopViewCoordinateFormulae.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\yhge\Dimetric\StaticSideViewCoordinateFormulae.cpp" />
+    <ClCompile Include="..\yhge\Dimetric\StaticTopViewCoordinateFormulae.cpp" />
     <ClCompile Include="..\yhge\EntityComponent\Components\AnimationComponent.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>

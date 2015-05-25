@@ -1,4 +1,4 @@
-/**
+﻿/**
  *  侧视角斜边形映射公式
  */
 
@@ -47,64 +47,64 @@ public:
      * @param z 游戏的z坐标
      * @return 游戏世界的x,y坐标
      */
-    static inline CCPoint viewToGame3F(float x,float y,float gameZ)
+	static inline Vec2 viewToGame3F(float x, float y, float gameZ)
 	{
-		CCPoint p;
+		Vec2 p;
         p.x=(x-2*y+2*gameZ*sZUnit)/sXUnit;//x=(x'-2y'+2z*uz)/ux;
 		p.y=4*(y-gameZ*sZUnit)/sYUnit;//y=4(y'-z*uz)/uy
 		return p;
 	}
     
-	static inline CCPoint viewToGame2F(float x,float y)
+	static inline Vec2 viewToGame2F(float x, float y)
 	{
-		CCPoint p;
+		Vec2 p;
         p.x=(x-2*y)/sXUnit;//x=(x'-2y'+2z*uz)/ux;
 		p.y=4*y/sYUnit;//y=4(y'-z*uz)/uy
 		return p;
 	}
 
-	static inline CCPoint viewToGamePoint(const CCPoint& point)
+	static inline Vec2 viewToGamePoint(const Vec2& point)
 	{
 		return viewToGame2F(point.x,point.y);
 	}
 
-	static inline CCPoint viewToGameCell2F (float x,float  y)
+	static inline Vec2 viewToGameCell2F (float x,float  y)
 	{
-		CCPoint p=viewToGame2F(x,y);
+		Vec2 p=viewToGame2F(x,y);
 		p.x=floor(p.x);
 		p.y=floor(p.y);
 		return p;
 	}
 
-	static inline CCPoint viewToGameCellPoint (const CCPoint& point)
+	static inline Vec2 viewToGameCellPoint (const Vec2& point)
 	{
 		return viewToGameCell2F(point.x,point.y);
 	}
 
-	static inline CCPoint gameToView3F(float x ,float y ,float z)
+	static inline Vec2 gameToView3F(float x ,float y ,float z)
 	{
-		CCPoint p;
+		Vec2 p;
 		p.x=x*sXUnit+y*sHalfYUnit;//x'=x*ux+y*uy/2;
 		p.y=z*sZUnit+y*sQuarterYUnit;//y'=z*uz+y*uy/4;
 		return p;
 	}
 
-	static inline CCPoint gameToView2F(float x, float y)
+	static inline Vec2 gameToView2F(float x, float y)
 	{
-		CCPoint p;
+		Vec2 p;
 		p.x=x*sXUnit+y*sHalfYUnit;//x'=x*ux+y*uy/2;
 		p.y=y*sQuarterYUnit;//y'=z*uz+y*uy/4;
 		return p;
 	}
 
-	static inline CCPoint gameToViewPoint(const CCPoint&  point)
+	static inline Vec2 gameToViewPoint(const Vec2&  point)
 	{
 		return gameToView2F(point.x,point.y);
 	}
 
 	//==============使用传址的方式=====================//
 
-	static inline void viewToGame2FP(float x,float y,CCPoint* destPoint)
+	static inline void viewToGame2FP(float x,float y,Vec2* destPoint)
 	{
 		x=x/sTileWidth;//x=x/64
 		y=y/sTileHeight;//y=y/32
@@ -112,37 +112,37 @@ public:
 		destPoint->y=y-x;
 	}
 
-	static inline void viewToGamePointP(const CCPoint& point,CCPoint* destPoint)
+	static inline void viewToGamePointP(const Vec2& point,Vec2* destPoint)
 	{
 		viewToGame2FP(point.x,point.y,destPoint);
 	}
 
-	static inline void viewToGameCell2FP(float x,float  y,CCPoint* destPoint)
+	static inline void viewToGameCell2FP(float x,float  y,Vec2* destPoint)
 	{
 		viewToGame2FP(x,y,destPoint);
 		destPoint->x=floor(destPoint->x);
 		destPoint->y=floor(destPoint->y);
 	}
 
-	static inline void viewToGameCellPointP (const CCPoint& point,CCPoint* destPoint)
+	static inline void viewToGameCellPointP (const Vec2& point,Vec2* destPoint)
 	{
 		viewToGameCell2FP(point.x,point.y,destPoint);
 	}
 
-	static inline void gameToView3FP(float x ,float y ,float z,CCPoint* destPoint)
+	static inline void gameToView3FP(float x ,float y ,float z,Vec2* destPoint)
 	{
         destPoint->x=x*sXUnit+y*sHalfYUnit;//x'=x*ux+y*uy/2;
 		destPoint->y=z*sZUnit+y*sQuarterYUnit;//y'=z*uz+y*uy/4;
         
 	}
 
-	static inline void gameToView2FP(float x, float y,CCPoint* destPoint)
+	static inline void gameToView2FP(float x, float y,Vec2* destPoint)
 	{
 		destPoint->x=x*sXUnit+y*sHalfYUnit;//x'=x*ux+y*uy/2;
 		destPoint->y=y*sQuarterYUnit;//y'=z*uz+y*uy/4;
 	}
 
-	static inline void gameToViewPointP(const CCPoint&  point,CCPoint* destPoint)
+	static inline void gameToViewPointP(const Vec2&  point,Vec2* destPoint)
 	{
 		gameToView2FP(point.x,point.y,destPoint);
 	}
