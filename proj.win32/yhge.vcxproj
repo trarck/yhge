@@ -70,54 +70,14 @@
     <ClInclude Include="..\yhge\Base\Internals.h" />
     <ClInclude Include="..\yhge\Base\Log.h" />
     <ClInclude Include="..\yhge\Base\RefCount.h" />
-    <ClInclude Include="..\yhge\CocosExt\Actions\CCParabolaMove.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCActionMessage.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCAdaptSprite.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCCallFuncNO.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCDefaultTexture.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCGeometryValue.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCRef.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCSelectorWrap.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCSimpleValue.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CocosValue.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\JsonObject.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\Support\base64.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\Support\ccCArray.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\Support\CCMap.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\Support\CCValue.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\Support\CCVector.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\Actions\ParabolaMove.h" />
+    <ClInclude Include="..\yhge\CocosExt\DefaultTexture.h" />
+    <ClInclude Include="..\yhge\CocosExt\GeometryObject.h" />
+    <ClInclude Include="..\yhge\CocosExt\PtrObject.h" />
+    <ClInclude Include="..\yhge\CocosExt\ValueObject.h" />
+    <ClInclude Include="..\yhge\CocosExt\JsonObject.h" />
+    <ClInclude Include="..\yhge\CocosExt\Support\base64.h" />
+    <ClInclude Include="..\yhge\CocosExt\Support\ccCArray.h" />
     <ClInclude Include="..\yhge\DataStructure\DataStructureMacros.h" />
     <ClInclude Include="..\yhge\DataStructure\Iterator-implement.h" />
     <ClInclude Include="..\yhge\DataStructure\Iterator.h" />
@@ -377,48 +337,13 @@
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarFlexible.cpp" />
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\AstarNode.cpp" />
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.cpp" />
-    <ClCompile Include="..\yhge\CocosExt\Actions\CCParabolaMove.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCActionMessage.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCAdaptSprite.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCCallFuncNO.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCDefaultTexture.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCGeometryValue.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCRef.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCSelectorWrap.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCSimpleValue.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CocosValue.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\JsonObject.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\Support\base64.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\Support\ccCArray.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\Support\CCValue.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\Actions\ParabolaMove.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\DefaultTexture.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\GeometryObject.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\ValueObject.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\JsonObject.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\Support\base64.cpp" />
+    <ClCompile Include="..\yhge\CocosExt\Support\ccCArray.cpp" />
     <ClCompile Include="..\yhge\Datas\dao\CocosDataDAO.cpp" />
     <ClCompile Include="..\yhge\Datas\dao\CocosSqliteDAO.cpp" />
     <ClCompile Include="..\yhge\Datas\dao\DAO.cpp" />

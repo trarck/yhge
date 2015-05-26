@@ -11,7 +11,7 @@ NS_CC_YHGE_BEGIN
  * 把json值包装成 cocos object
  * 避免值对象的copy
  */
-class JsonObject : public cocos2d::Ref
+class JsonObject : public Ref
 {
 public:
 	inline JsonObject()

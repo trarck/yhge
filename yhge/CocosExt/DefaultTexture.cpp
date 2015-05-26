@@ -1,4 +1,4 @@
-#include "CCDefaultTexture.h"
+#include "DefaultTexture.h"
 
 USING_NS_CC;
 
@@ -14,37 +14,37 @@ static unsigned char cc_2x2_white_image[] = {
 
 #define CC_YH_2x2_WHITE_IMAGE_KEY  "cc_2x2_white_image"
 
-static CCDefaultTexture* s_defaultTexture=NULL;
+static DefaultTexture* s_defaultTexture=NULL;
 
-CCDefaultTexture::CCDefaultTexture()
+DefaultTexture::DefaultTexture()
     :_texture(NULL)
 {
 
 }
 
-CCDefaultTexture::~CCDefaultTexture()
+DefaultTexture::~DefaultTexture()
 {
     CC_SAFE_RELEASE_NULL(_texture);
 }
 
-CCDefaultTexture* CCDefaultTexture::getInstance()
+DefaultTexture* DefaultTexture::getInstance()
 {
     if (!s_defaultTexture)
     {
-        s_defaultTexture=new CCDefaultTexture();
+        s_defaultTexture=new DefaultTexture();
     }
     return s_defaultTexture;
 }
 
-CCTexture2D* CCDefaultTexture::createDefaultTexture()
+Texture2D* DefaultTexture::createDefaultTexture()
 {
     if (!_texture)
     {
-        CCImage* image = new CCImage();
-        bool isOK = image->initWithImageData(cc_2x2_white_image, sizeof(cc_2x2_white_image), CCImage::kFmtRawData, 2, 2, 8);
+        Image* image = new Image();
+		bool isOK = image->initWithRawData(cc_2x2_white_image, sizeof(cc_2x2_white_image), 2, 2, 8);
         CCAssert(isOK, "The 2x2 empty texture was created unsuccessfully.");
 
-        CCTexture2D* texture = CCTextureCache::sharedTextureCache()->addUIImage(image, CC_YH_2x2_WHITE_IMAGE_KEY);
+        Texture2D* texture = TextureCache::sharedTextureCache()->addUIImage(image, CC_YH_2x2_WHITE_IMAGE_KEY);
         CC_SAFE_RELEASE(image);
         setTexture(texture);
     }
@@ -52,7 +52,7 @@ CCTexture2D* CCDefaultTexture::createDefaultTexture()
     return _texture;
 }
 
-CCTexture2D* CCDefaultTexture::getTexture()
+Texture2D* DefaultTexture::getTexture()
 {
     return _texture?_texture:this->createDefaultTexture();
 }

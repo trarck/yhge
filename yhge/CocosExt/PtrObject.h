@@ -1,5 +1,5 @@
-#ifndef YHGE_COCOSEXT_CCREF_H_
-#define YHGE_COCOSEXT_CCREF_H_
+#ifndef YHGE_COCOSEXT_PTROBJECT_H_
+#define YHGE_COCOSEXT_PTROBJECT_H_
 
 #include "cocos2d.h"
 #include <yhge/YHGEMacros.h>
@@ -23,22 +23,22 @@ public:
  * 或者给普通指针一个ref count;
  */
 template <class T,typename Deallocater= RefObjectDeallocater<T> >
-class CCRef : public cocos2d::Ref
+class PtrObject : public cocos2d::Ref
 {
 public:
-	inline CCRef()
+	inline PtrObject()
     :_ptr(NULL)
 	{
 		
 	}
 	
-    inline CCRef(T* ptr)
+    inline PtrObject(T* ptr)
     :_ptr(ptr)
     {
         
     }
     
-    ~CCRef(){
+    ~PtrObject(){
         if (_ptr) {
             Deallocater::deallocate(_ptr);
             _ptr=NULL;
@@ -54,18 +54,18 @@ public:
         return _ptr;
     }
 	
-	inline static CCRef* create(T* ptr)
+	inline static PtrObject* create(T* ptr)
 	{
-		CCRef* pRet=new CCRef(ptr);
+		PtrObject* pRet=new PtrObject(ptr);
 		pRet->autorelease();
 		return pRet;
 	}
     
 private:
     
-    CCRef(const CCRef& other);
+    PtrObject(const PtrObject& other);
     
-    CCRef& operator= (const CCRef& other);
+    PtrObject& operator= (const PtrObject& other);
     
 	T* _ptr;
 };
@@ -73,4 +73,4 @@ private:
 
 NS_CC_YHGE_END
 
-#endif // YHGE_COCOSEXT_CCREF_H_
+#endif // YHGE_COCOSEXT_PTROBJECT_H_

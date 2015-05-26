@@ -3,13 +3,12 @@
 
 #include "cocos2d.h"
 #include <yhge/Sqlite/SqliteDriver.h>
-#include <yhge/CocosExt/CCRef.h>
-#include <yhge/CocosExt/CCSimpleValue.h>
+#include <yhge/CocosExt/PtrObject.h>
 #include "DAO.h"
 
 NS_CC_YHGE_DATA_BEGIN
 
-typedef CCRef<sqlite::SqliteDriver> CocosSqliteDriver;
+typedef PtrObject<sqlite::SqliteDriver> CocosSqliteDriver;
 
 class CocosSqliteDAO:public DAO
 {

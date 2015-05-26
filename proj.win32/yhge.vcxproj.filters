@@ -126,18 +126,6 @@
     <ClInclude Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.h">
       <Filter>Arithmetic\Search\AStar</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCCallFuncNO.h">
-      <Filter>CocosExt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCGeometryValue.h">
-      <Filter>CocosExt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCSelectorWrap.h">
-      <Filter>CocosExt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\Actions\CCParabolaMove.h">
-      <Filter>CocosExt\Actions</Filter>
-    </ClInclude>
     <ClInclude Include="..\yhge\Event\Event.h">
       <Filter>Event</Filter>
     </ClInclude>
@@ -315,9 +303,6 @@
     <ClInclude Include="..\yhge\Isometric\tile\IsoTileUtils.h">
       <Filter>Isometric\tile</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCDefaultTexture.h">
-      <Filter>CocosExt</Filter>
-    </ClInclude>
     <ClInclude Include="..\yhge\Isometric\ISOCamera.h">
       <Filter>Isometric</Filter>
     </ClInclude>
@@ -411,12 +396,6 @@
     <ClInclude Include="..\yhge\EntityComponent\Components\SceenCoordMoveComponent.h">
       <Filter>EntityComponent\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\Support\CCMap.h">
-      <Filter>CocosExt\Support</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\Support\CCVector.h">
-      <Filter>CocosExt\Support</Filter>
-    </ClInclude>
     <ClInclude Include="..\yhge\Arithmetic\Formula\DamageFormula.h">
       <Filter>Arithmetic\Formula</Filter>
     </ClInclude>
@@ -434,9 +413,6 @@
     </ClInclude>
     <ClInclude Include="..\yhge\Sqlite\Transaction.h">
       <Filter>Sqlite</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\Support\CCValue.h">
-      <Filter>CocosExt\Support</Filter>
     </ClInclude>
     <ClInclude Include="..\yhge\Jsoncpp\autolink.h">
       <Filter>Jsoncpp</Filter>
@@ -473,21 +449,6 @@
     </ClInclude>
     <ClInclude Include="..\yhge\Event\StringifyEventListenerManager.h">
       <Filter>Event</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCAdaptSprite.h">
-      <Filter>CocosExt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCActionMessage.h">
-      <Filter>CocosExt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCRef.h">
-      <Filter>CocosExt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CCSimpleValue.h">
-      <Filter>CocosExt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\yhge\CocosExt\CocosValue.h">
-      <Filter>CocosExt</Filter>
     </ClInclude>
     <ClInclude Include="..\yhge\CocosExt\JsonObject.h">
       <Filter>CocosExt</Filter>
@@ -636,6 +597,21 @@
     <ClInclude Include="..\yhge\Base\RefCount.h">
       <Filter>Base</Filter>
     </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\PtrObject.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\ValueObject.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\GeometryObject.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\DefaultTexture.h">
+      <Filter>CocosExt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\yhge\CocosExt\Actions\ParabolaMove.h">
+      <Filter>CocosExt\Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\Astar.cpp">
@@ -649,18 +625,6 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Arithmetic\Search\AStar\CallbackAstar.cpp">
       <Filter>Arithmetic\Search\AStar</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCCallFuncNO.cpp">
-      <Filter>CocosExt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCGeometryValue.cpp">
-      <Filter>CocosExt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCSelectorWrap.cpp">
-      <Filter>CocosExt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\Actions\CCParabolaMove.cpp">
-      <Filter>CocosExt\Actions</Filter>
     </ClCompile>
     <ClCompile Include="..\yhge\Event\Event.cpp">
       <Filter>Event</Filter>
@@ -797,9 +761,6 @@
     <ClCompile Include="..\yhge\Isometric\tile\IsoTileUtils.cpp">
       <Filter>Isometric\tile</Filter>
     </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCDefaultTexture.cpp">
-      <Filter>CocosExt</Filter>
-    </ClCompile>
     <ClCompile Include="..\yhge\Isometric\ISOCamera.cpp">
       <Filter>Isometric</Filter>
     </ClCompile>
@@ -902,9 +863,6 @@
     <ClCompile Include="..\yhge\Sqlite\Transaction.cpp">
       <Filter>Sqlite</Filter>
     </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\Support\CCValue.cpp">
-      <Filter>CocosExt\Support</Filter>
-    </ClCompile>
     <ClCompile Include="..\yhge\Jsoncpp\json_reader.cpp">
       <Filter>Jsoncpp</Filter>
     </ClCompile>
@@ -919,21 +877,6 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Event\StringifyEventListenerManager.cpp">
       <Filter>Event</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCAdaptSprite.cpp">
-      <Filter>CocosExt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCActionMessage.cpp">
-      <Filter>CocosExt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCRef.cpp">
-      <Filter>CocosExt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CCSimpleValue.cpp">
-      <Filter>CocosExt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\yhge\CocosExt\CocosValue.cpp">
-      <Filter>CocosExt</Filter>
     </ClCompile>
     <ClCompile Include="..\yhge\CocosExt\JsonObject.cpp">
       <Filter>CocosExt</Filter>
@@ -1039,6 +982,18 @@
     </ClCompile>
     <ClCompile Include="..\yhge\Datas\dao\JSONSqliteDAO.cpp">
       <Filter>Datas\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\ValueObject.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\GeometryObject.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\DefaultTexture.cpp">
+      <Filter>CocosExt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\yhge\CocosExt\Actions\ParabolaMove.cpp">
+      <Filter>CocosExt\Actions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
