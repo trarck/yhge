@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOBATCHTILELAYER_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOBATCHTILELAYER_H_
 #define YHGE_ISOMETRIC_ISOBATCHTILELAYER_H_
 
 #include "cocos2d.h"
@@ -29,7 +29,7 @@ public:
      */
     virtual void setupTiles();
     
-    void setTileGID(unsigned int gid, const CCPoint& pos);
+    void setTileGID(unsigned int gid, const Vec2& pos);
     
     void removeChild(CCNode* node, bool cleanup);
     
@@ -37,12 +37,12 @@ public:
      * 获取tile
      */
     
-	virtual CCSprite* tileSpriteAt(const CCPoint& pos);
+	virtual CCSprite* tileSpriteAt(const Vec2& pos);
     
     /**
      * 删除tile
      */
-    void removeTileSpriteAt(const CCPoint& pos);
+    void removeTileSpriteAt(const Vec2& pos);
     
 public:
     
@@ -74,12 +74,12 @@ protected:
     /**
      * 设置tile
      */
-    void setupTileSprite(CCSprite* sprite, CCPoint mapCoord, unsigned int gid);
+    void setupTileSprite(CCSprite* sprite, Vec2 mapCoord, unsigned int gid);
     CCSprite* reusedTileWithRect(CCRect rect);
     
-    CCSprite* appendTileForGID(unsigned int gid, const CCPoint& pos);
-    CCSprite* insertTileForGID(unsigned int gid, const CCPoint& pos);
-    CCSprite* updateTileForGID(unsigned int gid, const CCPoint& pos);
+    CCSprite* appendTileForGID(unsigned int gid, const Vec2& pos);
+    CCSprite* insertTileForGID(unsigned int gid, const Vec2& pos);
+    CCSprite* updateTileForGID(unsigned int gid, const Vec2& pos);
     
     unsigned int atlasIndexForExistantZ(unsigned int z);
     unsigned int atlasIndexForNewZ(int z);

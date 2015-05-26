@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISODYNAMICGROUP_H_
+﻿#ifndef YHGE_ISOMETRIC_ISODYNAMICGROUP_H_
 #define YHGE_ISOMETRIC_ISODYNAMICGROUP_H_
 
 #include "cocos2d.h"
@@ -37,11 +37,11 @@ public:
     
 	void calcComponentsCount();
 
-    virtual void initOffset(const CCPoint& tOffset);
+    virtual void inioffset(const Vec2& offset);
     
-    virtual void initOffset(float x,float y);
+    virtual void inioffset(float x,float y);
     
-    virtual void scroll(const CCPoint& tOffset);
+    virtual void scroll(const Vec2& offset);
     
     virtual void scroll(float x,float y);
 	    
@@ -83,20 +83,20 @@ public:
 		return _iComponentNodeExtendCount;
 	}
 
-    inline void setOffset(const CCPoint& tOffset)
+    inline void seoffset(const Vec2& offset)
 	{
-		_tOffset = tOffset;
+		_offset = offset;
 	}
 
-	inline void setOffset(float x,float y)
+	inline void seoffset(float x,float y)
 	{
-		_tOffset.x=x;
-		_tOffset.y=y;
+		_offset.x=x;
+		_offset.y=y;
 	}
 
-	inline CCPoint getOffset()
+	inline Vec2 geoffset()
 	{
-		return _tOffset;
+		return _offset;
 	}
 
 	void setDynamiceComponentList(CCArray* dynamiceComponentList)
@@ -152,7 +152,7 @@ protected:
      * 地图的偏移量。屏幕坐标。
 	 * 也可以理解为相机在地图上的位置
      */
-	CCPoint _tOffset;
+	Vec2 _offset;
     
     /**
      * 偏移量的地图坐标

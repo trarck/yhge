@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOLAYER_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOLAYER_H_
 #define YHGE_ISOMETRIC_ISOLAYER_H_
 
 #include "cocos2d.h"
@@ -18,16 +18,16 @@ public:
 	
     virtual bool init();
         
-    virtual bool init(CCSize& mapTileSize);
+    virtual bool init(Size& mapTileSize);
     
-    virtual bool init(CCSize& mapTileSize,CCPoint& offset);
+    virtual bool init(Size& mapTileSize,Vec2& offset);
     
     /**
      * 初始化偏移
      */
-	virtual void initOffset(const CCPoint& tOffset);
+	virtual void inioffset(const Vec2& offset);
     
-    virtual void initOffset(float x,float y);
+    virtual void inioffset(float x,float y);
     
     /**
      * 初始化显示
@@ -45,7 +45,7 @@ public:
      * layer的scroll不要设置layer的position，如果layer的position改变，地图会乱掉。
      * layer的scroll主要提供地图位置改变的通知。
      */
-    virtual void scroll(const CCPoint& tOffset);
+    virtual void scroll(const Vec2& offset);
     virtual void scroll(float x,float y);
     
     /**
@@ -57,17 +57,18 @@ public:
     /**
      * 取得zOrder值，处理遮挡使用.zOrder vertexZ二者使用一
      */
-    int zOrderForPos(const CCPoint& pos);
+    int zOrderForPos(const Vec2& pos);
     
     /**
      * 取得z值，处理遮挡使用
      */
-    int vertexZForPos(const CCPoint& pos);
+    int vertexZForPos(const Vec2& pos);
     
 	/**
      * 获取属性名称
      */
-    CCString *propertyNamed(const char *propertyName);
+	
+	Value getProperty(const std::string& propertyName);
 
 public:
     
@@ -80,31 +81,31 @@ public:
     };
     
     //===================get set 属性====================//
-	inline void setLayerSize(const CCSize& tLayerSize)
+	inline void setLayerSize(const Size& tLayerSize)
 	{
-		_tLayerSize = tLayerSize;
+		_layerSize = tLayerSize;
 	}
 
-	inline CCSize getLayerSize()
+	inline Size getLayerSize()
 	{
-		return _tLayerSize;
+		return _layerSize;
 	}
 
 
-	inline void setOffset(const CCPoint& tOffset)
+	inline void seoffset(const Vec2& offset)
 	{
-		_tOffset = tOffset;
+		_offset = offset;
 	}
 
-	inline void setOffset(float x,float y)
+	inline void seoffset(float x,float y)
 	{
-		_tOffset.x=x;
-		_tOffset.y=y;
+		_offset.x=x;
+		_offset.y=y;
 	}
 
-	inline CCPoint getOffset()
+	inline Vec2 geoffset()
 	{
-		return _tOffset;
+		return _offset;
 	}
 
 	inline void setMapTileSize(float width,float height)
@@ -113,12 +114,12 @@ public:
 		_tMapTileSize.height=height;
 	}
 
-	inline void setMapTileSize(const CCSize& tMapTileSize)
+	inline void setMapTileSize(const Size& tMapTileSize)
 	{
 		_tMapTileSize = tMapTileSize;
 	}
 
-	inline const CCSize& getMapTileSize()
+	inline const Size& getMapTileSize()
 	{
 		return _tMapTileSize;
 	}
@@ -134,30 +135,28 @@ public:
 		return _uLayerOrientation;
 	}
 
-	inline void setProperties(CCDictionary* pProperties)
+	inline void setProperties(const ValueMap& pProperties)
 	{
-		CC_SAFE_RETAIN(pProperties);
-		CC_SAFE_RELEASE(_pProperties);
-		_pProperties = pProperties;
+		_properties = pProperties;
 	}
 
-	inline CCDictionary* getProperties()
+	inline ValueMap& getProperties()
 	{
-		return _pProperties;
+		return _properties;
 	}
     
     inline const std::string& getLayerName(){ return _sLayerName; }
     
     inline void setLayerName(const std::string& layerName){ _sLayerName = layerName; }
     
-    inline void setOpacity(unsigned char cOpacity)
+    inline void setOpacity(unsigned char opacity)
     {
-        _cOpacity = cOpacity;
+        _opacity = opacity;
     }
     
     inline unsigned char getOpacity()
     {
-        return _cOpacity;
+        return _opacity;
     }
     
     virtual void setMap(ISOMap* pMap);
@@ -214,23 +213,23 @@ protected:
     /**
      * 层的地图大小
      */
-	CCSize _tLayerSize;
+	Size _layerSize;
     
     /**
       地图的一个图块大小
      */
-    CCSize _tMapTileSize;
+    Size _tMapTileSize;
     
     /**
      * 地图的偏移量。屏幕坐标
      * 可能层的原点和地图的原点不在一起。
      */
-	CCPoint _tOffset;
+	Vec2 _offset;
         
     /**
      * 地图属性
      */
-    CCDictionary* _pProperties;
+    ValueMap _properties;
        
     /**
      * 地图类型，斜视角，直角，六角。
@@ -239,7 +238,7 @@ protected:
     unsigned int _uLayerOrientation;
     
     //! Layer supports opacity
-    unsigned char       _cOpacity;
+    unsigned char       _opacity;
 
     //对地图文件的弱引用
     ISOMap* _pMap;

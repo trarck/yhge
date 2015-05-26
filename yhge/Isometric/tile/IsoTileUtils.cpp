@@ -5,7 +5,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 /**
  * 计算显示区域内，组件数量的行列数
  */
-void ISOTileUtils::calcDynamicComponetSize(const CCSize& visibleSize,const CCSize& tileSize,int* column,int* row)
+void ISOTileUtils::calcDynamicComponetSize(const Size& visibleSize,const Size& tileSize,int* column,int* row)
 {
 	//参考Isometric.Game.Programming.with.DirectX.7的第421页。
 	//如果要显示全visibleSize的大小内的元素，则在除以块大小后，四个角要向外移动一格。所以最后大小要加2.

@@ -1,4 +1,4 @@
-#include "ISOMap.h"
+﻿#include "ISOMap.h"
 #include "ISOLayer.h"
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
@@ -6,14 +6,12 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 static const int kCoordLineZOrder=10000;
 
 ISOMap::ISOMap()
-:_tMapSize(CCSizeZero)
-,_visibleSize(CCSizeZero)
+:_tMapSize(Vec2(0,0))
+,_visibleSize(Size(0,0))
 ,_nIdentifier(0)
 ,_nMapOrientation(0)
 ,_pName("")
-,_tTileSize(CCSizeZero)
-,_pProperties(NULL)
-,_layers(NULL)
+, _tTileSize(Size(0, 0))
 ,_activeLayer(NULL)
 {
 	
@@ -21,8 +19,6 @@ ISOMap::ISOMap()
 
 ISOMap::~ISOMap()
 {
-    CC_SAFE_RELEASE_NULL(_pProperties);
-    CC_SAFE_RELEASE_NULL(_layers);
     CC_SAFE_RELEASE_NULL(_activeLayer);
 }
 
@@ -77,7 +73,7 @@ ISOMap* ISOMap::createWithJSON(const char* jsonString, const char* resourcePath)
 bool ISOMap::init()
 {
     
-    _pProperties=new CCDictionary();
+    _properties=new CCDictionary();
     _layers=new CCArray();
     
     _visibleSize=CCDirector::sharedDirector()->getWinSize();//CCSizeMake(480,320);
@@ -158,14 +154,17 @@ ISOLayer * ISOMap::layerNamed(const std::string& layerName)
     return NULL;
 }
 
-CCString* ISOMap::propertyNamed(const std::string& propertyName)
+Value ISOMap::getProperty(const std::string& propertyName)
 {
-    return (CCString*)_pProperties->objectForKey(propertyName);
+	if (_properties.find(propertyName) != _properties.end())
+		return _properties.at(propertyName);
+
+	return Value::Null;
 }
 
-void ISOMap::scrollLayer(const CCPoint& pos)
+void ISOMap::scrollLayer(const Vec2& pos)
 {
-	CCPoint localPos=ccpMult(pos, 1/this->getScale());
+	Vec2 localPos=ccpMult(pos, 1/this->getScale());
 
     Ref* pObj=NULL;
     ISOLayer* layer=NULL;
@@ -195,7 +194,7 @@ bool ISOMap::isWorkable(int x,int y)
 }
 
 
-CCSize ISOMap::getVisibleSize()
+Size ISOMap::getVisibleSize()
 {
     if(_fScaleX==0 || _fScaleY==0) return _visibleSize;
     

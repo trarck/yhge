@@ -1,4 +1,4 @@
-#include "ISOTileMap.h"
+﻿#include "ISOTileMap.h"
 #include "base/ISOTileset.h"
 #include "layers/ISOCoordinateLayer.h"
 #include "IsoTileUtils.h"
@@ -105,7 +105,7 @@ bool ISOTileMap::init()
 //
 //ISOTilesetInfo * ISOTileMap::tilesetForLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo)
 //{
-//    CCSize size = layerInfo->_tLayerSize;
+//    Size size = layerInfo->_layerSize;
 //    CCArray* tilesets = mapInfo->getTilesets();
 //    if (tilesets && tilesets->count()>0)
 //    {
@@ -144,7 +144,7 @@ bool ISOTileMap::init()
 //    }
 //    
 //    // If all the tiles are 0, return empty tileset
-//    CCLOG("cocos2d: Warning: ISO Layer '%s' has no tiles", layerInfo->_sName.c_str());
+//    CCLOG("cocos2d: Warning: ISO Layer '%s' has no tiles", layerInfo->_name.c_str());
 //    return NULL;
 //}
 //
@@ -174,14 +174,14 @@ bool ISOTileMap::init()
 //        CCARRAY_FOREACH(layers, pObj)
 //        {
 //            layerInfo = (ISOLayerInfo*)pObj;
-//            if (layerInfo && layerInfo->_bVisible)
+//            if (layerInfo && layerInfo->_visible)
 //            {
 //                ISOTileLayer *child = parseLayer(layerInfo, mapInfo);
 //                addChild((CCNode*)child, idx, idx);
 //                
 //                // update content size with the max size
-//                const CCSize& childSize = child->getContentSize();
-//                CCSize currentSize = this->getContentSize();
+//                const Size& childSize = child->getContentSize();
+//                Size currentSize = this->getContentSize();
 //                currentSize.width = MAX( currentSize.width, childSize.width );
 //                currentSize.height = MAX( currentSize.height, childSize.height );
 //                this->setContentSize(currentSize);
@@ -245,9 +245,9 @@ ISOObjectGroup * ISOTileMap::objectGroupNamed(const std::string& objectGroupName
     return NULL;
 }
 
-void ISOTileMap::scrollLayer(const CCPoint& pos)
+void ISOTileMap::scrollLayer(const Vec2& pos)
 {
-	CCPoint localPos=ccpMult(pos, 1/this->getScale());
+	Vec2 localPos=ccpMult(pos, 1/this->getScale());
 
 	if (_useDynamicGroup){
 		//如果使用动态组，则只更新动态组	
@@ -307,7 +307,7 @@ void ISOTileMap::setupDynamicGroup()
         dynamicGroup->init();
         
         //设置需呀的行列值
-        CCSize visibleSize=this->getVisibleSize();
+        Size visibleSize=this->getVisibleSize();
         
         int componentTileColumn=0;
         int componentTileRow=0;
@@ -326,7 +326,7 @@ void ISOTileMap::setupDynamicGroup()
 /**
  * 设置动态组
  */
-void ISOTileMap::setupDynamicGroup(ISODynamicGroup* dynamicGroup,const CCPoint& offset)
+void ISOTileMap::setupDynamicGroup(ISODynamicGroup* dynamicGroup,const Vec2& offset)
 {
     if (_useDynamicGroup) {
         //TODO 检查每个组件是不是一样的设置，主要是它们的组件的行列值

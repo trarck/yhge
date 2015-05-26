@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOOBJECTGROUPINFO_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOOBJECTGROUPINFO_H_
 #define YHGE_ISOMETRIC_ISOOBJECTGROUPINFO_H_
 
 #include "cocos2d.h"
@@ -17,14 +17,14 @@ public:
     
     ~ISOObjectGroupInfo();
     
-    inline void setName(const char* sName)
+    inline void setName(const std::string& name)
     {
-        _sName = sName;
+        _name = name;
     }
     
-    inline const char* getName()
+    inline const std::string& getName()
     {
-        return _sName.c_str();
+        return _name.c_str();
     }
     
     inline void setColor(ccColor3B& tColor)
@@ -37,24 +37,24 @@ public:
         return _tColor;
     }
     
-    inline void setOpacity(unsigned char cOpacity)
+    inline void setOpacity(unsigned char opacity)
     {
-        _cOpacity = cOpacity;
+        _opacity = opacity;
     }
     
     inline unsigned char getOpacity()
     {
-        return _cOpacity;
+        return _opacity;
     }
     
-    inline void setVisible(bool bVisible)
+    inline void setVisible(bool visible)
     {
-        _bVisible = bVisible;
+        _visible = visible;
     }
     
     inline bool getVisible()
     {
-        return _bVisible;
+        return _visible;
     }
     
     inline void setObjects(CCArray* pObjects)
@@ -72,21 +72,21 @@ public:
     inline void setProperties(CCDictionary* pProperties)
     {
         CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(_pProperties);
-        _pProperties = pProperties;
+        CC_SAFE_RELEASE(_properties);
+        _properties = pProperties;
     }
     
     inline CCDictionary* getProperties()
     {
-        return _pProperties;
+        return _properties;
     }
     
-    inline void setPositionOffset(CCPoint& tPositionOffset)
+    inline void setPositionOffset(Vec2& tPositionOffset)
     {
         _tPositionOffset = tPositionOffset;
     }
     
-    inline CCPoint& getPositionOffset()
+    inline Vec2& getPositionOffset()
     {
         return _tPositionOffset;
     }
@@ -107,7 +107,7 @@ protected:
      * 组的名称。
      * 用于标识此组
      */
-    std::string _sName;
+    std::string _name;
     
     /**
      * 组的颜色。平常不会不用到
@@ -120,17 +120,17 @@ protected:
      * 组的透明度。平常不会用到。
      * 组内的所有元素受到影响
      */
-    unsigned char _cOpacity;
+    unsigned char _opacity;
     
     /**
      * 组是否可见
      */
-    bool _bVisible;
+    bool _visible;
     
     /**
      * 组的位置偏移
      */
-    CCPoint _tPositionOffset;
+    Vec2 _tPositionOffset;
     
     /**
      * 组所包含的对象
@@ -140,7 +140,7 @@ protected:
     /**
      * 组是扩展属性
      */
-    CCDictionary* _pProperties;
+    CCDictionary* _properties;
     
     /**
      * 在地图文件中出现的顺序。

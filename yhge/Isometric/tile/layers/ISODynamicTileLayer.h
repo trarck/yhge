@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISODYNAMICTILELAYER_H_
+﻿#ifndef YHGE_ISOMETRIC_ISODYNAMICTILELAYER_H_
 #define YHGE_ISOMETRIC_ISODYNAMICTILELAYER_H_
 
 #include "cocos2d.h"
@@ -22,7 +22,7 @@ public:
 	
     virtual bool init();
     
-    virtual bool init(CCSize& mapTileSize,CCPoint& offset);
+    virtual bool init(Size& mapTileSize,Vec2& offset);
 
     virtual void setupTiles();
 
@@ -42,7 +42,7 @@ public:
      * 移动位置
      * 只作判断使用，不改变显示位置
      */
-    virtual void scroll(const CCPoint& tOffset);
+    virtual void scroll(const Vec2& tOffset);
     
 	bool isCellChange();
     void visitTileShowable();
@@ -72,7 +72,7 @@ protected:
     int _iLastStartX;
     int _iLastStartY;
     
-//	CCPoint _tLastStartPoint;
+//	Vec2 _tLastStartPoint;
     
 //	int _iStartX;
 //	int _iStartY;

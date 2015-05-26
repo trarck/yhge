@@ -241,8 +241,8 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
     }
     
     // update content size with the max size
-    //                const CCSize& childSize = layer->getContentSize();
-    //                CCSize currentSize = _pMap->getContentSize();
+    //                const Size& childSize = layer->getContentSize();
+    //                Size currentSize = _pMap->getContentSize();
     //                currentSize.width = MAX( currentSize.width, childSize.width );
     //                currentSize.height = MAX( currentSize.height, childSize.height );
     //                _pMap->setContentSize(currentSize);
@@ -265,7 +265,7 @@ void ISOTileMapBuilder::setLayerAttribute(ISOTileLayer* tileLayer,ISOLayerInfo *
 
 ISOTileset * ISOTileMapBuilder::tilesetForLayer(ISOLayerInfo *layerInfo)
 {
-    CCSize size = layerInfo->getLayerSize();
+    Size size = layerInfo->getLayerSize();
     CCArray* tilesets = _pMap->getTilesetGroup()->getTilesets();
     if (tilesets && tilesets->count()>0)
     {
@@ -314,7 +314,7 @@ ISOTileset * ISOTileMapBuilder::tilesetForLayer(ISOLayerInfo *layerInfo)
 
 ISOTilesetInfo * ISOTileMapBuilder::tilesetInfoForLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo)
 {
-    CCSize size = layerInfo->getLayerSize();
+    Size size = layerInfo->getLayerSize();
     CCArray* tilesets = mapInfo->getTilesets();
     if (tilesets && tilesets->count()>0)
     {
@@ -501,7 +501,7 @@ void ISOTileMapBuilder::buildMapActiveLayerWithActiveLayerInfo(ISOActiveLayerInf
  */
 CCArray* ISOTileMapBuilder::createObjectsFromLayerInfo(ISOLayerInfo* layerInfo)
 {
-    CCSize layerSize=layerInfo->getLayerSize();
+    Size layerSize=layerInfo->getLayerSize();
     
     CCArray* objects=CCArray::createWithCapacity((unsigned int)(layerSize.width*layerSize.height*0.25));
     

@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOTILELAYER_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOTILELAYER_H_
 #define YHGE_ISOMETRIC_ISOTILELAYER_H_
 
 #include "cocos2d.h"
@@ -28,16 +28,16 @@ public:
 	
 //    virtual bool init();
 //        
-//    virtual bool init(CCSize& mapTileSize);
+//    virtual bool init(Size& mapTileSize);
 //    
-//    virtual bool init(CCSize& mapTileSize,CCPoint& offset);
+//    virtual bool init(Size& mapTileSize,Vec2& offset);
     
     static ISOTileLayer* create();
     
     /**
      * 初始化偏移
      */
-	virtual void initOffset(const CCPoint& tOffset);
+	virtual void initOffset(const Vec2& tOffset);
     
     virtual void initOffset(float x,float y);
     
@@ -62,21 +62,21 @@ public:
      */
 	virtual void addTileAt(float x,float y);
     
-	virtual void addTileAt(const CCPoint& pos);
+	virtual void addTileAt(const Vec2& pos);
     
     /**
      * 获取tile
      */
 	virtual ISOTile* tileAt(float x,float y);
     
-	virtual ISOTile* tileAt(const CCPoint& pos);
+	virtual ISOTile* tileAt(const Vec2& pos);
     
     /**
      * 删除tile
      */    
 	virtual void removeTileAt(float x,float y);
     
-    virtual void removeTileAt(const CCPoint& pos);
+    virtual void removeTileAt(const Vec2& pos);
     
     
     /**
@@ -84,13 +84,13 @@ public:
      */
     unsigned int  tileGIDAt(float x,float y);
     
-    unsigned int  tileGIDAt(const CCPoint& pos);
+    unsigned int  tileGIDAt(const Vec2& pos);
     
     /**
      * 设置tile gid
      */
     virtual void setTileGID(unsigned int gid, float x,float y);
-    virtual void setTileGID(unsigned int gid, const CCPoint& pos);
+    virtual void setTileGID(unsigned int gid, const Vec2& pos);
     
  
     /**
@@ -99,7 +99,7 @@ public:
      * layer的scroll不要设置layer的position，如果layer的position改变，地图会乱掉。
      * layer的scroll主要提供地图位置改变的通知。
      */
-    virtual void scroll(const CCPoint& tOffset);
+    virtual void scroll(const Vec2& tOffset);
     virtual void scroll(float x,float y);
     
     /**
@@ -110,7 +110,7 @@ public:
 	/**
      * 地图格子对应到数组
      */
-    unsigned int indexForPos(const CCPoint& pos);
+    unsigned int indexForPos(const Vec2& pos);
     
 	unsigned int zOrderToIndex(int z);
     
@@ -121,7 +121,7 @@ public:
      */
 	virtual CCSprite* tileSpriteAt(float x,float y);
     
-	virtual CCSprite* tileSpriteAt(const CCPoint& pos);
+	virtual CCSprite* tileSpriteAt(const Vec2& pos);
     
     /**
      * 删除tile sprite
@@ -130,7 +130,7 @@ public:
      */
 	virtual void removeTileSpriteAt(float x,float y);
     
-    virtual void removeTileSpriteAt(const CCPoint& pos);
+    virtual void removeTileSpriteAt(const Vec2& pos);
     
 
 public:

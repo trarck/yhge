@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOCAMERA_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOCAMERA_H_
 #define YHGE_ISOMETRIC_ISOCAMERA_H_
 
 #include "cocos2d.h"
@@ -14,13 +14,13 @@ public:
      * 相机移动
      * worldPosition是相机所在的世界坐标
      */
-    virtual void onCameraMove(const CCPoint& worldPosition)=0;
+    virtual void onCameraMove(const Vec2& worldPosition)=0;
     
     /**
      * 相机移动结束
      * worldPosition是相机所在的世界坐标
      */
-    virtual void onCameraMoveEnd(const CCPoint& worldPosition){};
+    virtual void onCameraMoveEnd(const Vec2& worldPosition){};
     
     /**
      * 相机缩放
@@ -62,7 +62,7 @@ public:
      * 移动
      * 相对位置，屏幕坐标系的值。
      */
-	void move(const CCPoint& delta);
+	void move(const Vec2& delta);
     
     /**
      * 移动
@@ -74,7 +74,7 @@ public:
      * 移动
      * 绝对位置，屏幕坐标系的值。
      */
-    void moveTo(const CCPoint& position);
+    void moveTo(const Vec2& position);
 
     /**
      * 反向移动
@@ -88,7 +88,7 @@ public:
      * 相对位置
      * 移动相机，其实在反向移动游戏世界
      */
-	void moveOpposite(const CCPoint& delta);
+	void moveOpposite(const Vec2& delta);
     
     /**
      * 更新坐标
@@ -125,12 +125,12 @@ public:
     /**
      * 取得屏幕坐标所在game的位置
      */
-    CCPoint getLocationInWorld(const CCPoint& position);
+    Vec2 getLocationInWorld(const Vec2& position);
     
     /**
      * 取得game的位置在屏幕坐标所
      */
-    CCPoint getLocationInScene(const CCPoint& position);
+    Vec2 getLocationInScene(const Vec2& position);
 
 
     /**
@@ -151,7 +151,7 @@ public:
     /**
      * 修正移动范围是否超过移动范围
      */
-    CCPoint modifyPositionInRange(const CCPoint& position);
+    Vec2 modifyPositionInRange(const Vec2& position);
 
     /**
      * 修正移动范围是否超过移动范围
@@ -165,7 +165,7 @@ public:
             ?_minY:(_tWorldPosition.y>_maxY?_maxY:_tWorldPosition.y);
     }
 
-    inline const CCPoint& getWorldPosition()
+    inline const Vec2& getWorldPosition()
     {
         return _tWorldPosition;
     }
@@ -295,7 +295,7 @@ protected:
      * 相机所在游戏世界位置
      * 移动相机，其实在反向移动游戏世界.所以在设置游戏世界位置时，坐标值都取反
      */
-    CCPoint _tWorldPosition;
+    Vec2 _tWorldPosition;
     
     /**
      * 相机移动事件代理

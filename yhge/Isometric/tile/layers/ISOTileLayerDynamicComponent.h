@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOTileLayerDynamicComponent_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOTileLayerDynamicComponent_H_
 #define YHGE_ISOMETRIC_ISOTileLayerDynamicComponent_H_
 
 #include "cocos2d.h"
@@ -23,7 +23,7 @@ public:
 	
     virtual bool init();
     
-	virtual void initOffset(const CCPoint& tOffset);
+	virtual void initOffset(const Vec2& tOffset);
     virtual void initOffset(float x,float y);
     
     CCSprite* createTile();
@@ -36,7 +36,7 @@ public:
 	void createComponents();
     void initComponents();
     void setupComponents(int iComponentNodeExtendCount);
-	void setupComponents(int iComponentNodeExtendCount,const CCPoint& position);
+	void setupComponents(int iComponentNodeExtendCount,const Vec2& position);
 //    virtual void draw();
     
     virtual void setComponentTileColumn(int iComponentTileColumn);
@@ -49,7 +49,7 @@ public:
     virtual int getComponentTileExtendCount();
 
 
-    virtual void scroll(const CCPoint& tOffset);
+    virtual void scroll(const Vec2& tOffset);
     virtual void scroll(float x,float y);
 
 

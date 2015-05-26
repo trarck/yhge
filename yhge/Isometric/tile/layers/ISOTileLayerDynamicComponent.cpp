@@ -1,11 +1,11 @@
-#include "ISOTileLayerDynamicComponent.h"
+﻿#include "ISOTileLayerDynamicComponent.h"
 #include <yhge/Isometric/ISOCoordinate.h>
 
 
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
-//const CCSize testSize=CCSizeMake(256,160);
+//const Size testSize=CCSizeMake(256,160);
 
 ISOTileLayerDynamicComponent::ISOTileLayerDynamicComponent()
 :m_pComponents(NULL)
@@ -30,16 +30,16 @@ bool ISOTileLayerDynamicComponent::init()
 	return true;
 }
 
-void ISOTileLayerDynamicComponent::initOffset(const CCPoint& tOffset)
+void ISOTileLayerDynamicComponent::inioffset(const Vec2& offset)
 {
-	ISOOptimizedTileLayer::initOffset(tOffset);
+	ISOOptimizedTileLayer::inioffset(offset);
 	m_iLastStartX=m_iStartX;
 	m_iLastStartY=m_iStartY;
 }
 
-void ISOTileLayerDynamicComponent::initOffset(float x,float y)
+void ISOTileLayerDynamicComponent::inioffset(float x,float y)
 {
-	this->initOffset(ccp(x,y));
+	this->inioffset(ccp(x,y));
 }
 
 CCSprite* ISOTileLayerDynamicComponent::createTile()
@@ -58,9 +58,9 @@ bool ISOTileLayerDynamicComponent::beforeUpdateContent()
 {
 	
 	//屏幕的四个点。使用gl坐标系统，地图坐标x正方向右上，y正方向左上。初始点为屏幕左下角。也就是gl坐标的原点
-	//CCPoint startMapCoord=isoViewToGame2F(0,0);
+	//Vec2 startMapCoord=isoViewToGame2F(0,0);
 	//only for test
-	CCPoint startMapCoord=isoViewToGamePoint(m_tOffset);
+	Vec2 startMapCoord=isoViewToGamePoint(m_offset);
 	m_iStartX=(int)startMapCoord.x;
 	m_iStartY=(int)startMapCoord.y;
     //CCLOG("start:%d,%d %f,%f",m_iStartX,m_iStartY,m_tPosition.x,m_tPosition.y);
@@ -303,13 +303,13 @@ void ISOTileLayerDynamicComponent::setupComponents(int iComponentNodeExtendCount
     this->createComponents();
     this->initComponents();
 }
-void ISOTileLayerDynamicComponent::setupComponents(int iComponentNodeExtendCount,const CCPoint& position)
+void ISOTileLayerDynamicComponent::setupComponents(int iComponentNodeExtendCount,const Vec2& position)
 {
 	this->setComponentTileExtendCount(iComponentNodeExtendCount);
     this->calcComponentsCount();
     this->createComponents();
-	//this->setOffset(position);
-	this->initOffset(position);
+	//this->seoffset(position);
+	this->inioffset(position);
     this->initComponents();	
 }
 
@@ -343,9 +343,9 @@ int ISOTileLayerDynamicComponent::getComponentTileExtendCount()
     return m_iComponentNodeExtendCount;
 }
 
-void ISOTileLayerDynamicComponent::scroll(const CCPoint& tOffset)
+void ISOTileLayerDynamicComponent::scroll(const Vec2& offset)
 {
-    this->setOffset(tOffset);
+    this->seoffset(offset);
 	if(this->beforeUpdateContent()){
     	//TODO 不删除所有tile,只修改改变的tile.
 		//this->removeAllChildrenWithCleanup(true);

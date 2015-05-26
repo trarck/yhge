@@ -1,10 +1,10 @@
-#include "ISOTilesetInfo.h"
+﻿#include "ISOTilesetInfo.h"
 
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTilesetInfo::ISOTilesetInfo()
-:_sName("")
+:_name("")
 ,_uFirstGid(0)
 ,_sSourceFile("")
 ,_tTileSize(CCSizeZero)
@@ -13,10 +13,10 @@ ISOTilesetInfo::ISOTilesetInfo()
 ,_tTileOffset(CCPointZero)
 ,_sImageSource("")
 ,_tImageSize(CCSizeZero)
-,_pProperties(NULL)
+,_properties(NULL)
 ,_pTiles(NULL)
 {
-    _pProperties=new CCDictionary();
+    _properties=new CCDictionary();
     _pTiles=new CCArray();
     _pTiles->init();
 }
@@ -24,7 +24,7 @@ ISOTilesetInfo::ISOTilesetInfo()
 ISOTilesetInfo::~ISOTilesetInfo()
 {
     CCLOG("ISOTilesetInfo destroy");
-    CC_SAFE_RELEASE(_pProperties);
+    CC_SAFE_RELEASE(_properties);
     CC_SAFE_RELEASE(_pTiles);
 }
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  ISOCoordinate.h
  *  
  *  使用基于2的幂次方的数值，乘除直接使用位移操作
@@ -49,9 +49,9 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 //==============使用传值的方式==========================//
-static inline CCPoint isoViewToGame2F(float x,float y)
+static inline Vec2 isoViewToGame2F(float x,float y)
 {
-	CCPoint p;
+	Vec2 p;
 	x=x/TileWidth;//x=x/64
 	y=y/TileHeight;//y=y/32
 	p.x=x+y;
@@ -59,52 +59,52 @@ static inline CCPoint isoViewToGame2F(float x,float y)
 	return p;
 }
 
-static inline CCPoint isoViewToGamePoint(const CCPoint& point)
+static inline Vec2 isoViewToGamePoint(const Vec2& point)
 {
 	return isoViewToGame2F(point.x,point.y);
 }
 
-static inline CCPoint isoViewToGameGrid2F (float x,float  y)
+static inline Vec2 isoViewToGameGrid2F (float x,float  y)
 {
-	CCPoint p=isoViewToGame2F(x,y);
+	Vec2 p=isoViewToGame2F(x,y);
 	p.x=floor(p.x);
 	p.y=floor(p.y);
 	return p;
 }
 
-static inline CCPoint isoViewToGameGridPoint (const CCPoint& point)
+static inline Vec2 isoViewToGameGridPoint (const Vec2& point)
 {
 	return isoViewToGameGrid2F(point.x,point.y);
 }
 
-static inline CCPoint isoViewToGameCell2F (float x,float  y)
+static inline Vec2 isoViewToGameCell2F (float x,float  y)
 {
-	CCPoint p=isoViewToGame2F(x,y);
+	Vec2 p=isoViewToGame2F(x,y);
 	p.x=(int)p.x;
 	p.y=(int)p.y;
 	return p;
 }
 
 
-static inline CCPoint isoGameToView3F(float x ,float y ,float z)
+static inline Vec2 isoGameToView3F(float x ,float y ,float z)
 {
 	double sx=x-y,sy=x+y;
-	CCPoint p;
+	Vec2 p;
 	p.x=sx*XUnit;//sx*32
 	p.y=sy*HalfYUnit-z*ZUnit;//sy*16-z*32
 	return p;
 }
 
-static inline CCPoint isoGameToView2F(float x, float y)
+static inline Vec2 isoGameToView2F(float x, float y)
 {
 	double sx=x-y,sy=x+y;
-	CCPoint p;
+	Vec2 p;
 	p.x=sx*XUnit;//sx*32
 	p.y=sy*HalfYUnit;//sy*16
 	return p;
 }
 
-static inline CCPoint isoGameToViewPoint(const CCPoint&  point)
+static inline Vec2 isoGameToViewPoint(const Vec2&  point)
 {
 	return isoGameToView2F(point.x,point.y);
 }
@@ -124,14 +124,14 @@ static inline float isoGameToViewY2F(float x, float y)
 }
 
 //只取得y方向的值,通常用于遮挡值
-static inline float isoGameToViewYPoint(const CCPoint&  point)
+static inline float isoGameToViewYPoint(const Vec2&  point)
 {
 	return isoGameToViewY2F(point.x,point.y);
 }
 
 //==============使用传址的方式=====================//
 
-static inline void isoViewToGame2FP(float x,float y,CCPoint* destPoint)
+static inline void isoViewToGame2FP(float x,float y,Vec2* destPoint)
 {
 	x=x/TileWidth;//x=x/64
 	y=y/TileHeight;//y=y/32
@@ -139,24 +139,24 @@ static inline void isoViewToGame2FP(float x,float y,CCPoint* destPoint)
 	destPoint->y=y-x;
 }
 
-static inline void isoViewToGamePointP(const CCPoint& point,CCPoint* destPoint)
+static inline void isoViewToGamePointP(const Vec2& point,Vec2* destPoint)
 {
 	isoViewToGame2FP(point.x,point.y,destPoint);
 }
 
-static inline void isoViewToGameGrid2FP(float x,float  y,CCPoint* destPoint)
+static inline void isoViewToGameGrid2FP(float x,float  y,Vec2* destPoint)
 {
 	isoViewToGame2FP(x,y,destPoint);
 	destPoint->x=floor(destPoint->x);
 	destPoint->y=floor(destPoint->y);
 }
 
-static inline void isoViewToGameGridPointP (const CCPoint& point,CCPoint* destPoint)
+static inline void isoViewToGameGridPointP (const Vec2& point,Vec2* destPoint)
 {
 	isoViewToGameGrid2FP(point.x,point.y,destPoint);
 }
 
-static inline void isoViewToGameCell2FP(float x,float  y,CCPoint* destPoint)
+static inline void isoViewToGameCell2FP(float x,float  y,Vec2* destPoint)
 {
 	isoViewToGame2FP(x,y,destPoint);
 	destPoint->x=(int)destPoint->x;
@@ -164,21 +164,21 @@ static inline void isoViewToGameCell2FP(float x,float  y,CCPoint* destPoint)
 }
 
 
-static inline void isoGameToView3FP(float x ,float y ,float z,CCPoint* destPoint)
+static inline void isoGameToView3FP(float x ,float y ,float z,Vec2* destPoint)
 {
 	double sx=x-y,sy=x+y;
 	destPoint->x=sx*XUnit;//sx*32
 	destPoint->y=sy*HalfYUnit-z*ZUnit;//sy*16-z*32
 }
 
-static inline void isoGameToView2FP(float x, float y,CCPoint* destPoint)
+static inline void isoGameToView2FP(float x, float y,Vec2* destPoint)
 {
 	double sx=x-y,sy=x+y;
 	destPoint->x=sx*XUnit;//sx*32
 	destPoint->y=sy*HalfYUnit;//sy*16
 }
 
-static inline void isoGameToViewPointP(const CCPoint&  point,CCPoint* destPoint)
+static inline void isoGameToViewPointP(const Vec2&  point,Vec2* destPoint)
 {
 	isoGameToView2FP(point.x,point.y,destPoint);
 }

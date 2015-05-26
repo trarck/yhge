@@ -1,4 +1,4 @@
-#include "ISOXMLReader.h"
+﻿#include "ISOXMLReader.h"
 #include "support/zip_support/ZipUtils.h"
 #include "support/CCPointExtension.h"
 #include <yhge/CocosExt/Support/base64.h>
@@ -161,7 +161,7 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
 //        else
 //            CCLOG("cocos2d: TMXFomat: Unsupported orientation: %d", m_pMap->getOrientation());
         
-        CCSize s;
+        Size s;
         s.width = (float)atof(valueForKey("width", attributeDict));
         s.height = (float)atof(valueForKey("height", attributeDict));
         m_pMap->setMapSize(s);
@@ -234,29 +234,29 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
     else if(elementName == "layer")
     {
         CCTMXLayerInfo *layer = new CCTMXLayerInfo();
-        layer->m_sName = valueForKey("name", attributeDict);
+        layer->m_name = valueForKey("name", attributeDict);
         
-        CCSize s;
+        Size s;
         s.width = (float)atof(valueForKey("width", attributeDict));
         s.height = (float)atof(valueForKey("height", attributeDict));
-        layer->m_tLayerSize = s;
+        layer->m_layerSize = s;
         
         std::string visible = valueForKey("visible", attributeDict);
-        layer->m_bVisible = !(visible == "0");
+        layer->m_visible = !(visible == "0");
         
         std::string opacity = valueForKey("opacity", attributeDict);
         if( opacity != "" )
         {
-            layer->m_cOpacity = (unsigned char)(255 * atof(opacity.c_str()));
+            layer->m_opacity = (unsigned char)(255 * atof(opacity.c_str()));
         }
         else
         {
-            layer->m_cOpacity = 255;
+            layer->m_opacity = 255;
         }
         
         float x = (float)atof(valueForKey("x", attributeDict));
         float y = (float)atof(valueForKey("y", attributeDict));
-        layer->m_tOffset = ccp(x,y);
+        layer->m_offset = ccp(x,y);
         
         m_pMap->getTileLayers()->addObject(layer);
         layer->release();
@@ -269,10 +269,10 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
     {
         ISOObjectGroup *objectGroup = new ISOObjectGroup();
         objectGroup->setName(valueForKey("name", attributeDict));
-        CCPoint positionOffset;
+        Vec2 positionOffset;
         positionOffset.x = (float)atof(valueForKey("x", attributeDict)) * m_pMap->getTileSize().width;
         positionOffset.y = (float)atof(valueForKey("y", attributeDict)) * m_pMap->getTileSize().height;
-        objectGroup->setOffset(positionOffset);
+        objectGroup->seoffset(positionOffset);
         
         m_pMap->getObjectGroups()->addObject(objectGroup);
         objectGroup->release();
@@ -310,7 +310,7 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
             tileset->setImageSource(imagename.c_str());
             
             if(widthValue && heightValue){
-                CCSize s;
+                Size s;
                 s.width=(float)atof(widthValue);
                 s.height=(float)atof(heightValue);
                 tileset->setImageSize(s);
@@ -380,24 +380,24 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         
         obj->setType(valueForKey("type", attributeDict));
         
-        CCSize s;
+        Size s;
         s.width = (float)atof(valueForKey("width", attributeDict));
         s.height = (float)atof(valueForKey("height", attributeDict));
         obj->setSize(s);
                
         // But X and Y since they need special treatment
         // X
-        CCPoint pos;
+        Vec2 pos;
         const char* value = valueForKey("x", attributeDict);
         if( value )
         {
-            pos.x = (float)atof(value) + objectGroup->getOffset().x;
+            pos.x = (float)atof(value) + objectGroup->geoffset().x;
         }
         
         // Y
         value = valueForKey("y", attributeDict);
         if( value )  {
-            float y = (float)atof(value) + objectGroup->getOffset().y;
+            float y = (float)atof(value) + objectGroup->geoffset().y;
             
             // Correct y position. (Tiled uses Flipped, cocos2d uses Standard)
             pos.y = (m_pMap->getMapSize().height * m_pMap->getTileSize().height) - y - s.height;
@@ -522,7 +522,7 @@ void ISOXMLReader::endElement(void *ctx, const char *name)
         if( m_nLayerAttribs & (ISOLayerAttribGzip | ISOLayerAttribZlib) )
         {
             unsigned char *deflated;
-            CCSize s = layer->getLayerSize();
+            Size s = layer->getLayerSize();
             // int sizeHint = s.width * s.height * sizeof(uint32_t);
             int sizeHint = (int)(s.width * s.height * sizeof(unsigned int));
             

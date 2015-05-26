@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOTILEOBJECTPART_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOTILEOBJECTPART_H_
 #define YHGE_ISOMETRIC_ISOTILEOBJECTPART_H_
 
 #include "cocos2d.h"
@@ -32,22 +32,22 @@ public:
         return _id;
     }
     
-    inline void setPosition(const CCPoint& position)
+    inline void setPosition(const Vec2& position)
     {
         _position = position;
     }
     
-    inline const CCPoint& getPosition()
+    inline const Vec2& getPosition()
     {
         return _position;
     }
     
-    inline void setSize(const CCSize& size)
+    inline void setSize(const Size& size)
     {
         _size = size;
     }
     
-    inline const CCSize& getSize()
+    inline const Size& getSize()
     {
         return _size;
     }
@@ -84,12 +84,12 @@ protected:
      * 对象组成部分的位置
      * 根据对象的渲染方式决定坐标系
      */
-    CCPoint _position;
+    Vec2 _position;
     
     /**
      * 对象组成部分的大小
      */
-    CCSize _size;
+    Size _size;
     
     /**
      * 所属对象的Id

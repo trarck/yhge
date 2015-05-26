@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOOBJECTINFO_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOOBJECTINFO_H_
 #define YHGE_ISOMETRIC_ISOOBJECTINFO_H_
 
 #include "cocos2d.h"
@@ -18,22 +18,22 @@ public:
     
     ~ISOObjectInfo();
     
-    inline void setName(const char* sName)
+    inline void setName(const std::string& name)
     {
-        _sName = sName;
+        _name = name;
     }
     
-    inline const char* getName()
+    inline const std::string& getName()
     {
-        return _sName.c_str();
+        return _name.c_str();
     }
     
-    inline void setType(const char* sType)
+    inline void setType(const std::string& sType)
     {
         _sType = sType;
     }
     
-    inline const char* getType()
+    inline const std::string& getType()
     {
         return _sType.c_str();
     }
@@ -48,22 +48,22 @@ public:
         return _uGid;
     }
     
-    inline void setPosition(const CCPoint& tPosition)
+    inline void setPosition(const Vec2& tPosition)
     {
         _tPosition = tPosition;
     }
     
-    inline CCPoint& getPosition()
+    inline Vec2& getPosition()
     {
         return _tPosition;
     }
     
-    inline void setSize(CCSize& tSize)
+    inline void setSize(Size& tSize)
     {
         _tSize = tSize;
     }
     
-    inline CCSize& getSize()
+    inline Size& getSize()
     {
         return _tSize;
     }
@@ -78,33 +78,33 @@ public:
         return _fRotation;
     }
     
-    inline void setVisible(bool bVisible)
+    inline void setVisible(bool visible)
     {
-        _bVisible = bVisible;
+        _visible = visible;
     }
     
     inline bool getVisible()
     {
-        return _bVisible;
+        return _visible;
     }
     
     inline void setProperties(CCDictionary* pProperties)
     {
         CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(_pProperties);
-        _pProperties = pProperties;
+        CC_SAFE_RELEASE(_properties);
+        _properties = pProperties;
     }
     
     inline CCDictionary* getProperties()
     {
-        return _pProperties;
+        return _properties;
     }
     
 protected:
     /**
      * 对像名称
      */
-    std::string _sName;
+    std::string _name;
     
     /**
      * 对像类型
@@ -119,12 +119,12 @@ protected:
     /**
      * 对像位置。像素坐标，不是格子坐标。
      */
-    CCPoint _tPosition;
+    Vec2 _tPosition;
     
     /**
      * 对像大小
      */
-    CCSize _tSize;
+    Size _tSize;
     
     /**
      * 对像角度
@@ -134,12 +134,12 @@ protected:
     /**
      * 对像是否可见
      */
-    bool _bVisible;
+    bool _visible;
     
     /**
      * 对像扩展属性
      */
-    CCDictionary* _pProperties;
+    CCDictionary* _properties;
     
 };
 

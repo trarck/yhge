@@ -1,4 +1,4 @@
-#include "ISOBatchDynamicComponent.h"
+﻿#include "ISOBatchDynamicComponent.h"
 #include <yhge/Isometric/CoordinateFormulae.h>
 #include <yhge/Isometric/tile/base/ISOTile.h>
 #include "ISOTileLayer.h"
@@ -7,7 +7,7 @@
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
-//const CCSize testSize=CCSizeMake(256,160);
+//const Size testSize=CCSizeMake(256,160);
 
 ISOBatchDynamicComponent::ISOBatchDynamicComponent()
 :_pBatchNode(NULL)
@@ -65,7 +65,7 @@ void ISOBatchDynamicComponent::createComponents()
 
 void ISOBatchDynamicComponent::updateNode(ISOComponentNode* node,float mx,float my)
 {
-    CCPoint pos=ccp(mx,my);
+    Vec2 pos=ccp(mx,my);
     //更新位置属性
     node->updateMapCoordinate(mx, my);
        

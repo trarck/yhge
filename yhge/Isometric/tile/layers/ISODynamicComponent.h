@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISODYNAMICCOMPONENT_H_
+﻿#ifndef YHGE_ISOMETRIC_ISODYNAMICCOMPONENT_H_
 #define YHGE_ISOMETRIC_ISODYNAMICCOMPONENT_H_
 
 #include "cocos2d.h"
@@ -55,15 +55,15 @@ public:
     
     virtual void setupComponents();
     
-    virtual void setupComponents(const CCPoint& position);
+    virtual void setupComponents(const Vec2& position);
     
     virtual CCArray* getComponents();
 
-    virtual void initOffset(const CCPoint& tOffset);
+    virtual void inioffset(const Vec2& offset);
     
-    virtual void initOffset(float x,float y);
+    virtual void inioffset(float x,float y);
     
-    virtual void scroll(const CCPoint& tOffset);
+    virtual void scroll(const Vec2& offset);
     
     virtual void scroll(float x,float y);
     
@@ -79,11 +79,11 @@ public:
     
     virtual int getComponentTileExtendCount();
 
-    virtual void setOffset(const CCPoint& tOffset);
+    virtual void seoffset(const Vec2& offset);
     
-	virtual void setOffset(float x,float y);
+	virtual void seoffset(float x,float y);
 
-    virtual CCPoint getOffset();
+    virtual Vec2 geoffset();
     
     void setUpdateDelegator(ISODynamicComponentUpdateDelegator* pUpdateDelegator);
     
@@ -111,7 +111,7 @@ protected:
      * 地图的偏移量。屏幕坐标
      * 可能层的原点和地图的原点不在一起。
      */
-	CCPoint _tOffset;
+	Vec2 _offset;
     
     /**
      * 偏移量的地图坐标

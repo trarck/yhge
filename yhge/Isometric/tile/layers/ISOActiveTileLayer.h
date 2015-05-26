@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOACTIVETILELAYER_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOACTIVETILELAYER_H_
 #define YHGE_ISOMETRIC_ISOACTIVETILELAYER_H_
 
 #include "cocos2d.h"
@@ -37,23 +37,23 @@ public:
     virtual void releaseLayer();
     
     //移动
-    virtual void scroll(const CCPoint& tOffset);
+    virtual void scroll(const Vec2& tOffset);
     virtual void scroll(float x,float y);
     
     /**
      * 取得zOrder值，处理遮挡使用.zOrder vertexZ二者使用一
      */
-    int zOrderForPos(const CCPoint& pos);
+    int zOrderForPos(const Vec2& pos);
     
     /**
      * 取得z值，处理遮挡使用
      */
-    int vertexZForPos(const CCPoint& pos);
+    int vertexZForPos(const Vec2& pos);
 
     /**
      * 获取属性名称
      */
-    CCString *propertyNamed(const char *propertyName);
+	Value getProperty(const std::string& propertyName);
     
 
 public:
@@ -68,12 +68,12 @@ public:
         return _layerName;
     }
     
-    inline void setOffset(const CCPoint& offset)
+    inline void setOffset(const Vec2& offset)
     {
         _offset = offset;
     }
     
-    inline const CCPoint& getOffset()
+    inline const Vec2& getOffset()
     {
         return _offset;
     }
@@ -147,7 +147,7 @@ protected:
     /**
      * 使用gid从tileset中取出一个图片显示
      */
-    CCSprite* createObject(int gid,const CCPoint& position);
+    CCSprite* createObject(int gid,const Vec2& position);
     
     /**
      * 处理扩展属性
@@ -164,7 +164,7 @@ protected:
      * 地图的偏移量。屏幕坐标
      * 可能层的原点和地图的原点不在一起。
      */
-    CCPoint _offset;
+    Vec2 _offset;
     
     /**
      * 属性

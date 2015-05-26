@@ -1,4 +1,4 @@
-#include "ISOCoordinateLayer.h"
+﻿#include "ISOCoordinateLayer.h"
 #include <yhge/Isometric/CoordinateFormulae.h>
 
 USING_NS_CC;
@@ -29,8 +29,8 @@ void ISOCoordinateLayer::draw()
 {
 	if(_bIsShow){
 		int i,j;
-		CCPoint to;
-		CCPoint from;
+		Vec2 to;
+		Vec2 from;
 
 		ccDrawColor4B(255,0,0,255);
 		//draw xias

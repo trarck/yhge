@@ -1,4 +1,4 @@
-#include "ISODynamicGroup.h"
+﻿#include "ISODynamicGroup.h"
 #include <yhge/Isometric/CoordinateFormulae.h>
 #include "../base/ISOTile.h"
 #include "ISOTileLayer.h"
@@ -6,7 +6,7 @@
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
-//const CCSize testSize=CCSizeMake(256,160);
+//const Size testSize=CCSizeMake(256,160);
 static const int kComponentExtendCount=2;
 
 ISODynamicGroup::ISODynamicGroup()
@@ -25,7 +25,7 @@ ISODynamicGroup::ISODynamicGroup()
 ,_iComponentTileTotalColumn(0)
 ,_iComponentTileTotalRow(0)
 ,_tileMap(NULL)
-,_tOffset(CCPointZero)
+,_offset(CCPointZero)
 {
 	
 }
@@ -58,9 +58,9 @@ bool ISODynamicGroup::beforeUpdateContent()
 {
 	
 	//屏幕的四个点。使用gl坐标系统，地图坐标x正方向右上，y正方向左上。初始点为屏幕左下角。也就是gl坐标的原点
-	//CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGame2F(0,0));
+	//Vec2 startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGame2F(0,0));
 	//only for test
-	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(_tOffset));
+	Vec2 startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(_offset));
 	_iStartX=(int)startMapCoord.x;
 	_iStartY=(int)startMapCoord.y;
     //CCLOG("start:%d,%d %f,%f",_iStartX,_iStartY,_tPosition.x,_tPosition.y);
@@ -202,24 +202,24 @@ void ISODynamicGroup::calcComponentsCount()
 	CCLOG("calcComponentsCount:%d,%d",_iComponentTileColumn,_iComponentTileRow);
 }
 
-void ISODynamicGroup::initOffset(const CCPoint& tOffset)
+void ISODynamicGroup::inioffset(const Vec2& offset)
 {
-    this->setOffset(tOffset);
-	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(tOffset));
+    this->seoffset(offset);
+	Vec2 startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(offset));
 	_iStartX=(int)startMapCoord.x;
 	_iStartY=(int)startMapCoord.y;
 	_iLastStartX=_iStartX;
 	_iLastStartY=_iStartY;
 }
 
-void ISODynamicGroup::initOffset(float x,float y)
+void ISODynamicGroup::inioffset(float x,float y)
 {
-	this->initOffset(ccp(x,y));
+	this->inioffset(ccp(x,y));
 }
 
-void ISODynamicGroup::scroll(const CCPoint& tOffset)
+void ISODynamicGroup::scroll(const Vec2& offset)
 {
-    this->setOffset(tOffset);
+    this->seoffset(offset);
 	if(this->beforeUpdateContent()){
 		//TODO 不删除所有tile,只修改改变的tile.
 		//this->removeAllChildrenWithCleanup(true);

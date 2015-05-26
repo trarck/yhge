@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOOptimizedTileLayer_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOOptimizedTileLayer_H_
 #define YHGE_ISOMETRIC_ISOOptimizedTileLayer_H_
 
 #include "cocos2d.h"
@@ -23,7 +23,7 @@ public:
     /**
      * 初始化偏移
      */
-	virtual void initOffset(const CCPoint& tOffset);
+	virtual void initOffset(const Vec2& tOffset);
     virtual void initOffset(float x,float y);
 
     /**
@@ -40,7 +40,7 @@ public:
      * 移动位置
      * 只作判断使用，不改变显示位置
      */
-    virtual void scroll(const CCPoint& tOffset);
+    virtual void scroll(const Vec2& tOffset);
     virtual void scroll(float x,float y);
     
 	bool isCellChange();
@@ -52,7 +52,7 @@ public:
      */
     virtual void draw();
     
-    void setScreenSize(const CCSize& screenSize);
+    void setScreenSize(const Size& screenSize);
 
 protected:
 
@@ -62,9 +62,9 @@ protected:
     int m_iLastStartX;
     int m_iLastStartY;
     
-//	CCPoint m_tLastStartPoint;
+//	Vec2 m_tLastStartPoint;
     
-    CCSize m_tScreenSize;
+    Size m_tScreenSize;
 //	int m_iStartX;
 //	int m_iStartY;
 };

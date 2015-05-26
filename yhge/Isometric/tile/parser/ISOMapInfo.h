@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOMAPINFO_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOMAPINFO_H_
 #define YHGE_ISOMETRIC_ISOMAPINFO_H_
 
 #include "cocos2d.h"
@@ -23,11 +23,11 @@ public:
     virtual void setOrientation(int nOrientation);
     virtual int getOrientation();
     
-    virtual void setMapSize(const CCSize& tMapSize);
-    virtual const CCSize& getMapSize();
+    virtual void setMapSize(const Size& tMapSize);
+    virtual const Size& getMapSize();
     
-    virtual void setTileSize(const CCSize& tTileSize);
-    virtual const CCSize& getTileSize();
+    virtual void setTileSize(const Size& tTileSize);
+    virtual const Size& getTileSize();
     
     virtual void setLayers(CCArray* pLayers);
     virtual CCArray* getLayers();
@@ -62,12 +62,12 @@ protected:
     /**
      * 表示map的格子数。不是像素大小
      */
-    CCSize _tMapSize;
+    Size _tMapSize;
     
     /**
      * 表示map的每个格子的像素大小
      */
-    CCSize _tTileSize;
+    Size _tTileSize;
    
     /**
      * 表示map的的背景色
@@ -92,7 +92,7 @@ protected:
     /**
      * map的扩展属性
      */
-    CCDictionary* _pProperties;
+    CCDictionary* _properties;
    
 };
 

@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOLAYERINFO_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOLAYERINFO_H_
 #define YHGE_ISOMETRIC_ISOLAYERINFO_H_
 
 #include "cocos2d.h"
@@ -16,24 +16,24 @@ public:
     ISOLayerInfo();
     ~ISOLayerInfo();
     
-    inline void setName(const std::string& sName)
+    inline void setName(const std::string& name)
     {
-        _sName = sName;
+        _name = name;
     }
     
     inline const std::string& getName()
     {
-        return _sName;
+        return _name;
     }
     
-    inline void setLayerSize(CCSize& tLayerSize)
+    inline void setLayerSize(Size& tLayerSize)
     {
-        _tLayerSize = tLayerSize;
+        _layerSize = tLayerSize;
     }
     
-    inline CCSize& getLayerSize()
+    inline Size& getLayerSize()
     {
-        return _tLayerSize;
+        return _layerSize;
     }
     
     inline void setTiles(unsigned int* pTiles)
@@ -46,24 +46,24 @@ public:
         return _pTiles;
     }
     
-    inline void setVisible(bool bVisible)
+    inline void setVisible(bool visible)
     {
-        _bVisible = bVisible;
+        _visible = visible;
     }
     
     inline bool getVisible()
     {
-        return _bVisible;
+        return _visible;
     }
     
-    inline void setOpacity(unsigned char cOpacity)
+    inline void setOpacity(unsigned char opacity)
     {
-        _cOpacity = cOpacity;
+        _opacity = opacity;
     }
     
     inline unsigned char getOpacity()
     {
-        return _cOpacity;
+        return _opacity;
     }
     
     inline void setOwnTiles(bool bOwnTiles)
@@ -96,26 +96,26 @@ public:
 //        return _uMaxGID;
 //    }
     
-    inline void setOffset(CCPoint& tOffset)
+    inline void seoffset(Vec2& offset)
     {
-        _tOffset = tOffset;
+        _offset = offset;
     }
     
-    inline CCPoint& getOffset()
+    inline Vec2& geoffset()
     {
-        return _tOffset;
+        return _offset;
     }
     
     inline void setProperties(CCDictionary* pProperties)
     {
         CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(_pProperties);
-        _pProperties = pProperties;
+        CC_SAFE_RELEASE(_properties);
+        _properties = pProperties;
     }
     
     inline CCDictionary* getProperties()
     {
-        return _pProperties;
+        return _properties;
     }
     
     inline void setRenderIndex(int renderIndex)
@@ -133,22 +133,22 @@ protected:
     /**
      * layer的名称
      */
-    std::string         _sName;
+    std::string         _name;
     
     /**
      * layer的大小。格子数，不是像素大小
      */
-    CCSize              _tLayerSize;
+    Size              _layerSize;
     
     /**
      * layer是否可见
      */
-    bool                _bVisible;
+    bool                _visible;
     
     /**
      * layer的透明度
      */
-    unsigned char _cOpacity;
+    unsigned char _opacity;
     
     bool                _bOwnTiles;
     
@@ -158,7 +158,7 @@ protected:
     /**
      * layer的偏移量
      */
-    CCPoint             _tOffset;
+    Vec2             _offset;
 
     /**
      * layer的每个格子的信息。主要是tile id
@@ -168,7 +168,7 @@ protected:
     /**
      * layer的扩展属性
      */
-    CCDictionary* _pProperties;
+    CCDictionary* _properties;
     
     /**
      * 在地图文件中出现的顺序。

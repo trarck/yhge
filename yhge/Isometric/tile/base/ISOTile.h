@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOTILE_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOTILE_H_
 #define YHGE_ISOMETRIC_ISOTILE_H_
 
 #include "cocos2d.h"
@@ -27,7 +27,7 @@ public:
     
     bool init(int id,ISOTileset* tileset,CCTexture2D* texture,CCRect& textureRect);
    
-    CCSize size(){return _tTextureRect.size;}
+    Size size(){return _tTextureRect.size;}
 
 public:
     
@@ -101,7 +101,7 @@ protected:
     /**
      * 属性
      */
-    CCDictionary* _pProperties;
+    CCDictionary* _properties;
 };
 
 

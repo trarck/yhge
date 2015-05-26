@@ -1,4 +1,4 @@
-#include "ISODynamicComponent.h"
+﻿#include "ISODynamicComponent.h"
 #include <yhge/CocosExt/CCDefaultTexture.h>
 #include <yhge/Isometric/CoordinateFormulae.h>
 #include "../base/ISOTile.h"
@@ -8,7 +8,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 
 static const int kComponentExtendCount=2;
 
-//const CCSize testSize=CCSizeMake(256,160);
+//const Size testSize=CCSizeMake(256,160);
 
 ISODynamicComponent::ISODynamicComponent()
 :_pComponents(NULL)
@@ -21,7 +21,7 @@ ISODynamicComponent::ISODynamicComponent()
 ,_iComponentNodeExtendCount(kComponentExtendCount)
 ,_pUpdateDelegator(NULL)
 ,_pCreateDelegator(NULL)
-,_tOffset(CCPointZero)
+,_offset(CCPointZero)
 ,_iComponentTileTotalRow(0)
 ,_iComponentTileTotalColumn(0)
 ,_iComponentTileColumn(0)
@@ -129,9 +129,9 @@ bool ISODynamicComponent::beforeUpdateContent()
 {
 	
 	//屏幕的四个点。使用gl坐标系统，地图坐标x正方向右上，y正方向左上。初始点为屏幕左下角。也就是gl坐标的原点
-	//CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGame2F(0,0));
+	//Vec2 startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGame2F(0,0));
 	//only for test
-	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(_tOffset));
+	Vec2 startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(_offset));
 	_iStartX=(int)startMapCoord.x;
 	_iStartY=(int)startMapCoord.y;
     //CCLOG("start:%d,%d %f,%f",_iStartX,_iStartY,_tPosition.x,_tPosition.y);
@@ -277,7 +277,7 @@ void ISODynamicComponent::updateNodeBy(unsigned int nodeIndex,float deltaMapX,fl
 
 void ISODynamicComponent::updateNode(ISOComponentNode* node,float mx,float my)
 {
-    CCPoint pos=ccp(mx,my);
+    Vec2 pos=ccp(mx,my);
     //更新位置属性
     node->updateMapCoordinate(mx, my);
        
@@ -342,9 +342,9 @@ void ISODynamicComponent::setupComponents()
 }
 
 
-void ISODynamicComponent::setupComponents(const CCPoint& position)
+void ISODynamicComponent::setupComponents(const Vec2& position)
 {
-    this->initOffset(position);
+    this->inioffset(position);
     setupComponents();
 }
 
@@ -383,24 +383,24 @@ int ISODynamicComponent::getComponentTileExtendCount()
     return _iComponentNodeExtendCount;
 }
 
-void ISODynamicComponent::initOffset(const CCPoint& tOffset)
+void ISODynamicComponent::inioffset(const Vec2& offset)
 {
-    this->setOffset(tOffset);
-	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(tOffset));
+    this->seoffset(offset);
+	Vec2 startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(offset));
 	_iStartX=(int)startMapCoord.x;
 	_iStartY=(int)startMapCoord.y;
 	_iLastStartX=_iStartX;
 	_iLastStartY=_iStartY;
 }
 
-void ISODynamicComponent::initOffset(float x,float y)
+void ISODynamicComponent::inioffset(float x,float y)
 {
-	this->initOffset(ccp(x,y));
+	this->inioffset(ccp(x,y));
 }
 
-void ISODynamicComponent::scroll(const CCPoint& tOffset)
+void ISODynamicComponent::scroll(const Vec2& offset)
 {
-    this->setOffset(tOffset);
+    this->seoffset(offset);
 	if(this->beforeUpdateContent()){
 		//TODO 不删除所有tile,只修改改变的tile.
 		//this->removeAllChildrenWithCleanup(true);
@@ -419,20 +419,20 @@ void ISODynamicComponent::scroll(float x,float y)
 
 
 
-void ISODynamicComponent::setOffset(const CCPoint& tOffset)
+void ISODynamicComponent::seoffset(const Vec2& offset)
 {
-    _tOffset = tOffset;
+    _offset = offset;
 }
 
-void ISODynamicComponent::setOffset(float x,float y)
+void ISODynamicComponent::seoffset(float x,float y)
 {
-    _tOffset.x=x;
-	_tOffset.y=y;
+    _offset.x=x;
+	_offset.y=y;
 }
 
-CCPoint ISODynamicComponent::getOffset()
+Vec2 ISODynamicComponent::geoffset()
 {
-    return _tOffset;
+    return _offset;
 }
 
 void ISODynamicComponent::setUpdateDelegator(ISODynamicComponentUpdateDelegator* pUpdateDelegator)

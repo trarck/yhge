@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOACTIVELAYER_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOACTIVELAYER_H_
 #define YHGE_ISOMETRIC_ISOACTIVELAYER_H_
 
 #include "cocos2d.h"
@@ -44,7 +44,7 @@ public:
     virtual void setupObjects();
     
     //移动
-    virtual void scroll(const CCPoint& tOffset);
+    virtual void scroll(const Vec2& tOffset);
         
     virtual void setMap(ISOMap* pMap);
 
@@ -68,7 +68,7 @@ protected:
      * 使用gid从tileset中取出一个图片显示
      * TODO 使用代理来创建对象
      */
-    virtual CCSprite* createObject(int gid,const CCPoint& coord);
+    virtual CCSprite* createObject(int gid,const Vec2& coord);
     
     /**
      * 处理扩展属性

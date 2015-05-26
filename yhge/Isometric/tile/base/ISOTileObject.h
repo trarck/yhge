@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOTileObject_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOTileObject_H_
 #define YHGE_ISOMETRIC_ISOTileObject_H_
 
 #include "cocos2d.h"
@@ -22,22 +22,22 @@ public:
     
 public:
     
-    inline const char* getName(){ return _sName.c_str(); }
-    inline void setName(const char *name){ _sName = name; }
+    inline const std::string& getName(){ return _name; }
+    inline void setName(const std::string& name){ _name = name; }
     
-    virtual void setType(const char *pType);
+    virtual void setType(const std::string& pType);
     virtual std::string& getType();
     
-    virtual void setPosition(CCPoint tPosition);
-    virtual CCPoint getPosition();
+    virtual void setPosition(Vec2 tPosition);
+    virtual Vec2 getPosition();
     
-    virtual void setSize(CCSize tSize);
-    virtual CCSize getSize();
+    virtual void setSize(Size tSize);
+    virtual Size getSize();
     
     virtual void setGid(unsigned int uGid);
     virtual unsigned int getGid();
     
-    virtual void setVisible(bool bVisible);
+    virtual void setVisible(bool visible);
     virtual bool getVisible();
     
     inline void setParts(CCArray* pParts)
@@ -60,7 +60,7 @@ protected:
     /**
      * 对象的名称
      */
-    std::string _sName;
+    std::string _name;
     
     /**
      * 对象的类型
@@ -71,12 +71,12 @@ protected:
      * 对象的位置
      * 格子坐标
      */
-    CCPoint _tPosition;
+    Vec2 _tPosition;
     
     /**
      * 对象的大小
      */
-    CCSize _tSize;
+    Size _tSize;
     
     /**
      * 对象的gid
@@ -86,7 +86,7 @@ protected:
     /**
      * 对象是否可见
      */
-    bool _bVisible;
+    bool _visible;
     
     /**
      * 组成部分
@@ -96,7 +96,7 @@ protected:
     /**
      * 属性
      */
-    CCDictionary* _pProperties;
+    CCDictionary* _properties;
 };
 
 

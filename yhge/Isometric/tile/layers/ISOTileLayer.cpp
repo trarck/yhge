@@ -1,4 +1,4 @@
-#include "ISOTileLayer.h"
+﻿#include "ISOTileLayer.h"
 #include <yhge/Isometric/CoordinateFormulae.h>
 #include "../base/ISOTileset.h"
 #include "../ISOTileMap.h"
@@ -26,12 +26,12 @@ ISOTileLayer::~ISOTileLayer()
 //
 //bool ISOTileLayer::init()
 //{
-//    _pProperties=new CCDictionary();
+//    _properties=new CCDictionary();
 //    
 //	return true;
 //}
 //
-//bool ISOTileLayer::init(CCSize& mapTileSize)
+//bool ISOTileLayer::init(Size& mapTileSize)
 //{
 //    if(init()){
 //        _tMapTileSize=mapTileSize;
@@ -40,28 +40,28 @@ ISOTileLayer::~ISOTileLayer()
 //    return false;
 //}
 //
-//bool ISOTileLayer::init(CCSize& mapTileSize,CCPoint& offset)
+//bool ISOTileLayer::init(Size& mapTileSize,Vec2& offset)
 //{
 //    if(init(mapTileSize)){
-//        _tOffset=offset;
+//        _offset=offset;
 //        return true;
 //    }
 //    return false;
 //}
 
 
-void ISOTileLayer::initOffset(const CCPoint& tOffset)
+void ISOTileLayer::inioffset(const Vec2& offset)
 {
-//    this->setPosition(tOffset);
-	this->setOffset(tOffset);
-	CCPoint startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(tOffset));
+//    this->setPosition(offset);
+	this->seoffset(offset);
+	Vec2 startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(offset));
 	_startX=(int)startMapCoord.x;
 	_startY=(int)startMapCoord.y;
 }
 
-void ISOTileLayer::initOffset(float x,float y)
+void ISOTileLayer::inioffset(float x,float y)
 {
-	this->initOffset(ccp(x,y));
+	this->inioffset(ccp(x,y));
 }
 
 ISOTileLayer* ISOTileLayer::create()
@@ -104,7 +104,7 @@ void ISOTileLayer::addTileAt(float x,float y)
     addTileAt(ccp(x,y));
 }
 
-void ISOTileLayer::addTileAt(const CCPoint& pos)
+void ISOTileLayer::addTileAt(const Vec2& pos)
 {
     CCAssert(false, "you must impl ISOTileLayer::addTileAt");
 }
@@ -118,7 +118,7 @@ ISOTile* ISOTileLayer::tileAt(float x,float y)
 }
 
 
-ISOTile* ISOTileLayer::tileAt(const CCPoint& pos)
+ISOTile* ISOTileLayer::tileAt(const Vec2& pos)
 {
     ISOTile* tile=NULL;
     unsigned int gid=tileGIDAt(pos);
@@ -136,11 +136,11 @@ void ISOTileLayer::removeTileAt(float x,float y)
     removeTileAt(ccp(x,y));
 }
 
-void ISOTileLayer::removeTileAt(const CCPoint& pos)
+void ISOTileLayer::removeTileAt(const Vec2& pos)
 {
-    CCAssert(pos.x < _tLayerSize.width && pos.y < _tLayerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer::removeTileAt: invalid position");
+    CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer::removeTileAt: invalid position");
     
-    int idx = (int)(pos.x + pos.y * _tLayerSize.width);
+    int idx = (int)(pos.x + pos.y * _layerSize.width);
     _pTiles[idx]=0;
 }
 
@@ -149,10 +149,10 @@ unsigned int ISOTileLayer::tileGIDAt(float x,float y)
     return tileGIDAt(ccp(x,y));
 }
 
-unsigned int ISOTileLayer::tileGIDAt(const CCPoint& pos)
+unsigned int ISOTileLayer::tileGIDAt(const Vec2& pos)
 {
-    if(pos.x < _tLayerSize.width && pos.y < _tLayerSize.height && pos.x >=0 && pos.y >=0){
-        int idx = (int)(pos.x + pos.y * _tLayerSize.width);
+    if(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0){
+        int idx = (int)(pos.x + pos.y * _layerSize.width);
         unsigned int gid = _pTiles[idx];
         
         return gid;
@@ -162,10 +162,10 @@ unsigned int ISOTileLayer::tileGIDAt(const CCPoint& pos)
 
 
 //TODO 
-void ISOTileLayer::setTileGID(unsigned int gid, const CCPoint& pos)
+void ISOTileLayer::setTileGID(unsigned int gid, const Vec2& pos)
 {
-    CCAssert(pos.x < _tLayerSize.width && pos.y < _tLayerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer::setTileGID: invalid position");
-    int idx = (int)(pos.x + pos.y * _tLayerSize.width);
+    CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer::setTileGID: invalid position");
+    int idx = (int)(pos.x + pos.y * _layerSize.width);
     _pTiles[idx]=gid;
 }
 
@@ -174,7 +174,7 @@ void ISOTileLayer::setTileGID(unsigned int gid, float x,float y)
     setTileGID(gid,ccp(x,y));
 }
 
-void ISOTileLayer::scroll(const CCPoint& tOffset)
+void ISOTileLayer::scroll(const Vec2& offset)
 {
 //    CCLOG("ISOTileLayer::scroll");
 }
@@ -197,20 +197,17 @@ void ISOTileLayer::parseInternalProperties()
     CCLOG("ISOTileLayer::parseInternalProperties");
     // if cc_vertex=automatic, then tiles will be rendered using vertexz
     
-    CCString *vertexz = propertyNamed("cc_vertexz");
-    if (vertexz)
+	Value vertexz = getProperty("cc_vertexz");
+    if (!vertexz.isNull())
     {
+		std::string vertexZStr = vertexz.asString();
         // If "automatic" is on, then parse the "cc_alpha_func" too
-        if (vertexz->_sString == "automatic")
+		if (vertexZStr == "automatic")
         {
             _useAutomaticVertexZ = true;
-            CCString *alphaFuncVal = propertyNamed("cc_alpha_func");
-            float alphaFuncValue = 0.0f;
-            if (alphaFuncVal != NULL)
-            {
-                alphaFuncValue = alphaFuncVal->floatValue();
-            }
-            setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTextureColorAlphaTest));
+			Value alphaFuncVal = getProperty("cc_alpha_func");
+			float alphaFuncValue = alphaFuncVal.asFloat();
+               setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTextureColorAlphaTest));
             
             GLint alphaValueLocation = glGetUniformLocation(getShaderProgram()->getProgram(), kCCUniformAlphaTestValue);
             
@@ -219,20 +216,20 @@ void ISOTileLayer::parseInternalProperties()
         }
         else
         {
-            _vertexZvalue = vertexz->intValue();
+			_vertexZvalue = vertexz.asInt();
         }
     }
 }
 
-unsigned int  ISOTileLayer::indexForPos(const CCPoint& pos)
+unsigned int  ISOTileLayer::indexForPos(const Vec2& pos)
 {
-    unsigned int index=(unsigned int)(pos.x + pos.y * _tLayerSize.width);
+    unsigned int index=(unsigned int)(pos.x + pos.y * _layerSize.width);
     return index;
 }
 
 unsigned int ISOTileLayer::zOrderToIndex(int z)
 {
-	return (unsigned int)(_tLayerSize.width*_tLayerSize.height-z);
+	return (unsigned int)(_layerSize.width*_layerSize.height-z);
 }
 
 void ISOTileLayer::setTiles(unsigned int* pTiles)
@@ -255,7 +252,7 @@ CCSprite* ISOTileLayer::tileSpriteAt(float x,float y)
     return tileSpriteAt(ccp(x,y));
 }
 
-CCSprite* ISOTileLayer::tileSpriteAt(const CCPoint& pos)
+CCSprite* ISOTileLayer::tileSpriteAt(const Vec2& pos)
 {
     CCSprite* sprite=NULL;
     
@@ -275,7 +272,7 @@ void ISOTileLayer::removeTileSpriteAt(float x,float y)
     removeTileSpriteAt(ccp(x,y));
 }
 
-void ISOTileLayer::removeTileSpriteAt(const CCPoint& pos)
+void ISOTileLayer::removeTileSpriteAt(const Vec2& pos)
 {
     CCAssert(false, "you must impl ISOTileLayer::removeSpriteTileAt");
 }

@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOTILEINFO_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOTILEINFO_H_
 #define YHGE_ISOMETRIC_ISOTILEINFO_H_
 
 #include "cocos2d.h"
@@ -40,12 +40,12 @@ public:
         return _sImageSource.c_str();
     }
     
-    inline void setImageSize(CCSize& tImageSize)
+    inline void setImageSize(Size& tImageSize)
     {
         _tImageSize = tImageSize;
     }
     
-    inline CCSize& getImageSize()
+    inline Size& getImageSize()
     {
         return _tImageSize;
     }
@@ -53,13 +53,13 @@ public:
     inline void setProperties(CCDictionary* pProperties)
     {
         CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(_pProperties);
-        _pProperties = pProperties;
+        CC_SAFE_RELEASE(_properties);
+        _properties = pProperties;
     }
     
     inline CCDictionary* getProperties()
     {
-        return _pProperties;
+        return _properties;
     }
     
 protected:
@@ -76,12 +76,12 @@ protected:
     /**
      * 图像大小。像素大小
      */
-    CCSize _tImageSize;
+    Size _tImageSize;
     
     /**
      * 格子扩展属性
      */
-    CCDictionary* _pProperties;
+    CCDictionary* _properties;
     
 
 };

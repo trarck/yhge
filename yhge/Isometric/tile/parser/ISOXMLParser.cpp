@@ -1,4 +1,4 @@
-#include "ISOXMLParser.h"
+﻿#include "ISOXMLParser.h"
 #include "support/zip_support/ZipUtils.h"
 #include "support/CCPointExtension.h"
 #include <yhge/CocosExt/Support/base64.h>
@@ -156,7 +156,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
             CCLOG("cocos2d: TMXFormat: Unsupported TMX version: %s", version.c_str());
         }
         
-        CCSize s;
+        Size s;
         s.width = (float)atof(valueForKey("width", attributeDict));
         s.height = (float)atof(valueForKey("height", attributeDict));
         _pMapInfo->setMapSize(s);
@@ -202,7 +202,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
             tileset->setFirstGid((unsigned int)atoi(valueForKey("firstgid", attributeDict)));
             tileset->setSpacing ((unsigned int)atoi(valueForKey("spacing", attributeDict)));
             tileset->setMargin ((unsigned int)atoi(valueForKey("margin", attributeDict)));
-            CCSize s;
+            Size s;
             s.width = (float)atof(valueForKey("tilewidth", attributeDict));
             s.height = (float)atof(valueForKey("tileheight", attributeDict));
             tileset->setTileSize(s);
@@ -231,7 +231,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         ISOLayerInfo *layerInfo = new ISOLayerInfo();
         layerInfo->setName(valueForKey("name", attributeDict));
         
-        CCSize s;
+        Size s;
         s.width = (float)atof(valueForKey("width", attributeDict));
         s.height = (float)atof(valueForKey("height", attributeDict));
         layerInfo->setLayerSize(s);
@@ -248,7 +248,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         {
             layerInfo->setOpacity(255);
         }
-        CCPoint pos;
+        Vec2 pos;
         
         pos.x = (float)atof(valueForKey("x", attributeDict));
         pos.y = (float)atof(valueForKey("y", attributeDict));
@@ -267,7 +267,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
     {
         ISOObjectGroupInfo *objectGroup = new ISOObjectGroupInfo();
         objectGroup->setName(valueForKey("name", attributeDict));
-        CCPoint positionOffset;
+        Vec2 positionOffset;
         positionOffset.x = (float)atof(valueForKey("x", attributeDict)) * _pMapInfo->getTileSize().width;
         positionOffset.y = (float)atof(valueForKey("y", attributeDict)) * _pMapInfo->getTileSize().height;
         objectGroup->setPositionOffset(positionOffset);
@@ -309,7 +309,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
             tilesetInfo->setImageSource(imagename.c_str());
             
             if(widthValue && heightValue){
-                CCSize s;
+                Size s;
                 s.width=(float)atof(widthValue);
                 s.height=(float)atof(heightValue);
                 tilesetInfo->setImageSize(s);
@@ -322,7 +322,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
             tileInfo->setImageSource(imagename.c_str());
             
             if(widthValue && heightValue){
-                CCSize s;
+                Size s;
                 s.width=(float)atof(widthValue);
                 s.height=(float)atof(heightValue);
                 tileInfo->setImageSize(s);
@@ -368,12 +368,12 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
 		//object的size和position是地图的像素值，不是屏幕的像素值。
 		//一个地图的单位坐标像素值和yUnit相等。
 
-        CCSize s;
+        Size s;
         s.width = (float)atof(valueForKey("width", attributeDict));
         s.height = (float)atof(valueForKey("height", attributeDict));
         objInfo->setSize(s);
         
-        CCPoint pos;
+        Vec2 pos;
         std::string value = valueForKey("x", attributeDict);
         if( value!="" )
         {
@@ -527,7 +527,7 @@ void ISOXMLParser::endElement(void *ctx, const char *name)
         if( _nLayerAttribs & (ISOParseLayerAttribGzip | ISOParseLayerAttribZlib) )
         {
             unsigned char *deflated;
-            CCSize s = layerInfo->getLayerSize();
+            Size s = layerInfo->getLayerSize();
             // int sizeHint = s.width * s.height * sizeof(uint32_t);
             int sizeHint = (int)(s.width * s.height * sizeof(unsigned int));
             
@@ -627,7 +627,7 @@ void ISOXMLParser::textHandler(void *ctx, const char *ch, int len)
  */
 void ISOXMLParser::translateMapTiles(unsigned int * pTiles,ISOLayerInfo* layerInfo,unsigned int **out)
 {
-    CCSize layerSize=layerInfo->getLayerSize();
+    Size layerSize=layerInfo->getLayerSize();
     unsigned int layerWidth=(unsigned int)layerSize.width;
     unsigned int layerHeight=(unsigned int)layerSize.height;
     
@@ -652,7 +652,7 @@ void ISOXMLParser::translateMapTiles(unsigned int * pTiles,ISOLayerInfo* layerIn
                 (*out)[translatedIndex]=currentId;
             }
         }
-        CCSize translatedSize=CCSizeMake(layerSize.height, layerSize.width);
+        Size translatedSize=CCSizeMake(layerSize.height, layerSize.width);
         //转换高宽
         layerInfo->setLayerSize(translatedSize);
     }
@@ -662,12 +662,12 @@ void ISOXMLParser::translateMapTiles(unsigned int * pTiles,ISOLayerInfo* layerIn
  * 把tiled里的object坐标转成地图格子坐标
  * 注意坐标系的交换
  */
-CCPoint ISOXMLParser::translateObjectCoord(const CCPoint& pos)
+Vec2 ISOXMLParser::translateObjectCoord(const Vec2& pos)
 {
-    CCPoint coord;
+    Vec2 coord;
     
-    CCSize tileSize=_pMapInfo->getTileSize();
-	CCSize mapSize=_pMapInfo->getMapSize();
+    Size tileSize=_pMapInfo->getTileSize();
+	Size mapSize=_pMapInfo->getMapSize();
     
     CCAssert(tileSize.height!=0, "tilesize must big then zero");
     
@@ -678,11 +678,11 @@ CCPoint ISOXMLParser::translateObjectCoord(const CCPoint& pos)
 }
 
 //把tiled里的object格式像素大小转成坐标大小
-CCSize ISOXMLParser::translateObjectSize(const CCSize& size)
+Size ISOXMLParser::translateObjectSize(const Size& size)
 {
-    CCSize gridSize;
+    Size gridSize;
     
-    CCSize tileSize=_pMapInfo->getTileSize();
+    Size tileSize=_pMapInfo->getTileSize();
     
     CCAssert(tileSize.height!=0, "tilesize must big then zero");
     

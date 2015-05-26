@@ -1,4 +1,4 @@
-#include "ISOBatchTileLayer.h"
+﻿#include "ISOBatchTileLayer.h"
 #include <yhge/Isometric/CoordinateFormulae.h>
 #include <yhge/Isometric/tile/base/ISOTileset.h>
 
@@ -53,7 +53,7 @@ bool ISOBatchTileLayer::init()
 void ISOBatchTileLayer::setupTiles()
 {
     // XXX: is 35% a good estimate ?
-    float totalNumberOfTiles = _tLayerSize.width * _tLayerSize.height;
+    float totalNumberOfTiles = _layerSize.width * _layerSize.height;
     float capacity = totalNumberOfTiles * 0.35f + 1; // 35 percent is occupied ?
     
     CCTexture2D *texture = _pTileset->getTexture();
@@ -67,7 +67,7 @@ void ISOBatchTileLayer::setupTiles()
     {               
         _pAtlasIndexArray = yhge::ccCArrayNew((unsigned int)totalNumberOfTiles);
         
-        this->setContentSize(CCSizeMake(_tLayerSize.width * _tMapTileSize.width, _tLayerSize.height * _tMapTileSize.height));
+        this->setContentSize(CCSizeMake(_layerSize.width * _tMapTileSize.width, _layerSize.height * _tMapTileSize.height));
     }
 
     _pSpriteBatchNode->getTextureAtlas()->getTexture()->setAliasTexParameters();
@@ -75,9 +75,9 @@ void ISOBatchTileLayer::setupTiles()
     // Parse cocos2d properties
     this->parseInternalProperties();
 
-    for (unsigned int y=0; y < _tLayerSize.height; y++)
+    for (unsigned int y=0; y < _layerSize.height; y++)
     {
-        for (unsigned int x=0; x < _tLayerSize.width; x++)
+        for (unsigned int x=0; x < _layerSize.width; x++)
         {
             unsigned int tileIndex = indexForPos(ccp(x,y));
             unsigned int gid = _pTiles[ tileIndex ];
@@ -105,12 +105,12 @@ void ISOBatchTileLayer::setupTiles()
     addChild(_pSpriteBatchNode);
 }
 
-void ISOBatchTileLayer::setupTileSprite(CCSprite* sprite, CCPoint mapCoord, unsigned int gid)
+void ISOBatchTileLayer::setupTileSprite(CCSprite* sprite, Vec2 mapCoord, unsigned int gid)
 {
     sprite->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(mapCoord)));
     sprite->setVertexZ((float)this->vertexZForPos(mapCoord));
     sprite->setAnchorPoint(ccp(0.5f,0.0f));
-    sprite->setOpacity(_cOpacity);
+    sprite->setOpacity(_opacity);
     
     sprite->setFlipX(false);
     sprite->setFlipX(false);
@@ -121,7 +121,7 @@ void ISOBatchTileLayer::setupTileSprite(CCSprite* sprite, CCPoint mapCoord, unsi
     {
         // put the anchor in the middle for ease of rotation.
         sprite->setAnchorPoint(ccp(0.5f,0.5f));
-        CCPoint viewPos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(mapCoord));
+        Vec2 viewPos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(mapCoord));
         sprite->setPosition(ccp(viewPos.x + sprite->getContentSize().height/2,
                                 viewPos.y + sprite->getContentSize().width/2 ) );
         
@@ -184,9 +184,9 @@ CCSprite* ISOBatchTileLayer::reusedTileWithRect(CCRect rect)
 }
 
 
-CCSprite * ISOBatchTileLayer::tileSpriteAt(const CCPoint& pos)
+CCSprite * ISOBatchTileLayer::tileSpriteAt(const Vec2& pos)
 {
-    CCAssert(pos.x < _tLayerSize.width && pos.y < _tLayerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer: invalid position");
+    CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer: invalid position");
     CCAssert(_pTiles && _pAtlasIndexArray, "ISOTileLayer: the tiles map has been released");
     
     CCSprite *tile = NULL;
@@ -209,7 +209,7 @@ CCSprite * ISOBatchTileLayer::tileSpriteAt(const CCPoint& pos)
             tile->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(pos)));
             tile->setVertexZ((float)vertexZForPos(pos));
             tile->setAnchorPoint(CCPointZero);
-            tile->setOpacity(_cOpacity);
+            tile->setOpacity(_opacity);
             
             unsigned int indexForZ = this->atlasIndexForExistantZ(z);
             this->addSpriteWithoutQuad(tile, indexForZ, z);
@@ -222,7 +222,7 @@ CCSprite * ISOBatchTileLayer::tileSpriteAt(const CCPoint& pos)
 
 
 // ISOBatchTileLayer - adding helper methods
-CCSprite * ISOBatchTileLayer::insertTileForGID(unsigned int gid, const CCPoint& pos)
+CCSprite * ISOBatchTileLayer::insertTileForGID(unsigned int gid, const Vec2& pos)
 {
     CCRect rect = _pTileset->rectForGid(gid);
     
@@ -264,7 +264,7 @@ CCSprite * ISOBatchTileLayer::insertTileForGID(unsigned int gid, const CCPoint& 
     return tile;
 }
 
-CCSprite * ISOBatchTileLayer::updateTileForGID(unsigned int gid, const CCPoint& pos)
+CCSprite * ISOBatchTileLayer::updateTileForGID(unsigned int gid, const Vec2& pos)
 {
     CCRect rect = _pTileset->rectForGid(gid);
     rect = CCRectMake(rect.origin.x / _fContentScaleFactor, rect.origin.y / _fContentScaleFactor, rect.size.width/ _fContentScaleFactor, rect.size.height/ _fContentScaleFactor);
@@ -289,7 +289,7 @@ CCSprite * ISOBatchTileLayer::updateTileForGID(unsigned int gid, const CCPoint& 
 
 // used only when parsing the map. useless after the map was parsed
 // since lot's of assumptions are no longer true
-CCSprite * ISOBatchTileLayer::appendTileForGID(unsigned int gid, const CCPoint& pos)
+CCSprite * ISOBatchTileLayer::appendTileForGID(unsigned int gid, const Vec2& pos)
 {
     CCRect rect = _pTileset->rectForGid(gid);
     
@@ -313,9 +313,9 @@ CCSprite * ISOBatchTileLayer::appendTileForGID(unsigned int gid, const CCPoint& 
     return tile;
 }
 
-void ISOBatchTileLayer::removeTileSpriteAt(const CCPoint& pos)
+void ISOBatchTileLayer::removeTileSpriteAt(const Vec2& pos)
 {
-    CCAssert(pos.x < _tLayerSize.width && pos.y < _tLayerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
+    CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
     CCAssert(_pTiles && _pAtlasIndexArray, "TMXLayer: the tiles map has been released");
     
     unsigned int gid = tileGIDAt(pos);
@@ -390,9 +390,9 @@ unsigned int ISOBatchTileLayer::atlasIndexForNewZ(int z)
     return i;
 }
 
-void ISOBatchTileLayer::setTileGID(unsigned int gid, const CCPoint& pos)
+void ISOBatchTileLayer::setTileGID(unsigned int gid, const Vec2& pos)
 {
-    CCAssert(pos.x < _tLayerSize.width && pos.y < _tLayerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
+    CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
     CCAssert(_pTiles && _pAtlasIndexArray, "TMXLayer: the tiles map has been released");
     CCAssert(gid == 0 || gid >= _pTileset->getFirstGid(), "TMXLayer: invalid gid" );
     

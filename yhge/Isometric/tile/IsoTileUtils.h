@@ -13,7 +13,7 @@ public:
 	/**
 	 * 计算显示区域内，组件数量的行列数
 	 */
-	static void calcDynamicComponetSize(const CCSize& visibleSize,const CCSize& tileSize,int* column,int* row);
+	static void calcDynamicComponetSize(const Size& visibleSize,const Size& tileSize,int* column,int* row);
 };
 
 

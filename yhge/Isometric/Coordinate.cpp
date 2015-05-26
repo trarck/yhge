@@ -1,4 +1,4 @@
-//
+﻿//
 //  Coordinate.m
 //  Dungeons
 //
@@ -99,11 +99,11 @@ void Coordinate::setCoordinateUnit(float xUnit ,float yUnit ,float zUnit)
 	_tileHeight=_tileWidth/2;//(xUnit+yUnit)/2
 }
 
-CCSize Coordinate::mapToScreenSize(int l ,int b ,int h)
+Size Coordinate::mapToScreenSize(int l ,int b ,int h)
 {
 	int s;
 	float width,height;
-	CCSize size;
+	Size size;
 	
 	s=l+b;
 	width=s*_xUnit;
@@ -113,9 +113,9 @@ CCSize Coordinate::mapToScreenSize(int l ,int b ,int h)
 	return size;
 }
 
-CCPoint Coordinate::mapToScreenAnchor(int l ,int b ,int h)
+Vec2 Coordinate::mapToScreenAnchor(int l ,int b ,int h)
 {
-	CCPoint p;
+	Vec2 p;
 	p.x=b*_xUnit;
 	p.y=h*_zUnit;
 	return p;

@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOOBJECTGROUP_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOOBJECTGROUP_H_
 #define YHGE_ISOMETRIC_ISOOBJECTGROUP_H_
 
 #include "cocos2d.h"
@@ -22,21 +22,21 @@ public:
 
     bool init();
     
-    inline const char* getName(){ return _sName.c_str(); }
-    inline void setName(const char *name){ _sName = name; }
+    inline const std::string& getName(){ return _name; }
+    inline void setName(const std::string& name){ _name = name; }
 
     /** return the value for the specific property name */
-    CCString *propertyNamed(const char* propertyName);
+	Value getProperty(const std::string& propertyName);
 
     /** return the dictionary for the specific object name.
     It will return the 1st object found on the array for the given name.
     */
-    CCDictionary* objectNamed(const char *objectName);
+    CCDictionary* objectNamed(const std::string& objectName);
     
     //============get set===========//
-    virtual void setOffset(const CCPoint& tOffset);
+    virtual void seoffset(const Vec2& offset);
     
-    virtual const CCPoint& getOffset();
+    virtual const Vec2& geoffset();
     
     virtual void setProperties(CCDictionary* pProperties);
     
@@ -58,11 +58,11 @@ public:
     
 protected:    
     /** name of the group */
-    std::string _sName;
+    std::string _name;
     
-    CCPoint _tOffset;
+    Vec2 _offset;
     
-    CCDictionary* _pProperties;
+    ValueMap _properties;
     
     CCArray* _pObjects;
     

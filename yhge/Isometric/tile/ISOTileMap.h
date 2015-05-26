@@ -1,4 +1,4 @@
-//
+﻿//
 //  AstarNode.h
 //  isometric
 //
@@ -69,7 +69,7 @@ public:
      * 通知layer，地图的显示位置改变。
      * 有可能是map的位置改变，有可能是game world改变引起
      */
-    void scrollLayer(const CCPoint& pos);
+    void scrollLayer(const Vec2& pos);
 
 	/**
 	 * 显示地图的坐标线
@@ -97,7 +97,7 @@ public:
 	/**
 	 * 设置动态组
 	 */
-	void setupDynamicGroup(ISODynamicGroup* dynamicGroup,const CCPoint& offset);
+	void setupDynamicGroup(ISODynamicGroup* dynamicGroup,const Vec2& offset);
 
     /**
 	 * 设置一些动态组

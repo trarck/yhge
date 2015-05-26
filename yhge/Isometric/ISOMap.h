@@ -1,4 +1,4 @@
-//
+﻿//
 //  AstarNode.h
 //  isometric
 //
@@ -18,6 +18,8 @@ class ISOLayer;
 class ISOMap : public CCNode{
 
 public:
+
+	typedef Vector<ISOLayer*> LayerVector;
 	
 	ISOMap();
     
@@ -47,13 +49,13 @@ public:
     /**
      * 取得属性
      */
-	CCString *propertyNamed(const std::string& propertyName);
+	Value getProperty(const std::string& propertyName);
     
     /**
      * 通知layer，地图的显示位置改变。
      * 有可能是map的位置改变，有可能是game world改变引起
      */
-    virtual void scrollLayer(const CCPoint& pos);
+    virtual void scrollLayer(const Vec2& pos);
 
 	/**
 	 * 显示地图的坐标线
@@ -67,22 +69,22 @@ public:
 
 public://==============属性===============//
 	
-	inline void setMapSize(CCSize tMapSize)
+	inline void setMapSize(Size tMapSize)
 	{
 		_tMapSize = tMapSize;
 	}
 
-	inline CCSize getMapSize()
+	inline Size getMapSize()
 	{
 		return _tMapSize;
 	}
 
-	inline void setTileSize(const CCSize& tTileSize)
+	inline void setTileSize(const Size& tTileSize)
 	{
 		_tTileSize = tTileSize;
 	}
 
-	inline const CCSize& getTileSize()
+	inline const Size& getTileSize()
 	{
 		return _tTileSize;
 	}
@@ -117,38 +119,34 @@ public://==============属性===============//
 		return _nIdentifier;
 	}
     
-    inline void setVisibleSize(const CCSize& visibleSize)
+    inline void setVisibleSize(const Size& visibleSize)
     {
         _visibleSize = visibleSize;
     }
     
-    inline CCSize getOrignalVisibleSize()
+    inline Size getOrignalVisibleSize()
     {
         return _visibleSize;
     }
     
-    virtual CCSize getVisibleSize();
+    virtual Size getVisibleSize();
     
-	inline void setProperties(CCDictionary* pProperties)
+	inline void setProperties(const ValueMap& pProperties)
 	{
-		CC_SAFE_RETAIN(pProperties);
-		CC_SAFE_RELEASE(_pProperties);
-		_pProperties = pProperties;
+		_properties = pProperties;
 	}
     
-	inline CCDictionary* getProperties()
+	inline ValueMap& getProperties()
 	{
-		return _pProperties;
+		return _properties;
 	}
     
-    inline void setLayers(CCArray* layers)
+	inline void setLayers(const LayerVector& layers)
     {
-        CC_SAFE_RETAIN(layers);
-        CC_SAFE_RELEASE(_layers);
         _layers = layers;
     }
     
-    inline CCArray* getLayers()
+	inline LayerVector& getLayers()
     {
         return _layers;
     }
@@ -164,12 +162,12 @@ protected:
     /**
      * 地图大小，格子数，单位为格子。
      */
-	CCSize _tMapSize;
+	Size _tMapSize;
     
     /**
      * 地图格子大小。
      */
-    CCSize _tTileSize;
+    Size _tTileSize;
     
     /**
      * 地图名称
@@ -189,15 +187,15 @@ protected:
     /**
      * 地图的可视区域
      */
-    CCSize _visibleSize;
+    Size _visibleSize;
     
     /**
      * 属性列表
      */
-    CCDictionary* _pProperties;
+    ValueMap _properties;
 
     //地图中所有的层
-    CCArray* _layers;
+	LayerVector _layers;
     
     ISOLayer* _activeLayer;
     

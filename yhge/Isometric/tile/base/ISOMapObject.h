@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOMAPOBJECT_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOMAPOBJECT_H_
 #define YHGE_ISOMETRIC_ISOMAPOBJECT_H_
 
 #include "cocos2d.h"
@@ -22,10 +22,10 @@ public:
     
 public:
     
-    inline const char* getName(){ return _sName.c_str(); }
-    inline void setName(const char *name){ _sName = name; }
+    inline const std::string& getName(){ return _name; }
+    inline void setName(const std::string& name){ _name = name; }
     
-    inline void setType(const char * pType)
+    inline void setType(const std::string&  pType)
     {
         _sType = pType;
     }
@@ -35,22 +35,22 @@ public:
         return _sType;
     }
     
-    inline void setPosition(CCPoint tPosition)
+    inline void setPosition(Vec2 tPosition)
     {
         _tPosition = tPosition;
     }
     
-    inline CCPoint getPosition()
+    inline Vec2 getPosition()
     {
         return _tPosition;
     }
     
-    inline void setSize(CCSize tSize)
+    inline void setSize(Size tSize)
     {
         _tSize = tSize;
     }
     
-    inline CCSize getSize()
+    inline Size getSize()
     {
         return _tSize;
     }
@@ -65,27 +65,27 @@ public:
         return _uGid;
     }
     
-    inline void setVisible(bool bVisible)
+    inline void setVisible(bool visible)
     {
-        _bVisible = bVisible;
+        _visible = visible;
     }
     
     inline bool getVisible()
     {
-        return _bVisible;
+        return _visible;
     }
     
     inline void setProperties(CCDictionary* pProperties)
     {
         CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(_pProperties);
-        _pProperties=pProperties;
+        CC_SAFE_RELEASE(_properties);
+        _properties=pProperties;
         
     }
     
     inline CCDictionary* getProperties()
     {
-        return _pProperties;
+        return _properties;
     }
     
     inline void setRotation(float rotation)
@@ -103,7 +103,7 @@ protected:
     /**
      * 对象的名称
      */
-    std::string _sName;
+    std::string _name;
     
     /**
      * 对象的类型
@@ -114,13 +114,13 @@ protected:
      * 对象的位置
      * 是像素坐标
      */
-    CCPoint _tPosition;
+    Vec2 _tPosition;
     
     /**
      * 对象的大小
      * 不同的对象类型，对应的单位不同。
      */
-    CCSize _tSize;
+    Size _tSize;
     
     /**
      * 对象的gid
@@ -135,12 +135,12 @@ protected:
     /**
      * 对象是否可见
      */
-    bool _bVisible;
+    bool _visible;
 
     /**
      * 属性
      */
-    CCDictionary* _pProperties;
+    CCDictionary* _properties;
 };
 
 

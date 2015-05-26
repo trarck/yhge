@@ -1,4 +1,4 @@
-#include "ISODynamicTileLayer.h"
+﻿#include "ISODynamicTileLayer.h"
 #include "../ISOTileMap.h"
 #include "../IsoTileUtils.h"
 
@@ -33,7 +33,7 @@ bool ISODynamicTileLayer::init()
     return false;
 }
 
-bool ISODynamicTileLayer::init(CCSize& mapTileSize,CCPoint& offset)
+bool ISODynamicTileLayer::init(Size& mapTileSize,Vec2& offset)
 {
     if(ISOTileLayer::init(mapTileSize, offset)){
         init();
@@ -48,7 +48,7 @@ bool ISODynamicTileLayer::init(CCSize& mapTileSize,CCPoint& offset)
 void ISODynamicTileLayer::setupTiles()
 {
     setComponentColumnAndRow();
-    _pDynamicComponent->setupComponents(_tOffset);
+    _pDynamicComponent->setupComponents(_offset);
 }
 
 void ISODynamicTileLayer::setComponentColumnAndRow()
@@ -56,7 +56,7 @@ void ISODynamicTileLayer::setComponentColumnAndRow()
 
     if(_pDynamicComponent && _tMapTileSize.height!=0 && _tMapTileSize.width!=0){
         
-        CCSize visibleSize=_tileMap->getVisibleSize();
+        Size visibleSize=_tileMap->getVisibleSize();
         int componentTileColumn=0;
         int componentTileRow=0;
 
@@ -77,16 +77,16 @@ void ISODynamicTileLayer::draw()
 	
 	ccDrawColor4B(255,0,0,255);
     
-    CCSize visibleSize=_tileMap->getVisibleSize();
+    Size visibleSize=_tileMap->getVisibleSize();
     
-    ccDrawRect(_tOffset,ccp(_tOffset.x+visibleSize.width,_tOffset.y+visibleSize.height));
+    ccDrawRect(_offset,ccp(_offset.x+visibleSize.width,_offset.y+visibleSize.height));
 }
 
 
-void ISODynamicTileLayer::scroll(const CCPoint& tOffset)
+void ISODynamicTileLayer::scroll(const Vec2& offset)
 {
-    this->setOffset(tOffset);
-	_pDynamicComponent->scroll(tOffset);
+    this->seoffset(offset);
+	_pDynamicComponent->scroll(offset);
 }
 
 void ISODynamicTileLayer::setDynamicComponent(ISODynamicComponent* pDynamicComponent)

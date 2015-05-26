@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOTILESETINFO_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOTILESETINFO_H_
 #define YHGE_ISOMETRIC_ISOTILESETINFO_H_
 
 #include "cocos2d.h"
@@ -20,17 +20,17 @@ public:
     
 public:
     
-    inline const char* getName(){
-        return _sName.c_str();
+    inline const std::string& getName(){
+        return _name;
     }
-    inline void setName(const char *name){
-        _sName = name;
+    inline void setName(const std::string& name){
+        _name = name;
     }
     
-    inline const char* getSourceFile(){
-        return _sSourceFile.c_str();
+    inline const std::string& getSourceFile(){
+        return _sSourceFile;
     }
-    inline void setSourceFile(const char *sourceFile){
+    inline void setSourceFile(const std::string& sourceFile){
         _sSourceFile = sourceFile;
     }
        
@@ -44,12 +44,12 @@ public:
         return _uFirstGid;
     }
     
-    inline void setTileSize(CCSize& tTileSize)
+    inline void setTileSize(Size& tTileSize)
     {
         _tTileSize = tTileSize;
     }
     
-    inline CCSize& getTileSize()
+    inline Size& getTileSize()
     {
         return _tTileSize;
     }
@@ -74,32 +74,32 @@ public:
         return _uMargin;
     }
     
-    inline void setTileOffset( CCPoint& tTileOffset)
+    inline void setTileOffset( Vec2& tTileOffset)
     {
         _tTileOffset = tTileOffset;
     }
     
-    inline  CCPoint& getTileOffset()
+    inline  Vec2& getTileOffset()
     {
         return _tTileOffset;
     }
     
-    inline void setImageSource(const char * pImageSource)
+    inline void setImageSource(const std::string&  pImageSource)
     {
         _sImageSource = pImageSource;
     }
     
-    inline const char * getImageSource()
+    inline const std::string&  getImageSource()
     {
         return _sImageSource.c_str();
     }
     
-    inline void setImageSize(CCSize& tImageSize)
+    inline void setImageSize(Size& tImageSize)
     {
         _tImageSize = tImageSize;
     }
     
-    inline CCSize& getImageSize()
+    inline Size& getImageSize()
     {
         return _tImageSize;
     }
@@ -119,20 +119,20 @@ public:
     inline void setProperties(CCDictionary* pProperties)
     {
         CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(_pProperties);
-        _pProperties = pProperties;
+        CC_SAFE_RELEASE(_properties);
+        _properties = pProperties;
     }
     
     inline CCDictionary* getProperties()
     {
-        return _pProperties;
+        return _properties;
     }
 
 protected:
     /**
      * 集合名称
      */
-    std::string     _sName;
+    std::string     _name;
     
     /**
      * 定义文件
@@ -148,7 +148,7 @@ protected:
     /**
      * 集合中每块的大小
      */
-    CCSize          _tTileSize;
+    Size          _tTileSize;
     
     /**
      * 块的内间距
@@ -163,7 +163,7 @@ protected:
     /**
      * 整个tile图片的偏移
      */
-    CCPoint _tTileOffset;
+    Vec2 _tTileOffset;
     
     /**
      * 集合用到的图片
@@ -175,7 +175,7 @@ protected:
      * 集合用到的图片的大小
      * size in pixels of the image
      */
-    CCSize            _tImageSize;
+    Size            _tImageSize;
     
     /**
      * 所有小格子
@@ -185,7 +185,7 @@ protected:
     /**
      * 属性
      */
-    CCDictionary* _pProperties;
+    CCDictionary* _properties;
 };
 
 

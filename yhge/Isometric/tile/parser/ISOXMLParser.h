@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOXMLPARSER_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOXMLPARSER_H_
 #define YHGE_ISOMETRIC_ISOXMLPARSER_H_
 
 #include "cocos2d.h"
@@ -99,10 +99,10 @@ protected:
     void translateMapTiles(unsigned int * pTiles,ISOLayerInfo* layerInfo,unsigned int **out);
     
     //把tiled里的object坐标转成地图格子坐标
-    CCPoint translateObjectCoord(const CCPoint& pos);
+    Vec2 translateObjectCoord(const Vec2& pos);
     
 	//把tiled里的object格式像素大小转成坐标大小
-	CCSize translateObjectSize(const CCSize& size);
+	Size translateObjectSize(const Size& size);
 
 protected:
 

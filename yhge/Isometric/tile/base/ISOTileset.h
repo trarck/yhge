@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOTILESET_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOTILESET_H_
 #define YHGE_ISOMETRIC_ISOTILESET_H_
 
 #include "cocos2d.h"
@@ -84,8 +84,8 @@ public:
     
 public:
     
-    inline const char* getName(){ return _sName.c_str(); }
-    inline void setName(const char *name){ _sName = name; }
+    inline const char* getName(){ return _name.c_str(); }
+    inline void setName(const char *name){ _name = name; }
     
     virtual void setFileName(const char* pFileName);
     virtual std::string& getFileName();
@@ -96,12 +96,12 @@ public:
     virtual void setTileHeight(int nTileHeight);
     virtual int getTileHeight();
     
-    virtual void setTileSize(CCSize& tTileSize){
+    virtual void setTileSize(Size& tTileSize){
         _nTileWidth=(int)tTileSize.width;
         _nTileHeight=(int)tTileSize.height;
     }
     
-    virtual CCSize getTileSize(){
+    virtual Size getTileSize(){
         return CCSizeMake(_nTileWidth, _nTileHeight);
     }
     
@@ -109,8 +109,8 @@ public:
     virtual int getTileSpacing();
     virtual void setMargin(int nMargin);
     virtual int getMargin();
-    virtual void setTileOffset(CCPoint tTileOffset);
-    virtual CCPoint getTileOffset();
+    virtual void setTileOffset(Vec2 tTileOffset);
+    virtual Vec2 getTileOffset();
 //    virtual void setImageWidth(int nImageWidth);
 //    virtual int getImageWidth();
 //    virtual void setImageHeight(int nImageHeight);
@@ -123,12 +123,12 @@ public:
     virtual void setProperties(CCDictionary* pProperties);
     virtual CCDictionary* getProperties();
     
-    inline void setImageSize(CCSize& tImageSize)
+    inline void setImageSize(Size& tImageSize)
     {
         _tImageSize = tImageSize;
     }
     
-    inline CCSize& getImageSize()
+    inline Size& getImageSize()
     {
         return _tImageSize;
     }
@@ -183,7 +183,7 @@ protected:
     /**
      * 名称
      */
-    std::string _sName;
+    std::string _name;
     
     /**
      * 单独定义的文件名
@@ -213,7 +213,7 @@ protected:
     /**
      * 整个tile图片的偏移
      */
-    CCPoint _tTileOffset;
+    Vec2 _tTileOffset;
     
     /**
      * tile拼成的图片名
@@ -230,7 +230,7 @@ protected:
 //     */
 //    int _nImageHeight;
     
-    CCSize _tImageSize;
+    Size _tImageSize;
     
     /**
      * tile拼成的图片
@@ -260,7 +260,7 @@ protected:
     /**
      * 属性
      */
-    CCDictionary* _pProperties;
+    CCDictionary* _properties;
     
     /**
      * tile的属性

@@ -1,14 +1,14 @@
-#include "ISOObjectGroup.h"
+﻿#include "ISOObjectGroup.h"
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 //implementation ISOObjectGroup
 
 ISOObjectGroup::ISOObjectGroup()
-:_tOffset(CCPointZero)
-,_sName("")
+:_offset(CCPointZero)
+,_name("")
 ,_pObjects(NULL)
-,_pProperties(NULL)
+,_properties(NULL)
 {
     
 }
@@ -17,14 +17,14 @@ ISOObjectGroup::~ISOObjectGroup()
 {
     CCLOGINFO( "ISOObjectGroup: deallocing.");
     CC_SAFE_RELEASE(_pObjects);
-    CC_SAFE_RELEASE(_pProperties);
+    CC_SAFE_RELEASE(_properties);
 }
 
 bool ISOObjectGroup::init()
 {
     _pObjects = new CCArray();
     _pObjects->init();
-    _pProperties = new CCDictionary();
+    _properties = new CCDictionary();
     return true;
 }
 
@@ -47,31 +47,34 @@ CCDictionary* ISOObjectGroup::objectNamed(const char *objectName)
     return NULL;    
 }
 
-CCString* ISOObjectGroup::propertyNamed(const char* propertyName)
+Value ISOObjectGroup::getProperty(const std::string& propertyName)
 {
-    return (CCString*)_pProperties->objectForKey(propertyName);
+	if (_properties.find(propertyName) != _properties.end())
+		return _properties.at(propertyName);
+
+	return Value::Null;
 }
 
-void ISOObjectGroup::setOffset(const CCPoint& tOffset)
+void ISOObjectGroup::seoffset(const Vec2& offset)
 {
-    _tOffset = tOffset;
+    _offset = offset;
 }
 
-const CCPoint& ISOObjectGroup::getOffset()
+const Vec2& ISOObjectGroup::geoffset()
 {
-    return _tOffset;
+    return _offset;
 }
 
 void ISOObjectGroup::setProperties(CCDictionary* pProperties)
 {
     CC_SAFE_RETAIN(pProperties);
-    CC_SAFE_RELEASE(_pProperties);
-    _pProperties = pProperties;
+    CC_SAFE_RELEASE(_properties);
+    _properties = pProperties;
 }
 
 CCDictionary* ISOObjectGroup::getProperties()
 {
-    return _pProperties;
+    return _properties;
 }
 
 void ISOObjectGroup::setObjects(CCArray* pObjects)

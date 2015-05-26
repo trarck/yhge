@@ -1,4 +1,4 @@
-#include "ISOCamera.h"
+﻿#include "ISOCamera.h"
 #include <float.h>
 
 USING_NS_CC;
@@ -47,7 +47,7 @@ void  ISOCamera::move(float deltaX,float deltaY)
     this->updatePosition();
 }
 
-void ISOCamera::move(const CCPoint& delta)
+void ISOCamera::move(const Vec2& delta)
 {
     _tWorldPosition.x+=delta.x;
     _tWorldPosition.y+=delta.y;
@@ -68,7 +68,7 @@ void  ISOCamera::moveTo(float x,float y)
 
 }
 
-void ISOCamera::moveTo(const CCPoint& position)
+void ISOCamera::moveTo(const Vec2& position)
 {
     _tWorldPosition.x=position.x;
     _tWorldPosition.y=position.y;
@@ -89,7 +89,7 @@ void  ISOCamera::moveOpposite(float deltaX,float deltaY)
     this->updatePosition();
 }
 
-void ISOCamera::moveOpposite(const CCPoint& delta)
+void ISOCamera::moveOpposite(const Vec2& delta)
 {
     _tWorldPosition.x-=delta.x;
     _tWorldPosition.y-=delta.y;
@@ -197,7 +197,7 @@ void ISOCamera::updateScale()
 /**
  * 取得屏幕坐标所在game的位置
  */
-CCPoint ISOCamera::getLocationInWorld(const CCPoint& position)
+Vec2 ISOCamera::getLocationInWorld(const Vec2& position)
 {
     CCAssert(_scaleX!=0 && _scaleY!=0, "ISOCamera::updateScale neg is zero");
     
@@ -213,7 +213,7 @@ CCPoint ISOCamera::getLocationInWorld(const CCPoint& position)
 /**
  * 取得game的位置在屏幕坐标所
  */
-CCPoint ISOCamera::getLocationInScene(const CCPoint& position)
+Vec2 ISOCamera::getLocationInScene(const Vec2& position)
 {
     float x=position.x*_scaleX-_tWorldPosition.x;
     float y=position.y*_scaleY-_tWorldPosition.y;
@@ -240,9 +240,9 @@ void ISOCamera::setMoveRange(const CCRect& rect)
 /**
  * 修正移动范围是否超过移动范围
  */
-CCPoint ISOCamera::modifyPositionInRange(const CCPoint& position)
+Vec2 ISOCamera::modifyPositionInRange(const Vec2& position)
 {
-    CCPoint newPos=position;
+    Vec2 newPos=position;
     newPos.x=newPos.x<_minX?_minX:(newPos.x>_maxX?_maxX:newPos.x);
     newPos.y=newPos.y<_minY?_minY:(newPos.y>_maxY?_maxY:newPos.y);
     return newPos;

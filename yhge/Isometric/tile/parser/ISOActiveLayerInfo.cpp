@@ -1,24 +1,24 @@
-#include "ISOActiveLayerInfo.h"
+﻿#include "ISOActiveLayerInfo.h"
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOActiveLayerInfo::ISOActiveLayerInfo()
-:_sName("")
-,_tOffset(CCPointZero)
-,_cOpacity(255)
-,_pProperties(NULL)
-,_bVisible(true)
-,_tLayerSize(CCSizeZero)
+:_name("")
+,_offset(CCPointZero)
+,_opacity(255)
+,_properties(NULL)
+,_visible(true)
+,_layerSize(CCSizeZero)
 ,_objects(NULL)
 {
-    _pProperties=new CCDictionary();
+    _properties=new CCDictionary();
     _objects=new CCArray();
 }
 
 ISOActiveLayerInfo::~ISOActiveLayerInfo()
 {
     CCLOG("ISOActiveLayerInfo destroy");
-    CC_SAFE_RELEASE_NULL(_pProperties);
+    CC_SAFE_RELEASE_NULL(_properties);
     CC_SAFE_RELEASE_NULL(_objects);
 }
 

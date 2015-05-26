@@ -1,15 +1,15 @@
-#include "ISOLayer.h"
+﻿#include "ISOLayer.h"
 #include "ISOMap.h"
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOLayer::ISOLayer()
 :_sLayerName("")
-,_tLayerSize(CCSizeZero)
+,_layerSize(CCSizeZero)
 ,_tMapTileSize(CCSizeZero)
-,_tOffset(CCPointZero)
-,_pProperties(NULL)
-,_cOpacity(255)
+,_offset(CCPointZero)
+,_properties(NULL)
+,_opacity(255)
 ,_pMap(NULL)
 ,_uLayerOrientation(0)
 ,_layerType(kEmptyLayer)
@@ -21,17 +21,17 @@ ISOLayer::ISOLayer()
 
 ISOLayer::~ISOLayer()
 {
-    CC_SAFE_RELEASE_NULL(_pProperties);
+    CC_SAFE_RELEASE_NULL(_properties);
 }
 
 bool ISOLayer::init()
 {
-    _pProperties=new CCDictionary();
+    _properties=new CCDictionary();
     
 	return true;
 }
 
-bool ISOLayer::init(CCSize& mapTileSize)
+bool ISOLayer::init(Size& mapTileSize)
 {
     if(init()){
         _tMapTileSize=mapTileSize;
@@ -40,24 +40,24 @@ bool ISOLayer::init(CCSize& mapTileSize)
     return false;
 }
 
-bool ISOLayer::init(CCSize& mapTileSize,CCPoint& offset)
+bool ISOLayer::init(Size& mapTileSize,Vec2& offset)
 {
     if(init(mapTileSize)){
-        _tOffset=offset;
+        _offset=offset;
         return true;
     }
     return false;
 }
 
 
-void ISOLayer::initOffset(const CCPoint& tOffset)
+void ISOLayer::inioffset(const Vec2& offset)
 {
-	this->setOffset(tOffset);
+	this->seoffset(offset);
 }
 
-void ISOLayer::initOffset(float x,float y)
+void ISOLayer::inioffset(float x,float y)
 {
-	this->initOffset(ccp(x,y));
+	this->inioffset(ccp(x,y));
 }
 
 
@@ -71,7 +71,7 @@ void ISOLayer::releaseLayer()
 
 }
 
-void ISOLayer::scroll(const CCPoint& tOffset)
+void ISOLayer::scroll(const Vec2& offset)
 {
 //    CCLOG("ISOLayer::scroll");
 }
@@ -89,18 +89,18 @@ void ISOLayer::onMapScaleChange(float orignalScale,float newScale)
     
 }
 
-int  ISOLayer::zOrderForPos(const CCPoint& pos)
+int  ISOLayer::zOrderForPos(const Vec2& pos)
 {
-    return (int)(_tLayerSize.width*_tLayerSize.height -(pos.x + pos.y * _tLayerSize.width));
+    return (int)(_layerSize.width*_layerSize.height -(pos.x + pos.y * _layerSize.width));
 }
 
-int ISOLayer::vertexZForPos(const CCPoint& pos)
+int ISOLayer::vertexZForPos(const Vec2& pos)
 {
     int ret = 0;
     unsigned int maxVal = 0;
     if (_useAutomaticVertexZ)
     {
-        maxVal = (unsigned int)(_tLayerSize.width + _tLayerSize.height);
+        maxVal = (unsigned int)(_layerSize.width + _layerSize.height);
         ret = (int)(-(maxVal - (pos.x + pos.y)));
     }
     else
@@ -114,9 +114,12 @@ int ISOLayer::vertexZForPos(const CCPoint& pos)
 /**
  * 获取属性名称
  */
-CCString* ISOLayer::propertyNamed(const char *propertyName)
+Value ISOLayer::getProperty(const std::string& propertyName)
 {
-    return (CCString*)_pProperties->objectForKey(propertyName);
+	if (_properties.find(propertyName) != _properties.end())
+		return _properties.at(propertyName);
+
+	return Value::Null;
 }
 
 void ISOLayer::parseInternalProperties()

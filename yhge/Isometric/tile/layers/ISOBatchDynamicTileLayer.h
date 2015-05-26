@@ -1,4 +1,4 @@
-#ifndef YHGE_ISOMETRIC_ISOBATCHDYNAMICTILELAYER_H_
+﻿#ifndef YHGE_ISOMETRIC_ISOBATCHDYNAMICTILELAYER_H_
 #define YHGE_ISOMETRIC_ISOBATCHDYNAMICTILELAYER_H_
 
 #include "cocos2d.h"
@@ -23,7 +23,7 @@ public:
 	
     virtual bool init();
     
-    virtual bool init(CCSize& mapTileSize,CCPoint& offset);
+    virtual bool init(Size& mapTileSize,Vec2& offset);
 public:
     inline void setTileset(ISOTileset* pTileset)
 	{

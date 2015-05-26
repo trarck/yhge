@@ -1,9 +1,9 @@
-#include "ISOTileset.h"
+﻿#include "ISOTileset.h"
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileset::ISOTileset()
-:_sName("")
+:_name("")
 ,_sFileName("")
 ,_sImageSource("")
 ,_nTileWidth(0)
@@ -18,7 +18,7 @@ ISOTileset::ISOTileset()
 ,_pTiles(NULL)
 ,_uFirstGid(0)
 ,_uLastGid(0)
-,_pProperties(NULL)
+,_properties(NULL)
 ,_pTileProperties(NULL)
 ,_pTexture(NULL)
 ,_uComposeType(0)
@@ -30,7 +30,7 @@ ISOTileset::~ISOTileset()
 {
     CCLOG("ISOTileset destroy");
     CC_SAFE_RELEASE(_pTiles);
-    CC_SAFE_RELEASE(_pProperties);
+    CC_SAFE_RELEASE(_properties);
     CC_SAFE_RELEASE(_pTileProperties);
     CC_SAFE_RELEASE(_pTexture);
 }
@@ -40,7 +40,7 @@ bool ISOTileset::init()
     _pTiles=new CCArray();
     _pTiles->init();
     
-    _pProperties=new CCDictionary();
+    _properties=new CCDictionary();
     
     _pTileProperties=new CCDictionary();
     return true;
@@ -323,12 +323,12 @@ int ISOTileset::getMargin()
     return _nMargin;
 }
 
-void ISOTileset::setTileOffset(CCPoint tTileOffset)
+void ISOTileset::setTileOffset(Vec2 tTileOffset)
 {
     _tTileOffset = tTileOffset;
 }
 
-CCPoint ISOTileset::getTileOffset()
+Vec2 ISOTileset::getTileOffset()
 {
     return _tTileOffset;
 }
@@ -408,13 +408,13 @@ CCDictionary* ISOTileset::getTileProperties()
 void ISOTileset::setProperties(CCDictionary* pProperties)
 {
     CC_SAFE_RETAIN(pProperties);
-    CC_SAFE_RELEASE(_pProperties);
-    _pProperties = pProperties;
+    CC_SAFE_RELEASE(_properties);
+    _properties = pProperties;
 }
 
 CCDictionary* ISOTileset::getProperties()
 {
-    return _pProperties;
+    return _properties;
 }
 
 NS_CC_YHGE_ISOMETRIC_END

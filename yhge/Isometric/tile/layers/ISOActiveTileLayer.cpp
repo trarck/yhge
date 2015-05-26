@@ -1,4 +1,4 @@
-#include "ISOActiveTileLayer.h"
+﻿#include "ISOActiveTileLayer.h"
 #include <yhge/Isometric/CoordinateFormulae.h>
 #include "../ISOBases.h"
 #include "../ISOTileMap.h"
@@ -68,7 +68,7 @@ void ISOActiveTileLayer::setupObjects()
 /**
  * 使用gid从tileset中取出一个图片显示
  */
-CCSprite* ISOActiveTileLayer::createObject(int gid,const CCPoint& position)
+CCSprite* ISOActiveTileLayer::createObject(int gid,const Vec2& position)
 {
     ISOTileset* tileset=_map->getTilesetGroup()->getTilesetByGid(gid);
     
@@ -85,7 +85,7 @@ CCSprite* ISOActiveTileLayer::createObject(int gid,const CCPoint& position)
     return tileSprite;
 }
 
-void ISOActiveTileLayer::scroll(const CCPoint& tOffset)
+void ISOActiveTileLayer::scroll(const Vec2& tOffset)
 {
     CCLOG("ISOActiveTileLayer::scroll");
 }
@@ -101,9 +101,12 @@ void ISOActiveTileLayer::parseInternalProperties()
 
 }
 
-CCString* ISOActiveTileLayer::propertyNamed(const char *propertyName)
+Value ISOActiveTileLayer::getProperty(const std::string& propertyName)
 {
-    return (CCString*)_properties->objectForKey(propertyName);
+	if (_properties.find(propertyName) != _properties.end())
+		return _properties.at(propertyName);
+
+	return Value::Null;
 }
 
 NS_CC_YHGE_ISOMETRIC_END
