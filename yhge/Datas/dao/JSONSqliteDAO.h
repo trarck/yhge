@@ -5,12 +5,12 @@
 #include <yhge/YHGEMacros.h>
 #include <yhge/Jsoncpp/json.h>
 #include <yhge/Sqlite/SqliteDriver.h>
-#include <yhge/CocosExt/CCRef.h>
+#include <yhge/CocosExt/PtrObject.h>
 #include "DAO.h"
 
 NS_CC_YHGE_DATA_BEGIN
 
-typedef CCRef<sqlite::SqliteDriver> CocosSqliteDriver;
+typedef PtrObject<sqlite::SqliteDriver> CocosSqliteDriver;
 
 class JSONSqliteDAO:public DAO
 {

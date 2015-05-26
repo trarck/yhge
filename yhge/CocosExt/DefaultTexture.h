@@ -6,29 +6,29 @@
 
 NS_CC_YHGE_BEGIN
 
-class CCDefaultTexture : public Ref
+class DefaultTexture : public Ref
 {
 public:
 
-    CCDefaultTexture();
-    ~CCDefaultTexture();
+    DefaultTexture();
+    ~DefaultTexture();
 
-    static CCDefaultTexture* getInstance();
+    static DefaultTexture* getInstance();
 
-	CCTexture2D* createDefaultTexture();
+	Texture2D* createDefaultTexture();
 
-    void setTexture(CCTexture2D* texture)
+    void setTexture(Texture2D* texture)
     {
         CC_SAFE_RETAIN(texture);
         CC_SAFE_RELEASE(_texture);
         _texture = texture;
     }
 
-    CCTexture2D* getTexture();
+    Texture2D* getTexture();
 
 private:
 
-    CCTexture2D* _texture;
+    Texture2D* _texture;
 };
 
 
