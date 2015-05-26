@@ -248,156 +248,56 @@
     <ClInclude Include="..\yhge\IO\IOMacros.h" />
     <ClInclude Include="..\yhge\IO\OutputStream.h" />
     <ClInclude Include="..\yhge\isometric.h" />
-    <ClInclude Include="..\yhge\Isometric\Coordinate.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\CoordinateFormulae.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOCamera.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOLayer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOMacroCoordinate.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOMap.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\IsometricMacros.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOStaticCoordinate.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\ISOStaticCoordinateFormulae.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\occlusion\SortZIndex.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\occlusion\SortZIndexNode.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\occlusion\ZIndex.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\occlusion\ZIndexNode.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\base\ISOMapObject.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\base\ISOObjectGroup.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTile.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTileObject.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTileObjectPart.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTileset.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTilesetGroup.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\ISOBases.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\ISOInfos.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\ISOLayers.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\ISOTileInterfaces.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\ISOTileMap.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\IsoTileUtils.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveLayer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveObjectLayer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveSortLayer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicComponent.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicGroup.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicTileLayer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOObjectLayer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOTileLayer.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOActiveLayerInfo.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOLayerInfo.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOMapInfo.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOObjectGroupInfo.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOObjectInfo.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOTileInfo.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOTilesetInfo.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOXMLParser.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\reader\ISOTileMapBuilder.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\yhge\Isometric\tile\renderer\ISOComponentNode.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="..\yhge\Isometric\Coordinate.h" />
+    <ClInclude Include="..\yhge\Isometric\CoordinateFormulae.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOCamera.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOMacroCoordinate.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOMap.h" />
+    <ClInclude Include="..\yhge\Isometric\IsometricMacros.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOStaticCoordinate.h" />
+    <ClInclude Include="..\yhge\Isometric\ISOStaticCoordinateFormulae.h" />
+    <ClInclude Include="..\yhge\Isometric\occlusion\SortZIndex.h" />
+    <ClInclude Include="..\yhge\Isometric\occlusion\SortZIndexNode.h" />
+    <ClInclude Include="..\yhge\Isometric\occlusion\ZIndex.h" />
+    <ClInclude Include="..\yhge\Isometric\occlusion\ZIndexNode.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOMapObject.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOObjectGroup.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTile.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTileObject.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTileObjectPart.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTileset.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\base\ISOTilesetGroup.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\ISOBases.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\ISOInfos.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\ISOLayers.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\ISOTileInterfaces.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\ISOTileMap.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\IsoTileUtils.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveObjectLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveSortLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicComponent.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicGroup.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISODynamicTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOObjectLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\layers\ISOTileLayer.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOActiveLayerInfo.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOLayerInfo.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOMapInfo.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOObjectGroupInfo.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOObjectInfo.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOTileInfo.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOTilesetInfo.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\parser\ISOXMLParser.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\reader\ISOTileMapBuilder.h" />
+    <ClInclude Include="..\yhge\Isometric\tile\renderer\ISOComponentNode.h" />
     <ClInclude Include="..\yhge\Jsoncpp\autolink.h" />
     <ClInclude Include="..\yhge\Jsoncpp\config.h" />
     <ClInclude Include="..\yhge\Jsoncpp\features.h" />
@@ -624,135 +524,49 @@
     <ClCompile Include="..\yhge\IO\IeeeHalfPrecision.cpp" />
     <ClCompile Include="..\yhge\IO\InputStream.cpp" />
     <ClCompile Include="..\yhge\IO\OutputStream.cpp" />
-    <ClCompile Include="..\yhge\Isometric\Coordinate.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOCamera.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOLayer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOMap.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinate.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinateFormulae.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\occlusion\SortZIndex.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\occlusion\SortZIndexNode.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\occlusion\ZIndex.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\occlusion\ZIndexNode.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\base\ISOMapObject.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\base\ISOObjectGroup.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTile.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTileObject.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTileObjectPart.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTileset.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTilesetGroup.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\ISOTileMap.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\IsoTileUtils.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveLayer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveObjectLayer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveSortLayer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicComponent.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicGroup.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicTileLayer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOObjectLayer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOTileLayer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOActiveLayerInfo.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOLayerInfo.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOMapInfo.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOObjectGroupInfo.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOObjectInfo.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOTileInfo.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOTilesetInfo.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOXMLParser.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\reader\ISOTileMapBuilder.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\yhge\Isometric\tile\renderer\ISOComponentNode.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\yhge\Isometric\Coordinate.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOCamera.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOMap.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinate.cpp" />
+    <ClCompile Include="..\yhge\Isometric\ISOStaticCoordinateFormulae.cpp" />
+    <ClCompile Include="..\yhge\Isometric\occlusion\SortZIndex.cpp" />
+    <ClCompile Include="..\yhge\Isometric\occlusion\SortZIndexNode.cpp" />
+    <ClCompile Include="..\yhge\Isometric\occlusion\ZIndex.cpp" />
+    <ClCompile Include="..\yhge\Isometric\occlusion\ZIndexNode.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOMapObject.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOObjectGroup.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTile.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTileObject.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTileObjectPart.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTileset.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\base\ISOTilesetGroup.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\ISOTileMap.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\IsoTileUtils.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveObjectLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveSortLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOActiveTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicComponent.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchDynamicTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOBatchTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOCoordinateLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicComponent.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicGroup.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISODynamicTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOGroundTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOObjectLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\layers\ISOTileLayer.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOActiveLayerInfo.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOLayerInfo.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOMapInfo.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOObjectGroupInfo.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOObjectInfo.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOTileInfo.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOTilesetInfo.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\parser\ISOXMLParser.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\reader\ISOTileMapBuilder.cpp" />
+    <ClCompile Include="..\yhge\Isometric\tile\renderer\ISOComponentNode.cpp" />
     <ClCompile Include="..\yhge\Jsoncpp\json_reader.cpp" />
     <ClCompile Include="..\yhge\Jsoncpp\json_value.cpp" />
     <ClCompile Include="..\yhge\Jsoncpp\json_writer.cpp" />
