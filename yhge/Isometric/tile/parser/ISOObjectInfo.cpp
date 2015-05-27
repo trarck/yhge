@@ -12,13 +12,11 @@ ISOObjectInfo::ISOObjectInfo()
 ,_rotation(0.0f)
 ,_visible(true)
 {
-    _properties=new CCDictionary();
 }
 
 ISOObjectInfo::~ISOObjectInfo()
 {
     CCLOG("ISOObjectInfo destroy");
-    CC_SAFE_RELEASE(_properties);
 }
 
 NS_CC_YHGE_ISOMETRIC_END

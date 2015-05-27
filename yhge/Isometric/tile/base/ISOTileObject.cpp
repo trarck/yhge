@@ -42,22 +42,22 @@ std::string& ISOTileObject::getType()
     return _type;
 }
 
-void ISOTileObject::seposition(Vec2 position)
+void ISOTileObject::setPosition(Vec2 position)
 {
     _position = position;
 }
 
-Vec2 ISOTileObject::geposition()
+Vec2 ISOTileObject::getPosition()
 {
     return _position;
 }
 
-void ISOTileObject::sesize(Size size)
+void ISOTileObject::setSize(Size size)
 {
     _size = size;
 }
 
-Size ISOTileObject::gesize()
+Size ISOTileObject::getSize()
 {
     return _size;
 }

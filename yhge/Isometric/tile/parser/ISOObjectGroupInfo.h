@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include <yhge/Isometric/IsometricMacros.h>
+#include "ISOObjectInfo.h"
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
@@ -12,6 +13,8 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 class ISOObjectGroupInfo : public Ref{
 
 public:
+	typedef Vector<ISOObjectInfo*> ISOObjectInfoVector;
+
     
     ISOObjectGroupInfo();
     
@@ -27,12 +30,12 @@ public:
         return _name.c_str();
     }
     
-    inline void secolor(ccColor3B& color)
+    inline void secolor(Color3B& color)
     {
         _color = color;
     }
     
-    inline ccColor3B& gecolor()
+    inline Color3B& gecolor()
     {
         return _color;
     }
@@ -57,36 +60,32 @@ public:
         return _visible;
     }
     
-    inline void setObjects(CCArray* objects)
+	inline void setObjects(const ISOObjectInfoVector& objects)
     {
-        CC_SAFE_RETAIN(objects);
-        CC_SAFE_RELEASE(_objects);
         _objects = objects;
     }
     
-    inline CCArray* getObjects()
+	inline ISOObjectInfoVector& getObjects()
     {
         return _objects;
     }
     
-    inline void setProperties(CCDictionary* pProperties)
+	inline void setProperties(const ValueMap& properties)
     {
-        CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(_properties);
-        _properties = pProperties;
+		_properties = properties;
     }
     
-    inline CCDictionary* getProperties()
+	inline ValueMap& getProperties()
     {
         return _properties;
     }
     
-    inline void sepositionOffset(Vec2& positionOffset)
+    inline void setPositionOffset(Vec2& positionOffset)
     {
         _positionOffset = positionOffset;
     }
     
-    inline Vec2& gepositionOffset()
+    inline Vec2& getPositionOffset()
     {
         return _positionOffset;
     }
@@ -113,7 +112,7 @@ protected:
      * 组的颜色。平常不会不用到
      * 组内的所有元素受到影响
      */
-    ccColor3B _color;
+    Color3B _color;
     
     //cocos2dx use 0-255
     /**
@@ -135,12 +134,12 @@ protected:
     /**
      * 组所包含的对象
      */
-    CCArray* _objects;
+	ISOObjectInfoVector _objects;
     
     /**
      * 组是扩展属性
      */
-    CCDictionary* _properties;
+    ValueMap _properties;
     
     /**
      * 在地图文件中出现的顺序。

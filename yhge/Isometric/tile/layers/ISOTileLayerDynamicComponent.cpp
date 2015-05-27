@@ -308,7 +308,7 @@ void ISOTileLayerDynamicComponent::setucomponents(int iComponentNodeExtendCount,
 	this->setComponentTileExtendCount(iComponentNodeExtendCount);
     this->calcComponentsCount();
     this->createComponents();
-	//this->seoffset(position);
+	//this->setOffset(position);
 	this->inioffset(position);
     this->initComponents();	
 }
@@ -345,7 +345,7 @@ int ISOTileLayerDynamicComponent::getComponentTileExtendCount()
 
 void ISOTileLayerDynamicComponent::scroll(const Vec2& offset)
 {
-    this->seoffset(offset);
+    this->setOffset(offset);
 	if(this->beforeUpdateContent()){
     	//TODO 不删除所有tile,只修改改变的tile.
 		//this->removeAllChildrenWithCleanup(true);

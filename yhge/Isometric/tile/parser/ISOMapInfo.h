@@ -3,6 +3,9 @@
 
 #include "cocos2d.h"
 #include <yhge/Isometric/IsometricMacros.h>
+#include "ISOLayerInfo.h"
+#include "ISOTilesetInfo.h"
+#include "ISOObjectGroupInfo.h"
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
@@ -13,7 +16,10 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 class ISOMapInfo : public Ref{
 
 public:
-    
+	typedef Vector<ISOLayerInfo*> ISOLayerInfoVector;
+	typedef Vector<ISOTilesetInfo*> ISOTilesetInfoVector;
+	typedef Vector<ISOObjectGroupInfo*> ISOObjectGroupInfoVector;
+
     ISOMapInfo();
     
     ~ISOMapInfo();
@@ -23,30 +29,30 @@ public:
     virtual void setOrientation(int orientation);
     virtual int getOrientation();
     
-    virtual void semapSize(const Size& mapSize);
-    virtual const Size& gemapSize();
+    virtual void setMapSize(const Size& mapSize);
+    virtual const Size& getMapSize();
     
-    virtual void setileSize(const Size& tileSize);
-    virtual const Size& getileSize();
+    virtual void setTileSize(const Size& tileSize);
+    virtual const Size& getTileSize();
     
-    virtual void setLayers(CCArray* layers);
-    virtual CCArray* getLayers();
+	virtual void setLayers(const ISOLayerInfoVector& layers);
+	virtual ISOLayerInfoVector& getLayers();
     
-    virtual void setTilesets(CCArray* tilesets);
-    virtual CCArray* getTilesets();
+	virtual void setTilesets(const ISOTilesetInfoVector& tilesets);
+	virtual ISOTilesetInfoVector& getTilesets();
     
-    virtual void setObjectGroups(CCArray* objectGroups);
-    virtual CCArray* getObjectGroups();
+	virtual void setObjectGroups(const ISOObjectGroupInfoVector& objectGroups);
+	virtual ISOObjectGroupInfoVector& getObjectGroups();
        
-    virtual void setProperties(const ValueMap& pProperties);
+    virtual void setProperties(const ValueMap& properties);
     virtual ValueMap& getProperties();
         
-    inline void sebackgroundColor(ccColor3B& backgroundColor)
+    inline void setBackgroundColor(Color3B& backgroundColor)
     {
         _backgroundColor = backgroundColor;
     }
     
-    inline ccColor3B& gebackgroundColor()
+    inline Color3B& getBackgroundColor()
     {
         return _backgroundColor;
     }
@@ -72,22 +78,22 @@ protected:
     /**
      * 表示map的的背景色
      */
-    ccColor3B _backgroundColor;
+    Color3B _backgroundColor;
     
     /**
      * map的layer信息
      */
-    CCArray* _layers;
+	ISOLayerInfoVector& _layers;
     
     /**
      * map的tile set信息
      */
-    CCArray* _tilesets;
+	ISOTilesetInfoVector _tilesets;
     
     /**
      * map的object group信息
      */
-    CCArray* _objectGroups;
+	ISOObjectGroupInfoVector _objectGroups;
 
     /**
      * map的扩展属性

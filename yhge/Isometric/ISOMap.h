@@ -79,12 +79,12 @@ public://==============属性===============//
 		return _mapSize;
 	}
 
-	inline void setileSize(const Size& tileSize)
+	inline void setTileSize(const Size& tileSize)
 	{
 		_tileSize = tileSize;
 	}
 
-	inline const Size& getileSize()
+	inline const Size& getTileSize()
 	{
 		return _tileSize;
 	}

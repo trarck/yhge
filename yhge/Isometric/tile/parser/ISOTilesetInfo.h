@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include <yhge/Isometric/IsometricMacros.h>
+#include "ISOTileInfo.h"
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
@@ -12,13 +13,12 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 class ISOTilesetInfo : public Ref{
 
 public:
+
+	typedef Vector<ISOTileInfo*> ISOTileInfoVector;
     
     ISOTilesetInfo();
     
     ~ISOTilesetInfo();
-
-    
-public:
     
     inline const std::string& getName(){
         return _name;
@@ -44,12 +44,12 @@ public:
         return _uFirstGid;
     }
     
-    inline void setileSize(Size& tileSize)
+    inline void setTileSize(Size& tileSize)
     {
         _tileSize = tileSize;
     }
     
-    inline Size& getileSize()
+    inline Size& getTileSize()
     {
         return _tileSize;
     }
@@ -94,36 +94,32 @@ public:
         return _imageSource.c_str();
     }
     
-    inline void seimageSize(Size& imageSize)
+    inline void setImageSize(Size& imageSize)
     {
         _imageSize = imageSize;
     }
     
-    inline Size& geimageSize()
+    inline Size& getImageSize()
     {
         return _imageSize;
     }
     
-    inline void setTiles(CCArray* tiles)
+	inline void setTiles(const ISOTileInfoVector& tiles)
     {
-        CC_SAFE_RETAIN(tiles);
-        CC_SAFE_RELEASE(_tiles);
         _tiles = tiles;
     }
     
-    inline CCArray* getTiles()
+	inline ISOTileInfoVector& getTiles()
     {
         return _tiles;
     }
     
-    inline void setProperties(CCDictionary* pProperties)
+	inline void setProperties(const ValueMap& properties)
     {
-        CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(_properties);
-        _properties = pProperties;
+        _properties = properties;
     }
     
-    inline CCDictionary* getProperties()
+	inline ValueMap& getProperties()
     {
         return _properties;
     }
@@ -180,12 +176,12 @@ protected:
     /**
      * 所有小格子
      */
-    CCArray* _tiles;
+	ISOTileInfoVector _tiles;
     
     /**
      * 属性
      */
-    CCDictionary* _properties;
+	ValueMap _properties;
 };
 
 

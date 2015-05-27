@@ -35,7 +35,7 @@ enum {
 /**
  * 使用xml解析tmx
  */
-class ISOXMLParser : public Ref, public CCSAXDelegator
+class ISOXMLParser : public Ref, public SAXDelegator
 {
 
 public:
@@ -59,7 +59,7 @@ public:
     
 
     
-    // implement pure virtual methods of CCSAXDelegator
+    // implement pure virtual methods of SAXDelegator
     void startElement(void *ctx, const char *name, const char **atts);
     void endElement(void *ctx, const char *name);
     void textHandler(void *ctx, const char *ch, int len);

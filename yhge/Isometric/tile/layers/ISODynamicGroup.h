@@ -83,18 +83,18 @@ public:
 		return _iComponentNodeExtendCount;
 	}
 
-    inline void seoffset(const Vec2& offset)
+    inline void setOffset(const Vec2& offset)
 	{
 		_offset = offset;
 	}
 
-	inline void seoffset(float x,float y)
+	inline void setOffset(float x,float y)
 	{
 		_offset.x=x;
 		_offset.y=y;
 	}
 
-	inline Vec2 geoffset()
+	inline Vec2 getOffset()
 	{
 		return _offset;
 	}

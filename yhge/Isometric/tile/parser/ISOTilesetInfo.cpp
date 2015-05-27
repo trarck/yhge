@@ -13,19 +13,12 @@ ISOTilesetInfo::ISOTilesetInfo()
 ,_tileOffset(CCPointZero)
 ,_imageSource("")
 ,_imageSize(CCSizeZero)
-,_properties(NULL)
-,_tiles(NULL)
 {
-    _properties=new CCDictionary();
-    _tiles=new CCArray();
-    _tiles->init();
 }
 
 ISOTilesetInfo::~ISOTilesetInfo()
 {
     CCLOG("ISOTilesetInfo destroy");
-    CC_SAFE_RELEASE(_properties);
-    CC_SAFE_RELEASE(_tiles);
 }
 
 NS_CC_YHGE_ISOMETRIC_END

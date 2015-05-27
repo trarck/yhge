@@ -79,11 +79,11 @@ public:
     
     virtual int getComponentTileExtendCount();
 
-    virtual void seoffset(const Vec2& offset);
+    virtual void setOffset(const Vec2& offset);
     
-	virtual void seoffset(float x,float y);
+	virtual void setOffset(float x,float y);
 
-    virtual Vec2 geoffset();
+    virtual Vec2 getOffset();
     
     void setUpdateDelegator(ISODynamicComponentUpdateDelegator* updateDelegator);
     

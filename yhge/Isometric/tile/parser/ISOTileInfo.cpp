@@ -8,13 +8,11 @@ ISOTileInfo::ISOTileInfo()
 ,_imageSource("")
 ,_imageSize(CCSizeZero)
 {
-    _properties=new CCDictionary();
 }
 
 ISOTileInfo::~ISOTileInfo()
 {
     CCLOG("ISOTileInfo destroy");
-    CC_SAFE_RELEASE(_properties);
 }
 
 NS_CC_YHGE_ISOMETRIC_END

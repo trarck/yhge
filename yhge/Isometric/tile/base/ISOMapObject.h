@@ -35,22 +35,22 @@ public:
         return _type;
     }
     
-    inline void seposition(Vec2 position)
+    inline void setPosition(Vec2 position)
     {
         _position = position;
     }
     
-    inline Vec2 geposition()
+    inline Vec2 getPosition()
     {
         return _position;
     }
     
-    inline void sesize(Size size)
+    inline void setSize(Size size)
     {
         _size = size;
     }
     
-    inline Size gesize()
+    inline Size getSize()
     {
         return _size;
     }

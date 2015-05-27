@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include <yhge/Isometric/IsometricMacros.h>
+#include "ISOObjectInfo.h"
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
@@ -12,7 +13,8 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 class ISOActiveLayerInfo : public Ref{
 
 public:
-    
+	typedef Vector<ISOObjectInfo*> ISOObjectInfoVector;
+
     ISOActiveLayerInfo();
     ~ISOActiveLayerInfo();
     
@@ -56,12 +58,12 @@ public:
         return _opacity;
     }
     
-    inline void seoffset(Vec2& offset)
+    inline void setOffset(Vec2& offset)
     {
         _offset = offset;
     }
     
-    inline Vec2& geoffset()
+    inline Vec2& getOffset()
     {
         return _offset;
     }
@@ -86,14 +88,12 @@ public:
         return _renderIndex;
     }
     
-    inline void setObjects(CCArray* objects)
+	inline void setObjects(const ISOObjectInfoVector& objects)
     {
-        CC_SAFE_RETAIN(objects);
-        CC_SAFE_RELEASE(_objects);
         _objects = objects;
     }
     
-    inline CCArray* getObjects()
+	inline ISOObjectInfoVector& getObjects()
     {
         return _objects;
     }
@@ -139,7 +139,7 @@ protected:
     /**
      * 包含的对象
      */
-    CCArray* _objects;
+	ISOObjectInfoVector _objects;
 };
 
 

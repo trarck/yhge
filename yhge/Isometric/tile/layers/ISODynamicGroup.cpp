@@ -204,7 +204,7 @@ void ISODynamicGroup::calcComponentsCount()
 
 void ISODynamicGroup::inioffset(const Vec2& offset)
 {
-    this->seoffset(offset);
+    this->setOffset(offset);
 	Vec2 startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(offset));
 	_iStartX=(int)startMapCoord.x;
 	_iStartY=(int)startMapCoord.y;
@@ -219,7 +219,7 @@ void ISODynamicGroup::inioffset(float x,float y)
 
 void ISODynamicGroup::scroll(const Vec2& offset)
 {
-    this->seoffset(offset);
+    this->setOffset(offset);
 	if(this->beforeUpdateContent()){
 		//TODO 不删除所有tile,只修改改变的tile.
 		//this->removeAllChildrenWithCleanup(true);

@@ -34,9 +34,9 @@ public:
     CCDictionary* objectNamed(const std::string& objectName);
     
     //============get set===========//
-    virtual void seoffset(const Vec2& offset);
+    virtual void setOffset(const Vec2& offset);
     
-    virtual const Vec2& geoffset();
+    virtual const Vec2& getOffset();
     
     virtual void setProperties(CCDictionary* pProperties);
     

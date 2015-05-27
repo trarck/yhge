@@ -106,7 +106,7 @@ bool ISOXMLParser::parseXMLString(const char *xmlString)
         return false;
     }
     
-    CCSAXParser parser;
+    SAXParser parser;
     
     if (false == parser.init("UTF-8") )
     {
@@ -120,7 +120,7 @@ bool ISOXMLParser::parseXMLString(const char *xmlString)
 
 bool ISOXMLParser::parseXMLFile(const char *xmlFilename)
 {
-    CCSAXParser parser;
+    SAXParser parser;
     
     if (false == parser.init("UTF-8") )
     {
@@ -169,7 +169,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         const char* backgroundColor=valueForKey("backgroundcolor", attributeDict);
         
         long backgroundColorValue=strtol(backgroundColor+1, NULL, 16);
-        ccColor3B color=ccc3(backgroundColorValue>>16,backgroundColorValue>>8 & 0xFF,backgroundColorValue &0xFF);
+        Color3B color=ccc3(backgroundColorValue>>16,backgroundColorValue>>8 & 0xFF,backgroundColorValue &0xFF);
         _mapInfo->setBackgroundColor(color);
         
         

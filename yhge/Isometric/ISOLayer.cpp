@@ -52,7 +52,7 @@ bool ISOLayer::init(Size& mapTileSize,Vec2& offset)
 
 void ISOLayer::inioffset(const Vec2& offset)
 {
-	this->seoffset(offset);
+	this->setOffset(offset);
 }
 
 void ISOLayer::inioffset(float x,float y)

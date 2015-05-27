@@ -28,11 +28,11 @@ public:
     virtual void setType(const std::string& pType);
     virtual std::string& getType();
     
-    virtual void seposition(Vec2 position);
-    virtual Vec2 geposition();
+    virtual void setPosition(Vec2 position);
+    virtual Vec2 getPosition();
     
-    virtual void sesize(Size size);
-    virtual Size gesize();
+    virtual void setSize(Size size);
+    virtual Size getSize();
     
     virtual void setGid(unsigned int uGid);
     virtual unsigned int getGid();

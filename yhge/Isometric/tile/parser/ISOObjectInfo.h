@@ -48,22 +48,22 @@ public:
         return _uGid;
     }
     
-    inline void seposition(const Vec2& position)
+    inline void setPosition(const Vec2& position)
     {
         _position = position;
     }
     
-    inline Vec2& geposition()
+    inline Vec2& getPosition()
     {
         return _position;
     }
     
-    inline void sesize(Size& size)
+    inline void setSize(Size& size)
     {
         _size = size;
     }
     
-    inline Size& gesize()
+    inline Size& getSize()
     {
         return _size;
     }
@@ -88,14 +88,12 @@ public:
         return _visible;
     }
     
-    inline void setProperties(CCDictionary* pProperties)
+	inline void setProperties(const ValueMap& pProperties)
     {
-        CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(_properties);
         _properties = pProperties;
     }
     
-    inline CCDictionary* getProperties()
+	inline ValueMap& getProperties()
     {
         return _properties;
     }
@@ -139,7 +137,7 @@ protected:
     /**
      * 对像扩展属性
      */
-    CCDictionary* _properties;
+    ValueMap _properties;
     
 };
 

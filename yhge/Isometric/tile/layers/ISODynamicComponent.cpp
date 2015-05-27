@@ -287,7 +287,7 @@ void ISODynamicComponent::updateNode(ISOComponentNode* node,float mx,float my)
     if (tile)
     {
         //更新位置
-        node->seposition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(mx, my)));
+        node->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(mx, my)));
         
         _tileLayer->reorderChild(node,_tileLayer->zOrderForPos(pos));
 //        node->reorderChild(_tileLayer->zOrderForPos(pos));
@@ -385,7 +385,7 @@ int ISODynamicComponent::getComponentTileExtendCount()
 
 void ISODynamicComponent::inioffset(const Vec2& offset)
 {
-    this->seoffset(offset);
+    this->setOffset(offset);
 	Vec2 startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(offset));
 	_iStartX=(int)startMapCoord.x;
 	_iStartY=(int)startMapCoord.y;
@@ -400,7 +400,7 @@ void ISODynamicComponent::inioffset(float x,float y)
 
 void ISODynamicComponent::scroll(const Vec2& offset)
 {
-    this->seoffset(offset);
+    this->setOffset(offset);
 	if(this->beforeUpdateContent()){
 		//TODO 不删除所有tile,只修改改变的tile.
 		//this->removeAllChildrenWithCleanup(true);
@@ -419,18 +419,18 @@ void ISODynamicComponent::scroll(float x,float y)
 
 
 
-void ISODynamicComponent::seoffset(const Vec2& offset)
+void ISODynamicComponent::setOffset(const Vec2& offset)
 {
     _offset = offset;
 }
 
-void ISODynamicComponent::seoffset(float x,float y)
+void ISODynamicComponent::setOffset(float x,float y)
 {
     _offset.x=x;
 	_offset.y=y;
 }
 
-Vec2 ISODynamicComponent::geoffset()
+Vec2 ISODynamicComponent::getOffset()
 {
     return _offset;
 }

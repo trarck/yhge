@@ -5,10 +5,6 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 ISOMapInfo::ISOMapInfo()
 :_mapSize(CCSizeZero)
 ,_tileSize(CCSizeZero)
-,_layers(NULL)
-,_tilesets(NULL)
-,_objectGroups(NULL)
-,_properties(NULL)
 {
 
 }
@@ -16,24 +12,10 @@ ISOMapInfo::ISOMapInfo()
 ISOMapInfo::~ISOMapInfo()
 {
     CCLOG("ISOMapInfo destroy");
-    CC_SAFE_RELEASE(_tilesets);
-    CC_SAFE_RELEASE(_layers);
-    CC_SAFE_RELEASE(_properties);
-    CC_SAFE_RELEASE(_objectGroups);
 }
 
 bool ISOMapInfo::init()
 {
-    _tilesets = new CCArray();
-    _tilesets->init();
-    
-    _layers = new CCArray();
-    _layers->init();
-
-    _objectGroups = new CCArray();
-    _objectGroups->initWithCapacity(4);
-    
-    _properties = new CCDictionary();
 
     return true;
 }
@@ -58,36 +40,32 @@ const Size& ISOMapInfo::gemapSize()
     return _mapSize;
 }
 
-void ISOMapInfo::setileSize(const Size& tileSize)
+void ISOMapInfo::setTileSize(const Size& tileSize)
 {
     _tileSize = tileSize;
 }
 
-const Size& ISOMapInfo::getileSize()
+const Size& ISOMapInfo::getTileSize()
 {
     return _tileSize;
 }
 
-void ISOMapInfo::setLayers(CCArray* layers)
+void ISOMapInfo::setLayers(const ISOLayerInfoVector& layers)
 {
-    CC_SAFE_RETAIN(layers);
-    CC_SAFE_RELEASE(_layers);
     _layers = layers;
 }
 
-CCArray* ISOMapInfo::getLayers()
+ISOMapInfo::ISOLayerInfoVector& ISOMapInfo::getLayers()
 {
     return _layers;
 }
 
-void ISOMapInfo::setTilesets(CCArray* tilesets)
+void ISOMapInfo::setTilesets(const ISOTilesetInfoVector& tilesets)
 {
-    CC_SAFE_RETAIN(tilesets);
-    CC_SAFE_RELEASE(_tilesets);
     _tilesets = tilesets;
 }
 
-CCArray* ISOMapInfo::getTilesets()
+ISOMapInfo::ISOTilesetInfoVector& ISOMapInfo::getTilesets()
 {
     return _tilesets;
 }
@@ -95,26 +73,22 @@ CCArray* ISOMapInfo::getTilesets()
 /**
  * keep same for tmx
  */
-void ISOMapInfo::setObjectGroups(CCArray* objectGroups)
+void ISOMapInfo::setObjectGroups(const ISOObjectGroupInfoVector& objectGroups)
 {
-    CC_SAFE_RETAIN(objectGroups);
-    CC_SAFE_RELEASE(_objectGroups);
     _objectGroups = objectGroups;
 }
 
-CCArray* ISOMapInfo::getObjectGroups()
+ISOMapInfo::ISOObjectGroupInfoVector& ISOMapInfo::getObjectGroups()
 {
     return _objectGroups;
 }
 
-void ISOMapInfo::setProperties(CCDictionary* pProperties)
+void ISOMapInfo::setProperties(const ValueMap& properties)
 {
-    CC_SAFE_RETAIN(pProperties);
-    CC_SAFE_RELEASE(_properties);
-    _properties = pProperties;
+    _properties = properties;
 }
 
-CCDictionary* ISOMapInfo::getProperties()
+ValueMap& ISOMapInfo::getProperties()
 {
     return _properties;
 }

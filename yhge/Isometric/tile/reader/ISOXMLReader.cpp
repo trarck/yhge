@@ -272,7 +272,7 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         Vec2 positionOffset;
         positionOffset.x = (float)atof(valueForKey("x", attributeDict)) * m_map->getTileSize().width;
         positionOffset.y = (float)atof(valueForKey("y", attributeDict)) * m_map->getTileSize().height;
-        objectGroup->seoffset(positionOffset);
+        objectGroup->setOffset(positionOffset);
         
         m_map->getObjectGroups()->addObject(objectGroup);
         objectGroup->release();
@@ -391,13 +391,13 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         const char* value = valueForKey("x", attributeDict);
         if( value )
         {
-            pos.x = (float)atof(value) + objectGroup->geoffset().x;
+            pos.x = (float)atof(value) + objectGroup->getOffset().x;
         }
         
         // Y
         value = valueForKey("y", attributeDict);
         if( value )  {
-            float y = (float)atof(value) + objectGroup->geoffset().y;
+            float y = (float)atof(value) + objectGroup->getOffset().y;
             
             // Correct y position. (Tiled uses Flipped, cocos2d uses Standard)
             pos.y = (m_map->getMapSize().height * m_map->getTileSize().height) - y - s.height;

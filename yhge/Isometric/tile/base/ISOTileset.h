@@ -123,12 +123,12 @@ public:
     virtual void setProperties(CCDictionary* pProperties);
     virtual CCDictionary* getProperties();
     
-    inline void seimageSize(Size& imageSize)
+    inline void setImageSize(Size& imageSize)
     {
         _imageSize = imageSize;
     }
     
-    inline Size& geimageSize()
+    inline Size& getImageSize()
     {
         return _imageSize;
     }

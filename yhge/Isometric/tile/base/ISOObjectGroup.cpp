@@ -55,12 +55,12 @@ Value ISOObjectGroup::getProperty(const std::string& propertyName)
 	return Value::Null;
 }
 
-void ISOObjectGroup::seoffset(const Vec2& offset)
+void ISOObjectGroup::setOffset(const Vec2& offset)
 {
     _offset = offset;
 }
 
-const Vec2& ISOObjectGroup::geoffset()
+const Vec2& ISOObjectGroup::getOffset()
 {
     return _offset;
 }

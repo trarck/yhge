@@ -96,12 +96,12 @@ public:
 //        return _uMaxGID;
 //    }
     
-    inline void seoffset(Vec2& offset)
+    inline void setOffset(Vec2& offset)
     {
         _offset = offset;
     }
     
-    inline Vec2& geoffset()
+    inline Vec2& getOffset()
     {
         return _offset;
     }

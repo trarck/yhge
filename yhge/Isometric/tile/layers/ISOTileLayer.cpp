@@ -53,7 +53,7 @@ ISOTileLayer::~ISOTileLayer()
 void ISOTileLayer::inioffset(const Vec2& offset)
 {
 //    this->setPosition(offset);
-	this->seoffset(offset);
+	this->setOffset(offset);
 	Vec2 startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(offset));
 	_startX=(int)startMapCoord.x;
 	_startY=(int)startMapCoord.y;

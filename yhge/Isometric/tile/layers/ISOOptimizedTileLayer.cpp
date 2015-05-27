@@ -231,7 +231,7 @@ void ISOOptimizedTileLayer::draw()
 
 void ISOOptimizedTileLayer::scroll(const Vec2& offset)
 {
-    this->seoffset(offset);
+    this->setOffset(offset);
 	if(this->beforeUpdateContent()){
 		m_iLastStartX=m_iStartX;
 		m_iLastStartY=m_iStartY;

@@ -40,24 +40,22 @@ public:
         return _imageSource.c_str();
     }
     
-    inline void seimageSize(Size& imageSize)
+    inline void setImageSize(Size& imageSize)
     {
         _imageSize = imageSize;
     }
     
-    inline Size& geimageSize()
+    inline Size& getImageSize()
     {
         return _imageSize;
     }
     
-    inline void setProperties(CCDictionary* pProperties)
+	inline void setProperties(const ValueMap& pProperties)
     {
-        CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(_properties);
         _properties = pProperties;
     }
     
-    inline CCDictionary* getProperties()
+	inline ValueMap& getProperties()
     {
         return _properties;
     }
@@ -81,7 +79,7 @@ protected:
     /**
      * 格子扩展属性
      */
-    CCDictionary* _properties;
+	ValueMap _properties;
     
 
 };
