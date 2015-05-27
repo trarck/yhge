@@ -46,27 +46,27 @@ public:
     
 public:
     
-    void setTileset(ISOTileset* pTileset);
+    void setTileset(ISOTileset* tileset);
     ISOTileset* getTileset();
     
-    inline void setMinGID(unsigned int uMinGID)
+    inline void setMinGID(unsigned int minGID)
     {
-        _uMinGID = uMinGID;
+        _minGID = minGID;
     }
     
     inline unsigned int getMinGID()
     {
-        return _uMinGID;
+        return _minGID;
     }
     
-    inline void setMaxGID(unsigned int uMaxGID)
+    inline void setMaxGID(unsigned int maxGID)
     {
-        _uMaxGID = uMaxGID;
+        _maxGID = maxGID;
     }
     
     inline unsigned int getMaxGID()
     {
-        return _uMaxGID;
+        return _maxGID;
     }
 
 protected:
@@ -90,19 +90,19 @@ protected:
 protected:
 
     //对于多个tileSet的支持。这样就不能使用batch node。所以最好一个layer使用一个tileSet
-    ISOTileset* _pTileset;
+    ISOTileset* _tileset;
     
-    CCSpriteBatchNode* _pSpriteBatchNode;
+    CCSpriteBatchNode* _spriteBatchNode;
     
-    unsigned int        _uMinGID;
-    unsigned int        _uMaxGID;
+    unsigned int        _minGID;
+    unsigned int        _maxGID;
        
     //! used for optimization
-    CCSprite*           _pReusedTile;
-    yhge::ccCArray*           _pAtlasIndexArray;
+    CCSprite*           _reusedTile;
+    yhge::ccCArray*           _atlasIndexArray;
     
     // used for retina display
-    float               _fContentScaleFactor;
+    float               _contentScaleFactor;
 
 };
 

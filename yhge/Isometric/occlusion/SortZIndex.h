@@ -88,10 +88,10 @@ protected:
     int caculateSide(const CCRect& pFrom ,const CCRect& pTo);
     
 protected:
-//	CCArray *_pStatics;
-//	CCArray *_pDynamics;
-//	bool _bIsWorking;
-//	bool _bStaticDirty;
+//	CCArray *_statics;
+//	CCArray *_dynamics;
+//	bool _isWorking;
+//	bool _staticDirty;
 
     SortZIndexNode* _rootNode;
     

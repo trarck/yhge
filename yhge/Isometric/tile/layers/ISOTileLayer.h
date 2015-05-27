@@ -136,7 +136,7 @@ public:
 public:
     //===================get set 属性====================//
     
-    virtual void setTiles(unsigned int* pTiles);
+    virtual void setTiles(unsigned int* tiles);
     
     virtual unsigned int* getTiles();
     
@@ -150,7 +150,7 @@ protected:
     
 protected:
     
-    unsigned int* _pTiles;
+    unsigned int* _tiles;
 
     /**
      * 偏移量的地图坐标

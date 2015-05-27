@@ -85,12 +85,12 @@ public:
 
     virtual Vec2 geoffset();
     
-    void setUpdateDelegator(ISODynamicComponentUpdateDelegator* pUpdateDelegator);
+    void setUpdateDelegator(ISODynamicComponentUpdateDelegator* updateDelegator);
     
-    void setCreateDelegator(ISODynamicComponentCreateDelegator* pCreateDelegator);
+    void setCreateDelegator(ISODynamicComponentCreateDelegator* createDelegator);
 
     //weak ref
-    virtual void setTileLayer(ISOTileLayer* pTileLayer);
+    virtual void setTileLayer(ISOTileLayer* tileLayer);
     
     virtual ISOTileLayer* getTileLayer();
        
@@ -104,8 +104,8 @@ protected:
     //x,y增加相同的格子数
     int _iComponentNodeExtendCount;
     
-	//ISOComponentNode** _pComponents;
-	CCArray* _pComponents;
+	//ISOComponentNode** _components;
+	CCArray* _components;
     
     /**
      * 地图的偏移量。屏幕坐标
@@ -126,10 +126,10 @@ protected:
     int _iComponentIndexX;
     int _iComponentIndexY;
     
-    ISOTileLayer* _pTileLayer;
+    ISOTileLayer* _tileLayer;
     
-    ISODynamicComponentUpdateDelegator* _pUpdateDelegator;
-    ISODynamicComponentCreateDelegator* _pCreateDelegator;
+    ISODynamicComponentUpdateDelegator* _updateDelegator;
+    ISODynamicComponentCreateDelegator* _createDelegator;
     
     
 };

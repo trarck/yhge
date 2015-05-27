@@ -4,13 +4,13 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileObject::ISOTileObject()
-:_uGid(0)
+:_gid(0)
 ,_name("")
-,_sType("")
-,_tPosition(CCPointZero)
-,_tSize(CCSizeZero)
+,_type("")
+,_position(CCPointZero)
+,_size(CCSizeZero)
 ,_visible(true)
-,_pParts(NULL)
+,_parts(NULL)
 ,_properties(NULL)
 {
 
@@ -21,55 +21,55 @@ ISOTileObject::~ISOTileObject()
 {
     CCLOG("ISOTileObject destroy");
     CC_SAFE_RELEASE_NULL(_properties);
-    CC_SAFE_RELEASE_NULL(_pParts);
+    CC_SAFE_RELEASE_NULL(_parts);
 }
 
 bool ISOTileObject::init()
 {
     _properties = new CCDictionary();
-    _pParts=new CCArray();
-    _pParts->init();
+    _parts=new CCArray();
+    _parts->init();
     return true;
 }
 
 void ISOTileObject::setType(const char * pType)
 {
-    _sType = pType;
+    _type = pType;
 }
 
 std::string& ISOTileObject::getType()
 {
-    return _sType;
+    return _type;
 }
 
-void ISOTileObject::setPosition(Vec2 tPosition)
+void ISOTileObject::setPosition(Vec2 position)
 {
-    _tPosition = tPosition;
+    _position = position;
 }
 
 Vec2 ISOTileObject::getPosition()
 {
-    return _tPosition;
+    return _position;
 }
 
-void ISOTileObject::setSize(Size tSize)
+void ISOTileObject::setSize(Size size)
 {
-    _tSize = tSize;
+    _size = size;
 }
 
 Size ISOTileObject::getSize()
 {
-    return _tSize;
+    return _size;
 }
 
-void ISOTileObject::setGid(unsigned int uGid)
+void ISOTileObject::setGid(unsigned int gid)
 {
-    _uGid = uGid;
+    _gid = gid;
 }
 
 unsigned int ISOTileObject::getGid()
 {
-    return _uGid;
+    return _gid;
 }
 
 void ISOTileObject::setVisible(bool visible)

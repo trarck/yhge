@@ -7,7 +7,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 ISOObjectGroup::ISOObjectGroup()
 :_offset(CCPointZero)
 ,_name("")
-,_pObjects(NULL)
+,_objects(NULL)
 ,_properties(NULL)
 {
     
@@ -16,28 +16,28 @@ ISOObjectGroup::ISOObjectGroup()
 ISOObjectGroup::~ISOObjectGroup()
 {
     CCLOGINFO( "ISOObjectGroup: deallocing.");
-    CC_SAFE_RELEASE(_pObjects);
+    CC_SAFE_RELEASE(_objects);
     CC_SAFE_RELEASE(_properties);
 }
 
 bool ISOObjectGroup::init()
 {
-    _pObjects = new CCArray();
-    _pObjects->init();
+    _objects = new CCArray();
+    _objects->init();
     _properties = new CCDictionary();
     return true;
 }
 
 CCDictionary* ISOObjectGroup::objectNamed(const char *objectName)
 {
-    if (_pObjects && _pObjects->count() > 0)
+    if (_objects && _objects->count() > 0)
     {
         Ref* pObj = NULL;
-        CCARRAY_FOREACH(_pObjects, pObj)
+        CCARRAY_FOREACH(_objects, pObj)
         {
             CCDictionary* pDict = (CCDictionary*)pObj;
             CCString *name = (CCString*)pDict->objectForKey("name");
-            if (name && name->_sString == objectName)
+            if (name && name->_string == objectName)
             {
                 return pDict;
             }
@@ -77,15 +77,15 @@ CCDictionary* ISOObjectGroup::getProperties()
     return _properties;
 }
 
-void ISOObjectGroup::setObjects(CCArray* pObjects)
+void ISOObjectGroup::setObjects(CCArray* objects)
 {
-    CC_SAFE_RETAIN(pObjects);
-    CC_SAFE_RELEASE(_pObjects);
-    _pObjects = pObjects;
+    CC_SAFE_RETAIN(objects);
+    CC_SAFE_RELEASE(_objects);
+    _objects = objects;
 }
 
 CCArray* ISOObjectGroup::getObjects()
 {
-    return _pObjects;
+    return _objects;
 }
 NS_CC_YHGE_ISOMETRIC_END

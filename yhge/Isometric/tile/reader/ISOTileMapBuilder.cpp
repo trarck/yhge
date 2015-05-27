@@ -6,8 +6,8 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileMapBuilder::ISOTileMapBuilder()
-:_pMap(NULL)
-,_uMapLayerType(NormalLayerType)
+:_map(NULL)
+,_mapLayerType(NormalLayerType)
 ,_activeLayerName("ActiveLayer")
 ,_activeLayerDefaultZOrder(99999)
 ,_buildActiveLayer(false)
@@ -25,18 +25,18 @@ bool ISOTileMapBuilder::init()
     return true;
 }
 
-bool ISOTileMapBuilder::init(ISOTileMap* pMap)
+bool ISOTileMapBuilder::init(ISOTileMap* map)
 {
-    _pMap=pMap;
+    _map=map;
     return true;
 }
 
 void ISOTileMapBuilder::buildWithMapInfo(ISOMapInfo* mapInfo)
 {
-    CCAssert(_pMap!=NULL, "buildWithMapInfo _pMap can't be null");
-    _pMap->setMapSize(mapInfo->getMapSize());
-    _pMap->setTileSize(mapInfo->getTileSize());
-    _pMap->setProperties(mapInfo->getProperties());
+    CCAssert(_map!=NULL, "buildWithMapInfo _map can't be null");
+    _map->setMapSize(mapInfo->getMapSize());
+    _map->setTileSize(mapInfo->getTileSize());
+    _map->setProperties(mapInfo->getProperties());
     
     this->buildMapTilesets(mapInfo);
     this->buildMapLayers(mapInfo);
@@ -68,7 +68,7 @@ void ISOTileMapBuilder::buildMapTilesets(ISOMapInfo* mapInfo)
             }
         }
         
-        _pMap->setTilesetGroup(tilesetGroup);
+        _map->setTilesetGroup(tilesetGroup);
         tilesetGroup->release();
     }
 }
@@ -174,7 +174,7 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
     CCLOG("ISOTileMapBuilder::buildMapLayer:%s",layerInfo->getName().c_str());
     ISOTileLayer *layer = NULL;
     
-    switch (_uMapLayerType) {
+    switch (_mapLayerType) {
         case NormalLayerType:
             layer=new ISOGroundTileLayer();
             layer->init();
@@ -184,9 +184,9 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
             dynamicLayer->init();
 
 			//设置是否使用统一动态组件
-			if (_pMap->isUseDynamicGroup())
+			if (_map->isUseDynamicGroup())
 			{
-				_pMap->addDynamicComponent(dynamicLayer->getDynamicComponent());
+				_map->addDynamicComponent(dynamicLayer->getDynamicComponent());
 			}
 			layer=dynamicLayer;
             //layer->setPosition(ccp(100,50));
@@ -219,9 +219,9 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
             }
 
 			//设置是否使用统一动态组件
-			if (_pMap->isUseDynamicGroup())
+			if (_map->isUseDynamicGroup())
 			{
-				_pMap->addDynamicComponent(batchLayer->getDynamicComponent());
+				_map->addDynamicComponent(batchLayer->getDynamicComponent());
 			}
 
             layer=batchLayer;
@@ -235,24 +235,24 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
         
         setLayerAttribute(layer, layerInfo, mapInfo);
 
-        _pMap->addChild(layer,layerInfo->getRenderIndex());
-        _pMap->getLayers()->addObject(layer);
+        _map->addChild(layer,layerInfo->getRenderIndex());
+        _map->getLayers()->addObject(layer);
         layer->release();
     }
     
     // update content size with the max size
     //                const Size& childSize = layer->getContentSize();
-    //                Size currentSize = _pMap->getContentSize();
+    //                Size currentSize = _map->getContentSize();
     //                currentSize.width = MAX( currentSize.width, childSize.width );
     //                currentSize.height = MAX( currentSize.height, childSize.height );
-    //                _pMap->setContentSize(currentSize);
+    //                _map->setContentSize(currentSize);
 }
 
 void ISOTileMapBuilder::setLayerAttribute(ISOTileLayer* tileLayer,ISOLayerInfo *layerInfo, ISOMapInfo *mapInfo)
 {
     
-    tileLayer->setMap(_pMap);
-    tileLayer->setMapTileSize(_pMap->getTileSize());
+    tileLayer->setMap(_map);
+    tileLayer->setMapTileSize(_map->getTileSize());
     tileLayer->setLayerName(layerInfo->getName());
     tileLayer->setLayerSize(layerInfo->getLayerSize());
     tileLayer->setOffset(layerInfo->getOffset());
@@ -266,7 +266,7 @@ void ISOTileMapBuilder::setLayerAttribute(ISOTileLayer* tileLayer,ISOLayerInfo *
 ISOTileset * ISOTileMapBuilder::tilesetForLayer(ISOLayerInfo *layerInfo)
 {
     Size size = layerInfo->getLayerSize();
-    CCArray* tilesets = _pMap->getTilesetGroup()->getTilesets();
+    CCArray* tilesets = _map->getTilesetGroup()->getTilesets();
     if (tilesets && tilesets->count()>0)
     {
         ISOTileset* tileset = NULL;
@@ -383,7 +383,7 @@ void ISOTileMapBuilder::buildMapObjectGroups(ISOMapInfo* mapInfo)
                 
                 buildMapObjects(objectGroupInfo->getObjects(), objGroup);
                 
-                _pMap->getObjectGroups()->addObject(objGroup);
+                _map->getObjectGroups()->addObject(objGroup);
                 objGroup->release();
 
                 if (objectGroupInfo->getName()!=_activeLayerName) {
@@ -436,18 +436,18 @@ void ISOTileMapBuilder::buildMapObjectLayer(ISOObjectGroup* objectGroup)
 	ISOObjectLayer* objectLayer=new ISOObjectLayer();
 	objectLayer->init();
 
-	objectLayer->setMap(_pMap);
+	objectLayer->setMap(_map);
 	objectLayer->setLayerName(objectGroup->getName());
-	objectLayer->setLayerOrientation(_pMap->getMapOrientation());
+	objectLayer->setLayerOrientation(_map->getMapOrientation());
 	objectLayer->setProperties(objectGroup->getProperties());
 	objectLayer->setObjectGroup(objectGroup);
 	objectLayer->setupLayer();
     
     //fix object layer position
     //x方向向左移动半个地图大小
-//    objectLayer->setPosition(ccp(-_pMap->getMapSize().width*_pMap->getTileSize().width*0.5f,0));
+//    objectLayer->setPosition(ccp(-_map->getMapSize().width*_map->getTileSize().width*0.5f,0));
     
-	_pMap->addChild(objectLayer);
+	_map->addChild(objectLayer);
 
 	objectLayer->release();
 }
@@ -470,18 +470,18 @@ void ISOTileMapBuilder::buildMapActiveLayer(const std::string& name,CCArray* obj
     ISOActiveLayer* activeLayer=new ISOActiveLayer();
 	activeLayer->init();
     
-	activeLayer->setMap(_pMap);
+	activeLayer->setMap(_map);
 	activeLayer->setLayerName(name);
-	activeLayer->setLayerOrientation(_pMap->getMapOrientation());
+	activeLayer->setLayerOrientation(_map->getMapOrientation());
     if (properties) {
         activeLayer->setProperties(properties);
     }
 	activeLayer->setObjects(objects);
 	activeLayer->setupLayer();
     
-	_pMap->addChild(activeLayer,zOrder);
+	_map->addChild(activeLayer,zOrder);
     
-    _pMap->setActiveLayer(activeLayer);
+    _map->setActiveLayer(activeLayer);
     
 	activeLayer->release();
 }

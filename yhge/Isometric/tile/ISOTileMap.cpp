@@ -8,9 +8,9 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 static const int kCoordLineZOrder=10000;
 
 ISOTileMap::ISOTileMap()
-:_pObjectGroups(NULL)
-,_pDynamicGroup(NULL)
-,_pTilesetGroup(NULL)
+:_objectGroups(NULL)
+,_dynamicGroup(NULL)
+,_tilesetGroup(NULL)
 ,_useDynamicGroup(false)
 ,_dynamicComponents(NULL)
 {
@@ -19,9 +19,9 @@ ISOTileMap::ISOTileMap()
 
 ISOTileMap::~ISOTileMap()
 {
-    CC_SAFE_RELEASE_NULL(_pTilesetGroup);
-    CC_SAFE_RELEASE_NULL(_pObjectGroups);
-    CC_SAFE_RELEASE_NULL(_pDynamicGroup);
+    CC_SAFE_RELEASE_NULL(_tilesetGroup);
+    CC_SAFE_RELEASE_NULL(_objectGroups);
+    CC_SAFE_RELEASE_NULL(_dynamicGroup);
 	CC_SAFE_RELEASE_NULL(_dynamicComponents);
 }
 
@@ -77,7 +77,7 @@ bool ISOTileMap::init()
 {
 
     if (ISOMap::init()) {
-        _pObjectGroups=new CCArray();
+        _objectGroups=new CCArray();
         
         _dynamicComponents=new CCArray();
         
@@ -96,7 +96,7 @@ bool ISOTileMap::init()
 //    //ISOTileLayer *layer = ISOTileLayer::create(tileset, layerInfo, mapInfo);
 //    //
 //    //// tell the layerinfo to release the ownership of the tiles map.
-//    //layerInfo->_bOwnTiles = false;
+//    //layerInfo->_ownTiles = false;
 //    //layer->setupTiles();
 //    //
 //    //return layer;
@@ -121,7 +121,7 @@ bool ISOTileMap::init()
 //                    for( unsigned int x=0; x < size.width; x++ )
 //                    {
 //                        unsigned int pos = (unsigned int)(x + size.width * y);
-//                        unsigned int gid = layerInfo->_pTiles[ pos ];
+//                        unsigned int gid = layerInfo->_tiles[ pos ];
 //                        
 //                        // gid are stored in little endian.
 //                        // if host is big endian, then swap
@@ -134,7 +134,7 @@ bool ISOTileMap::init()
 //                        {
 //                            // Optimization: quick return
 //                            // if the layer is invalid (more than 1 tileset per layer) an CCAssert will be thrown later
-//                            if( (gid & kCCFlippedMask) >= tileset->_uFirstGid )
+//                            if( (gid & kCCFlippedMask) >= tileset->_firstGid )
 //                                return tileset;
 //                        }
 //                    }
@@ -150,9 +150,9 @@ bool ISOTileMap::init()
 //
 //void ISOTileMap::buildWithMapInfo(ISOMapInfo* mapInfo)
 //{
-//    _tMapSize = mapInfo->getMapSize();
-//    _tTileSize = mapInfo->getTileSize();
-//    _nMapOrientation = mapInfo->getOrientation();
+//    _mapSize = mapInfo->getMapSize();
+//    _tileSize = mapInfo->getTileSize();
+//    _mapOrientation = mapInfo->getOrientation();
 //    
 //    this->setTileLayers(mapInfo->getLayers());
 //    this->setObjectGroups( mapInfo->getObjectGroups());
@@ -198,12 +198,12 @@ ISOTileset* ISOTileMap::tilesetNamed(const std::string& tilesetName)
 {
     CCAssert(tilesetName!="", "Invalid tileset name!");
     
-    if (_pTilesetGroup && _pTilesetGroup->tilesetCount()>0){
-        CCArray* pTilesets=_pTilesetGroup->getTilesets();
+    if (_tilesetGroup && _tilesetGroup->tilesetCount()>0){
+        CCArray* tilesets=_tilesetGroup->getTilesets();
         Ref* pObj = NULL;
         ISOTileset* tileset =NULL;
         
-        CCARRAY_FOREACH(pTilesets, pObj)
+        CCARRAY_FOREACH(tilesets, pObj)
         {
             tileset = dynamic_cast<ISOTileset*>(pObj);
             if(tileset)
@@ -223,12 +223,12 @@ ISOObjectGroup * ISOTileMap::objectGroupNamed(const std::string& objectGroupName
 {
     CCAssert(objectGroupName != "", "Invalid object group name!");
     
-    if (_pObjectGroups && _pObjectGroups->count()>0)
+    if (_objectGroups && _objectGroups->count()>0)
     {
         ISOObjectGroup* objectGroup = NULL;
         Ref* pObj = NULL;
         
-        CCARRAY_FOREACH(_pObjectGroups, pObj)
+        CCARRAY_FOREACH(_objectGroups, pObj)
         {
             objectGroup = dynamic_cast<ISOObjectGroup*>(pObj);
             if(objectGroup)
@@ -251,7 +251,7 @@ void ISOTileMap::scrollLayer(const Vec2& pos)
 
 	if (_useDynamicGroup){
 		//如果使用动态组，则只更新动态组	
-		_pDynamicGroup->scroll(localPos);
+		_dynamicGroup->scroll(localPos);
 
 	}else{
 
@@ -271,8 +271,8 @@ void ISOTileMap::scrollLayer(const Vec2& pos)
 void ISOTileMap::showCoordLine()
 {
 	ISOCoordinateLayer* coordLayer=ISOCoordinateLayer::create();
-	coordLayer->setMapWidth((int)_tMapSize.width);
-	coordLayer->setMapHeight((int)_tMapSize.height);
+	coordLayer->setMapWidth((int)_mapSize.width);
+	coordLayer->setMapHeight((int)_mapSize.height);
 	this->addChild(coordLayer,kCoordLineZOrder);
 }
 
@@ -312,7 +312,7 @@ void ISOTileMap::setupDynamicGroup()
         int componentTileColumn=0;
         int componentTileRow=0;
         
-        ISOTileUtils::calcDynamicComponetSize(visibleSize,_tTileSize,&componentTileColumn,&componentTileRow);
+        ISOTileUtils::calcDynamicComponetSize(visibleSize,_tileSize,&componentTileColumn,&componentTileRow);
         
         dynamicGroup->setComponentTileColumn(componentTileColumn);
         dynamicGroup->setComponentTileRow(componentTileRow);
@@ -366,10 +366,10 @@ void ISOTileMap::setUseDynamicGroup(bool useDynamicGroup)
 
 	//	if (_useDynamicGroup)
 	//	{
-	//		if (_pDynamicGroup==NULL)
+	//		if (_dynamicGroup==NULL)
 	//		{
-	//			_pDynamicGroup=new ISODynamicGroup();
-	//			_pDynamicGroup->init();
+	//			_dynamicGroup=new ISODynamicGroup();
+	//			_dynamicGroup->init();
 	//		}
 	//	}else{
 	//		setDynamicGroup(NULL);

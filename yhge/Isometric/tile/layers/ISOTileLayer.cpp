@@ -9,7 +9,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 ISOTileLayer::ISOTileLayer()
 :_startX(0)
 ,_startY(0)
-,_pTiles(NULL)
+,_tiles(NULL)
 ,_tileMap(NULL)
 {
 	
@@ -17,10 +17,10 @@ ISOTileLayer::ISOTileLayer()
 
 ISOTileLayer::~ISOTileLayer()
 {
-    if(_pTiles )
+    if(_tiles )
     {
-        delete [] _pTiles;
-        _pTiles = NULL;
+        delete [] _tiles;
+        _tiles = NULL;
     }
 }
 //
@@ -34,7 +34,7 @@ ISOTileLayer::~ISOTileLayer()
 //bool ISOTileLayer::init(Size& mapTileSize)
 //{
 //    if(init()){
-//        _tMapTileSize=mapTileSize;
+//        _mapTileSize=mapTileSize;
 //        return true;
 //    }
 //    return false;
@@ -87,10 +87,10 @@ void ISOTileLayer::setupLayer()
 
 void ISOTileLayer::releaseLayer()
 {
-    if (_pTiles)
+    if (_tiles)
     {
-        delete [] _pTiles;
-        _pTiles = NULL;
+        delete [] _tiles;
+        _tiles = NULL;
     }
 }
 
@@ -141,7 +141,7 @@ void ISOTileLayer::removeTileAt(const Vec2& pos)
     CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer::removeTileAt: invalid position");
     
     int idx = (int)(pos.x + pos.y * _layerSize.width);
-    _pTiles[idx]=0;
+    _tiles[idx]=0;
 }
 
 unsigned int ISOTileLayer::tileGIDAt(float x,float y)
@@ -153,7 +153,7 @@ unsigned int ISOTileLayer::tileGIDAt(const Vec2& pos)
 {
     if(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0){
         int idx = (int)(pos.x + pos.y * _layerSize.width);
-        unsigned int gid = _pTiles[idx];
+        unsigned int gid = _tiles[idx];
         
         return gid;
     }
@@ -166,7 +166,7 @@ void ISOTileLayer::setTileGID(unsigned int gid, const Vec2& pos)
 {
     CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer::setTileGID: invalid position");
     int idx = (int)(pos.x + pos.y * _layerSize.width);
-    _pTiles[idx]=gid;
+    _tiles[idx]=gid;
 }
 
 void ISOTileLayer::setTileGID(unsigned int gid, float x,float y)
@@ -232,14 +232,14 @@ unsigned int ISOTileLayer::zOrderToIndex(int z)
 	return (unsigned int)(_layerSize.width*_layerSize.height-z);
 }
 
-void ISOTileLayer::setTiles(unsigned int* pTiles)
+void ISOTileLayer::setTiles(unsigned int* tiles)
 {
-    _pTiles = pTiles;
+    _tiles = tiles;
 }
 
 unsigned int* ISOTileLayer::getTiles()
 {
-    return _pTiles;
+    return _tiles;
 }
 
 //===============tile sprite===============

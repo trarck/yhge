@@ -30,18 +30,18 @@ public:
     
     void replaceTileset(ISOTileset* oldTileset,ISOTileset* newTileset);
     
-    int tilesetCount(){return _pTilesets->count();}
+    int tilesetCount(){return _tilesets->count();}
     
-    ISOTileset* getTilesetByIndex(int index){ return (ISOTileset *)_pTilesets->objectAtIndex(index); }
+    ISOTileset* getTilesetByIndex(int index){ return (ISOTileset *)_tilesets->objectAtIndex(index); }
     
-    ISOTileset *tilesetAt(int index){ return (ISOTileset *)_pTilesets->objectAtIndex(index); }
+    ISOTileset *tilesetAt(int index){ return (ISOTileset *)_tilesets->objectAtIndex(index); }
     
     ISOTileset* getTilesetByGid(unsigned int gid);
     
-    CCArray* getTilesets(){return _pTilesets;}
+    CCArray* getTilesets(){return _tilesets;}
 
 public:
-    CCArray* _pTilesets;
+    CCArray* _tilesets;
 };
 
 

@@ -36,9 +36,9 @@ public:
     ~ISOXMLReader();
     
 
-    static ISOXMLReader * formatWithXMLFile(ISOTileMap* pMap,const char *tmxFile);
+    static ISOXMLReader * formatWithXMLFile(ISOTileMap* map,const char *tmxFile);
     /** creates a TMX Format with an XML string and a TMX resource path */
-    static ISOXMLReader * formatWithXML(ISOTileMap* pMap,const char* tmxString, const char* resourcePath);
+    static ISOXMLReader * formatWithXML(ISOTileMap* map,const char* tmxString, const char* resourcePath);
     /** initializes a TMX format with a  tmx file */
     bool initWithTMXFile(const char *tmxFile);
     /** initializes a TMX format with an XML string and a TMX resource path */
@@ -55,36 +55,36 @@ public:
     void endElement(void *ctx, const char *name);
     void textHandler(void *ctx, const char *ch, int len);
     
-    inline const char* getCurrentString(){ return m_sCurrentString.c_str(); }
-    inline void setCurrentString(const char *currentString){ m_sCurrentString = currentString; }
-    inline const char* getTMXFileName(){ return m_sTMXFileName.c_str(); }
-    inline void setTMXFileName(const char *fileName){ m_sTMXFileName = fileName; }
+    inline const char* getCurrentString(){ return m_currentString.c_str(); }
+    inline void setCurrentString(const char *currentString){ m_currentString = currentString; }
+    inline const char* getTMXFileName(){ return m_tMXFileName.c_str(); }
+    inline void setTMXFileName(const char *fileName){ m_tMXFileName = fileName; }
     
     virtual ISOTileMap* getMap();
-    virtual void setMap(ISOTileMap* pMap);
+    virtual void setMap(ISOTileMap* map);
     
 private:
     void internalInit(const char* tmxFileName, const char* resourcePath);
     
-    int m_nCurrentElement;
+    int m_currentElement;
     
-    unsigned int m_uCurrentGid;
+    unsigned int m_currentGid;
     
-    int m_nLayerAttribs;
+    int m_layerAttribs;
     
-    bool m_bStoringCharacters;
+    bool m_storingCharacters;
     
 protected:
     //! tmx filename
-    std::string m_sTMXFileName;
+    std::string m_tMXFileName;
     // tmx resource path
-    std::string m_sResources;
+    std::string m_resources;
     //! current string
-    std::string m_sCurrentString;
+    std::string m_currentString;
     //! tile properties
-//    CCDictionary* m_pTileProperties;
+//    CCDictionary* m_tileProperties;
 
-    ISOTileMap* m_pMap;	
+    ISOTileMap* m_map;	
 };
 
 

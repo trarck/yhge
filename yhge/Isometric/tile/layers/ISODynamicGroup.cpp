@@ -10,15 +10,15 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 static const int kComponentExtendCount=2;
 
 ISODynamicGroup::ISODynamicGroup()
-:_pDynamiceComponentList(NULL)
+:_dynamiceComponentList(NULL)
 ,_iStartX(0)
 ,_iStartY(0)
 ,_iLastStartX(-999999)
 ,_iLastStartY(-999999)
 ,_iComponentIndexX(0)
 ,_iComponentIndexY(0)
-,_pUpdateDelegator(NULL)
-,_pCreateDelegator(NULL)
+,_updateDelegator(NULL)
+,_createDelegator(NULL)
 ,_iComponentNodeExtendCount(kComponentExtendCount)
 ,_iComponentTileColumn(0)
 ,_iComponentTileRow(0)
@@ -32,13 +32,13 @@ ISODynamicGroup::ISODynamicGroup()
 
 ISODynamicGroup::~ISODynamicGroup()
 {
-	CC_SAFE_RELEASE_NULL(_pDynamiceComponentList);
+	CC_SAFE_RELEASE_NULL(_dynamiceComponentList);
 }
 
 bool ISODynamicGroup::init()
 {
-	_pDynamiceComponentList=new CCArray();
-	_pDynamiceComponentList->init();
+	_dynamiceComponentList=new CCArray();
+	_dynamiceComponentList->init();
 	return true;
 }
 
@@ -63,7 +63,7 @@ bool ISODynamicGroup::beforeUpdateContent()
 	Vec2 startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(_offset));
 	_iStartX=(int)startMapCoord.x;
 	_iStartY=(int)startMapCoord.y;
-    //CCLOG("start:%d,%d %f,%f",_iStartX,_iStartY,_tPosition.x,_tPosition.y);
+    //CCLOG("start:%d,%d %f,%f",_iStartX,_iStartY,_position.x,_position.y);
 	return _iStartX!=_iLastStartX || _iStartY!=_iLastStartY;
 }
 
@@ -168,7 +168,7 @@ void ISODynamicGroup::doUpdateComponents()
                 index=moveComponentIndexY*_iComponentTileColumn+col/2;
 //                CCLOG("updateComponents y:%d,%d,%d",index,col,moveComponentIndexY);
                 this->updateMapCoordinate(index,dirY*_iComponentTileRow, dirY*_iComponentTileRow);
-//                node=(ISOComponentNode*) _pComponents->objectAtIndex(index);
+//                node=(ISOComponentNode*) _components->objectAtIndex(index);
 //                mx=node->getMapX();
 //                my=node->getMapY();
 //                node->updateMapCoordinate(mx+dirY*_iComponentTileRow, my+dirY*_iComponentTileRow);
@@ -179,12 +179,12 @@ void ISODynamicGroup::doUpdateComponents()
 
 void ISODynamicGroup::updateMapCoordinate(unsigned int nodeIndex,float deltaMapX,float deltaMapY)
 {
-    if(_pUpdateDelegator) _pUpdateDelegator->onUpdateComponentMapCoordinate(nodeIndex, deltaMapX, deltaMapY);
+    if(_updateDelegator) _updateDelegator->onUpdateComponentMapCoordinate(nodeIndex, deltaMapX, deltaMapY);
     
 	//更新组内的元素
 	Ref* pObj=NULL;
 	ISODynamicComponent* dynamicComponent=NULL;
-	CCARRAY_FOREACH(_pDynamiceComponentList,pObj){
+	CCARRAY_FOREACH(_dynamiceComponentList,pObj){
 		dynamicComponent=static_cast<ISODynamicComponent*>(pObj);
 		dynamicComponent->updateNodeBy(nodeIndex,deltaMapX,deltaMapY);
 	}
@@ -236,24 +236,24 @@ void ISODynamicGroup::scroll(float x,float y)
     this->scroll(ccp(x,y));
 }
 
-void ISODynamicGroup::setUpdateDelegator(ISODynamicComponentUpdateDelegator* pUpdateDelegator)
+void ISODynamicGroup::setUpdateDelegator(ISODynamicComponentUpdateDelegator* updateDelegator)
 {
-    _pUpdateDelegator=pUpdateDelegator;
+    _updateDelegator=updateDelegator;
 }
 
-void ISODynamicGroup::setCreateDelegator(ISODynamicComponentCreateDelegator* pCreateDelegator)
+void ISODynamicGroup::setCreateDelegator(ISODynamicComponentCreateDelegator* createDelegator)
 {
-    _pCreateDelegator=pCreateDelegator;
+    _createDelegator=createDelegator;
 }
 
 void ISODynamicGroup::addDynamicComponent(ISODynamicComponent* dynamicComponent)
 {
-	_pDynamiceComponentList->addObject(dynamicComponent);
+	_dynamiceComponentList->addObject(dynamicComponent);
 }
 
 void ISODynamicGroup::removeDynamicComponent(ISODynamicComponent* dynamicComponent)
 {
-	_pDynamiceComponentList->removeObject(dynamicComponent);
+	_dynamiceComponentList->removeObject(dynamicComponent);
 }
 
 NS_CC_YHGE_ISOMETRIC_END

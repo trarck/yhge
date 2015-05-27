@@ -6,7 +6,7 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ZIndexNode::ZIndexNode()
-:_pEntity(NULL)
+:_entity(NULL)
 {
 
 }
@@ -18,22 +18,22 @@ ZIndexNode::~ZIndexNode()
 
 void ZIndexNode::setRect(const CCRect& rect)
 {
-    _tRect=rect;
+    _rect=rect;
 }
 
 const CCRect& ZIndexNode::getRect()
 {
-    return _tRect;
+    return _rect;
 }
 
 void ZIndexNode::setEntity(Ref* entity)
 {
-    _pEntity=entity;
+    _entity=entity;
 }
 
 Ref* ZIndexNode::getEntity()
 {
-    return _pEntity;
+    return _entity;
 }
 
 NS_CC_YHGE_ISOMETRIC_END

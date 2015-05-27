@@ -6,12 +6,12 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 static const int kCoordLineZOrder=10000;
 
 ISOMap::ISOMap()
-:_tMapSize(Vec2(0,0))
+:_mapSize(Vec2(0,0))
 ,_visibleSize(Size(0,0))
-,_nIdentifier(0)
-,_nMapOrientation(0)
-,_pName("")
-, _tTileSize(Size(0, 0))
+,_identifier(0)
+,_mapOrientation(0)
+,_name("")
+, _tileSize(Size(0, 0))
 ,_activeLayer(NULL)
 {
 	
@@ -196,9 +196,9 @@ bool ISOMap::isWorkable(int x,int y)
 
 Size ISOMap::getVisibleSize()
 {
-    if(_fScaleX==0 || _fScaleY==0) return _visibleSize;
+    if(_scaleX==0 || _scaleY==0) return _visibleSize;
     
-    return CCSizeMake(_visibleSize.width/_fScaleX, _visibleSize.height/_fScaleY);
+    return CCSizeMake(_visibleSize.width/_scaleX, _visibleSize.height/_scaleY);
 }
 
 void ISOMap::setActiveLayer(ISOLayer* activeLayer)

@@ -117,7 +117,7 @@ public:
     
     /**
      * 更新缩放
-     * 由于_tWorldPosition记录的是旧的缩放下相机所在世界的位置。为了保持显示的一致性，要把_tWorldPosition进行缩放修正。
+     * 由于_worldPosition记录的是旧的缩放下相机所在世界的位置。为了保持显示的一致性，要把_worldPosition进行缩放修正。
      * 在新的缩放模式下，相机的移动是相对新的缩放模式的。
      */
     void updateScale();
@@ -159,25 +159,25 @@ public:
      */
     inline void modifyWorldPositionInRange()
     {
-        _tWorldPosition.x=_tWorldPosition.x<_minX
-            ?_minX:(_tWorldPosition.x>_maxX?_maxX:_tWorldPosition.x);
-        _tWorldPosition.y=_tWorldPosition.y<_minY
-            ?_minY:(_tWorldPosition.y>_maxY?_maxY:_tWorldPosition.y);
+        _worldPosition.x=_worldPosition.x<_minX
+            ?_minX:(_worldPosition.x>_maxX?_maxX:_worldPosition.x);
+        _worldPosition.y=_worldPosition.y<_minY
+            ?_minY:(_worldPosition.y>_maxY?_maxY:_worldPosition.y);
     }
 
     inline const Vec2& getWorldPosition()
     {
-        return _tWorldPosition;
+        return _worldPosition;
     }
 
-    inline void setSmoothMove(bool bSmoothMove)
+    inline void setSmoothMove(bool smoothMove)
     {
-        _bSmoothMove = bSmoothMove;
+        _smoothMove = smoothMove;
     }
     
     inline bool isSmoothMove()
     {
-        return _bSmoothMove;
+        return _smoothMove;
     }
     
     inline void setMoveDelegate(ISOCameraDelegate* moveDelegate)
@@ -289,13 +289,13 @@ protected:
     /**
      * 平滑移动
      */
-    bool _bSmoothMove;
+    bool _smoothMove;
     
     /**
      * 相机所在游戏世界位置
      * 移动相机，其实在反向移动游戏世界.所以在设置游戏世界位置时，坐标值都取反
      */
-    Vec2 _tWorldPosition;
+    Vec2 _worldPosition;
     
     /**
      * 相机移动事件代理

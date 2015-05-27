@@ -28,8 +28,8 @@ bool ISOComponentNode::init()
 
 void ISOComponentNode::updateMapCoordinate(float mapX,float mapY)
 {
-    _fMapX=mapX;
-    _fMapY=mapY;
+    _mapX=mapX;
+    _mapY=mapY;
 }
 
 //void ISOComponentNode::draw()

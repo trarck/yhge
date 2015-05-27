@@ -34,7 +34,7 @@ public:
     
     virtual bool init();
     
-    virtual bool init(ISOTileMap* pMap);
+    virtual bool init(ISOTileMap* map);
     
     virtual void buildWithMapInfo(ISOMapInfo* mapInfo);
     
@@ -119,22 +119,22 @@ public:
     
 public:
     
-    inline void setMap(ISOTileMap* pMap){
-        _pMap=pMap;
+    inline void setMap(ISOTileMap* map){
+        _map=map;
     }
     
     inline ISOTileMap* getMap(){
-        return _pMap;
+        return _map;
     }
     
-    inline void setMapLayerType(unsigned int uMapLayerType)
+    inline void setMapLayerType(unsigned int mapLayerType)
     {
-        _uMapLayerType = uMapLayerType;
+        _mapLayerType = mapLayerType;
     }
     
     inline unsigned int getMapLayerType()
     {
-        return _uMapLayerType;
+        return _mapLayerType;
     }
     
     inline void setActiveLayerName(const std::string& activeLayerName)
@@ -178,9 +178,9 @@ public:
     
 protected:
     
-    ISOTileMap* _pMap;
+    ISOTileMap* _map;
     
-    unsigned int _uMapLayerType;
+    unsigned int _mapLayerType;
     
     /**
      * 活动层的名称

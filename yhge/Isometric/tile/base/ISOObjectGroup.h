@@ -42,7 +42,7 @@ public:
     
     virtual CCDictionary* getProperties();
     
-    virtual void setObjects(CCArray* pObjects);
+    virtual void setObjects(CCArray* objects);
     
     virtual CCArray* getObjects();
     
@@ -64,7 +64,7 @@ protected:
     
     ValueMap _properties;
     
-    CCArray* _pObjects;
+    CCArray* _objects;
     
     /**
      * 在地图文件中出现的顺序。

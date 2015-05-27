@@ -23,8 +23,8 @@ public:
     void setEntity(Ref* entity);
     Ref* getEntity();
 protected:
-    Ref* _pEntity;
-    CCRect _tRect;
+    Ref* _entity;
+    CCRect _rect;
 };
 
 

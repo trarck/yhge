@@ -8,7 +8,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 //const Size testSize=CCSizeMake(256,160);
 
 ISOTileLayerDynamicComponent::ISOTileLayerDynamicComponent()
-:m_pComponents(NULL)
+:m_components(NULL)
 ,m_iLastStartX(0)
 ,m_iLastStartY(0)
 ,m_iComponentIndexX(0)
@@ -19,7 +19,7 @@ ISOTileLayerDynamicComponent::ISOTileLayerDynamicComponent()
 
 ISOTileLayerDynamicComponent::~ISOTileLayerDynamicComponent()
 {
-	CC_SAFE_RELEASE(m_pComponents);
+	CC_SAFE_RELEASE(m_components);
 }
 
 bool ISOTileLayerDynamicComponent::init()
@@ -63,7 +63,7 @@ bool ISOTileLayerDynamicComponent::beforeUpdateContent()
 	Vec2 startMapCoord=isoViewToGamePoint(m_offset);
 	m_iStartX=(int)startMapCoord.x;
 	m_iStartY=(int)startMapCoord.y;
-    //CCLOG("start:%d,%d %f,%f",m_iStartX,m_iStartY,m_tPosition.x,m_tPosition.y);
+    //CCLOG("start:%d,%d %f,%f",m_iStartX,m_iStartY,m_position.x,m_position.y);
 	return m_iStartX!=m_iLastStartX || m_iStartY!=m_iLastStartY;
 }
 
@@ -84,7 +84,7 @@ void ISOTileLayerDynamicComponent::doUpdateContent()
             row=j;
             index=j*m_iComponentTileColumn+col/2;
             
-			node=(ISOComponentNode*)m_pComponents->objectAtIndex(j*m_iComponentTileColumn+col/2);
+			node=(ISOComponentNode*)m_components->objectAtIndex(j*m_iComponentTileColumn+col/2);
             mx=startX+i;
             my=startY-i;
             this->addTileAt(mx,my);
@@ -140,7 +140,7 @@ void ISOTileLayerDynamicComponent::doUpdateComponents()
                 row=(j*2+m_iComponentIndexY+((m_iComponentIndexY&1)^(moveComponentIndexX&1)))%totalRow;
                 index=row*m_iComponentTileColumn+moveComponentIndexX/2;
 //                CCLOG("updateComponents x:%d,%d,%d",index,moveComponentIndexX,row);
-                node=(ISOComponentNode*) m_pComponents->objectAtIndex(index);
+                node=(ISOComponentNode*) m_components->objectAtIndex(index);
                 mx=node->getMapX();
                 my=node->getMapY();
                 node->updateMapCoordinate(mx+dirX*m_iComponentTileColumn, my-dirX*m_iComponentTileColumn);
@@ -161,7 +161,7 @@ void ISOTileLayerDynamicComponent::doUpdateComponents()
                 col=(i*2+m_iComponentIndexX+((m_iComponentIndexX & 1)^(moveComponentIndexY & 1)))%totalColumn;
                 index=moveComponentIndexY*m_iComponentTileColumn+col/2;
 //                CCLOG("updateComponents y:%d,%d,%d",index,col,moveComponentIndexY);
-                node=(ISOComponentNode*) m_pComponents->objectAtIndex(index);
+                node=(ISOComponentNode*) m_components->objectAtIndex(index);
                 mx=node->getMapX();
                 my=node->getMapY();
                 node->updateMapCoordinate(mx+dirX*m_iComponentTileRow, my+dirX*m_iComponentTileRow);
@@ -185,7 +185,7 @@ void ISOTileLayerDynamicComponent::doUpdateComponents()
                 row=(j*2+m_iComponentIndexY+((m_iComponentIndexY&1)^(moveComponentIndexX&1)))%totalRow;
                 index=row*m_iComponentTileColumn+moveComponentIndexX/2;
 //                CCLOG("updateComponents x:%d,%d,%d",index,moveComponentIndexX,row);
-                node=(ISOComponentNode*) m_pComponents->objectAtIndex(index);
+                node=(ISOComponentNode*) m_components->objectAtIndex(index);
                 mx=node->getMapX();
                 my=node->getMapY();
                 node->updateMapCoordinate(mx-dirY*m_iComponentTileColumn, my+dirY*m_iComponentTileColumn);
@@ -204,7 +204,7 @@ void ISOTileLayerDynamicComponent::doUpdateComponents()
                 col=(i*2+m_iComponentIndexX+((m_iComponentIndexX & 1)^(moveComponentIndexY & 1)))%totalColumn;
                 index=moveComponentIndexY*m_iComponentTileColumn+col/2;
 //                CCLOG("updateComponents y:%d,%d,%d",index,col,moveComponentIndexY);
-                node=(ISOComponentNode*) m_pComponents->objectAtIndex(index);
+                node=(ISOComponentNode*) m_components->objectAtIndex(index);
                 mx=node->getMapX();
                 my=node->getMapY();
                 node->updateMapCoordinate(mx+dirY*m_iComponentTileRow, my+dirY*m_iComponentTileRow);
@@ -215,8 +215,8 @@ void ISOTileLayerDynamicComponent::doUpdateComponents()
 
 void ISOTileLayerDynamicComponent::calcComponentsCount()
 {
-    m_iComponentTileColumn=floor(m_tScreenSize.width/m_tMapTileSize.width)+2;
-    m_iComponentTileRow=floor(m_tScreenSize.height/m_tMapTileSize.height)+2;
+    m_iComponentTileColumn=floor(m_screenSize.width/m_mapTileSize.width)+2;
+    m_iComponentTileRow=floor(m_screenSize.height/m_mapTileSize.height)+2;
     
     m_iComponentTileColumn+=m_iComponentNodeExtendCount;
     m_iComponentTileRow+=m_iComponentNodeExtendCount;
@@ -229,7 +229,7 @@ void ISOTileLayerDynamicComponent::createComponents()
 {
 	int totalColumn=2*m_iComponentTileColumn;
 	int totalRow=2*m_iComponentTileRow;
-	m_pComponents=new CCArray(totalColumn*totalRow);
+	m_components=new CCArray(totalColumn*totalRow);
 
 	ISOComponentNode* node;
     for(int j=0;j<totalRow;j++){
@@ -238,7 +238,7 @@ void ISOTileLayerDynamicComponent::createComponents()
 			node->setColumn(i*2+(j&1));
 			node->setRow(j);
             node->setTile(this->createTile());
-			m_pComponents->addObject(node);
+			m_components->addObject(node);
 			node->release();
 		}
 		//if(j&1){
@@ -247,7 +247,7 @@ void ISOTileLayerDynamicComponent::createComponents()
 		//		node=new ISOComponentNode();
 		//		node->setColumn(i*2+1);
 		//		node->setRow(j);
-		//		m_pComponents->addObject(node);
+		//		m_components->addObject(node);
 		//		node->release();
 		//	}
 		//}else{
@@ -256,7 +256,7 @@ void ISOTileLayerDynamicComponent::createComponents()
 		//		node=new ISOComponentNode();
 		//		node->setColumn(i*2);
 		//		node->setRow(j);
-		//		m_pComponents->addObject(node);
+		//		m_components->addObject(node);
 		//		node->release();
 		//	}
 		//}
@@ -280,7 +280,7 @@ void ISOTileLayerDynamicComponent::initComponents()
             row=j;
             index=j*m_iComponentTileColumn+col/2;
             
-			node=(ISOComponentNode*)m_pComponents->objectAtIndex(j*m_iComponentTileColumn+col/2);
+			node=(ISOComponentNode*)m_components->objectAtIndex(j*m_iComponentTileColumn+col/2);
             mx=startX+i;
             my=startY-i;
             node->updateMapCoordinate(mx,my);

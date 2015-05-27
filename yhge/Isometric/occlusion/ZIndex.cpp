@@ -11,30 +11,30 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ZIndex::ZIndex()
-:_pStatics(NULL)
-,_pDynamics(NULL)
-,_pSortLayer(NULL)
-,_bIsWorking(true)
-,_bStaticDirty(true)
+:_statics(NULL)
+,_dynamics(NULL)
+,_sortLayer(NULL)
+,_isWorking(true)
+,_staticDirty(true)
 {
     
 }
 
 ZIndex::~ZIndex()
 {
-    CC_SAFE_RELEASE(_pStatics);
-    CC_SAFE_RELEASE(_pDynamics);
-    CC_SAFE_RELEASE(_pSortLayer);
+    CC_SAFE_RELEASE(_statics);
+    CC_SAFE_RELEASE(_dynamics);
+    CC_SAFE_RELEASE(_sortLayer);
 }
 
-static ZIndex *s_pZIndex=NULL;
+static ZIndex *s_zIndex=NULL;
 ZIndex* ZIndex::sharedZIndex()
 {
-	if(!s_pZIndex){
-		s_pZIndex=new ZIndex();
-        s_pZIndex->init();
+	if(!s_zIndex){
+		s_zIndex=new ZIndex();
+        s_zIndex->init();
 	}
-	return s_pZIndex;
+	return s_zIndex;
 }
 
 ZIndex* ZIndex::create(CCLayer* sortLayer)
@@ -47,9 +47,9 @@ ZIndex* ZIndex::create(CCLayer* sortLayer)
 
 bool ZIndex::init()
 {
-    _pStatics=new CCArray(20);
-    _pDynamics=new CCArray(20);
-    _bIsWorking=false;
+    _statics=new CCArray(20);
+    _dynamics=new CCArray(20);
+    _isWorking=false;
 
     _pfnUpdate=schedule_selector(ZIndex::update);
 	return true;
@@ -58,7 +58,7 @@ bool ZIndex::init()
 bool ZIndex::init(CCLayer* sortLayer)
 {
     init();
-    _pSortLayer=sortLayer;
+    _sortLayer=sortLayer;
 
 	return true;
 }
@@ -66,28 +66,28 @@ bool ZIndex::init(CCLayer* sortLayer)
 
 void ZIndex::insertStatic(ZIndexNode* node)
 {
-	//注意insertSort反回的数组已经是加1的，如果使用self.statics=[self insertSort:node data:_pStatics]，
+	//注意insertSort反回的数组已经是加1的，如果使用self.statics=[self insertSort:node data:_statics]，
 	//则会使statics_的引用数为2，下一次再执行该函数时，则已以前的statics_无法释放。
-	CCArray * results=insertSort(node ,_pStatics);
+	CCArray * results=insertSort(node ,_statics);
 
-    CC_SAFE_RELEASE(_pStatics);
-	_pStatics=results;
-	_bStaticDirty=true;
+    CC_SAFE_RELEASE(_statics);
+	_statics=results;
+	_staticDirty=true;
 }
 
 void ZIndex::insertDynamic(ZIndexNode*  node)
 {
-	_pDynamics->addObject(node);
+	_dynamics->addObject(node);
 }
 
 void ZIndex::removeStatic(ZIndexNode* node)
 {
-	_pStatics->removeObject(node);
+	_statics->removeObject(node);
 }
 
 void ZIndex::removeDynamic(ZIndexNode* node)
 {
-	_pDynamics->removeObject(node);
+	_dynamics->removeObject(node);
 }
 
 CCArray* ZIndex::insertSort(ZIndexNode* node ,CCArray* rects)
@@ -151,12 +151,12 @@ CCArray* ZIndex::insertSort(ZIndexNode* node ,CCArray* rects)
 CCArray* ZIndex::sort()
 {
 	CCArray* temps=new CCArray();
-	temps->initWithArray(_pStatics);
+	temps->initWithArray(_statics);
 	CCArray* items=NULL;
 	
 	//sort dynamics
     Ref* pObject=NULL;
-    CCARRAY_FOREACH(_pDynamics,pObject){
+    CCARRAY_FOREACH(_dynamics,pObject){
 	    ZIndexNode* it=(ZIndexNode*) pObject;
 		items=insertSort(it ,temps);
 		temps->release();
@@ -169,41 +169,41 @@ void ZIndex::update(float delta)
 {
 	//update z-index
 
-	if (_pDynamics->count()>0) {
+	if (_dynamics->count()>0) {
 	    CCArray* items=sort();
-		//NSLog(@"%@",_pSortLayer);
+		//NSLog(@"%@",_sortLayer);
 		int i=1;
         Ref* pObject=NULL;
         CCARRAY_FOREACH(items,pObject){
 		    ZIndexNode* it=(ZIndexNode*)pObject;
             CCNode* node=(CCNode*)it->getEntity();
-			_pSortLayer->reorderChild(node,i++);
+			_sortLayer->reorderChild(node,i++);
 		}
 		items->release();
-	}else if (_bStaticDirty) {
+	}else if (_staticDirty) {
 		int i=1;
         Ref* pObject=NULL;
-        CCARRAY_FOREACH(_pStatics,pObject){
+        CCARRAY_FOREACH(_statics,pObject){
             ZIndexNode* it=(ZIndexNode*)pObject;
             CCNode* node=(CCNode*)it->getEntity();
-		    _pSortLayer->reorderChild(node,i++);
+		    _sortLayer->reorderChild(node,i++);
         }
-		_bStaticDirty=false;
+		_staticDirty=false;
 	}
 }
 
 void ZIndex::start()
 {
-	if(_bIsWorking) return;
-	_bIsWorking=true;
+	if(_isWorking) return;
+	_isWorking=true;
 	CCDirector::sharedDirector()->getScheduler()->scheduleSelector(_pfnUpdate,this,1,false);
 }
 
 void ZIndex::stop()
 {
-	if (_bIsWorking) {
+	if (_isWorking) {
 		CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(_pfnUpdate,this);
-		_bIsWorking=false;
+		_isWorking=false;
 	}
 }
 

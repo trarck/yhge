@@ -9,8 +9,8 @@ static const float kVisibleMax=3.402823466e+28F;
 static const float kVisibleMin=-kVisibleMax;
 
 ISOCamera::ISOCamera()
-:_tWorldPosition(CCPointZero)
-,_bSmoothMove(NULL)
+:_worldPosition(CCPointZero)
+,_smoothMove(NULL)
 ,_scaleX(1.0f)
 ,_scaleY(1.0f)
 ,_delegate(NULL)
@@ -41,16 +41,16 @@ bool ISOCamera::init()
  */
 void  ISOCamera::move(float deltaX,float deltaY)
 {
-    _tWorldPosition.x+=deltaX;
-    _tWorldPosition.y+=deltaY;
+    _worldPosition.x+=deltaX;
+    _worldPosition.y+=deltaY;
 
     this->updatePosition();
 }
 
 void ISOCamera::move(const Vec2& delta)
 {
-    _tWorldPosition.x+=delta.x;
-    _tWorldPosition.y+=delta.y;
+    _worldPosition.x+=delta.x;
+    _worldPosition.y+=delta.y;
     
     this->updatePosition();
 }
@@ -61,8 +61,8 @@ void ISOCamera::move(const Vec2& delta)
  */
 void  ISOCamera::moveTo(float x,float y)
 {
-    _tWorldPosition.x=x;
-    _tWorldPosition.y=y;
+    _worldPosition.x=x;
+    _worldPosition.y=y;
 
     this->updatePosition();
 
@@ -70,8 +70,8 @@ void  ISOCamera::moveTo(float x,float y)
 
 void ISOCamera::moveTo(const Vec2& position)
 {
-    _tWorldPosition.x=position.x;
-    _tWorldPosition.y=position.y;
+    _worldPosition.x=position.x;
+    _worldPosition.y=position.y;
     
     this->updatePosition();
 }
@@ -83,16 +83,16 @@ void ISOCamera::moveTo(const Vec2& position)
  */
 void  ISOCamera::moveOpposite(float deltaX,float deltaY)
 {
-    _tWorldPosition.x-=deltaX;
-    _tWorldPosition.y-=deltaY;
+    _worldPosition.x-=deltaX;
+    _worldPosition.y-=deltaY;
 
     this->updatePosition();
 }
 
 void ISOCamera::moveOpposite(const Vec2& delta)
 {
-    _tWorldPosition.x-=delta.x;
-    _tWorldPosition.y-=delta.y;
+    _worldPosition.x-=delta.x;
+    _worldPosition.y-=delta.y;
     
     this->updatePosition();
 }
@@ -111,10 +111,10 @@ void ISOCamera::updatePosition()
     }
 
     if (_delegate) {
-        _delegate->onCameraMove(_tWorldPosition);
+        _delegate->onCameraMove(_worldPosition);
     }
-//    _pGameWorld->setPosition(_tWorldPosition);
-//    _pGameWorld->updateMapPosition(ccp(-_tWorldPosition.x,-_tWorldPosition.y));
+//    _gameWorld->setPosition(_worldPosition);
+//    _gameWorld->updateMapPosition(ccp(-_worldPosition.x,-_worldPosition.y));
 }
 
 /**
@@ -171,8 +171,8 @@ void ISOCamera::updateScale()
     
     float rate=_scaleX/_lastScaleY;
 
-    _tWorldPosition.x*=rate;
-    _tWorldPosition.y*=rate;
+    _worldPosition.x*=rate;
+    _worldPosition.y*=rate;
 
     //重新设置移动范围的大小
     if (_needCheckPositionRane)
@@ -190,7 +190,7 @@ void ISOCamera::updateScale()
 
     if (_delegate) {
         _delegate->onCameraScale(_scaleX,_scaleY);
-        _delegate->onCameraMove(_tWorldPosition);
+        _delegate->onCameraMove(_worldPosition);
     }
 }
 
@@ -201,8 +201,8 @@ Vec2 ISOCamera::getLocationInWorld(const Vec2& position)
 {
     CCAssert(_scaleX!=0 && _scaleY!=0, "ISOCamera::updateScale neg is zero");
     
-    float x=_tWorldPosition.x+position.x;
-    float y=_tWorldPosition.y+position.y;
+    float x=_worldPosition.x+position.x;
+    float y=_worldPosition.y+position.y;
 
     x/=_scaleX;
     y/=_scaleY;
@@ -215,8 +215,8 @@ Vec2 ISOCamera::getLocationInWorld(const Vec2& position)
  */
 Vec2 ISOCamera::getLocationInScene(const Vec2& position)
 {
-    float x=position.x*_scaleX-_tWorldPosition.x;
-    float y=position.y*_scaleY-_tWorldPosition.y;
+    float x=position.x*_scaleX-_worldPosition.x;
+    float y=position.y*_scaleY-_worldPosition.y;
 
     //x*=_scaleX;
     //y*=_scaleY;

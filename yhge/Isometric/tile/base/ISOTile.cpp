@@ -4,12 +4,12 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTile::ISOTile()
-:_nId(0)
-,_pTexture(NULL)
-,_pAnimation(NULL)
-,_tTextureRect(CCRectZero)
+:_id(0)
+,_texture(NULL)
+,_animation(NULL)
+,_textureRect(CCRectZero)
 ,_properties(NULL)
-,_pTileset(NULL)
+,_tileset(NULL)
 {
     
 }
@@ -18,8 +18,8 @@ ISOTile::~ISOTile()
 {
     CCLOG("ISOTile destroy");
     CC_SAFE_RELEASE(_properties);
-    CC_SAFE_RELEASE(_pTexture);
-    CC_SAFE_RELEASE_NULL(_pAnimation);
+    CC_SAFE_RELEASE(_texture);
+    CC_SAFE_RELEASE_NULL(_animation);
 }
 
 bool ISOTile::init()
@@ -31,7 +31,7 @@ bool ISOTile::init()
 bool ISOTile::init(int id,ISOTileset* tileset)
 {
     if(init()){
-        _nId=id;
+        _id=id;
         setTileset(tileset);
         return true;
     }
@@ -42,7 +42,7 @@ bool ISOTile::init(int id,ISOTileset* tileset,CCTexture2D* texture)
 {
     if(init(id,tileset)){
         setTexture(texture);
-        _tTextureRect.size=texture->getContentSizeInPixels();
+        _textureRect.size=texture->getContentSizeInPixels();
         return true;
     }
     return false;
@@ -51,35 +51,35 @@ bool ISOTile::init(int id,ISOTileset* tileset,CCTexture2D* texture)
 bool ISOTile::init(int id,ISOTileset* tileset,CCTexture2D* texture,CCRect& textureRect)
 {
     if(init(id,tileset,texture)){
-        _tTextureRect=textureRect;
+        _textureRect=textureRect;
         return true;
     }
     return false;
 }
 
-void ISOTile::setId(int nId)
+void ISOTile::setId(int id)
 {
-    _nId = nId;
+    _id = id;
 }
 
 int ISOTile::getId()
 {
-    return _nId;
+    return _id;
 }
 
 int ISOTile::getGId()
 {
-    return _nId+_pTileset->getFirstGid();
+    return _id+_tileset->getFirstGid();
 }
 
-void ISOTile::setTileset(ISOTileset* pTileset)
+void ISOTile::setTileset(ISOTileset* tileset)
 {
-    _pTileset = pTileset;
+    _tileset = tileset;
 }
 
 ISOTileset* ISOTile::getTileset()
 {
-    return _pTileset;
+    return _tileset;
 }
 
 void ISOTile::setProperties(CCDictionary* pProperties)

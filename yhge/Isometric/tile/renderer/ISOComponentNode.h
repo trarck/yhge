@@ -21,7 +21,7 @@ public:
 	//void draw();
 
     inline void changeZOrder(int z){
-        _nZOrder=z;
+        _zOrder=z;
     }
     
 	inline void setColumn(int iColumn)
@@ -44,24 +44,24 @@ public:
 		return _iRow;
 	};
     
-    inline void setMapX(float fMapX)
+    inline void setMapX(float mapX)
     {
-        _fMapX = fMapX;
+        _mapX = mapX;
     };
     
     inline float getMapX()
     {
-        return _fMapX;
+        return _mapX;
     };
     
-    inline void setMapY(float fMapY)
+    inline void setMapY(float mapY)
     {
-        _fMapY = fMapY;
+        _mapY = mapY;
     };
     
     inline float getMapY()
     {
-        return _fMapY;
+        return _mapY;
     };
         
     inline void setMapCellX(int iMapCellX)
@@ -87,8 +87,8 @@ public:
 private:
 	int _iColumn;
 	int _iRow;
-    float _fMapX;
-    float _fMapY;
+    float _mapX;
+    float _mapY;
     
     int _iMapCellX;
     int _iMapCellY;

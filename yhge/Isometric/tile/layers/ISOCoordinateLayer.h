@@ -27,7 +27,7 @@ public:
 private:
 	int _iMapWidth;
 	int _iMapHeight;
-	bool _bIsShow;
+	bool _isShow;
 };
 
 NS_CC_YHGE_ISOMETRIC_END

@@ -4,11 +4,11 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOMapObject::ISOMapObject()
-:_uGid(0)
+:_gid(0)
 ,_name("")
-,_sType("")
-,_tPosition(CCPointZero)
-,_tSize(CCSizeZero)
+,_type("")
+,_position(CCPointZero)
+,_size(CCSizeZero)
 ,_rotation(0)
 ,_visible(true)
 ,_properties(NULL)

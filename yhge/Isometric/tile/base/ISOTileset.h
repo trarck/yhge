@@ -28,9 +28,9 @@ public:
     
     bool init();
 
-    bool isExternal() const { return !_sFileName.empty(); }
+    bool isExternal() const { return !_fileName.empty(); }
     
-    int tileCount() const { return _pTiles->count(); }
+    int tileCount() const { return _tiles->count(); }
     
     /**
      * 删除image tile
@@ -41,15 +41,15 @@ public:
     
     void appendTile(const char* imageName);
     
-    void appendTile(CCTexture2D* pTexture);
+    void appendTile(CCTexture2D* texture);
     
     void setTile(unsigned int id,const char* imageName);
     
-    void setTile(unsigned int id,CCTexture2D* pTexture);
+    void setTile(unsigned int id,CCTexture2D* texture);
     
     void addTile(unsigned int id,const char* imageName);
     
-    void addTile(unsigned int id,CCTexture2D* pTexture);
+    void addTile(unsigned int id,CCTexture2D* texture);
     
     void addTile(ISOTile* tile);
     
@@ -91,82 +91,82 @@ public:
     virtual std::string& getFileName();
     virtual void setImageSource(const char* pImageSource);
     virtual std::string& getImageSource();
-    virtual void setTileWidth(int nTileWidth);
+    virtual void setTileWidth(int tileWidth);
     virtual int getTileWidth();
-    virtual void setTileHeight(int nTileHeight);
+    virtual void setTileHeight(int tileHeight);
     virtual int getTileHeight();
     
     virtual void setTileSize(Size& tTileSize){
-        _nTileWidth=(int)tTileSize.width;
-        _nTileHeight=(int)tTileSize.height;
+        _tileWidth=(int)tTileSize.width;
+        _tileHeight=(int)tTileSize.height;
     }
     
     virtual Size getTileSize(){
-        return CCSizeMake(_nTileWidth, _nTileHeight);
+        return CCSizeMake(_tileWidth, _tileHeight);
     }
     
-    virtual void setTileSpacing(int nTileSpacing);
+    virtual void setTileSpacing(int tileSpacing);
     virtual int getTileSpacing();
-    virtual void setMargin(int nMargin);
+    virtual void setMargin(int margin);
     virtual int getMargin();
-    virtual void setTileOffset(Vec2 tTileOffset);
+    virtual void setTileOffset(Vec2 tileOffset);
     virtual Vec2 getTileOffset();
-//    virtual void setImageWidth(int nImageWidth);
+//    virtual void setImageWidth(int imageWidth);
 //    virtual int getImageWidth();
-//    virtual void setImageHeight(int nImageHeight);
+//    virtual void setImageHeight(int imageHeight);
 //    virtual int getImageHeight();
-    virtual void setColumnCount(int nColumnCount);
+    virtual void setColumnCount(int columnCount);
     virtual int getColumnCount();
-    virtual void setTiles(CCArray* pTiles);
+    virtual void setTiles(CCArray* tiles);
     virtual CCArray* getTiles();
     
     virtual void setProperties(CCDictionary* pProperties);
     virtual CCDictionary* getProperties();
     
-    inline void setImageSize(Size& tImageSize)
+    inline void setImageSize(Size& imageSize)
     {
-        _tImageSize = tImageSize;
+        _imageSize = imageSize;
     }
     
     inline Size& getImageSize()
     {
-        return _tImageSize;
+        return _imageSize;
     }
 
 
-    virtual void setFirstGid(unsigned int uFirstGid);
+    virtual void setFirstGid(unsigned int firstGid);
     virtual unsigned int getFirstGid();
     
     virtual unsigned int getLastGid();
     /**
      * set zero to clear lastGid
      */
-    virtual void setLastGid(unsigned int uLastGid);
+    virtual void setLastGid(unsigned int lastGid);
     
     
-    virtual void setTileProperties(CCDictionary* pTileProperties);
+    virtual void setTileProperties(CCDictionary* tileProperties);
     virtual CCDictionary* getTileProperties();
     
-    inline void setTexture(CCTexture2D* pTexture)
+    inline void setTexture(CCTexture2D* texture)
     {
-        CC_SAFE_RETAIN(pTexture);
-        CC_SAFE_RELEASE(_pTexture);
-        _pTexture = pTexture;
+        CC_SAFE_RETAIN(texture);
+        CC_SAFE_RELEASE(_texture);
+        _texture = texture;
     }
     
     inline CCTexture2D* getTexture()
     {
-        return _pTexture;
+        return _texture;
     }
     
-    inline void setComposeType(unsigned int uComposeType)
+    inline void setComposeType(unsigned int composeType)
     {
-        _uComposeType = uComposeType;
+        _composeType = composeType;
     }
     
     inline unsigned int getComposeType()
     {
-        return _uComposeType;
+        return _composeType;
     }
     
     
@@ -188,74 +188,74 @@ protected:
     /**
      * 单独定义的文件名
      */
-    std::string _sFileName;
+    std::string _fileName;
     
     /**
      * 每个tile的宽
      */
-    int _nTileWidth;
+    int _tileWidth;
     
     /**
      * 每个tile的高
      */
-    int _nTileHeight;
+    int _tileHeight;
     
     /**
      * 在tile图片里每个tile的内部空白
      */
-    int _nTileSpacing;
+    int _tileSpacing;
     
     /**
      * 整个tile图片边框的空白
      */
-    int _nMargin;
+    int _margin;
     
     /**
      * 整个tile图片的偏移
      */
-    Vec2 _tTileOffset;
+    Vec2 _tileOffset;
     
     /**
      * tile拼成的图片名
      */
-    std::string _sImageSource;
+    std::string _imageSource;
     
 //    /**
 //     * tile拼成的图片宽
 //     */
-//    int _nImageWidth;
+//    int _imageWidth;
 //    
 //    /**
 //     * tile拼成的图片高
 //     */
-//    int _nImageHeight;
+//    int _imageHeight;
     
-    Size _tImageSize;
+    Size _imageSize;
     
     /**
      * tile拼成的图片
      */
-    CCTexture2D* _pTexture;
+    CCTexture2D* _texture;
     
     /**
      * 图片的格子栏数
      */
-    int _nColumnCount;
+    int _columnCount;
     
     /**
      * 所有小格子
      */
-    CCArray* _pTiles;
+    CCArray* _tiles;
     
     /**
      * 开始的gid
      */
-    unsigned int _uFirstGid;
+    unsigned int _firstGid;
     
     /**
      * 结束的gid
      */
-    unsigned int _uLastGid;
+    unsigned int _lastGid;
     
     /**
      * 属性
@@ -265,9 +265,9 @@ protected:
     /**
      * tile的属性
      */
-    CCDictionary* _pTileProperties;
+    CCDictionary* _tileProperties;
     
-    unsigned int _uComposeType;
+    unsigned int _composeType;
     
 };
 

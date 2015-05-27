@@ -4,14 +4,14 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOLayer::ISOLayer()
-:_sLayerName("")
+:_layerName("")
 ,_layerSize(CCSizeZero)
-,_tMapTileSize(CCSizeZero)
+,_mapTileSize(CCSizeZero)
 ,_offset(CCPointZero)
 ,_properties(NULL)
 ,_opacity(255)
-,_pMap(NULL)
-,_uLayerOrientation(0)
+,_map(NULL)
+,_layerOrientation(0)
 ,_layerType(kEmptyLayer)
 ,_vertexZvalue(0)
 ,_useAutomaticVertexZ(false)
@@ -34,7 +34,7 @@ bool ISOLayer::init()
 bool ISOLayer::init(Size& mapTileSize)
 {
     if(init()){
-        _tMapTileSize=mapTileSize;
+        _mapTileSize=mapTileSize;
         return true;
     }
     return false;
@@ -127,9 +127,9 @@ void ISOLayer::parseInternalProperties()
 
 }
 
-void ISOLayer::setMap(ISOMap* pMap)
+void ISOLayer::setMap(ISOMap* map)
 {
-    _pMap = pMap;
+    _map = map;
 }
 
 NS_CC_YHGE_ISOMETRIC_END
