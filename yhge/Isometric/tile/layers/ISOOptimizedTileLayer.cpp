@@ -22,7 +22,7 @@ bool ISOOptimizedTileLayer::init()
     if(ISOTileLayer::init()){
         m_iLastStartX=-999999;
         m_iLastStartY=-999999;
-        m_tScreenSize=CCSizeMake(480,320);//CCDirector::sharedDirector()->getWinSize();//CCSizeMake(480,320);
+        m_screenSize=CCSizeMake(480,320);//CCDirector::sharedDirector()->getWinSize();//CCSizeMake(480,320);
         return true;
     }
     return false;
@@ -62,9 +62,9 @@ void ISOOptimizedTileLayer::doUpdateContent()
 	int startX=m_iStartX,startY=m_iStartY;
     
 	//移动的格子数.为了确保显示的完全，每个角相应移动一个格子。左右在一起就加2，同样上下在一起也要加2
-	int columnCount=floor(m_tScreenSize.width/m_tMapTileSize.width)+2;
+	int columnCount=floor(m_screenSize.width/m_mapTileSize.width)+2;
 	//会有一行浪费掉的。所以要减去1.
-	int rowCount=(floor(m_tScreenSize.height/m_tMapTileSize.height)+2)*2-1;
+	int rowCount=(floor(m_screenSize.height/m_mapTileSize.height)+2)*2-1;
     
     int evenColumnCount=columnCount;
 	int oddColumnCount=columnCount-1;
@@ -127,9 +127,9 @@ void ISOOptimizedTileLayer::visitTileShowable()
 		m_iLastStartX=startX;
 		m_iLastStartY=startY;
 		//移动的格子数.为了确保显示的完全，每个角相应移动一个格子。左右在一起就加2，同样上下在一起也要加2
-		int columnCount=floor(m_tScreenSize.width/m_tMapTileSize.width)+2;
+		int columnCount=floor(m_screenSize.width/m_mapTileSize.width)+2;
 		//会有一行浪费掉的。所以要减去1.
-		int rowCount=(floor(m_tScreenSize.height/m_tMapTileSize.height)+2)*2-1;
+		int rowCount=(floor(m_screenSize.height/m_mapTileSize.height)+2)*2-1;
 		int oggColumnCount=columnCount+1;
 		//后移一步.由于是在左下角，则只需移动x轴
 		startX-=1;
@@ -181,9 +181,9 @@ void ISOOptimizedTileLayer::visitTileShowable2()
 {
 	//屏幕的四个点。目前按原点在左上角，需要转成gl坐标系。
 	Vec2 screenLeftTop=isoViewToGame2F(0,0);
-	Vec2 screenRightTop=isoViewToGame2F(m_tScreenSize.width,0);
-	Vec2 screenLeftBottom=isoViewToGame2F(0,m_tScreenSize.height);
-	Vec2 screenRightBottom=isoViewToGame2F(m_tScreenSize.width,m_tScreenSize.height);
+	Vec2 screenRightTop=isoViewToGame2F(m_screenSize.width,0);
+	Vec2 screenLeftBottom=isoViewToGame2F(0,m_screenSize.height);
+	Vec2 screenRightBottom=isoViewToGame2F(m_screenSize.width,m_screenSize.height);
 
 	screenLeftTop.x-=1;
 	screenRightBottom.x+=1;
@@ -224,7 +224,7 @@ void ISOOptimizedTileLayer::draw()
 {
 	
 	ccDrawColor4B(255,0,0,255);
-    ccDrawRect(m_offset,ccp(m_offset.x+m_tScreenSize.width,m_offset.y+m_tScreenSize.height));
+    ccDrawRect(m_offset,ccp(m_offset.x+m_screenSize.width,m_offset.y+m_screenSize.height));
 }
 
 
@@ -246,9 +246,9 @@ void ISOOptimizedTileLayer::scroll(float x,float y)
     this->scroll(ccp(x,y));
 }
 
-void ISOOptimizedTileLayer::setScreenSize(const Size& screenSize)
+void ISOOptimizedTileLayer::sescreenSize(const Size& screenSize)
 {
-    m_tScreenSize=screenSize;
+    m_screenSize=screenSize;
 }
 
 NS_CC_YHGE_ISOMETRIC_END

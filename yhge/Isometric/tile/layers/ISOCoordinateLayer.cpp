@@ -8,7 +8,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 ISOCoordinateLayer::ISOCoordinateLayer()
 :_iMapWidth(0)
 ,_iMapHeight(0)
-,_bIsShow(true)
+,_isShow(true)
 {
 
 }
@@ -27,7 +27,7 @@ bool ISOCoordinateLayer::init()
 
 void ISOCoordinateLayer::draw()
 {
-	if(_bIsShow){
+	if(_isShow){
 		int i,j;
 		Vec2 to;
 		Vec2 from;
@@ -52,7 +52,7 @@ void ISOCoordinateLayer::draw()
 
 void ISOCoordinateLayer::showCoordinate(bool isShow)
 {
-	_bIsShow=isShow;
+	_isShow=isShow;
 }
 
 

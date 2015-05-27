@@ -34,7 +34,7 @@ public:
     
     virtual bool init();
     
-    virtual bool init(ISOTileMap* pMap);
+    virtual bool init(ISOTileMap* map);
     
     virtual void buildWithMapInfo(ISOMapInfo* mapInfo);
     
@@ -93,7 +93,7 @@ public:
     /**
      * 设置地图中的活动层
      */
-    virtual void setupMapActiveLayer(ISOMapInfo* mapInfo);
+    virtual void setumapActiveLayer(ISOMapInfo* mapInfo);
     
     /**
      * 构建map active layer
@@ -119,12 +119,12 @@ public:
     
 public:
     
-    inline void setMap(ISOTileMap* pMap){
-        _pMap=pMap;
+    inline void setMap(ISOTileMap* map){
+        _map=map;
     }
     
     inline ISOTileMap* getMap(){
-        return _pMap;
+        return _map;
     }
     
     inline void setMapLayerType(unsigned int uMapLayerType)
@@ -178,7 +178,7 @@ public:
     
 protected:
     
-    ISOTileMap* _pMap;
+    ISOTileMap* _map;
     
     unsigned int _uMapLayerType;
     

@@ -11,7 +11,7 @@ static const int kComponentExtendCount=2;
 //const Size testSize=CCSizeMake(256,160);
 
 ISODynamicComponent::ISODynamicComponent()
-:_pComponents(NULL)
+:_components(NULL)
 ,_iStartX(0)
 ,_iStartY(0)
 ,_iLastStartX(-999999)
@@ -19,21 +19,21 @@ ISODynamicComponent::ISODynamicComponent()
 ,_iComponentIndexX(0)
 ,_iComponentIndexY(0)
 ,_iComponentNodeExtendCount(kComponentExtendCount)
-,_pUpdateDelegator(NULL)
-,_pCreateDelegator(NULL)
+,_updateDelegator(NULL)
+,_createDelegator(NULL)
 ,_offset(CCPointZero)
 ,_iComponentTileTotalRow(0)
 ,_iComponentTileTotalColumn(0)
 ,_iComponentTileColumn(0)
 ,_iComponentTileRow(0)
-,_pTileLayer(NULL)
+,_tileLayer(NULL)
 {
 	
 }
 
 ISODynamicComponent::~ISODynamicComponent()
 {
-	CC_SAFE_RELEASE_NULL(_pComponents);
+	CC_SAFE_RELEASE_NULL(_components);
 }
 
 bool ISODynamicComponent::init()
@@ -45,7 +45,7 @@ void ISODynamicComponent::createComponents()
 {
 	int totalColumn=2*_iComponentTileColumn;
 	int totalRow=2*_iComponentTileRow;
-	_pComponents=new CCArray(totalColumn*totalRow);
+	_components=new CCArray(totalColumn*totalRow);
     
 	//使用数组在win32下第二次加载地图过程会变更很慢.
     //由于在sprite初始化的时候会设置默认texture.而这个texture的获取要调用CCFileUtils里的fullPathForFilename，
@@ -62,8 +62,8 @@ void ISODynamicComponent::createComponents()
 			node->setColumn(i*2+(j&1));
 			node->setRow(j);
 			node->setAnchorPoint(ccp(0.5f,0.0f));
-            _pComponents->addObject(node);
-            _pTileLayer->addChild(node);
+            _components->addObject(node);
+            _tileLayer->addChild(node);
 			node->release();
 		}
 		//if(j&1){
@@ -72,7 +72,7 @@ void ISODynamicComponent::createComponents()
 		//		node=new ISOComponentNode();
 		//		node->setColumn(i*2+1);
 		//		node->setRow(j);
-		//		_pComponents->addObject(node);
+		//		_components->addObject(node);
 		//		node->release();
 		//	}
 		//}else{
@@ -81,7 +81,7 @@ void ISODynamicComponent::createComponents()
 		//		node=new ISOComponentNode();
 		//		node->setColumn(i*2);
 		//		node->setRow(j);
-		//		_pComponents->addObject(node);
+		//		_components->addObject(node);
 		//		node->release();
 		//	}
 		//}
@@ -105,7 +105,7 @@ void ISODynamicComponent::initComponents()
             row=j;
             index=j*_iComponentTileColumn+col/2;
             
-			node=(ISOComponentNode*)_pComponents->objectAtIndex(j*_iComponentTileColumn+col/2);
+			node=(ISOComponentNode*)_components->objectAtIndex(j*_iComponentTileColumn+col/2);
             mx=startX+i;
             my=startY-i;
             updateNode(node, mx, my);
@@ -134,7 +134,7 @@ bool ISODynamicComponent::beforeUpdateContent()
 	Vec2 startMapCoord=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(_offset));
 	_iStartX=(int)startMapCoord.x;
 	_iStartY=(int)startMapCoord.y;
-    //CCLOG("start:%d,%d %f,%f",_iStartX,_iStartY,_tPosition.x,_tPosition.y);
+    //CCLOG("start:%d,%d %f,%f",_iStartX,_iStartY,_position.x,_position.y);
 	return _iStartX!=_iLastStartX || _iStartY!=_iLastStartY;
 }
 
@@ -179,7 +179,7 @@ void ISODynamicComponent::doUpdateComponents()
                 //CCLOG("updateComponents x:%d,%d,%d",index,moveComponentIndexX,row);
                 this->updateMapCoordinate(index, dirX*_iComponentTileColumn, -dirX*_iComponentTileColumn);
 
-//                node=(ISOComponentNode*) _pComponents->objectAtIndex(index);
+//                node=(ISOComponentNode*) _components->objectAtIndex(index);
 //                mx=node->getMapX();
 //                my=node->getMapY();
 //                node->updateMapCoordinate(mx+dirX*_iComponentTileColumn, my-dirX*_iComponentTileColumn);
@@ -201,7 +201,7 @@ void ISODynamicComponent::doUpdateComponents()
                 index=moveComponentIndexY*_iComponentTileColumn+col/2;
 //                CCLOG("updateComponents y:%d,%d,%d",index,col,moveComponentIndexY);
                 this->updateMapCoordinate(index, dirX*_iComponentTileRow, dirX*_iComponentTileRow);
-//                node=(ISOComponentNode*) _pComponents->objectAtIndex(index);
+//                node=(ISOComponentNode*) _components->objectAtIndex(index);
 //                mx=node->getMapX();
 //                my=node->getMapY();
 //                node->updateMapCoordinate(mx+dirX*_iComponentTileRow, my+dirX*_iComponentTileRow);
@@ -226,7 +226,7 @@ void ISODynamicComponent::doUpdateComponents()
                 index=row*_iComponentTileColumn+moveComponentIndexX/2;
 //                CCLOG("updateComponents x:%d,%d,%d",index,moveComponentIndexX,row);
                 this->updateMapCoordinate(index, -dirY*_iComponentTileColumn, dirY*_iComponentTileColumn);
-//                node=(ISOComponentNode*) _pComponents->objectAtIndex(index);
+//                node=(ISOComponentNode*) _components->objectAtIndex(index);
 //                mx=node->getMapX();
 //                my=node->getMapY();
 //                node->updateMapCoordinate(mx-dirY*_iComponentTileColumn, my+dirY*_iComponentTileColumn);
@@ -246,7 +246,7 @@ void ISODynamicComponent::doUpdateComponents()
                 index=moveComponentIndexY*_iComponentTileColumn+col/2;
 //                CCLOG("updateComponents y:%d,%d,%d",index,col,moveComponentIndexY);
                 this->updateMapCoordinate(index,dirY*_iComponentTileRow, dirY*_iComponentTileRow);
-//                node=(ISOComponentNode*) _pComponents->objectAtIndex(index);
+//                node=(ISOComponentNode*) _components->objectAtIndex(index);
 //                mx=node->getMapX();
 //                my=node->getMapY();
 //                node->updateMapCoordinate(mx+dirY*_iComponentTileRow, my+dirY*_iComponentTileRow);
@@ -257,14 +257,14 @@ void ISODynamicComponent::doUpdateComponents()
 
 void ISODynamicComponent::updateMapCoordinate(unsigned int nodeIndex,float deltaMapX,float deltaMapY)
 {
-    //if(_pUpdateDelegator) _pUpdateDelegator->onUpdateComponentMapCoordinate(nodeIndex, deltaMapX, deltaMapY);
+    //if(_updateDelegator) _updateDelegator->onUpdateComponentMapCoordinate(nodeIndex, deltaMapX, deltaMapY);
     
     updateNodeBy(nodeIndex,deltaMapX,deltaMapY);
 }
 
 void ISODynamicComponent::updateNodeBy(unsigned int nodeIndex,float deltaMapX,float deltaMapY)
 {
-	ISOComponentNode* node=(ISOComponentNode*) _pComponents->objectAtIndex(nodeIndex);
+	ISOComponentNode* node=(ISOComponentNode*) _components->objectAtIndex(nodeIndex);
     float mx=node->getMapX();
     float my=node->getMapY();
     float newMx=mx+deltaMapX;
@@ -281,16 +281,16 @@ void ISODynamicComponent::updateNode(ISOComponentNode* node,float mx,float my)
     //更新位置属性
     node->updateMapCoordinate(mx, my);
        
-    ISOTile* tile=_pTileLayer->tileAt(pos);
+    ISOTile* tile=_tileLayer->tileAt(pos);
     
     // if GID == 0, then no tile is present
     if (tile)
     {
         //更新位置
-        node->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(mx, my)));
+        node->seposition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(mx, my)));
         
-        _pTileLayer->reorderChild(node,_pTileLayer->zOrderForPos(pos));
-//        node->reorderChild(_pTileLayer->zOrderForPos(pos));
+        _tileLayer->reorderChild(node,_tileLayer->zOrderForPos(pos));
+//        node->reorderChild(_tileLayer->zOrderForPos(pos));
         
         //更新显示内容
         node->setVisible(true);
@@ -311,7 +311,7 @@ void ISODynamicComponent::calcComponentsCount()
 	CCLOG("calcComponentsCount:%d,%d",_iComponentTileColumn,_iComponentTileRow);
 }
 
-void ISODynamicComponent::setupComponents()
+void ISODynamicComponent::setucomponents()
 {
 	struct timeval start;
 	struct timeval end;
@@ -322,7 +322,7 @@ void ISODynamicComponent::setupComponents()
 
 	gettimeofday(&end,NULL);
 
-	CCLOG("setupComponents1:%ld",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
+	CCLOG("setucomponents1:%ld",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
 
 	gettimeofday(&start,0);
 
@@ -330,7 +330,7 @@ void ISODynamicComponent::setupComponents()
 	
 	gettimeofday(&end,NULL);
 
-	CCLOG("setupComponents2:%ld",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
+	CCLOG("setucomponents2:%ld",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
 
 	gettimeofday(&start,0);
 
@@ -338,19 +338,19 @@ void ISODynamicComponent::setupComponents()
 
 	gettimeofday(&end,NULL);
 
-	CCLOG("setupComponents3:%ld",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
+	CCLOG("setucomponents3:%ld",(end.tv_sec-start.tv_sec)*1000000+end.tv_usec-start.tv_usec);
 }
 
 
-void ISODynamicComponent::setupComponents(const Vec2& position)
+void ISODynamicComponent::setucomponents(const Vec2& position)
 {
     this->inioffset(position);
-    setupComponents();
+    setucomponents();
 }
 
 
 CCArray* ISODynamicComponent::getComponents(){
-    return _pComponents;
+    return _components;
 }
 
 void ISODynamicComponent::setComponentTileColumn(int iComponentTileColumn)
@@ -435,24 +435,24 @@ Vec2 ISODynamicComponent::geoffset()
     return _offset;
 }
 
-void ISODynamicComponent::setUpdateDelegator(ISODynamicComponentUpdateDelegator* pUpdateDelegator)
+void ISODynamicComponent::setUpdateDelegator(ISODynamicComponentUpdateDelegator* updateDelegator)
 {
-    _pUpdateDelegator=pUpdateDelegator;
+    _updateDelegator=updateDelegator;
 }
 
-void ISODynamicComponent::setCreateDelegator(ISODynamicComponentCreateDelegator* pCreateDelegator)
+void ISODynamicComponent::setCreateDelegator(ISODynamicComponentCreateDelegator* createDelegator)
 {
-    _pCreateDelegator=pCreateDelegator;
+    _createDelegator=createDelegator;
 }
 
-void ISODynamicComponent::setTileLayer(ISOTileLayer* pTileLayer)
+void ISODynamicComponent::setTileLayer(ISOTileLayer* tileLayer)
 {
-    _pTileLayer = pTileLayer;
+    _tileLayer = tileLayer;
 }
 
 ISOTileLayer* ISODynamicComponent::getTileLayer()
 {
-    return _pTileLayer;
+    return _tileLayer;
 }
 
 NS_CC_YHGE_ISOMETRIC_END

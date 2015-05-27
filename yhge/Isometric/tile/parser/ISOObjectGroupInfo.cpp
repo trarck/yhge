@@ -5,23 +5,23 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOObjectGroupInfo::ISOObjectGroupInfo()
 :_name("")
-,_tColor(ccWHITE)
+,_color(ccWHITE)
 ,_opacity(255)
 ,_visible(true)
-,_tPositionOffset(CCPointZero)
-,_pObjects(NULL)
+,_positionOffset(CCPointZero)
+,_objects(NULL)
 ,_properties(NULL)
 {
     _properties=new CCDictionary();
-    _pObjects=new CCArray();
-    _pObjects->init();
+    _objects=new CCArray();
+    _objects->init();
 }
 
 ISOObjectGroupInfo::~ISOObjectGroupInfo()
 {
     CCLOG("ISOObjectGroupInfo destroy");
     CC_SAFE_RELEASE(_properties);
-    CC_SAFE_RELEASE(_pObjects);
+    CC_SAFE_RELEASE(_objects);
 }
 
 NS_CC_YHGE_ISOMETRIC_END

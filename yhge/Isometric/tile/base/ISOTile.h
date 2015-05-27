@@ -27,76 +27,76 @@ public:
     
     bool init(int id,ISOTileset* tileset,CCTexture2D* texture,CCRect& textureRect);
    
-    Size size(){return _tTextureRect.size;}
+    Size size(){return _textureRect.size;}
 
 public:
     
     virtual int getGId();
     
     
-    virtual void setId(int nId);
+    virtual void setId(int id);
     
     virtual int getId();    
     
-    virtual void setTileset(ISOTileset* pTileset);
+    virtual void setTileset(ISOTileset* tileset);
     
     virtual ISOTileset* getTileset();
     
     virtual void setProperties(CCDictionary* pProperties);
     virtual CCDictionary* getProperties();
     
-    inline void setTexture(CCTexture2D* pTexture)
+    inline void setTexture(CCTexture2D* texture)
     {
-        CC_SAFE_RETAIN(pTexture);
-        CC_SAFE_RELEASE(_pTexture);
-        _pTexture = pTexture;
+        CC_SAFE_RETAIN(texture);
+        CC_SAFE_RELEASE(_texture);
+        _texture = texture;
     }
     
     inline CCTexture2D* getTexture()
     {
-        return _pTexture;
+        return _texture;
     }
     
-    inline void setTextureRect(CCRect& tTextureRect)
+    inline void setextureRect(CCRect& textureRect)
     {
-        _tTextureRect = tTextureRect;
+        _textureRect = textureRect;
     }
     
-    inline CCRect& getTextureRect()
+    inline CCRect& getextureRect()
     {
-        return _tTextureRect;
+        return _textureRect;
     }
     
-    inline void setAnimation(CCAnimation* pAnimation)
+    inline void setAnimation(CCAnimation* animation)
     {
-        CC_SAFE_RETAIN(pAnimation);
-        CC_SAFE_RELEASE(_pAnimation);
-        _pAnimation = pAnimation;
+        CC_SAFE_RETAIN(animation);
+        CC_SAFE_RELEASE(_animation);
+        _animation = animation;
     }
     
     inline CCAnimation* getAnimation()
     {
-        return _pAnimation;
+        return _animation;
     }
     
 protected:
     
     //id
-    int _nId;
+    int _id;
     
     //支持tile大小不同
-    CCTexture2D* _pTexture;
+    CCTexture2D* _texture;
     
     //tile在texture的位置
-    CCRect _tTextureRect;
+    CCRect _textureRect;
     
     /**
      * 动画
      */
-    CCAnimation* _pAnimation;
+    CCAnimation* _animation;
     
     //所属的tileset.weak reference
-    ISOTileset* _pTileset;
+    ISOTileset* _tileset;
     
     /**
      * 属性

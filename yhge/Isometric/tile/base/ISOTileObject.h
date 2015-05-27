@@ -28,11 +28,11 @@ public:
     virtual void setType(const std::string& pType);
     virtual std::string& getType();
     
-    virtual void setPosition(Vec2 tPosition);
-    virtual Vec2 getPosition();
+    virtual void seposition(Vec2 position);
+    virtual Vec2 geposition();
     
-    virtual void setSize(Size tSize);
-    virtual Size getSize();
+    virtual void sesize(Size size);
+    virtual Size gesize();
     
     virtual void setGid(unsigned int uGid);
     virtual unsigned int getGid();
@@ -40,16 +40,16 @@ public:
     virtual void setVisible(bool visible);
     virtual bool getVisible();
     
-    inline void setParts(CCArray* pParts)
+    inline void setParts(CCArray* parts)
     {
-        CC_SAFE_RETAIN(pParts);
-        CC_SAFE_RELEASE(_pParts);
-        _pParts = pParts;
+        CC_SAFE_RETAIN(parts);
+        CC_SAFE_RELEASE(_parts);
+        _parts = parts;
     }
     
     inline CCArray* getParts()
     {
-        return _pParts;
+        return _parts;
     }
     
     virtual void setProperties(CCDictionary* pProperties);
@@ -65,18 +65,18 @@ protected:
     /**
      * 对象的类型
      */
-    std::string _sType;
+    std::string _type;
     
     /**
      * 对象的位置
      * 格子坐标
      */
-    Vec2 _tPosition;
+    Vec2 _position;
     
     /**
      * 对象的大小
      */
-    Size _tSize;
+    Size _size;
     
     /**
      * 对象的gid
@@ -91,7 +91,7 @@ protected:
     /**
      * 组成部分
      */
-    CCArray* _pParts;
+    CCArray* _parts;
 
     /**
      * 属性

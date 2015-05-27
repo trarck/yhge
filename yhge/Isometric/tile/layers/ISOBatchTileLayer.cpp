@@ -14,11 +14,11 @@ static inline int compareInts(const void * a, const void * b)
 
 
 ISOBatchTileLayer::ISOBatchTileLayer()
-:_pTileset(NULL)
-,_pReusedTile(NULL)
-,_pSpriteBatchNode(NULL)
-,_pAtlasIndexArray(NULL)
-,_fContentScaleFactor(1.0f)
+:_tileset(NULL)
+,_reusedTile(NULL)
+,_spriteBatchNode(NULL)
+,_atlasIndexArray(NULL)
+,_contentScaleFactor(1.0f)
 ,_uMaxGID(0)
 ,_uMinGID(0)
 {
@@ -27,13 +27,13 @@ ISOBatchTileLayer::ISOBatchTileLayer()
 
 ISOBatchTileLayer::~ISOBatchTileLayer()
 {
-    CC_SAFE_RELEASE(_pTileset);
-    CC_SAFE_RELEASE(_pReusedTile);
-    CC_SAFE_RELEASE(_pSpriteBatchNode);
-    if (_pAtlasIndexArray)
+    CC_SAFE_RELEASE(_tileset);
+    CC_SAFE_RELEASE(_reusedTile);
+    CC_SAFE_RELEASE(_spriteBatchNode);
+    if (_atlasIndexArray)
     {
-        yhge::ccCArrayFree(_pAtlasIndexArray);
-        _pAtlasIndexArray = NULL;
+        yhge::ccCArrayFree(_atlasIndexArray);
+        _atlasIndexArray = NULL;
     }
 }
 
@@ -50,27 +50,27 @@ bool ISOBatchTileLayer::init()
     return false;
 }
 
-void ISOBatchTileLayer::setupTiles()
+void ISOBatchTileLayer::setutiles()
 {
     // XXX: is 35% a good estimate ?
     float totalNumberOfTiles = _layerSize.width * _layerSize.height;
     float capacity = totalNumberOfTiles * 0.35f + 1; // 35 percent is occupied ?
     
-    CCTexture2D *texture = _pTileset->getTexture();
+    CCTexture2D *texture = _tileset->getTexture();
     
 
     CCAssert(texture, "Texture is null");
 
-    _pSpriteBatchNode=new CCSpriteBatchNode();
+    _spriteBatchNode=new CCSpriteBatchNode();
     
-    if (_pSpriteBatchNode->initWithTexture(texture, (unsigned int)capacity))
+    if (_spriteBatchNode->initWithTexture(texture, (unsigned int)capacity))
     {               
-        _pAtlasIndexArray = yhge::ccCArrayNew((unsigned int)totalNumberOfTiles);
+        _atlasIndexArray = yhge::ccCArrayNew((unsigned int)totalNumberOfTiles);
         
-        this->setContentSize(CCSizeMake(_layerSize.width * _tMapTileSize.width, _layerSize.height * _tMapTileSize.height));
+        this->setContentSize(CCSizeMake(_layerSize.width * _mapTileSize.width, _layerSize.height * _mapTileSize.height));
     }
 
-    _pSpriteBatchNode->getTextureAtlas()->getTexture()->setAliasTexParameters();
+    _spriteBatchNode->getTextureAtlas()->getTexture()->setAliasTexParameters();
  
     // Parse cocos2d properties
     this->parseInternalProperties();
@@ -80,7 +80,7 @@ void ISOBatchTileLayer::setupTiles()
         for (unsigned int x=0; x < _layerSize.width; x++)
         {
             unsigned int tileIndex = indexForPos(ccp(x,y));
-            unsigned int gid = _pTiles[ tileIndex ];
+            unsigned int gid = _tiles[ tileIndex ];
             // gid are stored in little endian.
             // if host is big endian, then swap
             //if( o == CFByteOrderBigEndian )
@@ -99,10 +99,10 @@ void ISOBatchTileLayer::setupTiles()
         }
     }
     
-    CCAssert( _uMaxGID >= _pTileset->getFirstGid() &&
-             _uMinGID >= _pTileset->getFirstGid(), "TMX: Only 1 tileset per layer is supported");
+    CCAssert( _uMaxGID >= _tileset->getFirstGid() &&
+             _uMinGID >= _tileset->getFirstGid(), "TMX: Only 1 tileset per layer is supported");
     
-    addChild(_pSpriteBatchNode);
+    addChild(_spriteBatchNode);
 }
 
 void ISOBatchTileLayer::setupTileSprite(CCSprite* sprite, Vec2 mapCoord, unsigned int gid)
@@ -163,31 +163,31 @@ void ISOBatchTileLayer::setupTileSprite(CCSprite* sprite, Vec2 mapCoord, unsigne
 
 CCSprite* ISOBatchTileLayer::reusedTileWithRect(CCRect rect)
 {
-    if (! _pReusedTile)
+    if (! _reusedTile)
     {
-        _pReusedTile = new CCSprite();
-        _pReusedTile->initWithTexture(_pSpriteBatchNode->getTextureAtlas()->getTexture(), rect, false);
-        _pReusedTile->setBatchNode(_pSpriteBatchNode);
+        _reusedTile = new CCSprite();
+        _reusedTile->initWithTexture(_spriteBatchNode->getTextureAtlas()->getTexture(), rect, false);
+        _reusedTile->setBatchNode(_spriteBatchNode);
     }
     else
     {
         // XXX: should not be re-init. Potential memory leak. Not following best practices
         // XXX: it shall call directory  [setRect:rect]
-        _pReusedTile->initWithTexture(_pSpriteBatchNode->getTextureAtlas()->getTexture(), rect, false);
+        _reusedTile->initWithTexture(_spriteBatchNode->getTextureAtlas()->getTexture(), rect, false);
         
         // Since initWithTexture resets the batchNode, we need to re add it.
         // but should be removed once initWithTexture is not called again
-        _pReusedTile->setBatchNode(_pSpriteBatchNode);
+        _reusedTile->setBatchNode(_spriteBatchNode);
     }
     
-    return _pReusedTile;
+    return _reusedTile;
 }
 
 
 CCSprite * ISOBatchTileLayer::tileSpriteAt(const Vec2& pos)
 {
     CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer: invalid position");
-    CCAssert(_pTiles && _pAtlasIndexArray, "ISOTileLayer: the tiles map has been released");
+    CCAssert(_tiles && _atlasIndexArray, "ISOTileLayer: the tiles map has been released");
     
     CCSprite *tile = NULL;
     unsigned int gid = this->tileGIDAt(pos);
@@ -201,11 +201,11 @@ CCSprite * ISOBatchTileLayer::tileSpriteAt(const Vec2& pos)
         // tile not created yet. create it
         if (! tile)
         {
-            CCRect rect = _pTileset->rectForGid(gid);
+            CCRect rect = _tileset->rectForGid(gid);
             
             tile = new CCSprite();
-            tile->initWithTexture(_pSpriteBatchNode->getTexture(), rect);
-            tile->setBatchNode(_pSpriteBatchNode);
+            tile->initWithTexture(_spriteBatchNode->getTexture(), rect);
+            tile->setBatchNode(_spriteBatchNode);
             tile->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(pos)));
             tile->setVertexZ((float)vertexZForPos(pos));
             tile->setAnchorPoint(CCPointZero);
@@ -224,7 +224,7 @@ CCSprite * ISOBatchTileLayer::tileSpriteAt(const Vec2& pos)
 // ISOBatchTileLayer - adding helper methods
 CCSprite * ISOBatchTileLayer::insertTileForGID(unsigned int gid, const Vec2& pos)
 {
-    CCRect rect = _pTileset->rectForGid(gid);
+    CCRect rect = _tileset->rectForGid(gid);
     
 	int z=zOrderForPos(pos);
     
@@ -239,10 +239,10 @@ CCSprite * ISOBatchTileLayer::insertTileForGID(unsigned int gid, const Vec2& pos
     this->addQuadFromSprite(tile, indexForZ);
     
     // insert it into the local atlasindex array
-    yhge::ccCArrayInsertValueAtIndex(_pAtlasIndexArray, (void*)z, indexForZ);
+    yhge::ccCArrayInsertValueAtIndex(_atlasIndexArray, (void*)z, indexForZ);
     
     // update possible children
-    CCArray* pChildren=_pSpriteBatchNode->getChildren();
+    CCArray* pChildren=_spriteBatchNode->getChildren();
     if (pChildren && pChildren->count()>0)
     {
         Ref* pObject = NULL;
@@ -260,14 +260,14 @@ CCSprite * ISOBatchTileLayer::insertTileForGID(unsigned int gid, const Vec2& pos
         }
     }
 	int tileIndex = indexForPos(pos);
-    _pTiles[tileIndex] = gid;
+    _tiles[tileIndex] = gid;
     return tile;
 }
 
 CCSprite * ISOBatchTileLayer::updateTileForGID(unsigned int gid, const Vec2& pos)
 {
-    CCRect rect = _pTileset->rectForGid(gid);
-    rect = CCRectMake(rect.origin.x / _fContentScaleFactor, rect.origin.y / _fContentScaleFactor, rect.size.width/ _fContentScaleFactor, rect.size.height/ _fContentScaleFactor);
+    CCRect rect = _tileset->rectForGid(gid);
+    rect = CCRectMake(rect.origin.x / _contentScaleFactor, rect.origin.y / _contentScaleFactor, rect.size.width/ _contentScaleFactor, rect.size.height/ _contentScaleFactor);
     
 	int z = zOrderForPos(pos);
     
@@ -282,7 +282,7 @@ CCSprite * ISOBatchTileLayer::updateTileForGID(unsigned int gid, const Vec2& pos
     tile->updateTransform();
 
 	int tileIndex = indexForPos(pos);
-    _pTiles[tileIndex] = gid;
+    _tiles[tileIndex] = gid;
     
     return tile;
 }
@@ -291,7 +291,7 @@ CCSprite * ISOBatchTileLayer::updateTileForGID(unsigned int gid, const Vec2& pos
 // since lot's of assumptions are no longer true
 CCSprite * ISOBatchTileLayer::appendTileForGID(unsigned int gid, const Vec2& pos)
 {
-    CCRect rect = _pTileset->rectForGid(gid);
+    CCRect rect = _tileset->rectForGid(gid);
     
     int z = zOrderForPos(pos);
     
@@ -302,13 +302,13 @@ CCSprite * ISOBatchTileLayer::appendTileForGID(unsigned int gid, const Vec2& pos
     // optimization:
     // The difference between appendTileForGID and insertTileforGID is that append is faster, since
     // it appends the tile at the end of the texture atlas
-    unsigned int indexForZ = _pAtlasIndexArray->num;
+    unsigned int indexForZ = _atlasIndexArray->num;
     
     // don't add it using the "standard" way.
     addQuadFromSprite(tile, indexForZ);
     
     // append should be after addQuadFromSprite since it modifies the quantity values
-    yhge::ccCArrayInsertValueAtIndex(_pAtlasIndexArray, (void*)z, indexForZ);
+    yhge::ccCArrayInsertValueAtIndex(_atlasIndexArray, (void*)z, indexForZ);
     
     return tile;
 }
@@ -316,7 +316,7 @@ CCSprite * ISOBatchTileLayer::appendTileForGID(unsigned int gid, const Vec2& pos
 void ISOBatchTileLayer::removeTileSpriteAt(const Vec2& pos)
 {
     CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
-    CCAssert(_pTiles && _pAtlasIndexArray, "TMXLayer: the tiles map has been released");
+    CCAssert(_tiles && _atlasIndexArray, "TMXLayer: the tiles map has been released");
     
     unsigned int gid = tileGIDAt(pos);
     
@@ -327,23 +327,23 @@ void ISOBatchTileLayer::removeTileSpriteAt(const Vec2& pos)
         
 		unsigned int tileIndex=indexForPos(pos);
         // remove tile from GID map
-        _pTiles[tileIndex] = 0;
+        _tiles[tileIndex] = 0;
         
         // remove tile from atlas position array
-        yhge::ccCArrayRemoveValueAtIndex(_pAtlasIndexArray, atlasIndex);
+        yhge::ccCArrayRemoveValueAtIndex(_atlasIndexArray, atlasIndex);
         
         // remove it from sprites and/or texture atlas
         CCSprite *sprite = (CCSprite*)getChildByTag(z);
         if (sprite)
         {
-            _pSpriteBatchNode->removeChild(sprite, true);
+            _spriteBatchNode->removeChild(sprite, true);
         }
         else
         {
-            _pSpriteBatchNode->getTextureAtlas()->removeQuadAtIndex(atlasIndex);
+            _spriteBatchNode->getTextureAtlas()->removeQuadAtIndex(atlasIndex);
             
             // update possible children
-            CCArray* pChildren=_pSpriteBatchNode->getChildren();
+            CCArray* pChildren=_spriteBatchNode->getChildren();
             if (pChildren && pChildren->count()>0)
             {
                 Ref* pObject = NULL;
@@ -367,20 +367,20 @@ void ISOBatchTileLayer::removeTileSpriteAt(const Vec2& pos)
 unsigned int ISOBatchTileLayer::atlasIndexForExistantZ(unsigned int z)
 {
     int key=z;
-    int *item = (int*)bsearch((void*)&key, (void*)&_pAtlasIndexArray->arr[0], _pAtlasIndexArray->num, sizeof(void*), compareInts);
+    int *item = (int*)bsearch((void*)&key, (void*)&_atlasIndexArray->arr[0], _atlasIndexArray->num, sizeof(void*), compareInts);
     
     CCAssert(item, "TMX atlas index not found. Shall not happen");
     
-    int index = ((size_t)item - (size_t)_pAtlasIndexArray->arr) / sizeof(void*);
+    int index = ((size_t)item - (size_t)_atlasIndexArray->arr) / sizeof(void*);
     return index;
 }
 unsigned int ISOBatchTileLayer::atlasIndexForNewZ(int z)
 {
     // XXX: This can be improved with a sort of binary search
     unsigned int i=0;
-    for (i=0; i< _pAtlasIndexArray->num ; i++)
+    for (i=0; i< _atlasIndexArray->num ; i++)
     {
-        int val = (size_t) _pAtlasIndexArray->arr[i];
+        int val = (size_t) _atlasIndexArray->arr[i];
         if (z < val)
         {
             break;
@@ -393,8 +393,8 @@ unsigned int ISOBatchTileLayer::atlasIndexForNewZ(int z)
 void ISOBatchTileLayer::setTileGID(unsigned int gid, const Vec2& pos)
 {
     CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
-    CCAssert(_pTiles && _pAtlasIndexArray, "TMXLayer: the tiles map has been released");
-    CCAssert(gid == 0 || gid >= _pTileset->getFirstGid(), "TMXLayer: invalid gid" );
+    CCAssert(_tiles && _atlasIndexArray, "TMXLayer: the tiles map has been released");
+    CCAssert(gid == 0 || gid >= _tileset->getFirstGid(), "TMXLayer: invalid gid" );
     
     unsigned int currentGID = tileGIDAt(pos);
     
@@ -416,16 +416,16 @@ void ISOBatchTileLayer::setTileGID(unsigned int gid, const Vec2& pos)
         {
             unsigned int tileIndex = indexForPos(pos);
             int z=zOrderForPos(pos);
-            CCSprite *sprite = (CCSprite*)_pSpriteBatchNode->getChildByTag(z);
+            CCSprite *sprite = (CCSprite*)_spriteBatchNode->getChildByTag(z);
             if (sprite)
             {
-                CCRect rect = _pTileset->rectForGid(gid);
+                CCRect rect = _tileset->rectForGid(gid);
                 
                 sprite->setTextureRect(rect, false, rect.size);
 
                 setupTileSprite(sprite, sprite->getPosition(), gid);
 
-                _pTiles[tileIndex] = gid;
+                _tiles[tileIndex] = gid;
             }
             else
             {
@@ -445,14 +445,14 @@ void ISOBatchTileLayer::removeChild(CCNode* node, bool cleanup)
         return;
     }
     
-    CCAssert(_pSpriteBatchNode->getChildren()->containsObject(sprite), "Tile does not belong to TMXLayer");
+    CCAssert(_spriteBatchNode->getChildren()->containsObject(sprite), "Tile does not belong to TMXLayer");
     
     unsigned int atlasIndex = sprite->getAtlasIndex();
-    int z = (size_t)_pAtlasIndexArray->arr[atlasIndex];
+    int z = (size_t)_atlasIndexArray->arr[atlasIndex];
 	unsigned int tileIndex=zOrderToIndex(z);
-    _pTiles[tileIndex] = 0;
-    yhge::ccCArrayRemoveValueAtIndex(_pAtlasIndexArray, atlasIndex);
-    _pSpriteBatchNode->removeChild(sprite, cleanup);
+    _tiles[tileIndex] = 0;
+    yhge::ccCArrayRemoveValueAtIndex(_atlasIndexArray, atlasIndex);
+    _spriteBatchNode->removeChild(sprite, cleanup);
 }
 
 void ISOBatchTileLayer::addQuadFromSprite(CCSprite *sprite, unsigned int index)
@@ -460,16 +460,16 @@ void ISOBatchTileLayer::addQuadFromSprite(CCSprite *sprite, unsigned int index)
     CCAssert( sprite != NULL, "Argument must be non-NULL");
     CCAssert( dynamic_cast<CCSprite*>(sprite), "CCSpriteBatchNode only supports CCSprites as children");
     
-    CCTextureAtlas* pobTextureAtlas=_pSpriteBatchNode->getTextureAtlas();
+    CCTextureAtlas* pobTextureAtlas=_spriteBatchNode->getTextureAtlas();
     
     while(index >= pobTextureAtlas->getCapacity() || pobTextureAtlas->getCapacity() == pobTextureAtlas->getTotalQuads())
     {
-        _pSpriteBatchNode->increaseAtlasCapacity();
+        _spriteBatchNode->increaseAtlasCapacity();
     }
     //
     // update the quad directly. Don't add the sprite to the scene graph
     //
-    sprite->setBatchNode(_pSpriteBatchNode);
+    sprite->setBatchNode(_spriteBatchNode);
     sprite->setAtlasIndex(index);
     
     ccV3F_C4B_T2F_Quad quad = sprite->getQuad();
@@ -493,7 +493,7 @@ void ISOBatchTileLayer::addSpriteWithoutQuad(CCSprite*child, unsigned int z, int
     // XXX: optimize with a binary search
     int i=0;
     
-    CCArray* pobDescendants=_pSpriteBatchNode->getDescendants();
+    CCArray* pobDescendants=_spriteBatchNode->getDescendants();
     
     Ref* pObject = NULL;
     CCARRAY_FOREACH(pobDescendants, pObject)
@@ -508,22 +508,22 @@ void ISOBatchTileLayer::addSpriteWithoutQuad(CCSprite*child, unsigned int z, int
     pobDescendants->insertObject(child, i);
     
     // IMPORTANT: Call super, and not self. Avoid adding it to the texture atlas array
-    _pSpriteBatchNode->addChild(child, z, aTag);
+    _spriteBatchNode->addChild(child, z, aTag);
     //#issue 1262 don't use lazy sorting, tiles are added as quads not as sprites, so sprites need to be added in order
-    _pSpriteBatchNode->reorderBatch(false);
+    _spriteBatchNode->reorderBatch(false);
 }
 
 
-void ISOBatchTileLayer::setTileset(ISOTileset* pTileset)
+void ISOBatchTileLayer::setTileset(ISOTileset* tileset)
 {
-    CC_SAFE_RETAIN(pTileset);
-    CC_SAFE_RELEASE(_pTileset);
-    _pTileset = pTileset;
+    CC_SAFE_RETAIN(tileset);
+    CC_SAFE_RELEASE(_tileset);
+    _tileset = tileset;
 }
 
 ISOTileset* ISOBatchTileLayer::getTileset()
 {
-    return _pTileset;
+    return _tileset;
 }
 
 NS_CC_YHGE_ISOMETRIC_END

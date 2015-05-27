@@ -10,14 +10,14 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 //const Size testSize=CCSizeMake(256,160);
 
 ISOBatchDynamicComponent::ISOBatchDynamicComponent()
-:_pBatchNode(NULL)
+:_batchNode(NULL)
 {
 	
 }
 
 ISOBatchDynamicComponent::~ISOBatchDynamicComponent()
 {
-	CC_SAFE_RELEASE(_pBatchNode);
+	CC_SAFE_RELEASE(_batchNode);
 }
 
 bool ISOBatchDynamicComponent::init()
@@ -30,20 +30,20 @@ void ISOBatchDynamicComponent::createComponents()
 	int totalColumn=2*_iComponentTileColumn;
 	int totalRow=2*_iComponentTileRow;
 	unsigned int capacity=totalColumn*totalRow;
-	_pComponents=new CCArray(totalColumn*totalRow);
+	_components=new CCArray(totalColumn*totalRow);
 
 	CCLOG("createComponents start:%d,%d",totalColumn,totalRow);
 
-	ISOBatchDynamicTileLayer* tileLayer=(ISOBatchDynamicTileLayer*)_pTileLayer;
+	ISOBatchDynamicTileLayer* tileLayer=(ISOBatchDynamicTileLayer*)_tileLayer;
 	
 	CCTexture2D *texture = tileLayer->getTileset()->getTexture();
     CCAssert(texture, "Texture is null");
 
-	_pBatchNode=new CCSpriteBatchNode();
+	_batchNode=new CCSpriteBatchNode();
 
-	if (!_pBatchNode->initWithTexture(texture, capacity))
+	if (!_batchNode->initWithTexture(texture, capacity))
     {               
-        CCAssert(texture, "_pBatchNode->initWithTexture fail");
+        CCAssert(texture, "_batchNode->initWithTexture fail");
     }
     
 	ISOComponentNode* node;
@@ -54,13 +54,13 @@ void ISOBatchDynamicComponent::createComponents()
 			node->setColumn(i*2+(j&1));
 			node->setRow(j);
 			node->setAnchorPoint(ccp(0.5f,0.0f));
-			_pComponents->addObject(node);
-            _pBatchNode->addChild(node);
-			node->setBatchNode(_pBatchNode);
+			_components->addObject(node);
+            _batchNode->addChild(node);
+			node->setBatchNode(_batchNode);
 			node->release();
 		}
     }
-	_pTileLayer->addChild(_pBatchNode);
+	_tileLayer->addChild(_batchNode);
 }
 
 void ISOBatchDynamicComponent::updateNode(ISOComponentNode* node,float mx,float my)
@@ -69,7 +69,7 @@ void ISOBatchDynamicComponent::updateNode(ISOComponentNode* node,float mx,float 
     //更新位置属性
     node->updateMapCoordinate(mx, my);
        
-    ISOTile* tile=_pTileLayer->tileAt(pos);
+    ISOTile* tile=_tileLayer->tileAt(pos);
     
     // if GID == 0, then no tile is present
     if (tile)
@@ -77,7 +77,7 @@ void ISOBatchDynamicComponent::updateNode(ISOComponentNode* node,float mx,float 
         //更新位置
         node->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(mx, my)));
         
-		_pBatchNode->reorderChild(node,_pTileLayer->zOrderForPos(pos));
+		_batchNode->reorderChild(node,_tileLayer->zOrderForPos(pos));
         
         //更新显示内容
         node->setVisible(true);

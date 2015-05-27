@@ -16,15 +16,15 @@ public:
     ZIndexNode();
     ~ZIndexNode();
     
-    void setRect(const CCRect& rect);
-    const CCRect& getRect();
+    void serect(const CCRect& rect);
+    const CCRect& gerect();
     
     //弱引用
     void setEntity(Ref* entity);
     Ref* getEntity();
 protected:
-    Ref* _pEntity;
-    CCRect _tRect;
+    Ref* _entity;
+    CCRect _rect;
 };
 
 

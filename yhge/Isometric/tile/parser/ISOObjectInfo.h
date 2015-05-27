@@ -28,14 +28,14 @@ public:
         return _name.c_str();
     }
     
-    inline void setType(const std::string& sType)
+    inline void setType(const std::string& type)
     {
-        _sType = sType;
+        _type = type;
     }
     
     inline const std::string& getType()
     {
-        return _sType.c_str();
+        return _type.c_str();
     }
     
     inline void setGid(unsigned int uGid)
@@ -48,34 +48,34 @@ public:
         return _uGid;
     }
     
-    inline void setPosition(const Vec2& tPosition)
+    inline void seposition(const Vec2& position)
     {
-        _tPosition = tPosition;
+        _position = position;
     }
     
-    inline Vec2& getPosition()
+    inline Vec2& geposition()
     {
-        return _tPosition;
+        return _position;
     }
     
-    inline void setSize(Size& tSize)
+    inline void sesize(Size& size)
     {
-        _tSize = tSize;
+        _size = size;
     }
     
-    inline Size& getSize()
+    inline Size& gesize()
     {
-        return _tSize;
+        return _size;
     }
     
-    inline void setRotation(float fRotation)
+    inline void setRotation(float rotation)
     {
-        _fRotation = fRotation;
+        _rotation = rotation;
     }
     
     inline float getRotation()
     {
-        return _fRotation;
+        return _rotation;
     }
     
     inline void setVisible(bool visible)
@@ -109,7 +109,7 @@ protected:
     /**
      * 对像类型
      */
-    std::string _sType;
+    std::string _type;
     
     /**
      * 对像全局id
@@ -119,17 +119,17 @@ protected:
     /**
      * 对像位置。像素坐标，不是格子坐标。
      */
-    Vec2 _tPosition;
+    Vec2 _position;
     
     /**
      * 对像大小
      */
-    Size _tSize;
+    Size _size;
     
     /**
      * 对像角度
      */
-    float _fRotation;
+    float _rotation;
     
     /**
      * 对像是否可见

@@ -5,8 +5,8 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileInfo::ISOTileInfo()
 :_uId(0)
-,_sImageSource("")
-,_tImageSize(CCSizeZero)
+,_imageSource("")
+,_imageSize(CCSizeZero)
 {
     _properties=new CCDictionary();
 }

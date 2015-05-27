@@ -26,7 +26,7 @@ public:
 
     virtual void setupTiles();
 
-    //设置_pDynamicComponent的column and row
+    //设置_dynamicComponent的column and row
     void setComponentColumnAndRow();
     /**
      * 更新前检查
@@ -57,14 +57,14 @@ public:
 
 public:
     
-    virtual void setDynamicComponent(ISODynamicComponent* pDynamicComponent);
+    virtual void setDynamicComponent(ISODynamicComponent* dynamicComponent);
     
     virtual ISODynamicComponent* getDynamicComponent();
    
     
 protected:
 
-    ISODynamicComponent* _pDynamicComponent;
+    ISODynamicComponent* _dynamicComponent;
     
     /**
      * 上次移动的地图位置
@@ -72,7 +72,7 @@ protected:
     int _iLastStartX;
     int _iLastStartY;
     
-//	Vec2 _tLastStartPoint;
+//	Vec2 _lastStartPoint;
     
 //	int _iStartX;
 //	int _iStartY;

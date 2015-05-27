@@ -35,8 +35,8 @@ public:
 	void calcComponentsCount();
 	void createComponents();
     void initComponents();
-    void setupComponents(int iComponentNodeExtendCount);
-	void setupComponents(int iComponentNodeExtendCount,const Vec2& position);
+    void setucomponents(int iComponentNodeExtendCount);
+	void setucomponents(int iComponentNodeExtendCount,const Vec2& position);
 //    virtual void draw();
     
     virtual void setComponentTileColumn(int iComponentTileColumn);
@@ -62,8 +62,8 @@ protected:
     //x,y增加相同的格子数
     int m_iComponentNodeExtendCount;
     
-	//ISOComponentNode** m_pComponents;
-	CCArray* m_pComponents;
+	//ISOComponentNode** m_components;
+	CCArray* m_components;
     
     int m_iLastStartX;
     int m_iLastStartY;

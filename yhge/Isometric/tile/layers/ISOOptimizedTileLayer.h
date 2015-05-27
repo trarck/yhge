@@ -52,7 +52,7 @@ public:
      */
     virtual void draw();
     
-    void setScreenSize(const Size& screenSize);
+    void sescreenSize(const Size& screenSize);
 
 protected:
 
@@ -62,9 +62,9 @@ protected:
     int m_iLastStartX;
     int m_iLastStartY;
     
-//	Vec2 m_tLastStartPoint;
+//	Vec2 m_lastStartPoint;
     
-    Size m_tScreenSize;
+    Size m_screenSize;
 //	int m_iStartX;
 //	int m_iStartY;
 };

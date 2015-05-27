@@ -36,14 +36,14 @@ public:
         return _layerSize;
     }
     
-    inline void setTiles(unsigned int* pTiles)
+    inline void setTiles(unsigned int* tiles)
     {
-        _pTiles = pTiles;
+        _tiles = tiles;
     }
     
     inline unsigned int* getTiles()
     {
-        return _pTiles;
+        return _tiles;
     }
     
     inline void setVisible(bool visible)
@@ -66,14 +66,14 @@ public:
         return _opacity;
     }
     
-    inline void setOwnTiles(bool bOwnTiles)
+    inline void setOwnTiles(bool ownTiles)
     {
-        _bOwnTiles = bOwnTiles;
+        _ownTiles = ownTiles;
     }
     
     inline bool getOwnTiles()
     {
-        return _bOwnTiles;
+        return _ownTiles;
     }
 //
 //    inline void setMinGID( unsigned int  MinGID)
@@ -150,7 +150,7 @@ protected:
      */
     unsigned char _opacity;
     
-    bool                _bOwnTiles;
+    bool                _ownTiles;
     
 //    unsigned int        _uMinGID;
 //    unsigned int        _uMaxGID;
@@ -163,7 +163,7 @@ protected:
     /**
      * layer的每个格子的信息。主要是tile id
      */
-    unsigned int*       _pTiles;
+    unsigned int*       _tiles;
     
     /**
      * layer的扩展属性

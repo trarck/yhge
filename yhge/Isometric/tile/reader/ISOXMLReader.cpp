@@ -29,11 +29,11 @@ static const char* valueForKey(const char *key, std::map<std::string, std::strin
 }
 
 ISOXMLReader::ISOXMLReader()
-:m_pMap(NULL)
-,m_nCurrentElement(0)
+:m_map(NULL)
+,m_currentElement(0)
 ,m_uCurrentGid(0)
-,m_nLayerAttribs(0)
-,m_bStoringCharacters(0)
+,m_layerAttribs(0)
+,m_storingCharacters(0)
 {
 
 }
@@ -43,10 +43,10 @@ ISOXMLReader::~ISOXMLReader()
     CCLOG("ISOXMLReader destroy");
 }
 
-ISOXMLReader * ISOXMLReader::formatWithXMLFile(ISOTileMap* pMap,const char *tmxFile)
+ISOXMLReader * ISOXMLReader::formatWithXMLFile(ISOTileMap* map,const char *tmxFile)
 {
     ISOXMLReader *pRet = new ISOXMLReader();
-    pRet->setMap(pMap);
+    pRet->setMap(map);
     if(pRet->initWithTMXFile(tmxFile))
     {
         pRet->autorelease();
@@ -56,10 +56,10 @@ ISOXMLReader * ISOXMLReader::formatWithXMLFile(ISOTileMap* pMap,const char *tmxF
     return NULL;
 }
 
-ISOXMLReader * ISOXMLReader::formatWithXML(ISOTileMap* pMap,const char* tmxString, const char* resourcePath)
+ISOXMLReader * ISOXMLReader::formatWithXML(ISOTileMap* map,const char* tmxString, const char* resourcePath)
 {
     ISOXMLReader *pRet = new ISOXMLReader();
-    pRet->setMap(pMap);
+    pRet->setMap(map);
     if(pRet->initWithXML(tmxString, resourcePath))
     {
         pRet->autorelease();
@@ -71,18 +71,18 @@ ISOXMLReader * ISOXMLReader::formatWithXML(ISOTileMap* pMap,const char* tmxStrin
 
 void ISOXMLReader::internalInit(const char* tmxFileName, const char* resourcePath)
 {
-    CCAssert(m_pMap!=NULL, "ISOXMLReader::internalInit must set map before reader");
+    CCAssert(m_map!=NULL, "ISOXMLReader::internalInit must set map before reader");
     
     if (tmxFileName != NULL)
     {
-        m_sTMXFileName = CCFileUtils::sharedFileUtils()->fullPathForFilename(tmxFileName);
+        m_tMXFileName = CCFileUtils::sharedFileUtils()->fullPathForFilename(tmxFileName);
     }
     
     if (resourcePath != NULL)
     {
-        m_sResources = resourcePath;
+        m_resources = resourcePath;
     }
-    m_sCurrentString = "";
+    m_currentString = "";
         
 }
 
@@ -95,7 +95,7 @@ bool ISOXMLReader::initWithXML(const char* tmxString, const char* resourcePath)
 bool ISOXMLReader::initWithTMXFile(const char *tmxFile)
 {
     internalInit(tmxFile, NULL);
-    return parseXMLFile(m_sTMXFileName.c_str());
+    return parseXMLFile(m_tMXFileName.c_str());
 }
 
 bool ISOXMLReader::parseXMLString(const char *xmlString)
@@ -157,21 +157,21 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         }
 //        std::string orientationStr = valueForKey("orientation", attributeDict);
 //        if ( orientationStr  == "isometric")
-//            m_pMap->setOrientation(CCTMXOrientationIso);
+//            m_map->setOrientation(CCTMXOrientationIso);
 //        else
-//            CCLOG("cocos2d: TMXFomat: Unsupported orientation: %d", m_pMap->getOrientation());
+//            CCLOG("cocos2d: TMXFomat: Unsupported orientation: %d", m_map->getOrientation());
         
         Size s;
         s.width = (float)atof(valueForKey("width", attributeDict));
         s.height = (float)atof(valueForKey("height", attributeDict));
-        m_pMap->setMapSize(s);
+        m_map->setMapSize(s);
         
         s.width = (float)atof(valueForKey("tilewidth", attributeDict));
         s.height = (float)atof(valueForKey("tileheight", attributeDict));
-        m_pMap->setTileSize(s);
+        m_map->setTileSize(s);
         
         // The parent element is now "map"
-        m_nCurrentElement=ISOPropertyMap;
+        m_currentElement=ISOPropertyMap;
         
     }
     else if(elementName == "tileset")
@@ -180,14 +180,14 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         std::string externalTilesetFilename = valueForKey("source", attributeDict);
         if (externalTilesetFilename != "")
         {
-            if (m_sTMXFileName.find_last_of("/") != string::npos)
+            if (m_tMXFileName.find_last_of("/") != string::npos)
             {
-                string dir = m_sTMXFileName.substr(0, m_sTMXFileName.find_last_of("/") + 1);
+                string dir = m_tMXFileName.substr(0, m_tMXFileName.find_last_of("/") + 1);
                 externalTilesetFilename = dir + externalTilesetFilename;
             }
             else
             {
-                externalTilesetFilename = m_sResources + "/" + externalTilesetFilename;
+                externalTilesetFilename = m_resources + "/" + externalTilesetFilename;
             }
             externalTilesetFilename = CCFileUtils::sharedFileUtils()->fullPathForFilename(externalTilesetFilename.c_str());
             
@@ -204,16 +204,16 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
             tileset->setTileWidth(atoi(valueForKey("tilewidth", attributeDict)));
             tileset->setTileHeight(atoi(valueForKey("tileheight", attributeDict)));
             
-            m_pMap->getTilesetGroup()->addTileset(tileset);
+            m_map->getTilesetGroup()->addTileset(tileset);
             
             tileset->release();
         }
-        m_nCurrentElement=ISOPropertyTileset;
+        m_currentElement=ISOPropertyTileset;
     }
     else if(elementName == "tile")
     {
         
-        ISOTileset* tileset = (ISOTileset*) m_pMap->getTilesetGroup()->getTilesets()->lastObject();
+        ISOTileset* tileset = (ISOTileset*) m_map->getTilesetGroup()->getTilesets()->lastObject();
         
         m_uCurrentGid= atoi(valueForKey("id", attributeDict));//+tileset->getFirstGid();
         
@@ -228,7 +228,7 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         tileset->getTiles()->addObject(tile);
         tile->release();
         
-        m_nCurrentElement=ISOPropertyTile;
+        m_currentElement=ISOPropertyTile;
         
     }
     else if(elementName == "layer")
@@ -258,11 +258,11 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         float y = (float)atof(valueForKey("y", attributeDict));
         layer->m_offset = ccp(x,y);
         
-        m_pMap->getTileLayers()->addObject(layer);
+        m_map->getTileLayers()->addObject(layer);
         layer->release();
         
         // The parent element is now "layer"
-        m_nCurrentElement=ISOPropertyLayer;
+        m_currentElement=ISOPropertyLayer;
         
     }
     else if(elementName == "objectgroup")
@@ -270,15 +270,15 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         ISOObjectGroup *objectGroup = new ISOObjectGroup();
         objectGroup->setName(valueForKey("name", attributeDict));
         Vec2 positionOffset;
-        positionOffset.x = (float)atof(valueForKey("x", attributeDict)) * m_pMap->getTileSize().width;
-        positionOffset.y = (float)atof(valueForKey("y", attributeDict)) * m_pMap->getTileSize().height;
+        positionOffset.x = (float)atof(valueForKey("x", attributeDict)) * m_map->getTileSize().width;
+        positionOffset.y = (float)atof(valueForKey("y", attributeDict)) * m_map->getTileSize().height;
         objectGroup->seoffset(positionOffset);
         
-        m_pMap->getObjectGroups()->addObject(objectGroup);
+        m_map->getObjectGroups()->addObject(objectGroup);
         objectGroup->release();
         
         // The parent element is now "objectgroup"
-        m_nCurrentElement=ISOPropertyObjectGroup;
+        m_currentElement=ISOPropertyObjectGroup;
         
     }
     else if(elementName == "image")
@@ -286,15 +286,15 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         // build full path
         std::string imagename = valueForKey("source", attributeDict);
         
-        if (m_sTMXFileName.find_last_of("/") != string::npos)
+        if (m_tMXFileName.find_last_of("/") != string::npos)
         {
-            string dir = m_sTMXFileName.substr(0, m_sTMXFileName.find_last_of("/") + 1);
+            string dir = m_tMXFileName.substr(0, m_tMXFileName.find_last_of("/") + 1);
             imagename=dir+imagename;
             
         }
         else
         {
-            imagename=m_sResources + (m_sResources.size() ? "/" : "") + imagename;
+            imagename=m_resources + (m_resources.size() ? "/" : "") + imagename;
 
         }
         
@@ -303,9 +303,9 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         const char* heightValue = valueForKey("height", attributeDict);
         
         //use by tileset or tile
-        if ( m_nCurrentElement == ISOPropertyTileset ){
+        if ( m_currentElement == ISOPropertyTileset ){
 
-            ISOTileset* tileset = (ISOTileset*)m_pMap->getTilesetGroup()->getTilesets()->lastObject();
+            ISOTileset* tileset = (ISOTileset*)m_map->getTilesetGroup()->getTilesets()->lastObject();
             
             tileset->setImageSource(imagename.c_str());
             
@@ -316,8 +316,8 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
                 tileset->setImageSize(s);
             }
             
-        }else if(m_nCurrentElement == ISOPropertyTile){
-            ISOTileset* tileset = (ISOTileset*)m_pMap->getTilesetGroup()->getTilesets()->lastObject();
+        }else if(m_currentElement == ISOPropertyTile){
+            ISOTileset* tileset = (ISOTileset*)m_map->getTilesetGroup()->getTilesets()->lastObject();
             ISOTile* tile=(ISOTile*)tileset->getTiles()->lastObject();
             
             CCTexture2D* pTexture=CCTextureCache::sharedTextureCache()->addImage(imagename.c_str());
@@ -352,25 +352,25 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         
         if( encoding == "base64" )
         {
-            m_nLayerAttribs|=ISOLayerAttribBase64;
-            m_bStoringCharacters=true;
+            m_layerAttribs|=ISOLayerAttribBase64;
+            m_storingCharacters=true;
             
             if( compression == "gzip" )
             {
-                m_nLayerAttribs|=ISOLayerAttribGzip;
+                m_layerAttribs|=ISOLayerAttribGzip;
             } else
                 if (compression == "zlib")
                 {
-                    m_nLayerAttribs|=ISOLayerAttribZlib;
+                    m_layerAttribs|=ISOLayerAttribZlib;
                 }
             CCAssert( compression == "" || compression == "gzip" || compression == "zlib", "TMX: unsupported compression method" );
         }
-        CCAssert( m_nLayerAttribs != ISOLayerAttribNone, "TMX tile map: Only base64 and/or gzip/zlib maps are supported" );
+        CCAssert( m_layerAttribs != ISOLayerAttribNone, "TMX tile map: Only base64 and/or gzip/zlib maps are supported" );
     }
     else if(elementName == "object")
     {
 
-        ISOObjectGroup* objectGroup = (ISOObjectGroup*)m_pMap->getObjectGroups()->lastObject();
+        ISOObjectGroup* objectGroup = (ISOObjectGroup*)m_map->getObjectGroups()->lastObject();
         
         // The value for "type" was blank or not a valid class name
         // Create an instance of TMXObjectInfo to store the object and its properties
@@ -400,7 +400,7 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
             float y = (float)atof(value) + objectGroup->geoffset().y;
             
             // Correct y position. (Tiled uses Flipped, cocos2d uses Standard)
-            pos.y = (m_pMap->getMapSize().height * m_pMap->getTileSize().height) - y - s.height;
+            pos.y = (m_map->getMapSize().height * m_map->getTileSize().height) - y - s.height;
             
         }
         obj->setPosition(pos);
@@ -410,29 +410,29 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         obj->release();
         
         // The parent element is now "object"
-        m_nCurrentElement=ISOPropertyObject;
+        m_currentElement=ISOPropertyObject;
         
     }
     else if(elementName == "property")
     {
-        if ( m_nCurrentElement == ISOPropertyNone )
+        if ( m_currentElement == ISOPropertyNone )
         {
             CCLOG( "TMX tile map: Parent element is unsupported. Cannot add property named '%s' with value '%s'",
                   valueForKey("name", attributeDict), valueForKey("value",attributeDict) );
         }
-        else if ( m_nCurrentElement == ISOPropertyMap )
+        else if ( m_currentElement == ISOPropertyMap )
         {
             // The parent element is the map
             CCString *value = new CCString(valueForKey("value", attributeDict));
             std::string key = valueForKey("name", attributeDict);
-            m_pMap->getProperties()->setObject(value, key.c_str());
+            m_map->getProperties()->setObject(value, key.c_str());
             value->release();
             
         }
-        else if ( m_nCurrentElement == ISOPropertyLayer )
+        else if ( m_currentElement == ISOPropertyLayer )
         {
             // The parent element is the last layer
-            ISOTileLayer* layer = (ISOTileLayer*)m_pMap->getTileLayers()->lastObject();
+            ISOTileLayer* layer = (ISOTileLayer*)m_map->getTileLayers()->lastObject();
             CCString *value = new CCString(valueForKey("value", attributeDict));
             std::string key = valueForKey("name", attributeDict);
             // Add the property to the layer
@@ -440,20 +440,20 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
             value->release();
             
         }
-        else if ( m_nCurrentElement == ISOPropertyObjectGroup )
+        else if ( m_currentElement == ISOPropertyObjectGroup )
         {
             // The parent element is the last object group
-            ISOObjectGroup* objectGroup = (ISOObjectGroup*)m_pMap->getObjectGroups()->lastObject();
+            ISOObjectGroup* objectGroup = (ISOObjectGroup*)m_map->getObjectGroups()->lastObject();
             CCString *value = new CCString(valueForKey("value", attributeDict));
             std::string key = valueForKey("name", attributeDict);
             objectGroup->getProperties()->setObject(value, key.c_str());
             value->release();
             
         }
-        else if ( m_nCurrentElement == ISOPropertyObject )
+        else if ( m_currentElement == ISOPropertyObject )
         {
             // The parent element is the last object
-            ISOObjectGroup* objectGroup = (ISOObjectGroup*)m_pMap->getObjectGroups()->lastObject();
+            ISOObjectGroup* objectGroup = (ISOObjectGroup*)m_map->getObjectGroups()->lastObject();
             ISOTileMapObject* obj = (ISOTileMapObject*)objectGroup->getObjects()->lastObject();
             
             CCString *value = new CCString(valueForKey("value", attributeDict));
@@ -461,9 +461,9 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
             obj->getProperties()->setObject(value,key.c_str());
             value->release();
         }
-        else if ( m_nCurrentElement == ISOPropertyTile )
+        else if ( m_currentElement == ISOPropertyTile )
         {
-            ISOTileset* tileset =(ISOTileset*)m_pMap->getTilesetGroup()->getTilesets()->lastObject();
+            ISOTileset* tileset =(ISOTileset*)m_map->getTilesetGroup()->getTilesets()->lastObject();
 //            CCDictionary* tileProperties=tileset->getTileProperties();
 //            CCDictionary* dict = (CCDictionary*)tileProperties->objectForKey(m_uCurrentGid);
             
@@ -477,7 +477,7 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
     else if (elementName == "polygon")
     {
         // find parent object's dict and add polygon-points to it
-        // CCTMXObjectGroup* objectGroup = (CCTMXObjectGroup*)m_pObjectGroups->lastObject();
+        // CCTMXObjectGroup* objectGroup = (CCTMXObjectGroup*)m_objectGroups->lastObject();
         // CCDictionary* dict = (CCDictionary*)objectGroup->getObjects()->lastObject();
         // TODO: dict->setObject(attributeDict objectForKey:@"points"] forKey:@"polygonPoints"];
         
@@ -485,7 +485,7 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
     else if (elementName == "polyline")
     {
         // find parent object's dict and add polyline-points to it
-        // CCTMXObjectGroup* objectGroup = (CCTMXObjectGroup*)m_pObjectGroups->lastObject();
+        // CCTMXObjectGroup* objectGroup = (CCTMXObjectGroup*)m_objectGroups->lastObject();
         // CCDictionary* dict = (CCDictionary*)objectGroup->getObjects()->lastObject();
         // TODO: dict->setObject:[attributeDict objectForKey:@"points"] forKey:@"polylinePoints"];
     }
@@ -504,11 +504,11 @@ void ISOXMLReader::endElement(void *ctx, const char *name)
     
     int len = 0;
     
-    if(elementName == "data" && m_nLayerAttribs&ISOLayerAttribBase64)
+    if(elementName == "data" && m_layerAttribs&ISOLayerAttribBase64)
     {
-        m_bStoringCharacters=false;
+        m_storingCharacters=false;
         
-        ISOTileLayer* layer = (ISOTileLayer*)m_pMap->getTileLayers()->lastObject();
+        ISOTileLayer* layer = (ISOTileLayer*)m_map->getTileLayers()->lastObject();
         
         std::string currentString = this->getCurrentString();
         unsigned char *buffer;
@@ -519,7 +519,7 @@ void ISOXMLReader::endElement(void *ctx, const char *name)
             return;
         }
         
-        if( m_nLayerAttribs & (ISOLayerAttribGzip | ISOLayerAttribZlib) )
+        if( m_layerAttribs & (ISOLayerAttribGzip | ISOLayerAttribZlib) )
         {
             unsigned char *deflated;
             Size s = layer->getLayerSize();
@@ -553,32 +553,32 @@ void ISOXMLReader::endElement(void *ctx, const char *name)
     else if (elementName == "map")
     {
         // The map element has ended
-        m_nCurrentElement=ISOPropertyNone;
+        m_currentElement=ISOPropertyNone;
     }
     else if (elementName == "tileset")
     {
         // The tileset element has ended
-        m_nCurrentElement=ISOPropertyNone;
+        m_currentElement=ISOPropertyNone;
     }
     else if (elementName == "layer")
     {
         // The layer element has ended
-        m_nCurrentElement=ISOPropertyNone;
+        m_currentElement=ISOPropertyNone;
     }
     else if (elementName == "objectgroup")
     {
         // The objectgroup element has ended
-        m_nCurrentElement=ISOPropertyNone;
+        m_currentElement=ISOPropertyNone;
     }
     else if (elementName == "object")
     {
         // The object element has ended
-        m_nCurrentElement=ISOPropertyNone;
+        m_currentElement=ISOPropertyNone;
     }
     else if (elementName == "tile")
     {
         // The tile element has ended
-        m_nCurrentElement=ISOPropertyNone;
+        m_currentElement=ISOPropertyNone;
     }
 }
 
@@ -587,7 +587,7 @@ void ISOXMLReader::textHandler(void *ctx, const char *ch, int len)
     CC_UNUSED_PARAM(ctx);
     std::string pText((char*)ch,0,len);
     
-    if (m_bStoringCharacters)
+    if (m_storingCharacters)
     {
         std::string currentString = this->getCurrentString();
         currentString += pText;
@@ -597,12 +597,12 @@ void ISOXMLReader::textHandler(void *ctx, const char *ch, int len)
 
 ISOTileMap* ISOXMLReader::getMap()
 {
-    return m_pMap;
+    return m_map;
 }
 
-void ISOXMLReader::setMap(ISOTileMap* pMap)
+void ISOXMLReader::setMap(ISOTileMap* map)
 {
-    m_pMap=pMap;
+    m_map=map;
 }
 
 

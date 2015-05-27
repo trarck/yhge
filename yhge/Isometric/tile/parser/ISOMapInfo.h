@@ -20,35 +20,35 @@ public:
     
     virtual bool init();
     
-    virtual void setOrientation(int nOrientation);
+    virtual void setOrientation(int orientation);
     virtual int getOrientation();
     
-    virtual void setMapSize(const Size& tMapSize);
-    virtual const Size& getMapSize();
+    virtual void semapSize(const Size& mapSize);
+    virtual const Size& gemapSize();
     
-    virtual void setTileSize(const Size& tTileSize);
-    virtual const Size& getTileSize();
+    virtual void setileSize(const Size& tileSize);
+    virtual const Size& getileSize();
     
-    virtual void setLayers(CCArray* pLayers);
+    virtual void setLayers(CCArray* layers);
     virtual CCArray* getLayers();
     
-    virtual void setTilesets(CCArray* pTilesets);
+    virtual void setTilesets(CCArray* tilesets);
     virtual CCArray* getTilesets();
     
-    virtual void setObjectGroups(CCArray* pObjectGroups);
+    virtual void setObjectGroups(CCArray* objectGroups);
     virtual CCArray* getObjectGroups();
        
     virtual void setProperties(CCDictionary* pProperties);
     virtual CCDictionary* getProperties();
         
-    inline void setBackgroundColor(ccColor3B& tBackgroundColor)
+    inline void sebackgroundColor(ccColor3B& backgroundColor)
     {
-        _tBackgroundColor = tBackgroundColor;
+        _backgroundColor = backgroundColor;
     }
     
-    inline ccColor3B& getBackgroundColor()
+    inline ccColor3B& gebackgroundColor()
     {
-        return _tBackgroundColor;
+        return _backgroundColor;
     }
     
 protected:
@@ -57,37 +57,37 @@ protected:
      * 表示map的方向。是斜45还是直角还是六边形。
      * 目录只支持斜45
      */
-    int _nOrientation;
+    int _orientation;
     
     /**
      * 表示map的格子数。不是像素大小
      */
-    Size _tMapSize;
+    Size _mapSize;
     
     /**
      * 表示map的每个格子的像素大小
      */
-    Size _tTileSize;
+    Size _tileSize;
    
     /**
      * 表示map的的背景色
      */
-    ccColor3B _tBackgroundColor;
+    ccColor3B _backgroundColor;
     
     /**
      * map的layer信息
      */
-    CCArray* _pLayers;
+    CCArray* _layers;
     
     /**
      * map的tile set信息
      */
-    CCArray* _pTilesets;
+    CCArray* _tilesets;
     
     /**
      * map的object group信息
      */
-    CCArray* _pObjectGroups;
+    CCArray* _objectGroups;
 
     /**
      * map的扩展属性

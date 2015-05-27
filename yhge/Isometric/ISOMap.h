@@ -69,54 +69,54 @@ public:
 
 public://==============属性===============//
 	
-	inline void setMapSize(Size tMapSize)
+	inline void semapSize(Size mapSize)
 	{
-		_tMapSize = tMapSize;
+		_mapSize = mapSize;
 	}
 
-	inline Size getMapSize()
+	inline Size gemapSize()
 	{
-		return _tMapSize;
+		return _mapSize;
 	}
 
-	inline void setTileSize(const Size& tTileSize)
+	inline void setileSize(const Size& tileSize)
 	{
-		_tTileSize = tTileSize;
+		_tileSize = tileSize;
 	}
 
-	inline const Size& getTileSize()
+	inline const Size& getileSize()
 	{
-		return _tTileSize;
+		return _tileSize;
 	}
 
-	inline void setName(const char* pName)
+	inline void setName(const char* name)
 	{
-		_pName = pName;
+		_name = name;
 	}
 
 	inline const std::string& getName()
 	{
-		return _pName;
+		return _name;
 	}
 
-	inline void setMapOrientation(int nMapOrientation)
+	inline void setMapOrientation(int mapOrientation)
 	{
-		_nMapOrientation = nMapOrientation;
+		_mapOrientation = mapOrientation;
 	}
 
 	inline int getMapOrientation()
 	{
-		return _nMapOrientation;
+		return _mapOrientation;
 	}
 
-	inline void setIdentifier(int nIdentifier)
+	inline void setIdentifier(int identifier)
 	{
-		_nIdentifier=nIdentifier;
+		_identifier=identifier;
 	}
 
 	inline int getIdentifier()
 	{
-		return _nIdentifier;
+		return _identifier;
 	}
     
     inline void setVisibleSize(const Size& visibleSize)
@@ -162,27 +162,27 @@ protected:
     /**
      * 地图大小，格子数，单位为格子。
      */
-	Size _tMapSize;
+	Size _mapSize;
     
     /**
      * 地图格子大小。
      */
-    Size _tTileSize;
+    Size _tileSize;
     
     /**
      * 地图名称
      */
-    std::string _pName;
+    std::string _name;
     
     /**
      * 地图编号
      */
-    int _nIdentifier;
+    int _identifier;
     
     /**
      * 地图类型
      */
-    int _nMapOrientation;
+    int _mapOrientation;
     
     /**
      * 地图的可视区域

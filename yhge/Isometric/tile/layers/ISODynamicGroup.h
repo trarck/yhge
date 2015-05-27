@@ -45,9 +45,9 @@ public:
     
     virtual void scroll(float x,float y);
 	    
-    void setUpdateDelegator(ISODynamicComponentUpdateDelegator* pUpdateDelegator);
+    void setUpdateDelegator(ISODynamicComponentUpdateDelegator* updateDelegator);
     
-    void setCreateDelegator(ISODynamicComponentCreateDelegator* pCreateDelegator);
+    void setCreateDelegator(ISODynamicComponentCreateDelegator* createDelegator);
 
     void addDynamicComponent(ISODynamicComponent* dynamicComponent);
 
@@ -102,13 +102,13 @@ public:
 	void setDynamiceComponentList(CCArray* dynamiceComponentList)
 	{
 		CC_SAFE_RETAIN(dynamiceComponentList);
-		CC_SAFE_RELEASE(_pDynamiceComponentList);
-		_pDynamiceComponentList = dynamiceComponentList;
+		CC_SAFE_RELEASE(_dynamiceComponentList);
+		_dynamiceComponentList = dynamiceComponentList;
 	}
 
 	CCArray* getDynamiceComponentList()
 	{
-		return _pDynamiceComponentList;
+		return _dynamiceComponentList;
 	}
 
 	void setTileMap(ISOTileMap* tileMap)
@@ -146,7 +146,7 @@ protected:
     int _iComponentNodeExtendCount;
     
 	//需要更新的动态组件组
-	CCArray* _pDynamiceComponentList;
+	CCArray* _dynamiceComponentList;
     
     /**
      * 地图的偏移量。屏幕坐标。
@@ -175,8 +175,8 @@ protected:
 	/**
 	 * 事件代理
 	 */
-    ISODynamicComponentUpdateDelegator* _pUpdateDelegator;
-    ISODynamicComponentCreateDelegator* _pCreateDelegator;
+    ISODynamicComponentUpdateDelegator* _updateDelegator;
+    ISODynamicComponentCreateDelegator* _createDelegator;
 
     //tileMap保持弱引用
     ISOTileMap* _tileMap;

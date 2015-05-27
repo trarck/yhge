@@ -5,11 +5,11 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOObjectInfo::ISOObjectInfo()
 :_name("")
-,_sType("")
+,_type("")
 ,_uGid(0)
-,_tPosition(CCPointZero)
-,_tSize(CCSizeZero)
-,_fRotation(0.0f)
+,_position(CCPointZero)
+,_size(CCSizeZero)
+,_rotation(0.0f)
 ,_visible(true)
 {
     _properties=new CCDictionary();

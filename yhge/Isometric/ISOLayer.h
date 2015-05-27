@@ -108,20 +108,20 @@ public:
 		return _offset;
 	}
 
-	inline void setMapTileSize(float width,float height)
+	inline void semapTileSize(float width,float height)
 	{
-		_tMapTileSize.width=width;
-		_tMapTileSize.height=height;
+		_mapTileSize.width=width;
+		_mapTileSize.height=height;
 	}
 
-	inline void setMapTileSize(const Size& tMapTileSize)
+	inline void semapTileSize(const Size& mapTileSize)
 	{
-		_tMapTileSize = tMapTileSize;
+		_mapTileSize = mapTileSize;
 	}
 
-	inline const Size& getMapTileSize()
+	inline const Size& gemapTileSize()
 	{
-		return _tMapTileSize;
+		return _mapTileSize;
 	}
 
 
@@ -145,9 +145,9 @@ public:
 		return _properties;
 	}
     
-    inline const std::string& getLayerName(){ return _sLayerName; }
+    inline const std::string& getLayerName(){ return _layerName; }
     
-    inline void setLayerName(const std::string& layerName){ _sLayerName = layerName; }
+    inline void setLayerName(const std::string& layerName){ _layerName = layerName; }
     
     inline void setOpacity(unsigned char opacity)
     {
@@ -159,11 +159,11 @@ public:
         return _opacity;
     }
     
-    virtual void setMap(ISOMap* pMap);
+    virtual void setMap(ISOMap* map);
     
     inline ISOMap* getMap()
     {
-        return _pMap;
+        return _map;
     }
     
     inline void setLayerType(LayerType layerType)
@@ -208,7 +208,7 @@ protected:
     /**
      * 层的名称
      */
-    std::string _sLayerName;
+    std::string _layerName;
     
     /**
      * 层的地图大小
@@ -218,7 +218,7 @@ protected:
     /**
       地图的一个图块大小
      */
-    Size _tMapTileSize;
+    Size _mapTileSize;
     
     /**
      * 地图的偏移量。屏幕坐标
@@ -241,7 +241,7 @@ protected:
     unsigned char       _opacity;
 
     //对地图文件的弱引用
-    ISOMap* _pMap;
+    ISOMap* _map;
     
     //层的类型
     LayerType _layerType;

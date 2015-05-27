@@ -64,21 +64,21 @@ public:
     void endElement(void *ctx, const char *name);
     void textHandler(void *ctx, const char *ch, int len);
     
-    inline const char* getCurrentString(){ return _sCurrentString.c_str(); }
-    inline void setCurrentString(const char *currentString){ _sCurrentString = currentString; }
-    inline const char* getTMXFileName(){ return _sTMXFileName.c_str(); }
-    inline void setTMXFileName(const char *fileName){ _sTMXFileName = fileName; }
+    inline const char* getCurrentString(){ return _currentString.c_str(); }
+    inline void setCurrentString(const char *currentString){ _currentString = currentString; }
+    inline const char* getTMXFileName(){ return _tMXFileName.c_str(); }
+    inline void setTMXFileName(const char *fileName){ _tMXFileName = fileName; }
     
     virtual ISOMapInfo* getMapInfo();
     
-    inline void setTranslateLayerData(bool bTranslateLayerData)
+    inline void setTranslateLayerData(bool translateLayerData)
     {
-        _bTranslateLayerData = bTranslateLayerData;
+        _translateLayerData = translateLayerData;
     }
     
     inline bool getTranslateLayerData()
     {
-        return _bTranslateLayerData;
+        return _translateLayerData;
     }
 
     inline void setTranslateObjectCoord(bool translateObjectCoord)
@@ -107,27 +107,27 @@ protected:
 protected:
 
     //xml file related
-    int _nCurrentElement;
+    int _currentElement;
     
     unsigned int _uCurrentGid;
     
-    int _nLayerAttribs;
+    int _layerAttribs;
     
-    bool _bStoringCharacters;
+    bool _storingCharacters;
 
 
     //! tmx filename
-    std::string _sTMXFileName;
+    std::string _tMXFileName;
     // tmx resource path
-    std::string _sResources;
+    std::string _resources;
     //! current string
-    std::string _sCurrentString;
+    std::string _currentString;
     //! tile properties
-//    CCDictionary* _pTileProperties;
+//    CCDictionary* _tileProperties;
 
-    ISOMapInfo* _pMapInfo;	
+    ISOMapInfo* _mapInfo;	
     
-    bool _bTranslateLayerData;
+    bool _translateLayerData;
     
     bool _translateObjectCoord;
     

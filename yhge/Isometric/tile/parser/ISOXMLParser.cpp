@@ -30,8 +30,8 @@ static const char* valueForKey(const char *key, std::map<std::string, std::strin
 }
 
 ISOXMLParser::ISOXMLParser()
-:_pMapInfo(NULL)
-,_bTranslateLayerData(false)
+:_mapInfo(NULL)
+,_translateLayerData(false)
 ,_translateObjectCoord(false)
 ,_childIndex(0)
 {
@@ -41,7 +41,7 @@ ISOXMLParser::ISOXMLParser()
 ISOXMLParser::~ISOXMLParser()
 {
     CCLOG("ISOXMLParser destroy");
-    CC_SAFE_RELEASE(_pMapInfo);
+    CC_SAFE_RELEASE(_mapInfo);
 }
 
 ISOXMLParser * ISOXMLParser::formatWithXMLFile(const char *tmxFile)
@@ -70,20 +70,20 @@ ISOXMLParser * ISOXMLParser::formatWithXML(const char* tmxString, const char* re
 
 void ISOXMLParser::internalInit(const char* tmxFileName, const char* resourcePath)
 {
-    _pMapInfo=new ISOMapInfo();
-    _pMapInfo->init();
+    _mapInfo=new ISOMapInfo();
+    _mapInfo->init();
     
         
     if (tmxFileName != NULL)
     {
-        _sTMXFileName = CCFileUtils::sharedFileUtils()->fullPathForFilename(tmxFileName);
+        _tMXFileName = CCFileUtils::sharedFileUtils()->fullPathForFilename(tmxFileName);
     }
     
     if (resourcePath != NULL)
     {
-        _sResources = resourcePath;
+        _resources = resourcePath;
     }
-    _sCurrentString = "";
+    _currentString = "";
         
 }
 bool ISOXMLParser::initWithXML(const char* tmxString, const char* resourcePath)
@@ -95,7 +95,7 @@ bool ISOXMLParser::initWithXML(const char* tmxString, const char* resourcePath)
 bool ISOXMLParser::initWithTMXFile(const char *tmxFile)
 {
     internalInit(tmxFile, NULL);
-    return parseXMLFile(_sTMXFileName.c_str());
+    return parseXMLFile(_tMXFileName.c_str());
 }
 
 bool ISOXMLParser::parseXMLString(const char *xmlString)
@@ -159,22 +159,22 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         Size s;
         s.width = (float)atof(valueForKey("width", attributeDict));
         s.height = (float)atof(valueForKey("height", attributeDict));
-        _pMapInfo->setMapSize(s);
+        _mapInfo->setMapSize(s);
         
         s.width = (float)atof(valueForKey("tilewidth", attributeDict));
         s.height = (float)atof(valueForKey("tileheight", attributeDict));
-        _pMapInfo->setTileSize(s);
+        _mapInfo->setTileSize(s);
         
         //#RRGGBB
         const char* backgroundColor=valueForKey("backgroundcolor", attributeDict);
         
         long backgroundColorValue=strtol(backgroundColor+1, NULL, 16);
         ccColor3B color=ccc3(backgroundColorValue>>16,backgroundColorValue>>8 & 0xFF,backgroundColorValue &0xFF);
-        _pMapInfo->setBackgroundColor(color);
+        _mapInfo->setBackgroundColor(color);
         
         
         // The parent element is now "map"
-        _nCurrentElement=ISOParsePropertyMap;
+        _currentElement=ISOParsePropertyMap;
     }
     else if(elementName == "tileset")
     {
@@ -182,14 +182,14 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         std::string externalTilesetFilename = valueForKey("source", attributeDict);
         if (externalTilesetFilename != "")
         {
-            if (_sTMXFileName.find_last_of("/") != string::npos)
+            if (_tMXFileName.find_last_of("/") != string::npos)
             {
-                string dir = _sTMXFileName.substr(0, _sTMXFileName.find_last_of("/") + 1);
+                string dir = _tMXFileName.substr(0, _tMXFileName.find_last_of("/") + 1);
                 externalTilesetFilename = dir + externalTilesetFilename;
             }
             else
             {
-                externalTilesetFilename = _sResources + "/" + externalTilesetFilename;
+                externalTilesetFilename = _resources + "/" + externalTilesetFilename;
             }
             externalTilesetFilename = CCFileUtils::sharedFileUtils()->fullPathForFilename(externalTilesetFilename.c_str());
             
@@ -207,14 +207,14 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
             s.height = (float)atof(valueForKey("tileheight", attributeDict));
             tileset->setTileSize(s);
             
-            _pMapInfo->getTilesets()->addObject(tileset);
+            _mapInfo->getTilesets()->addObject(tileset);
             tileset->release();
         }
-        _nCurrentElement=ISOParsePropertyTileset;
+        _currentElement=ISOParsePropertyTileset;
     }
     else if(elementName == "tile")
     {
-        ISOTilesetInfo* tilesetInfo = (ISOTilesetInfo*)_pMapInfo->getTilesets()->lastObject();
+        ISOTilesetInfo* tilesetInfo = (ISOTilesetInfo*)_mapInfo->getTilesets()->lastObject();
         unsigned int tileId= atoi(valueForKey("id", attributeDict));
         
         ISOTileInfo* tileInfo=new ISOTileInfo();
@@ -223,7 +223,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         tilesetInfo->getTiles()->addObject(tileInfo);
         tileInfo->release();
        
-        _nCurrentElement=ISOParsePropertyTile;
+        _currentElement=ISOParsePropertyTile;
         
     }
     else if(elementName == "layer")
@@ -256,11 +256,11 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         
         layerInfo->setRenderIndex(_childIndex++);
         
-        _pMapInfo->getLayers()->addObject(layerInfo);
+        _mapInfo->getLayers()->addObject(layerInfo);
         layerInfo->release();
         
         // The parent element is now "layer"
-        _nCurrentElement=ISOParsePropertyLayer;
+        _currentElement=ISOParsePropertyLayer;
         
     }
     else if(elementName == "objectgroup")
@@ -268,17 +268,17 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         ISOObjectGroupInfo *objectGroup = new ISOObjectGroupInfo();
         objectGroup->setName(valueForKey("name", attributeDict));
         Vec2 positionOffset;
-        positionOffset.x = (float)atof(valueForKey("x", attributeDict)) * _pMapInfo->getTileSize().width;
-        positionOffset.y = (float)atof(valueForKey("y", attributeDict)) * _pMapInfo->getTileSize().height;
+        positionOffset.x = (float)atof(valueForKey("x", attributeDict)) * _mapInfo->getTileSize().width;
+        positionOffset.y = (float)atof(valueForKey("y", attributeDict)) * _mapInfo->getTileSize().height;
         objectGroup->setPositionOffset(positionOffset);
         
         objectGroup->setRenderIndex(_childIndex++);
         
-        _pMapInfo->getObjectGroups()->addObject(objectGroup);
+        _mapInfo->getObjectGroups()->addObject(objectGroup);
         objectGroup->release();
         
         // The parent element is now "objectgroup"
-        _nCurrentElement=ISOParsePropertyObjectGroup;
+        _currentElement=ISOParsePropertyObjectGroup;
         
     }
     else if(elementName == "image")
@@ -288,23 +288,23 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         // build full path
         std::string imagename = valueForKey("source", attributeDict);
         
-        if (_sTMXFileName.find_last_of("/") != string::npos)
+        if (_tMXFileName.find_last_of("/") != string::npos)
         {
-            string dir = _sTMXFileName.substr(0, _sTMXFileName.find_last_of("/") + 1);
+            string dir = _tMXFileName.substr(0, _tMXFileName.find_last_of("/") + 1);
             imagename=dir+imagename;
         }
         else
         {
-            imagename=_sResources + (_sResources.size() ? "/" : "") + imagename;
+            imagename=_resources + (_resources.size() ? "/" : "") + imagename;
         }
         
         //check width and height
         const char* widthValue = valueForKey("width", attributeDict);
         const char* heightValue = valueForKey("height", attributeDict);
         
-        ISOTilesetInfo* tilesetInfo = (ISOTilesetInfo*)_pMapInfo->getTilesets()->lastObject();
+        ISOTilesetInfo* tilesetInfo = (ISOTilesetInfo*)_mapInfo->getTilesets()->lastObject();
         //use by tileset or tile
-        if ( _nCurrentElement == ISOParsePropertyTileset ){
+        if ( _currentElement == ISOParsePropertyTileset ){
             
             tilesetInfo->setImageSource(imagename.c_str());
             
@@ -315,7 +315,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
                 tilesetInfo->setImageSize(s);
             }
             
-        }else if(_nCurrentElement == ISOParsePropertyTile){
+        }else if(_currentElement == ISOParsePropertyTile){
             
             ISOTileInfo* tileInfo=(ISOTileInfo*)tilesetInfo->getTiles()->lastObject();
             
@@ -339,25 +339,25 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         if( encoding == "base64" )
         {
 
-            _nLayerAttribs |=ISOParseLayerAttribBase64;
-            _bStoringCharacters=true;
+            _layerAttribs |=ISOParseLayerAttribBase64;
+            _storingCharacters=true;
             
             if( compression == "gzip" )
             {
-                _nLayerAttribs |=ISOParseLayerAttribGzip;
+                _layerAttribs |=ISOParseLayerAttribGzip;
             } else
                 if (compression == "zlib")
                 {
-                    _nLayerAttribs |=ISOParseLayerAttribZlib;
+                    _layerAttribs |=ISOParseLayerAttribZlib;
                 }
             CCAssert( compression == "" || compression == "gzip" || compression == "zlib", "TMX: unsupported compression method" );
         }
-        CCAssert(_nLayerAttribs != ISOParseLayerAttribNone, "TMX tile map: Only base64 and/or gzip/zlib maps are supported" );
+        CCAssert(_layerAttribs != ISOParseLayerAttribNone, "TMX tile map: Only base64 and/or gzip/zlib maps are supported" );
         
     }
     else if(elementName == "object")
     {
-        ISOObjectGroupInfo* objectGroupInfo = (ISOObjectGroupInfo*)_pMapInfo->getObjectGroups()->lastObject();
+        ISOObjectGroupInfo* objectGroupInfo = (ISOObjectGroupInfo*)_mapInfo->getObjectGroups()->lastObject();
 
 		ISOObjectInfo *objInfo = new ISOObjectInfo();
         
@@ -415,29 +415,29 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
         objInfo->release();
         
         // The parent element is now "object"
-        _nCurrentElement=ISOParsePropertyObject;
+        _currentElement=ISOParsePropertyObject;
         
     }
     else if(elementName == "property")
     {
-        if ( _nCurrentElement == ISOParsePropertyNone )
+        if ( _currentElement == ISOParsePropertyNone )
         {
             CCLOG( "TMX tile map: Parent element is unsupported. Cannot add property named '%s' with value '%s'",
                   valueForKey("name", attributeDict), valueForKey("value",attributeDict) );
         }
-        else if ( _nCurrentElement == ISOParsePropertyMap )
+        else if ( _currentElement == ISOParsePropertyMap )
         {
             // The parent element is the map
             CCString *value = new CCString(valueForKey("value", attributeDict));
             std::string key = valueForKey("name", attributeDict);
-            _pMapInfo->getProperties()->setObject(value, key.c_str());
+            _mapInfo->getProperties()->setObject(value, key.c_str());
             value->release();
             
         }
-        else if ( _nCurrentElement == ISOParsePropertyLayer )
+        else if ( _currentElement == ISOParsePropertyLayer )
         {
             // The parent element is the last layer
-            ISOLayerInfo* layerInfo = (ISOLayerInfo*)_pMapInfo->getLayers()->lastObject();
+            ISOLayerInfo* layerInfo = (ISOLayerInfo*)_mapInfo->getLayers()->lastObject();
             CCString *value = new CCString(valueForKey("value", attributeDict));
             std::string key = valueForKey("name", attributeDict);
             // Add the property to the layer
@@ -445,20 +445,20 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
             value->release();
             
         }
-        else if ( _nCurrentElement == ISOParsePropertyObjectGroup )
+        else if ( _currentElement == ISOParsePropertyObjectGroup )
         {
             // The parent element is the last object group
-            ISOObjectGroupInfo* objectGroupInfo = (ISOObjectGroupInfo*)_pMapInfo->getObjectGroups()->lastObject();
+            ISOObjectGroupInfo* objectGroupInfo = (ISOObjectGroupInfo*)_mapInfo->getObjectGroups()->lastObject();
             CCString *value = new CCString(valueForKey("value", attributeDict));
             const char* key = valueForKey("name", attributeDict);
             objectGroupInfo->getProperties()->setObject(value, key);
             value->release();
             
         }
-        else if ( _nCurrentElement == ISOParsePropertyObject )
+        else if ( _currentElement == ISOParsePropertyObject )
         {
             // The parent element is the last object
-            ISOObjectGroupInfo* objectGroupInfo = (ISOObjectGroupInfo*)_pMapInfo->getObjectGroups()->lastObject();
+            ISOObjectGroupInfo* objectGroupInfo = (ISOObjectGroupInfo*)_mapInfo->getObjectGroups()->lastObject();
             ISOObjectInfo* objInfo = (ISOObjectInfo*)objectGroupInfo->getObjects()->lastObject();
             
             CCString *value = new CCString(valueForKey("value", attributeDict));
@@ -466,9 +466,9 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
             objInfo->getProperties()->setObject(value,key.c_str());
             value->release();
         }
-        else if ( _nCurrentElement == ISOParsePropertyTile )
+        else if ( _currentElement == ISOParsePropertyTile )
         {
-            ISOTilesetInfo* tilesetInfo =(ISOTilesetInfo*)_pMapInfo->getTilesets()->lastObject();
+            ISOTilesetInfo* tilesetInfo =(ISOTilesetInfo*)_mapInfo->getTilesets()->lastObject();
             ISOTileInfo* tileInfo=(ISOTileInfo*)tilesetInfo->getTiles()->lastObject();
             
             CCString *value = new CCString(valueForKey("value", attributeDict));
@@ -480,7 +480,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
     else if (elementName == "polygon")
     {
         // find parent object's dict and add polygon-points to it
-        // ISOObjectGroupInfo* objectGroup = (ISOObjectGroupInfo*)_pObjectGroups->lastObject();
+        // ISOObjectGroupInfo* objectGroup = (ISOObjectGroupInfo*)_objectGroups->lastObject();
         // CCDictionary* dict = (CCDictionary*)objectGroup->getObjects()->lastObject();
         // TODO: dict->setObject(attributeDict objectForKey:@"points"] forKey:@"polygonPoints"];
         
@@ -488,7 +488,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
     else if (elementName == "polyline")
     {
         // find parent object's dict and add polyline-points to it
-        // ISOObjectGroupInfo* objectGroup = (ISOObjectGroupInfo*)_pObjectGroups->lastObject();
+        // ISOObjectGroupInfo* objectGroup = (ISOObjectGroupInfo*)_objectGroups->lastObject();
         // CCDictionary* dict = (CCDictionary*)objectGroup->getObjects()->lastObject();
         // TODO: dict->setObject:[attributeDict objectForKey:@"points"] forKey:@"polylinePoints"];
     }
@@ -507,11 +507,11 @@ void ISOXMLParser::endElement(void *ctx, const char *name)
     
     int len = 0;
     
-    if(elementName == "data" && _nLayerAttribs&ISOParseLayerAttribBase64)
+    if(elementName == "data" && _layerAttribs&ISOParseLayerAttribBase64)
     {
-        _bStoringCharacters=false;
+        _storingCharacters=false;
         
-        ISOLayerInfo* layerInfo = (ISOLayerInfo*)_pMapInfo->getLayers()->lastObject();
+        ISOLayerInfo* layerInfo = (ISOLayerInfo*)_mapInfo->getLayers()->lastObject();
         
         std::string currentString = this->getCurrentString();
         unsigned char *buffer;
@@ -524,7 +524,7 @@ void ISOXMLParser::endElement(void *ctx, const char *name)
         
         unsigned int* tiles;
         
-        if( _nLayerAttribs & (ISOParseLayerAttribGzip | ISOParseLayerAttribZlib) )
+        if( _layerAttribs & (ISOParseLayerAttribGzip | ISOParseLayerAttribZlib) )
         {
             unsigned char *deflated;
             Size s = layerInfo->getLayerSize();
@@ -553,7 +553,7 @@ void ISOXMLParser::endElement(void *ctx, const char *name)
             tiles=(unsigned int*) buffer;
         }
         
-        if(_bTranslateLayerData){
+        if(_translateLayerData){
             struct timeval startTime;
             gettimeofday(&startTime,0);
             
@@ -576,32 +576,32 @@ void ISOXMLParser::endElement(void *ctx, const char *name)
     else if (elementName == "map")
     {
         // The map element has ended
-        _nCurrentElement=ISOParsePropertyNone;
+        _currentElement=ISOParsePropertyNone;
     }
     else if (elementName == "tileset")
     {
         // The tileset element has ended
-        _nCurrentElement=ISOParsePropertyNone;
+        _currentElement=ISOParsePropertyNone;
     }
     else if (elementName == "layer")
     {
         // The layer element has ended
-        _nCurrentElement=ISOParsePropertyNone;
+        _currentElement=ISOParsePropertyNone;
     }
     else if (elementName == "objectgroup")
     {
         // The objectgroup element has ended
-        _nCurrentElement=ISOParsePropertyNone;
+        _currentElement=ISOParsePropertyNone;
     }
     else if (elementName == "object")
     {
         // The object element has ended
-        _nCurrentElement=ISOParsePropertyNone;
+        _currentElement=ISOParsePropertyNone;
     }
     else if (elementName == "tile")
     {
         // The tile element has ended
-        _nCurrentElement=ISOParsePropertyNone;
+        _currentElement=ISOParsePropertyNone;
     }
 }
 
@@ -610,7 +610,7 @@ void ISOXMLParser::textHandler(void *ctx, const char *ch, int len)
     CC_UNUSED_PARAM(ctx);
     std::string pText((char*)ch,0,len);
     
-    if (_bStoringCharacters)
+    if (_storingCharacters)
     {
         std::string currentString = this->getCurrentString();
         currentString += pText;
@@ -666,8 +666,8 @@ Vec2 ISOXMLParser::translateObjectCoord(const Vec2& pos)
 {
     Vec2 coord;
     
-    Size tileSize=_pMapInfo->getTileSize();
-	Size mapSize=_pMapInfo->getMapSize();
+    Size tileSize=_mapInfo->getTileSize();
+	Size mapSize=_mapInfo->getMapSize();
     
     CCAssert(tileSize.height!=0, "tilesize must big then zero");
     
@@ -682,7 +682,7 @@ Size ISOXMLParser::translateObjectSize(const Size& size)
 {
     Size gridSize;
     
-    Size tileSize=_pMapInfo->getTileSize();
+    Size tileSize=_mapInfo->getTileSize();
     
     CCAssert(tileSize.height!=0, "tilesize must big then zero");
     
@@ -694,7 +694,7 @@ Size ISOXMLParser::translateObjectSize(const Size& size)
 
 ISOMapInfo* ISOXMLParser::getMapInfo()
 {
-    return _pMapInfo;
+    return _mapInfo;
 }
 
 

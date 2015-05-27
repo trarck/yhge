@@ -92,17 +92,17 @@ public:
 	/**
 	 * 设置动态组
 	 */
-	void setupDynamicGroup();
+	void setudynamicGroup();
 
 	/**
 	 * 设置动态组
 	 */
-	void setupDynamicGroup(ISODynamicGroup* dynamicGroup,const Vec2& offset);
+	void setudynamicGroup(ISODynamicGroup* dynamicGroup,const Vec2& offset);
 
     /**
 	 * 设置一些动态组
 	 */
-	void setupDynamicGroups();
+	void setudynamicGroups();
     
     //==============active layer===============//
     
@@ -110,40 +110,40 @@ public:
 
 public://==============属性===============//
 
-	inline void setObjectGroups(CCArray* pObjectGroups)
+	inline void setObjectGroups(CCArray* objectGroups)
 	{
-		CC_SAFE_RETAIN(pObjectGroups);
-		CC_SAFE_RELEASE(_pObjectGroups);
-		_pObjectGroups = pObjectGroups;
+		CC_SAFE_RETAIN(objectGroups);
+		CC_SAFE_RELEASE(_objectGroups);
+		_objectGroups = objectGroups;
 	}
 
 	inline CCArray* getObjectGroups()
 	{
-		return _pObjectGroups;
+		return _objectGroups;
 	}
 
-	inline void setTilesetGroup(ISOTilesetGroup* pTilesetGroup)
+	inline void setTilesetGroup(ISOTilesetGroup* tilesetGroup)
 	{
-		CC_SAFE_RETAIN(pTilesetGroup);
-		CC_SAFE_RELEASE(_pTilesetGroup);
-		_pTilesetGroup = pTilesetGroup;
+		CC_SAFE_RETAIN(tilesetGroup);
+		CC_SAFE_RELEASE(_tilesetGroup);
+		_tilesetGroup = tilesetGroup;
 	}
 
 	inline ISOTilesetGroup* getTilesetGroup()
 	{
-		return _pTilesetGroup;
+		return _tilesetGroup;
 	}
 
 	void setDynamicGroup(ISODynamicGroup* dynamicGroup)
 	{
 		CC_SAFE_RETAIN(dynamicGroup);
-		CC_SAFE_RELEASE(_pDynamicGroup);
-		_pDynamicGroup = dynamicGroup;
+		CC_SAFE_RELEASE(_dynamicGroup);
+		_dynamicGroup = dynamicGroup;
 	}
 
 	ISODynamicGroup* getDynamicGroup()
 	{
-		return _pDynamicGroup;
+		return _dynamicGroup;
 	}
 
 	void setUseDynamicGroup(bool useDynamicGroup);
@@ -183,18 +183,18 @@ protected:
     /**
      * 图块合集
      */
-    ISOTilesetGroup* _pTilesetGroup;
+    ISOTilesetGroup* _tilesetGroup;
     
     /**
      * 对像分组
      */
-    CCArray* _pObjectGroups;
+    CCArray* _objectGroups;
     
     /**
      * 管理动态层的组件
 	 * 如果有多个动态层，统一管理会减少计算量。如果层数少，则性能发变不是很明显
      */
-    ISODynamicGroup* _pDynamicGroup;
+    ISODynamicGroup* _dynamicGroup;
    
 	bool _useDynamicGroup;
 

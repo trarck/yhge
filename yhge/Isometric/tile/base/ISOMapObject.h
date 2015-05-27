@@ -27,32 +27,32 @@ public:
     
     inline void setType(const std::string&  pType)
     {
-        _sType = pType;
+        _type = pType;
     }
     
     inline std::string& getType()
     {
-        return _sType;
+        return _type;
     }
     
-    inline void setPosition(Vec2 tPosition)
+    inline void seposition(Vec2 position)
     {
-        _tPosition = tPosition;
+        _position = position;
     }
     
-    inline Vec2 getPosition()
+    inline Vec2 geposition()
     {
-        return _tPosition;
+        return _position;
     }
     
-    inline void setSize(Size tSize)
+    inline void sesize(Size size)
     {
-        _tSize = tSize;
+        _size = size;
     }
     
-    inline Size getSize()
+    inline Size gesize()
     {
-        return _tSize;
+        return _size;
     }
     
     inline void setGid(unsigned int uGid)
@@ -108,19 +108,19 @@ protected:
     /**
      * 对象的类型
      */
-    std::string _sType;
+    std::string _type;
     
     /**
      * 对象的位置
      * 是像素坐标
      */
-    Vec2 _tPosition;
+    Vec2 _position;
     
     /**
      * 对象的大小
      * 不同的对象类型，对应的单位不同。
      */
-    Size _tSize;
+    Size _size;
     
     /**
      * 对象的gid

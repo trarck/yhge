@@ -27,14 +27,14 @@ public:
         return _name.c_str();
     }
     
-    inline void setColor(ccColor3B& tColor)
+    inline void secolor(ccColor3B& color)
     {
-        _tColor = tColor;
+        _color = color;
     }
     
-    inline ccColor3B& getColor()
+    inline ccColor3B& gecolor()
     {
-        return _tColor;
+        return _color;
     }
     
     inline void setOpacity(unsigned char opacity)
@@ -57,16 +57,16 @@ public:
         return _visible;
     }
     
-    inline void setObjects(CCArray* pObjects)
+    inline void setObjects(CCArray* objects)
     {
-        CC_SAFE_RETAIN(pObjects);
-        CC_SAFE_RELEASE(_pObjects);
-        _pObjects = pObjects;
+        CC_SAFE_RETAIN(objects);
+        CC_SAFE_RELEASE(_objects);
+        _objects = objects;
     }
     
     inline CCArray* getObjects()
     {
-        return _pObjects;
+        return _objects;
     }
     
     inline void setProperties(CCDictionary* pProperties)
@@ -81,14 +81,14 @@ public:
         return _properties;
     }
     
-    inline void setPositionOffset(Vec2& tPositionOffset)
+    inline void sepositionOffset(Vec2& positionOffset)
     {
-        _tPositionOffset = tPositionOffset;
+        _positionOffset = positionOffset;
     }
     
-    inline Vec2& getPositionOffset()
+    inline Vec2& gepositionOffset()
     {
-        return _tPositionOffset;
+        return _positionOffset;
     }
     
     inline void setRenderIndex(int renderIndex)
@@ -113,7 +113,7 @@ protected:
      * 组的颜色。平常不会不用到
      * 组内的所有元素受到影响
      */
-    ccColor3B _tColor;
+    ccColor3B _color;
     
     //cocos2dx use 0-255
     /**
@@ -130,12 +130,12 @@ protected:
     /**
      * 组的位置偏移
      */
-    Vec2 _tPositionOffset;
+    Vec2 _positionOffset;
     
     /**
      * 组所包含的对象
      */
-    CCArray* _pObjects;
+    CCArray* _objects;
     
     /**
      * 组是扩展属性

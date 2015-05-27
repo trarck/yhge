@@ -32,22 +32,22 @@ public:
 
     inline void setImageSource(const char * pImageSource)
     {
-        _sImageSource = pImageSource;
+        _imageSource = pImageSource;
     }
     
     inline const char * getImageSource()
     {
-        return _sImageSource.c_str();
+        return _imageSource.c_str();
     }
     
-    inline void setImageSize(Size& tImageSize)
+    inline void seimageSize(Size& imageSize)
     {
-        _tImageSize = tImageSize;
+        _imageSize = imageSize;
     }
     
-    inline Size& getImageSize()
+    inline Size& geimageSize()
     {
-        return _tImageSize;
+        return _imageSize;
     }
     
     inline void setProperties(CCDictionary* pProperties)
@@ -71,12 +71,12 @@ protected:
     /**
      * 图像路径
      */
-    std::string _sImageSource;
+    std::string _imageSource;
     
     /**
      * 图像大小。像素大小
      */
-    Size _tImageSize;
+    Size _imageSize;
     
     /**
      * 格子扩展属性

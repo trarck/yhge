@@ -28,10 +28,10 @@ public:
     }
     
     inline const std::string& getSourceFile(){
-        return _sSourceFile;
+        return _sourceFile;
     }
     inline void setSourceFile(const std::string& sourceFile){
-        _sSourceFile = sourceFile;
+        _sourceFile = sourceFile;
     }
        
     inline void setFirstGid(unsigned int uFirstGid)
@@ -44,14 +44,14 @@ public:
         return _uFirstGid;
     }
     
-    inline void setTileSize(Size& tTileSize)
+    inline void setileSize(Size& tileSize)
     {
-        _tTileSize = tTileSize;
+        _tileSize = tileSize;
     }
     
-    inline Size& getTileSize()
+    inline Size& getileSize()
     {
-        return _tTileSize;
+        return _tileSize;
     }
     
     inline void setSpacing(unsigned int uSpacing)
@@ -74,46 +74,46 @@ public:
         return _uMargin;
     }
     
-    inline void setTileOffset( Vec2& tTileOffset)
+    inline void setileOffset( Vec2& tileOffset)
     {
-        _tTileOffset = tTileOffset;
+        _tileOffset = tileOffset;
     }
     
-    inline  Vec2& getTileOffset()
+    inline  Vec2& getileOffset()
     {
-        return _tTileOffset;
+        return _tileOffset;
     }
     
     inline void setImageSource(const std::string&  pImageSource)
     {
-        _sImageSource = pImageSource;
+        _imageSource = pImageSource;
     }
     
     inline const std::string&  getImageSource()
     {
-        return _sImageSource.c_str();
+        return _imageSource.c_str();
     }
     
-    inline void setImageSize(Size& tImageSize)
+    inline void seimageSize(Size& imageSize)
     {
-        _tImageSize = tImageSize;
+        _imageSize = imageSize;
     }
     
-    inline Size& getImageSize()
+    inline Size& geimageSize()
     {
-        return _tImageSize;
+        return _imageSize;
     }
     
-    inline void setTiles(CCArray* pTiles)
+    inline void setTiles(CCArray* tiles)
     {
-        CC_SAFE_RETAIN(pTiles);
-        CC_SAFE_RELEASE(_pTiles);
-        _pTiles = pTiles;
+        CC_SAFE_RETAIN(tiles);
+        CC_SAFE_RELEASE(_tiles);
+        _tiles = tiles;
     }
     
     inline CCArray* getTiles()
     {
-        return _pTiles;
+        return _tiles;
     }
     
     inline void setProperties(CCDictionary* pProperties)
@@ -138,7 +138,7 @@ protected:
      * 定义文件
      * 把tileset的定义放在单独的文件里
      */
-    std::string     _sSourceFile;
+    std::string     _sourceFile;
     
     /**
      * 集合开始块的全局id
@@ -148,7 +148,7 @@ protected:
     /**
      * 集合中每块的大小
      */
-    Size          _tTileSize;
+    Size          _tileSize;
     
     /**
      * 块的内间距
@@ -163,24 +163,24 @@ protected:
     /**
      * 整个tile图片的偏移
      */
-    Vec2 _tTileOffset;
+    Vec2 _tileOffset;
     
     /**
      * 集合用到的图片
      * filename containing the tiles (should be spritesheet / texture atlas)
      */
-    std::string        _sImageSource;
+    std::string        _imageSource;
     
     /**
      * 集合用到的图片的大小
      * size in pixels of the image
      */
-    Size            _tImageSize;
+    Size            _imageSize;
     
     /**
      * 所有小格子
      */
-    CCArray* _pTiles;
+    CCArray* _tiles;
     
     /**
      * 属性

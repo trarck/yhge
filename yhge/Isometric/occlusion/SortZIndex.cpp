@@ -13,10 +13,10 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 SortZIndex::SortZIndex()
 :_rootNode(NULL)
 ,_rootZOrder(0)
-//,_pStatics(NULL)
-//,_pDynamics(NULL)
-//,_bIsWorking(true)
-//,_bStaticDirty(true)
+//,_statics(NULL)
+//,_dynamics(NULL)
+//,_isWorking(true)
+//,_staticDirty(true)
 
 {
     
@@ -24,8 +24,8 @@ SortZIndex::SortZIndex()
 
 SortZIndex::~SortZIndex()
 {
-//    CC_SAFE_RELEASE_NULL(_pStatics);
-//    CC_SAFE_RELEASE_NULL(_pDynamics);
+//    CC_SAFE_RELEASE_NULL(_statics);
+//    CC_SAFE_RELEASE_NULL(_dynamics);
     CC_SAFE_RELEASE_NULL(_rootNode);
 }
 
