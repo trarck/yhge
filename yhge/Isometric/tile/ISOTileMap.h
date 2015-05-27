@@ -110,28 +110,28 @@ public:
 
 public://==============属性===============//
 
-	inline void setObjectGroups(CCArray* pObjectGroups)
+	inline void setObjectGroups(CCArray* objectGroups)
 	{
-		CC_SAFE_RETAIN(pObjectGroups);
-		CC_SAFE_RELEASE(_pObjectGroups);
-		_pObjectGroups = pObjectGroups;
+		CC_SAFE_RETAIN(objectGroups);
+		CC_SAFE_RELEASE(_objectGroups);
+		_objectGroups = objectGroups;
 	}
 
 	inline CCArray* getObjectGroups()
 	{
-		return _pObjectGroups;
+		return _objectGroups;
 	}
 
-	inline void setTilesetGroup(ISOTilesetGroup* pTilesetGroup)
+	inline void setTilesetGroup(ISOTilesetGroup* tilesetGroup)
 	{
-		CC_SAFE_RETAIN(pTilesetGroup);
-		CC_SAFE_RELEASE(_pTilesetGroup);
-		_pTilesetGroup = pTilesetGroup;
+		CC_SAFE_RETAIN(tilesetGroup);
+		CC_SAFE_RELEASE(_tilesetGroup);
+		_tilesetGroup = tilesetGroup;
 	}
 
 	inline ISOTilesetGroup* getTilesetGroup()
 	{
-		return _pTilesetGroup;
+		return _tilesetGroup;
 	}
 
 	void setDynamicGroup(ISODynamicGroup* dynamicGroup)
@@ -183,12 +183,12 @@ protected:
     /**
      * 图块合集
      */
-    ISOTilesetGroup* _pTilesetGroup;
+    ISOTilesetGroup* _tilesetGroup;
     
     /**
      * 对像分组
      */
-    CCArray* _pObjectGroups;
+    CCArray* _objectGroups;
     
     /**
      * 管理动态层的组件

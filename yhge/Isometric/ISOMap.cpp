@@ -6,12 +6,12 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 static const int kCoordLineZOrder=10000;
 
 ISOMap::ISOMap()
-:_tMapSize(Vec2(0,0))
+:_mapSize(Vec2(0,0))
 ,_visibleSize(Size(0,0))
 ,_nIdentifier(0)
 ,_nMapOrientation(0)
 ,_pName("")
-, _tTileSize(Size(0, 0))
+, _tileSize(Size(0, 0))
 ,_activeLayer(NULL)
 {
 	

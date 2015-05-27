@@ -480,7 +480,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
     else if (elementName == "polygon")
     {
         // find parent object's dict and add polygon-points to it
-        // ISOObjectGroupInfo* objectGroup = (ISOObjectGroupInfo*)_pObjectGroups->lastObject();
+        // ISOObjectGroupInfo* objectGroup = (ISOObjectGroupInfo*)_objectGroups->lastObject();
         // CCDictionary* dict = (CCDictionary*)objectGroup->getObjects()->lastObject();
         // TODO: dict->setObject(attributeDict objectForKey:@"points"] forKey:@"polygonPoints"];
         
@@ -488,7 +488,7 @@ void ISOXMLParser::startElement(void *ctx, const char *name, const char **atts)
     else if (elementName == "polyline")
     {
         // find parent object's dict and add polyline-points to it
-        // ISOObjectGroupInfo* objectGroup = (ISOObjectGroupInfo*)_pObjectGroups->lastObject();
+        // ISOObjectGroupInfo* objectGroup = (ISOObjectGroupInfo*)_objectGroups->lastObject();
         // CCDictionary* dict = (CCDictionary*)objectGroup->getObjects()->lastObject();
         // TODO: dict->setObject:[attributeDict objectForKey:@"points"] forKey:@"polylinePoints"];
     }

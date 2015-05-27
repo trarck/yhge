@@ -44,14 +44,14 @@ public:
         return _uFirstGid;
     }
     
-    inline void setTileSize(Size& tTileSize)
+    inline void setileSize(Size& tileSize)
     {
-        _tTileSize = tTileSize;
+        _tileSize = tileSize;
     }
     
-    inline Size& getTileSize()
+    inline Size& getileSize()
     {
-        return _tTileSize;
+        return _tileSize;
     }
     
     inline void setSpacing(unsigned int uSpacing)
@@ -104,16 +104,16 @@ public:
         return _tImageSize;
     }
     
-    inline void setTiles(CCArray* pTiles)
+    inline void setTiles(CCArray* tiles)
     {
-        CC_SAFE_RETAIN(pTiles);
-        CC_SAFE_RELEASE(_pTiles);
-        _pTiles = pTiles;
+        CC_SAFE_RETAIN(tiles);
+        CC_SAFE_RELEASE(_tiles);
+        _tiles = tiles;
     }
     
     inline CCArray* getTiles()
     {
-        return _pTiles;
+        return _tiles;
     }
     
     inline void setProperties(CCDictionary* pProperties)
@@ -148,7 +148,7 @@ protected:
     /**
      * 集合中每块的大小
      */
-    Size          _tTileSize;
+    Size          _tileSize;
     
     /**
      * 块的内间距
@@ -180,7 +180,7 @@ protected:
     /**
      * 所有小格子
      */
-    CCArray* _pTiles;
+    CCArray* _tiles;
     
     /**
      * 属性

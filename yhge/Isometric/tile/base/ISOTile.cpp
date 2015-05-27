@@ -9,7 +9,7 @@ ISOTile::ISOTile()
 ,_pAnimation(NULL)
 ,_tTextureRect(CCRectZero)
 ,_properties(NULL)
-,_pTileset(NULL)
+,_tileset(NULL)
 {
     
 }
@@ -69,17 +69,17 @@ int ISOTile::getId()
 
 int ISOTile::getGId()
 {
-    return _nId+_pTileset->getFirstGid();
+    return _nId+_tileset->getFirstGid();
 }
 
-void ISOTile::setTileset(ISOTileset* pTileset)
+void ISOTile::setTileset(ISOTileset* tileset)
 {
-    _pTileset = pTileset;
+    _tileset = tileset;
 }
 
 ISOTileset* ISOTile::getTileset()
 {
-    return _pTileset;
+    return _tileset;
 }
 
 void ISOTile::setProperties(CCDictionary* pProperties)

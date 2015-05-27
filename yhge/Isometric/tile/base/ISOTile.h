@@ -38,7 +38,7 @@ public:
     
     virtual int getId();    
     
-    virtual void setTileset(ISOTileset* pTileset);
+    virtual void setTileset(ISOTileset* tileset);
     
     virtual ISOTileset* getTileset();
     
@@ -96,7 +96,7 @@ protected:
     CCAnimation* _pAnimation;
     
     //所属的tileset.weak reference
-    ISOTileset* _pTileset;
+    ISOTileset* _tileset;
     
     /**
      * 属性

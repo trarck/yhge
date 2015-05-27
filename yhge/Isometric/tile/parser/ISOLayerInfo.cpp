@@ -4,10 +4,10 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOLayerInfo::ISOLayerInfo()
 :_name("")
-,_pTiles(NULL)
+,_tiles(NULL)
 ,_offset(CCPointZero)
 ,_opacity(255)
-,_bOwnTiles(true)
+,_ownTiles(true)
 ,_properties(NULL)
 ,_visible(true)
 ,_layerSize(CCSizeZero)
@@ -19,10 +19,10 @@ ISOLayerInfo::~ISOLayerInfo()
 {
     CCLOG("ISOLayerInfo destroy");
     CC_SAFE_RELEASE(_properties);
-    if(_bOwnTiles && _pTiles )
+    if(_ownTiles && _tiles )
     {
-        delete [] _pTiles;
-        _pTiles = NULL;
+        delete [] _tiles;
+        _tiles = NULL;
     }
 }
 

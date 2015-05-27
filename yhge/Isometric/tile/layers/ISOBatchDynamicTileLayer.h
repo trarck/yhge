@@ -25,20 +25,20 @@ public:
     
     virtual bool init(Size& mapTileSize,Vec2& offset);
 public:
-    inline void setTileset(ISOTileset* pTileset)
+    inline void setTileset(ISOTileset* tileset)
 	{
-		CC_SAFE_RETAIN(pTileset);
-		CC_SAFE_RELEASE(_pTileset);
-		_pTileset = pTileset;
+		CC_SAFE_RETAIN(tileset);
+		CC_SAFE_RELEASE(_tileset);
+		_tileset = tileset;
 	}
 
 	inline ISOTileset* getTileset()
 	{
-		return _pTileset;
+		return _tileset;
 	}
 protected:
 
-    ISOTileset* _pTileset;
+    ISOTileset* _tileset;
 };
 
 

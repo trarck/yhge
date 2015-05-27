@@ -36,14 +36,14 @@ public:
         return _layerSize;
     }
     
-    inline void setTiles(unsigned int* pTiles)
+    inline void setTiles(unsigned int* tiles)
     {
-        _pTiles = pTiles;
+        _tiles = tiles;
     }
     
     inline unsigned int* getTiles()
     {
-        return _pTiles;
+        return _tiles;
     }
     
     inline void setVisible(bool visible)
@@ -66,14 +66,14 @@ public:
         return _opacity;
     }
     
-    inline void setOwnTiles(bool bOwnTiles)
+    inline void setOwnTiles(bool ownTiles)
     {
-        _bOwnTiles = bOwnTiles;
+        _ownTiles = ownTiles;
     }
     
     inline bool getOwnTiles()
     {
-        return _bOwnTiles;
+        return _ownTiles;
     }
 //
 //    inline void setMinGID( unsigned int  MinGID)
@@ -106,14 +106,12 @@ public:
         return _offset;
     }
     
-    inline void setProperties(CCDictionary* pProperties)
+    inline void setProperties(const ValueMap& pProperties)
     {
-        CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(_properties);
         _properties = pProperties;
     }
     
-    inline CCDictionary* getProperties()
+    inline ValueMap& getProperties()
     {
         return _properties;
     }
@@ -150,7 +148,7 @@ protected:
      */
     unsigned char _opacity;
     
-    bool                _bOwnTiles;
+    bool                _ownTiles;
     
 //    unsigned int        _uMinGID;
 //    unsigned int        _uMaxGID;
@@ -163,12 +161,12 @@ protected:
     /**
      * layer的每个格子的信息。主要是tile id
      */
-    unsigned int*       _pTiles;
+    unsigned int*       _tiles;
     
     /**
      * layer的扩展属性
      */
-    CCDictionary* _properties;
+    ValueMap _properties;
     
     /**
      * 在地图文件中出现的顺序。

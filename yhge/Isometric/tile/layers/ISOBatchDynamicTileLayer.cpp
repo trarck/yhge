@@ -6,14 +6,14 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 
 
 ISOBatchDynamicTileLayer::ISOBatchDynamicTileLayer()
-:_pTileset(NULL)
+:_tileset(NULL)
 {
 
 }
 
 ISOBatchDynamicTileLayer::~ISOBatchDynamicTileLayer()
 {
-	CC_SAFE_RELEASE(_pTileset);
+	CC_SAFE_RELEASE(_tileset);
 }
 
 bool ISOBatchDynamicTileLayer::init()

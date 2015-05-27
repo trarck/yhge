@@ -5,10 +5,10 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOObjectGroupInfo::ISOObjectGroupInfo()
 :_name("")
-,_tColor(ccWHITE)
+,_color(ccWHITE)
 ,_opacity(255)
 ,_visible(true)
-,_tPositionOffset(CCPointZero)
+,_positionOffset(CCPointZero)
 ,_pObjects(NULL)
 ,_properties(NULL)
 {

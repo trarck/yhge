@@ -3,11 +3,11 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOMapInfo::ISOMapInfo()
-:_tMapSize(CCSizeZero)
-,_tTileSize(CCSizeZero)
-,_pLayers(NULL)
-,_pTilesets(NULL)
-,_pObjectGroups(NULL)
+:_mapSize(CCSizeZero)
+,_tileSize(CCSizeZero)
+,_layers(NULL)
+,_tilesets(NULL)
+,_objectGroups(NULL)
 ,_properties(NULL)
 {
 
@@ -16,95 +16,95 @@ ISOMapInfo::ISOMapInfo()
 ISOMapInfo::~ISOMapInfo()
 {
     CCLOG("ISOMapInfo destroy");
-    CC_SAFE_RELEASE(_pTilesets);
-    CC_SAFE_RELEASE(_pLayers);
+    CC_SAFE_RELEASE(_tilesets);
+    CC_SAFE_RELEASE(_layers);
     CC_SAFE_RELEASE(_properties);
-    CC_SAFE_RELEASE(_pObjectGroups);
+    CC_SAFE_RELEASE(_objectGroups);
 }
 
 bool ISOMapInfo::init()
 {
-    _pTilesets = new CCArray();
-    _pTilesets->init();
+    _tilesets = new CCArray();
+    _tilesets->init();
     
-    _pLayers = new CCArray();
-    _pLayers->init();
+    _layers = new CCArray();
+    _layers->init();
 
-    _pObjectGroups = new CCArray();
-    _pObjectGroups->initWithCapacity(4);
+    _objectGroups = new CCArray();
+    _objectGroups->initWithCapacity(4);
     
     _properties = new CCDictionary();
 
     return true;
 }
 
-void ISOMapInfo::setOrientation(int nOrientation)
+void ISOMapInfo::setOrientation(int orientation)
 {
-    _nOrientation = nOrientation;
+    _orientation = orientation;
 }
 
 int ISOMapInfo::getOrientation()
 {
-    return _nOrientation;
+    return _orientation;
 }
 
-void ISOMapInfo::setMapSize(const Size& tMapSize)
+void ISOMapInfo::semapSize(const Size& mapSize)
 {
-    _tMapSize = tMapSize;
+    _mapSize = mapSize;
 }
 
-const Size& ISOMapInfo::getMapSize()
+const Size& ISOMapInfo::gemapSize()
 {
-    return _tMapSize;
+    return _mapSize;
 }
 
-void ISOMapInfo::setTileSize(const Size& tTileSize)
+void ISOMapInfo::setileSize(const Size& tileSize)
 {
-    _tTileSize = tTileSize;
+    _tileSize = tileSize;
 }
 
-const Size& ISOMapInfo::getTileSize()
+const Size& ISOMapInfo::getileSize()
 {
-    return _tTileSize;
+    return _tileSize;
 }
 
-void ISOMapInfo::setLayers(CCArray* pLayers)
+void ISOMapInfo::setLayers(CCArray* layers)
 {
-    CC_SAFE_RETAIN(pLayers);
-    CC_SAFE_RELEASE(_pLayers);
-    _pLayers = pLayers;
+    CC_SAFE_RETAIN(layers);
+    CC_SAFE_RELEASE(_layers);
+    _layers = layers;
 }
 
 CCArray* ISOMapInfo::getLayers()
 {
-    return _pLayers;
+    return _layers;
 }
 
-void ISOMapInfo::setTilesets(CCArray* pTilesets)
+void ISOMapInfo::setTilesets(CCArray* tilesets)
 {
-    CC_SAFE_RETAIN(pTilesets);
-    CC_SAFE_RELEASE(_pTilesets);
-    _pTilesets = pTilesets;
+    CC_SAFE_RETAIN(tilesets);
+    CC_SAFE_RELEASE(_tilesets);
+    _tilesets = tilesets;
 }
 
 CCArray* ISOMapInfo::getTilesets()
 {
-    return _pTilesets;
+    return _tilesets;
 }
 
 /**
  * keep same for tmx
  */
-void ISOMapInfo::setObjectGroups(CCArray* pObjectGroups)
+void ISOMapInfo::setObjectGroups(CCArray* objectGroups)
 {
-    CC_SAFE_RETAIN(pObjectGroups);
-    CC_SAFE_RELEASE(_pObjectGroups);
-    _pObjectGroups = pObjectGroups;
+    CC_SAFE_RETAIN(objectGroups);
+    CC_SAFE_RELEASE(_objectGroups);
+    _objectGroups = objectGroups;
 }
 
 CCArray* ISOMapInfo::getObjectGroups()
 {
-    return _pObjectGroups;
+    return _objectGroups;
 }
 
 void ISOMapInfo::setProperties(CCDictionary* pProperties)

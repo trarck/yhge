@@ -30,7 +30,7 @@ public:
 
     bool isExternal() const { return !_sFileName.empty(); }
     
-    int tileCount() const { return _pTiles->count(); }
+    int tileCount() const { return _tiles->count(); }
     
     /**
      * 删除image tile
@@ -117,7 +117,7 @@ public:
 //    virtual int getImageHeight();
     virtual void setColumnCount(int nColumnCount);
     virtual int getColumnCount();
-    virtual void setTiles(CCArray* pTiles);
+    virtual void setTiles(CCArray* tiles);
     virtual CCArray* getTiles();
     
     virtual void setProperties(CCDictionary* pProperties);
@@ -245,7 +245,7 @@ protected:
     /**
      * 所有小格子
      */
-    CCArray* _pTiles;
+    CCArray* _tiles;
     
     /**
      * 开始的gid

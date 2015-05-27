@@ -27,7 +27,7 @@ public:
     /**
      * 初始化显示tiles
      */
-    virtual void setupTiles();
+    virtual void setutiles();
     
     void setTileGID(unsigned int gid, const Vec2& pos);
     
@@ -46,7 +46,7 @@ public:
     
 public:
     
-    void setTileset(ISOTileset* pTileset);
+    void setTileset(ISOTileset* tileset);
     ISOTileset* getTileset();
     
     inline void setMinGID(unsigned int uMinGID)
@@ -90,7 +90,7 @@ protected:
 protected:
 
     //对于多个tileSet的支持。这样就不能使用batch node。所以最好一个layer使用一个tileSet
-    ISOTileset* _pTileset;
+    ISOTileset* _tileset;
     
     CCSpriteBatchNode* _pSpriteBatchNode;
     

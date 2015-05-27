@@ -69,24 +69,24 @@ public:
 
 public://==============属性===============//
 	
-	inline void setMapSize(Size tMapSize)
+	inline void semapSize(Size mapSize)
 	{
-		_tMapSize = tMapSize;
+		_mapSize = mapSize;
 	}
 
-	inline Size getMapSize()
+	inline Size gemapSize()
 	{
-		return _tMapSize;
+		return _mapSize;
 	}
 
-	inline void setTileSize(const Size& tTileSize)
+	inline void setileSize(const Size& tileSize)
 	{
-		_tTileSize = tTileSize;
+		_tileSize = tileSize;
 	}
 
-	inline const Size& getTileSize()
+	inline const Size& getileSize()
 	{
-		return _tTileSize;
+		return _tileSize;
 	}
 
 	inline void setName(const char* pName)
@@ -162,12 +162,12 @@ protected:
     /**
      * 地图大小，格子数，单位为格子。
      */
-	Size _tMapSize;
+	Size _mapSize;
     
     /**
      * 地图格子大小。
      */
-    Size _tTileSize;
+    Size _tileSize;
     
     /**
      * 地图名称

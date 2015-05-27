@@ -8,9 +8,9 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 static const int kCoordLineZOrder=10000;
 
 ISOTileMap::ISOTileMap()
-:_pObjectGroups(NULL)
+:_objectGroups(NULL)
 ,_pDynamicGroup(NULL)
-,_pTilesetGroup(NULL)
+,_tilesetGroup(NULL)
 ,_useDynamicGroup(false)
 ,_dynamicComponents(NULL)
 {
@@ -19,8 +19,8 @@ ISOTileMap::ISOTileMap()
 
 ISOTileMap::~ISOTileMap()
 {
-    CC_SAFE_RELEASE_NULL(_pTilesetGroup);
-    CC_SAFE_RELEASE_NULL(_pObjectGroups);
+    CC_SAFE_RELEASE_NULL(_tilesetGroup);
+    CC_SAFE_RELEASE_NULL(_objectGroups);
     CC_SAFE_RELEASE_NULL(_pDynamicGroup);
 	CC_SAFE_RELEASE_NULL(_dynamicComponents);
 }
@@ -77,7 +77,7 @@ bool ISOTileMap::init()
 {
 
     if (ISOMap::init()) {
-        _pObjectGroups=new CCArray();
+        _objectGroups=new CCArray();
         
         _dynamicComponents=new CCArray();
         
@@ -96,8 +96,8 @@ bool ISOTileMap::init()
 //    //ISOTileLayer *layer = ISOTileLayer::create(tileset, layerInfo, mapInfo);
 //    //
 //    //// tell the layerinfo to release the ownership of the tiles map.
-//    //layerInfo->_bOwnTiles = false;
-//    //layer->setupTiles();
+//    //layerInfo->_ownTiles = false;
+//    //layer->setutiles();
 //    //
 //    //return layer;
 //	return NULL;
@@ -121,7 +121,7 @@ bool ISOTileMap::init()
 //                    for( unsigned int x=0; x < size.width; x++ )
 //                    {
 //                        unsigned int pos = (unsigned int)(x + size.width * y);
-//                        unsigned int gid = layerInfo->_pTiles[ pos ];
+//                        unsigned int gid = layerInfo->_tiles[ pos ];
 //                        
 //                        // gid are stored in little endian.
 //                        // if host is big endian, then swap
@@ -150,8 +150,8 @@ bool ISOTileMap::init()
 //
 //void ISOTileMap::buildWithMapInfo(ISOMapInfo* mapInfo)
 //{
-//    _tMapSize = mapInfo->getMapSize();
-//    _tTileSize = mapInfo->getTileSize();
+//    _mapSize = mapInfo->gemapSize();
+//    _tileSize = mapInfo->getileSize();
 //    _nMapOrientation = mapInfo->getOrientation();
 //    
 //    this->setTileLayers(mapInfo->getLayers());
@@ -198,12 +198,12 @@ ISOTileset* ISOTileMap::tilesetNamed(const std::string& tilesetName)
 {
     CCAssert(tilesetName!="", "Invalid tileset name!");
     
-    if (_pTilesetGroup && _pTilesetGroup->tilesetCount()>0){
-        CCArray* pTilesets=_pTilesetGroup->getTilesets();
+    if (_tilesetGroup && _tilesetGroup->tilesetCount()>0){
+        CCArray* tilesets=_tilesetGroup->getTilesets();
         Ref* pObj = NULL;
         ISOTileset* tileset =NULL;
         
-        CCARRAY_FOREACH(pTilesets, pObj)
+        CCARRAY_FOREACH(tilesets, pObj)
         {
             tileset = dynamic_cast<ISOTileset*>(pObj);
             if(tileset)
@@ -223,12 +223,12 @@ ISOObjectGroup * ISOTileMap::objectGroupNamed(const std::string& objectGroupName
 {
     CCAssert(objectGroupName != "", "Invalid object group name!");
     
-    if (_pObjectGroups && _pObjectGroups->count()>0)
+    if (_objectGroups && _objectGroups->count()>0)
     {
         ISOObjectGroup* objectGroup = NULL;
         Ref* pObj = NULL;
         
-        CCARRAY_FOREACH(_pObjectGroups, pObj)
+        CCARRAY_FOREACH(_objectGroups, pObj)
         {
             objectGroup = dynamic_cast<ISOObjectGroup*>(pObj);
             if(objectGroup)
@@ -271,8 +271,8 @@ void ISOTileMap::scrollLayer(const Vec2& pos)
 void ISOTileMap::showCoordLine()
 {
 	ISOCoordinateLayer* coordLayer=ISOCoordinateLayer::create();
-	coordLayer->setMapWidth((int)_tMapSize.width);
-	coordLayer->setMapHeight((int)_tMapSize.height);
+	coordLayer->setMapWidth((int)_mapSize.width);
+	coordLayer->setMapHeight((int)_mapSize.height);
 	this->addChild(coordLayer,kCoordLineZOrder);
 }
 
@@ -312,7 +312,7 @@ void ISOTileMap::setupDynamicGroup()
         int componentTileColumn=0;
         int componentTileRow=0;
         
-        ISOTileUtils::calcDynamicComponetSize(visibleSize,_tTileSize,&componentTileColumn,&componentTileRow);
+        ISOTileUtils::calcDynamicComponetSize(visibleSize,_tileSize,&componentTileColumn,&componentTileRow);
         
         dynamicGroup->setComponentTileColumn(componentTileColumn);
         dynamicGroup->setComponentTileRow(componentTileRow);

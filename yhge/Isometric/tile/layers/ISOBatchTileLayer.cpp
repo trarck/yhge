@@ -14,7 +14,7 @@ static inline int compareInts(const void * a, const void * b)
 
 
 ISOBatchTileLayer::ISOBatchTileLayer()
-:_pTileset(NULL)
+:_tileset(NULL)
 ,_pReusedTile(NULL)
 ,_pSpriteBatchNode(NULL)
 ,_pAtlasIndexArray(NULL)
@@ -27,7 +27,7 @@ ISOBatchTileLayer::ISOBatchTileLayer()
 
 ISOBatchTileLayer::~ISOBatchTileLayer()
 {
-    CC_SAFE_RELEASE(_pTileset);
+    CC_SAFE_RELEASE(_tileset);
     CC_SAFE_RELEASE(_pReusedTile);
     CC_SAFE_RELEASE(_pSpriteBatchNode);
     if (_pAtlasIndexArray)
@@ -50,13 +50,13 @@ bool ISOBatchTileLayer::init()
     return false;
 }
 
-void ISOBatchTileLayer::setupTiles()
+void ISOBatchTileLayer::setutiles()
 {
     // XXX: is 35% a good estimate ?
     float totalNumberOfTiles = _layerSize.width * _layerSize.height;
     float capacity = totalNumberOfTiles * 0.35f + 1; // 35 percent is occupied ?
     
-    CCTexture2D *texture = _pTileset->getTexture();
+    CCTexture2D *texture = _tileset->getTexture();
     
 
     CCAssert(texture, "Texture is null");
@@ -80,7 +80,7 @@ void ISOBatchTileLayer::setupTiles()
         for (unsigned int x=0; x < _layerSize.width; x++)
         {
             unsigned int tileIndex = indexForPos(ccp(x,y));
-            unsigned int gid = _pTiles[ tileIndex ];
+            unsigned int gid = _tiles[ tileIndex ];
             // gid are stored in little endian.
             // if host is big endian, then swap
             //if( o == CFByteOrderBigEndian )
@@ -99,8 +99,8 @@ void ISOBatchTileLayer::setupTiles()
         }
     }
     
-    CCAssert( _uMaxGID >= _pTileset->getFirstGid() &&
-             _uMinGID >= _pTileset->getFirstGid(), "TMX: Only 1 tileset per layer is supported");
+    CCAssert( _uMaxGID >= _tileset->getFirstGid() &&
+             _uMinGID >= _tileset->getFirstGid(), "TMX: Only 1 tileset per layer is supported");
     
     addChild(_pSpriteBatchNode);
 }
@@ -187,7 +187,7 @@ CCSprite* ISOBatchTileLayer::reusedTileWithRect(CCRect rect)
 CCSprite * ISOBatchTileLayer::tileSpriteAt(const Vec2& pos)
 {
     CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer: invalid position");
-    CCAssert(_pTiles && _pAtlasIndexArray, "ISOTileLayer: the tiles map has been released");
+    CCAssert(_tiles && _pAtlasIndexArray, "ISOTileLayer: the tiles map has been released");
     
     CCSprite *tile = NULL;
     unsigned int gid = this->tileGIDAt(pos);
@@ -201,7 +201,7 @@ CCSprite * ISOBatchTileLayer::tileSpriteAt(const Vec2& pos)
         // tile not created yet. create it
         if (! tile)
         {
-            CCRect rect = _pTileset->rectForGid(gid);
+            CCRect rect = _tileset->rectForGid(gid);
             
             tile = new CCSprite();
             tile->initWithTexture(_pSpriteBatchNode->getTexture(), rect);
@@ -224,7 +224,7 @@ CCSprite * ISOBatchTileLayer::tileSpriteAt(const Vec2& pos)
 // ISOBatchTileLayer - adding helper methods
 CCSprite * ISOBatchTileLayer::insertTileForGID(unsigned int gid, const Vec2& pos)
 {
-    CCRect rect = _pTileset->rectForGid(gid);
+    CCRect rect = _tileset->rectForGid(gid);
     
 	int z=zOrderForPos(pos);
     
@@ -260,13 +260,13 @@ CCSprite * ISOBatchTileLayer::insertTileForGID(unsigned int gid, const Vec2& pos
         }
     }
 	int tileIndex = indexForPos(pos);
-    _pTiles[tileIndex] = gid;
+    _tiles[tileIndex] = gid;
     return tile;
 }
 
 CCSprite * ISOBatchTileLayer::updateTileForGID(unsigned int gid, const Vec2& pos)
 {
-    CCRect rect = _pTileset->rectForGid(gid);
+    CCRect rect = _tileset->rectForGid(gid);
     rect = CCRectMake(rect.origin.x / _fContentScaleFactor, rect.origin.y / _fContentScaleFactor, rect.size.width/ _fContentScaleFactor, rect.size.height/ _fContentScaleFactor);
     
 	int z = zOrderForPos(pos);
@@ -282,7 +282,7 @@ CCSprite * ISOBatchTileLayer::updateTileForGID(unsigned int gid, const Vec2& pos
     tile->updateTransform();
 
 	int tileIndex = indexForPos(pos);
-    _pTiles[tileIndex] = gid;
+    _tiles[tileIndex] = gid;
     
     return tile;
 }
@@ -291,7 +291,7 @@ CCSprite * ISOBatchTileLayer::updateTileForGID(unsigned int gid, const Vec2& pos
 // since lot's of assumptions are no longer true
 CCSprite * ISOBatchTileLayer::appendTileForGID(unsigned int gid, const Vec2& pos)
 {
-    CCRect rect = _pTileset->rectForGid(gid);
+    CCRect rect = _tileset->rectForGid(gid);
     
     int z = zOrderForPos(pos);
     
@@ -316,7 +316,7 @@ CCSprite * ISOBatchTileLayer::appendTileForGID(unsigned int gid, const Vec2& pos
 void ISOBatchTileLayer::removeTileSpriteAt(const Vec2& pos)
 {
     CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
-    CCAssert(_pTiles && _pAtlasIndexArray, "TMXLayer: the tiles map has been released");
+    CCAssert(_tiles && _pAtlasIndexArray, "TMXLayer: the tiles map has been released");
     
     unsigned int gid = tileGIDAt(pos);
     
@@ -327,7 +327,7 @@ void ISOBatchTileLayer::removeTileSpriteAt(const Vec2& pos)
         
 		unsigned int tileIndex=indexForPos(pos);
         // remove tile from GID map
-        _pTiles[tileIndex] = 0;
+        _tiles[tileIndex] = 0;
         
         // remove tile from atlas position array
         yhge::ccCArrayRemoveValueAtIndex(_pAtlasIndexArray, atlasIndex);
@@ -393,8 +393,8 @@ unsigned int ISOBatchTileLayer::atlasIndexForNewZ(int z)
 void ISOBatchTileLayer::setTileGID(unsigned int gid, const Vec2& pos)
 {
     CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
-    CCAssert(_pTiles && _pAtlasIndexArray, "TMXLayer: the tiles map has been released");
-    CCAssert(gid == 0 || gid >= _pTileset->getFirstGid(), "TMXLayer: invalid gid" );
+    CCAssert(_tiles && _pAtlasIndexArray, "TMXLayer: the tiles map has been released");
+    CCAssert(gid == 0 || gid >= _tileset->getFirstGid(), "TMXLayer: invalid gid" );
     
     unsigned int currentGID = tileGIDAt(pos);
     
@@ -419,13 +419,13 @@ void ISOBatchTileLayer::setTileGID(unsigned int gid, const Vec2& pos)
             CCSprite *sprite = (CCSprite*)_pSpriteBatchNode->getChildByTag(z);
             if (sprite)
             {
-                CCRect rect = _pTileset->rectForGid(gid);
+                CCRect rect = _tileset->rectForGid(gid);
                 
                 sprite->setTextureRect(rect, false, rect.size);
 
                 setupTileSprite(sprite, sprite->getPosition(), gid);
 
-                _pTiles[tileIndex] = gid;
+                _tiles[tileIndex] = gid;
             }
             else
             {
@@ -450,7 +450,7 @@ void ISOBatchTileLayer::removeChild(CCNode* node, bool cleanup)
     unsigned int atlasIndex = sprite->getAtlasIndex();
     int z = (size_t)_pAtlasIndexArray->arr[atlasIndex];
 	unsigned int tileIndex=zOrderToIndex(z);
-    _pTiles[tileIndex] = 0;
+    _tiles[tileIndex] = 0;
     yhge::ccCArrayRemoveValueAtIndex(_pAtlasIndexArray, atlasIndex);
     _pSpriteBatchNode->removeChild(sprite, cleanup);
 }
@@ -514,16 +514,16 @@ void ISOBatchTileLayer::addSpriteWithoutQuad(CCSprite*child, unsigned int z, int
 }
 
 
-void ISOBatchTileLayer::setTileset(ISOTileset* pTileset)
+void ISOBatchTileLayer::setTileset(ISOTileset* tileset)
 {
-    CC_SAFE_RETAIN(pTileset);
-    CC_SAFE_RELEASE(_pTileset);
-    _pTileset = pTileset;
+    CC_SAFE_RETAIN(tileset);
+    CC_SAFE_RELEASE(_tileset);
+    _tileset = tileset;
 }
 
 ISOTileset* ISOBatchTileLayer::getTileset()
 {
-    return _pTileset;
+    return _tileset;
 }
 
 NS_CC_YHGE_ISOMETRIC_END

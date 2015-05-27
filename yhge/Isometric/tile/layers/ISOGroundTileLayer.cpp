@@ -27,9 +27,9 @@ ISOGroundTileLayer::~ISOGroundTileLayer()
 //    return true;
 //}
 
-void ISOGroundTileLayer::setupTiles()
+void ISOGroundTileLayer::setutiles()
 {
-    CCLOG("setupTiles");
+    CCLOG("setutiles");
     // Parse cocos2d properties
     this->parseInternalProperties();
     
@@ -38,7 +38,7 @@ void ISOGroundTileLayer::setupTiles()
         for (unsigned int x=0; x < _layerSize.width; x++)
         {
             unsigned int pos = (unsigned int)(x + _layerSize.width * y);
-            unsigned int gid = _pTiles[ pos ];
+            unsigned int gid = _tiles[ pos ];
             
             // gid are stored in little endian.
             // if host is big endian, then swap
@@ -159,7 +159,7 @@ void ISOGroundTileLayer::removeTileSpriteAt(const Vec2& pos)
         int z = (int)(pos.x + pos.y * _layerSize.width);
         
         // remove tile from GID map
-        _pTiles[z] = 0;
+        _tiles[z] = 0;
         removeChildByTag(z, true);
         
     }
@@ -192,7 +192,7 @@ CCSprite * ISOGroundTileLayer::updateTileForGID(unsigned int gid, const Vec2& po
 
     addChild(newTile,-z,z);
     
-    _pTiles[z] = gid;
+    _tiles[z] = gid;
     
     return newTile;
 }
