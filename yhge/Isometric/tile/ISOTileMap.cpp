@@ -152,7 +152,7 @@ bool ISOTileMap::init()
 //{
 //    _mapSize = mapInfo->gemapSize();
 //    _tileSize = mapInfo->getileSize();
-//    _mapOrientation = mapInfo->getOrientation();
+//    _nMapOrientation = mapInfo->getOrientation();
 //    
 //    this->setTileLayers(mapInfo->getLayers());
 //    this->setObjectGroups( mapInfo->getObjectGroups());

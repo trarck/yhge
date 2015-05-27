@@ -38,8 +38,8 @@ public:
     virtual void setObjectGroups(CCArray* objectGroups);
     virtual CCArray* getObjectGroups();
        
-    virtual void setProperties(CCDictionary* pProperties);
-    virtual CCDictionary* getProperties();
+    virtual void setProperties(const ValueMap& pProperties);
+    virtual ValueMap& getProperties();
         
     inline void sebackgroundColor(ccColor3B& backgroundColor)
     {
@@ -92,7 +92,7 @@ protected:
     /**
      * map的扩展属性
      */
-    CCDictionary* _properties;
+    ValueMap _properties;
    
 };
 

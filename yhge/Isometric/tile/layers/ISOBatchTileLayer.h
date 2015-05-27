@@ -27,7 +27,7 @@ public:
     /**
      * 初始化显示tiles
      */
-    virtual void setupTiles();
+    virtual void setutiles();
     
     void setTileGID(unsigned int gid, const Vec2& pos);
     

@@ -106,14 +106,12 @@ public:
         return _offset;
     }
     
-    inline void setProperties(CCDictionary* pProperties)
+    inline void setProperties(const ValueMap& pProperties)
     {
-        CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(_properties);
         _properties = pProperties;
     }
     
-    inline CCDictionary* getProperties()
+    inline ValueMap& getProperties()
     {
         return _properties;
     }
@@ -168,7 +166,7 @@ protected:
     /**
      * layer的扩展属性
      */
-    CCDictionary* _properties;
+    ValueMap _properties;
     
     /**
      * 在地图文件中出现的顺序。
