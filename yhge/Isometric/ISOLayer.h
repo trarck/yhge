@@ -114,7 +114,7 @@ public:
 		_mapTileSize.height=height;
 	}
 
-	inline void semapTileSize(const Size& mapTileSize)
+	inline void setMapTileSize(const Size& mapTileSize)
 	{
 		_mapTileSize = mapTileSize;
 	}
@@ -125,14 +125,14 @@ public:
 	}
 
 
-	inline void setLayerOrientation(unsigned int uLayerOrientation)
+	inline void setLayerOrientation(unsigned int layerOrientation)
 	{
-		_uLayerOrientation = uLayerOrientation;
+		_layerOrientation = layerOrientation;
 	}
 
 	inline unsigned int getLayerOrientation()
 	{
-		return _uLayerOrientation;
+		return _layerOrientation;
 	}
 
 	inline void setProperties(const ValueMap& pProperties)
@@ -235,7 +235,7 @@ protected:
      * 地图类型，斜视角，直角，六角。
      * 这里直接使用斜视角。所以用不到，保留将来或许有用。
      */
-    unsigned int _uLayerOrientation;
+    unsigned int _layerOrientation;
     
     //! Layer supports opacity
     unsigned char       _opacity;

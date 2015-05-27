@@ -4,7 +4,7 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileObject::ISOTileObject()
-:_uGid(0)
+:_gid(0)
 ,_name("")
 ,_type("")
 ,_position(CCPointZero)
@@ -62,14 +62,14 @@ Size ISOTileObject::getSize()
     return _size;
 }
 
-void ISOTileObject::setGid(unsigned int uGid)
+void ISOTileObject::setGid(unsigned int gid)
 {
-    _uGid = uGid;
+    _gid = gid;
 }
 
 unsigned int ISOTileObject::getGid()
 {
-    return _uGid;
+    return _gid;
 }
 
 void ISOTileObject::setVisible(bool visible)

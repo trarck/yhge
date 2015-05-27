@@ -7,7 +7,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTileMapBuilder::ISOTileMapBuilder()
 :_map(NULL)
-,_uMapLayerType(NormalLayerType)
+,_mapLayerType(NormalLayerType)
 ,_activeLayerName("ActiveLayer")
 ,_activeLayerDefaultZOrder(99999)
 ,_buildActiveLayer(false)
@@ -174,7 +174,7 @@ void ISOTileMapBuilder::buildMapLayer(ISOLayerInfo *layerInfo, ISOMapInfo *mapIn
     CCLOG("ISOTileMapBuilder::buildMapLayer:%s",layerInfo->getName().c_str());
     ISOTileLayer *layer = NULL;
     
-    switch (_uMapLayerType) {
+    switch (_mapLayerType) {
         case NormalLayerType:
             layer=new ISOGroundTileLayer();
             layer->init();

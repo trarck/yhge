@@ -127,14 +127,14 @@ public:
         return _map;
     }
     
-    inline void setMapLayerType(unsigned int uMapLayerType)
+    inline void setMapLayerType(unsigned int mapLayerType)
     {
-        _uMapLayerType = uMapLayerType;
+        _mapLayerType = mapLayerType;
     }
     
     inline unsigned int getMapLayerType()
     {
-        return _uMapLayerType;
+        return _mapLayerType;
     }
     
     inline void setActiveLayerName(const std::string& activeLayerName)
@@ -180,7 +180,7 @@ protected:
     
     ISOTileMap* _map;
     
-    unsigned int _uMapLayerType;
+    unsigned int _mapLayerType;
     
     /**
      * 活动层的名称

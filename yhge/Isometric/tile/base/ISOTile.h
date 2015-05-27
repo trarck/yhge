@@ -57,7 +57,7 @@ public:
         return _texture;
     }
     
-    inline void setextureRect(CCRect& textureRect)
+    inline void setTextureRect(CCRect& textureRect)
     {
         _textureRect = textureRect;
     }

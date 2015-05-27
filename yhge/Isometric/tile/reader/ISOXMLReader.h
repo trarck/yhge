@@ -68,7 +68,7 @@ private:
     
     int m_currentElement;
     
-    unsigned int m_uCurrentGid;
+    unsigned int m_currentGid;
     
     int m_layerAttribs;
     

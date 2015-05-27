@@ -85,7 +85,7 @@ void ISODynamicTileLayer::draw()
 
 void ISODynamicTileLayer::scroll(const Vec2& offset)
 {
-    this->setOffset(offset);
+    this->seoffset(offset);
 	_dynamicComponent->scroll(offset);
 }
 

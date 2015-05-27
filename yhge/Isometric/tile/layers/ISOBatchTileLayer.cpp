@@ -19,8 +19,8 @@ ISOBatchTileLayer::ISOBatchTileLayer()
 ,_spriteBatchNode(NULL)
 ,_atlasIndexArray(NULL)
 ,_contentScaleFactor(1.0f)
-,_uMaxGID(0)
-,_uMinGID(0)
+,_maxGID(0)
+,_minGID(0)
 {
 	
 }
@@ -41,8 +41,8 @@ bool ISOBatchTileLayer::init()
 {
     if(ISOTileLayer::init()){
         
-        _uMinGID = 100000;
-        _uMaxGID = 0;
+        _minGID = 100000;
+        _maxGID = 0;
         
         return true;
     }
@@ -93,14 +93,14 @@ void ISOBatchTileLayer::setutiles()
                 this->insertTileForGID(gid, ccp(x, y));
                 
                 // Optimization: update min and max GID rendered by the layer
-                _uMinGID = MIN(gid, _uMinGID);
-                _uMaxGID = MAX(gid, _uMaxGID);
+                _minGID = MIN(gid, _minGID);
+                _maxGID = MAX(gid, _maxGID);
             }
         }
     }
     
-    CCAssert( _uMaxGID >= _tileset->getFirstGid() &&
-             _uMinGID >= _tileset->getFirstGid(), "TMX: Only 1 tileset per layer is supported");
+    CCAssert( _maxGID >= _tileset->getFirstGid() &&
+             _minGID >= _tileset->getFirstGid(), "TMX: Only 1 tileset per layer is supported");
     
     addChild(_spriteBatchNode);
 }

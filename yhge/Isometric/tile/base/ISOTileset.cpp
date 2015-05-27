@@ -16,12 +16,12 @@ ISOTileset::ISOTileset()
 ,_imageSize(CCSizeZero)
 ,_columnCount(0)
 ,_tiles(NULL)
-,_uFirstGid(0)
-,_uLastGid(0)
+,_firstGid(0)
+,_lastGid(0)
 ,_properties(NULL)
 ,_tileProperties(NULL)
 ,_texture(NULL)
-,_uComposeType(0)
+,_composeType(0)
 {
     
 }
@@ -102,7 +102,7 @@ void ISOTileset::loadFromImageSource()
                 ++idx;
             }
         }
-        _uLastGid=lastGid();
+        _lastGid=lastGid();
     }
 }
 
@@ -151,32 +151,32 @@ ISOTile* ISOTileset::tileForId(unsigned int id)
 
 unsigned int ISOTileset::lastGid()
 {
-    return _uFirstGid+_tiles->count()-1;
+    return _firstGid+_tiles->count()-1;
 //    CCAssert(_imageSize.width>0 && _imageSize.height>0, "ISOTileset::lastGid the image size shuold not 0");
 //    int column=columnCountForWidth(_imageSize.width);
 //    int row=rowCountForHeight(_imageSize.height);
 //    CCAssert(column*row>0, "ISOTileset::lastGid column*row must big then 0");
-//    return _uFirstGid+(column*row-1);
+//    return _firstGid+(column*row-1);
 }
 
 bool ISOTileset::contains(unsigned int gid)
 {
-    return _uFirstGid<=gid && _uLastGid>=gid;
+    return _firstGid<=gid && _lastGid>=gid;
 }
 
 CCRect ISOTileset::rectForGid(unsigned int gid)
 {
-    return rectForId(gid - _uFirstGid);
+    return rectForId(gid - _firstGid);
 }
 
 CCSprite* ISOTileset::tileSpriteForGid(unsigned int gid)
 {
-    return tileSpriteForId(gid - _uFirstGid);
+    return tileSpriteForId(gid - _firstGid);
 }
 
 ISOTile* ISOTileset::tileForGid(unsigned int gid)
 {
-    return tileForId(gid - _uFirstGid);
+    return tileForId(gid - _firstGid);
 }
 
 void ISOTileset::appendTile(const char* imageName)
@@ -193,7 +193,7 @@ void ISOTileset::appendTile(CCTexture2D* texture)
     _tiles->addObject(tile);
     tile->release();
     
-    _uLastGid=lastGid();
+    _lastGid=lastGid();
 }
 
 void ISOTileset::setTile(unsigned int id,const char* imageName)
@@ -323,7 +323,7 @@ int ISOTileset::getMargin()
     return _margin;
 }
 
-void ISOTileset::setileOffset(Vec2 tileOffset)
+void ISOTileset::setTileOffset(Vec2 tileOffset)
 {
     _tileOffset = tileOffset;
 }
@@ -375,24 +375,24 @@ CCArray* ISOTileset::getTiles()
     return _tiles;
 }
 
-void ISOTileset::setFirstGid(unsigned int uFirstGid)
+void ISOTileset::setFirstGid(unsigned int firstGid)
 {
-    _uFirstGid = uFirstGid;
+    _firstGid = firstGid;
 }
 
 unsigned int ISOTileset::getFirstGid()
 {
-    return _uFirstGid;
+    return _firstGid;
 }
 
 unsigned int ISOTileset::getLastGid()
 {
-    return this->_uLastGid;
+    return this->_lastGid;
 }
 
 void ISOTileset::setLastGid(unsigned int gid)
 {
-    this->_uLastGid=gid;
+    this->_lastGid=gid;
 }
 
 void ISOTileset::setTileProperties(CCDictionary* tileProperties)

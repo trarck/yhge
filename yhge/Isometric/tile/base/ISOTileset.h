@@ -109,8 +109,8 @@ public:
     virtual int getTileSpacing();
     virtual void setMargin(int margin);
     virtual int getMargin();
-    virtual void setileOffset(Vec2 tileOffset);
-    virtual Vec2 getileOffset();
+    virtual void setTileOffset(Vec2 tileOffset);
+    virtual Vec2 getTileOffset();
 //    virtual void setImageWidth(int imageWidth);
 //    virtual int getImageWidth();
 //    virtual void setImageHeight(int imageHeight);
@@ -134,14 +134,14 @@ public:
     }
 
 
-    virtual void setFirstGid(unsigned int uFirstGid);
+    virtual void setFirstGid(unsigned int firstGid);
     virtual unsigned int getFirstGid();
     
     virtual unsigned int getLastGid();
     /**
      * set zero to clear lastGid
      */
-    virtual void setLastGid(unsigned int uLastGid);
+    virtual void setLastGid(unsigned int lastGid);
     
     
     virtual void setTileProperties(CCDictionary* tileProperties);
@@ -159,14 +159,14 @@ public:
         return _texture;
     }
     
-    inline void setComposeType(unsigned int uComposeType)
+    inline void setComposeType(unsigned int composeType)
     {
-        _uComposeType = uComposeType;
+        _composeType = composeType;
     }
     
     inline unsigned int getComposeType()
     {
-        return _uComposeType;
+        return _composeType;
     }
     
     
@@ -250,12 +250,12 @@ protected:
     /**
      * 开始的gid
      */
-    unsigned int _uFirstGid;
+    unsigned int _firstGid;
     
     /**
      * 结束的gid
      */
-    unsigned int _uLastGid;
+    unsigned int _lastGid;
     
     /**
      * 属性
@@ -267,7 +267,7 @@ protected:
      */
     CCDictionary* _tileProperties;
     
-    unsigned int _uComposeType;
+    unsigned int _composeType;
     
 };
 

@@ -97,7 +97,7 @@ bool ISOTileMap::init()
 //    //
 //    //// tell the layerinfo to release the ownership of the tiles map.
 //    //layerInfo->_ownTiles = false;
-//    //layer->setutiles();
+//    //layer->setupTiles();
 //    //
 //    //return layer;
 //	return NULL;
@@ -134,7 +134,7 @@ bool ISOTileMap::init()
 //                        {
 //                            // Optimization: quick return
 //                            // if the layer is invalid (more than 1 tileset per layer) an CCAssert will be thrown later
-//                            if( (gid & kCCFlippedMask) >= tileset->_uFirstGid )
+//                            if( (gid & kCCFlippedMask) >= tileset->_firstGid )
 //                                return tileset;
 //                        }
 //                    }
@@ -150,9 +150,9 @@ bool ISOTileMap::init()
 //
 //void ISOTileMap::buildWithMapInfo(ISOMapInfo* mapInfo)
 //{
-//    _mapSize = mapInfo->gemapSize();
-//    _tileSize = mapInfo->getileSize();
-//    _nMapOrientation = mapInfo->getOrientation();
+//    _mapSize = mapInfo->getMapSize();
+//    _tileSize = mapInfo->getTileSize();
+//    _mapOrientation = mapInfo->getOrientation();
 //    
 //    this->setTileLayers(mapInfo->getLayers());
 //    this->setObjectGroups( mapInfo->getObjectGroups());

@@ -31,7 +31,7 @@ static const char* valueForKey(const char *key, std::map<std::string, std::strin
 ISOXMLReader::ISOXMLReader()
 :m_map(NULL)
 ,m_currentElement(0)
-,m_uCurrentGid(0)
+,m_currentGid(0)
 ,m_layerAttribs(0)
 ,m_storingCharacters(0)
 {
@@ -215,15 +215,15 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         
         ISOTileset* tileset = (ISOTileset*) m_map->getTilesetGroup()->getTilesets()->lastObject();
         
-        m_uCurrentGid= atoi(valueForKey("id", attributeDict));//+tileset->getFirstGid();
+        m_currentGid= atoi(valueForKey("id", attributeDict));//+tileset->getFirstGid();
         
 //        CCDictionary *dict = new CCDictionary();
 //   
-//        tileset->getTileProperties()->setObject(dict, m_uCurrentGid);
+//        tileset->getTileProperties()->setObject(dict, m_currentGid);
 //        CC_SAFE_RELEASE(dict);
         
         ISOTile* tile=new ISOTile();
-        tile->init(m_uCurrentGid, tileset);
+        tile->init(m_currentGid, tileset);
         
         tileset->getTiles()->addObject(tile);
         tile->release();
@@ -272,7 +272,7 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         Vec2 positionOffset;
         positionOffset.x = (float)atof(valueForKey("x", attributeDict)) * m_map->getTileSize().width;
         positionOffset.y = (float)atof(valueForKey("y", attributeDict)) * m_map->getTileSize().height;
-        objectGroup->setOffset(positionOffset);
+        objectGroup->seoffset(positionOffset);
         
         m_map->getObjectGroups()->addObject(objectGroup);
         objectGroup->release();
@@ -465,7 +465,7 @@ void ISOXMLReader::startElement(void *ctx, const char *name, const char **atts)
         {
             ISOTileset* tileset =(ISOTileset*)m_map->getTilesetGroup()->getTilesets()->lastObject();
 //            CCDictionary* tileProperties=tileset->getTileProperties();
-//            CCDictionary* dict = (CCDictionary*)tileProperties->objectForKey(m_uCurrentGid);
+//            CCDictionary* dict = (CCDictionary*)tileProperties->objectForKey(m_currentGid);
             
             ISOTile* tile=(ISOTile*)tileset->getTiles()->lastObject();
             CCString *value = new CCString(valueForKey("value", attributeDict));

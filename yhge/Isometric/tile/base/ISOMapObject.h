@@ -55,14 +55,14 @@ public:
         return _size;
     }
     
-    inline void setGid(unsigned int uGid)
+    inline void setGid(unsigned int gid)
     {
-        _uGid = uGid;
+        _gid = gid;
     }
     
     inline unsigned int getGid()
     {
-        return _uGid;
+        return _gid;
     }
     
     inline void setVisible(bool visible)
@@ -125,7 +125,7 @@ protected:
     /**
      * 对象的gid
      */
-    unsigned int _uGid;
+    unsigned int _gid;
     
     /**
      * 旋转角度

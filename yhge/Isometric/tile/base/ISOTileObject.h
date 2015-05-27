@@ -34,7 +34,7 @@ public:
     virtual void setSize(Size size);
     virtual Size getSize();
     
-    virtual void setGid(unsigned int uGid);
+    virtual void setGid(unsigned int gid);
     virtual unsigned int getGid();
     
     virtual void setVisible(bool visible);
@@ -81,7 +81,7 @@ protected:
     /**
      * 对象的gid
      */
-    unsigned int _uGid;
+    unsigned int _gid;
     
     /**
      * 对象是否可见

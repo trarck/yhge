@@ -49,24 +49,24 @@ public:
     void setTileset(ISOTileset* tileset);
     ISOTileset* getTileset();
     
-    inline void setMinGID(unsigned int uMinGID)
+    inline void setMinGID(unsigned int minGID)
     {
-        _uMinGID = uMinGID;
+        _minGID = minGID;
     }
     
     inline unsigned int getMinGID()
     {
-        return _uMinGID;
+        return _minGID;
     }
     
-    inline void setMaxGID(unsigned int uMaxGID)
+    inline void setMaxGID(unsigned int maxGID)
     {
-        _uMaxGID = uMaxGID;
+        _maxGID = maxGID;
     }
     
     inline unsigned int getMaxGID()
     {
-        return _uMaxGID;
+        return _maxGID;
     }
 
 protected:
@@ -94,8 +94,8 @@ protected:
     
     CCSpriteBatchNode* _spriteBatchNode;
     
-    unsigned int        _uMinGID;
-    unsigned int        _uMaxGID;
+    unsigned int        _minGID;
+    unsigned int        _maxGID;
        
     //! used for optimization
     CCSprite*           _reusedTile;

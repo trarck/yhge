@@ -4,7 +4,7 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOMapObject::ISOMapObject()
-:_uGid(0)
+:_gid(0)
 ,_name("")
 ,_type("")
 ,_position(CCPointZero)

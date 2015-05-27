@@ -69,7 +69,7 @@ public:
 
 public://==============属性===============//
 	
-	inline void semapSize(Size mapSize)
+	inline void setMapSize(Size mapSize)
 	{
 		_mapSize = mapSize;
 	}
