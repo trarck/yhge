@@ -75,15 +75,12 @@ public:
         return _visible;
     }
     
-    inline void setProperties(CCDictionary* pProperties)
+	inline void setProperties(const ValueMap& properties)
     {
-        CC_SAFE_RETAIN(pProperties);
-        CC_SAFE_RELEASE(_properties);
-        _properties=pProperties;
-        
+        _properties=properties;
     }
     
-    inline CCDictionary* getProperties()
+	inline ValueMap& getProperties()
     {
         return _properties;
     }
@@ -140,7 +137,7 @@ protected:
     /**
      * 属性
      */
-    CCDictionary* _properties;
+    ValueMap _properties;
 };
 
 

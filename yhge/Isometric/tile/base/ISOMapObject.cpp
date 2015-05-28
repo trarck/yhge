@@ -11,7 +11,6 @@ ISOMapObject::ISOMapObject()
 ,_size(CCSizeZero)
 ,_rotation(0)
 ,_visible(true)
-,_properties(NULL)
 {
 
 }
@@ -20,12 +19,10 @@ ISOMapObject::ISOMapObject()
 ISOMapObject::~ISOMapObject()
 {
     CCLOG("ISOMapObject destroy");
-    CC_SAFE_RELEASE(_properties);
 }
 
 bool ISOMapObject::init()
 {
-    _properties = new CCDictionary();
     return true;
 }
 

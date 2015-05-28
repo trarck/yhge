@@ -34,30 +34,49 @@ public:
     virtual int getGId();
     
     
-    virtual void setId(int id);
+	inline void setId(int id)
+	{
+		_id = id;
+	}
+
+	inline int getId()
+	{
+		return _id;
+	}
     
-    virtual int getId();    
+	inline void setTileset(ISOTileset* tileset)
+	{
+		_tileset = tileset;
+	}
+
+	inline ISOTileset* getTileset()
+	{
+		return _tileset;
+	}
     
-    virtual void setTileset(ISOTileset* tileset);
-    
-    virtual ISOTileset* getTileset();
-    
-    virtual void setProperties(CCDictionary* pProperties);
-    virtual CCDictionary* getProperties();
-    
-    inline void setTexture(CCTexture2D* texture)
+	inline void setProperties(const ValueMap& properties)
+	{
+		_properties = properties;
+	}
+
+	inline ValueMap& getProperties()
+	{
+		return _properties;
+	}
+
+    inline void setTexture(Texture2D* texture)
     {
         CC_SAFE_RETAIN(texture);
         CC_SAFE_RELEASE(_texture);
         _texture = texture;
     }
     
-    inline CCTexture2D* getTexture()
+    inline Texture2D* getTexture()
     {
         return _texture;
     }
     
-    inline void setTextureRect(CCRect& textureRect)
+    inline void setTextureRect(Rect& textureRect)
     {
         _textureRect = textureRect;
     }
@@ -67,14 +86,14 @@ public:
         return _textureRect;
     }
     
-    inline void setAnimation(CCAnimation* animation)
+    inline void setAnimation(Animation* animation)
     {
         CC_SAFE_RETAIN(animation);
         CC_SAFE_RELEASE(_animation);
         _animation = animation;
     }
     
-    inline CCAnimation* getAnimation()
+    inline Animation* getAnimation()
     {
         return _animation;
     }
@@ -85,15 +104,15 @@ protected:
     int _id;
     
     //支持tile大小不同
-    CCTexture2D* _texture;
+    Texture2D* _texture;
     
     //tile在texture的位置
-    CCRect _textureRect;
+    Rect _textureRect;
     
     /**
      * 动画
      */
-    CCAnimation* _animation;
+    Animation* _animation;
     
     //所属的tileset.weak reference
     ISOTileset* _tileset;
@@ -101,7 +120,7 @@ protected:
     /**
      * 属性
      */
-    CCDictionary* _properties;
+	ValueMap _properties;
 };
 
 

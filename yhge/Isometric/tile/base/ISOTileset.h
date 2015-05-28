@@ -21,6 +21,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 class ISOTileset : public Ref{
 
 public:
+	typedef Vector<ISOTile*> ISOTileVector;
     
     ISOTileset();
     
@@ -30,7 +31,7 @@ public:
 
     bool isExternal() const { return !_fileName.empty(); }
     
-    int tileCount() const { return _tiles->count(); }
+    int tileCount() const { return _tiles.size(); }
     
     /**
      * 删除image tile
@@ -41,15 +42,15 @@ public:
     
     void appendTile(const char* imageName);
     
-    void appendTile(CCTexture2D* texture);
+    void appendTile(Texture2D* texture);
     
     void setTile(unsigned int id,const char* imageName);
     
-    void setTile(unsigned int id,CCTexture2D* texture);
+    void setTile(unsigned int id,Texture2D* texture);
     
     void addTile(unsigned int id,const char* imageName);
     
-    void addTile(unsigned int id,CCTexture2D* texture);
+    void addTile(unsigned int id,Texture2D* texture);
     
     void addTile(ISOTile* tile);
     
@@ -57,9 +58,9 @@ public:
     /**
      * 内置索引id
      */
-    CCRect rectForId(unsigned int id);
+    Rect rectForId(unsigned int id);
     
-    CCSprite* tileSpriteForId(unsigned int id);
+    Sprite* tileSpriteForId(unsigned int id);
     
     ISOTile* tileForId(unsigned int id);
     
@@ -68,9 +69,9 @@ public:
      */
     bool contains(unsigned int gid);
     
-    CCRect rectForGid(unsigned int gid);
+    Rect rectForGid(unsigned int gid);
     
-    CCSprite* tileSpriteForGid(unsigned int gid);
+    Sprite* tileSpriteForGid(unsigned int gid);
     
     ISOTile* tileForGid(unsigned int gid);
     
@@ -80,81 +81,188 @@ public:
     
     int rowCountForHeight(float height);    
     
-    
-    
 public:
     
     inline const char* getName(){ return _name.c_str(); }
     inline void setName(const char *name){ _name = name; }
     
-    virtual void setFileName(const char* pFileName);
-    virtual std::string& getFileName();
-    virtual void setImageSource(const char* pImageSource);
-    virtual std::string& getImageSource();
-    virtual void setTileWidth(int tileWidth);
-    virtual int getTileWidth();
-    virtual void setTileHeight(int tileHeight);
-    virtual int getTileHeight();
+	inline void setFileName(const char* pFileName)
+	{
+		_fileName = pFileName;
+	}
+
+	inline std::string& getFileName()
+	{
+		return _fileName;
+	}
+
+	inline void setImageSource(const char* pImageSource)
+	{
+		_imageSource = pImageSource;
+	}
+
+	inline std::string& getImageSource()
+	{
+		return _imageSource;
+	}
+
+	inline void setTileWidth(int tileWidth)
+	{
+		_tileWidth = tileWidth;
+	}
+
+	inline int getTileWidth()
+	{
+		return _tileWidth;
+	}
+
+	inline void setTileHeight(int tileHeight)
+	{
+		_tileHeight = tileHeight;
+	}
+
+	inline int getTileHeight()
+	{
+		return _tileHeight;
+	}
     
-    virtual void setTileSize(Size& tTileSize){
+	inline virtual void setTileSize(Size& tTileSize){
         _tileWidth=(int)tTileSize.width;
         _tileHeight=(int)tTileSize.height;
     }
     
-    virtual Size getTileSize(){
-        return CCSizeMake(_tileWidth, _tileHeight);
-    }
-    
-    virtual void setTileSpacing(int tileSpacing);
-    virtual int getTileSpacing();
-    virtual void setMargin(int margin);
-    virtual int getMargin();
-    virtual void setTileOffset(Vec2 tileOffset);
-    virtual Vec2 getTileOffset();
-//    virtual void setImageWidth(int imageWidth);
-//    virtual int getImageWidth();
-//    virtual void setImageHeight(int imageHeight);
-//    virtual int getImageHeight();
-    virtual void setColumnCount(int columnCount);
-    virtual int getColumnCount();
-    virtual void setTiles(CCArray* tiles);
-    virtual CCArray* getTiles();
-    
-    virtual void setProperties(CCDictionary* pProperties);
-    virtual CCDictionary* getProperties();
-    
-    inline void setImageSize(Size& imageSize)
-    {
-        _imageSize = imageSize;
-    }
-    
-    inline Size& getImageSize()
-    {
-        return _imageSize;
+	inline virtual Size getTileSize(){
+        return Size(_tileWidth, _tileHeight);
     }
 
+	inline void setTileSpacing(int tileSpacing)
+	{
+		_tileSpacing = tileSpacing;
+	}
 
-    virtual void setFirstGid(unsigned int firstGid);
-    virtual unsigned int getFirstGid();
+	inline int getTileSpacing()
+	{
+		return _tileSpacing;
+	}
+
+	inline void setMargin(int margin)
+	{
+		_margin = margin;
+	}
+
+	inline int getMargin()
+	{
+		return _margin;
+	}
+
+	inline void setTileOffset(Vec2 tileOffset)
+	{
+		_tileOffset = tileOffset;
+	}
+
+	inline Vec2 getileOffset()
+	{
+		return _tileOffset;
+	}
+
+	inline void setImageSize(Size& imageSize)
+	{
+		_imageSize = imageSize;
+	}
+
+	inline Size& getImageSize()
+	{
+		return _imageSize;
+	}
+
+	//inline void setImageWidth(int imageWidth)
+	//{
+	//    _imageWidth = imageWidth;
+	//}
+	//
+	//inline int getImageWidth()
+	//{
+	//    return _imageWidth;
+	//}
+	//
+	//inline void setImageHeight(int imageHeight)
+	//{
+	//    _imageHeight = imageHeight;
+	//}
+	//
+	//inline int getImageHeight()
+	//{
+	//    return _imageHeight;
+	//}
+
+	inline void setColumnCount(int columnCount)
+	{
+		_columnCount = columnCount;
+	}
+
+	inline int getColumnCount()
+	{
+		return _columnCount;
+	}
+
+	inline void setTiles(const ISOTileVector& tiles)
+	{
+		_tiles = tiles;
+	}
+
+	inline ISOTileVector& getTiles()
+	{
+		return _tiles;
+	}
+
+	inline void setFirstGid(unsigned int firstGid)
+	{
+		_firstGid = firstGid;
+	}
+
+	inline unsigned int getFirstGid()
+	{
+		return _firstGid;
+	}
+
+	inline unsigned int getLastGid()
+	{
+		return this->_lastGid;
+	}
+
+	inline void setLastGid(unsigned int gid)
+	{
+		this->_lastGid = gid;
+	}
+
+	inline void setTileProperties(const ValueMap& tileProperties)
+	{
+		_tileProperties = tileProperties;
+	}
+
+	inline ValueMap& getTileProperties()
+	{
+		return _tileProperties;
+	}
+
+	inline void setProperties(const ValueMap& pProperties)
+	{
+		_properties = pProperties;
+	}
+
+	inline ValueMap& getProperties()
+	{
+		return _properties;
+	}
     
-    virtual unsigned int getLastGid();
-    /**
-     * set zero to clear lastGid
-     */
-    virtual void setLastGid(unsigned int lastGid);
-    
-    
-    virtual void setTileProperties(CCDictionary* tileProperties);
-    virtual CCDictionary* getTileProperties();
-    
-    inline void setTexture(CCTexture2D* texture)
+    inline void setTexture(Texture2D* texture)
     {
         CC_SAFE_RETAIN(texture);
         CC_SAFE_RELEASE(_texture);
         _texture = texture;
     }
     
-    inline CCTexture2D* getTexture()
+    inline Texture2D* getTexture()
     {
         return _texture;
     }
@@ -235,7 +343,7 @@ protected:
     /**
      * tile拼成的图片
      */
-    CCTexture2D* _texture;
+    Texture2D* _texture;
     
     /**
      * 图片的格子栏数
@@ -245,7 +353,7 @@ protected:
     /**
      * 所有小格子
      */
-    CCArray* _tiles;
+	ISOTileVector _tiles;
     
     /**
      * 开始的gid
@@ -260,12 +368,12 @@ protected:
     /**
      * 属性
      */
-    CCDictionary* _properties;
+    ValueMap _properties;
     
     /**
      * tile的属性
      */
-    CCDictionary* _tileProperties;
+	ValueMap _tileProperties;
     
     unsigned int _composeType;
     

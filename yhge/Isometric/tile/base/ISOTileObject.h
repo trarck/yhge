@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include <yhge/Isometric/IsometricMacros.h>
+#include "ISOTileObjectPart.h"
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
@@ -13,7 +14,8 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 class ISOTileObject : public Ref{
 
 public:
-    
+	typedef Vector<ISOTileObjectPart*> ISOTileObjectPartVector;
+
     ISOTileObject();   
   
     ~ISOTileObject();
@@ -24,36 +26,76 @@ public:
     
     inline const std::string& getName(){ return _name; }
     inline void setName(const std::string& name){ _name = name; }
+
+	inline void setType(const std::string& type)
+	{
+		_type = type;
+	}
+
+	inline std::string& getType()
+	{
+		return _type;
+	}
+
+	inline void setPosition(Vec2 position)
+	{
+		_position = position;
+	}
+
+	inline Vec2 getPosition()
+	{
+		return _position;
+	}
+
+	void setSize(Size size)
+	{
+		_size = size;
+	}
+
+	inline Size getSize()
+	{
+		return _size;
+	}
+
+	inline void setGid(unsigned int gid)
+	{
+		_gid = gid;
+	}
+
+	inline unsigned int getGid()
+	{
+		return _gid;
+	}
+
+	inline void setVisible(bool visible)
+	{
+		_visible = visible;
+	}
+
+	inline bool getVisible()
+	{
+		return _visible;
+	}
     
-    virtual void setType(const std::string& pType);
-    virtual std::string& getType();
-    
-    virtual void setPosition(Vec2 position);
-    virtual Vec2 getPosition();
-    
-    virtual void setSize(Size size);
-    virtual Size getSize();
-    
-    virtual void setGid(unsigned int gid);
-    virtual unsigned int getGid();
-    
-    virtual void setVisible(bool visible);
-    virtual bool getVisible();
-    
-    inline void setParts(CCArray* parts)
+	inline void setParts(const ISOTileObjectPartVector& parts)
     {
-        CC_SAFE_RETAIN(parts);
-        CC_SAFE_RELEASE(_parts);
         _parts = parts;
     }
     
-    inline CCArray* getParts()
+	inline ISOTileObjectPartVector& getParts()
     {
         return _parts;
     }
     
-    virtual void setProperties(CCDictionary* pProperties);
-    virtual CCDictionary* getProperties();
+	inline void setProperties(const ValueMap& properties)
+	{
+		_properties = properties;
+	}
+
+	inline ValueMap& getProperties()
+	{
+		return _properties;
+	}
     
 protected:
     
@@ -91,12 +133,12 @@ protected:
     /**
      * 组成部分
      */
-    CCArray* _parts;
+	ISOTileObjectPartVector _parts;
 
     /**
      * 属性
      */
-    CCDictionary* _properties;
+	ValueMap _properties;
 };
 
 

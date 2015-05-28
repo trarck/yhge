@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include <yhge/Isometric/IsometricMacros.h>
+#include "ISOMapObject.h"
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
@@ -15,6 +16,7 @@ class ISOObjectGroup : public Ref
 {
 
 public:
+	typedef Vector<ISOMapObject*> ISOMapObjectVector;
 
     ISOObjectGroup();
     
@@ -28,23 +30,38 @@ public:
     /** return the value for the specific property name */
 	Value getProperty(const std::string& propertyName);
 
-    /** return the dictionary for the specific object name.
-    It will return the 1st object found on the array for the given name.
-    */
-    CCDictionary* objectNamed(const std::string& objectName);
+	ISOMapObject* getObject(const std::string& objectName);
     
     //============get set===========//
-    virtual void setOffset(const Vec2& offset);
+	inline void setOffset(const Vec2& offset)
+	{
+		_offset = offset;
+	}
+
+	inline const Vec2& getOffset()
+	{
+		return _offset;
+	}
+
+	inline void setProperties(const ValueMap& properties)
+	{
+		_properties = properties;
+	}
+
+	inline ValueMap& getProperties()
+	{
+		return _properties;
+	}
     
-    virtual const Vec2& getOffset();
-    
-    virtual void setProperties(CCDictionary* pProperties);
-    
-    virtual CCDictionary* getProperties();
-    
-    virtual void setObjects(CCArray* objects);
-    
-    virtual CCArray* getObjects();
+	inline void ISOObjectGroup::setObjects(const ISOMapObjectVector& objects)
+	{
+		_objects = objects;
+	}
+
+	inline ISOObjectGroup::ISOMapObjectVector& ISOObjectGroup::getObjects()
+	{
+		return _objects;
+	}
     
     inline void setRenderIndex(int renderIndex)
     {
@@ -64,7 +81,7 @@ protected:
     
     ValueMap _properties;
     
-    CCArray* _objects;
+	ISOMapObjectVector _objects;
     
     /**
      * 在地图文件中出现的顺序。

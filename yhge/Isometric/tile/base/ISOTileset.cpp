@@ -15,11 +15,8 @@ ISOTileset::ISOTileset()
 //,_imageHeight(0)
 ,_imageSize(CCSizeZero)
 ,_columnCount(0)
-,_tiles(NULL)
 ,_firstGid(0)
 ,_lastGid(0)
-,_properties(NULL)
-,_tileProperties(NULL)
 ,_texture(NULL)
 ,_composeType(0)
 {
@@ -29,20 +26,11 @@ ISOTileset::ISOTileset()
 ISOTileset::~ISOTileset()
 {
     CCLOG("ISOTileset destroy");
-    CC_SAFE_RELEASE(_tiles);
-    CC_SAFE_RELEASE(_properties);
-    CC_SAFE_RELEASE(_tileProperties);
     CC_SAFE_RELEASE(_texture);
 }
 
 bool ISOTileset::init()
-{
-    _tiles=new CCArray();
-    _tiles->init();
-    
-    _properties=new CCDictionary();
-    
-    _tileProperties=new CCDictionary();
+{  
     return true;
 }
 
@@ -77,7 +65,7 @@ void ISOTileset::loadFromImageSource()
 {
     if(!_imageSource.empty()){
         
-        setTexture(CCTextureCache::sharedTextureCache()->addImage(_imageSource.c_str()));
+        setTexture(TextureCache::sharedTextureCache()->addImage(_imageSource.c_str()));
         
         if(_imageSize.width==0 || _imageSize.height==0){
             _imageSize=_texture->getContentSize();
@@ -87,16 +75,17 @@ void ISOTileset::loadFromImageSource()
         int row=rowCountForHeight(_imageSize.height);
         
         int idx=0;
-        int oldTilesSize=_tiles->count();
+        int oldTilesSize=_tiles.size();
         for (int j=0; j<row; ++j) {
             for(int i=0;i<column;++i){
                 ISOTile* tile=new ISOTile();
                 CCRect rect=rectForId(idx);
                 tile->init(idx, this,_texture,rect);
                 if(idx<oldTilesSize){
-                    _tiles->replaceObjectAtIndex(idx, tile);
-                }else{
-                    _tiles->addObject(tile);
+					_tiles.replace(idx, tile);
+				}
+				else
+					_tiles.pushBack(tile);
                 }
                 tile->release();
                 ++idx;
@@ -118,20 +107,20 @@ int ISOTileset::rowCountForHeight(float height)
     return (int)(height - _margin + _tileSpacing) / (_tileHeight + _tileSpacing);
 }
 
-CCRect ISOTileset::rectForId(unsigned int id)
+Rect ISOTileset::rectForId(unsigned int id)
 {
-    CCRect rect;
-    rect.size = CCSizeMake(_tileWidth, _tileHeight);
+    Rect rect;
+    rect.size = Size(_tileWidth, _tileHeight);
     int max_x = (int)((_imageSize.width - _margin*2 + _tileSpacing) / (_tileWidth + _tileSpacing));
     rect.origin.x = (id % max_x) * (_tileWidth + _tileSpacing) + _margin;
     rect.origin.y = (id / max_x) * (_tileHeight + _tileSpacing) + _margin;
     return rect;
 }
 
-CCSprite* ISOTileset::tileSpriteForId(unsigned int id)
+Sprite* ISOTileset::tileSpriteForId(unsigned int id)
 {
-    CCSprite* sprite=new CCSprite();
-    CCRect rect=rectForId(id);
+    Sprite* sprite=new Sprite();
+    Rect rect=rectForId(id);
     sprite->initWithTexture(_texture,rect);
     sprite->autorelease();
     
@@ -140,7 +129,7 @@ CCSprite* ISOTileset::tileSpriteForId(unsigned int id)
 
 ISOTile* ISOTileset::tileForId(unsigned int id)
 {
-    return (ISOTile*)_tiles->objectAtIndex(id);
+    return _tiles.at(id);
 //    //dynamic
 //       CCSprite* sprite=tileSpriteForId(id);
 //    ISOTile* tile=new ISOTile();
@@ -164,12 +153,12 @@ bool ISOTileset::contains(unsigned int gid)
     return _firstGid<=gid && _lastGid>=gid;
 }
 
-CCRect ISOTileset::rectForGid(unsigned int gid)
+Rect ISOTileset::rectForGid(unsigned int gid)
 {
     return rectForId(gid - _firstGid);
 }
 
-CCSprite* ISOTileset::tileSpriteForGid(unsigned int gid)
+Sprite* ISOTileset::tileSpriteForGid(unsigned int gid)
 {
     return tileSpriteForId(gid - _firstGid);
 }
@@ -181,12 +170,12 @@ ISOTile* ISOTileset::tileForGid(unsigned int gid)
 
 void ISOTileset::appendTile(const char* imageName)
 {
-    CCTexture2D* texture=CCTextureCache::sharedTextureCache()->addImage(imageName);
+    Texture2D* texture=TextureCache::sharedTextureCache()->addImage(imageName);
     
     appendTile(texture);
 }
 
-void ISOTileset::appendTile(CCTexture2D* texture)
+void ISOTileset::appendTile(Texture2D* texture)
 {
     ISOTile* tile=new ISOTile();
     tile->init(tileCount(), this, texture);
@@ -198,11 +187,11 @@ void ISOTileset::appendTile(CCTexture2D* texture)
 
 void ISOTileset::setTile(unsigned int id,const char* imageName)
 {
-    CCTexture2D* texture=CCTextureCache::sharedTextureCache()->addImage(imageName);
+    Texture2D* texture=TextureCache::sharedTextureCache()->addImage(imageName);
     setTile(id, texture);
 }
 
-void ISOTileset::setTile(unsigned int id,CCTexture2D* texture)
+void ISOTileset::setTile(unsigned int id,Texture2D* texture)
 {
     ISOTile* tile=(ISOTile*)_tiles->objectAtIndex(id);
     if(tile){
@@ -217,11 +206,11 @@ void ISOTileset::setTile(unsigned int id,CCTexture2D* texture)
 
 void ISOTileset::addTile(unsigned int id,const char* imageName)
 {
-    CCTexture2D* texture=CCTextureCache::sharedTextureCache()->addImage(imageName);
+    Texture2D* texture=TextureCache::sharedTextureCache()->addImage(imageName);
     addTile(id, texture);
 }
 
-void ISOTileset::addTile(unsigned int id,CCTexture2D* texture)
+void ISOTileset::addTile(unsigned int id,Texture2D* texture)
 {
     //如果index大于tile count，则中间插入空的
     unsigned int tileCount=this->tileCount();
@@ -263,158 +252,5 @@ void ISOTileset::addTile(ISOTile* tile)
 }
 
 
-void ISOTileset::setFileName(const char* pFileName)
-{
-    _fileName = pFileName;
-}
-
-std::string& ISOTileset::getFileName()
-{
-    return _fileName;
-}
-
-void ISOTileset::setImageSource(const char* pImageSource)
-{
-    _imageSource = pImageSource;    
-}
-
-std::string& ISOTileset::getImageSource()
-{
-    return _imageSource;
-}
-
-void ISOTileset::setTileWidth(int tileWidth)
-{
-    _tileWidth = tileWidth;
-}
-
-int ISOTileset::getTileWidth()
-{
-    return _tileWidth;
-}
-
-void ISOTileset::setTileHeight(int tileHeight)
-{
-    _tileHeight = tileHeight;
-}
-
-int ISOTileset::getTileHeight()
-{
-    return _tileHeight;
-}
-
-void ISOTileset::setTileSpacing(int tileSpacing)
-{
-    _tileSpacing = tileSpacing;
-}
-
-int ISOTileset::getTileSpacing()
-{
-    return _tileSpacing;
-}
-
-void ISOTileset::setMargin(int margin)
-{
-    _margin = margin;
-}
-
-int ISOTileset::getMargin()
-{
-    return _margin;
-}
-
-void ISOTileset::setTileOffset(Vec2 tileOffset)
-{
-    _tileOffset = tileOffset;
-}
-
-Vec2 ISOTileset::getileOffset()
-{
-    return _tileOffset;
-}
-
-//void ISOTileset::setImageWidth(int imageWidth)
-//{
-//    _imageWidth = imageWidth;
-//}
-//
-//int ISOTileset::getImageWidth()
-//{
-//    return _imageWidth;
-//}
-//
-//void ISOTileset::setImageHeight(int imageHeight)
-//{
-//    _imageHeight = imageHeight;
-//}
-//
-//int ISOTileset::getImageHeight()
-//{
-//    return _imageHeight;
-//}
-
-void ISOTileset::setColumnCount(int columnCount)
-{
-    _columnCount = columnCount;
-}
-
-int ISOTileset::getColumnCount()
-{
-    return _columnCount;
-}
-
-void ISOTileset::setTiles(CCArray* tiles)
-{
-    CC_SAFE_RETAIN(tiles);
-    CC_SAFE_RELEASE(_tiles);
-    _tiles = tiles;
-}
-
-CCArray* ISOTileset::getTiles()
-{
-    return _tiles;
-}
-
-void ISOTileset::setFirstGid(unsigned int firstGid)
-{
-    _firstGid = firstGid;
-}
-
-unsigned int ISOTileset::getFirstGid()
-{
-    return _firstGid;
-}
-
-unsigned int ISOTileset::getLastGid()
-{
-    return this->_lastGid;
-}
-
-void ISOTileset::setLastGid(unsigned int gid)
-{
-    this->_lastGid=gid;
-}
-
-void ISOTileset::setTileProperties(CCDictionary* tileProperties)
-{
-    _tileProperties=tileProperties;
-}
-
-CCDictionary* ISOTileset::getTileProperties()
-{
-    return _tileProperties;
-}
-
-void ISOTileset::setProperties(CCDictionary* pProperties)
-{
-    CC_SAFE_RETAIN(pProperties);
-    CC_SAFE_RELEASE(_properties);
-    _properties = pProperties;
-}
-
-CCDictionary* ISOTileset::getProperties()
-{
-    return _properties;
-}
 
 NS_CC_YHGE_ISOMETRIC_END
