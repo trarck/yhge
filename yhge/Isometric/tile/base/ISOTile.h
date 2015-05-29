@@ -23,7 +23,7 @@ public:
     
     bool init(int id,ISOTileset* tileset);
     
-    bool init(int id,ISOTileset* tileset,CCTexture2D* texture);
+    bool init(int id,ISOTileset* tileset,Texture2D* texture);
     
     bool init(int id,ISOTileset* tileset,CCTexture2D* texture,CCRect& textureRect);
    

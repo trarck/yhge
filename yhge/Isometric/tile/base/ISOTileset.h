@@ -276,8 +276,6 @@ public:
     {
         return _composeType;
     }
-    
-    
 
 public:
     //tileset 的三种方式
