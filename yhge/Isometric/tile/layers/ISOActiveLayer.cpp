@@ -8,21 +8,18 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOActiveLayer::ISOActiveLayer()
-:_objects(NULL)
-,_tileMap(NULL)
+:_tileMap(NULL)
 {
 	
 }
 
 ISOActiveLayer::~ISOActiveLayer()
 {
-    CC_SAFE_RELEASE_NULL(_objects);
 }
 
 bool ISOActiveLayer::init()
 {
     if (ISOLayer::init()) {
-        _objects=new CCArray();
         return true;
     }
 	return false;
@@ -58,22 +55,21 @@ void ISOActiveLayer::releaseLayer()
 
 void ISOActiveLayer::setupObjects()
 {
-    if (_objects) {
-        Ref* pObj=NULL;
-        ISOObjectInfo* objInfo=NULL;
-        CCARRAY_FOREACH(_objects, pObj){
-            objInfo=static_cast<ISOObjectInfo*>(pObj);
-            if (objInfo->getGid()!=0 && objInfo->getVisible()) {
-                createObject(objInfo->getGid(), objInfo->getPosition());
-            }
-        }
+    if (_objects.size()) {
+		ISOObjectInfo* objInfo = NULL;
+		for (ISOObjectInfoVector::iterator iter = _objects.begin(); iter != _objects.end(); ++iter){
+			objInfo = *iter;
+			if (objInfo->getGid() != 0 && objInfo->getVisible()) {
+				createObject(objInfo->getGid(), objInfo->getPosition());
+			}
+		}
     }
 }
 
 /**
  * 使用gid从tileset中取出一个图片显示
  */
-CCSprite* ISOActiveLayer::createObject(int gid,const Vec2& coord)
+Sprite* ISOActiveLayer::createObject(int gid,const Vec2& coord)
 {
     ISOTileset* tileset=_tileMap->getTilesetGroup()->getTilesetByGid(gid);
     
@@ -81,9 +77,9 @@ CCSprite* ISOActiveLayer::createObject(int gid,const Vec2& coord)
     
     Vec2 pos=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(coord));
     
-    CCSprite* tileSprite=CCSprite::createWithTexture(tile->getTexture(), tile->getTextureRect());
+    Sprite* tileSprite=Sprite::createWithTexture(tile->getTexture(), tile->getTextureRect());
     //object 的对齐方式为底部居中
-    tileSprite->setAnchorPoint(ccp(0.5f,0));
+    tileSprite->setAnchorPoint(Vec2(0.5f,0));
     tileSprite->setPosition(pos);
     tileSprite->setOpacity(_opacity);
     

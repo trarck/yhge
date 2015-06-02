@@ -18,7 +18,8 @@ class ISOTileMap;
 class ISOActiveLayer : public ISOLayer {
 
 public:
-	
+	typedef Vector<ISOObjectInfo*> ISOObjectInfoVector;
+
 	ISOActiveLayer();
     
 	virtual ~ISOActiveLayer(void);
@@ -50,14 +51,12 @@ public:
 
 public:
     
-    inline void setObjects(CCArray* objects)
+	inline void setObjects(const ISOObjectInfoVector& objects)
     {
-        CC_SAFE_RETAIN(objects);
-        CC_SAFE_RELEASE(_objects);
         _objects = objects;
     }
     
-    inline CCArray* getObjects()
+	inline ISOObjectInfoVector& getObjects()
     {
         return _objects;
     }
@@ -68,7 +67,7 @@ protected:
      * 使用gid从tileset中取出一个图片显示
      * TODO 使用代理来创建对象
      */
-    virtual CCSprite* createObject(int gid,const Vec2& coord);
+    virtual Sprite* createObject(int gid,const Vec2& coord);
     
     /**
      * 处理扩展属性
@@ -83,7 +82,7 @@ protected:
     /**
      * 所有对象
      */
-    CCArray* _objects;
+	ISOObjectInfoVector _objects;
 };
 
 

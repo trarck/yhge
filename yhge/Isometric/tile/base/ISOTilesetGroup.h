@@ -13,7 +13,8 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 class ISOTilesetGroup : public Ref{
 
 public:
-    
+	typedef Vector<ISOTileset*> ISOTilesetVector;
+
     ISOTilesetGroup();
     
     ~ISOTilesetGroup();
@@ -30,18 +31,18 @@ public:
     
     void replaceTileset(ISOTileset* oldTileset,ISOTileset* newTileset);
     
-    int tilesetCount(){return _tilesets->count();}
+    int tilesetCount(){return _tilesets.size();}
     
-    ISOTileset* getTilesetByIndex(int index){ return (ISOTileset *)_tilesets->objectAtIndex(index); }
+    ISOTileset* getTilesetByIndex(int index){ return _tilesets.at(index); }
     
-    ISOTileset *tilesetAt(int index){ return (ISOTileset *)_tilesets->objectAtIndex(index); }
+    ISOTileset *tilesetAt(int index){ return _tilesets.at(index); }
     
     ISOTileset* getTilesetByGid(unsigned int gid);
     
-    CCArray* getTilesets(){return _tilesets;}
+	ISOTilesetVector& getTilesets(){ return _tilesets; }
 
 public:
-    CCArray* _tilesets;
+	ISOTilesetVector _tilesets;
 };
 
 

@@ -3,7 +3,6 @@
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
 ISOTilesetGroup::ISOTilesetGroup()
-:_tilesets(NULL)
 {
 
 }
@@ -11,59 +10,50 @@ ISOTilesetGroup::ISOTilesetGroup()
 ISOTilesetGroup::~ISOTilesetGroup()
 {
     CCLOG("ISOTilesetGroup destroy");
-    CC_SAFE_RELEASE(_tilesets);
 }
 
 bool ISOTilesetGroup::init()
 {
-    _tilesets=new CCArray();
     return true;
 }
 
 void ISOTilesetGroup::addTileset(ISOTileset* tileset)
 {
-    _tilesets->addObject(tileset);
+    _tilesets.pushBack(tileset);
 }
 
 void ISOTilesetGroup::insertTileset(int index,ISOTileset* tileset)
 {
-    _tilesets->insertObject(tileset, index);
+	_tilesets.insert(index, tileset);
 }
 
 int ISOTilesetGroup::indexOfTileset(ISOTileset* tileset)
 {
-   return _tilesets->indexOfObject(tileset);
+	return _tilesets.getIndex(tileset);
 }
 
 void ISOTilesetGroup::removeTilesetAt(int index)
 {
-    _tilesets->removeObjectAtIndex(index);
+	_tilesets.erase(index);
 }
 
 void ISOTilesetGroup::replaceTileset(ISOTileset* oldTileset,ISOTileset* newTileset)
 {
-    unsigned int index=_tilesets->indexOfObject(oldTileset);
+	unsigned int index = _tilesets.getIndex(oldTileset);
     
-    _tilesets->replaceObjectAtIndex(index, newTileset);
+	_tilesets.replace(index, newTileset);
 }
 
 
 ISOTileset* ISOTilesetGroup::getTilesetByGid(unsigned int gid)
 {
-   
-    ISOTileset* tileset = NULL;
-    Ref* pObj = NULL;
-    CCARRAY_FOREACH_REVERSE(_tilesets, pObj)
-    {
-        tileset = (ISOTileset*)pObj;
-        if (tileset)
-        {
-            if(tileset->contains(gid)){
-                return tileset;
-            }
-        }
-    }
-    return tileset;
+	for (ISOTilesetVector::iterator iter = _tilesets.begin(); iter != _tilesets.end(); ++iter){
+		if ((*iter)->contains(gid)){
+			return *iter;
+		}
+	}
+
+    return nullptr;
 }
 
 NS_CC_YHGE_ISOMETRIC_END

@@ -81,7 +81,7 @@ public:
         _textureRect = textureRect;
     }
     
-    inline CCRect& getextureRect()
+    inline Rect& getTextureRect()
     {
         return _textureRect;
     }
