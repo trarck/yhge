@@ -5,6 +5,7 @@
 #include <yhge/Isometric/IsometricMacros.h>
 #include <yhge/Isometric/ISOLayer.h>
 #include "../base/ISOObjectGroup.h"
+#include "../parser/ISOObjectInfo.h"
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
