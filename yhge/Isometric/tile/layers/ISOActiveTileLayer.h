@@ -14,7 +14,7 @@ class ISOTileMap;
  * 提供场景活动元素的层
  * 对于tiled创建的地图文件，可以是tile layer,也可以是object layer。
  */
-class ISOActiveTileLayer : public CCNode {
+class ISOActiveTileLayer : public Node {
 
 public:
 	
@@ -78,14 +78,12 @@ public:
         return _offset;
     }
     
-    inline void setProperties(CCDictionary* properties)
+	inline void setProperties(const ValueMap& properties)
     {
-        CC_SAFE_RETAIN(properties);
-        CC_SAFE_RELEASE(_properties);
         _properties = properties;
     }
     
-    inline CCDictionary* getProperties()
+	inline ValueMap& getProperties()
     {
         return _properties;
     }
@@ -147,7 +145,7 @@ protected:
     /**
      * 使用gid从tileset中取出一个图片显示
      */
-    CCSprite* createObject(int gid,const Vec2& position);
+    Sprite* createObject(int gid,const Vec2& position);
     
     /**
      * 处理扩展属性
@@ -169,7 +167,7 @@ protected:
     /**
      * 属性
      */
-    CCDictionary* _properties;
+	ValueMap _properties;
     
     /**
      * 地图类型，斜视角，直角，六角。

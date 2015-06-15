@@ -19,9 +19,6 @@ enum ObjectType
 ISOActiveSortLayer::ISOActiveSortLayer()
 :_occlusion(NULL)
 ,_staticRootNode(NULL)
-,_dynamicObjects(NULL)
-,_staticObjects(NULL)
-,_dynamicNodes(NULL)
 {
 	
 }
@@ -30,9 +27,6 @@ ISOActiveSortLayer::~ISOActiveSortLayer()
 {
     CC_SAFE_RELEASE_NULL(_occlusion);
     CC_SAFE_RELEASE_NULL(_staticRootNode);
-    CC_SAFE_RELEASE_NULL(_staticObjects);
-    CC_SAFE_RELEASE_NULL(_dynamicObjects);
-    CC_SAFE_RELEASE_NULL(_dynamicNodes);
 }
 
 bool ISOActiveSortLayer::init()
@@ -41,13 +35,7 @@ bool ISOActiveSortLayer::init()
         
         _occlusion=new SortZIndex();
         _occlusion->init();
-        
-        _dynamicObjects=new CCArray();
-        
-        _staticObjects=new CCArray();
-        
-        _dynamicNodes=new CCArray();
-        
+               
         return true;
     }
     
@@ -82,18 +70,17 @@ void ISOActiveSortLayer::releaseLayer()
 
 void ISOActiveSortLayer::setupObjects()
 {
-    if (_objects) {
-        Ref* pObj=NULL;
-        ISOObjectInfo* mapObject=NULL;
-        CCARRAY_FOREACH(_objects, pObj){
-            mapObject=static_cast<ISOObjectInfo*>(pObj);
-            if (mapObject->getGid()!=0 && mapObject->getVisible()) {
-                
-                CCSprite* mapObjectSprite=createObject(mapObject->getGid(), mapObject->getPosition());
-                
-                addToOcclusion(mapObjectSprite,mapObject);
-            }
-        }
+    if (!_objects.empty()) {
+		ISOObjectInfo* objInfo = NULL;
+		for (ISOObjectInfoVector::iterator iter = _objects.begin(); iter != _objects.end(); ++iter){
+			objInfo = *iter;
+			if (objInfo->getGid() != 0 && objInfo->getVisible()) {
+
+				Sprite* mapObjectSprite = createObject(objInfo->getGid(), objInfo->getPosition());
+
+				addToOcclusion(mapObjectSprite, objInfo);
+			}
+		}
         
         //保存当前的静态物体的遮挡关系树
         setStaticRootNode(_occlusion->getRootNode()->clone());
@@ -104,7 +91,7 @@ void ISOActiveSortLayer::setupObjects()
 }
 
 //对象添加到遮挡处理器中
-void ISOActiveSortLayer::addToOcclusion(CCNode* mapObject,ISOObjectInfo* mapObjectDef)
+void ISOActiveSortLayer::addToOcclusion(Node* mapObject,ISOObjectInfo* mapObjectDef)
 {
     //取得对象的类型
     std::string objectTypeStr=mapObjectDef->getType();
@@ -117,13 +104,13 @@ void ISOActiveSortLayer::addToOcclusion(CCNode* mapObject,ISOObjectInfo* mapObje
     //按对象类型处理元素
     switch (objectType) {
         case kObjectTypeStatic:
-            _staticObjects->addObject(mapObject);
+            _staticObjects.pushBack(mapObject);
             _occlusion->insert(createSortZIndexNode(mapObject, mapObjectDef));
             break;
             
         case kObjectTypeDynamic:
-            _dynamicObjects->addObject(mapObject);
-            _dynamicNodes->addObject(createSortZIndexNode(mapObject, mapObjectDef));
+            _dynamicObjects.pushBack(mapObject);
+            _dynamicNodes.pushBack(createSortZIndexNode(mapObject, mapObjectDef));
             break;
         default:
             break;
@@ -145,25 +132,24 @@ SortZIndexNode* ISOActiveSortLayer::createSortZIndexNode(CCNode* mapObject,ISOOb
 //更新动态物体的ZOrder
 void ISOActiveSortLayer::updateDynamicObjectsZOrder(bool updateNode)
 {
-    Ref* pObj=NULL;
     SortZIndexNode* node=NULL;
-    CCNode* mapObject=NULL;
+    Node* mapObject=NULL;
     
-    CCARRAY_FOREACH(_dynamicNodes, pObj){
-        node=static_cast<SortZIndexNode*>(pObj);
-        if (updateNode) {
-            mapObject=static_cast<CCNode*>(node->getEntity());
-            CCRect nodeRect=node->getRect();
-            
-            node->reset();
-            node->setEntity(mapObject);
-            
-            //更新位置，直接把屏幕坐标转成地图坐标，根据不同的实现，这里可能不同
-            nodeRect.origin=YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(mapObject->getPosition()));
-            node->setRect(nodeRect);
-        }
-        _occlusion->insert(node);
-    }
+	for (SortZIndexNodeVector::iterator iter = _dynamicNodes.begin(); iter != _dynamicNodes.end();++iter){
+		node = *iter;
+		if (updateNode) {
+			mapObject = static_cast<Node*>(node->getEntity());
+			Rect nodeRect = node->getRect();
+
+			node->reset();
+			node->setEntity(mapObject);
+
+			//更新位置，直接把屏幕坐标转成地图坐标，根据不同的实现，这里可能不同
+			nodeRect.origin = YHGE_ISO_COORD_TRANSLATE_WRAP(isoViewToGamePoint(mapObject->getPosition()));
+			node->setRect(nodeRect);
+		}
+		_occlusion->insert(node);
+	}
 }
 
 NS_CC_YHGE_ISOMETRIC_END

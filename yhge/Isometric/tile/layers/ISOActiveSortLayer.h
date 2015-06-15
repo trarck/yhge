@@ -18,7 +18,9 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 class ISOActiveSortLayer : public ISOActiveLayer {
 
 public:
-	
+	typedef Vector<Node*> MapObjectVector;
+	typedef Vector<SortZIndexNode*> SortZIndexNodeVector;
+
 	ISOActiveSortLayer();
     
 	virtual ~ISOActiveSortLayer(void);
@@ -57,26 +59,22 @@ public:
         return _occlusion;
     }
     
-    inline void setStaticObjects(CCArray* staticObjects)
+	inline void setStaticObjects(const MapObjectVector& staticObjects)
     {
-        CC_SAFE_RETAIN(staticObjects);
-        CC_SAFE_RELEASE(_staticObjects);
         _staticObjects = staticObjects;
     }
     
-    inline CCArray* getStaticObjects()
+	inline MapObjectVector& getStaticObjects()
     {
         return _staticObjects;
     }
     
-    inline void setDynamicObjects(CCArray* dynamicObjects)
+	inline void setDynamicObjects(const MapObjectVector& dynamicObjects)
     {
-        CC_SAFE_RETAIN(dynamicObjects);
-        CC_SAFE_RELEASE(_dynamicObjects);
         _dynamicObjects = dynamicObjects;
     }
     
-    inline CCArray* getDynamicObjects()
+	inline MapObjectVector& getDynamicObjects()
     {
         return _dynamicObjects;
     }
@@ -93,14 +91,12 @@ public:
         return _staticRootNode;
     }
     
-    inline void setDynamicNodes(CCArray* dynamicNodes)
+	inline void setDynamicNodes(const SortZIndexNodeVector& dynamicNodes)
     {
-        CC_SAFE_RETAIN(dynamicNodes);
-        CC_SAFE_RELEASE(_dynamicNodes);
         _dynamicNodes = dynamicNodes;
     }
     
-    inline CCArray* getDynamicNodes()
+	inline SortZIndexNodeVector& getDynamicNodes()
     {
         return _dynamicNodes;
     }
@@ -108,10 +104,10 @@ public:
 protected:
     
     //对象添加到遮挡处理器中
-    virtual void addToOcclusion(CCNode* mapObject,ISOObjectInfo* mapObjectDef);
+    virtual void addToOcclusion(Node* mapObject,ISOObjectInfo* mapObjectDef);
     
     //创建排序结点
-    virtual SortZIndexNode* createSortZIndexNode(CCNode* mapObject,ISOObjectInfo* mapObjectDef);
+    virtual SortZIndexNode* createSortZIndexNode(Node* mapObject,ISOObjectInfo* mapObjectDef);
     
     //更新动态物体的ZOrder
     virtual void updateDynamicObjectsZOrder(bool updateNode=true);
@@ -125,13 +121,13 @@ protected:
     SortZIndexNode* _staticRootNode;
     
     //静态物体
-    CCArray* _staticObjects;
+	MapObjectVector _staticObjects;
     
     //动态物体
-    CCArray* _dynamicObjects;
+	MapObjectVector _dynamicObjects;
     
     //动态元素结点
-    CCArray* _dynamicNodes;
+	SortZIndexNodeVector _dynamicNodes;
 };
 
 
