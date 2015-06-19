@@ -14,9 +14,11 @@ class ISOTileLayer;
  * 动态更新组件
  * 根据Isometric.Game.Programming.with.DirectX.7描述的渲染地图扩展而成
  */
-class ISODynamicComponent : public CCNode {
+class ISODynamicComponent : public Node {
 
 public:
+
+	typedef Vector<ISOComponentNode*> ComponentNodeVecotr;
 	
 	ISODynamicComponent();
     
@@ -53,11 +55,11 @@ public:
     
     virtual void initComponents();
     
-    virtual void setucomponents();
+    virtual void setupComponents();
     
-    virtual void setucomponents(const Vec2& position);
+    virtual void setupComponents(const Vec2& position);
     
-    virtual CCArray* getComponents();
+	virtual ComponentNodeVecotr& getComponents();
 
     virtual void inioffset(const Vec2& offset);
     
@@ -104,8 +106,7 @@ protected:
     //x,y增加相同的格子数
     int _iComponentNodeExtendCount;
     
-	//ISOComponentNode** _components;
-	CCArray* _components;
+	ComponentNodeVecotr _components;
     
     /**
      * 地图的偏移量。屏幕坐标

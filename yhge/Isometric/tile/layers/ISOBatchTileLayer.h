@@ -31,13 +31,13 @@ public:
     
     void setTileGID(unsigned int gid, const Vec2& pos);
     
-    void removeChild(CCNode* node, bool cleanup);
+    void removeChild(Node* node, bool cleanup);
     
     /**
      * 获取tile
      */
     
-	virtual CCSprite* tileSpriteAt(const Vec2& pos);
+	virtual Sprite* tileSpriteAt(const Vec2& pos);
     
     /**
      * 删除tile
@@ -74,31 +74,31 @@ protected:
     /**
      * 设置tile
      */
-    void setupTileSprite(CCSprite* sprite, Vec2 mapCoord, unsigned int gid);
-    CCSprite* reusedTileWithRect(CCRect rect);
+    void setupTileSprite(Sprite* sprite, Vec2 mapCoord, unsigned int gid);
+    Sprite* reusedTileWithRect(const Rect& rect);
     
-    CCSprite* appendTileForGID(unsigned int gid, const Vec2& pos);
-    CCSprite* insertTileForGID(unsigned int gid, const Vec2& pos);
-    CCSprite* updateTileForGID(unsigned int gid, const Vec2& pos);
+    Sprite* appendTileForGID(unsigned int gid, const Vec2& pos);
+    Sprite* insertTileForGID(unsigned int gid, const Vec2& pos);
+    Sprite* updateTileForGID(unsigned int gid, const Vec2& pos);
     
     unsigned int atlasIndexForExistantZ(unsigned int z);
     unsigned int atlasIndexForNewZ(int z);
     
-    void addQuadFromSprite(CCSprite *sprite, unsigned int index);
-    void addSpriteWithoutQuad(CCSprite*child, unsigned int z, int aTag);
+    void addQuadFromSprite(Sprite *sprite, unsigned int index);
+    void addSpriteWithoutQuad(Sprite*child, unsigned int z, int aTag);
     
 protected:
 
     //对于多个tileSet的支持。这样就不能使用batch node。所以最好一个layer使用一个tileSet
     ISOTileset* _tileset;
     
-    CCSpriteBatchNode* _spriteBatchNode;
+    SpriteBatchNode* _spriteBatchNode;
     
     unsigned int        _minGID;
     unsigned int        _maxGID;
        
     //! used for optimization
-    CCSprite*           _reusedTile;
+    Sprite*           _reusedTile;
     yhge::ccCArray*           _atlasIndexArray;
     
     // used for retina display

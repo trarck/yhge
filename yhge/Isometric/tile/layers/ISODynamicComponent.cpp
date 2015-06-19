@@ -1,5 +1,5 @@
 ﻿#include "ISODynamicComponent.h"
-#include <yhge/CocosExt/CCDefaultTexture.h>
+#include <yhge/CocosExt/DefaultTexture.h>
 #include <yhge/Isometric/CoordinateFormulae.h>
 #include "../base/ISOTile.h"
 #include "ISOTileLayer.h"
@@ -11,8 +11,7 @@ static const int kComponentExtendCount=2;
 //const Size testSize=CCSizeMake(256,160);
 
 ISODynamicComponent::ISODynamicComponent()
-:_components(NULL)
-,_iStartX(0)
+:_iStartX(0)
 ,_iStartY(0)
 ,_iLastStartX(-999999)
 ,_iLastStartY(-999999)
@@ -33,7 +32,7 @@ ISODynamicComponent::ISODynamicComponent()
 
 ISODynamicComponent::~ISODynamicComponent()
 {
-	CC_SAFE_RELEASE_NULL(_components);
+
 }
 
 bool ISODynamicComponent::init()
@@ -45,26 +44,26 @@ void ISODynamicComponent::createComponents()
 {
 	int totalColumn=2*_iComponentTileColumn;
 	int totalRow=2*_iComponentTileRow;
-	_components=new CCArray(totalColumn*totalRow);
+	_components = ComponentNodeVecotr(totalColumn*totalRow);
     
 	//使用数组在win32下第二次加载地图过程会变更很慢.
     //由于在sprite初始化的时候会设置默认texture.而这个texture的获取要调用CCFileUtils里的fullPathForFilename，
     //而fullPathForFilename最终会调用CCFileUtilsWin32的isFileExist，进而又会调用windows的api的GetFileAttributesA。
     //如果同时大量调用GetFileAttributesA，性能会下将。
     //因此最好不要同时大量初始化默认sprite
-    CCTexture2D* defaultTexture=CCDefaultTexture::getInstance()->getTexture();
+    Texture2D* defaultTexture=DefaultTexture::getInstance()->getTexture();
 	ISOComponentNode* node=NULL;
     for(int j=0;j<totalRow;j++){
 		for(int i=0;i<_iComponentTileColumn;i++){
             //CCLOG("cc:%d,%d",i,j);
-			node=new ISOComponentNode();
-            node->initWithTexture(defaultTexture);
+			node = ISOComponentNode::createWithTexture(defaultTexture);//new ISOComponentNode();
+            //node->initWithTexture(defaultTexture);
 			node->setColumn(i*2+(j&1));
 			node->setRow(j);
 			node->setAnchorPoint(ccp(0.5f,0.0f));
-            _components->addObject(node);
+            _components.pushBack(node);
             _tileLayer->addChild(node);
-			node->release();
+			//node->release();
 		}
 		//if(j&1){
 		//	//奇
@@ -105,7 +104,7 @@ void ISODynamicComponent::initComponents()
             row=j;
             index=j*_iComponentTileColumn+col/2;
             
-			node=(ISOComponentNode*)_components->objectAtIndex(j*_iComponentTileColumn+col/2);
+			node=_components.at(j*_iComponentTileColumn+col/2);
             mx=startX+i;
             my=startY-i;
             updateNode(node, mx, my);
@@ -264,7 +263,7 @@ void ISODynamicComponent::updateMapCoordinate(unsigned int nodeIndex,float delta
 
 void ISODynamicComponent::updateNodeBy(unsigned int nodeIndex,float deltaMapX,float deltaMapY)
 {
-	ISOComponentNode* node=(ISOComponentNode*) _components->objectAtIndex(nodeIndex);
+	ISOComponentNode* node= _components.at(nodeIndex);
     float mx=node->getMapX();
     float my=node->getMapY();
     float newMx=mx+deltaMapX;
@@ -311,7 +310,7 @@ void ISODynamicComponent::calcComponentsCount()
 	CCLOG("calcComponentsCount:%d,%d",_iComponentTileColumn,_iComponentTileRow);
 }
 
-void ISODynamicComponent::setucomponents()
+void ISODynamicComponent::setupComponents()
 {
 	struct timeval start;
 	struct timeval end;
@@ -342,14 +341,14 @@ void ISODynamicComponent::setucomponents()
 }
 
 
-void ISODynamicComponent::setucomponents(const Vec2& position)
+void ISODynamicComponent::setupComponents(const Vec2& position)
 {
     this->inioffset(position);
-    setucomponents();
+    setupComponents();
 }
 
 
-CCArray* ISODynamicComponent::getComponents(){
+ISODynamicComponent::ComponentNodeVecotr& ISODynamicComponent::getComponents(){
     return _components;
 }
 

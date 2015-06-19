@@ -18,6 +18,8 @@ public:
     
     void updateMapCoordinate(float mapX,float mapY);
     
+	static ISOComponentNode* createWithTexture(Texture2D* texture);
+
 	//void draw();
 
     inline void changeZOrder(int z){

@@ -39,4 +39,13 @@ void ISOComponentNode::updateMapCoordinate(float mapX,float mapY)
 //	ccDrawRect(ccp(0,0),ccp(_obContentSize.width,_obContentSize.height));
 //}
 
+ISOComponentNode* ISOComponentNode::createWithTexture(Texture2D* texture)
+{
+	ISOComponentNode *componentNode = new (std::nothrow) ISOComponentNode();
+	componentNode->initWithTexture(texture);
+	componentNode->autorelease();
+
+	return componentNode;
+}
+
 NS_CC_YHGE_ISOMETRIC_END

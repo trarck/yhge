@@ -56,19 +56,17 @@ void ISOBatchTileLayer::setutiles()
     float totalNumberOfTiles = _layerSize.width * _layerSize.height;
     float capacity = totalNumberOfTiles * 0.35f + 1; // 35 percent is occupied ?
     
-    CCTexture2D *texture = _tileset->getTexture();
+    Texture2D *texture = _tileset->getTexture();
     
 
     CCAssert(texture, "Texture is null");
 
-    _spriteBatchNode=new CCSpriteBatchNode();
-    
-    if (_spriteBatchNode->initWithTexture(texture, (unsigned int)capacity))
-    {               
-        _atlasIndexArray = yhge::ccCArrayNew((unsigned int)totalNumberOfTiles);
-        
-        this->setContentSize(CCSizeMake(_layerSize.width * _mapTileSize.width, _layerSize.height * _mapTileSize.height));
-    }
+	_spriteBatchNode = SpriteBatchNode::createWithTexture(texture, (unsigned int)capacity);//new SpriteBatchNode();
+	_spriteBatchNode->retain();
+
+	_atlasIndexArray = yhge::ccCArrayNew((unsigned int)totalNumberOfTiles);
+
+	this->setContentSize(Size(_layerSize.width * _mapTileSize.width, _layerSize.height * _mapTileSize.height));
 
     _spriteBatchNode->getTextureAtlas()->getTexture()->setAliasTexParameters();
  
@@ -105,7 +103,7 @@ void ISOBatchTileLayer::setutiles()
     addChild(_spriteBatchNode);
 }
 
-void ISOBatchTileLayer::setupTileSprite(CCSprite* sprite, Vec2 mapCoord, unsigned int gid)
+void ISOBatchTileLayer::setupTileSprite(Sprite* sprite, Vec2 mapCoord, unsigned int gid)
 {
     sprite->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(mapCoord)));
     sprite->setVertexZ((float)this->vertexZForPos(mapCoord));
@@ -161,23 +159,24 @@ void ISOBatchTileLayer::setupTileSprite(CCSprite* sprite, Vec2 mapCoord, unsigne
     }
 }
 
-CCSprite* ISOBatchTileLayer::reusedTileWithRect(CCRect rect)
+Sprite* ISOBatchTileLayer::reusedTileWithRect(const Rect& rect)
 {
     if (! _reusedTile)
     {
-        _reusedTile = new CCSprite();
-        _reusedTile->initWithTexture(_spriteBatchNode->getTextureAtlas()->getTexture(), rect, false);
+		_reusedTile = Sprite::createWithTexture(_spriteBatchNode->getTextureAtlas()->getTexture(), rect, false);//new Sprite();
+        //_reusedTile->initWithTexture(_spriteBatchNode->getTextureAtlas()->getTexture(), rect, false);
+		_reusedTile->retain();
         _reusedTile->setBatchNode(_spriteBatchNode);
     }
     else
     {
-        // XXX: should not be re-init. Potential memory leak. Not following best practices
-        // XXX: it shall call directory  [setRect:rect]
-        _reusedTile->initWithTexture(_spriteBatchNode->getTextureAtlas()->getTexture(), rect, false);
-        
-        // Since initWithTexture resets the batchNode, we need to re add it.
-        // but should be removed once initWithTexture is not called again
-        _reusedTile->setBatchNode(_spriteBatchNode);
+		_reusedTile->setBatchNode(nullptr);
+
+		// Re-init the sprite
+		_reusedTile->setTextureRect(rect, false, rect.size);
+
+		// restore the batch node
+		_reusedTile->setBatchNode(_spriteBatchNode);
     }
     
     return _reusedTile;
@@ -189,31 +188,31 @@ CCSprite * ISOBatchTileLayer::tileSpriteAt(const Vec2& pos)
     CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer: invalid position");
     CCAssert(_tiles && _atlasIndexArray, "ISOTileLayer: the tiles map has been released");
     
-    CCSprite *tile = NULL;
+    Sprite *tile = NULL;
     unsigned int gid = this->tileGIDAt(pos);
     
     // if GID == 0, then no tile is present
     if (gid)
     {
         int z = zOrderForPos(pos);
-        tile = (CCSprite*) this->getChildByTag(z);
+        tile = (Sprite*) this->getChildByTag(z);
         
         // tile not created yet. create it
         if (! tile)
         {
-            CCRect rect = _tileset->rectForGid(gid);
+            Rect rect = _tileset->rectForGid(gid);
             
-            tile = new CCSprite();
-            tile->initWithTexture(_spriteBatchNode->getTexture(), rect);
+			tile = Sprite::createWithTexture(_spriteBatchNode->getTexture(), rect);
+            //tile->retain();
             tile->setBatchNode(_spriteBatchNode);
             tile->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(pos)));
             tile->setVertexZ((float)vertexZForPos(pos));
-            tile->setAnchorPoint(CCPointZero);
+            tile->setAnchorPoint(Vec2::ZERO);
             tile->setOpacity(_opacity);
             
             unsigned int indexForZ = this->atlasIndexForExistantZ(z);
             this->addSpriteWithoutQuad(tile, indexForZ, z);
-            tile->release();
+            //tile->release();
         }
     }
     
@@ -222,13 +221,13 @@ CCSprite * ISOBatchTileLayer::tileSpriteAt(const Vec2& pos)
 
 
 // ISOBatchTileLayer - adding helper methods
-CCSprite * ISOBatchTileLayer::insertTileForGID(unsigned int gid, const Vec2& pos)
+Sprite * ISOBatchTileLayer::insertTileForGID(unsigned int gid, const Vec2& pos)
 {
-    CCRect rect = _tileset->rectForGid(gid);
+    Rect rect = _tileset->rectForGid(gid);
     
 	int z=zOrderForPos(pos);
     
-    CCSprite *tile = reusedTileWithRect(rect);
+    Sprite *tile = reusedTileWithRect(rect);
     
     setupTileSprite(tile, pos, gid);
     
@@ -242,36 +241,33 @@ CCSprite * ISOBatchTileLayer::insertTileForGID(unsigned int gid, const Vec2& pos
     yhge::ccCArrayInsertValueAtIndex(_atlasIndexArray, (void*)z, indexForZ);
     
     // update possible children
-    CCArray* pChildren=_spriteBatchNode->getChildren();
-    if (pChildren && pChildren->count()>0)
-    {
-        Ref* pObject = NULL;
-        CCARRAY_FOREACH(pChildren, pObject)
-        {
-            CCSprite* pChild = (CCSprite*) pObject;
-            if (pChild)
-            {
-                unsigned int ai = pChild->getAtlasIndex();
-                if ( ai >= indexForZ )
-                {
-                    pChild->setAtlasIndex(ai+1);
-                }
-            }
-        }
-    }
+	Vector<Node*> children = _spriteBatchNode->getChildren();
+
+	for (Vector<Node*>::iterator iter = children.begin(); iter != children.end();++iter){
+		Sprite* child = (Sprite*)(*iter);
+		if (child)
+		{
+			unsigned int ai = child->getAtlasIndex();
+			if (ai >= indexForZ)
+			{
+				child->setAtlasIndex(ai + 1);
+			}
+		}
+	}
+
 	int tileIndex = indexForPos(pos);
     _tiles[tileIndex] = gid;
     return tile;
 }
 
-CCSprite * ISOBatchTileLayer::updateTileForGID(unsigned int gid, const Vec2& pos)
+Sprite * ISOBatchTileLayer::updateTileForGID(unsigned int gid, const Vec2& pos)
 {
-    CCRect rect = _tileset->rectForGid(gid);
+    Rect rect = _tileset->rectForGid(gid);
     rect = CCRectMake(rect.origin.x / _contentScaleFactor, rect.origin.y / _contentScaleFactor, rect.size.width/ _contentScaleFactor, rect.size.height/ _contentScaleFactor);
     
 	int z = zOrderForPos(pos);
     
-    CCSprite *tile = reusedTileWithRect(rect);
+    Sprite *tile = reusedTileWithRect(rect);
     
     setupTileSprite(tile ,pos ,gid);
     
@@ -289,13 +285,13 @@ CCSprite * ISOBatchTileLayer::updateTileForGID(unsigned int gid, const Vec2& pos
 
 // used only when parsing the map. useless after the map was parsed
 // since lot's of assumptions are no longer true
-CCSprite * ISOBatchTileLayer::appendTileForGID(unsigned int gid, const Vec2& pos)
+Sprite * ISOBatchTileLayer::appendTileForGID(unsigned int gid, const Vec2& pos)
 {
-    CCRect rect = _tileset->rectForGid(gid);
+    Rect rect = _tileset->rectForGid(gid);
     
     int z = zOrderForPos(pos);
     
-    CCSprite *tile = reusedTileWithRect(rect);
+    Sprite *tile = reusedTileWithRect(rect);
     
     setupTileSprite(tile ,pos ,gid);
     
@@ -333,7 +329,7 @@ void ISOBatchTileLayer::removeTileSpriteAt(const Vec2& pos)
         yhge::ccCArrayRemoveValueAtIndex(_atlasIndexArray, atlasIndex);
         
         // remove it from sprites and/or texture atlas
-        CCSprite *sprite = (CCSprite*)getChildByTag(z);
+        Sprite *sprite = (Sprite*)getChildByTag(z);
         if (sprite)
         {
             _spriteBatchNode->removeChild(sprite, true);
@@ -343,22 +339,19 @@ void ISOBatchTileLayer::removeTileSpriteAt(const Vec2& pos)
             _spriteBatchNode->getTextureAtlas()->removeQuadAtIndex(atlasIndex);
             
             // update possible children
-            CCArray* pChildren=_spriteBatchNode->getChildren();
-            if (pChildren && pChildren->count()>0)
-            {
-                Ref* pObject = NULL;
-                CCARRAY_FOREACH(pChildren, pObject)
+			Vector<Node*> children = _spriteBatchNode->getChildren();
+
+			for (Vector<Node*>::iterator iter = children.begin(); iter != children.end(); ++iter){
+                Sprite* pChild = (Sprite*) (*iter);
+                if (pChild)
                 {
-                    CCSprite* pChild = (CCSprite*) pObject;
-                    if (pChild)
+                    unsigned int ai = pChild->getAtlasIndex();
+                    if ( ai >= atlasIndex )
                     {
-                        unsigned int ai = pChild->getAtlasIndex();
-                        if ( ai >= atlasIndex )
-                        {
-                            pChild->setAtlasIndex(ai-1);
-                        }
+                        pChild->setAtlasIndex(ai-1);
                     }
                 }
+                
             }
         }
     }
@@ -416,10 +409,10 @@ void ISOBatchTileLayer::setTileGID(unsigned int gid, const Vec2& pos)
         {
             unsigned int tileIndex = indexForPos(pos);
             int z=zOrderForPos(pos);
-            CCSprite *sprite = (CCSprite*)_spriteBatchNode->getChildByTag(z);
+            Sprite *sprite = (Sprite*)_spriteBatchNode->getChildByTag(z);
             if (sprite)
             {
-                CCRect rect = _tileset->rectForGid(gid);
+                Rect rect = _tileset->rectForGid(gid);
                 
                 sprite->setTextureRect(rect, false, rect.size);
 
@@ -436,9 +429,9 @@ void ISOBatchTileLayer::setTileGID(unsigned int gid, const Vec2& pos)
 }
 
 
-void ISOBatchTileLayer::removeChild(CCNode* node, bool cleanup)
+void ISOBatchTileLayer::removeChild(Node* node, bool cleanup)
 {
-    CCSprite *sprite = (CCSprite*)node;
+    Sprite *sprite = (Sprite*)node;
     // allows removing nil objects
     if (! sprite)
     {
@@ -455,12 +448,12 @@ void ISOBatchTileLayer::removeChild(CCNode* node, bool cleanup)
     _spriteBatchNode->removeChild(sprite, cleanup);
 }
 
-void ISOBatchTileLayer::addQuadFromSprite(CCSprite *sprite, unsigned int index)
+void ISOBatchTileLayer::addQuadFromSprite(Sprite *sprite, unsigned int index)
 {
     CCAssert( sprite != NULL, "Argument must be non-NULL");
-    CCAssert( dynamic_cast<CCSprite*>(sprite), "CCSpriteBatchNode only supports CCSprites as children");
+    CCAssert( dynamic_cast<Sprite*>(sprite), "CCSpriteBatchNode only supports CCSprites as children");
     
-    CCTextureAtlas* pobTextureAtlas=_spriteBatchNode->getTextureAtlas();
+    TextureAtlas* pobTextureAtlas=_spriteBatchNode->getTextureAtlas();
     
     while(index >= pobTextureAtlas->getCapacity() || pobTextureAtlas->getCapacity() == pobTextureAtlas->getTotalQuads())
     {
@@ -482,35 +475,9 @@ void ISOBatchTileLayer::addQuadFromSprite(CCSprite *sprite, unsigned int index)
 }
 
 
-void ISOBatchTileLayer::addSpriteWithoutQuad(CCSprite*child, unsigned int z, int aTag)
+void ISOBatchTileLayer::addSpriteWithoutQuad(Sprite*child, unsigned int z, int aTag)
 {
-    CCAssert( child != NULL, "Argument must be non-NULL");
-    CCAssert( dynamic_cast<CCSprite*>(child), "CCSpriteBatchNode only supports CCSprites as children");
-    
-    // quad index is Z
-    child->setAtlasIndex(z);
-    
-    // XXX: optimize with a binary search
-    int i=0;
-    
-    CCArray* pobDescendants=_spriteBatchNode->getDescendants();
-    
-    Ref* pObject = NULL;
-    CCARRAY_FOREACH(pobDescendants, pObject)
-    {
-        CCSprite* pChild = (CCSprite*) pObject;
-        if (pChild && (pChild->getAtlasIndex() >= z))
-        {
-            ++i;
-        }
-    }
-    
-    pobDescendants->insertObject(child, i);
-    
-    // IMPORTANT: Call super, and not self. Avoid adding it to the texture atlas array
-    _spriteBatchNode->addChild(child, z, aTag);
-    //#issue 1262 don't use lazy sorting, tiles are added as quads not as sprites, so sprites need to be added in order
-    _spriteBatchNode->reorderBatch(false);
+	_spriteBatchNode->addSpriteWithoutQuad(child, z, aTag);
 }
 
 

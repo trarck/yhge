@@ -30,34 +30,31 @@ void ISOBatchDynamicComponent::createComponents()
 	int totalColumn=2*_iComponentTileColumn;
 	int totalRow=2*_iComponentTileRow;
 	unsigned int capacity=totalColumn*totalRow;
-	_components=new CCArray(totalColumn*totalRow);
+	_components=ISODynamicComponent::ComponentNodeVecotr(totalColumn*totalRow);
 
 	CCLOG("createComponents start:%d,%d",totalColumn,totalRow);
 
 	ISOBatchDynamicTileLayer* tileLayer=(ISOBatchDynamicTileLayer*)_tileLayer;
 	
-	CCTexture2D *texture = tileLayer->getTileset()->getTexture();
+	Texture2D *texture = tileLayer->getTileset()->getTexture();
     CCAssert(texture, "Texture is null");
 
-	_batchNode=new CCSpriteBatchNode();
-
-	if (!_batchNode->initWithTexture(texture, capacity))
-    {               
-        CCAssert(texture, "_batchNode->initWithTexture fail");
-    }
+	_batchNode = SpriteBatchNode::createWithTexture(texture, capacity);
+	//fuck new version private initXXX
+	_batchNode->retain();
     
 	ISOComponentNode* node;
     for(int j=0;j<totalRow;j++){
 		for(int i=0;i<_iComponentTileColumn;i++){
-			node=new ISOComponentNode();
-            node->initWithTexture(texture);
+			node = ISOComponentNode::createWithTexture(texture);// new ISOComponentNode();
+            //node->initWithTexture(texture);
 			node->setColumn(i*2+(j&1));
 			node->setRow(j);
 			node->setAnchorPoint(ccp(0.5f,0.0f));
-			_components->addObject(node);
+			_components.pushBack(node);
             _batchNode->addChild(node);
 			node->setBatchNode(_batchNode);
-			node->release();
+			//node->release();
 		}
     }
 	_tileLayer->addChild(_batchNode);
