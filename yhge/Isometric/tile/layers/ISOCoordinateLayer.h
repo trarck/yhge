@@ -6,28 +6,35 @@
 
 NS_CC_YHGE_ISOMETRIC_BEGIN
 
-class ISOCoordinateLayer: public CCLayer
+class ISOCoordinateLayer: public Layer
 {
 public:
 	ISOCoordinateLayer();
+	
+	ISOCoordinateLayer(int mapWidth, int mapHeight);
+
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();  
 
     // implement the "static node()" method manually
     CREATE_FUNC(ISOCoordinateLayer);
+
+	static ISOCoordinateLayer* create(int mapWidth, int mapHeight);
 	
-	virtual void draw();
+	virtual void show();
 
 	void showCoordinate(bool isShow);
 
-	virtual void setMapWidth(int iMapWidth);
+	virtual void setMapWidth(int mapWidth);
 	virtual int getMapWidth();
-	virtual void setMapHeight(int iMapHeight);
+	virtual void setMapHeight(int mapHeight);
 	virtual int getMapHeight();
 private:
-	int _iMapWidth;
-	int _iMapHeight;
+	int _mapWidth;
+	int _mapHeight;
 	bool _isShow;
+
+	DrawNode* _content;
 };
 
 NS_CC_YHGE_ISOMETRIC_END
