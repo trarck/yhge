@@ -27,9 +27,9 @@ ISOGroundTileLayer::~ISOGroundTileLayer()
 //    return true;
 //}
 
-void ISOGroundTileLayer::setutiles()
+void ISOGroundTileLayer::setupTiles()
 {
-    CCLOG("setutiles");
+    CCLOG("setupTiles");
     // Parse cocos2d properties
     this->parseInternalProperties();
     
@@ -62,7 +62,7 @@ void ISOGroundTileLayer::setutiles()
     }
 }
 
-void ISOGroundTileLayer::setupTileSprite(CCSprite* sprite, Vec2 mapCoord, unsigned int gid)
+void ISOGroundTileLayer::setupTileSprite(Sprite* sprite, Vec2 mapCoord, unsigned int gid)
 {
     sprite->setPosition(YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToViewPoint(mapCoord)));
     sprite->setVertexZ((float)this->vertexZForPos(mapCoord));
@@ -118,18 +118,18 @@ void ISOGroundTileLayer::setupTileSprite(CCSprite* sprite, Vec2 mapCoord, unsign
 }
 
 
-CCSprite * ISOGroundTileLayer::tileSpriteAt(const Vec2& pos)
+Sprite * ISOGroundTileLayer::tileSpriteAt(const Vec2& pos)
 {
     CCAssert(pos.x < _layerSize.width && pos.y < _layerSize.height && pos.x >=0 && pos.y >=0, "ISOTileLayer: invalid position");
     
-    CCSprite *tile = NULL;
+    Sprite *tile = NULL;
     unsigned int gid = this->tileGIDAt(pos);
     
     // if GID == 0, then no tile is present
     if (gid)
     {
         int z = (int)(pos.x + pos.y * _layerSize.width);
-        tile = (CCSprite*) this->getChildByTag(z);
+        tile = (Sprite*) this->getChildByTag(z);
         
         // tile not created yet. create it
         if (! tile)
@@ -166,10 +166,10 @@ void ISOGroundTileLayer::removeTileSpriteAt(const Vec2& pos)
 }
 
 // ISOGroundTileLayer - adding helper methods
-CCSprite * ISOGroundTileLayer::insertTileForGID(unsigned int gid, const Vec2& pos)
+Sprite * ISOGroundTileLayer::insertTileForGID(unsigned int gid, const Vec2& pos)
 {
     ISOTileset* tileset=_tileMap->getTilesetGroup()->getTilesetByGid(gid);
-    CCSprite *tile = tileset->tileSpriteForGid(gid);
+    Sprite *tile = tileset->tileSpriteForGid(gid);
     
     int z = (int)(pos.x + pos.y * _layerSize.width);
     
@@ -179,14 +179,14 @@ CCSprite * ISOGroundTileLayer::insertTileForGID(unsigned int gid, const Vec2& po
     return tile;
 }
 
-CCSprite * ISOGroundTileLayer::updateTileForGID(unsigned int gid, const Vec2& pos)
+Sprite * ISOGroundTileLayer::updateTileForGID(unsigned int gid, const Vec2& pos)
 {
     int z = (int)(pos.x + pos.y * _layerSize.width);
 
     this->removeChildByTag(z, true);
   
     ISOTileset* tileset=_tileMap->getTilesetGroup()->getTilesetByGid(gid);
-    CCSprite *newTile = tileset->tileSpriteForGid(gid);
+    Sprite *newTile = tileset->tileSpriteForGid(gid);
     
     setupTileSprite(newTile ,pos ,gid);
 
@@ -199,7 +199,7 @@ CCSprite * ISOGroundTileLayer::updateTileForGID(unsigned int gid, const Vec2& po
 
 // used only when parsing the map. useless after the map was parsed
 // since lot's of assumptions are no longer true
-CCSprite * ISOGroundTileLayer::appendTileForGID(unsigned int gid, const Vec2& pos)
+Sprite * ISOGroundTileLayer::appendTileForGID(unsigned int gid, const Vec2& pos)
 {
 //    CCLOG("appendTileForGID[%s]:%d,%f,%f,z:%.9lf",_layerName.c_str(),gid,pos.x,pos.y,this->vertexZForPos(pos));
 
@@ -209,7 +209,7 @@ CCSprite * ISOGroundTileLayer::appendTileForGID(unsigned int gid, const Vec2& po
     
     ISOTile* tile=tileset->tileForGid(gid);
    
-    CCSprite* tileSprite=CCSprite::createWithTexture(tile->getTexture(), tile->getTextureRect());
+    Sprite* tileSprite=Sprite::createWithTexture(tile->getTexture(), tile->getTextureRect());
     setupTileSprite(tileSprite ,pos ,gid);
     this->addChild(tileSprite,-z,z);
     

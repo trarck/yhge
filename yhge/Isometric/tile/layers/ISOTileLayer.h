@@ -119,9 +119,9 @@ public:
     /**
      * 获取tile sprite
      */
-	virtual CCSprite* tileSpriteAt(float x,float y);
+	virtual Sprite* tileSpriteAt(float x,float y);
     
-	virtual CCSprite* tileSpriteAt(const Vec2& pos);
+	virtual Sprite* tileSpriteAt(const Vec2& pos);
     
     /**
      * 删除tile sprite

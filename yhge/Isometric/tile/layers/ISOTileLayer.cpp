@@ -50,7 +50,7 @@ ISOTileLayer::~ISOTileLayer()
 //}
 
 
-void ISOTileLayer::inioffset(const Vec2& offset)
+void ISOTileLayer::initOffset(const Vec2& offset)
 {
 //    this->setPosition(offset);
 	this->setOffset(offset);
@@ -59,7 +59,7 @@ void ISOTileLayer::inioffset(const Vec2& offset)
 	_startY=(int)startMapCoord.y;
 }
 
-void ISOTileLayer::inioffset(float x,float y)
+void ISOTileLayer::initOffset(float x,float y)
 {
 	this->inioffset(ccp(x,y));
 }
@@ -247,12 +247,12 @@ unsigned int* ISOTileLayer::getTiles()
 /**
  * 获取tile
  */
-CCSprite* ISOTileLayer::tileSpriteAt(float x,float y)
+Sprite* ISOTileLayer::tileSpriteAt(float x,float y)
 {
     return tileSpriteAt(ccp(x,y));
 }
 
-CCSprite* ISOTileLayer::tileSpriteAt(const Vec2& pos)
+Sprite* ISOTileLayer::tileSpriteAt(const Vec2& pos)
 {
     CCSprite* sprite=NULL;
     

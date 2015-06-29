@@ -14,7 +14,8 @@ class ISOTileMap;
 class ISODynamicGroup : public Ref {
 
 public:
-	
+	typedef Vector<ISODynamicComponent*> ISODynamicComponentVector;
+
 	ISODynamicGroup();
     
 	~ISODynamicGroup(void);
@@ -99,14 +100,12 @@ public:
 		return _offset;
 	}
 
-	void setDynamiceComponentList(CCArray* dynamiceComponentList)
+	void setDynamiceComponentList(const ISODynamicComponentVector& dynamiceComponentList)
 	{
-		CC_SAFE_RETAIN(dynamiceComponentList);
-		CC_SAFE_RELEASE(_dynamiceComponentList);
 		_dynamiceComponentList = dynamiceComponentList;
 	}
 
-	CCArray* getDynamiceComponentList()
+	ISODynamicComponentVector& getDynamiceComponentList()
 	{
 		return _dynamiceComponentList;
 	}
@@ -146,7 +145,7 @@ protected:
     int _iComponentNodeExtendCount;
     
 	//需要更新的动态组件组
-	CCArray* _dynamiceComponentList;
+	ISODynamicComponentVector _dynamiceComponentList;
     
     /**
      * 地图的偏移量。屏幕坐标。

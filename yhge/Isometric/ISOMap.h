@@ -15,7 +15,7 @@ class ISOLayer;
 /**
  *
  */
-class ISOMap : public CCNode{
+class ISOMap : public Node{
 
 public:
 

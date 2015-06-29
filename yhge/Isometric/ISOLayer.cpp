@@ -7,8 +7,7 @@ ISOLayer::ISOLayer()
 :_layerName("")
 ,_layerSize(CCSizeZero)
 ,_mapTileSize(CCSizeZero)
-,_offset(CCPointZero)
-,_properties(NULL)
+,_offset(Vec2::ZERO)
 ,_opacity(255)
 ,_map(NULL)
 ,_layerOrientation(0)
@@ -21,13 +20,11 @@ ISOLayer::ISOLayer()
 
 ISOLayer::~ISOLayer()
 {
-    CC_SAFE_RELEASE_NULL(_properties);
+
 }
 
 bool ISOLayer::init()
-{
-    _properties=new CCDictionary();
-    
+{   
 	return true;
 }
 

@@ -73,9 +73,6 @@ ISOMap* ISOMap::createWithJSON(const char* jsonString, const char* resourcePath)
 bool ISOMap::init()
 {
     
-    _properties=new CCDictionary();
-    _layers=new CCArray();
-    
     _visibleSize=CCDirector::sharedDirector()->getWinSize();//CCSizeMake(480,320);
 
 	return true;
@@ -132,22 +129,20 @@ ISOLayer * ISOMap::layerNamed(const std::string& layerName)
 {
     CCAssert(layerName!="", "Invalid layer name!");
     
-    if (_layers && _layers->count()>0){
+    if (_layers.size()>0){
         
-        Ref* pObj = NULL;
         ISOLayer* layer =NULL;
-        
-        CCARRAY_FOREACH(_layers, pObj)
-        {
-            layer = dynamic_cast<ISOLayer*>(pObj);
-            if(layer)
-            {
-                if(layerName==layer->getLayerName())
-                {
-                    return layer;
-                }
-            }
-        }
+
+		for (LayerVector::iterator iter = _layers.begin(); iter != _layers.end(); ++iter){
+			layer = *iter;
+			if (layer)
+			{
+				if (layerName == layer->getLayerName())
+				{
+					return layer;
+				}
+			}
+		}
     }
     
     // layer not found
@@ -169,8 +164,10 @@ void ISOMap::scrollLayer(const Vec2& pos)
     Ref* pObj=NULL;
     ISOLayer* layer=NULL;
 
-    CCARRAY_FOREACH(_layers, pObj){
-        layer=(ISOLayer*) pObj;
+	ISOLayer* layer = NULL;
+
+	for (LayerVector::iterator iter = _layers.begin(); iter != _layers.end(); ++iter){
+        layer=*iter;
         layer->scroll(localPos);
     }
 }

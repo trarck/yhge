@@ -68,7 +68,7 @@ protected:
     /**
      * 使用gid从tileset中取出一个图片显示
      */
-    CCSprite* createObject(int gid,const Vec2& coord);
+    Sprite* createObject(int gid,const Vec2& coord);
     
     /**
      * 处理扩展属性

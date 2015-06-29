@@ -29,7 +29,7 @@ public:
      * 获取tile
      */
     
-	virtual CCSprite* tileSpriteAt(const Vec2& pos);
+	virtual Sprite* tileSpriteAt(const Vec2& pos);
     
     /**
      * 删除tile
@@ -38,11 +38,11 @@ public:
 
 public:
         
-    void setTileSet(ISOTilesetInfo* pTileSet);
-    ISOTilesetInfo* getTileSet();
-    
-    void setTileSets(CCArray* pTileSets);
-    CCArray* getTileSets();
+    //void setTileSet(ISOTilesetInfo* pTileSet);
+    //ISOTilesetInfo* getTileSet();
+    //
+    //void setTileSets(CCArray* pTileSets);
+    //CCArray* getTileSets();
 
 
 protected:
@@ -50,30 +50,30 @@ protected:
     /**
      * 添加tile
      */
-	CCSprite* appendTile(unsigned int gid, const Vec2& pos);
-    CCSprite* appendTile(unsigned int gid, float x,float y);
+	Sprite* appendTile(unsigned int gid, const Vec2& pos);
+    Sprite* appendTile(unsigned int gid, float x,float y);
     
     /**
      * 插入tile
      */
-    CCSprite* insertTile(unsigned int gid, const Vec2& pos);
-    CCSprite* insertTile(unsigned int gid, float x,float y);
+    Sprite* insertTile(unsigned int gid, const Vec2& pos);
+    Sprite* insertTile(unsigned int gid, float x,float y);
     
     /**
      * 更新tile
      */
-    CCSprite* updateTile(unsigned int gid, const Vec2& pos);
-    CCSprite* updateTile(unsigned int gid, float x,float y);
+    Sprite* updateTile(unsigned int gid, const Vec2& pos);
+    Sprite* updateTile(unsigned int gid, float x,float y);
     
    
     /**
      * 设置tile
      */
-    void setupTileSprite(CCSprite* sprite, Vec2 mapCoord, unsigned int gid);
+    void setupTileSprite(Sprite* sprite, Vec2 mapCoord, unsigned int gid);
     
-    CCSprite* appendTileForGID(unsigned int gid, const Vec2& pos);
-    CCSprite* insertTileForGID(unsigned int gid, const Vec2& pos);
-    CCSprite* updateTileForGID(unsigned int gid, const Vec2& pos);
+    Sprite* appendTileForGID(unsigned int gid, const Vec2& pos);
+    Sprite* insertTileForGID(unsigned int gid, const Vec2& pos);
+    Sprite* updateTileForGID(unsigned int gid, const Vec2& pos);
     
 protected:
 

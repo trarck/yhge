@@ -51,9 +51,9 @@ public:
     /**
      * test bounding
      */
-    virtual void draw();
+	virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags);
         
-    CCSprite* createTile();
+    Sprite* createTile();
 
 public:
     

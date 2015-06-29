@@ -72,20 +72,20 @@ void ISODynamicTileLayer::setComponentColumnAndRow()
 
 }
 
-void ISODynamicTileLayer::draw()
+void ISODynamicTileLayer::draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
 {
 	
-	ccDrawColor4B(255,0,0,255);
-    
-    Size visibleSize=_tileMap->getVisibleSize();
-    
-    ccDrawRect(_offset,ccp(_offset.x+visibleSize.width,_offset.y+visibleSize.height));
+	//ccDrawColor4B(255,0,0,255);
+ //   
+ //   Size visibleSize=_tileMap->getVisibleSize();
+ //   
+ //   ccDrawRect(_offset,ccp(_offset.x+visibleSize.width,_offset.y+visibleSize.height));
 }
 
 
 void ISODynamicTileLayer::scroll(const Vec2& offset)
 {
-    this->seoffset(offset);
+    this->setOffset(offset);
 	_dynamicComponent->scroll(offset);
 }
 
@@ -101,9 +101,9 @@ ISODynamicComponent* ISODynamicTileLayer::getDynamicComponent()
     return _dynamicComponent;
 }
 
-CCSprite* ISODynamicTileLayer::createTile()
+Sprite* ISODynamicTileLayer::createTile()
 {
-    CCSprite* cellTile=CCSprite::create("grid_ground.png");
+    Sprite* cellTile=Sprite::create("grid_ground.png");
     cellTile->setAnchorPoint(ccp(0.5,0));
     //    cellTile->setOpacity(60);
     this->addChild(cellTile);

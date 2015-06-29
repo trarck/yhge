@@ -9,6 +9,7 @@ ISOCoordinateLayer::ISOCoordinateLayer()
 :_mapWidth(0)
 ,_mapHeight(0)
 ,_isShow(true)
+,_content(NULL)
 {
 
 }
@@ -17,6 +18,7 @@ ISOCoordinateLayer::ISOCoordinateLayer(int mapWidth, int mapHeight)
 :_mapWidth(mapWidth)
 , _mapHeight(mapHeight)
 , _isShow(true)
+, _content(NULL)
 {
 
 }
@@ -31,6 +33,9 @@ bool ISOCoordinateLayer::init()
         return false;
     }
 
+	_content = DrawNode::create();
+
+	addChild(_content);
 
     return true;
 }
@@ -57,6 +62,7 @@ void ISOCoordinateLayer::show()
 		int i,j;
 		Vec2 to;
 		Vec2 from;
+		Color4F color = Color4F(1.0f,0,0,1.0f);
 
 		ccDrawColor4B(255,0,0,255);
 		//draw xias
@@ -64,14 +70,14 @@ void ISOCoordinateLayer::show()
 			from=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(i,0));
 			to=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(i,_mapHeight));
 			
-			ccDrawLine( from, to );
+			_content->drawLine(from, to, color);
 		}
 		//draw yias
 		for(j=0;j<=_mapHeight;j++){
 			from=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(0,j));
 			to=YHGE_ISO_COORD_TRANSLATE_WRAP(isoGameToView2F(_mapWidth,j));
 			
-			ccDrawLine( from, to );
+			_content->drawLine(from, to, color);
 		}
 	}
 }

@@ -10,8 +10,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 static const int kComponentExtendCount=2;
 
 ISODynamicGroup::ISODynamicGroup()
-:_dynamiceComponentList(NULL)
-,_iStartX(0)
+:_iStartX(0)
 ,_iStartY(0)
 ,_iLastStartX(-999999)
 ,_iLastStartY(-999999)
@@ -32,13 +31,11 @@ ISODynamicGroup::ISODynamicGroup()
 
 ISODynamicGroup::~ISODynamicGroup()
 {
-	CC_SAFE_RELEASE_NULL(_dynamiceComponentList);
+
 }
 
 bool ISODynamicGroup::init()
 {
-	_dynamiceComponentList=new CCArray();
-	_dynamiceComponentList->init();
 	return true;
 }
 
@@ -182,15 +179,9 @@ void ISODynamicGroup::updateMapCoordinate(unsigned int nodeIndex,float deltaMapX
     if(_updateDelegator) _updateDelegator->onUpdateComponentMapCoordinate(nodeIndex, deltaMapX, deltaMapY);
     
 	//更新组内的元素
-	Ref* pObj=NULL;
-	ISODynamicComponent* dynamicComponent=NULL;
-	CCARRAY_FOREACH(_dynamiceComponentList,pObj){
-		dynamicComponent=static_cast<ISODynamicComponent*>(pObj);
-		dynamicComponent->updateNodeBy(nodeIndex,deltaMapX,deltaMapY);
+	for (ISODynamicComponentVector::iterator iter = _dynamiceComponentList.begin(); iter != _dynamiceComponentList.end(); ++iter){
+		(*iter)->updateNodeBy(nodeIndex, deltaMapX, deltaMapY);
 	}
-   
-//    CCLOG("ISODynamicGroup::updateMapCoordinate from:%f,%f to:%f,%f",mx,my,newMx,newMy);
-
 }
 
 void ISODynamicGroup::calcComponentsCount()
@@ -248,12 +239,12 @@ void ISODynamicGroup::setCreateDelegator(ISODynamicComponentCreateDelegator* cre
 
 void ISODynamicGroup::addDynamicComponent(ISODynamicComponent* dynamicComponent)
 {
-	_dynamiceComponentList->addObject(dynamicComponent);
+	_dynamiceComponentList.pushBack(dynamicComponent);
 }
 
 void ISODynamicGroup::removeDynamicComponent(ISODynamicComponent* dynamicComponent)
 {
-	_dynamiceComponentList->removeObject(dynamicComponent);
+	_dynamiceComponentList.eraseObject(dynamicComponent);
 }
 
 NS_CC_YHGE_ISOMETRIC_END

@@ -8,7 +8,7 @@ NS_CC_YHGE_ISOMETRIC_BEGIN
 
 class ISOMap;
 
-class ISOLayer : public CCNode {
+class ISOLayer : public Node {
 
 public:
 	
